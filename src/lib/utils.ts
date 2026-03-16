@@ -1,13 +1,64 @@
 /**
- * Upgrade Jetpack tiled gallery images from tiny thumbnails to large versions.
- * Replaces src with data-large-file URL for better quality.
+ * Fix WordPress content images:
+ * 1. Replace lazy-load SVG placeholders with real data-src URLs
+ * 2. Upgrade Jetpack tiled gallery thumbnails to data-large-file URLs
+ * 3. Remove lazy-load classes that hide images
  */
 export function upgradeGalleryImages(html: string): string {
-  // Replace tiny src with data-large-file for gallery images
-  return html.replace(
-    /(<img[^>]*?)src="[^"]*"([^>]*?data-large-file=")([^"]+)("[^>]*>)/g,
-    '$1src="$3"$2$3$4'
+  let result = html;
+
+  // 1. Replace SVG placeholder src with data-src (lazy-load pattern from Bimber/lazysizes)
+  result = result.replace(
+    /<img([^>]*?)src="data:image\/svg\+xml[^"]*"([^>]*?)>/gi,
+    (match, before, after) => {
+      const full = before + after;
+      // Try data-src first
+      const dataSrcMatch = full.match(/data-src="([^"]+)/);
+      if (dataSrcMatch) {
+        // Remove the old src placeholder and set real src
+        const cleaned = match
+          .replace(/src="data:image\/svg\+xml[^"]*"/, `src="${dataSrcMatch[1]}"`)
+          .replace(/class="([^"]*?)lazyload([^"]*?)"/, 'class="$1$2"');
+        return cleaned;
+      }
+      return match;
+    }
   );
+
+  // 2. For any remaining images, prefer data-large-file over current src (Jetpack gallery upgrade)
+  result = result.replace(
+    /(<img[^>]*?)src="([^"]+)"([^>]*?data-large-file=")([^"]+)("[^>]*>)/g,
+    (match, before, currentSrc, mid, largeUrl, after) => {
+      // Only replace if current src is a small thumbnail
+      if (currentSrc.includes('resize=') || currentSrc.includes('fit=150') || currentSrc.includes('w=150')) {
+        return `${before}src="${largeUrl}"${mid}${largeUrl}${after}`;
+      }
+      return match;
+    }
+  );
+
+  // 3. Also handle data-src on non-SVG placeholder images (some have tiny 1x1 gif)
+  result = result.replace(
+    /<img([^>]*?)src="data:image\/gif[^"]*"([^>]*?)>/gi,
+    (match, before, after) => {
+      const full = before + after;
+      const dataSrcMatch = full.match(/data-src="([^"]+)/);
+      if (dataSrcMatch) {
+        return match
+          .replace(/src="data:image\/gif[^"]*"/, `src="${dataSrcMatch[1]}"`)
+          .replace(/class="([^"]*?)lazyload([^"]*?)"/, 'class="$1$2"');
+      }
+      return match;
+    }
+  );
+
+  // 4. Remove srcset with data: URIs (some WP lazy loaders put placeholder in srcset too)
+  result = result.replace(/srcset="data:[^"]*"/gi, '');
+
+  // 5. Clean up lazyload class that might prevent display
+  result = result.replace(/class="([^"]*?)lazyload([^"]*?)"/g, 'class="$1$2"');
+
+  return result;
 }
 
 export function formatCardTitle(htmlTitle: string): string {
