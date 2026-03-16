@@ -1,131 +1,140 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
-import { getPosts, getPostsByCategory, getFeaturedImageUrl, getPostCategories, stripHtml, estimateReadTime } from '@/lib/wordpress';
-import { ArticleCard } from '@/components/ArticleCard';
+import { getPosts, getFeaturedImageUrl, getPostCategories, stripHtml, estimateReadTime } from '@/lib/wordpress';
+import { formatCardTitle } from '@/lib/utils';
+import { BARS_DATA } from '@/lib/bars-data';
+import { FeaturedBarsScroller } from '@/components/FeaturedBarsScroller';
 
 export const revalidate = 300;
 
 export default async function HomePage() {
-  const [latestResult, barsResult, cocktailsResult] = await Promise.all([
-    getPosts(1, 9),
-    getPostsByCategory('bars', 1, 6),
-    getPostsByCategory('cocktails', 1, 6),
-  ]);
+  const result = await getPosts(1, 7);
+  const posts = result.data;
 
-  const latest = latestResult.data;
-  const bars = barsResult.data;
-  const cocktails = cocktailsResult.data;
-
-  // Hero: first 3 posts
-  const heroMain = latest[0];
-  const heroSide = latest.slice(1, 3);
-  const gridPosts = latest.slice(3, 9);
+  const hero = posts[0];
+  const cardPosts = posts.slice(1, 7);
+  const featuredBars = BARS_DATA.slice(0, 10);
 
   return (
     <>
-      {/* HERO SECTION */}
-      {heroMain && (
-        <div className="hero-grid">
-          <Link href={`/${heroMain.slug}`} className="hero-card hero-main" style={{ minHeight: 480 }}>
-            {getFeaturedImageUrl(heroMain, 'full') && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={getFeaturedImageUrl(heroMain, 'full')!}
-                alt={stripHtml(heroMain.title.rendered)}
-                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            )}
-            <div className="hero-overlay" />
-            <div className="hero-content">
-              <span className="hero-cat">
-                {getPostCategories(heroMain)[0]?.name || 'Latest'}
-              </span>
-              <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: heroMain.title.rendered }} />
-              <div className="hero-meta">
-                <span>{format(new Date(heroMain.date), 'MMM d, yyyy')}</span>
-                <span className="dot" />
-                <span>{estimateReadTime(heroMain.content.rendered)} min read</span>
-              </div>
-            </div>
-          </Link>
+      {/* A) SINGLE FULL-WIDTH HERO */}
+      {hero && (
+        <Link href={`/${hero.slug}`} className="hero">
+          {getFeaturedImageUrl(hero, 'full') && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={getFeaturedImageUrl(hero, 'full')!}
+              alt={stripHtml(hero.title.rendered)}
+            />
+          )}
+          <div className="hero-overlay" />
+          <div className="hero-content">
+            <span className="hero-cat">
+              {getPostCategories(hero)[0]?.name || 'Latest'}
+            </span>
+            <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: hero.title.rendered }} />
+            <p className="hero-excerpt">
+              {stripHtml(hero.excerpt.rendered).slice(0, 160)}
+            </p>
+            <span className="hero-read">
+              Read Article &rarr;
+            </span>
+          </div>
+        </Link>
+      )}
 
-          <div className="hero-side">
-            {heroSide.map(post => (
-              <Link key={post.id} href={`/${post.slug}`} className="hero-card" style={{ position: 'relative' }}>
-                {getFeaturedImageUrl(post, 'large') && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={getFeaturedImageUrl(post, 'large')!}
-                    alt={stripHtml(post.title.rendered)}
-                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+      {/* B) SECTION BAR */}
+      <div className="section-bar">
+        <h2>Featured Content You Might Like</h2>
+        <select className="filter-select" aria-label="Filter content">
+          <option>All Categories</option>
+          <option>People</option>
+          <option>Cocktails</option>
+          <option>Awards &amp; Events</option>
+          <option>Brands</option>
+        </select>
+      </div>
+
+      {/* C) MIXED CARD GRID */}
+      <div className="cards-grid">
+        {cardPosts.map((post, i) => {
+          const isBleed = i % 3 === 1;
+          const cat = getPostCategories(post)[0];
+          const imgUrl = getFeaturedImageUrl(post, 'large');
+          const formattedTitle = formatCardTitle(post.title.rendered);
+          const excerpt = stripHtml(post.excerpt.rendered).slice(0, 120);
+          const dateStr = format(new Date(post.date), 'MMM d, yyyy');
+          const readTime = estimateReadTime(post.content.rendered);
+
+          if (isBleed) {
+            return (
+              <Link key={post.id} href={`/${post.slug}`} className="card card-bleed">
+                {imgUrl && (
+                  <div className="card-bleed-bg">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={imgUrl} alt={stripHtml(post.title.rendered)} />
+                  </div>
                 )}
-                <div className="hero-overlay" />
-                <div className="hero-content">
-                  <span className="hero-cat">
-                    {getPostCategories(post)[0]?.name || 'Latest'}
-                  </span>
-                  <h2 className="hero-title" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                  <div className="hero-meta">
-                    <span>{format(new Date(post.date), 'MMM d, yyyy')}</span>
+                <div className="card-bleed-overlay" />
+                <div className="card-top">
+                  <span className="card-tag">{cat?.name || 'Latest'}</span>
+                </div>
+                <div className="card-body">
+                  <h3 dangerouslySetInnerHTML={{ __html: formattedTitle }} />
+                  <p className="card-excerpt">{excerpt}</p>
+                  <div className="card-meta">
+                    <span>{dateStr}</span>
+                    <span className="dot" />
+                    <span>{readTime} min read</span>
                   </div>
                 </div>
               </Link>
-            ))}
-          </div>
-        </div>
-      )}
+            );
+          }
 
-      {/* LATEST ARTICLES */}
-      <div className="section-header">
-        <h2 className="section-title">Latest Articles</h2>
-        <Link href="/category/features" className="section-link">View All &rarr;</Link>
+          return (
+            <Link key={post.id} href={`/${post.slug}`} className="card">
+              {imgUrl && (
+                <div className="card-img-top">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={imgUrl} alt={stripHtml(post.title.rendered)} />
+                </div>
+              )}
+              <div className="card-body">
+                <div className="card-tags">
+                  <span className="card-tag">{cat?.name || 'Latest'}</span>
+                </div>
+                <h3 dangerouslySetInnerHTML={{ __html: formattedTitle }} />
+                <p className="card-excerpt">{excerpt}</p>
+                <div className="card-meta">
+                  <span>{dateStr}</span>
+                  <span className="dot" />
+                  <span>{readTime} min read</span>
+                </div>
+              </div>
+            </Link>
+          );
+        })}
       </div>
-      <div className="article-grid">
-        {gridPosts.map(post => (
-          <ArticleCard key={post.id} post={post} />
-        ))}
-      </div>
 
-      {/* BARS SECTION */}
-      {bars.length > 0 && (
-        <>
-          <div className="section-header">
-            <h2 className="section-title">Bars</h2>
-            <Link href="/category/bars" className="section-link">View All &rarr;</Link>
-          </div>
-          <div className="article-grid">
-            {bars.slice(0, 3).map(post => (
-              <ArticleCard key={post.id} post={post} />
-            ))}
-          </div>
-        </>
-      )}
-
-      {/* NEWSLETTER */}
-      <div className="newsletter-strip">
-        <h2>Stay in the Mix</h2>
-        <p>Get the latest cocktail trends, bar openings, and industry insights delivered weekly.</p>
-        <div className="newsletter-form">
-          <input type="email" placeholder="Your email address" />
-          <button>Subscribe</button>
+      {/* D) CTA BANNER */}
+      <div className="cta-banner">
+        <h2>Add Your Bar</h2>
+        <p>Join the Bar Magazine directory and reach thousands of cocktail enthusiasts and industry professionals.</p>
+        <div className="cta-form">
+          <input type="text" className="cta-input" placeholder="Your bar name" />
+          <button className="cta-submit">Get Listed</button>
         </div>
       </div>
 
-      {/* COCKTAILS SECTION */}
-      {cocktails.length > 0 && (
-        <>
-          <div className="section-header">
-            <h2 className="section-title">Cocktails</h2>
-            <Link href="/category/cocktails" className="section-link">View All &rarr;</Link>
-          </div>
-          <div className="article-grid">
-            {cocktails.slice(0, 3).map(post => (
-              <ArticleCard key={post.id} post={post} />
-            ))}
-          </div>
-        </>
-      )}
+      {/* E) FEATURED BARS */}
+      <div className="bars-wrapper">
+        <div className="section-bar">
+          <h2>Featured Bars</h2>
+          <Link href="/bars" className="section-link">View All &rarr;</Link>
+        </div>
+        <FeaturedBarsScroller bars={featuredBars} />
+      </div>
     </>
   );
 }

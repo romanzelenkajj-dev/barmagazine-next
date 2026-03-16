@@ -33,10 +33,10 @@ export function Footer() {
           <ul>
             <li><Link href="/">Latest</Link></li>
             <li><Link href="/bars">Bars</Link></li>
-            <li><Link href="/category/interviews">People</Link></li>
+            <li><Link href="/category/people">People</Link></li>
             <li><Link href="/category/cocktails">Cocktails</Link></li>
-            <li><Link href="/category/news">News</Link></li>
-            <li><Link href="/category/spirits">Spirits</Link></li>
+            <li><Link href="/category/awards-events">Awards &amp; Events</Link></li>
+            <li><Link href="/category/brands">Brands</Link></li>
             <li><Link href="/events">Events</Link></li>
             <li><Link href="/work-with-us">Work With Us</Link></li>
           </ul>

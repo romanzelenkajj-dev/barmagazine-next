@@ -81,14 +81,22 @@ async function wpFetchWithTotal<T>(endpoint: string, params: Record<string, stri
 }
 
 // ---------- Posts ----------
-export async function getPosts(page = 1, perPage = 12, categoryId?: number) {
+export async function getPosts(page = 1, perPage = 12, categoryId?: number, categoryIds?: number[]) {
   const params: Record<string, string | number> = {
     page,
     per_page: perPage,
     _embed: 'true',
   };
-  if (categoryId) params.categories = categoryId;
+  if (categoryIds && categoryIds.length > 0) {
+    params.categories = categoryIds.join(',');
+  } else if (categoryId) {
+    params.categories = categoryId;
+  }
   return wpFetchWithTotal<WPPost[]>('/posts', params);
+}
+
+export async function getPostsByMultipleCategories(categoryIds: number[], page = 1, perPage = 12) {
+  return getPosts(page, perPage, undefined, categoryIds);
 }
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {

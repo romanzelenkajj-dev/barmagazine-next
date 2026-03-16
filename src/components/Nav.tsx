@@ -19,13 +19,13 @@ export function Nav() {
     setMenuOpen(false);
   }, [pathname]);
 
-  const links = [
+  const links: { href: string; label: string; badge?: string }[] = [
     { href: '/', label: 'Latest' },
     { href: '/bars', label: 'Bars' },
-    { href: '/category/interviews', label: 'People' },
+    { href: '/category/people', label: 'People' },
     { href: '/category/cocktails', label: 'Cocktails' },
-    { href: '/category/news', label: 'News' },
-    { href: '/category/spirits', label: 'Spirits' },
+    { href: '/category/awards-events', label: 'Awards & Events', badge: 'New' },
+    { href: '/category/brands', label: 'Brands' },
     { href: '/events', label: 'Events' },
   ];
 
@@ -50,6 +50,9 @@ export function Nav() {
                     className={pathname === link.href ? 'active' : ''}
                   >
                     {link.label}
+                    {link.badge && (
+                      <span className="nav-badge">{link.badge}</span>
+                    )}
                   </Link>
                 </li>
               ))}
