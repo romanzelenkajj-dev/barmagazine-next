@@ -1,3 +1,15 @@
+/**
+ * Upgrade Jetpack tiled gallery images from tiny thumbnails to large versions.
+ * Replaces src with data-large-file URL for better quality.
+ */
+export function upgradeGalleryImages(html: string): string {
+  // Replace tiny src with data-large-file for gallery images
+  return html.replace(
+    /(<img[^>]*?)src="[^"]*"([^>]*?data-large-file=")([^"]+)("[^>]*>)/g,
+    '$1src="$3"$2$3$4'
+  );
+}
+
 export function formatCardTitle(htmlTitle: string): string {
   // Strip HTML entities and tags
   const clean = htmlTitle.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&#8217;/g, "'").replace(/&rsquo;/g, "'").replace(/&lsquo;/g, "'").replace(/&rdquo;/g, '"').replace(/&ldquo;/g, '"').replace(/&#8211;/g, '–').replace(/&#8212;/g, '—').replace(/&nbsp;/g, ' ');

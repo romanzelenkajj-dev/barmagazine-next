@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
 import { getPostBySlug, getPosts, getFeaturedImageUrl, getPostCategories, getPostAuthor, stripHtml, estimateReadTime } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
+import { upgradeGalleryImages } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 export const revalidate = 300;
@@ -30,6 +31,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   const author = getPostAuthor(post);
   const heroImage = getFeaturedImageUrl(post, 'full');
   const readTime = estimateReadTime(post.content.rendered);
+  const authorName = author?.name && author.name !== 'BarMagazine' ? author.name : null;
 
   // Get related posts from the same category
   const relatedResult = await getPosts(1, 5, categories[0]?.id);
@@ -38,13 +40,15 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   return (
     <>
       {/* ARTICLE HERO */}
-      <div
-        className="article-hero"
-        style={{
-          backgroundImage: heroImage ? `url('${heroImage}')` : undefined,
-          marginTop: 'var(--gap)',
-        }}
-      >
+      <div className="article-hero" style={{ marginTop: 'var(--gap)' }}>
+        {heroImage && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={heroImage}
+            alt={stripHtml(post.title.rendered)}
+            className="article-hero-img"
+          />
+        )}
         <div className="article-hero-overlay" />
         <div className="article-hero-content">
           {categories[0] && (
@@ -55,8 +59,12 @@ export default async function ArticlePage({ params }: { params: { slug: string }
             dangerouslySetInnerHTML={{ __html: post.title.rendered }}
           />
           <div className="article-hero-meta">
-            <span>By {author?.name || 'BarMagazine'}</span>
-            <span className="dot" />
+            {authorName && (
+              <>
+                <span>By {authorName}</span>
+                <span className="dot" />
+              </>
+            )}
             <span>{format(new Date(post.date), 'MMMM d, yyyy')}</span>
             <span className="dot" />
             <span>{readTime} min read</span>
@@ -67,27 +75,28 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       {/* ARTICLE + SIDEBAR */}
       <div className="article-layout">
         <article className="article-body">
-          <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+          <div dangerouslySetInnerHTML={{ __html: upgradeGalleryImages(post.content.rendered) }} />
 
           {/* Author box */}
-          <div className="author-box">
-            <div className="author-avatar">
-              {author?.avatar_urls?.['96'] ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={author.avatar_urls['96']}
-                  alt={author.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
-                />
-              ) : (
-                'BM'
-              )}
+          {authorName && (
+            <div className="author-box">
+              <div className="author-avatar">
+                {author?.avatar_urls?.['96'] ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={author.avatar_urls['96']}
+                    alt={author.name}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                  />
+                ) : (
+                  authorName.charAt(0)
+                )}
+              </div>
+              <div className="author-info">
+                <h4>{authorName}</h4>
+              </div>
             </div>
-            <div className="author-info">
-              <h4>{author?.name || 'BarMagazine'}</h4>
-              <p>Our editorial team covers the latest in cocktail culture, bar design, and spirits worldwide.</p>
-            </div>
-          </div>
+          )}
 
           {/* Share bar */}
           <div className="share-bar">
