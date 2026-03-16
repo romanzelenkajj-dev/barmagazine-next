@@ -32,7 +32,6 @@ export function Footer() {
           <h4>Explore</h4>
           <ul>
             <li><Link href="/">Latest</Link></li>
-            <li><Link href="/bars">Bars</Link></li>
             <li><Link href="/category/people">People</Link></li>
             <li><Link href="/category/cocktails">Cocktails</Link></li>
             <li><Link href="/category/awards-events">Awards</Link></li>

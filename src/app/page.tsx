@@ -1,19 +1,20 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
-import { getPosts, getFeaturedImageUrl, getPostCategories, stripHtml, estimateReadTime } from '@/lib/wordpress';
+import { getPosts, getPostsByCategory, getFeaturedImageUrl, getPostCategories, stripHtml, estimateReadTime } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
-import { BARS_DATA } from '@/lib/bars-data';
-import { FeaturedBarsScroller } from '@/components/FeaturedBarsScroller';
 
 export const revalidate = 300;
 
 export default async function HomePage() {
-  const result = await getPosts(1, 7);
+  const [result, barsResult] = await Promise.all([
+    getPosts(1, 7),
+    getPostsByCategory('bars', 1, 6),
+  ]);
   const posts = result.data;
+  const barsPosts = barsResult.data;
 
   const hero = posts[0];
   const cardPosts = posts.slice(1, 7);
-  const featuredBars = BARS_DATA.slice(0, 10);
 
   return (
     <>
@@ -127,14 +128,33 @@ export default async function HomePage() {
         </div>
       </div>
 
-      {/* E) FEATURED BARS */}
-      <div className="bars-wrapper">
-        <div className="section-bar">
-          <h2>Featured Bars</h2>
-          <Link href="/bars" className="section-link">View All &rarr;</Link>
+      {/* E) FEATURED BARS (from WP bars category) */}
+      {barsPosts.length > 0 && (
+        <div className="bars-wrapper">
+          <div className="section-bar">
+            <h2>Featured Bars</h2>
+          </div>
+          <div className="bars-grid-scroll" style={{ marginTop: 16 }}>
+            {barsPosts.map(post => {
+              const imgUrl = getFeaturedImageUrl(post, 'medium_large') || getFeaturedImageUrl(post, 'large');
+              return (
+                <Link key={post.id} href={`/${post.slug}`} className="bar-card">
+                  <div className="bar-img">
+                    {imgUrl && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={imgUrl} alt={stripHtml(post.title.rendered)} />
+                    )}
+                  </div>
+                  <h4 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                  <span className="bar-city">{format(new Date(post.date), 'MMM d, yyyy')}</span>
+                  <br />
+                  <span className="bar-link">Read more</span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
-        <FeaturedBarsScroller bars={featuredBars} />
-      </div>
+      )}
     </>
   );
 }
