@@ -1040,6 +1040,26 @@ button {
   cursor: not-allowed;
 }
 
+/* ====== CATEGORY HEADER ====== */
+.category-header-wrapper {
+  margin-top: var(--gap);
+}
+
+.category-header {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 48px 32px;
+  margin-bottom: var(--gap);
+  text-align: center;
+}
+
+.category-header h1 {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
 /* ====== LOAD MORE ====== */
 .load-more-btn {
   padding: 14px 40px;
