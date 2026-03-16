@@ -16,7 +16,8 @@ export default async function PeoplePage({
   searchParams: { page?: string };
 }) {
   const page = parseInt(searchParams.page || '1');
-  const result = await getPostsByMultipleCategories([4], page, 12);
+  // interviews (4) + books (5)
+  const result = await getPostsByMultipleCategories([4, 5], page, 12);
 
   return (
     <>
@@ -25,7 +26,7 @@ export default async function PeoplePage({
           People
         </h1>
         <p style={{ fontSize: 14, color: 'var(--text-secondary)', marginBottom: 24 }}>
-          Interviews and profiles from the world of bars and cocktails
+          Interviews, profiles, and books from the world of bars and cocktails
         </p>
 
         <div className="cat-filters">

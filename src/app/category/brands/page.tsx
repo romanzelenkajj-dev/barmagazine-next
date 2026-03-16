@@ -7,7 +7,7 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: 'Brands | Bar Magazine',
-  description: 'Discover the latest spirits, wines, and books shaping the bar industry.',
+  description: 'Discover the latest spirits and wines shaping the bar industry.',
 };
 
 export default async function BrandsPage({
@@ -16,8 +16,8 @@ export default async function BrandsPage({
   searchParams: { page?: string };
 }) {
   const page = parseInt(searchParams.page || '1');
-  // spirits (59) + wines (41) + books (5)
-  const result = await getPostsByMultipleCategories([59, 41, 5], page, 12);
+  // spirits (59) + wines (41)
+  const result = await getPostsByMultipleCategories([59, 41], page, 12);
 
   return (
     <>
@@ -26,7 +26,7 @@ export default async function BrandsPage({
           Brands
         </h1>
         <p style={{ fontSize: 14, color: 'var(--text-secondary)', marginBottom: 24 }}>
-          Spirits, wines, and books from the world of bars
+          Spirits and wines from the world of bars
         </p>
 
         <div className="cat-filters">
