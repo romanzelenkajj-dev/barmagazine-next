@@ -24,7 +24,7 @@ export function Nav() {
     { href: '/bars', label: 'Bars' },
     { href: '/category/people', label: 'People' },
     { href: '/category/cocktails', label: 'Cocktails' },
-    { href: '/category/awards-events', label: 'Awards & Events', badge: 'New' },
+    { href: '/category/awards-events', label: 'Awards' },
     { href: '/category/brands', label: 'Brands' },
     { href: '/events', label: 'Events' },
   ];
