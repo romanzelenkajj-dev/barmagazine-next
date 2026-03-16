@@ -1,23 +1,19 @@
 import Link from 'next/link';
 import { getPostsByMultipleCategories } from '@/lib/wordpress';
-import { ArticleCard } from '@/components/ArticleCard';
+import { LoadMoreGrid } from '@/components/LoadMoreGrid';
 import type { Metadata } from 'next';
 
 export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: 'Cocktails | Bar Magazine',
-  description: 'Cocktail recipes, mocktails, and mixology trends from Bar Magazine.',
+  description: 'Cocktail recipes, trends, and mocktail inspiration from the bar world.',
 };
 
-export default async function CocktailsPage({
-  searchParams,
-}: {
-  searchParams: { page?: string };
-}) {
-  const page = parseInt(searchParams.page || '1');
+export default async function CocktailsPage() {
   // cocktails (8) + mocktails (64)
-  const result = await getPostsByMultipleCategories([8, 64], page, 12);
+  const result = await getPostsByMultipleCategories([8, 64], 1, 12);
+  const fetchUrl = `https://barmagazine.com/wp-json/wp/v2/posts?categories=8,64&per_page=12`;
 
   return (
     <>
@@ -26,44 +22,26 @@ export default async function CocktailsPage({
           Cocktails
         </h1>
         <p style={{ fontSize: 14, color: 'var(--text-secondary)', marginBottom: 24 }}>
-          Cocktail recipes and mocktail inspiration
+          Cocktail recipes, trends, and mocktail inspiration
         </p>
 
         <div className="cat-filters">
           <Link href="/" className="cat-filter-btn">Latest</Link>
           <Link href="/category/people" className="cat-filter-btn">People</Link>
           <Link href="/category/cocktails" className="cat-filter-btn active">Cocktails</Link>
-          <Link href="/category/awards-events" className="cat-filter-btn">Awards &amp; Events</Link>
+          <Link href="/category/awards-events" className="cat-filter-btn">Awards</Link>
           <Link href="/category/brands" className="cat-filter-btn">Brands</Link>
         </div>
 
-        <div className="article-grid">
-          {result.data.map(post => (
-            <ArticleCard key={post.id} post={post} />
-          ))}
-        </div>
+        <LoadMoreGrid
+          initialPosts={result.data as any}
+          totalPages={result.totalPages}
+          fetchUrl={fetchUrl}
+        />
 
         {result.data.length === 0 && (
           <div style={{ textAlign: 'center', padding: '80px 20px', color: 'var(--text-tertiary)' }}>
             <p style={{ fontSize: 16 }}>No articles found in this category yet.</p>
-          </div>
-        )}
-
-        {result.totalPages > 1 && (
-          <div className="pagination">
-            {page > 1 && (
-              <Link href={`/category/cocktails?page=${page - 1}`}>
-                <button>&larr; Previous</button>
-              </Link>
-            )}
-            <span style={{ padding: '10px 18px', fontSize: 14, color: 'var(--text-secondary)' }}>
-              Page {page} of {result.totalPages}
-            </span>
-            {page < result.totalPages && (
-              <Link href={`/category/cocktails?page=${page + 1}`}>
-                <button>Next &rarr;</button>
-              </Link>
-            )}
           </div>
         )}
       </div>

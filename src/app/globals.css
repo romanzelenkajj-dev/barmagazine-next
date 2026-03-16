@@ -1040,6 +1040,31 @@ button {
   cursor: not-allowed;
 }
 
+/* ====== LOAD MORE ====== */
+.load-more-btn {
+  padding: 14px 40px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  font-family: inherit;
+}
+
+.load-more-btn:hover:not(:disabled) {
+  background: var(--text-primary);
+  color: #fff;
+  border-color: var(--text-primary);
+}
+
+.load-more-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* ====== ANIMATIONS ====== */
 .reveal {
   opacity: 0;

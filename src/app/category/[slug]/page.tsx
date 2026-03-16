@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getCategoryBySlug, getPostsByCategory, getCategories } from '@/lib/wordpress';
-import { ArticleCard } from '@/components/ArticleCard';
+import { LoadMoreGrid } from '@/components/LoadMoreGrid';
 import type { Metadata } from 'next';
 
 export const revalidate = 300;
@@ -17,18 +17,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default async function CategoryPage({
   params,
-  searchParams,
 }: {
   params: { slug: string };
-  searchParams: { page?: string };
 }) {
   const category = await getCategoryBySlug(params.slug);
   if (!category) notFound();
 
-  const page = parseInt(searchParams.page || '1');
-  const result = await getPostsByCategory(params.slug, page, 12);
+  const result = await getPostsByCategory(params.slug, 1, 12);
   const allCategories = await getCategories();
   const visibleCategories = allCategories.filter(c => c.count > 0 && c.slug !== 'blog');
+
+  const fetchUrl = `https://barmagazine.com/wp-json/wp/v2/posts?categories=${category.id}&per_page=12`;
 
   return (
     <>
@@ -53,35 +52,15 @@ export default async function CategoryPage({
           ))}
         </div>
 
-        {/* Article grid */}
-        <div className="article-grid">
-          {result.data.map(post => (
-            <ArticleCard key={post.id} post={post} />
-          ))}
-        </div>
+        <LoadMoreGrid
+          initialPosts={result.data as any}
+          totalPages={result.totalPages}
+          fetchUrl={fetchUrl}
+        />
 
         {result.data.length === 0 && (
           <div style={{ textAlign: 'center', padding: '80px 20px', color: 'var(--text-tertiary)' }}>
             <p style={{ fontSize: 16 }}>No articles found in this category yet.</p>
-          </div>
-        )}
-
-        {/* Pagination */}
-        {result.totalPages > 1 && (
-          <div className="pagination">
-            {page > 1 && (
-              <Link href={`/category/${params.slug}?page=${page - 1}`}>
-                <button>&larr; Previous</button>
-              </Link>
-            )}
-            <span style={{ padding: '10px 18px', fontSize: 14, color: 'var(--text-secondary)' }}>
-              Page {page} of {result.totalPages}
-            </span>
-            {page < result.totalPages && (
-              <Link href={`/category/${params.slug}?page=${page + 1}`}>
-                <button>Next &rarr;</button>
-              </Link>
-            )}
           </div>
         )}
       </div>
