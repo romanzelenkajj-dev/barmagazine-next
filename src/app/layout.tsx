@@ -30,8 +30,8 @@ export default function RootLayout({
         <div className="nav-spacer" />
         <div className="container">
           {children}
+          <Footer />
         </div>
-        <Footer />
       </body>
     </html>
   );
