@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
-import { getPostBySlug, getPosts, getFeaturedImageUrl, getPostCategories, getPostAuthor, stripHtml, estimateReadTime } from '@/lib/wordpress';
+import { getPostBySlug, getPosts, getFeaturedImageUrl, getPostCategories, getPostAuthor, stripHtml, truncateAtWord, estimateReadTime } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
 import { upgradeGalleryImages } from '@/lib/utils';
 import type { Metadata } from 'next';
@@ -12,10 +12,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!post) return {};
   return {
     title: `${stripHtml(post.title.rendered)} | Bar Magazine`,
-    description: stripHtml(post.excerpt.rendered).slice(0, 160),
+    description: truncateAtWord(stripHtml(post.excerpt.rendered), 160),
     openGraph: {
       title: stripHtml(post.title.rendered),
-      description: stripHtml(post.excerpt.rendered).slice(0, 160),
+      description: truncateAtWord(stripHtml(post.excerpt.rendered), 160),
       type: 'article',
       publishedTime: post.date,
       images: getFeaturedImageUrl(post, 'full') ? [{ url: getFeaturedImageUrl(post, 'full')! }] : [],

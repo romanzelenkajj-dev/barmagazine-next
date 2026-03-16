@@ -28,7 +28,32 @@ function getCat(post: Post): string {
 }
 
 function strip(html: string): string {
-  return html.replace(/<[^>]*>/g, '').trim();
+  let text = html.replace(/<[^>]*>/g, '').trim();
+  text = text
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8216;/g, "'")
+    .replace(/&#8220;/g, '"')
+    .replace(/&#8221;/g, '"')
+    .replace(/&#8211;/g, '\u2013')
+    .replace(/&#8212;/g, '\u2014')
+    .replace(/&#038;/g, '&')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&#039;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#8230;/g, '\u2026')
+    .replace(/&#\d+;/g, '');
+  return text;
+}
+
+function truncate(text: string, maxLen: number): string {
+  if (text.length <= maxLen) return text;
+  const t = text.slice(0, maxLen);
+  const s = t.lastIndexOf(' ');
+  return (s > maxLen * 0.6 ? t.slice(0, s) : t) + '\u2026';
 }
 
 function readTime(content: string): number {
@@ -71,7 +96,7 @@ export function LoadMoreGrid({
         {posts.map(post => {
           const imageUrl = getImage(post);
           const categoryName = getCat(post);
-          const excerpt = strip(post.excerpt.rendered);
+          const excerpt = truncate(strip(post.excerpt.rendered), 120);
           const rt = readTime(post.content.rendered);
 
           return (

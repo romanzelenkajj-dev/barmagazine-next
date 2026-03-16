@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
-import { getPosts, getPostsByCategory, getFeaturedImageUrl, getPostCategories, stripHtml, estimateReadTime } from '@/lib/wordpress';
+import { getPosts, getPostsByCategory, getFeaturedImageUrl, getPostCategories, stripHtml, truncateAtWord, estimateReadTime } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
 
 export const revalidate = 300;
@@ -35,7 +35,7 @@ export default async function HomePage() {
             </span>
             <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: hero.title.rendered }} />
             <p className="hero-excerpt">
-              {stripHtml(hero.excerpt.rendered).slice(0, 160)}
+              {truncateAtWord(stripHtml(hero.excerpt.rendered), 160)}
             </p>
             <span className="hero-read">
               Read Article &rarr;
@@ -49,10 +49,12 @@ export default async function HomePage() {
         <h2>Featured Content You Might Like</h2>
         <select className="filter-select" aria-label="Filter content">
           <option>All Categories</option>
+          <option>Bars</option>
           <option>People</option>
           <option>Cocktails</option>
-          <option>Awards &amp; Events</option>
+          <option>Awards</option>
           <option>Brands</option>
+          <option>Events</option>
         </select>
       </div>
 
@@ -63,7 +65,7 @@ export default async function HomePage() {
           const cat = getPostCategories(post)[0];
           const imgUrl = getFeaturedImageUrl(post, 'large');
           const formattedTitle = formatCardTitle(post.title.rendered);
-          const excerpt = stripHtml(post.excerpt.rendered).slice(0, 120);
+          const excerpt = truncateAtWord(stripHtml(post.excerpt.rendered), 120);
           const dateStr = format(new Date(post.date), 'MMM d, yyyy');
           const readTime = estimateReadTime(post.content.rendered);
 

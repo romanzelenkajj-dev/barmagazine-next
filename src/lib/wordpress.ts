@@ -151,7 +151,33 @@ export function getPostAuthor(post: WPPost): WPAuthor | null {
 }
 
 export function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, '').trim();
+  let text = html.replace(/<[^>]*>/g, '').trim();
+  // Decode HTML entities
+  text = text
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8216;/g, "'")
+    .replace(/&#8220;/g, '"')
+    .replace(/&#8221;/g, '"')
+    .replace(/&#8211;/g, '–')
+    .replace(/&#8212;/g, '—')
+    .replace(/&#038;/g, '&')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&#039;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#8230;/g, '…')
+    .replace(/&#\d+;/g, '');
+  return text;
+}
+
+export function truncateAtWord(text: string, maxLen: number): string {
+  if (text.length <= maxLen) return text;
+  const truncated = text.slice(0, maxLen);
+  const lastSpace = truncated.lastIndexOf(' ');
+  return (lastSpace > maxLen * 0.6 ? truncated.slice(0, lastSpace) : truncated) + '…';
 }
 
 export function estimateReadTime(content: string): number {
