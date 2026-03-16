@@ -58,6 +58,23 @@ export function upgradeGalleryImages(html: string): string {
   // 5. Clean up lazyload class that might prevent display
   result = result.replace(/class="([^"]*?)lazyload([^"]*?)"/g, 'class="$1$2"');
 
+  // 6. Strip inline pixel dimensions from Jetpack tiled gallery containers
+  // These fixed widths/heights break responsive layout
+  result = result.replace(
+    /(<div[^>]*class="[^"]*(?:gallery-row|gallery-group|tiled-gallery)[^"]*"[^>]*)style="[^"]*(?:width|height):\s*\d+px[^"]*"/gi,
+    '$1'
+  );
+
+  // 7. Remove width/height attributes from content images (let CSS handle sizing)
+  result = result.replace(
+    /(<img[^>]*?)\s+width="\d+"/gi,
+    '$1'
+  );
+  result = result.replace(
+    /(<img[^>]*?)\s+height="\d+"/gi,
+    '$1'
+  );
+
   return result;
 }
 

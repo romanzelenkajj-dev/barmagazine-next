@@ -653,6 +653,27 @@ button {
   display: block;
 }
 
+/* Make standalone WP images fill the article width */
+.article-body > p > img,
+.article-body > p > a > img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 8px 0;
+}
+
+.article-body img.alignnone {
+  width: 100%;
+  height: auto;
+}
+
+.article-body img.aligncenter {
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* WP caption figures (wp-caption class) */
 .article-body .wp-caption {
   margin: 32px 0;
@@ -683,34 +704,65 @@ button {
   border-radius: 12px;
 }
 
-/* Jetpack Tiled Gallery */
+/* Jetpack Tiled Gallery — responsive override */
 .article-body .tiled-gallery {
   margin: 32px 0;
   overflow: hidden;
   border-radius: 12px;
+  width: 100% !important;
 }
 
 .article-body .tiled-gallery .gallery-row {
   display: flex;
-  gap: 4px;
-  margin-bottom: 4px;
+  gap: 6px;
+  margin-bottom: 6px;
   width: 100% !important;
   height: auto !important;
 }
 
 .article-body .tiled-gallery .gallery-group {
-  flex: 1;
-  width: auto !important;
+  /* Use inline style width as flex-basis ratio — don't override with flex:1 */
+  flex-grow: 1;
+  flex-shrink: 1;
   height: auto !important;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* When gallery-group has images-1 vs images-2, handle stacking */
+.article-body .tiled-gallery .gallery-group.images-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .article-body .tiled-gallery .tiled-gallery-item {
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  flex: 1;
 }
 
 .article-body .tiled-gallery .tiled-gallery-item a {
   display: block;
+  height: 100%;
+}
+
+.article-body .tiled-gallery .tiled-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  margin: 0;
+  display: block;
+}
+
+.article-body .tiled-gallery .tiled-gallery-caption {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  padding: 6px 4px 2px;
+  text-align: center;
+  background: var(--bg-card);
 }
 
 .article-body .tiled-gallery .tiled-gallery-item img {
