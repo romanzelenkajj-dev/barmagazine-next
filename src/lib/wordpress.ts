@@ -262,4 +262,9 @@ export const CATEGORY_MAP: Record<string, number> = {
   'news': 52,
   'spirits': 59,
   'wines': 41,
+  // New categories matching site nav
+  'people': 199,
+  'awards': 200,
+  'brands': 201,
+  'events': 202,
 };

@@ -33,7 +33,7 @@ export default async function HomePage() {
             <span className="hero-cat">
               {getPostCategories(hero)[0]?.name || 'Latest'}
             </span>
-            <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: hero.title.rendered }} />
+            <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: formatCardTitle(hero.title.rendered, hero.meta?.bold_title) }} />
             <p className="hero-excerpt">
               {truncateAtWord(stripHtml(hero.excerpt.rendered), 160)}
             </p>
@@ -145,7 +145,7 @@ export default async function HomePage() {
                       <img src={imgUrl} alt={stripHtml(post.title.rendered)} />
                     )}
                   </div>
-                  <h4 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                  <h4 dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }} />
                   <span className="bar-city">{format(new Date(post.date), 'MMM d, yyyy')}</span>
                 </Link>
               );

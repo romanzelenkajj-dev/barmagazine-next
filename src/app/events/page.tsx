@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   description: 'Bar industry events, cocktail competitions, award ceremonies, and trade shows worldwide.',
 };
 
-// Use NEWS category (52) for event-related articles
-const EVENTS_CATEGORY = 52;
+// Events category (202)
+const EVENTS_CATEGORY = 202;
 
 export default async function EventsPage() {
   const { data: posts } = await getPosts(1, 20, EVENTS_CATEGORY);

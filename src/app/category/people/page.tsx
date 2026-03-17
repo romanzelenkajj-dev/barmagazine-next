@@ -10,7 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default async function PeoplePage() {
-  const result = await getPostsByMultipleCategories([4, 5], 1, 12);
+  // People (199) + legacy: Interviews (4), Books (5)
+  const result = await getPostsByMultipleCategories([199, 4, 5], 1, 12);
   const fetchUrl = `https://barmagazine.com/wp-json/wp/v2/posts?categories=4,5&per_page=12`;
 
   return (

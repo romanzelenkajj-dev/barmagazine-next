@@ -10,7 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default async function AwardsEventsPage() {
-  const result = await getPostsByMultipleCategories([52, 40], 1, 12);
+  // Awards (200) + legacy: News (52), Features (40)
+  const result = await getPostsByMultipleCategories([200, 52, 40], 1, 12);
   const fetchUrl = `https://barmagazine.com/wp-json/wp/v2/posts?categories=52,40&per_page=12`;
 
   return (
