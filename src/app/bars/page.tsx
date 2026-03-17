@@ -131,17 +131,14 @@ export default function BarsDirectoryPage() {
 
 function BarCard({ bar }: { bar: Bar }) {
   const href = bar.wp_post_slug ? `/${bar.wp_post_slug}` : null;
-  const inner = (
+  const hasImage = !!bar.image;
+  const cardClass = hasImage ? 'bar-dir-card' : 'bar-dir-card bar-dir-card--text';
+
+  const inner = hasImage ? (
     <>
       <div className="bar-dir-card-img">
-        {bar.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={bar.image} alt={bar.name} loading="lazy" />
-        ) : (
-          <div className="bar-dir-card-placeholder" data-letter={bar.name.charAt(0).toUpperCase()}>
-            <span>{bar.name.charAt(0).toUpperCase()}</span>
-          </div>
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={bar.image!} alt={bar.name} loading="lazy" />
         {bar.ranking && (
           <span className="bar-dir-badge">{bar.ranking.replace("World's 50 Best Bars 2025 - ", "")}</span>
         )}
@@ -155,10 +152,22 @@ function BarCard({ bar }: { bar: Bar }) {
         <span className="bar-dir-type">{bar.type}</span>
       </div>
     </>
+  ) : (
+    <div className="bar-dir-card-body">
+      <h3>{bar.name}</h3>
+      <div className="bar-dir-card-meta">
+        <span className="bar-dir-city">{bar.city}</span>
+        {bar.city !== bar.country && <span className="bar-dir-country">{bar.country}</span>}
+      </div>
+      <span className="bar-dir-type">{bar.type}</span>
+      {bar.ranking && (
+        <span className="bar-dir-badge-inline">{bar.ranking.replace("World's 50 Best Bars 2025 - ", "")}</span>
+      )}
+    </div>
   );
 
   if (href) {
-    return <Link href={href} className="bar-dir-card">{inner}</Link>;
+    return <Link href={href} className={cardClass}>{inner}</Link>;
   }
-  return <div className="bar-dir-card">{inner}</div>;
+  return <div className={cardClass}>{inner}</div>;
 }
