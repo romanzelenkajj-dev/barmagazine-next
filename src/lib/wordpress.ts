@@ -62,10 +62,14 @@ export interface WPTag {
 }
 
 // ---------- Fetch helpers ----------
-async function fetchWithRetry(url: string, retries = 3, delay = 1000): Promise<Response> {
+async function fetchWithRetry(url: string, retries = 5, delay = 2000): Promise<Response> {
   for (let i = 0; i < retries; i++) {
-    const res = await fetch(url, { next: { revalidate: 300 } });
-    if (res.ok || res.status < 500) return res;
+    try {
+      const res = await fetch(url, { next: { revalidate: 300 } });
+      if (res.ok || res.status < 500) return res;
+    } catch (e) {
+      if (i >= retries - 1) throw e;
+    }
     if (i < retries - 1) await new Promise(r => setTimeout(r, delay * (i + 1)));
   }
   return fetch(url, { next: { revalidate: 300 } });
@@ -84,14 +88,21 @@ async function wpFetchWithTotal<T>(endpoint: string, params: Record<string, stri
   const url = new URL(`${WP_API}${endpoint}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
 
-  const res = await fetchWithRetry(url.toString());
-  if (!res.ok) throw new Error(`WP API error: ${res.status} on ${endpoint}`);
-
-  return {
-    data: await res.json(),
-    total: parseInt(res.headers.get('X-WP-Total') || '0'),
-    totalPages: parseInt(res.headers.get('X-WP-TotalPages') || '0'),
-  };
+  try {
+    const res = await fetchWithRetry(url.toString());
+    if (!res.ok) {
+      console.warn(`WP API error: ${res.status} on ${endpoint}, returning empty`);
+      return { data: [] as unknown as T, total: 0, totalPages: 0 };
+    }
+    return {
+      data: await res.json(),
+      total: parseInt(res.headers.get('X-WP-Total') || '0'),
+      totalPages: parseInt(res.headers.get('X-WP-TotalPages') || '0'),
+    };
+  } catch (e) {
+    console.warn(`WP API fetch failed on ${endpoint}:`, e);
+    return { data: [] as unknown as T, total: 0, totalPages: 0 };
+  }
 }
 
 // ---------- Posts ----------
