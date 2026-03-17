@@ -2012,7 +2012,16 @@ textarea.form-input {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-card-warm);
+  background: linear-gradient(145deg, #2a2a2a 0%, #3d3530 50%, #4a3f36 100%);
+}
+
+.bar-dir-card-placeholder span {
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: -0.02em;
+  font-family: 'Inter', system-ui, sans-serif;
+  user-select: none;
 }
 
 .bar-dir-badge {

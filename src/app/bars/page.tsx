@@ -138,10 +138,8 @@ function BarCard({ bar }: { bar: Bar }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={bar.image} alt={bar.name} loading="lazy" />
         ) : (
-          <div className="bar-dir-card-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3">
-              <path d="M8 2L16 2L13 10L18 10L10 22L12 14L7 14Z" />
-            </svg>
+          <div className="bar-dir-card-placeholder" data-letter={bar.name.charAt(0).toUpperCase()}>
+            <span>{bar.name.charAt(0).toUpperCase()}</span>
           </div>
         )}
         {bar.ranking && (
