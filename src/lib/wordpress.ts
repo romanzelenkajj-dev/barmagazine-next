@@ -62,11 +62,20 @@ export interface WPTag {
 }
 
 // ---------- Fetch helpers ----------
+async function fetchWithRetry(url: string, retries = 3, delay = 1000): Promise<Response> {
+  for (let i = 0; i < retries; i++) {
+    const res = await fetch(url, { next: { revalidate: 300 } });
+    if (res.ok || res.status < 500) return res;
+    if (i < retries - 1) await new Promise(r => setTimeout(r, delay * (i + 1)));
+  }
+  return fetch(url, { next: { revalidate: 300 } });
+}
+
 async function wpFetch<T>(endpoint: string, params: Record<string, string | number> = {}): Promise<T> {
   const url = new URL(`${WP_API}${endpoint}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
 
-  const res = await fetch(url.toString(), { next: { revalidate: 300 } }); // cache 5 min
+  const res = await fetchWithRetry(url.toString());
   if (!res.ok) throw new Error(`WP API error: ${res.status} on ${endpoint}`);
   return res.json();
 }
@@ -75,7 +84,7 @@ async function wpFetchWithTotal<T>(endpoint: string, params: Record<string, stri
   const url = new URL(`${WP_API}${endpoint}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
 
-  const res = await fetch(url.toString(), { next: { revalidate: 300 } });
+  const res = await fetchWithRetry(url.toString());
   if (!res.ok) throw new Error(`WP API error: ${res.status} on ${endpoint}`);
 
   return {
