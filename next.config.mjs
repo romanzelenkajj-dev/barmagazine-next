@@ -22,6 +22,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'secure.gravatar.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'romanzelenka-wjgek.wpcomstaging.com',
+      },
     ],
   },
   // Proxy /wp-content/uploads/* to WordPress.com CDN so old image URLs still work

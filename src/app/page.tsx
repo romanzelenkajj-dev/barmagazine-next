@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { getPosts, getPostsByCategory, getFeaturedImageUrl, getPostCategories, stripHtml, truncateAtWord, estimateReadTime } from '@/lib/wordpress';
+import Image from 'next/image';
+import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, stripHtml, truncateAtWord, estimateReadTime } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
 
 export const revalidate = 300;
@@ -14,17 +15,21 @@ export default async function HomePage() {
 
   const hero = posts[0];
   const cardPosts = posts.slice(1, 7);
+  const heroImg = hero ? getFeaturedImageData(hero, 'full') : null;
 
   return (
     <>
       {/* A) SINGLE FULL-WIDTH HERO */}
       {hero && (
         <Link href={`/${hero.slug}`} className="hero">
-          {getFeaturedImageUrl(hero, 'full') && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={getFeaturedImageUrl(hero, 'full')!}
+          {heroImg && (
+            <Image
+              src={heroImg.url}
               alt={stripHtml(hero.title.rendered)}
+              width={heroImg.width}
+              height={heroImg.height}
+              priority
+              sizes="100vw"
             />
           )}
           <div className="hero-overlay" />

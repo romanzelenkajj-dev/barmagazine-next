@@ -178,6 +178,18 @@ export function getFeaturedImageUrl(post: WPPost, size: 'thumbnail' | 'medium' |
   return url ? rewriteImageUrl(url) : null;
 }
 
+export function getFeaturedImageData(post: WPPost, size: 'thumbnail' | 'medium' | 'medium_large' | 'large' | 'full' = 'large'): { url: string; width: number; height: number } | null {
+  const media = post._embedded?.['wp:featuredmedia']?.[0];
+  if (!media) return null;
+  const sizeData = media.media_details?.sizes?.[size];
+  const url = sizeData?.source_url || media.source_url;
+  if (!url) return null;
+  // Use size-specific dimensions if available, fall back to full image dimensions
+  const width = (sizeData as any)?.width || media.media_details?.width || 1200;
+  const height = (sizeData as any)?.height || media.media_details?.height || 675;
+  return { url: rewriteImageUrl(url), width, height };
+}
+
 export function getPostCategories(post: WPPost): WPCategory[] {
   return post._embedded?.['wp:term']?.[0] || [];
 }

@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
-import { getPostBySlug, getPosts, getFeaturedImageUrl, getPostCategories, getPostAuthor, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls } from '@/lib/wordpress';
+import Image from 'next/image';
+import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
 import { upgradeGalleryImages, cleanTitle } from '@/lib/utils';
 import type { Metadata } from 'next';
@@ -47,6 +48,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   const categories = getPostCategories(post);
   const author = getPostAuthor(post);
   const heroImage = getFeaturedImageUrl(post, 'full');
+  const heroImgData = getFeaturedImageData(post, 'full');
   const readTime = estimateReadTime(post.content.rendered);
   const authorName = author?.name && author.name !== 'BarMagazine' ? author.name : null;
 
@@ -93,11 +95,14 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       />
       {/* ARTICLE HERO */}
       <div className="article-hero" style={{ marginTop: 'var(--gap)' }}>
-        {heroImage && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={heroImage}
+        {heroImgData && (
+          <Image
+            src={heroImgData.url}
             alt={stripHtml(post.title.rendered)}
+            width={heroImgData.width}
+            height={heroImgData.height}
+            priority
+            sizes="100vw"
             className="article-hero-img"
           />
         )}
