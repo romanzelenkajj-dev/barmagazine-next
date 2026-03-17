@@ -1511,13 +1511,14 @@ button {
   margin-top: var(--gap);
   background: var(--bg-card);
   border-radius: var(--radius);
-  padding: 32px;
+  padding: 20px 24px;
   position: relative;
 }
 
 .bars-wrapper > .section-bar {
   margin-top: 0;
-  padding: 0 0 16px;
+  margin-bottom: 0;
+  padding: 0 0 8px;
   background: transparent;
 }
 

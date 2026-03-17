@@ -137,7 +137,7 @@ export default async function HomePage() {
             <h2>Featured Bars</h2>
             <Link href="/category/bars" className="section-link">View All &rarr;</Link>
           </div>
-          <div className="bars-grid-scroll" style={{ marginTop: 16 }}>
+          <div className="bars-grid-scroll">
             {barsPosts.map(post => {
               const imgUrl = getFeaturedImageUrl(post, 'medium_large') || getFeaturedImageUrl(post, 'large');
               return (
