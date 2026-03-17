@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { WPPost } from '@/lib/wordpress';
 import { getFeaturedImageUrl, stripHtml } from '@/lib/wordpress';
-import { formatCardTitle } from '@/lib/utils';
+import { cleanTitle } from '@/lib/utils';
 
 export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
   return (
@@ -34,7 +34,7 @@ export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
                   )}
                 </div>
                 <div className="related-info">
-                  <h4 dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }} />
+                  <h4>{cleanTitle(post.title.rendered)}</h4>
                 </div>
               </Link>
             );

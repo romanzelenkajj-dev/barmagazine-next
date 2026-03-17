@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
 import { getPostBySlug, getPosts, getFeaturedImageUrl, getPostCategories, getPostAuthor, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
-import { upgradeGalleryImages, formatCardTitle } from '@/lib/utils';
+import { upgradeGalleryImages, cleanTitle } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 export const revalidate = 300;
@@ -56,7 +56,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           )}
           <h1
             className="article-hero-title"
-            dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }}
+            dangerouslySetInnerHTML={{ __html: cleanTitle(post.title.rendered) }}
           />
           <div className="article-hero-meta">
             {authorName && (

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { formatCardTitle } from '@/lib/utils';
+import { cleanTitle } from '@/lib/utils';
 
 interface Post {
   id: number;
@@ -106,7 +106,7 @@ export function LoadMoreGrid({
               <div className="article-card-body">
                 <h3
                   className="article-card-title"
-                  dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }}
+                  dangerouslySetInnerHTML={{ __html: cleanTitle(post.title.rendered) }}
                 />
                 <p className="article-card-excerpt">{excerpt}</p>
                 <div className="article-card-meta">

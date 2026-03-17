@@ -228,3 +228,15 @@ export function formatCardTitle(htmlTitle: string, boldTitle?: string): string {
   // If a stray single pipe exists, just strip it out
   return clean.replace(/\|/g, '').replace(/\s+/g, ' ').trim();
 }
+
+/**
+ * Strip pipe markers from title without adding bold formatting.
+ * Use everywhere EXCEPT the homepage (which uses formatCardTitle for bold).
+ */
+export function cleanTitle(htmlTitle: string): string {
+  const decoded = htmlTitle
+    .replace(/&amp;/g, '&').replace(/&#8217;/g, "'").replace(/&rsquo;/g, "'")
+    .replace(/&lsquo;/g, "'").replace(/&rdquo;/g, '"').replace(/&ldquo;/g, '"')
+    .replace(/&#8211;/g, '\u2013').replace(/&#8212;/g, '\u2014').replace(/&nbsp;/g, ' ');
+  return decoded.replace(/<[^>]*>/g, '').replace(/\|/g, '').replace(/\s+/g, ' ').trim();
+}
