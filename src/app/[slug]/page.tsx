@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
-import { getPostBySlug, getPosts, getFeaturedImageUrl, getPostCategories, getPostAuthor, stripHtml, truncateAtWord, estimateReadTime } from '@/lib/wordpress';
+import { getPostBySlug, getPosts, getFeaturedImageUrl, getPostCategories, getPostAuthor, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
 import { upgradeGalleryImages } from '@/lib/utils';
 import type { Metadata } from 'next';
@@ -75,7 +75,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       {/* ARTICLE + SIDEBAR */}
       <div className="article-layout">
         <article className="article-body">
-          <div dangerouslySetInnerHTML={{ __html: upgradeGalleryImages(post.content.rendered) }} />
+          <div dangerouslySetInnerHTML={{ __html: upgradeGalleryImages(rewriteContentImageUrls(post.content.rendered)) }} />
 
           {/* Author box */}
           {authorName && (

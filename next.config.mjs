@@ -24,6 +24,15 @@ const nextConfig = {
       },
     ],
   },
+  // Proxy /wp-content/uploads/* to WordPress.com CDN so old image URLs still work
+  async rewrites() {
+    return [
+      {
+        source: '/wp-content/uploads/:path*',
+        destination: 'https://i0.wp.com/barmagazine.com/wp-content/uploads/:path*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

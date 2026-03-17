@@ -1,4 +1,5 @@
-const WP_API = 'https://barmagazine.com/wp-json/wp/v2';
+// WordPress.com public API — works regardless of where barmagazine.com DNS points
+const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/barmagazine.com';
 
 // ---------- Types ----------
 export interface WPPost {
@@ -143,7 +144,8 @@ export async function searchPosts(query: string, perPage = 10) {
 export function getFeaturedImageUrl(post: WPPost, size: 'thumbnail' | 'medium' | 'medium_large' | 'large' | 'full' = 'large'): string | null {
   const media = post._embedded?.['wp:featuredmedia']?.[0];
   if (!media) return null;
-  return media.media_details?.sizes?.[size]?.source_url || media.source_url || null;
+  const url = media.media_details?.sizes?.[size]?.source_url || media.source_url || null;
+  return url ? rewriteImageUrl(url) : null;
 }
 
 export function getPostCategories(post: WPPost): WPCategory[] {
@@ -187,6 +189,33 @@ export function truncateAtWord(text: string, maxLen: number): string {
 export function estimateReadTime(content: string): number {
   const words = stripHtml(content).split(/\s+/).length;
   return Math.max(1, Math.ceil(words / 250));
+}
+
+// ---------- Image URL helpers ----------
+/**
+ * Rewrite barmagazine.com/wp-content/uploads/* URLs to use the WordPress.com CDN
+ * (i0.wp.com) so images keep working after DNS points barmagazine.com to Vercel.
+ */
+export function rewriteImageUrl(url: string): string {
+  if (!url) return url;
+  // Already on wp.com CDN
+  if (url.includes('i0.wp.com') || url.includes('i1.wp.com') || url.includes('i2.wp.com')) return url;
+  // Rewrite barmagazine.com/wp-content/ to CDN
+  if (url.includes('barmagazine.com/wp-content/')) {
+    return url.replace('https://barmagazine.com/', 'https://i0.wp.com/barmagazine.com/');
+  }
+  return url;
+}
+
+/**
+ * Rewrite all image URLs inside HTML content.
+ */
+export function rewriteContentImageUrls(html: string): string {
+  if (!html) return html;
+  return html.replace(
+    /https:\/\/barmagazine\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
+    'https://i0.wp.com/barmagazine.com/wp-content/uploads/$1'
+  );
 }
 
 // Category ID map (from the live site)
