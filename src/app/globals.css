@@ -1197,16 +1197,17 @@ button {
 .category-header {
   background: var(--bg-card);
   border-radius: var(--radius);
-  padding: 48px 32px;
+  padding: 24px 32px;
   margin-bottom: var(--gap);
   text-align: center;
 }
 
 .category-header h1 {
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: clamp(24px, 3vw, 32px);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-transform: capitalize;
 }
 
 /* ====== LOAD MORE ====== */
