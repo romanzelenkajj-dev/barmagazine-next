@@ -126,7 +126,7 @@ export default async function HomePage() {
         <div className="bars-wrapper">
           <div className="section-bar">
             <h2>Featured Bars</h2>
-            <Link href="/category/bars" className="section-link">View All &rarr;</Link>
+            <Link href="/bars" className="section-link">View All &rarr;</Link>
           </div>
           <div className="bars-grid-scroll">
             {barsPosts.map(post => {
