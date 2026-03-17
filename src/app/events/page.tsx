@@ -1,7 +1,6 @@
+import { getPostsByMultipleCategories } from '@/lib/wordpress';
+import { LoadMoreGrid } from '@/components/LoadMoreGrid';
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { getPosts, getFeaturedImageUrl, stripHtml } from '@/lib/wordpress';
-import { formatCardTitle } from '@/lib/utils';
 
 export const revalidate = 300;
 
@@ -10,88 +9,28 @@ export const metadata: Metadata = {
   description: 'Bar industry events, cocktail competitions, award ceremonies, and trade shows worldwide.',
 };
 
-// Events category (202)
-const EVENTS_CATEGORY = 202;
-
 export default async function EventsPage() {
-  const { data: posts } = await getPosts(1, 20, EVENTS_CATEGORY);
+  // Events (202)
+  const result = await getPostsByMultipleCategories([202], 1, 12);
+  const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=202&per_page=12`;
 
   return (
-    <div style={{ marginTop: 'var(--gap)' }}>
-      <div style={{ marginBottom: 32 }}>
-        <h1 style={{ fontSize: 32, fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 8 }}>
-          Events
-        </h1>
-        <p style={{ fontSize: 15, color: 'var(--text-secondary)' }}>
-          Bar industry events, cocktail competitions, and trade shows from around the world.
-        </p>
+    <div className="category-header-wrapper">
+      <div className="category-header">
+        <h1>Events</h1>
       </div>
 
-      <div className="article-grid">
-        {posts.map((post) => {
-          const imgUrl = getFeaturedImageUrl(post, 'large');
-          const formattedTitle = formatCardTitle(post.title.rendered, post.meta?.bold_title);
+      <LoadMoreGrid
+        initialPosts={result.data as any}
+        totalPages={result.totalPages}
+        fetchUrl={fetchUrl}
+      />
 
-          return (
-            <Link key={post.id} href={`/${post.slug}`} className="article-card">
-              <div className="article-card-img">
-                {imgUrl && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={imgUrl} alt={stripHtml(post.title.rendered)} loading="lazy" />
-                )}
-              </div>
-              <div className="article-card-body">
-                <h3
-                  className="article-card-title"
-                  dangerouslySetInnerHTML={{ __html: formattedTitle }}
-                />
-
-              </div>
-            </Link>
-          );
-        })}
-      </div>
-
-      {posts.length === 0 && (
-        <div style={{
-          background: 'var(--bg-card)',
-          borderRadius: 'var(--radius)',
-          padding: 48,
-          textAlign: 'center',
-        }}>
-          <p style={{ fontSize: 15, color: 'var(--text-secondary)' }}>
-            No events articles yet. Check back soon.
-          </p>
+      {result.data.length === 0 && (
+        <div style={{ textAlign: 'center', padding: '80px 20px', color: 'var(--text-tertiary)' }}>
+          <p style={{ fontSize: 16 }}>No articles found in this category yet.</p>
         </div>
       )}
-
-      {/* Submit Event CTA */}
-      <div style={{
-        background: 'var(--bg-accent)',
-        borderRadius: 'var(--radius)',
-        padding: '48px 32px',
-        textAlign: 'center',
-        marginTop: 48,
-      }}>
-        <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8 }}>Have an event to submit?</h2>
-        <p style={{ fontSize: 14, color: 'var(--text-secondary)', maxWidth: 500, margin: '0 auto 20px' }}>
-          We&apos;re always looking for industry events to feature. Submit your event and reach the global bar community.
-        </p>
-        <a
-          href="mailto:office@barmagazine.com?subject=Event Submission"
-          style={{
-            display: 'inline-block',
-            padding: '14px 32px',
-            background: 'var(--text-primary)',
-            color: '#fff',
-            borderRadius: 100,
-            fontSize: 14,
-            fontWeight: 600,
-          }}
-        >
-          Submit Event
-        </a>
-      </div>
     </div>
   );
 }
