@@ -14,7 +14,6 @@ interface Bar {
   excerpt: string;
   image: string | null;
   wp_post_slug: string | null;
-  ranking?: string;
 }
 
 const bars: Bar[] = barsData as Bar[];
@@ -139,9 +138,6 @@ function BarCard({ bar }: { bar: Bar }) {
       <div className="bar-dir-card-img">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={bar.image!} alt={bar.name} loading="lazy" />
-        {bar.ranking && (
-          <span className="bar-dir-badge">{bar.ranking.replace("World's 50 Best Bars 2025 - ", "")}</span>
-        )}
       </div>
       <div className="bar-dir-card-body">
         <h3>{bar.name}</h3>
@@ -160,9 +156,6 @@ function BarCard({ bar }: { bar: Bar }) {
         {bar.city !== bar.country && <span className="bar-dir-country">{bar.country}</span>}
       </div>
       <span className="bar-dir-type">{bar.type}</span>
-      {bar.ranking && (
-        <span className="bar-dir-badge-inline">{bar.ranking.replace("World's 50 Best Bars 2025 - ", "")}</span>
-      )}
     </div>
   );
 
