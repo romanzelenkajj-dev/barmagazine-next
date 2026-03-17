@@ -30,13 +30,6 @@ export default async function EventsPage() {
       <div className="article-grid">
         {posts.map((post) => {
           const imgUrl = getFeaturedImageUrl(post, 'large');
-          const author = post._embedded?.author?.[0];
-          const authorName = author?.name && author.name !== 'BarMagazine' ? author.name : null;
-          const date = new Date(post.date).toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-          });
           const formattedTitle = formatCardTitle(post.title.rendered, post.meta?.bold_title);
 
           return (
@@ -52,11 +45,7 @@ export default async function EventsPage() {
                   className="article-card-title"
                   dangerouslySetInnerHTML={{ __html: formattedTitle }}
                 />
-                <div className="article-card-meta">
-                  {authorName && <span>{authorName}</span>}
-                  {authorName && <span className="dot">·</span>}
-                  <span>{date}</span>
-                </div>
+
               </div>
             </Link>
           );

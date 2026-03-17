@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { format } from 'date-fns';
+import { formatCardTitle } from '@/lib/utils';
 
 interface Post {
   id: number;
@@ -11,6 +11,7 @@ interface Post {
   title: { rendered: string };
   excerpt: { rendered: string };
   content: { rendered: string };
+  meta?: { bold_title?: string };
   _embedded?: {
     'wp:featuredmedia'?: { source_url: string; media_details: { sizes: { medium_large?: { source_url: string }; large?: { source_url: string } } } }[];
     'wp:term'?: { name: string }[][];
@@ -21,10 +22,6 @@ function getImage(post: Post): string | null {
   const media = post._embedded?.['wp:featuredmedia']?.[0];
   if (!media) return null;
   return media.media_details?.sizes?.medium_large?.source_url || media.media_details?.sizes?.large?.source_url || media.source_url || null;
-}
-
-function getCat(post: Post): string {
-  return post._embedded?.['wp:term']?.[0]?.[0]?.name || 'Article';
 }
 
 function strip(html: string): string {
@@ -95,7 +92,6 @@ export function LoadMoreGrid({
       <div className="article-grid">
         {posts.map(post => {
           const imageUrl = getImage(post);
-          const categoryName = getCat(post);
           const excerpt = truncate(strip(post.excerpt.rendered), 120);
           const rt = readTime(post.content.rendered);
 
@@ -108,15 +104,12 @@ export function LoadMoreGrid({
                 )}
               </div>
               <div className="article-card-body">
-                <div className="article-card-cat">{categoryName}</div>
                 <h3
                   className="article-card-title"
-                  dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+                  dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }}
                 />
                 <p className="article-card-excerpt">{excerpt}</p>
                 <div className="article-card-meta">
-                  <span>{format(new Date(post.date), 'MMM d, yyyy')}</span>
-                  <span className="dot" />
                   <span>{rt} min read</span>
                 </div>
               </div>

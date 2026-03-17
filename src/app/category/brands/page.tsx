@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function BrandsPage() {
   // Brands (201) + legacy: Spirits (59), Wines (41)
   const result = await getPostsByMultipleCategories([201, 59, 41], 1, 12);
-  const fetchUrl = `https://barmagazine.com/wp-json/wp/v2/posts?categories=59,41&per_page=12`;
+  const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=201,59,41&per_page=12`;
 
   return (
     <div className="category-header-wrapper">

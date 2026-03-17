@@ -23,7 +23,7 @@ export default async function CategoryPage({
   if (!category) notFound();
 
   const result = await getPostsByCategory(params.slug, 1, 12);
-  const fetchUrl = `https://barmagazine.com/wp-json/wp/v2/posts?categories=${category.id}&per_page=12`;
+  const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=${category.id}&per_page=12`;
 
   return (
     <div className="category-header-wrapper">

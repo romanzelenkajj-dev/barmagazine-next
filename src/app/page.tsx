@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { format } from 'date-fns';
 import { getPosts, getPostsByCategory, getFeaturedImageUrl, getPostCategories, stripHtml, truncateAtWord, estimateReadTime } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
 
@@ -66,7 +65,6 @@ export default async function HomePage() {
           const imgUrl = getFeaturedImageUrl(post, 'large');
           const formattedTitle = formatCardTitle(post.title.rendered, post.meta?.bold_title);
           const excerpt = truncateAtWord(stripHtml(post.excerpt.rendered), 120);
-          const dateStr = format(new Date(post.date), 'MMM d, yyyy');
           const readTime = estimateReadTime(post.content.rendered);
 
           if (isBleed) {
@@ -86,8 +84,6 @@ export default async function HomePage() {
                   <h3 dangerouslySetInnerHTML={{ __html: formattedTitle }} />
                   <p className="card-excerpt">{excerpt}</p>
                   <div className="card-meta">
-                    <span>{dateStr}</span>
-                    <span className="dot" />
                     <span>{readTime} min read</span>
                   </div>
                 </div>
@@ -110,8 +106,6 @@ export default async function HomePage() {
                 <h3 dangerouslySetInnerHTML={{ __html: formattedTitle }} />
                 <p className="card-excerpt">{excerpt}</p>
                 <div className="card-meta">
-                  <span>{dateStr}</span>
-                  <span className="dot" />
                   <span>{readTime} min read</span>
                 </div>
               </div>
@@ -146,7 +140,7 @@ export default async function HomePage() {
                     )}
                   </div>
                   <h4 dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }} />
-                  <span className="bar-city">{format(new Date(post.date), 'MMM d, yyyy')}</span>
+
                 </Link>
               );
             })}

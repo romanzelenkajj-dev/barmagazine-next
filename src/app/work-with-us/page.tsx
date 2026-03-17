@@ -1,183 +1,140 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Work With Us | Bar Magazine',
-  description: 'Partnership packages for bars — from social media campaigns to full-year visibility on barmagazine.com.',
+  title: 'Stay in the Mix | Bar Magazine',
+  description: 'Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.',
 };
-
-const PACKAGES = [
-  {
-    tier: 'Instagram Only',
-    price: '€300–600',
-    features: ['1 Instagram post + 1 story set', 'Professional copy + hashtags', '88K+ follower reach', 'Performance report'],
-    popular: false,
-  },
-  {
-    tier: 'Website + Instagram',
-    price: '€600–900',
-    features: ['Dedicated article on barmagazine.com', 'SEO-optimized bar profile', '1 Instagram post + 1 story set', 'Cross-linked across platforms', 'Permanent web presence'],
-    popular: true,
-  },
-  {
-    tier: 'Launch Campaign',
-    price: '€900–1,500',
-    features: ['Full editorial feature article', 'Multi-post Instagram campaign', 'Story series with swipe-ups', 'Bar Directory premium listing', 'Priority newsletter feature'],
-    popular: false,
-  },
-  {
-    tier: 'Annual Visibility',
-    price: '€2,000–4,000/yr',
-    features: ['Bar Directory featured listing (12 months)', '4 Instagram posts per year', 'Quarterly article updates', 'Homepage "Featured Bars" rotation', 'Events calendar integration', 'Annual analytics report'],
-    popular: false,
-  },
-];
 
 export default function WorkWithUsPage() {
   return (
     <div style={{ marginTop: 'var(--gap)' }}>
-      {/* Hero */}
+      {/* Newsletter Hero */}
       <div style={{
         background: 'var(--bg-dark)',
         borderRadius: 'var(--radius)',
-        padding: '64px 48px',
+        padding: '80px 48px',
         textAlign: 'center',
         color: '#fff',
-        marginBottom: 'var(--gap)',
       }}>
-        <h1 style={{ fontSize: 36, fontWeight: 700, letterSpacing: '-0.025em', marginBottom: 12 }}>
-          Work With Us
+        <h1 style={{
+          fontSize: 40,
+          fontWeight: 700,
+          letterSpacing: '-0.025em',
+          marginBottom: 16,
+          lineHeight: 1.15,
+        }}>
+          Stay in the Mix
         </h1>
-        <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.6)', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
-          Reach cocktail enthusiasts, industry professionals, and bar travelers worldwide.
-          With 88K+ Instagram followers and growing web traffic, BarMagazine is the platform to elevate your bar&apos;s visibility.
+        <p style={{
+          fontSize: 17,
+          color: 'rgba(255,255,255,0.65)',
+          maxWidth: 520,
+          margin: '0 auto 40px',
+          lineHeight: 1.7,
+        }}>
+          Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.
         </p>
+
+        {/* Mailchimp form - posts to WP mc4wp */}
+        <form
+          method="post"
+          action="https://romanzelenka-wjgek.wpcomstaging.com/"
+          style={{
+            maxWidth: 480,
+            margin: '0 auto',
+            display: 'flex',
+            gap: 12,
+          }}
+        >
+          <input type="hidden" name="_mc4wp_form_id" value="84" />
+          <input type="hidden" name="_mc4wp_timestamp" value="" />
+          <input type="hidden" name="_mc4wp_honeypot" value="" />
+          <input
+            type="email"
+            name="EMAIL"
+            required
+            placeholder="Your email address"
+            style={{
+              flex: 1,
+              padding: '14px 20px',
+              borderRadius: 100,
+              border: '1px solid rgba(255,255,255,0.2)',
+              background: 'rgba(255,255,255,0.08)',
+              color: '#fff',
+              fontSize: 15,
+              outline: 'none',
+            }}
+          />
+          <button
+            type="submit"
+            style={{
+              padding: '14px 32px',
+              borderRadius: 100,
+              background: 'var(--accent)',
+              color: '#fff',
+              fontSize: 15,
+              fontWeight: 600,
+              border: 'none',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Subscribe
+          </button>
+        </form>
       </div>
 
-      {/* Packages grid */}
+      {/* What to expect */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
         gap: 'var(--gap)',
+        marginTop: 'var(--gap)',
       }}>
-        {PACKAGES.map((pkg, i) => (
+        {[
+          {
+            icon: '🍸',
+            title: 'Cocktail Trends',
+            desc: 'Discover the latest cocktail innovations, recipes, and techniques from top bartenders worldwide.',
+          },
+          {
+            icon: '🏠',
+            title: 'Bar Openings',
+            desc: 'Be the first to know about exciting new bar openings and industry developments.',
+          },
+          {
+            icon: '💡',
+            title: 'Industry Insights',
+            desc: 'Expert interviews, brand features, and behind-the-scenes stories from the bar world.',
+          },
+        ].map((item, i) => (
           <div
             key={i}
             style={{
-              background: pkg.popular ? 'var(--text-primary)' : 'var(--bg-card)',
-              color: pkg.popular ? '#fff' : 'var(--text-primary)',
+              background: 'var(--bg-card)',
               borderRadius: 'var(--radius)',
-              padding: 32,
-              display: 'flex',
-              flexDirection: 'column',
-              position: 'relative',
+              padding: '40px 28px',
+              textAlign: 'center',
             }}
           >
-            {pkg.popular && (
-              <span style={{
-                position: 'absolute',
-                top: -10,
-                right: 20,
-                background: 'var(--accent)',
-                color: '#fff',
-                fontSize: 10,
-                fontWeight: 700,
-                padding: '4px 12px',
-                borderRadius: 100,
-                textTransform: 'uppercase',
-                letterSpacing: '0.06em',
-              }}>
-                Most Popular
-              </span>
-            )}
-            <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>{pkg.tier}</h3>
-            <p style={{
-              fontSize: 28,
-              fontWeight: 700,
-              letterSpacing: '-0.02em',
-              marginBottom: 24,
-              color: pkg.popular ? '#fff' : 'var(--accent)',
-            }}>
-              {pkg.price}
-            </p>
-            <ul style={{
-              listStyle: 'none',
-              padding: 0,
-              flex: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 10,
-              marginBottom: 24,
-            }}>
-              {pkg.features.map((f, j) => (
-                <li key={j} style={{
-                  fontSize: 14,
-                  lineHeight: 1.5,
-                  display: 'flex',
-                  gap: 8,
-                  color: pkg.popular ? 'rgba(255,255,255,0.8)' : 'var(--text-secondary)',
-                }}>
-                  <span style={{ color: pkg.popular ? '#fff' : 'var(--accent)', flexShrink: 0 }}>✓</span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <a
-              href="mailto:office@barmagazine.com?subject=Partnership Inquiry"
-              style={{
-                display: 'block',
-                textAlign: 'center',
-                padding: '14px 24px',
-                borderRadius: 100,
-                fontSize: 14,
-                fontWeight: 600,
-                background: pkg.popular ? '#fff' : 'var(--text-primary)',
-                color: pkg.popular ? 'var(--text-primary)' : '#fff',
-                transition: 'opacity 0.3s',
-              }}
-            >
-              Get Started
-            </a>
+            <div style={{ fontSize: 36, marginBottom: 16 }}>{item.icon}</div>
+            <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>{item.title}</h3>
+            <p style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.7 }}>{item.desc}</p>
           </div>
         ))}
       </div>
 
-      {/* Stats */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: 'var(--gap)',
-        marginTop: 48,
-      }}>
-        {[
-          { stat: '88K+', label: 'Instagram Followers' },
-          { stat: '319+', label: 'Articles Published' },
-          { stat: '50+', label: 'Countries Reached' },
-        ].map((item, i) => (
-          <div key={i} style={{
-            background: 'var(--bg-card)',
-            borderRadius: 'var(--radius)',
-            padding: '40px 24px',
-            textAlign: 'center',
-          }}>
-            <div style={{ fontSize: 36, fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--accent)', marginBottom: 4 }}>
-              {item.stat}
-            </div>
-            <p style={{ fontSize: 14, color: 'var(--text-secondary)' }}>{item.label}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Contact CTA */}
+      {/* Contact */}
       <div style={{
         background: 'var(--bg-accent)',
         borderRadius: 'var(--radius)',
         padding: '48px 32px',
         textAlign: 'center',
-        marginTop: 48,
+        marginTop: 'var(--gap)',
       }}>
-        <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8 }}>Let&apos;s Talk</h2>
+        <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8 }}>Want to work with us?</h2>
         <p style={{ fontSize: 14, color: 'var(--text-secondary)', maxWidth: 500, margin: '0 auto 20px' }}>
-          Every bar is unique, and we love crafting custom solutions. Reach out and let&apos;s explore how we can work together.
+          For partnership inquiries, advertising, and collaborations, reach out to our team.
         </p>
         <a
           href="mailto:office@barmagazine.com"
@@ -189,6 +146,7 @@ export default function WorkWithUsPage() {
             borderRadius: 100,
             fontSize: 14,
             fontWeight: 600,
+            textDecoration: 'none',
           }}
         >
           office@barmagazine.com
