@@ -64,7 +64,7 @@ export default async function HomePage() {
           const isBleed = i % 3 === 1;
           const cat = getPostCategories(post)[0];
           const imgUrl = getFeaturedImageUrl(post, 'large');
-          const formattedTitle = formatCardTitle(post.title.rendered);
+          const formattedTitle = formatCardTitle(post.title.rendered, post.meta?.bold_title);
           const excerpt = truncateAtWord(stripHtml(post.excerpt.rendered), 120);
           const dateStr = format(new Date(post.date), 'MMM d, yyyy');
           const readTime = estimateReadTime(post.content.rendered);

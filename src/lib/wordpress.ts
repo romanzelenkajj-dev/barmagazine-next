@@ -11,6 +11,10 @@ export interface WPPost {
   featured_media: number;
   categories: number[];
   tags: number[];
+  meta?: {
+    bold_title?: string;
+    [key: string]: unknown;
+  };
   _embedded?: {
     'wp:featuredmedia'?: WPMedia[];
     'wp:term'?: WPCategory[][];

@@ -193,14 +193,20 @@ function rebuildTiledGallery(html: string): string {
   return out;
 }
 
-export function formatCardTitle(htmlTitle: string): string {
-  // Decode HTML entities first (keep HTML tags intact)
+export function formatCardTitle(htmlTitle: string, boldTitle?: string): string {
+  // If a bold_title custom field is set in WP, use it directly
+  // (it contains HTML like "<strong>Bold Part</strong> Regular Part")
+  if (boldTitle && boldTitle.trim()) {
+    return boldTitle.trim();
+  }
+
+  // Decode HTML entities (keep HTML tags intact)
   const decoded = htmlTitle
     .replace(/&amp;/g, '&').replace(/&#8217;/g, "'").replace(/&rsquo;/g, "'")
     .replace(/&lsquo;/g, "'").replace(/&rdquo;/g, '"').replace(/&ldquo;/g, '"')
     .replace(/&#8211;/g, '–').replace(/&#8212;/g, '—').replace(/&nbsp;/g, ' ');
 
-  // If title already has <strong> or <b> tags, preserve them as-is
+  // If title already has <strong> or <b> tags, preserve them
   if (/<strong>|<b>/i.test(decoded)) {
     return decoded;
   }
@@ -209,7 +215,6 @@ export function formatCardTitle(htmlTitle: string): string {
   const clean = decoded.replace(/<[^>]*>/g, '');
 
   // If title contains a pipe |, use it as the bold/regular split
-  // e.g. "The Dead Rabbit | New York's Legendary Bar" → bold before |, regular after
   if (clean.includes('|')) {
     const [boldPart, ...restParts] = clean.split('|');
     const bold = boldPart.trim();
