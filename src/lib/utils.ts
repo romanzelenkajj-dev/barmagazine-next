@@ -194,10 +194,21 @@ function rebuildTiledGallery(html: string): string {
 }
 
 export function formatCardTitle(htmlTitle: string): string {
-  // Strip HTML entities and tags
-  const clean = htmlTitle.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&#8217;/g, "'").replace(/&rsquo;/g, "'").replace(/&lsquo;/g, "'").replace(/&rdquo;/g, '"').replace(/&ldquo;/g, '"').replace(/&#8211;/g, '–').replace(/&#8212;/g, '—').replace(/&nbsp;/g, ' ');
+  // Decode HTML entities first (keep HTML tags intact)
+  const decoded = htmlTitle
+    .replace(/&amp;/g, '&').replace(/&#8217;/g, "'").replace(/&rsquo;/g, "'")
+    .replace(/&lsquo;/g, "'").replace(/&rdquo;/g, '"').replace(/&ldquo;/g, '"')
+    .replace(/&#8211;/g, '–').replace(/&#8212;/g, '—').replace(/&nbsp;/g, ' ');
 
-  // If title contains a pipe character, use it as the bold/regular split
+  // If title already has <strong> or <b> tags, preserve them as-is
+  if (/<strong>|<b>/i.test(decoded)) {
+    return decoded;
+  }
+
+  // Strip remaining HTML tags for plain-text processing
+  const clean = decoded.replace(/<[^>]*>/g, '');
+
+  // If title contains a pipe |, use it as the bold/regular split
   // e.g. "The Dead Rabbit | New York's Legendary Bar" → bold before |, regular after
   if (clean.includes('|')) {
     const [boldPart, ...restParts] = clean.split('|');
@@ -209,6 +220,6 @@ export function formatCardTitle(htmlTitle: string): string {
     return `<strong>${bold}</strong>`;
   }
 
-  // No pipe → display as plain text (no forced bold)
+  // No formatting markers → display as plain text
   return clean;
 }
