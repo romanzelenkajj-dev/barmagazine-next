@@ -75,13 +75,23 @@ async function fetchWithRetry(url: string, retries = 5, delay = 2000): Promise<R
   return fetch(url, { next: { revalidate: 300 } });
 }
 
-async function wpFetch<T>(endpoint: string, params: Record<string, string | number> = {}): Promise<T> {
+async function wpFetch<T>(endpoint: string, params: Record<string, string | number> = {}, fallback?: T): Promise<T> {
   const url = new URL(`${WP_API}${endpoint}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, String(v)));
 
-  const res = await fetchWithRetry(url.toString());
-  if (!res.ok) throw new Error(`WP API error: ${res.status} on ${endpoint}`);
-  return res.json();
+  try {
+    const res = await fetchWithRetry(url.toString());
+    if (!res.ok) {
+      console.warn(`WP API error: ${res.status} on ${endpoint}`);
+      if (fallback !== undefined) return fallback;
+      throw new Error(`WP API error: ${res.status} on ${endpoint}`);
+    }
+    return res.json();
+  } catch (e) {
+    console.warn(`WP API fetch failed on ${endpoint}:`, e);
+    if (fallback !== undefined) return fallback;
+    throw e;
+  }
 }
 
 async function wpFetchWithTotal<T>(endpoint: string, params: Record<string, string | number> = {}): Promise<{ data: T; total: number; totalPages: number }> {
@@ -125,23 +135,23 @@ export async function getPostsByMultipleCategories(categoryIds: number[], page =
 }
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
-  const posts = await wpFetch<WPPost[]>('/posts', { slug, _embed: 'true' });
+  const posts = await wpFetch<WPPost[]>('/posts', { slug, _embed: 'true' }, []);
   return posts[0] || null;
 }
 
 export async function getPostsByCategory(categorySlug: string, page = 1, perPage = 12) {
-  const cats = await wpFetch<WPCategory[]>('/categories', { slug: categorySlug });
+  const cats = await wpFetch<WPCategory[]>('/categories', { slug: categorySlug }, []);
   if (!cats[0]) return { data: [] as WPPost[], total: 0, totalPages: 0 };
   return getPosts(page, perPage, cats[0].id);
 }
 
 // ---------- Categories ----------
 export async function getCategories() {
-  return wpFetch<WPCategory[]>('/categories', { per_page: 50 });
+  return wpFetch<WPCategory[]>('/categories', { per_page: 50 }, []);
 }
 
 export async function getCategoryBySlug(slug: string): Promise<WPCategory | null> {
-  const cats = await wpFetch<WPCategory[]>('/categories', { slug });
+  const cats = await wpFetch<WPCategory[]>('/categories', { slug }, []);
   return cats[0] || null;
 }
 
@@ -152,12 +162,12 @@ export async function getMedia(id: number) {
 
 // ---------- Tags ----------
 export async function getTags(perPage = 20) {
-  return wpFetch<WPTag[]>('/tags', { per_page: perPage, orderby: 'count', order: 'desc' });
+  return wpFetch<WPTag[]>('/tags', { per_page: perPage, orderby: 'count', order: 'desc' }, []);
 }
 
 // ---------- Search ----------
 export async function searchPosts(query: string, perPage = 10) {
-  return wpFetch<WPPost[]>('/posts', { search: query, per_page: perPage, _embed: 'true' });
+  return wpFetch<WPPost[]>('/posts', { search: query, per_page: perPage, _embed: 'true' }, []);
 }
 
 // ---------- Helpers ----------
