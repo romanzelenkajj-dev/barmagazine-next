@@ -9,7 +9,7 @@ export default function WorkWithUsPage() {
   return (
     <div style={{ marginTop: 'var(--gap)' }}>
       {/* Newsletter Hero */}
-      <div style={{
+      <div className="newsletter-hero" style={{
         background: 'var(--bg-dark)',
         borderRadius: 'var(--radius)',
         padding: '80px 48px',
@@ -39,12 +39,7 @@ export default function WorkWithUsPage() {
         <form
           method="post"
           action="https://romanzelenka-wjgek.wpcomstaging.com/"
-          style={{
-            maxWidth: 480,
-            margin: '0 auto',
-            display: 'flex',
-            gap: 12,
-          }}
+          className="newsletter-form"
         >
           <input type="hidden" name="_mc4wp_form_id" value="84" />
           <input type="hidden" name="_mc4wp_timestamp" value="" />
@@ -54,33 +49,8 @@ export default function WorkWithUsPage() {
             name="EMAIL"
             required
             placeholder="Your email address"
-            style={{
-              flex: 1,
-              padding: '14px 20px',
-              borderRadius: 100,
-              border: '1px solid rgba(255,255,255,0.2)',
-              background: 'rgba(255,255,255,0.08)',
-              color: '#fff',
-              fontSize: 15,
-              outline: 'none',
-            }}
           />
-          <button
-            type="submit"
-            style={{
-              padding: '14px 32px',
-              borderRadius: 100,
-              background: 'var(--accent)',
-              color: '#fff',
-              fontSize: 15,
-              fontWeight: 600,
-              border: 'none',
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            Subscribe
-          </button>
+          <button type="submit">Subscribe</button>
         </form>
       </div>
 
@@ -93,17 +63,14 @@ export default function WorkWithUsPage() {
       }}>
         {[
           {
-            icon: '🍸',
             title: 'Cocktail Trends',
             desc: 'Discover the latest cocktail innovations, recipes, and techniques from top bartenders worldwide.',
           },
           {
-            icon: '🏠',
             title: 'Bar Openings',
             desc: 'Be the first to know about exciting new bar openings and industry developments.',
           },
           {
-            icon: '💡',
             title: 'Industry Insights',
             desc: 'Expert interviews, brand features, and behind-the-scenes stories from the bar world.',
           },
@@ -113,11 +80,10 @@ export default function WorkWithUsPage() {
             style={{
               background: 'var(--bg-card)',
               borderRadius: 'var(--radius)',
-              padding: '40px 28px',
+              padding: '36px 28px',
               textAlign: 'center',
             }}
           >
-            <div style={{ fontSize: 36, marginBottom: 16 }}>{item.icon}</div>
             <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>{item.title}</h3>
             <p style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.7 }}>{item.desc}</p>
           </div>
