@@ -214,15 +214,15 @@ export function formatCardTitle(htmlTitle: string, boldTitle?: string): string {
   // Strip remaining HTML tags for plain-text processing
   const clean = decoded.replace(/<[^>]*>/g, '');
 
-  // If title contains a pipe |, use it as the bold/regular split
-  if (clean.includes('|')) {
-    const [boldPart, ...restParts] = clean.split('|');
-    const bold = boldPart.trim();
-    const rest = restParts.join('|').trim();
-    if (rest) {
-      return `<strong>${bold}</strong> ${rest}`;
-    }
-    return `<strong>${bold}</strong>`;
+  // If title contains pipe markers, bold the text between them
+  // e.g. "|Bold Part| rest of title" or "start |Bold Part| end"
+  const pipeMatch = clean.match(/^(.*?)\|(.+?)\|(.*)$/);
+  if (pipeMatch) {
+    const before = pipeMatch[1].trim();
+    const bold = pipeMatch[2].trim();
+    const after = pipeMatch[3].trim();
+    const parts = [before, `<strong>${bold}</strong>`, after].filter(Boolean);
+    return parts.join(' ');
   }
 
   // No formatting markers → display as plain text
