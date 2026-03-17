@@ -102,7 +102,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
             width={heroImgData.width}
             height={heroImgData.height}
             priority
-            sizes="100vw"
+            unoptimized
             className="article-hero-img"
           />
         )}

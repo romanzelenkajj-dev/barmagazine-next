@@ -39,6 +39,8 @@ export function Nav() {
               <img
                 src="https://barmagazine.com/wp-content/uploads/2024/05/BARMAG-LOGO-WHITE.png"
                 alt="Bar Magazine"
+                width={164}
+                height={29}
                 style={{ height: 29, width: 'auto' }}
               />
             </Link>

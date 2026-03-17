@@ -29,7 +29,7 @@ export default async function HomePage() {
               width={heroImg.width}
               height={heroImg.height}
               priority
-              sizes="100vw"
+              unoptimized
             />
           )}
           <div className="hero-overlay" />
