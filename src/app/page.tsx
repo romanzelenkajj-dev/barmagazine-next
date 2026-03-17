@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, stripHtml, truncateAtWord, estimateReadTime } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
 
@@ -15,21 +14,32 @@ export default async function HomePage() {
 
   const hero = posts[0];
   const cardPosts = posts.slice(1, 7);
-  const heroImg = hero ? getFeaturedImageData(hero, 'full') : null;
+  const heroImgFull = hero ? getFeaturedImageData(hero, 'full') : null;
+  const heroImgMedium = hero ? getFeaturedImageData(hero, 'medium_large') : null;
+  const heroImgLarge = hero ? getFeaturedImageData(hero, 'large') : null;
 
   return (
     <>
       {/* A) SINGLE FULL-WIDTH HERO */}
       {hero && (
         <Link href={`/${hero.slug}`} className="hero">
-          {heroImg && (
-            <Image
-              src={heroImg.url}
+          {heroImgFull && (
+            // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+            <img
+              src={heroImgFull.url}
+              srcSet={[
+                heroImgMedium && `${heroImgMedium.url} ${heroImgMedium.width}w`,
+                heroImgLarge && `${heroImgLarge.url} ${heroImgLarge.width}w`,
+                `${heroImgFull.url} ${heroImgFull.width}w`,
+              ].filter(Boolean).join(', ')}
+              sizes="100vw"
               alt={stripHtml(hero.title.rendered)}
-              width={heroImg.width}
-              height={heroImg.height}
-              priority
-              unoptimized
+              width={heroImgFull.width}
+              height={heroImgFull.height}
+              // @ts-expect-error fetchPriority is valid HTML
+              fetchpriority="high"
+              decoding="sync"
+              loading="eager"
             />
           )}
           <div className="hero-overlay" />

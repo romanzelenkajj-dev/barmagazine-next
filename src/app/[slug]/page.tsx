@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
-import Image from 'next/image';
 import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
 import { upgradeGalleryImages, cleanTitle } from '@/lib/utils';
@@ -48,7 +47,9 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   const categories = getPostCategories(post);
   const author = getPostAuthor(post);
   const heroImage = getFeaturedImageUrl(post, 'full');
-  const heroImgData = getFeaturedImageData(post, 'full');
+  const heroImgFull = getFeaturedImageData(post, 'full');
+  const heroImgMedium = getFeaturedImageData(post, 'medium_large');
+  const heroImgLarge = getFeaturedImageData(post, 'large');
   const readTime = estimateReadTime(post.content.rendered);
   const authorName = author?.name && author.name !== 'BarMagazine' ? author.name : null;
 
@@ -95,15 +96,24 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       />
       {/* ARTICLE HERO */}
       <div className="article-hero" style={{ marginTop: 'var(--gap)' }}>
-        {heroImgData && (
-          <Image
-            src={heroImgData.url}
+        {heroImgFull && (
+          // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+          <img
+            src={heroImgFull.url}
+            srcSet={[
+              heroImgMedium && `${heroImgMedium.url} ${heroImgMedium.width}w`,
+              heroImgLarge && `${heroImgLarge.url} ${heroImgLarge.width}w`,
+              `${heroImgFull.url} ${heroImgFull.width}w`,
+            ].filter(Boolean).join(', ')}
+            sizes="100vw"
             alt={stripHtml(post.title.rendered)}
-            width={heroImgData.width}
-            height={heroImgData.height}
-            priority
-            unoptimized
+            width={heroImgFull.width}
+            height={heroImgFull.height}
             className="article-hero-img"
+            // @ts-expect-error fetchPriority is valid HTML
+            fetchpriority="high"
+            decoding="sync"
+            loading="eager"
           />
         )}
         <div className="article-hero-overlay" />
