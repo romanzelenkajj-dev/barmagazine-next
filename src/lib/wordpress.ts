@@ -1,5 +1,5 @@
-// WordPress.com public API — works regardless of where barmagazine.com DNS points
-const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/barmagazine.com';
+// WordPress.com public API — use the wpcomstaging.com address (primary site URL after DNS move)
+const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com';
 
 // ---------- Types ----------
 export interface WPPost {
