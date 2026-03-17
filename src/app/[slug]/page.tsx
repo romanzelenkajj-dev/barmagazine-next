@@ -5,20 +5,37 @@ import { Sidebar } from '@/components/Sidebar';
 import { upgradeGalleryImages, cleanTitle } from '@/lib/utils';
 import type { Metadata } from 'next';
 
+const SITE_URL = 'https://barmagazine.com';
+
 export const revalidate = 300;
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
   if (!post) return {};
+  const title = stripHtml(post.title.rendered).replace(/\|/g, '').trim();
+  const description = truncateAtWord(stripHtml(post.excerpt.rendered), 160);
+  const heroImage = getFeaturedImageUrl(post, 'full');
+
   return {
-    title: `${stripHtml(post.title.rendered).replace(/\|/g, '')} | Bar Magazine`,
-    description: truncateAtWord(stripHtml(post.excerpt.rendered), 160),
+    title: title,
+    description,
+    alternates: {
+      canonical: `${SITE_URL}/${params.slug}`,
+    },
     openGraph: {
-      title: stripHtml(post.title.rendered),
-      description: truncateAtWord(stripHtml(post.excerpt.rendered), 160),
+      title,
+      description,
       type: 'article',
       publishedTime: post.date,
-      images: getFeaturedImageUrl(post, 'full') ? [{ url: getFeaturedImageUrl(post, 'full')! }] : [],
+      url: `${SITE_URL}/${params.slug}`,
+      siteName: 'Bar Magazine',
+      images: heroImage ? [{ url: heroImage, width: 1200, height: 630 }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: heroImage ? [heroImage] : [],
     },
   };
 }
@@ -41,8 +58,39 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     relatedPosts = recentResult.data.filter(p => p.id !== post.id).slice(0, 4);
   }
 
+  // JSON-LD structured data
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: stripHtml(post.title.rendered).replace(/\|/g, '').trim(),
+    description: truncateAtWord(stripHtml(post.excerpt.rendered), 160),
+    image: heroImage || undefined,
+    datePublished: post.date,
+    dateModified: post.date,
+    url: `${SITE_URL}/${params.slug}`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Bar Magazine',
+      url: SITE_URL,
+    },
+    ...(authorName && {
+      author: {
+        '@type': 'Person',
+        name: authorName,
+      },
+    }),
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}/${params.slug}`,
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* ARTICLE HERO */}
       <div className="article-hero" style={{ marginTop: 'var(--gap)' }}>
         {heroImage && (

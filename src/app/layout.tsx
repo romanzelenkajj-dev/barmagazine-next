@@ -7,14 +7,38 @@ import { Footer } from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Bar Magazine | Best Bars, Cocktails & Spirits',
+  metadataBase: new URL('https://barmagazine.com'),
+  title: {
+    default: 'Bar Magazine | Best Bars, Cocktails & Spirits',
+    template: '%s | Bar Magazine',
+  },
   description: 'Global bar news, cocktail culture, and spirits industry trends. Discover the world\'s best bars, latest cocktail recipes, and industry insights.',
+  alternates: {
+    canonical: 'https://barmagazine.com',
+  },
   openGraph: {
     title: 'Bar Magazine',
     description: 'Global bar news, cocktail culture, and spirits industry trends.',
     type: 'website',
     locale: 'en_US',
     siteName: 'Bar Magazine',
+    url: 'https://barmagazine.com',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bar Magazine',
+    description: 'Global bar news, cocktail culture, and spirits industry trends.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -26,6 +50,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Bar Magazine',
+              url: 'https://barmagazine.com',
+              description: 'Global bar news, cocktail culture, and spirits industry trends.',
+              publisher: {
+                '@type': 'Organization',
+                name: 'Bar Magazine',
+                url: 'https://barmagazine.com',
+              },
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://barmagazine.com/search?q={search_term_string}',
+                'query-input': 'required name=search_term_string',
+              },
+            }),
+          }}
+        />
         <Nav />
         <div className="nav-spacer" />
         <div className="container">

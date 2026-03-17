@@ -9,8 +9,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const category = await getCategoryBySlug(params.slug);
   if (!category) return {};
   return {
-    title: `${category.name} | Bar Magazine`,
+    title: category.name,
     description: `Browse ${category.name} articles on Bar Magazine — the latest in cocktail culture, bar news, and spirits.`,
+    alternates: {
+      canonical: `https://barmagazine.com/category/${params.slug}`,
+    },
   };
 }
 
