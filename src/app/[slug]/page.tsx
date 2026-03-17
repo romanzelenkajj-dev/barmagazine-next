@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
 import { getPostBySlug, getPosts, getFeaturedImageUrl, getPostCategories, getPostAuthor, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
-import { upgradeGalleryImages } from '@/lib/utils';
+import { upgradeGalleryImages, formatCardTitle } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 export const revalidate = 300;
@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const post = await getPostBySlug(params.slug);
   if (!post) return {};
   return {
-    title: `${stripHtml(post.title.rendered)} | Bar Magazine`,
+    title: `${stripHtml(post.title.rendered).replace(/\|/g, '')} | Bar Magazine`,
     description: truncateAtWord(stripHtml(post.excerpt.rendered), 160),
     openGraph: {
       title: stripHtml(post.title.rendered),
@@ -56,7 +56,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           )}
           <h1
             className="article-hero-title"
-            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+            dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }}
           />
           <div className="article-hero-meta">
             {authorName && (

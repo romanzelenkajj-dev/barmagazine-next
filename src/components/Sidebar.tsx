@@ -1,11 +1,24 @@
 import Link from 'next/link';
-import { format } from 'date-fns';
 import type { WPPost } from '@/lib/wordpress';
 import { getFeaturedImageUrl, stripHtml } from '@/lib/wordpress';
+import { formatCardTitle } from '@/lib/utils';
 
 export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
   return (
     <aside className="sidebar">
+      {/* Newsletter */}
+      <div className="sidebar-newsletter">
+        <h3>Stay in the Mix</h3>
+        <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
+        <form method="post" action="https://romanzelenka-wjgek.wpcomstaging.com/">
+          <input type="hidden" name="_mc4wp_form_id" value="84" />
+          <input type="hidden" name="_mc4wp_timestamp" value="" />
+          <input type="hidden" name="_mc4wp_honeypot" value="" />
+          <input type="email" name="EMAIL" required placeholder="Your email address" />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
       {/* Related Articles */}
       {relatedPosts.length > 0 && (
         <div className="sidebar-card">
@@ -21,36 +34,13 @@ export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
                   )}
                 </div>
                 <div className="related-info">
-                  <h4 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                  <span className="related-date">
-                    {format(new Date(post.date), 'MMM d, yyyy')}
-                  </span>
+                  <h4 dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }} />
                 </div>
               </Link>
             );
           })}
         </div>
       )}
-
-      {/* Newsletter */}
-      <div className="sidebar-newsletter">
-        <h3>Stay in the Mix</h3>
-        <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
-        <input type="email" placeholder="Your email address" />
-        <button>Subscribe</button>
-      </div>
-
-      {/* Trending Tags */}
-      <div className="sidebar-card">
-        <h3>Trending Topics</h3>
-        <div className="tag-cloud">
-          {['Cocktails', 'Best Bars', 'Spirits', 'Whiskey', 'Gin', 'Mezcal', 'Low ABV', 'Bar Design'].map(tag => (
-            <Link key={tag} href={`/search?q=${encodeURIComponent(tag)}`} className="tag-pill">
-              {tag}
-            </Link>
-          ))}
-        </div>
-      </div>
     </aside>
   );
 }
