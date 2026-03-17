@@ -124,10 +124,7 @@ export default async function HomePage() {
       <div className="cta-banner">
         <h2>Add Your Bar</h2>
         <p>Join the Bar Magazine directory and reach thousands of cocktail enthusiasts and industry professionals.</p>
-        <div className="cta-form">
-          <input type="text" className="cta-input" placeholder="Your bar name" />
-          <button className="cta-submit">Get Listed</button>
-        </div>
+        <Link href="/add-your-bar" className="cta-submit" style={{ display: 'inline-block', textDecoration: 'none' }}>Get Listed</Link>
       </div>
 
       {/* E) FEATURED BARS (from WP bars category) */}
@@ -150,8 +147,6 @@ export default async function HomePage() {
                   </div>
                   <h4 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                   <span className="bar-city">{format(new Date(post.date), 'MMM d, yyyy')}</span>
-                  <br />
-                  <span className="bar-link">Read more</span>
                 </Link>
               );
             })}
