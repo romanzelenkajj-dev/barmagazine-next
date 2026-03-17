@@ -214,7 +214,7 @@ export function formatCardTitle(htmlTitle: string, boldTitle?: string): string {
   // Strip remaining HTML tags for plain-text processing
   const clean = decoded.replace(/<[^>]*>/g, '');
 
-  // If title contains pipe markers, bold the text between them
+  // If title contains two pipe markers, bold the text between them
   // e.g. "|Bold Part| rest of title" or "start |Bold Part| end"
   const pipeMatch = clean.match(/^(.*?)\|(.+?)\|(.*)$/);
   if (pipeMatch) {
@@ -225,6 +225,6 @@ export function formatCardTitle(htmlTitle: string, boldTitle?: string): string {
     return parts.join(' ');
   }
 
-  // No formatting markers → display as plain text
-  return clean;
+  // If a stray single pipe exists, just strip it out
+  return clean.replace(/\|/g, '').replace(/\s+/g, ' ').trim();
 }
