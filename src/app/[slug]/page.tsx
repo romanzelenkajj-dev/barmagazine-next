@@ -33,9 +33,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   const readTime = estimateReadTime(post.content.rendered);
   const authorName = author?.name && author.name !== 'BarMagazine' ? author.name : null;
 
-  // Get related posts from the same category
+  // Get related posts from the same category, fall back to recent posts
   const relatedResult = await getPosts(1, 5, categories[0]?.id);
-  const relatedPosts = relatedResult.data.filter(p => p.id !== post.id).slice(0, 4);
+  let relatedPosts = relatedResult.data.filter(p => p.id !== post.id).slice(0, 4);
+  if (relatedPosts.length < 2) {
+    const recentResult = await getPosts(1, 6);
+    relatedPosts = recentResult.data.filter(p => p.id !== post.id).slice(0, 4);
+  }
 
   return (
     <>
