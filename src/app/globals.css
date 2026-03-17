@@ -2030,6 +2030,7 @@ textarea.form-input {
   padding: 2px 10px;
   border-radius: 100px;
   font-size: 10px;
+  width: fit-content;
 }
 
 .bar-dir-badge-inline {
