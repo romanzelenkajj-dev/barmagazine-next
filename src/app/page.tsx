@@ -44,10 +44,10 @@ export default async function HomePage() {
             />
           )}
           <div className="hero-overlay" />
+          <span className="hero-cat">
+            {getPostCategories(hero)[0]?.name || 'Latest'}
+          </span>
           <div className="hero-content">
-            <span className="hero-cat">
-              {getPostCategories(hero)[0]?.name || 'Latest'}
-            </span>
             <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: formatCardTitle(hero.title.rendered, hero.meta?.bold_title) }} />
           </div>
         </Link>
