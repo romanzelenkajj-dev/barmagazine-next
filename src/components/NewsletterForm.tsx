@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, type FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 
 interface NewsletterFormProps {
   className?: string;
@@ -9,11 +9,6 @@ interface NewsletterFormProps {
 export function NewsletterForm({ className }: NewsletterFormProps) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
-  const timestampRef = useRef('');
-
-  useEffect(() => {
-    timestampRef.current = String(Math.floor(Date.now() / 1000));
-  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,22 +17,21 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    // Ensure timestamp is fresh at submission time
-    formData.set('_mc4wp_timestamp', String(Math.floor(Date.now() / 1000)));
 
     try {
-      const res = await fetch(form.action, {
+      const res = await fetch('/api/newsletter', {
         method: 'POST',
         body: formData,
       });
 
-      if (res.ok) {
+      const data = await res.json().catch(() => null);
+
+      if (res.ok && data?.success) {
         setStatus('success');
         form.reset();
       } else {
-        const text = await res.text().catch(() => '');
         setStatus('error');
-        setErrorMsg(text || 'Something went wrong. Please try again.');
+        setErrorMsg('Something went wrong. Please try again.');
       }
     } catch {
       setStatus('error');
@@ -55,14 +49,9 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
 
   return (
     <form
-      method="post"
-      action="https://romanzelenka-wjgek.wpcomstaging.com/"
       className={className}
       onSubmit={handleSubmit}
     >
-      <input type="hidden" name="_mc4wp_form_id" value="84" />
-      <input type="hidden" name="_mc4wp_timestamp" value={timestampRef.current} />
-      <input type="hidden" name="_mc4wp_honeypot" value="" />
       <input type="email" name="EMAIL" required placeholder="Your email address" />
       <button type="submit" disabled={status === 'submitting'}>
         {status === 'submitting' ? 'Subscribing…' : 'Subscribe'}
