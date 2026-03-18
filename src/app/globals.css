@@ -1391,7 +1391,7 @@ button {
 }
 
 .card-body {
-  padding: 24px;
+  padding: 20px 24px;
 }
 
 .card-body .card-excerpt {
@@ -1399,6 +1399,7 @@ button {
   color: var(--text-secondary);
   line-height: 1.55;
   margin-top: 10px;
+  margin-bottom: 0;
 }
 
 /* ====== CARD BLEED (full-image background) ====== */
@@ -1836,7 +1837,7 @@ button {
   }
 
   .card-body {
-    padding: 24px;
+    padding: 20px 20px;
   }
 
   .card.card-bleed {
