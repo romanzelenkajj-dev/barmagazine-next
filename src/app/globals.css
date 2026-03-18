@@ -1497,6 +1497,11 @@ button {
 
 .sidebar .ad-banner {
   margin-top: 0;
+  flex-shrink: 0;
+}
+
+.sidebar .ad-banner img {
+  border-radius: var(--radius);
 }
 
 /* ====== CTA ROW ====== */
