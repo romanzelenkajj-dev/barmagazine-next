@@ -1956,9 +1956,46 @@ button {
     flex-direction: column;
   }
 
+  .footer {
+    padding: 32px 24px 20px;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 0;
+    padding-bottom: 20px;
+  }
+
+  .footer-desc {
+    display: none;
+  }
+
+  .footer-explore {
+    display: none;
+  }
+
+  .footer-contact .footer-contact-text {
+    display: none;
+  }
+
+  .footer-contact h4 {
+    display: none;
+  }
+
+  .footer-contact {
+    margin-top: 16px;
+  }
+
+  .footer-email {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
   }
 }
 

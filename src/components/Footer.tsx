@@ -28,7 +28,7 @@ export function Footer() {
             </a>
           </div>
         </div>
-        <div className="footer-col">
+        <div className="footer-col footer-explore">
           <h4>Explore</h4>
           <ul>
             <li><Link href="/">Latest</Link></li>
@@ -42,7 +42,7 @@ export function Footer() {
             <li><Link href="/work-with-us">Work With Us</Link></li>
           </ul>
         </div>
-        <div className="footer-col">
+        <div className="footer-col footer-contact">
           <h4>Contact</h4>
           <p className="footer-contact-text">
             We&apos;d love to hear from you! Whether you&apos;re interested in partnerships,
