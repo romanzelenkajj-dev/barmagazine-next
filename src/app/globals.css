@@ -1490,6 +1490,7 @@ button {
   grid-template-columns: 2fr 1fr;
   gap: var(--gap);
   margin-top: var(--gap);
+  align-items: stretch;
 }
 
 .cta-ad {
@@ -1519,6 +1520,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .cta-banner h2 {
@@ -1562,7 +1564,7 @@ button {
 }
 
 .cta-submit {
-  padding: 14px 28px;
+  padding: 14px 36px;
   background: var(--bg-dark);
   color: #fff;
   border-radius: 100px;
@@ -1573,6 +1575,8 @@ button {
   font-family: inherit;
   transition: background 0.3s;
   white-space: nowrap;
+  display: inline-block;
+  width: auto;
 }
 
 .cta-submit:hover {
