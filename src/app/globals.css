@@ -1754,6 +1754,10 @@ button {
     padding-right: var(--gap);
   }
 
+  .nav-spacer {
+    height: calc(var(--nav-h) + 6px);
+  }
+
   .nav-wrapper {
     padding: 0;
   }
@@ -1800,6 +1804,7 @@ button {
 
   .hero {
     min-height: 360px;
+    margin-top: 6px;
   }
 
   .hero-content {
@@ -1808,6 +1813,14 @@ button {
 
   .hero-title {
     font-size: 26px;
+  }
+
+  .section-header {
+    margin: 24px 0 16px;
+  }
+
+  .section-bar {
+    margin: 24px 0 16px;
   }
 
   .article-grid {
