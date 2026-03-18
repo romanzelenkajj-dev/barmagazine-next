@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import { submitBar } from '@/lib/supabase';
 
 export default function AddYourBarPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -30,22 +29,20 @@ export default function AddYourBarPage() {
       contact_name: (data.get('contactName') as string) || undefined,
     };
 
-    // Submit to Supabase
-    const result = await submitBar(submission);
-
-    if (result.success) {
-      // Also send email notification
-      try {
-        await fetch('/api/bar-submission', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(submission),
-        });
-      } catch {
-        // Email notification is best-effort, don't block
+    // Submit via server-side API route
+    try {
+      const response = await fetch('/api/bar-submission', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(submission),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setError('Something went wrong. Please try again or email us directly at office@barmagazine.com.');
       }
-      setSubmitted(true);
-    } else {
+    } catch {
       setError('Something went wrong. Please try again or email us directly at office@barmagazine.com.');
     }
 

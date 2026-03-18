@@ -1,19 +1,56 @@
 import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+
+// Server-side Supabase client with service role key (bypasses RLS)
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 export async function POST(request: Request) {
   try {
     const data = await request.json();
 
-    // Send email notification via a simple mailto-style approach
-    // For production, you'd use a service like Resend, SendGrid, etc.
-    // For now, we log the submission (it's already saved in Supabase)
-    console.log('New bar submission:', data);
+    // Validate required fields
+    if (!data.name || !data.city || !data.country || !data.email) {
+      return NextResponse.json(
+        { success: false, error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
 
-    // Could integrate with email service here later
-    // For now, the submission is saved to Supabase bar_submissions table
+    // Insert into Supabase using service role key
+    const { data: submission, error } = await supabaseAdmin
+      .from('bar_submissions')
+      .insert({
+        name: data.name,
+        city: data.city,
+        country: data.country,
+        address: data.address || null,
+        type: data.type || 'Cocktail Bar',
+        website: data.website || null,
+        instagram: data.instagram || null,
+        email: data.email,
+        phone: data.phone || null,
+        description: data.description || null,
+        contact_name: data.contact_name || null,
+      })
+      .select()
+      .single();
 
-    return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ success: false }, { status: 500 });
+    if (error) {
+      console.error('Supabase insert error:', error);
+      return NextResponse.json(
+        { success: false, error: 'Failed to save submission' },
+        { status: 500 }
+      );
+    }
+
+    console.log('New bar submission saved:', submission.id);
+
+    return NextResponse.json({ success: true, id: submission.id });
+  } catch (e) {
+    console.error('Bar submission error:', e);
+    return NextResponse.json({ success: false, error: 'Server error' }, { status: 500 });
   }
 }
