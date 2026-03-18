@@ -21,6 +21,7 @@ export default async function AwardsEventsPage() {
     <div className="category-header-wrapper">
       <div className="category-header">
         <h1>Awards</h1>
+        <div className="category-header-line" />
       </div>
 
       <LoadMoreGrid

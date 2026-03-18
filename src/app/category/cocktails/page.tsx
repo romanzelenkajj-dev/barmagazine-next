@@ -17,6 +17,7 @@ export default async function CocktailsPage() {
     <div className="category-header-wrapper">
       <div className="category-header">
         <h1>Cocktails</h1>
+        <div className="category-header-line" />
       </div>
 
       <LoadMoreGrid

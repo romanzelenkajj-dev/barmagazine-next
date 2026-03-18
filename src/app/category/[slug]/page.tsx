@@ -32,6 +32,7 @@ export default async function CategoryPage({
     <div className="category-header-wrapper">
       <div className="category-header">
         <h1>{category.name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</h1>
+        <div className="category-header-line" />
       </div>
 
       <LoadMoreGrid

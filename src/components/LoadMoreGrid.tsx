@@ -109,9 +109,6 @@ export function LoadMoreGrid({
                   dangerouslySetInnerHTML={{ __html: cleanTitle(post.title.rendered) }}
                 />
                 <p className="article-card-excerpt">{excerpt}</p>
-                <div className="article-card-meta">
-                  <span>{rt} min read</span>
-                </div>
               </div>
             </Link>
           );

@@ -18,6 +18,7 @@ export default async function PeoplePage() {
     <div className="category-header-wrapper">
       <div className="category-header">
         <h1>People</h1>
+        <div className="category-header-line" />
       </div>
 
       <LoadMoreGrid

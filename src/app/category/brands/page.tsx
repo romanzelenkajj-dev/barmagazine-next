@@ -18,6 +18,7 @@ export default async function BrandsPage() {
     <div className="category-header-wrapper">
       <div className="category-header">
         <h1>Brands</h1>
+        <div className="category-header-line" />
       </div>
 
       <LoadMoreGrid
