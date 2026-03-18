@@ -129,12 +129,6 @@ export default async function HomePage() {
         })}
       </div>
 
-      {/* AD BANNER: Pampero */}
-      <a href="https://www.pamperoron.com" target="_blank" rel="noopener noreferrer sponsored" className="ad-banner">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/banners/pampero.jpg" alt="Pampero Rum" width={1212} height={358} loading="lazy" />
-      </a>
-
       {/* D) CTA BANNER */}
       <div className="cta-banner">
         <h2>Add Your Bar</h2>
