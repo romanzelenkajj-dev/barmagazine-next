@@ -411,7 +411,7 @@ button {
   border-radius: var(--radius);
   padding: 48px;
   text-align: center;
-  margin-top: 48px;
+  margin-top: var(--gap);
 }
 
 .newsletter-strip h2 {
