@@ -162,6 +162,21 @@ export default async function HomePage() {
           </div>
         </div>
       )}
+
+      {/* F) NEWSLETTER BANNER */}
+      <div className="newsletter-strip">
+        <h2>Stay in the Mix</h2>
+        <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
+        <form
+          className="newsletter-form"
+          method="post"
+          action="https://romanzelenka-wjgek.wpcomstaging.com/wp-json/mc4wp/v1/form"
+        >
+          <input type="hidden" name="_mc4wp_form_id" value="84" />
+          <input type="email" name="EMAIL" placeholder="Your email address" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
     </>
   );
 }
