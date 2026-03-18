@@ -407,7 +407,7 @@ button {
 
 /* ====== NEWSLETTER STRIP ====== */
 .newsletter-strip {
-  background: var(--accent);
+  background: var(--bg-accent);
   border-radius: var(--radius);
   padding: 48px;
   text-align: center;
@@ -418,13 +418,13 @@ button {
   font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--text-primary);
   margin-bottom: 10px;
 }
 
 .newsletter-strip p {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--text-secondary);
   margin-bottom: 24px;
 }
 
@@ -438,9 +438,9 @@ button {
 .newsletter-form input {
   flex: 1;
   padding: 14px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--border);
   border-radius: 100px;
-  background: rgba(255, 255, 255, 0.9);
+  background: #fff;
   color: var(--text-primary);
   font-size: 14px;
   outline: none;
@@ -452,13 +452,12 @@ button {
 }
 
 .newsletter-form input:focus {
-  border-color: #fff;
-  background: #fff;
+  border-color: var(--text-primary);
 }
 
 .newsletter-form button {
   padding: 14px 28px;
-  background: var(--bg-dark);
+  background: var(--text-primary);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
@@ -954,6 +953,13 @@ button {
   border-radius: var(--radius);
   padding: 28px;
   text-align: center;
+}
+
+.sidebar-newsletter form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
 }
 
 .sidebar-newsletter h3 {
@@ -1480,7 +1486,7 @@ button {
 
 /* ====== CTA BANNER ====== */
 .cta-banner {
-  background: var(--bg-accent);
+  background: var(--accent);
   border-radius: var(--radius);
   padding: 56px 48px;
   text-align: center;
@@ -1492,11 +1498,12 @@ button {
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 10px;
+  color: #fff;
 }
 
 .cta-banner p {
   font-size: 15px;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: 28px;
   max-width: 500px;
   margin-left: auto;
@@ -1528,7 +1535,7 @@ button {
 
 .cta-submit {
   padding: 14px 28px;
-  background: var(--text-primary);
+  background: var(--bg-dark);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
