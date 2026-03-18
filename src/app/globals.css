@@ -269,7 +269,7 @@ button {
   line-height: 1.15;
   letter-spacing: -0.025em;
   color: #fff;
-  margin-bottom: 16px;
+  margin-bottom: 0;
 }
 
 .hero-excerpt {
@@ -1825,7 +1825,6 @@ button {
 
   .hero-title {
     font-size: 26px;
-    margin-bottom: 0;
   }
 
   .section-header {
