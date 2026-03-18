@@ -1683,6 +1683,15 @@ button {
     --nav-h: 56px;
   }
 
+  .nav-wrapper {
+    padding: 0;
+  }
+
+  .nav {
+    max-width: 100%;
+    border-radius: 0;
+  }
+
   .nav-links {
     display: none;
   }
