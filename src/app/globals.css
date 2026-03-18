@@ -7,7 +7,7 @@
   --bg-card: #FFFFFF;
   --bg-card-warm: #F0EBE4;
   --bg-dark: #1A1A1A;
-  --bg-accent: #E8F4F0;
+  --bg-accent: #F4E4DA;
   --bg-accent-pink: #EDBBBB;
   --text-primary: #1A1A1A;
   --text-secondary: #6B6B6B;
@@ -949,7 +949,7 @@ button {
 
 /* Sidebar newsletter */
 .sidebar-newsletter {
-  background: var(--bg-card-warm);
+  background: var(--bg-accent);
   border-radius: var(--radius);
   padding: 28px;
   text-align: center;
