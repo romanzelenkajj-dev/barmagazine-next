@@ -24,7 +24,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -35,7 +35,7 @@ body {
   -webkit-font-smoothing: antialiased;
   padding: var(--gap);
   padding-top: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img {
