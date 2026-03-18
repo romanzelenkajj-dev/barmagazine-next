@@ -187,7 +187,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           </div>
 
           {/* AD BANNER: Pampero */}
-          <a href="https://www.pamperoron.com" target="_blank" rel="noopener noreferrer sponsored" className="ad-banner" style={{ marginTop: 32 }}>
+          <a href="https://www.alkoshop.sk/?s=pampero&post_type=product&type_aws=true&aws_id=1&aws_filter=1" target="_blank" rel="noopener noreferrer sponsored" className="ad-banner" style={{ marginTop: 32 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/banners/pampero.jpg" alt="Pampero Rum" width={1212} height={358} loading="lazy" />
           </a>
