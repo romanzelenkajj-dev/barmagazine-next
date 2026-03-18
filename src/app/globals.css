@@ -239,7 +239,7 @@ button {
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 48px;
+  padding: 48px 48px 40px;
   width: 100%;
   max-width: 720px;
 }
@@ -1820,7 +1820,7 @@ button {
   }
 
   .hero-content {
-    padding: 24px;
+    padding: 24px 24px 18px;
   }
 
   .hero-title {
