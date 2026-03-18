@@ -5,14 +5,17 @@ import type { Metadata } from 'next';
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: 'Awards | Bar Magazine',
-  description: 'Awards, news, and features from the global bar and cocktail industry.',
+  title: 'Awards',
+  description: 'Bar and cocktail industry awards — 50 Best Bars, World Class, and more.',
+  alternates: {
+    canonical: 'https://barmagazine.com/category/awards-events',
+  },
 };
 
 export default async function AwardsEventsPage() {
-  // Awards (200) + legacy: News (52), Features (40)
-  const result = await getPostsByMultipleCategories([200, 52, 40], 1, 12);
-  const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=200,52,40&per_page=12`;
+  // Awards only (200)
+  const result = await getPostsByMultipleCategories([200], 1, 12);
+  const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=200&per_page=12`;
 
   return (
     <div className="category-header-wrapper">
