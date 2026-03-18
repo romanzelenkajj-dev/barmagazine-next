@@ -22,7 +22,6 @@ export function Nav() {
   const links: { href: string; label: string; badge?: string }[] = [
     { href: '/', label: 'Latest' },
     { href: '/category/bars', label: 'Bars' },
-    { href: '/bars', label: 'Bar Directory' },
     { href: '/category/people', label: 'People' },
     { href: '/category/cocktails', label: 'Cocktails' },
     { href: '/category/awards-events', label: 'Awards' },
