@@ -1471,6 +1471,10 @@ button {
   margin-right: auto;
 }
 
+.sidebar .ad-banner {
+  margin-top: 0;
+}
+
 /* ====== CTA BANNER ====== */
 .cta-banner {
   background: var(--bg-accent);
