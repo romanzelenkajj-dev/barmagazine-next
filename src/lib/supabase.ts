@@ -167,13 +167,13 @@ export async function getBarStats() {
     .select('*', { count: 'exact', head: true })
     .eq('is_active', true);
 
-  const { data: countryData } = await supabase
+  const { data: locationData } = await supabase
     .from('bars')
-    .select('country')
+    .select('country, city')
     .eq('is_active', true);
 
-  const countries = countryData ? Array.from(new Set(countryData.map(b => b.country))).length : 0;
-  const cities = countryData ? Array.from(new Set(countryData.map((b: any) => b.city))).length : 0;
+  const countries = locationData ? Array.from(new Set(locationData.map(b => b.country))).length : 0;
+  const cities = locationData ? Array.from(new Set(locationData.map(b => b.city))).length : 0;
 
   return { totalBars: count || 0, totalCountries: countries, totalCities: cities };
 }

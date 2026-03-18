@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default async function BarsPage() {
   const [{ bars }, filters, stats] = await Promise.all([
-    getBars({ perPage: 200 }), // load all for client-side filtering
+    getBars({ perPage: 500 }), // load all for client-side filtering
     getBarFilterOptions(),
     getBarStats(),
   ]);
