@@ -1446,6 +1446,31 @@ button {
   gap: 8px;
 }
 
+/* ====== AD BANNERS ====== */
+.ad-banner {
+  display: block;
+  margin-top: 48px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.ad-banner:hover {
+  opacity: 0.92;
+}
+
+.ad-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ad-banner-square {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ====== CTA BANNER ====== */
 .cta-banner {
   background: var(--bg-accent);

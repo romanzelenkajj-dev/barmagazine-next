@@ -129,6 +129,12 @@ export default async function HomePage() {
         })}
       </div>
 
+      {/* AD BANNER: Pampero */}
+      <a href="https://www.pamperoron.com" target="_blank" rel="noopener noreferrer sponsored" className="ad-banner">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/banners/pampero.jpg" alt="Pampero Rum" width={1212} height={358} loading="lazy" />
+      </a>
+
       {/* D) CTA BANNER */}
       <div className="cta-banner">
         <h2>Add Your Bar</h2>
@@ -162,6 +168,12 @@ export default async function HomePage() {
           </div>
         </div>
       )}
+
+      {/* AD BANNER: Flavour Blaster */}
+      <a href="https://flavourblaster.com/BARMAGAZINE" target="_blank" rel="noopener noreferrer sponsored" className="ad-banner ad-banner-square">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster" width={1026} height={1026} loading="lazy" />
+      </a>
 
       {/* F) NEWSLETTER BANNER */}
       <div className="newsletter-strip">
