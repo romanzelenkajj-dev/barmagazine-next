@@ -33,6 +33,7 @@ export function Footer() {
           <ul>
             <li><Link href="/">Latest</Link></li>
             <li><Link href="/category/bars">Bars</Link></li>
+            <li><Link href="/bars">Bar Directory</Link></li>
             <li><Link href="/category/people">People</Link></li>
             <li><Link href="/category/cocktails">Cocktails</Link></li>
             <li><Link href="/category/awards-events">Awards</Link></li>
