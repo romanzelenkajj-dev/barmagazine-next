@@ -23,11 +23,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     siteName: 'BarMagazine',
     url: 'https://barmagazine.com',
+    images: [{ url: 'https://barmagazine.com/og-image.png', width: 1200, height: 630, alt: 'BarMagazine' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'BarMagazine',
     description: 'Global bar news, cocktail culture, and spirits industry trends.',
+    images: ['https://barmagazine.com/og-image.png'],
   },
   robots: {
     index: true,
