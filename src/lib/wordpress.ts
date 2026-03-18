@@ -235,7 +235,7 @@ export function estimateReadTime(content: string): number {
 
 // ---------- Image URL helpers ----------
 /**
- * Rewrite barmagazine.com/wp-content/uploads/* URLs to use the WordPress.com CDN
+ * Rewrite barmagazine.com or wpcomstaging.com image URLs to use the WordPress.com CDN
  * (i0.wp.com) so images keep working after DNS points barmagazine.com to Vercel.
  */
 export function rewriteImageUrl(url: string): string {
@@ -246,18 +246,34 @@ export function rewriteImageUrl(url: string): string {
   if (url.includes('barmagazine.com/wp-content/')) {
     return url.replace('https://barmagazine.com/', 'https://i0.wp.com/barmagazine.com/');
   }
+  // Rewrite wpcomstaging.com URLs to CDN
+  if (url.includes('romanzelenka-wjgek.wpcomstaging.com/wp-content/')) {
+    return url.replace(
+      'https://romanzelenka-wjgek.wpcomstaging.com/',
+      'https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/'
+    );
+  }
   return url;
 }
 
 /**
- * Rewrite all image URLs inside HTML content.
+ * Rewrite all image URLs inside HTML content (in src, data-src, srcset, etc.).
+ * Handles both barmagazine.com and wpcomstaging.com origins.
  */
 export function rewriteContentImageUrls(html: string): string {
   if (!html) return html;
-  return html.replace(
+  let result = html;
+  // Rewrite barmagazine.com URLs to CDN
+  result = result.replace(
     /https:\/\/barmagazine\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
     'https://i0.wp.com/barmagazine.com/wp-content/uploads/$1'
   );
+  // Rewrite wpcomstaging.com URLs to CDN
+  result = result.replace(
+    /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
+    'https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/$1'
+  );
+  return result;
 }
 
 // Category ID map (from the live site)
