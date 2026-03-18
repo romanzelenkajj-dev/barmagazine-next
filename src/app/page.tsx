@@ -163,12 +163,6 @@ export default async function HomePage() {
         </div>
       )}
 
-      {/* AD BANNER: Flavour Blaster */}
-      <a href="https://flavourblaster.com/BARMAGAZINE" target="_blank" rel="noopener noreferrer sponsored" className="ad-banner ad-banner-square">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster" width={1026} height={1026} loading="lazy" />
-      </a>
-
       {/* F) NEWSLETTER BANNER */}
       <div className="newsletter-strip">
         <h2>Stay in the Mix</h2>
