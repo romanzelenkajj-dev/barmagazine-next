@@ -884,8 +884,6 @@ button {
   top: calc(var(--nav-h) + var(--gap));
   align-self: start;
   min-width: 0;
-  max-height: calc(100vh - var(--nav-h) - var(--gap) * 2);
-  overflow-y: auto;
 }
 
 .sidebar-card {
@@ -986,7 +984,7 @@ button {
   font-family: inherit;
   background: #fff;
   outline: none;
-  margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 .sidebar-newsletter input:focus {
