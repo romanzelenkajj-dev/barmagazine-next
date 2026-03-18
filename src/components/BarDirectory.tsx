@@ -269,7 +269,6 @@ export function BarDirectoryClient({
           <p>Join the BarMagazine directory and reach cocktail enthusiasts worldwide. Free basic listing, or upgrade for premium visibility.</p>
           <div className="directory-cta-actions">
             <Link href="/add-your-bar" className="directory-cta-btn">Get Listed Free</Link>
-            <Link href="/claim-your-bar" className="directory-cta-btn directory-cta-btn--secondary">Upgrade Your Listing</Link>
           </div>
         </div>
       </div>

@@ -174,7 +174,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             <section className="bar-profile-section">
               <div className="bar-profile-empty-content">
                 <p>This is a basic listing. Upgrade to a Featured or Premium listing to add a full description, photo gallery, and editorial features.</p>
-                <Link href="/claim-your-bar" className="bar-profile-upgrade-inline">Upgrade This Listing</Link>
+                <Link href="/add-your-bar" className="bar-profile-upgrade-inline">Add Your Bar</Link>
               </div>
             </section>
           )}
@@ -278,8 +278,8 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 </svg>
               </div>
               <p>Is this your bar?</p>
-              <span className="bar-profile-upgrade-sub">Claim this listing and upgrade for premium visibility</span>
-              <Link href="/claim-your-bar">Claim &amp; Upgrade</Link>
+              <span className="bar-profile-upgrade-sub">Add photos, contact details, and more</span>
+              <Link href="/add-your-bar">Get Listed</Link>
             </div>
           )}
         </aside>

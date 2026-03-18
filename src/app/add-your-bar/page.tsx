@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import Link from 'next/link';
 
 export default function AddYourBarPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -70,7 +69,7 @@ export default function AddYourBarPage() {
           </div>
           <h2>Submission Received</h2>
           <p>Thank you for submitting your bar. Our team will review it and get in touch at the email you provided.</p>
-          <Link href="/bars" className="add-bar-success-link">Browse the Directory</Link>
+          <a href="/" className="add-bar-success-link">Back to BarMagazine</a>
         </div>
       ) : (
         <div className="add-bar-layout">
@@ -209,17 +208,6 @@ export default function AddYourBarPage() {
                   Link to your website
                 </li>
               </ul>
-            </div>
-
-            <div className="add-bar-info-card add-bar-upgrade-card">
-              <div className="add-bar-upgrade-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-              </div>
-              <h3>Want More Visibility?</h3>
-              <p>Upgrade to a Featured or Premium listing for priority placement, photo galleries, and editorial features.</p>
-              <Link href="/claim-your-bar" className="add-bar-upgrade-link">View Upgrade Options</Link>
             </div>
 
             <div className="add-bar-info-card">
