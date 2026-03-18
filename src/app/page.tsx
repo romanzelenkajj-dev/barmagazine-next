@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, stripHtml, truncateAtWord, estimateReadTime } from '@/lib/wordpress';
+import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, stripHtml, truncateAtWord } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
 import { NewsletterForm } from '@/components/NewsletterForm';
 
@@ -75,7 +75,6 @@ export default async function HomePage() {
           const imgUrl = getFeaturedImageUrl(post, 'large');
           const formattedTitle = formatCardTitle(post.title.rendered, post.meta?.bold_title);
           const excerpt = truncateAtWord(stripHtml(post.excerpt.rendered), 120);
-          const readTime = estimateReadTime(post.content.rendered);
 
           if (isBleed) {
             return (
@@ -93,9 +92,6 @@ export default async function HomePage() {
                 <div className="card-body">
                   <h3 dangerouslySetInnerHTML={{ __html: formattedTitle }} />
                   <p className="card-excerpt">{excerpt}</p>
-                  <div className="card-meta">
-                    <span>{readTime} min read</span>
-                  </div>
                 </div>
               </Link>
             );
@@ -115,9 +111,6 @@ export default async function HomePage() {
                 </div>
                 <h3 dangerouslySetInnerHTML={{ __html: formattedTitle }} />
                 <p className="card-excerpt">{excerpt}</p>
-                <div className="card-meta">
-                  <span>{readTime} min read</span>
-                </div>
               </div>
             </Link>
           );

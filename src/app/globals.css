@@ -1816,11 +1816,11 @@ button {
   }
 
   .section-header {
-    margin: 24px 0 16px;
+    margin: 16px 0 12px;
   }
 
   .section-bar {
-    margin: 24px 0 16px;
+    margin: 16px 0 12px;
   }
 
   .article-grid {
@@ -1831,8 +1831,20 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .card-img-top {
+    height: 300px;
+  }
+
+  .card-body {
+    padding: 24px 24px 28px;
+  }
+
   .card.card-bleed {
-    min-height: 300px;
+    min-height: 340px;
+  }
+
+  .card.card-bleed .card-body {
+    padding: 28px 24px;
   }
 
   .section-bar {
