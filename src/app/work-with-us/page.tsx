@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { NewsletterForm } from '@/components/NewsletterForm';
 
 export const metadata: Metadata = {
   title: 'Stay in the Mix | Bar Magazine',
@@ -36,22 +37,7 @@ export default function WorkWithUsPage() {
         </p>
 
         {/* Mailchimp form - posts to WP mc4wp */}
-        <form
-          method="post"
-          action="https://romanzelenka-wjgek.wpcomstaging.com/"
-          className="newsletter-form"
-        >
-          <input type="hidden" name="_mc4wp_form_id" value="84" />
-          <input type="hidden" name="_mc4wp_timestamp" value="" />
-          <input type="hidden" name="_mc4wp_honeypot" value="" />
-          <input
-            type="email"
-            name="EMAIL"
-            required
-            placeholder="Your email address"
-          />
-          <button type="submit">Subscribe</button>
-        </form>
+        <NewsletterForm className="newsletter-form" />
       </div>
 
       {/* What to expect */}

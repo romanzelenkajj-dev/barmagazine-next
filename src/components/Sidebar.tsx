@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { WPPost } from '@/lib/wordpress';
 import { getFeaturedImageUrl, stripHtml } from '@/lib/wordpress';
 import { cleanTitle } from '@/lib/utils';
+import { NewsletterForm } from './NewsletterForm';
 
 export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
   return (
@@ -16,13 +17,7 @@ export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
       <div className="sidebar-newsletter">
         <h3>Stay in the Mix</h3>
         <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
-        <form method="post" action="https://romanzelenka-wjgek.wpcomstaging.com/">
-          <input type="hidden" name="_mc4wp_form_id" value="84" />
-          <input type="hidden" name="_mc4wp_timestamp" value="" />
-          <input type="hidden" name="_mc4wp_honeypot" value="" />
-          <input type="email" name="EMAIL" required placeholder="Your email address" />
-          <button type="submit">Subscribe</button>
-        </form>
+        <NewsletterForm />
       </div>
 
       {/* Related Articles */}
