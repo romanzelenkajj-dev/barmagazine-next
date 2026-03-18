@@ -8,7 +8,7 @@ export const revalidate = 300;
 export default async function HomePage() {
   const [result, barsResult] = await Promise.all([
     getPosts(1, 7),
-    getPostsByCategory('bars', 1, 6),
+    getPostsByCategory('bars', 1, 12),
   ]);
   const posts = result.data;
   const barsPosts = barsResult.data;
