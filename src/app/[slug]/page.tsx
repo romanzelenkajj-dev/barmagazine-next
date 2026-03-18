@@ -117,10 +117,10 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           />
         )}
         <div className="article-hero-overlay" />
+        {categories[0] && (
+          <span className="article-hero-cat">{categories[0].name}</span>
+        )}
         <div className="article-hero-content">
-          {categories[0] && (
-            <span className="article-hero-cat">{categories[0].name}</span>
-          )}
           <h1
             className="article-hero-title"
             dangerouslySetInnerHTML={{ __html: cleanTitle(post.title.rendered) }}
