@@ -3433,8 +3433,8 @@ textarea.form-input {
 /* Layout: form + sidebar */
 .add-bar-layout {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 20px;
+  grid-template-columns: 1fr 280px;
+  gap: var(--gap);
   margin-top: var(--gap);
   align-items: start;
 }
