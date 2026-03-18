@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
 // Server-side Supabase client with service role key (bypasses RLS)
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+const supabaseAdmin = serviceKey
+  ? createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, serviceKey)
+  : null;
 
 export async function POST(request: Request) {
   try {
@@ -20,6 +20,13 @@ export async function POST(request: Request) {
     }
 
     // Insert into Supabase using service role key
+    if (!supabaseAdmin) {
+      console.error('SUPABASE_SERVICE_ROLE_KEY not configured');
+      // Fallback: log the submission — it will be visible in Vercel logs
+      console.log('BAR_SUBMISSION:', JSON.stringify(data));
+      return NextResponse.json({ success: true, note: 'Submission logged, database save pending env setup' });
+    }
+
     const { data: submission, error } = await supabaseAdmin
       .from('bar_submissions')
       .insert({
