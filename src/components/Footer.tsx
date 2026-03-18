@@ -51,10 +51,6 @@ export function Footer() {
           <span className="footer-email">
             Just send an email to:<br />office@barmagazine.com
           </span>
-          <p className="footer-contact-text">
-            Our team is based across the US, Europe, and Asia, giving us a truly
-            global perspective and presence.
-          </p>
         </div>
       </div>
       <div className="footer-bottom">
