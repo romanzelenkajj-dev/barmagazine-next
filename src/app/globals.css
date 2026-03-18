@@ -1241,25 +1241,27 @@ button {
 }
 
 .category-header {
-  padding: 8px 0 16px;
+  background: var(--bg-dark);
+  border-radius: var(--radius);
+  padding: 20px 32px;
   margin-bottom: var(--gap);
   display: flex;
   align-items: center;
 }
 
 .category-header h1 {
-  font-size: clamp(24px, 3vw, 32px);
+  font-size: clamp(20px, 2.5vw, 26px);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  color: var(--text-primary);
+  color: #fff;
   white-space: nowrap;
 }
 
 .category-header-line {
   flex: 1;
-  height: 1px;
-  background: var(--border);
+  height: 0.5px;
+  background: rgba(255, 255, 255, 0.12);
   margin-left: 24px;
 }
 
@@ -1966,11 +1968,11 @@ button {
   }
 
   .category-header {
-    padding: 4px 0 12px;
+    padding: 16px 20px;
   }
 
   .category-header h1 {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .category-header-line {
