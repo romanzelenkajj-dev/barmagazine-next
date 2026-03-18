@@ -1814,6 +1814,7 @@ button {
 
   .hero-title {
     font-size: 26px;
+    margin-bottom: 0;
   }
 
   .section-header {
