@@ -127,7 +127,7 @@ export function BarDirectoryClient({
       <div className="directory-hero">
         <div className="directory-hero-inner">
           <div className="directory-hero-badge">Global Bar Directory</div>
-          <h1>Discover the World&apos;s<br />Best Bars</h1>
+          <h1>Discover the World&apos;s<br /> Best Bars</h1>
           <p>{totalBars} curated bars across {totalCities} cities in {totalCountries} countries</p>
           <div className="directory-hero-stats">
             {topCountries.slice(0, 4).map(([country, count]) => (
