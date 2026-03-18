@@ -49,12 +49,6 @@ export default async function HomePage() {
               {getPostCategories(hero)[0]?.name || 'Latest'}
             </span>
             <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: formatCardTitle(hero.title.rendered, hero.meta?.bold_title) }} />
-            <p className="hero-excerpt">
-              {truncateAtWord(stripHtml(hero.excerpt.rendered), 160)}
-            </p>
-            <span className="hero-read">
-              Read Article &rarr;
-            </span>
           </div>
         </Link>
       )}
