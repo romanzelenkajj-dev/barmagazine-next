@@ -3442,8 +3442,8 @@ textarea.form-input {
 /* Form card */
 .add-bar-form-card {
   background: var(--bg-card);
-  border-radius: var(--radius) 8px 8px var(--radius);
-  padding: 32px;
+  border-radius: var(--radius);
+  padding: 36px 40px;
 }
 
 .add-bar-form {
@@ -3544,7 +3544,7 @@ textarea.form-input {
 
 .add-bar-info-card {
   background: var(--bg-card);
-  border-radius: 8px var(--radius) var(--radius) 8px;
+  border-radius: var(--radius);
   padding: 24px;
 }
 
