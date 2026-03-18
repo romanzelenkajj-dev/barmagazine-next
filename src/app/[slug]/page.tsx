@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       type: 'article',
       publishedTime: post.date,
       url: `${SITE_URL}/${params.slug}`,
-      siteName: 'Bar Magazine',
+      siteName: 'BarMagazine',
       images: heroImage ? [{ url: heroImage, width: 1200, height: 630 }] : [],
     },
     twitter: {
@@ -73,7 +73,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     url: `${SITE_URL}/${params.slug}`,
     publisher: {
       '@type': 'Organization',
-      name: 'Bar Magazine',
+      name: 'BarMagazine',
       url: SITE_URL,
     },
     ...(authorName && {

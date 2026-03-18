@@ -39,7 +39,7 @@ export function Nav() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://barmagazine.com/wp-content/uploads/2024/05/BARMAG-LOGO-WHITE.png"
-                alt="Bar Magazine"
+                alt="BarMagazine"
                 width={164}
                 height={29}
                 style={{ height: 29, width: 'auto' }}

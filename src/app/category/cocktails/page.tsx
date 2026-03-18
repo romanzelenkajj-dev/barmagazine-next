@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: 'Cocktails | Bar Magazine',
+  title: 'Cocktails | BarMagazine',
   description: 'Cocktail recipes, trends, and mocktail inspiration from the bar world.',
 };
 

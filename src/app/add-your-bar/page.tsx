@@ -55,7 +55,7 @@ export default function AddYourBarPage() {
         Add Your Bar
       </h1>
       <p style={{ fontSize: 15, color: 'var(--text-secondary)', marginBottom: 32 }}>
-        Submit your bar to the Bar Magazine directory. We&apos;ll review your submission and get back to you.
+        Submit your bar to the BarMagazine directory. We&apos;ll review your submission and get back to you.
       </p>
 
       {submitted ? (

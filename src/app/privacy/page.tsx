@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Bar Magazine',
-  description: 'Bar Magazine privacy policy — how we collect, use, and protect your data.',
+  title: 'Privacy Policy | BarMagazine',
+  description: 'BarMagazine privacy policy — how we collect, use, and protect your data.',
 };
 
 export default function PrivacyPage() {
@@ -12,7 +12,7 @@ export default function PrivacyPage() {
         Privacy Policy
       </h1>
       <div className="article-body" style={{ background: 'var(--bg-card)', borderRadius: 'var(--radius)', padding: '48px 40px' }}>
-        <p>This Privacy Policy describes how Bar Magazine (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects, uses, and shares your personal information when you visit barmagazine.com.</p>
+        <p>This Privacy Policy describes how BarMagazine (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects, uses, and shares your personal information when you visit barmagazine.com.</p>
 
         <h2>Information We Collect</h2>
         <p>We may collect the following information when you use our website:</p>

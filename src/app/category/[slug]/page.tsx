@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!category) return {};
   return {
     title: category.name,
-    description: `Browse ${category.name} articles on Bar Magazine — the latest in cocktail culture, bar news, and spirits.`,
+    description: `Browse ${category.name} articles on BarMagazine — the latest in cocktail culture, bar news, and spirits.`,
     alternates: {
       canonical: `https://barmagazine.com/category/${params.slug}`,
     },

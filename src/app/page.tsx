@@ -128,7 +128,7 @@ export default async function HomePage() {
       <div className="cta-row">
         <div className="cta-banner">
           <h2>Want to add your bar?</h2>
-          <p>Join the Bar Magazine directory and reach thousands of cocktail enthusiasts and industry professionals.</p>
+          <p>Join the BarMagazine directory and reach thousands of cocktail enthusiasts and industry professionals.</p>
           <Link href="/add-your-bar" className="cta-submit" style={{ display: 'inline-block', textDecoration: 'none' }}>Get Listed</Link>
         </div>
         <a href="https://flavourblaster.com/BARMAGAZINE" target="_blank" rel="noopener noreferrer sponsored" className="cta-ad">

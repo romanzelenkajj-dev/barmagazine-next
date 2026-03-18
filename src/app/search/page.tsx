@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { SearchForm } from './SearchForm';
 
 export const metadata: Metadata = {
-  title: 'Search | Bar Magazine',
+  title: 'Search | BarMagazine',
 };
 
 export default async function SearchPage({

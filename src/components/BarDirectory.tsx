@@ -137,7 +137,7 @@ export function BarDirectoryClient({
       {/* CTA */}
       <div className="directory-cta">
         <h2>Add Your Bar</h2>
-        <p>Join the Bar Magazine directory and reach cocktail enthusiasts worldwide.</p>
+        <p>Join the BarMagazine directory and reach cocktail enthusiasts worldwide.</p>
         <Link href="/add-your-bar" className="directory-cta-btn">Get Listed</Link>
       </div>
     </div>

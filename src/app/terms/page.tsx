@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Use | Bar Magazine',
-  description: 'Terms and conditions for using the Bar Magazine website.',
+  title: 'Terms of Use | BarMagazine',
+  description: 'Terms and conditions for using the BarMagazine website.',
 };
 
 export default function TermsPage() {
@@ -15,7 +15,7 @@ export default function TermsPage() {
         <p>By accessing and using barmagazine.com (&quot;the Website&quot;), you agree to be bound by these Terms of Use. If you do not agree with these terms, please do not use the Website.</p>
 
         <h2>Intellectual Property</h2>
-        <p>All content on the Website — including text, photographs, graphics, logos, and design — is owned by Bar Magazine or its content creators and is protected by copyright and intellectual property laws. You may not reproduce, distribute, or republish any content without our prior written consent.</p>
+        <p>All content on the Website — including text, photographs, graphics, logos, and design — is owned by BarMagazine or its content creators and is protected by copyright and intellectual property laws. You may not reproduce, distribute, or republish any content without our prior written consent.</p>
 
         <h2>Use of the Website</h2>
         <p>You agree to use the Website only for lawful purposes. You may not:</p>
@@ -27,16 +27,16 @@ export default function TermsPage() {
         </ul>
 
         <h2>User Submissions</h2>
-        <p>By submitting content to Bar Magazine (including bar submissions, event suggestions, or other communications), you grant us a non-exclusive, royalty-free right to use, publish, and distribute the submitted information in connection with our editorial activities.</p>
+        <p>By submitting content to BarMagazine (including bar submissions, event suggestions, or other communications), you grant us a non-exclusive, royalty-free right to use, publish, and distribute the submitted information in connection with our editorial activities.</p>
 
         <h2>Third-Party Links</h2>
         <p>The Website may contain links to third-party websites. We are not responsible for the content, accuracy, or practices of external websites. Accessing linked sites is at your own risk.</p>
 
         <h2>Disclaimer</h2>
-        <p>The content on the Website is provided for informational and entertainment purposes only. While we strive for accuracy, Bar Magazine makes no warranties regarding the completeness or reliability of any information on the Website.</p>
+        <p>The content on the Website is provided for informational and entertainment purposes only. While we strive for accuracy, BarMagazine makes no warranties regarding the completeness or reliability of any information on the Website.</p>
 
         <h2>Limitation of Liability</h2>
-        <p>Bar Magazine shall not be liable for any damages arising from the use of or inability to use the Website, including but not limited to direct, indirect, incidental, or consequential damages.</p>
+        <p>BarMagazine shall not be liable for any damages arising from the use of or inability to use the Website, including but not limited to direct, indirect, incidental, or consequential damages.</p>
 
         <h2>Changes to These Terms</h2>
         <p>We reserve the right to modify these Terms of Use at any time. Continued use of the Website after changes constitutes acceptance of the updated terms.</p>

@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!bar) return {};
 
   const title = `${bar.name} — ${bar.city}`;
-  const description = bar.short_excerpt || bar.description || `${bar.name} is a ${bar.type.toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on Bar Magazine.`;
+  const description = bar.short_excerpt || bar.description || `${bar.name} is a ${bar.type.toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on BarMagazine.`;
 
   return {
     title,
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description,
       type: 'website',
       url: `${SITE_URL}/bars/${bar.slug}`,
-      siteName: 'Bar Magazine',
+      siteName: 'BarMagazine',
       images: bar.photos?.[0] ? [{ url: bar.photos[0] }] : [],
     },
   };
@@ -120,7 +120,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                   <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
                 </svg>
-                Read the full Bar Magazine feature
+                Read the full BarMagazine feature
               </Link>
             </section>
           )}

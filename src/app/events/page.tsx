@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: 'Events | Bar Magazine',
+  title: 'Events | BarMagazine',
   description: 'Bar industry events, cocktail competitions, award ceremonies, and trade shows worldwide.',
 };
 

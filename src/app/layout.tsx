@@ -9,24 +9,24 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   metadataBase: new URL('https://barmagazine.com'),
   title: {
-    default: 'Bar Magazine | Best Bars, Cocktails & Spirits',
-    template: '%s | Bar Magazine',
+    default: 'BarMagazine | Best Bars, Cocktails & Spirits',
+    template: '%s | BarMagazine',
   },
   description: 'Global bar news, cocktail culture, and spirits industry trends. Discover the world\'s best bars, latest cocktail recipes, and industry insights.',
   alternates: {
     canonical: 'https://barmagazine.com',
   },
   openGraph: {
-    title: 'Bar Magazine',
+    title: 'BarMagazine',
     description: 'Global bar news, cocktail culture, and spirits industry trends.',
     type: 'website',
     locale: 'en_US',
-    siteName: 'Bar Magazine',
+    siteName: 'BarMagazine',
     url: 'https://barmagazine.com',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bar Magazine',
+    title: 'BarMagazine',
     description: 'Global bar news, cocktail culture, and spirits industry trends.',
   },
   robots: {
@@ -56,12 +56,12 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              name: 'Bar Magazine',
+              name: 'BarMagazine',
               url: 'https://barmagazine.com',
               description: 'Global bar news, cocktail culture, and spirits industry trends.',
               publisher: {
                 '@type': 'Organization',
-                name: 'Bar Magazine',
+                name: 'BarMagazine',
                 url: 'https://barmagazine.com',
               },
               potentialAction: {
