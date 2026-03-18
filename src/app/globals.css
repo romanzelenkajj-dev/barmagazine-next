@@ -407,7 +407,7 @@ button {
 
 /* ====== NEWSLETTER STRIP ====== */
 .newsletter-strip {
-  background: var(--bg-dark);
+  background: var(--accent);
   border-radius: var(--radius);
   padding: 48px;
   text-align: center;
@@ -424,7 +424,7 @@ button {
 
 .newsletter-strip p {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: 24px;
 }
 
@@ -438,26 +438,27 @@ button {
 .newsletter-form input {
   flex: 1;
   padding: 14px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 100px;
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
   font-size: 14px;
   outline: none;
   font-family: inherit;
 }
 
 .newsletter-form input::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text-tertiary);
 }
 
 .newsletter-form input:focus {
-  border-color: rgba(255, 255, 255, 0.35);
+  border-color: #fff;
+  background: #fff;
 }
 
 .newsletter-form button {
   padding: 14px 28px;
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
@@ -467,7 +468,7 @@ button {
 }
 
 .newsletter-form button:hover {
-  background: #a84f30;
+  background: #333;
 }
 
 /* ====== ARTICLE PAGE ====== */
