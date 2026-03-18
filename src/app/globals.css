@@ -884,6 +884,8 @@ button {
   top: calc(var(--nav-h) + var(--gap));
   align-self: start;
   min-width: 0;
+  max-height: calc(100vh - var(--nav-h) - var(--gap) * 2);
+  overflow-y: auto;
 }
 
 .sidebar-card {
