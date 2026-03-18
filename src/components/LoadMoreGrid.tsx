@@ -53,10 +53,6 @@ function truncate(text: string, maxLen: number): string {
   return (s > maxLen * 0.6 ? t.slice(0, s) : t) + '\u2026';
 }
 
-function readTime(content: string): number {
-  return Math.max(1, Math.ceil(strip(content).split(/\s+/).length / 250));
-}
-
 export function LoadMoreGrid({
   initialPosts,
   totalPages,
@@ -93,7 +89,6 @@ export function LoadMoreGrid({
         {posts.map(post => {
           const imageUrl = getImage(post);
           const excerpt = truncate(strip(post.excerpt.rendered), 120);
-          const rt = readTime(post.content.rendered);
 
           return (
             <Link key={post.id} href={`/${post.slug}`} className="article-card">
