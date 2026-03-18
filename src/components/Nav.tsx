@@ -37,7 +37,7 @@ export function Nav() {
             <Link href="/" className="nav-logo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://barmagazine.com/wp-content/uploads/2024/05/BARMAG-LOGO-WHITE.png"
+                src="/logo-white.png"
                 alt="BarMagazine"
                 width={164}
                 height={29}
