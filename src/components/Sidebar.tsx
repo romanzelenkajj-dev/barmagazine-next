@@ -10,7 +10,7 @@ export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
       {/* Ad: Flavour Blaster */}
       <a href="https://flavourblaster.com/BARMAGAZINE" target="_blank" rel="noopener noreferrer sponsored" className="ad-banner">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster" width={1026} height={1026} loading="lazy" />
+        <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster" width={1026} height={1026} loading="eager" />
       </a>
 
       {/* Newsletter */}

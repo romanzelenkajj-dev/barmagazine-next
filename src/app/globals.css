@@ -1484,13 +1484,41 @@ button {
   margin-top: 0;
 }
 
+/* ====== CTA ROW ====== */
+.cta-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--gap);
+  margin-top: var(--gap);
+}
+
+.cta-ad {
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.cta-ad:hover {
+  opacity: 0.92;
+}
+
+.cta-ad img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* ====== CTA BANNER ====== */
 .cta-banner {
   background: var(--accent);
   border-radius: var(--radius);
   padding: 56px 48px;
   text-align: center;
-  margin-top: var(--gap);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .cta-banner h2 {
@@ -1763,6 +1791,10 @@ button {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+
+  .cta-row {
+    grid-template-columns: 1fr;
   }
 
   .cta-banner {
