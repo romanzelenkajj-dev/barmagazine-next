@@ -33,10 +33,13 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const bar = await getBarBySlug(params.slug);
   if (!bar) notFound();
 
-  const isPaid = bar.tier === 'featured' || bar.tier === 'premium';
+  const isPremium = bar.tier === 'premium';
+  const isFeatured = bar.tier === 'featured';
+  const isPaid = isPremium || isFeatured;
   const hasImage = bar.photos && bar.photos.length > 0;
   const hasMultiplePhotos = bar.photos && bar.photos.length > 1;
   const hasContact = bar.website || bar.instagram || bar.phone || bar.email;
+  const hasDescription = bar.description || bar.short_excerpt;
 
   // JSON-LD structured data
   const jsonLd: Record<string, unknown> = {
@@ -63,7 +66,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
       </nav>
 
       {/* Hero */}
-      <div className={`bar-profile-hero${hasImage ? '' : ' bar-profile-hero--no-image'}`}>
+      <div className={`bar-profile-hero${hasImage ? '' : ' bar-profile-hero--no-image'}${isPremium ? ' bar-profile-hero--premium' : ''}`}>
         {hasImage && (
           <div className="bar-profile-hero-img">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -73,8 +76,17 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         <div className="bar-profile-hero-content">
           <div className="bar-profile-hero-badges">
             <span className="bar-profile-type">{bar.type}</span>
-            {isPaid && <span className="bar-dir-badge">{bar.tier === 'premium' ? 'Premium' : 'Featured'}</span>}
-            {bar.is_verified && <span className="bar-profile-verified" title="Verified">&#10003; Verified</span>}
+            {isPaid && (
+              <span className={`bar-profile-tier-badge${isPremium ? ' bar-profile-tier-badge--premium' : ''}`}>
+                {isPremium ? (
+                  <>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                    Premium Listing
+                  </>
+                ) : 'Featured'}
+              </span>
+            )}
+            {bar.is_verified && <span className="bar-profile-verified">&#10003; Verified</span>}
           </div>
           <h1>{bar.name}</h1>
           <div className="bar-profile-location">
@@ -87,11 +99,43 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         </div>
       </div>
 
+      {/* Quick Info Bar */}
+      <div className="bar-profile-quick-info">
+        {bar.address && (
+          <div className="bar-profile-qi-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>{bar.address}</span>
+          </div>
+        )}
+        {bar.website && (
+          <a href={bar.website} target="_blank" rel="noopener noreferrer" className="bar-profile-qi-item bar-profile-qi-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+            </svg>
+            <span>{bar.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
+          </a>
+        )}
+        {bar.instagram && (
+          <a href={`https://instagram.com/${bar.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="bar-profile-qi-item bar-profile-qi-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+            </svg>
+            <span>@{bar.instagram.replace('@', '')}</span>
+          </a>
+        )}
+      </div>
+
       {/* Content */}
       <div className="bar-profile-layout">
         <div className="bar-profile-main">
           {/* About */}
-          {(bar.description || bar.short_excerpt) && (
+          {hasDescription && (
             <section className="bar-profile-section">
               <h2>About</h2>
               <p>{bar.description || bar.short_excerpt}</p>
@@ -122,6 +166,16 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 </svg>
                 Read the full BarMagazine feature
               </Link>
+            </section>
+          )}
+
+          {/* No content placeholder for free/basic listings */}
+          {!hasDescription && !hasMultiplePhotos && !bar.wp_article_slug && (
+            <section className="bar-profile-section">
+              <div className="bar-profile-empty-content">
+                <p>This is a basic listing. Upgrade to a Featured or Premium listing to add a full description, photo gallery, and editorial features.</p>
+                <Link href="/claim-your-bar" className="bar-profile-upgrade-inline">Upgrade This Listing</Link>
+              </div>
             </section>
           )}
         </div>
@@ -177,20 +231,40 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             </div>
           )}
 
-          {/* Address & Map placeholder */}
+          {/* Address & Map */}
           {bar.address && (
             <div className="bar-profile-info-card">
               <h3>Location</h3>
               <p className="bar-profile-address">{bar.address}</p>
               {bar.lat && bar.lng && (
-                <a
-                  href={`https://www.google.com/maps?q=${bar.lat},${bar.lng}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bar-profile-map-link"
-                >
-                  Open in Google Maps
-                </a>
+                <>
+                  <div className="bar-profile-map-placeholder">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`https://maps.googleapis.com/maps/api/staticmap?center=${bar.lat},${bar.lng}&zoom=15&size=400x200&scale=2&markers=color:red%7C${bar.lat},${bar.lng}&style=feature:all|element:labels|visibility:on&style=feature:poi|visibility:off&key=`}
+                      alt={`Map of ${bar.name}`}
+                      className="bar-profile-map-img"
+                      onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                    />
+                    <div className="bar-profile-map-fallback">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </div>
+                  </div>
+                  <a
+                    href={`https://www.google.com/maps?q=${bar.lat},${bar.lng}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bar-profile-map-link"
+                  >
+                    Open in Google Maps
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                    </svg>
+                  </a>
+                </>
               )}
             </div>
           )}
@@ -198,8 +272,14 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           {/* Upgrade CTA for free bars */}
           {bar.tier === 'free' && (
             <div className="bar-profile-upgrade">
+              <div className="bar-profile-upgrade-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              </div>
               <p>Is this your bar?</p>
-              <Link href="/add-your-bar">Claim &amp; Upgrade</Link>
+              <span className="bar-profile-upgrade-sub">Claim this listing and upgrade for premium visibility</span>
+              <Link href="/claim-your-bar">Claim &amp; Upgrade</Link>
             </div>
           )}
         </aside>
