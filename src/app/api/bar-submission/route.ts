@@ -9,6 +9,7 @@ const supabaseAdmin = serviceKey
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || 'office@barmagazine.com';
+const GMAIL_NOTIFICATION = process.env.GMAIL_NOTIFICATION_EMAIL || '';
 
 async function uploadPhotoToStorage(base64Data: string, barName: string): Promise<string | null> {
   if (!supabaseAdmin) return null;
@@ -139,9 +140,6 @@ export async function POST(request: Request) {
       photoUrl = await uploadPhotoToStorage(data.photo, data.name);
     }
 
-    // Send email notification (non-blocking — don't let email failure block the submission)
-    sendNotificationEmail(data, photoUrl);
-
     // Insert into Supabase using service role key
     if (!supabaseAdmin) {
       console.error('SUPABASE_SERVICE_ROLE_KEY not configured');
@@ -150,34 +148,38 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true, note: 'Submission logged, database save pending env setup' });
     }
 
+    const insertData: Record<string, unknown> = {
+      name: data.name,
+      city: data.city,
+      country: data.country,
+      address: data.address || null,
+      type: data.type || 'Cocktail Bar',
+      website: data.website || null,
+      instagram: data.instagram || null,
+      email: data.email,
+      phone: data.phone || null,
+      description: data.description || null,
+      contact_name: data.contact_name || null,
+    };
+
     const { data: submission, error } = await supabaseAdmin
       .from('bar_submissions')
-      .insert({
-        name: data.name,
-        city: data.city,
-        country: data.country,
-        address: data.address || null,
-        type: data.type || 'Cocktail Bar',
-        website: data.website || null,
-        instagram: data.instagram || null,
-        email: data.email,
-        phone: data.phone || null,
-        description: data.description || null,
-        contact_name: data.contact_name || null,
-        photo_url: photoUrl,
-      })
+      .insert(insertData)
       .select()
       .single();
 
     if (error) {
       console.error('Supabase insert error:', JSON.stringify(error));
       return NextResponse.json(
-        { success: false, error: 'Failed to save submission', debug: error.message },
+        { success: false, error: 'Failed to save submission' },
         { status: 500 }
       );
     }
 
     console.log('New bar submission saved:', submission.id, photoUrl ? `with photo: ${photoUrl}` : 'no photo');
+
+    // Send notification email (non-blocking)
+    sendNotificationEmail(data, photoUrl);
 
     return NextResponse.json({ success: true, id: submission.id });
   } catch (e) {
