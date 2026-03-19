@@ -54,6 +54,23 @@ function CocktailIcon() {
   );
 }
 
+// Sort bars: article bars first (with photos), then photo bars, then no-photo bars
+function sortBars(bars: Bar[]): Bar[] {
+  return [...bars].sort((a, b) => {
+    const aHasArticle = a.wp_article_slug ? 1 : 0;
+    const bHasArticle = b.wp_article_slug ? 1 : 0;
+    const aHasPhoto = (a.photos && a.photos.length > 0) ? 1 : 0;
+    const bHasPhoto = (b.photos && b.photos.length > 0) ? 1 : 0;
+
+    // First: bars with articles
+    if (aHasArticle !== bHasArticle) return bHasArticle - aHasArticle;
+    // Then: bars with photos
+    if (aHasPhoto !== bHasPhoto) return bHasPhoto - aHasPhoto;
+    // Finally: alphabetical
+    return a.name.localeCompare(b.name);
+  });
+}
+
 export function BarDirectoryClient({
   initialBars,
   totalBars,
@@ -77,9 +94,11 @@ export function BarDirectoryClient({
     return Array.from(new Set(initialBars.filter(b => b.country === countryFilter).map(b => b.city))).sort();
   }, [countryFilter, initialBars, cities]);
 
+  const isFiltering = !!(search || countryFilter || cityFilter || typeFilter);
+
   // Filter bars
   const filtered = useMemo(() => {
-    return initialBars.filter(bar => {
+    const result = initialBars.filter(bar => {
       const q = search.toLowerCase();
       const matchSearch = !search ||
         bar.name.toLowerCase().includes(q) ||
@@ -90,10 +109,20 @@ export function BarDirectoryClient({
       const matchType = !typeFilter || bar.type === typeFilter;
       return matchSearch && matchCountry && matchCity && matchType;
     });
+    return sortBars(result);
   }, [search, countryFilter, cityFilter, typeFilter, initialBars]);
 
-  const visible = filtered.slice(0, visibleCount);
-  const hasMore = visibleCount < filtered.length;
+  // Split into featured (have article) and regular
+  const featuredBars = useMemo(() => {
+    return filtered.filter(b => b.wp_article_slug && b.photos && b.photos.length > 0);
+  }, [filtered]);
+
+  const regularBars = useMemo(() => {
+    return filtered.filter(b => !b.wp_article_slug || !b.photos || b.photos.length === 0);
+  }, [filtered]);
+
+  const visible = regularBars.slice(0, visibleCount);
+  const hasMore = visibleCount < regularBars.length;
   const activeFilters: { label: string; clear: () => void }[] = [];
 
   if (countryFilter) activeFilters.push({ label: countryFilter, clear: () => { setCountryFilter(''); setCityFilter(''); } });
@@ -107,12 +136,6 @@ export function BarDirectoryClient({
     setTypeFilter('');
     setVisibleCount(ITEMS_PER_PAGE);
   }, []);
-
-  // Get unique first letters for alpha jump
-  const alphaLetters = useMemo(() => {
-    const letters = Array.from(new Set(filtered.map(b => b.name[0]?.toUpperCase()).filter(Boolean))).sort();
-    return letters;
-  }, [filtered]);
 
   // Count bars per country for stats
   const topCountries = useMemo(() => {
@@ -199,38 +222,48 @@ export function BarDirectoryClient({
         )}
       </div>
 
-      {/* Results bar */}
+      {/* Results count */}
       <div className="directory-results-bar">
         <span className="directory-count">
           {filtered.length} {filtered.length === 1 ? 'bar' : 'bars'}
-          {(search || activeFilters.length > 0) && ' found'}
+          {isFiltering && ' found'}
         </span>
+      </div>
 
-        {/* Alpha jump */}
-        {!search && activeFilters.length === 0 && alphaLetters.length > 10 && (
-          <div className="directory-alpha-jump">
-            {alphaLetters.map(letter => (
-              <button
-                key={letter}
-                className="directory-alpha-btn"
-                onClick={() => {
-                  const target = document.querySelector(`[data-letter="${letter}"]`);
-                  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
-              >
-                {letter}
-              </button>
+      {/* Featured Bars Section */}
+      {featuredBars.length > 0 && (
+        <div className="directory-featured-section">
+          {!isFiltering && (
+            <div className="directory-section-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              Featured in BarMagazine
+            </div>
+          )}
+          <div className="directory-featured-grid">
+            {featuredBars.map(bar => (
+              <FeaturedBarCard key={bar.id} bar={bar} />
             ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* Bar Grid */}
-      <div className="directory-grid" ref={gridRef}>
-        {visible.map((bar, idx) => (
-          <BarCard key={bar.id} bar={bar} isFirst={idx === 0 || visible[idx - 1]?.name[0]?.toUpperCase() !== bar.name[0]?.toUpperCase()} />
-        ))}
-      </div>
+      {/* Regular Bars Grid */}
+      {visible.length > 0 && (
+        <>
+          {featuredBars.length > 0 && !isFiltering && (
+            <div className="directory-section-label directory-section-label--all">
+              All Bars
+            </div>
+          )}
+          <div className="directory-grid" ref={gridRef}>
+            {visible.map(bar => (
+              <BarCard key={bar.id} bar={bar} />
+            ))}
+          </div>
+        </>
+      )}
 
       {filtered.length === 0 && (
         <div className="directory-empty">
@@ -252,7 +285,7 @@ export function BarDirectoryClient({
         <div className="directory-load-more">
           <button onClick={() => setVisibleCount(prev => prev + ITEMS_PER_PAGE)}>
             Show More Bars
-            <span className="directory-load-more-count">{filtered.length - visibleCount} remaining</span>
+            <span className="directory-load-more-count">{regularBars.length - visibleCount} remaining</span>
           </button>
         </div>
       )}
@@ -276,22 +309,49 @@ export function BarDirectoryClient({
   );
 }
 
-function BarCard({ bar, isFirst }: { bar: Bar; isFirst: boolean }) {
-  const hasImage = bar.photos && bar.photos.length > 0;
-  const imageUrl = hasImage ? bar.photos[0] : null;
-  const isPremium = bar.tier === 'premium';
-  const isFeatured = bar.tier === 'featured';
-  const isPaid = isPremium || isFeatured;
-  const initials = getInitials(bar.name);
-
-  const tierClass = isPremium ? ' bar-dir-card--premium' : isFeatured ? ' bar-dir-card--featured' : '';
+/* Featured bar card — larger with image overlay */
+function FeaturedBarCard({ bar }: { bar: Bar }) {
+  const imageUrl = bar.photos?.[0] || null;
 
   return (
-    <Link
-      href={`/bars/${bar.slug}`}
-      className={`bar-dir-card${tierClass}`}
-      data-letter={isFirst ? bar.name[0]?.toUpperCase() : undefined}
-    >
+    <Link href={`/bars/${bar.slug}`} className="bar-dir-featured-card">
+      <div className="bar-dir-featured-visual">
+        {imageUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={imageUrl} alt={bar.name} loading="lazy" />
+        )}
+        <div className="bar-dir-featured-overlay" />
+        <div className="bar-dir-featured-content">
+          <span className="bar-dir-featured-badge">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M4 4h16v16H4z" />
+              <path d="M9 9h6v6H9z" />
+            </svg>
+            BarMagazine Feature
+          </span>
+          <h3>{bar.name}</h3>
+          <div className="bar-dir-featured-meta">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
+            <span className="bar-dir-featured-type">{bar.type}</span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+/* Regular bar card */
+function BarCard({ bar }: { bar: Bar }) {
+  const hasImage = bar.photos && bar.photos.length > 0;
+  const imageUrl = hasImage ? bar.photos[0] : null;
+  const initials = getInitials(bar.name);
+
+  return (
+    <Link href={`/bars/${bar.slug}`} className="bar-dir-card">
       <div className="bar-dir-card-visual">
         {hasImage ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -300,17 +360,6 @@ function BarCard({ bar, isFirst }: { bar: Bar; isFirst: boolean }) {
           <div className="bar-dir-card-placeholder" style={{ background: getBarGradient(bar.name) }}>
             <CocktailIcon />
             <span className="bar-dir-card-initials">{initials}</span>
-          </div>
-        )}
-        {/* Tier badge overlay */}
-        {isPaid && (
-          <div className={`bar-dir-tier-badge${isPremium ? ' bar-dir-tier-badge--premium' : ''}`}>
-            {isPremium ? (
-              <>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                Premium
-              </>
-            ) : 'Featured'}
           </div>
         )}
       </div>
