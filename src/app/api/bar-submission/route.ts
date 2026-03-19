@@ -170,9 +170,9 @@ export async function POST(request: Request) {
       .single();
 
     if (error) {
-      console.error('Supabase insert error:', error);
+      console.error('Supabase insert error:', JSON.stringify(error));
       return NextResponse.json(
-        { success: false, error: 'Failed to save submission' },
+        { success: false, error: 'Failed to save submission', debug: error.message },
         { status: 500 }
       );
     }
