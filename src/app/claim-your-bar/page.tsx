@@ -112,7 +112,7 @@ export default function ClaimYourBarPage() {
         </p>
       </div>
 
-      <div className={`claim-tiers${loaded ? '' : ' claim-tiers--loading'}`}>
+      <div className="claim-tiers">
         {tiers.map((tier) => (
           <div key={tier.name} className={`claim-tier${tier.highlight ? ' claim-tier--highlight' : ''}`}>
             {tier.highlight && <div className="claim-tier-popular">Most Popular</div>}
