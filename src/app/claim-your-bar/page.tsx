@@ -40,7 +40,7 @@ const tiers = [
       'Unlimited profile updates',
     ],
     cta: 'Get Featured',
-    ctaLink: 'mailto:office@barmagazine.com?subject=Featured%20Listing%20Inquiry',
+    ctaLink: 'https://buy.stripe.com/4gM28r1TSaCz9CYfOLaAw00',
     highlight: true,
   },
   {
@@ -56,7 +56,7 @@ const tiers = [
       'Cross-promotion collab',
     ],
     cta: 'Get Started',
-    ctaLink: 'mailto:office@barmagazine.com?subject=Featured%20%2B%20Social%20Listing%20Inquiry',
+    ctaLink: 'https://buy.stripe.com/7sYeVd2XWaCzdTe5a7aAw01',
     highlight: false,
   },
 ];
@@ -105,14 +105,14 @@ export default function ClaimYourBarPage() {
                 </li>
               ))}
             </ul>
-            {tier.ctaLink.startsWith('mailto:') ? (
-              <a href={tier.ctaLink} className={`claim-tier-cta${tier.highlight ? ' claim-tier-cta--primary' : ''}`}>
-                {tier.cta}
-              </a>
-            ) : (
+            {tier.ctaLink.startsWith('/') ? (
               <Link href={tier.ctaLink} className={`claim-tier-cta${tier.highlight ? ' claim-tier-cta--primary' : ''}`}>
                 {tier.cta}
               </Link>
+            ) : (
+              <a href={tier.ctaLink} target="_blank" rel="noopener noreferrer" className={`claim-tier-cta${tier.highlight ? ' claim-tier-cta--primary' : ''}`}>
+                {tier.cta}
+              </a>
             )}
           </div>
         ))}
@@ -123,7 +123,7 @@ export default function ClaimYourBarPage() {
         <div className="claim-faq-grid">
           <div className="claim-faq-item">
             <h3>How do I get started?</h3>
-            <p>Click &apos;Get Featured&apos; or &apos;Get Started&apos; and we&apos;ll reach out within 24 hours to set everything up. Already listed? We&apos;ll upgrade your existing profile.</p>
+            <p>Click &apos;Get Featured&apos; or &apos;Get Started&apos; to complete your subscription. Once payment is confirmed, we&apos;ll reach out within 24 hours to set everything up. Already listed? We&apos;ll upgrade your existing profile.</p>
           </div>
           <div className="claim-faq-item">
             <h3>What if my bar isn&apos;t listed yet?</h3>
