@@ -5,7 +5,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getBarsByCity, getCitiesWithCounts } from '@/lib/supabase';
 import type { Bar } from '@/lib/supabase';
-import { toUrlSlug, fromUrlSlug } from '@/lib/utils';
+import { toUrlSlug } from '@/lib/utils';
 
 export const revalidate = 300;
 
