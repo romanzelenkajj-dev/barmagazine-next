@@ -15,55 +15,39 @@ interface Props {
 }
 
 const ITEMS_PER_PAGE = 24;
+const LIST_PER_PAGE = 40;
 
-// Generate a warm gradient based on bar name for cards without photos
-function getBarGradient(name: string): string {
-  const gradients = [
-    'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
-    'linear-gradient(135deg, #2d1b3d 0%, #3d1f47 50%, #1a1a2e 100%)',
-    'linear-gradient(135deg, #1e3a2f 0%, #1a3a4a 50%, #162447 100%)',
-    'linear-gradient(135deg, #3d2c1e 0%, #4a3728 50%, #2d1b12 100%)',
-    'linear-gradient(135deg, #2e1a1a 0%, #3d2525 50%, #1a1a2e 100%)',
-    'linear-gradient(135deg, #1a2e2e 0%, #254040 50%, #1a1a2e 100%)',
-    'linear-gradient(135deg, #2e2a1a 0%, #403a25 50%, #2e1a1a 100%)',
-    'linear-gradient(135deg, #1a1a3d 0%, #252547 50%, #0f0f2e 100%)',
-  ];
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  return gradients[Math.abs(hash) % gradients.length];
-}
+// World's 50 Best Bars 2025 — used as a ranking signal
+const FIFTY_BEST_2025 = new Set([
+  'Bar Leone', 'Handshake Speakeasy', 'Sips', 'Paradiso',
+  'Tayēr + Elementary', 'The Connaught Bar', 'Moebius Milano', 'Line',
+  'Jigger & Pony', 'Tres Monos', 'Alquímico', 'Superbueno',
+  'Lady Bee', 'Himkok', 'Bar Us', 'Zest', 'Bar Nouveau',
+  'Benfiddich', "Caretaker's Cottage", 'The Cambridge Public House',
+  "Satan's Whiskers", 'Locale Firenze', 'Tlecān', 'Tan Tan',
+  'Mirror Bar', 'CoChinChina', 'Baba au Rum', 'Nouvelle Vague',
+  'Hope & Sesame', 'Danico', 'Scarfes Bar', 'Svanen',
+  'Sastrería Martinez', 'Panda & Sons', 'Röda Huset', 'Mimi Kakushi',
+  'Salmon Guru', 'Coa', 'Sip & Guzzle', 'Drink Kong',
+  'Double Chicken Please', 'Maybe Sammy', '1930', 'Jewel of the South',
+  'Virtù', 'Overstory', 'The Bar in Front of the Bar', 'The Bellwood',
+  'BKK Social Club', 'Nutmeg & Clove',
+]);
 
-function getInitials(name: string): string {
-  return name
-    .split(/[\s\-&]+/)
-    .filter(w => w.length > 0)
-    .slice(0, 2)
-    .map(w => w[0].toUpperCase())
-    .join('');
-}
-
-// Cocktail glass SVG for no-photo cards
-function CocktailIcon() {
-  return (
-    <svg className="bar-dir-card-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M8 22h8M12 15v7M3 2l3 11h12l3-11" />
-      <path d="M7.5 7.5C8.5 9 10 10 12 10s3.5-1 4.5-2.5" />
-    </svg>
-  );
-}
-
-// Sort bars: article bars first (with photos), then photo bars, then no-photo bars
+// Sort bars: articles first, then 50 Best, then photo bars, then text listings
 function sortBars(bars: Bar[]): Bar[] {
   return [...bars].sort((a, b) => {
     const aHasArticle = a.wp_article_slug ? 1 : 0;
     const bHasArticle = b.wp_article_slug ? 1 : 0;
+    const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
+    const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
     const aHasPhoto = (a.photos && a.photos.length > 0) ? 1 : 0;
     const bHasPhoto = (b.photos && b.photos.length > 0) ? 1 : 0;
 
     // First: bars with articles
     if (aHasArticle !== bHasArticle) return bHasArticle - aHasArticle;
+    // Then: 50 Best bars
+    if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
     // Then: bars with photos
     if (aHasPhoto !== bHasPhoto) return bHasPhoto - aHasPhoto;
     // Finally: alphabetical
@@ -85,6 +69,7 @@ export function BarDirectoryClient({
   const [cityFilter, setCityFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+  const [listVisibleCount, setListVisibleCount] = useState(LIST_PER_PAGE);
   const gridRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -112,17 +97,25 @@ export function BarDirectoryClient({
     return sortBars(result);
   }, [search, countryFilter, cityFilter, typeFilter, initialBars]);
 
-  // Split into featured (have article) and regular
+  // Split into featured (have article + photo), photo cards, and text listings
   const featuredBars = useMemo(() => {
     return filtered.filter(b => b.wp_article_slug && b.photos && b.photos.length > 0);
   }, [filtered]);
 
-  const regularBars = useMemo(() => {
-    return filtered.filter(b => !b.wp_article_slug || !b.photos || b.photos.length === 0);
+  const photoBars = useMemo(() => {
+    return filtered.filter(b => (!b.wp_article_slug) && b.photos && b.photos.length > 0);
   }, [filtered]);
 
-  const visible = regularBars.slice(0, visibleCount);
-  const hasMore = visibleCount < regularBars.length;
+  const textBars = useMemo(() => {
+    return filtered.filter(b => !b.photos || b.photos.length === 0);
+  }, [filtered]);
+
+  const visiblePhotoBars = photoBars.slice(0, visibleCount);
+  const hasMorePhotoBars = visibleCount < photoBars.length;
+
+  const visibleTextBars = textBars.slice(0, listVisibleCount);
+  const hasMoreTextBars = listVisibleCount < textBars.length;
+
   const activeFilters: { label: string; clear: () => void }[] = [];
 
   if (countryFilter) activeFilters.push({ label: countryFilter, clear: () => { setCountryFilter(''); setCityFilter(''); } });
@@ -135,6 +128,7 @@ export function BarDirectoryClient({
     setCityFilter('');
     setTypeFilter('');
     setVisibleCount(ITEMS_PER_PAGE);
+    setListVisibleCount(LIST_PER_PAGE);
   }, []);
 
   // Count bars per country for stats
@@ -157,7 +151,7 @@ export function BarDirectoryClient({
               <button
                 key={country}
                 className="directory-hero-stat"
-                onClick={() => { setCountryFilter(country); setVisibleCount(ITEMS_PER_PAGE); }}
+                onClick={() => { setCountryFilter(country); setVisibleCount(ITEMS_PER_PAGE); setListVisibleCount(LIST_PER_PAGE); }}
               >
                 <span className="directory-hero-stat-count">{count}</span>
                 <span className="directory-hero-stat-label">{country}</span>
@@ -179,7 +173,7 @@ export function BarDirectoryClient({
             type="text"
             placeholder="Search bars, cities, countries..."
             value={search}
-            onChange={e => { setSearch(e.target.value); setVisibleCount(ITEMS_PER_PAGE); }}
+            onChange={e => { setSearch(e.target.value); setVisibleCount(ITEMS_PER_PAGE); setListVisibleCount(LIST_PER_PAGE); }}
           />
           {search && (
             <button className="directory-search-clear" onClick={() => setSearch('')} aria-label="Clear search">
@@ -190,15 +184,15 @@ export function BarDirectoryClient({
           )}
         </div>
         <div className="directory-filter-row">
-          <select value={countryFilter} onChange={e => { setCountryFilter(e.target.value); setCityFilter(''); setVisibleCount(ITEMS_PER_PAGE); }}>
+          <select value={countryFilter} onChange={e => { setCountryFilter(e.target.value); setCityFilter(''); setVisibleCount(ITEMS_PER_PAGE); setListVisibleCount(LIST_PER_PAGE); }}>
             <option value="">All Countries</option>
             {countries.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
-          <select value={cityFilter} onChange={e => { setCityFilter(e.target.value); setVisibleCount(ITEMS_PER_PAGE); }}>
+          <select value={cityFilter} onChange={e => { setCityFilter(e.target.value); setVisibleCount(ITEMS_PER_PAGE); setListVisibleCount(LIST_PER_PAGE); }}>
             <option value="">All Cities</option>
             {availableCities.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
-          <select value={typeFilter} onChange={e => { setTypeFilter(e.target.value); setVisibleCount(ITEMS_PER_PAGE); }}>
+          <select value={typeFilter} onChange={e => { setTypeFilter(e.target.value); setVisibleCount(ITEMS_PER_PAGE); setListVisibleCount(LIST_PER_PAGE); }}>
             <option value="">All Types</option>
             {types.map(t => <option key={t} value={t}>{t}</option>)}
           </select>
@@ -249,8 +243,8 @@ export function BarDirectoryClient({
         </div>
       )}
 
-      {/* Regular Bars Grid */}
-      {visible.length > 0 && (
+      {/* Photo Bars Grid */}
+      {visiblePhotoBars.length > 0 && (
         <>
           {featuredBars.length > 0 && !isFiltering && (
             <div className="directory-section-label directory-section-label--all">
@@ -258,11 +252,60 @@ export function BarDirectoryClient({
             </div>
           )}
           <div className="directory-grid" ref={gridRef}>
-            {visible.map(bar => (
-              <BarCard key={bar.id} bar={bar} />
+            {visiblePhotoBars.map(bar => (
+              <PhotoBarCard key={bar.id} bar={bar} />
             ))}
           </div>
+
+          {hasMorePhotoBars && (
+            <div className="directory-load-more">
+              <button onClick={() => setVisibleCount(prev => prev + ITEMS_PER_PAGE)}>
+                Show More Bars
+                <span className="directory-load-more-count">{photoBars.length - visibleCount} remaining</span>
+              </button>
+            </div>
+          )}
         </>
+      )}
+
+      {/* Text-only Bars List */}
+      {visibleTextBars.length > 0 && (
+        <div className="directory-list-section">
+          {!isFiltering && (photoBars.length > 0 || featuredBars.length > 0) && (
+            <div className="directory-section-label directory-section-label--all">
+              More Bars
+            </div>
+          )}
+          <div className="directory-list">
+            {visibleTextBars.map(bar => {
+              const is50Best = FIFTY_BEST_2025.has(bar.name);
+              return (
+              <Link key={bar.id} href={`/bars/${bar.slug}`} className="directory-list-item">
+                <div className="directory-list-name">
+                  {bar.name}
+                  {is50Best && <span className="directory-list-50best">50 Best</span>}
+                </div>
+                <div className="directory-list-location">
+                  {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+                </div>
+                <div className="directory-list-type">{bar.type}</div>
+                <svg className="directory-list-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+              );
+            })}
+          </div>
+
+          {hasMoreTextBars && (
+            <div className="directory-load-more">
+              <button onClick={() => setListVisibleCount(prev => prev + LIST_PER_PAGE)}>
+                Show More Bars
+                <span className="directory-load-more-count">{textBars.length - listVisibleCount} remaining</span>
+              </button>
+            </div>
+          )}
+        </div>
       )}
 
       {filtered.length === 0 && (
@@ -277,16 +320,6 @@ export function BarDirectoryClient({
           <h3>No bars found</h3>
           <p>Try adjusting your search or filters.</p>
           <button onClick={clearAll}>Clear all filters</button>
-        </div>
-      )}
-
-      {/* Load More */}
-      {hasMore && (
-        <div className="directory-load-more">
-          <button onClick={() => setVisibleCount(prev => prev + ITEMS_PER_PAGE)}>
-            Show More Bars
-            <span className="directory-load-more-count">{regularBars.length - visibleCount} remaining</span>
-          </button>
         </div>
       )}
 
@@ -344,23 +377,20 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
   );
 }
 
-/* Regular bar card */
-function BarCard({ bar }: { bar: Bar }) {
-  const hasImage = bar.photos && bar.photos.length > 0;
-  const imageUrl = hasImage ? bar.photos[0] : null;
-  const initials = getInitials(bar.name);
+/* Photo bar card */
+function PhotoBarCard({ bar }: { bar: Bar }) {
+  const imageUrl = bar.photos?.[0] || null;
+  const is50Best = FIFTY_BEST_2025.has(bar.name);
 
   return (
     <Link href={`/bars/${bar.slug}`} className="bar-dir-card">
       <div className="bar-dir-card-visual">
-        {hasImage ? (
+        {imageUrl && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={imageUrl!} alt={bar.name} loading="lazy" />
-        ) : (
-          <div className="bar-dir-card-placeholder" style={{ background: getBarGradient(bar.name) }}>
-            <CocktailIcon />
-            <span className="bar-dir-card-initials">{initials}</span>
-          </div>
+          <img src={imageUrl} alt={bar.name} loading="lazy" />
+        )}
+        {is50Best && (
+          <div className="bar-dir-50best-badge">50 Best</div>
         )}
       </div>
       <div className="bar-dir-card-body">
