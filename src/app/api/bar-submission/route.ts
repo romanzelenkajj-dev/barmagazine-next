@@ -7,8 +7,8 @@ const supabaseAdmin = serviceKey
   ? createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, serviceKey)
   : null;
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_eDUo1cfv_sNRoEUTfaEfSzzPCPdiEzrZH';
-const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || 'romanzelenkajj@gmail.com';
+const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
+const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || '';
 
 
 async function uploadPhotoToStorage(base64Data: string, barName: string): Promise<string | null> {
