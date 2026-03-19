@@ -3930,6 +3930,87 @@ textarea.form-input {
   transform: translateY(-1px);
 }
 
+/* Single-column layout for article-only featured bars */
+.bar-profile-single {
+  margin-top: 32px;
+  max-width: 720px;
+}
+
+.bar-profile-feature-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--bg-card-warm);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  transition: border-color 0.2s, background 0.2s;
+  margin-bottom: 24px;
+}
+
+.bar-profile-feature-card:hover {
+  background: #ede4da;
+  border-left-color: var(--text-primary);
+}
+
+.bar-profile-feature-card-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar-profile-feature-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.bar-profile-feature-card-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.bar-profile-feature-card-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.bar-profile-feature-card-arrow {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+
+.bar-profile-feature-card:hover .bar-profile-feature-card-arrow {
+  transform: translateX(3px);
+  color: var(--text-primary);
+}
+
+.bar-profile-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .bar-profile-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ====== ADD YOUR BAR ====== */
 .add-bar-page {
   margin-top: var(--gap);
