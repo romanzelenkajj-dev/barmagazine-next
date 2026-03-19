@@ -1,71 +1,102 @@
-import Link from 'next/link';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Claim & Upgrade Your Bar — BarMagazine',
-  description: 'Claim your bar listing on BarMagazine. Choose from Listed (Free), Featured, or Featured + Social tiers to boost your visibility.',
-  robots: { index: false, follow: false },
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+// EUR payment links (EU visitors)
+const EUR_LINKS = {
+  featured: 'https://buy.stripe.com/4gM28r1TSaCz9CYfOLaAw00',
+  featuredSocial: 'https://buy.stripe.com/7sYeVd2XWaCzdTe5a7aAw01',
 };
 
-const tiers = [
-  {
-    name: 'Listed',
-    monthlyPrice: null,
-    annualPrice: null,
-    priceLabel: 'Free',
-    description: 'Get your bar on the map.',
-    features: [
-      'Directory profile',
-      'Name, location & bar type',
-      '1 interior photo',
-      'Website & Instagram link',
-    ],
-    cta: 'Get Listed',
-    ctaLink: '/add-your-bar',
-    highlight: false,
-  },
-  {
-    name: 'Featured',
-    monthlyPrice: '€39',
-    annualPrice: '€468',
-    priceLabel: null,
-    description: 'Stand out with editorial coverage and priority placement.',
-    features: [
-      'Everything in Listed',
-      'BarMagazine feature article',
-      'SEO-optimized profile page',
-      'Priority placement in directory',
-      'Multiple photos & menu',
-      'Featured badge',
-      'Unlimited profile updates',
-    ],
-    cta: 'Get Featured',
-    ctaLink: 'https://buy.stripe.com/4gM28r1TSaCz9CYfOLaAw00',
-    highlight: true,
-  },
-  {
-    name: 'Featured + Social',
-    monthlyPrice: '€79',
-    annualPrice: '€948',
-    priceLabel: null,
-    description: 'Maximum exposure across editorial and social channels.',
-    features: [
-      'Everything in Featured',
-      'Instagram post or Reel',
-      '3 Instagram Stories',
-      'Cross-promotion collab',
-    ],
-    cta: 'Get Started',
-    ctaLink: 'https://buy.stripe.com/7sYeVd2XWaCzdTe5a7aAw01',
-    highlight: false,
-  },
-];
+// USD payment links (rest of world)
+const USD_LINKS = {
+  featured: 'https://buy.stripe.com/cNieVdbuseSPeXi463aAw03',
+  featuredSocial: 'https://buy.stripe.com/14A28r564cKH7uQ31ZaAw02',
+};
+
+function getTiers(isEU: boolean) {
+  const symbol = isEU ? '€' : '$';
+  const links = isEU ? EUR_LINKS : USD_LINKS;
+
+  return [
+    {
+      name: 'Listed',
+      monthlyPrice: null,
+      annualPrice: null,
+      priceLabel: 'Free',
+      description: 'Get your bar on the map.',
+      features: [
+        'Directory profile',
+        'Name, location & bar type',
+        '1 interior photo',
+        'Website & Instagram link',
+      ],
+      cta: 'Get Listed',
+      ctaLink: '/add-your-bar',
+      highlight: false,
+    },
+    {
+      name: 'Featured',
+      monthlyPrice: `${symbol}39`,
+      annualPrice: `${symbol}468`,
+      priceLabel: null,
+      description: 'Stand out with editorial coverage and priority placement.',
+      features: [
+        'Everything in Listed',
+        'BarMagazine feature article',
+        'SEO-optimized profile page',
+        'Priority placement in directory',
+        'Multiple photos & menu',
+        'Featured badge',
+        'Unlimited profile updates',
+      ],
+      cta: 'Get Featured',
+      ctaLink: links.featured,
+      highlight: true,
+    },
+    {
+      name: 'Featured + Social',
+      monthlyPrice: `${symbol}79`,
+      annualPrice: `${symbol}948`,
+      priceLabel: null,
+      description: 'Maximum exposure across editorial and social channels.',
+      features: [
+        'Everything in Featured',
+        'Instagram post or Reel',
+        '3 Instagram Stories',
+        'Cross-promotion collab',
+      ],
+      cta: 'Get Started',
+      ctaLink: links.featuredSocial,
+      highlight: false,
+    },
+  ];
+}
 
 export default function ClaimYourBarPage() {
+  const [isEU, setIsEU] = useState(true); // default EUR while loading
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/geo')
+      .then((r) => r.json())
+      .then((data) => {
+        setIsEU(data.isEU);
+        setLoaded(true);
+      })
+      .catch(() => {
+        // Fallback: default to EUR
+        setLoaded(true);
+      });
+  }, []);
+
+  const tiers = getTiers(isEU);
+
   return (
     <div className="claim-page">
       <div className="claim-hero">
-        <div className="claim-hero-badge">For Bar Owners & Managers</div>
+        <div className="claim-hero-badge">For Bar Owners &amp; Managers</div>
         <h1>Elevate Your Bar&apos;s Presence</h1>
         <p>
           BarMagazine reaches thousands of cocktail enthusiasts and industry professionals monthly.
@@ -73,7 +104,7 @@ export default function ClaimYourBarPage() {
         </p>
       </div>
 
-      <div className="claim-tiers">
+      <div className={`claim-tiers${loaded ? '' : ' claim-tiers--loading'}`}>
         {tiers.map((tier) => (
           <div key={tier.name} className={`claim-tier${tier.highlight ? ' claim-tier--highlight' : ''}`}>
             {tier.highlight && <div className="claim-tier-popular">Most Popular</div>}

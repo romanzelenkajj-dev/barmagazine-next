@@ -3459,6 +3459,11 @@ textarea.form-input {
   gap: var(--gap);
   margin-top: var(--gap);
   align-items: start;
+  transition: opacity 0.3s ease;
+}
+
+.claim-tiers--loading {
+  opacity: 0.6;
 }
 
 .claim-tier {
