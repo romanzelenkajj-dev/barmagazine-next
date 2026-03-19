@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon-32x32.png?v=2', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png?v=2', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png?v=3', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png?v=3', sizes: '16x16', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico?v=2',
-    apple: '/apple-touch-icon.png?v=2',
+    shortcut: '/favicon.ico?v=3',
+    apple: '/apple-touch-icon.png?v=3',
   },
   openGraph: {
     title: 'BarMagazine',
