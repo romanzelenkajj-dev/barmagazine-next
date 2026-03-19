@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Global Bar Directory | Discover the World\'s Best Bars',
   description: 'Discover the world\'s best cocktail bars, speakeasies, hotel bars, and more. Search by city, country, or style. 200+ curated bars across 70+ cities worldwide.',
   alternates: { canonical: `${SITE_URL}/bars` },
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
 };
 
 export default async function BarsPage() {

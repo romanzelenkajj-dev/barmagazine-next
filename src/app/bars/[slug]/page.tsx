@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title,
     description,
     alternates: { canonical: `${SITE_URL}/bars/${bar.slug}` },
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
     openGraph: {
       title,
       description,

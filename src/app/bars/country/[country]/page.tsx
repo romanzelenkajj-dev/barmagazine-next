@@ -1,5 +1,3 @@
-// TODO: Add to sitemap.ts once indexing is enabled
-
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -52,7 +50,7 @@ export async function generateMetadata({
     title,
     description,
     alternates: { canonical },
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
     openGraph: {
       title,
       description,
