@@ -10,13 +10,73 @@ const supabaseAdmin = serviceKey
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || 'office@barmagazine.com';
 
-async function sendNotificationEmail(data: Record<string, string | undefined>) {
+async function uploadPhotoToStorage(base64Data: string, barName: string): Promise<string | null> {
+  if (!supabaseAdmin) return null;
+
+  try {
+    // Extract mime type and data from base64 string
+    const matches = base64Data.match(/^data:(image\/\w+);base64,(.+)$/);
+    if (!matches) return null;
+
+    const mimeType = matches[1];
+    const ext = mimeType.split('/')[1] === 'jpeg' ? 'jpg' : mimeType.split('/')[1];
+    const buffer = Buffer.from(matches[2], 'base64');
+
+    // Generate a unique filename
+    const slug = barName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const timestamp = Date.now();
+    const filePath = `submissions/${slug}-${timestamp}.${ext}`;
+
+    const { error } = await supabaseAdmin.storage
+      .from('bar-photos')
+      .upload(filePath, buffer, {
+        contentType: mimeType,
+        upsert: false,
+      });
+
+    if (error) {
+      console.error('Photo upload error:', error);
+      // Try creating the bucket if it doesn't exist
+      if (error.message?.includes('not found') || error.message?.includes('Bucket')) {
+        await supabaseAdmin.storage.createBucket('bar-photos', {
+          public: true,
+          fileSizeLimit: 5 * 1024 * 1024,
+        });
+        const retryResult = await supabaseAdmin.storage
+          .from('bar-photos')
+          .upload(filePath, buffer, { contentType: mimeType, upsert: false });
+        if (retryResult.error) {
+          console.error('Photo upload retry error:', retryResult.error);
+          return null;
+        }
+      } else {
+        return null;
+      }
+    }
+
+    // Get public URL
+    const { data: urlData } = supabaseAdmin.storage
+      .from('bar-photos')
+      .getPublicUrl(filePath);
+
+    return urlData?.publicUrl || null;
+  } catch (e) {
+    console.error('Photo upload failed:', e);
+    return null;
+  }
+}
+
+async function sendNotificationEmail(data: Record<string, string | undefined>, photoUrl?: string | null) {
   if (!RESEND_API_KEY) {
     console.log('RESEND_API_KEY not configured — skipping email notification');
     return;
   }
 
   try {
+    const photoRow = photoUrl
+      ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Photo</td><td style="padding: 8px 12px;"><a href="${photoUrl}">View uploaded photo</a></td></tr>`
+      : '';
+
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -42,6 +102,7 @@ async function sendNotificationEmail(data: Record<string, string | undefined>) {
               <tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Contact Email</td><td style="padding: 8px 12px;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
               ${data.phone ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Phone</td><td style="padding: 8px 12px;">${data.phone}</td></tr>` : ''}
               ${data.description ? `<tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Description</td><td style="padding: 8px 12px;">${data.description}</td></tr>` : ''}
+              ${photoRow}
             </table>
             <p style="margin-top: 24px; font-size: 13px; color: #999;">This notification was sent from barmagazine.com</p>
           </div>
@@ -72,14 +133,20 @@ export async function POST(request: Request) {
       );
     }
 
+    // Upload photo if provided
+    let photoUrl: string | null = null;
+    if (data.photo) {
+      photoUrl = await uploadPhotoToStorage(data.photo, data.name);
+    }
+
     // Send email notification (non-blocking — don't let email failure block the submission)
-    sendNotificationEmail(data);
+    sendNotificationEmail(data, photoUrl);
 
     // Insert into Supabase using service role key
     if (!supabaseAdmin) {
       console.error('SUPABASE_SERVICE_ROLE_KEY not configured');
       // Fallback: log the submission — it will be visible in Vercel logs
-      console.log('BAR_SUBMISSION:', JSON.stringify(data));
+      console.log('BAR_SUBMISSION:', JSON.stringify({ ...data, photo: data.photo ? '[base64 photo]' : null, photo_url: photoUrl }));
       return NextResponse.json({ success: true, note: 'Submission logged, database save pending env setup' });
     }
 
@@ -97,6 +164,7 @@ export async function POST(request: Request) {
         phone: data.phone || null,
         description: data.description || null,
         contact_name: data.contact_name || null,
+        photo_url: photoUrl,
       })
       .select()
       .single();
@@ -109,7 +177,7 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log('New bar submission saved:', submission.id);
+    console.log('New bar submission saved:', submission.id, photoUrl ? `with photo: ${photoUrl}` : 'no photo');
 
     return NextResponse.json({ success: true, id: submission.id });
   } catch (e) {

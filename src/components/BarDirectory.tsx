@@ -300,14 +300,9 @@ export function BarDirectoryClient({
         </>
       )}
 
-      {/* Text-only Bars List */}
+      {/* Text-only Bars List — shown below all photo bars, no separate section header */}
       {visibleTextBars.length > 0 && (
         <div className="directory-list-section">
-          {!isFiltering && (photoBars.length > 0 || featuredBars.length > 0) && (
-            <div className="directory-section-label directory-section-label--all">
-              More Bars
-            </div>
-          )}
           <div className="directory-list">
             {visibleTextBars.map(bar => {
               const is50Best = FIFTY_BEST_2025.has(bar.name);
@@ -355,18 +350,13 @@ export function BarDirectoryClient({
         </div>
       )}
 
-      {/* CTA */}
-      <div className="directory-cta">
+      {/* CTA — outside of featured section, at the bottom */}
+      <div className="directory-cta directory-cta--orange">
         <div className="directory-cta-inner">
-          <div className="directory-cta-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M12 2v20M2 12h20" />
-            </svg>
-          </div>
-          <h2>List Your Bar</h2>
-          <p>Join the BarMagazine directory and reach cocktail enthusiasts worldwide. Free basic listing, or upgrade for premium visibility.</p>
+          <h2>Is This Your Bar?</h2>
+          <p>Add photos, contact details, and more. Get discovered by cocktail enthusiasts worldwide.</p>
           <div className="directory-cta-actions">
-            <Link href="/add-your-bar" className="directory-cta-btn">Get Listed Free</Link>
+            <Link href="/add-your-bar" className="directory-cta-btn directory-cta-btn--dark">Get Listed</Link>
           </div>
         </div>
       </div>
@@ -374,7 +364,7 @@ export function BarDirectoryClient({
   );
 }
 
-/* Featured bar card — larger with image overlay */
+/* Featured bar card — larger with image overlay, shows address/website/instagram + article link */
 function FeaturedBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;
 
@@ -386,23 +376,53 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
           <img src={imageUrl} alt={bar.name} loading="lazy" />
         )}
         <div className="bar-dir-featured-overlay" />
+        <div className="bar-dir-featured-badge-corner">Featured</div>
         <div className="bar-dir-featured-content">
-          <span className="bar-dir-featured-badge">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M4 4h16v16H4z" />
-              <path d="M9 9h6v6H9z" />
-            </svg>
-            BarMagazine Feature
-          </span>
           <h3>{bar.name}</h3>
-          <div className="bar-dir-featured-meta">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
-            <span className="bar-dir-featured-type">{bar.type}</span>
+          <div className="bar-dir-featured-info">
+            {bar.address && (
+              <span className="bar-dir-featured-info-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                {bar.address}
+              </span>
+            )}
+            {!bar.address && (
+              <span className="bar-dir-featured-info-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+              </span>
+            )}
+            {bar.website && (
+              <span className="bar-dir-featured-info-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                </svg>
+                {bar.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+              </span>
+            )}
+            {bar.instagram && (
+              <span className="bar-dir-featured-info-item">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="5" />
+                  <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+                </svg>
+                @{bar.instagram.replace('@', '')}
+              </span>
+            )}
           </div>
+          {bar.wp_article_slug && (
+            <span className="bar-dir-featured-article-link">
+              Read the BarMagazine feature →
+            </span>
+          )}
         </div>
       </div>
     </Link>

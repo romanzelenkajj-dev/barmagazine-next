@@ -1,11 +1,45 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useRef } from 'react';
+import Link from 'next/link';
 
 export default function AddYourBarPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  function handlePhotoSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type and size
+    if (!file.type.startsWith('image/')) {
+      setError('Please select an image file (JPG, PNG, or WebP).');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setError('Image must be under 5MB.');
+      return;
+    }
+
+    setPhotoFile(file);
+    setError('');
+
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      setPhotoPreview(ev.target?.result as string);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removePhoto() {
+    setPhotoFile(null);
+    setPhotoPreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -14,6 +48,16 @@ export default function AddYourBarPage() {
 
     const form = e.currentTarget;
     const data = new FormData(form);
+
+    // If there's a photo, convert to base64 for the API
+    let photoBase64: string | undefined;
+    if (photoFile) {
+      photoBase64 = await new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.readAsDataURL(photoFile);
+      });
+    }
 
     const submission = {
       name: data.get('barName') as string,
@@ -27,6 +71,7 @@ export default function AddYourBarPage() {
       phone: (data.get('phone') as string) || undefined,
       description: (data.get('description') as string) || undefined,
       contact_name: (data.get('contactName') as string) || undefined,
+      photo: photoBase64,
     };
 
     try {
@@ -60,16 +105,110 @@ export default function AddYourBarPage() {
       </div>
 
       {submitted ? (
-        <div className="add-bar-success">
-          <div className="add-bar-success-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
-              <path d="M22 4L12 14.01l-3-3" />
-            </svg>
+        <div className="add-bar-post-submit">
+          {/* Success message */}
+          <div className="add-bar-success">
+            <div className="add-bar-success-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <path d="M22 4L12 14.01l-3-3" />
+              </svg>
+            </div>
+            <h2>Submission Received</h2>
+            <p>Thank you for submitting your bar. Our team will review it and get in touch at the email you provided.</p>
           </div>
-          <h2>Submission Received</h2>
-          <p>Thank you for submitting your bar. Our team will review it and get in touch at the email you provided.</p>
-          <a href="/" className="add-bar-success-link">Back to BarMagazine</a>
+
+          {/* Pricing Tiers */}
+          <div className="add-bar-tiers">
+            <h2 className="add-bar-tiers-heading">Want More Visibility?</h2>
+            <p className="add-bar-tiers-sub">Upgrade your listing to stand out and reach more customers.</p>
+
+            <div className="add-bar-tiers-grid">
+              {/* Free */}
+              <div className="add-bar-tier-card">
+                <div className="add-bar-tier-name">Listed</div>
+                <div className="add-bar-tier-price">Free</div>
+                <ul className="add-bar-tier-features">
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    Directory profile page
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    Name, location, type
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    1 interior photo
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    Website &amp; Instagram link
+                  </li>
+                </ul>
+                <div className="add-bar-tier-current">Your current plan</div>
+              </div>
+
+              {/* Featured */}
+              <div className="add-bar-tier-card add-bar-tier-card--featured">
+                <div className="add-bar-tier-popular">Most Popular</div>
+                <div className="add-bar-tier-name">Featured</div>
+                <div className="add-bar-tier-price">$499<span>/year</span></div>
+                <ul className="add-bar-tier-features">
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    Everything in Free
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    BarMagazine feature article
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    Priority placement in directory
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    Multiple photos &amp; menu
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    Unlimited profile updates
+                  </li>
+                </ul>
+                <a href="mailto:office@barmagazine.com?subject=Featured Listing Inquiry" className="add-bar-tier-btn">Get Featured</a>
+              </div>
+
+              {/* Featured + Social */}
+              <div className="add-bar-tier-card add-bar-tier-card--premium">
+                <div className="add-bar-tier-name">Featured + Social</div>
+                <div className="add-bar-tier-price">$999<span>/year</span></div>
+                <ul className="add-bar-tier-features">
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    Everything in Featured
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    Instagram post or Reel
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    2-3 Instagram Stories
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+                    Cross-promotion collab
+                  </li>
+                </ul>
+                <a href="mailto:office@barmagazine.com?subject=Featured + Social Listing Inquiry" className="add-bar-tier-btn add-bar-tier-btn--premium">Contact Us</a>
+              </div>
+            </div>
+          </div>
+
+          <div className="add-bar-success-back">
+            <Link href="/bars" className="add-bar-success-link">← Back to Bar Directory</Link>
+          </div>
         </div>
       ) : (
         <div className="add-bar-layout">
@@ -113,6 +252,43 @@ export default function AddYourBarPage() {
                     <option value="Lounge">Lounge</option>
                     <option value="Other">Other</option>
                   </select>
+                </div>
+              </div>
+
+              {/* Photo Upload */}
+              <div className="add-bar-form-section">
+                <h2>Interior Photo</h2>
+                <p className="add-bar-photo-hint">Upload one photo of your bar&apos;s interior. JPG, PNG, or WebP, max 5MB.</p>
+                <div className="add-bar-photo-upload">
+                  {photoPreview ? (
+                    <div className="add-bar-photo-preview">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={photoPreview} alt="Bar interior preview" />
+                      <button type="button" className="add-bar-photo-remove" onClick={removePhoto}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
+                        Remove
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="add-bar-photo-dropzone">
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        onChange={handlePhotoSelect}
+                        style={{ display: 'none' }}
+                      />
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <path d="M21 15l-5-5L5 21" />
+                      </svg>
+                      <span>Click to upload a photo</span>
+                      <span className="add-bar-photo-dropzone-sub">JPG, PNG, or WebP &middot; Max 5MB</span>
+                    </label>
+                  )}
                 </div>
               </div>
 
@@ -205,7 +381,13 @@ export default function AddYourBarPage() {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
-                  Link to your website
+                  1 interior photo
+                </li>
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  Website &amp; Instagram link
                 </li>
               </ul>
             </div>
