@@ -33,6 +33,7 @@ const tiers = [
     features: [
       'Everything in Listed',
       'BarMagazine feature article',
+      'SEO-optimized profile page',
       'Priority placement in directory',
       'Multiple photos & menu',
       'Featured badge',
