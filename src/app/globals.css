@@ -3127,6 +3127,10 @@ textarea.form-input {
   margin: 32px 0;
 }
 
+.article-list-bar-cta a {
+  text-decoration: none;
+}
+
 .article-list-bar-cta-inner {
   display: flex;
   align-items: center;
