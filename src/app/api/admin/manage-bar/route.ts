@@ -9,9 +9,30 @@ function getServiceClient() {
   return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, serviceKey);
 }
 
-export async function POST(request: NextRequest) {
+function checkAuth(request: NextRequest): boolean {
   const secret = request.headers.get('x-admin-secret');
-  if (secret !== process.env.ADMIN_SECRET) {
+  return secret === process.env.ADMIN_SECRET;
+}
+
+// GET — list all bars (admin view, includes inactive)
+export async function GET(request: NextRequest) {
+  if (!checkAuth(request)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const supabase = getServiceClient();
+  const { data, error } = await supabase
+    .from('bars')
+    .select('*')
+    .order('name', { ascending: true });
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json({ bars: data });
+}
+
+// POST — update or delete a bar
+export async function POST(request: NextRequest) {
+  if (!checkAuth(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -29,12 +50,21 @@ export async function POST(request: NextRequest) {
   }
 
   if (action === 'update') {
-    const query = barName
-      ? supabase.from('bars').update(updates).eq('name', barName).select()
-      : supabase.from('bars').update(updates).eq('id', barId).select();
+    const query = barId
+      ? supabase.from('bars').update(updates).eq('id', barId).select()
+      : barName
+        ? supabase.from('bars').update(updates).eq('name', barName).select()
+        : null;
+    if (!query) return NextResponse.json({ error: 'barId or barName required' }, { status: 400 });
     const { data, error } = await query;
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     return NextResponse.json({ updated: data });
+  }
+
+  if (action === 'create') {
+    const { data, error } = await supabase.from('bars').insert(updates).select();
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ created: data });
   }
 
   return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
