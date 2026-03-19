@@ -120,36 +120,31 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         <span>{bar.name}</span>
       </nav>
 
-      {/* Photo with overlay badges */}
-      {hasImage ? (
-        <div className="bar-profile-photo">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={bar.photos[0]} alt={bar.name} />
-          <div className="bar-profile-photo-badges">
-            <span className="bar-profile-photo-badge">{bar.type}</span>
-            {isPaid && <span className="bar-profile-photo-badge bar-profile-photo-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
-            {bar.is_verified && <span className="bar-profile-photo-badge">&#10003; Verified</span>}
+      {/* Hero: photo as background with all info overlaid */}
+      <div className={`bar-profile-hero${hasImage ? '' : ' bar-profile-hero--no-image'}`}>
+        {hasImage && (
+          <div className="bar-profile-hero-img">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={bar.photos[0]} alt={bar.name} />
           </div>
-        </div>
-      ) : (
-        <div className="bar-profile-hero bar-profile-hero--no-image">
-          <div className="bar-profile-hero--no-image-badges">
-            <span className="bar-profile-type">{bar.type}</span>
-            {isPaid && <span className={`bar-profile-tier-badge${isPremium ? ' bar-profile-tier-badge--premium' : ''}`}>{isPremium ? 'Premium' : 'Featured'}</span>}
-          </div>
+        )}
+        {!hasImage && (
           <span className="bar-profile-decorative-initial" aria-hidden="true">{bar.name.charAt(0)}</span>
-        </div>
-      )}
-
-      {/* Bar name + location — on page background */}
-      <div className="bar-profile-heading">
-        <h1>{bar.name}</h1>
-        <div className="bar-profile-heading-location">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-          <span>{bar.city}, {bar.country}</span>
+        )}
+        <div className="bar-profile-hero-content">
+          <div className="bar-profile-hero-badges">
+            <span className="bar-profile-hero-badge">{bar.type}</span>
+            {isPaid && <span className="bar-profile-hero-badge bar-profile-hero-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+            {bar.is_verified && <span className="bar-profile-hero-badge">&#10003; Verified</span>}
+          </div>
+          <h1>{bar.name}</h1>
+          <div className="bar-profile-hero-location">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>{bar.city}, {bar.country}</span>
+          </div>
         </div>
       </div>
 
