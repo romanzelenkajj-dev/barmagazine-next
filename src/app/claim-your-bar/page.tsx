@@ -3,20 +3,22 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Claim & Upgrade Your Bar — BarMagazine',
-  description: 'Claim your bar listing on BarMagazine. Choose from Free, Featured, or Premium tiers to boost your visibility.',
+  description: 'Claim your bar listing on BarMagazine. Choose from Listed (Free), Featured, or Featured + Social tiers to boost your visibility.',
   robots: { index: false, follow: false },
 };
 
 const tiers = [
   {
-    name: 'Free',
-    price: 'Free',
-    description: 'Basic listing in the BarMagazine directory.',
+    name: 'Listed',
+    monthlyPrice: null,
+    annualPrice: null,
+    priceLabel: 'Free',
+    description: 'Get your bar on the map.',
     features: [
-      'Bar name & location',
-      'Bar type & category',
-      'Short description',
-      'Link to your website',
+      'Directory profile',
+      'Name, location & bar type',
+      '1 interior photo',
+      'Website & Instagram link',
     ],
     cta: 'Get Listed',
     ctaLink: '/add-your-bar',
@@ -24,36 +26,37 @@ const tiers = [
   },
   {
     name: 'Featured',
-    price: 'Contact Us',
-    description: 'Stand out with enhanced visibility and editorial support.',
+    monthlyPrice: '€39',
+    annualPrice: '€468',
+    priceLabel: null,
+    description: 'Stand out with editorial coverage and priority placement.',
     features: [
-      'Everything in Free',
-      'Featured badge on listing',
-      'Priority placement in search',
-      'Photo gallery (up to 5 photos)',
-      'Instagram & contact details',
-      'Verified badge',
+      'Everything in Listed',
+      'BarMagazine feature article',
+      'Priority placement in directory',
+      'Multiple photos & menu',
+      'Featured badge',
+      'Unlimited profile updates',
     ],
     cta: 'Get Featured',
     ctaLink: 'mailto:office@barmagazine.com?subject=Featured%20Listing%20Inquiry',
     highlight: true,
   },
   {
-    name: 'Premium',
-    price: 'Contact Us',
-    description: 'Maximum exposure with premium branding and editorial features.',
+    name: 'Featured + Social',
+    monthlyPrice: '€79',
+    annualPrice: '€948',
+    priceLabel: null,
+    description: 'Maximum exposure across editorial and social channels.',
     features: [
       'Everything in Featured',
-      'Premium badge with gold accent',
-      'Top placement in directory',
-      'Extended photo gallery (up to 15)',
-      'Full editorial article on BarMagazine',
-      'Social media promotion',
-      'Homepage feature rotation',
-      'Detailed analytics & insights',
+      'Instagram post & Reel',
+      '2–3 Instagram Stories',
+      'Cross-promotion collab',
+      'Social media highlight',
     ],
-    cta: 'Go Premium',
-    ctaLink: 'mailto:office@barmagazine.com?subject=Premium%20Listing%20Inquiry',
+    cta: 'Get Started',
+    ctaLink: 'mailto:office@barmagazine.com?subject=Featured%20%2B%20Social%20Listing%20Inquiry',
     highlight: false,
   },
 ];
@@ -76,7 +79,20 @@ export default function ClaimYourBarPage() {
             {tier.highlight && <div className="claim-tier-popular">Most Popular</div>}
             <div className="claim-tier-header">
               <h2>{tier.name}</h2>
-              <div className="claim-tier-price">{tier.price}</div>
+              {tier.monthlyPrice ? (
+                <div className="claim-tier-pricing">
+                  <div className="claim-tier-price">
+                    {tier.monthlyPrice}<span className="claim-tier-price-period">/mo</span>
+                  </div>
+                  <div className="claim-tier-annual">
+                    Billed annually {tier.annualPrice}
+                  </div>
+                </div>
+              ) : (
+                <div className="claim-tier-pricing">
+                  <div className="claim-tier-price">{tier.priceLabel}</div>
+                </div>
+              )}
               <p>{tier.description}</p>
             </div>
             <ul className="claim-tier-features">
@@ -118,8 +134,8 @@ export default function ClaimYourBarPage() {
             <p>Yes. Contact us anytime and we&apos;ll adjust your listing tier. No long-term commitments required.</p>
           </div>
           <div className="claim-faq-item">
-            <h3>What does the editorial article include?</h3>
-            <p>Premium listings receive a professionally written feature article on BarMagazine, highlighting your bar&apos;s story, cocktails, and atmosphere.</p>
+            <h3>What does the feature article include?</h3>
+            <p>Featured and Featured + Social listings receive a professionally written article on BarMagazine, highlighting your bar&apos;s story, cocktails, and atmosphere.</p>
           </div>
         </div>
       </div>
