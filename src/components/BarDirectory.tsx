@@ -3,13 +3,13 @@
 import { useState, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
-import { getGeoScore, getCountryFromCode } from '@/lib/geo';
+import { getGeoScore } from '@/lib/geo';
 
 interface Props {
   initialBars: Bar[];
-  totalBars: number;
-  totalCountries: number;
-  totalCities: number;
+  totalBars?: number;
+  totalCountries?: number;
+  totalCities?: number;
   countries: string[];
   cities: string[];
   types: string[];
@@ -20,7 +20,6 @@ interface Props {
 
 const ITEMS_PER_PAGE = 24;
 const LIST_PER_PAGE = 40;
-const FEATURED_LIMIT = 15;
 
 // World's 50 Best Bars 2025 — used as a ranking signal
 const FIFTY_BEST_2025 = new Set([
@@ -74,9 +73,6 @@ function sortBars(
 
 export function BarDirectoryClient({
   initialBars,
-  totalBars,
-  totalCountries,
-  totalCities,
   countries,
   cities,
   types,
@@ -84,7 +80,6 @@ export function BarDirectoryClient({
   geoCountryCode = '',
   geoContinent = '',
 }: Props) {
-  const visitorCountry = useMemo(() => getCountryFromCode(geoCountryCode), [geoCountryCode]);
   const [search, setSearch] = useState('');
   const [countryFilter, setCountryFilter] = useState('');
   const [cityFilter, setCityFilter] = useState('');
@@ -118,15 +113,15 @@ export function BarDirectoryClient({
     return sortBars(result, geoCity, geoCountryCode, geoContinent);
   }, [search, countryFilter, cityFilter, typeFilter, initialBars, geoCity, geoCountryCode, geoContinent]);
 
-  // Split into featured (have article + photo), photo cards, and text listings
+  // Split: featured (article + photo) sorted newest first, photo bars, text-only bars
   const { featuredBars, photoBars } = useMemo(() => {
-    const allFeatured = filtered.filter(b => b.wp_article_slug && b.photos && b.photos.length > 0);
-    const featured = allFeatured.slice(0, FEATURED_LIMIT);
-    const overflow = allFeatured.slice(FEATURED_LIMIT);
+    const allFeatured = filtered
+      .filter(b => b.wp_article_slug && b.photos && b.photos.length > 0)
+      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
     const nonArticlePhoto = filtered.filter(b => (!b.wp_article_slug) && b.photos && b.photos.length > 0);
     return {
-      featuredBars: featured,
-      photoBars: [...overflow, ...nonArticlePhoto],
+      featuredBars: allFeatured,
+      photoBars: nonArticlePhoto,
     };
   }, [filtered]);
 
@@ -137,7 +132,9 @@ export function BarDirectoryClient({
   const visiblePhotoBars = photoBars.slice(0, visibleCount);
   const hasMorePhotoBars = visibleCount < photoBars.length;
 
-  const visibleTextBars = textBars.slice(0, listVisibleCount);
+  // Text bars hidden by default — only shown after all photo bars loaded
+  const [showTextBars, setShowTextBars] = useState(false);
+  const visibleTextBars = showTextBars ? textBars.slice(0, listVisibleCount) : [];
   const hasMoreTextBars = listVisibleCount < textBars.length;
 
   const activeFilters: { label: string; clear: () => void }[] = [];
@@ -155,13 +152,6 @@ export function BarDirectoryClient({
     setListVisibleCount(LIST_PER_PAGE);
   }, []);
 
-  // Count bars per country for stats
-  const topCountries = useMemo(() => {
-    const counts: Record<string, number> = {};
-    initialBars.forEach(b => { counts[b.country] = (counts[b.country] || 0) + 1; });
-    return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5);
-  }, [initialBars]);
-
   return (
     <div className="directory-page">
       {/* Hero */}
@@ -170,26 +160,6 @@ export function BarDirectoryClient({
           <div className="directory-hero-badge">Global Bar Directory</div>
           <span className="directory-hero-divider" aria-hidden="true" />
           <h1>Discover the World&apos;s<br /> Best Bars</h1>
-          <p>
-            {totalBars} curated bars across {totalCities} cities in {totalCountries} countries
-            {visitorCountry && (
-              <span style={{ display: 'block', marginTop: 6, fontSize: 13, opacity: 0.7 }}>
-                Showing bars near you first
-              </span>
-            )}
-          </p>
-          <div className="directory-hero-stats">
-            {topCountries.slice(0, 4).map(([country, count]) => (
-              <button
-                key={country}
-                className="directory-hero-stat"
-                onClick={() => { setCountryFilter(country); setVisibleCount(ITEMS_PER_PAGE); setListVisibleCount(LIST_PER_PAGE); }}
-              >
-                <span className="directory-hero-stat-count">{count}</span>
-                <span className="directory-hero-stat-label">{country}</span>
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -275,14 +245,9 @@ export function BarDirectoryClient({
         </div>
       )}
 
-      {/* Photo Bars Grid */}
+      {/* Photo Bars Grid — non-featured bars with photos */}
       {visiblePhotoBars.length > 0 && (
         <>
-          {featuredBars.length > 0 && !isFiltering && (
-            <div className="directory-section-label directory-section-label--all">
-              All Bars
-            </div>
-          )}
           <div className="directory-grid" ref={gridRef}>
             {visiblePhotoBars.map(bar => (
               <PhotoBarCard key={bar.id} bar={bar} />
@@ -300,8 +265,18 @@ export function BarDirectoryClient({
         </>
       )}
 
-      {/* Text-only Bars List — shown below all photo bars, no separate section header */}
-      {visibleTextBars.length > 0 && (
+      {/* Show More Bars button — reveals text-only bars after all photo bars */}
+      {!showTextBars && textBars.length > 0 && (
+        <div className="directory-load-more">
+          <button onClick={() => setShowTextBars(true)}>
+            Show More Bars
+            <span className="directory-load-more-count">{textBars.length} more</span>
+          </button>
+        </div>
+      )}
+
+      {/* Text-only Bars List — revealed after clicking Show More */}
+      {showTextBars && visibleTextBars.length > 0 && (
         <div className="directory-list-section">
           <div className="directory-list">
             {visibleTextBars.map(bar => {
@@ -364,7 +339,7 @@ export function BarDirectoryClient({
   );
 }
 
-/* Featured bar card — larger with image overlay, shows address/website/instagram + article link */
+/* Featured bar card — clean: "Featured" badge top-left, bar name bottom-left */
 function FeaturedBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;
 
@@ -379,50 +354,9 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
         <div className="bar-dir-featured-badge-corner">Featured</div>
         <div className="bar-dir-featured-content">
           <h3>{bar.name}</h3>
-          <div className="bar-dir-featured-info">
-            {bar.address && (
-              <span className="bar-dir-featured-info-item">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                {bar.address}
-              </span>
-            )}
-            {!bar.address && (
-              <span className="bar-dir-featured-info-item">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
-              </span>
-            )}
-            {bar.website && (
-              <span className="bar-dir-featured-info-item">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-                </svg>
-                {bar.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
-              </span>
-            )}
-            {bar.instagram && (
-              <span className="bar-dir-featured-info-item">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="2" y="2" width="20" height="20" rx="5" />
-                  <circle cx="12" cy="12" r="5" />
-                  <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
-                </svg>
-                @{bar.instagram.replace('@', '')}
-              </span>
-            )}
-          </div>
-          {bar.wp_article_slug && (
-            <span className="bar-dir-featured-article-link">
-              Read the BarMagazine feature →
-            </span>
-          )}
+          <span className="bar-dir-featured-location">
+            {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+          </span>
         </div>
       </div>
     </Link>

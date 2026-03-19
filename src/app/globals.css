@@ -2467,45 +2467,13 @@ textarea.form-input {
   color: #fff;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
 }
 
-/* Featured info items: address, website, instagram */
-.bar-dir-featured-info {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  margin-bottom: 6px;
-}
-
-.bar-dir-featured-info-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
+.bar-dir-featured-location {
+  font-size: 12px;
   color: rgba(255,255,255,0.6);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-}
-
-.bar-dir-featured-info-item svg {
-  flex-shrink: 0;
-  opacity: 0.5;
-}
-
-.bar-dir-featured-article-link {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--accent);
-  opacity: 0.9;
-  transition: opacity 0.2s;
-}
-
-.bar-dir-featured-card:hover .bar-dir-featured-article-link {
-  opacity: 1;
+  font-weight: 400;
 }
 
 /* Grid */
