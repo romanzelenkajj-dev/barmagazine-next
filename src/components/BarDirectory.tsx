@@ -280,12 +280,10 @@ export function BarDirectoryClient({
         <div className="directory-list-section">
           <div className="directory-list">
             {visibleTextBars.map(bar => {
-              const is50Best = FIFTY_BEST_2025.has(bar.name);
               return (
               <Link key={bar.id} href={`/bars/${bar.slug}`} className="directory-list-item">
                 <div className="directory-list-name">
                   {bar.name}
-                  {is50Best && <span className="directory-list-50best">50 Best</span>}
                 </div>
                 <div className="directory-list-location">
                   {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
@@ -357,7 +355,6 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
 /* Photo bar card */
 function PhotoBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;
-  const is50Best = FIFTY_BEST_2025.has(bar.name);
 
   return (
     <Link href={`/bars/${bar.slug}`} className="bar-dir-card">
@@ -365,9 +362,6 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
         {imageUrl && (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={imageUrl} alt={bar.name} loading="lazy" />
-        )}
-        {is50Best && (
-          <div className="bar-dir-50best-badge">50 Best</div>
         )}
       </div>
       <div className="bar-dir-card-body">
