@@ -60,6 +60,9 @@ export function Nav() {
                 </li>
               ))}
             </ul>
+            <Link href="/claim-your-bar" className="nav-cta">
+              List Your Bar
+            </Link>
             <Link href="/search" className="nav-search">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <circle cx="11" cy="11" r="8" />
@@ -96,7 +99,7 @@ export function Nav() {
             {link.label}
           </Link>
         ))}
-        <Link href="/claim-your-bar" onClick={() => setMenuOpen(false)}>
+        <Link href="/claim-your-bar" className="mobile-menu-cta" onClick={() => setMenuOpen(false)}>
           List Your Bar
         </Link>
       </div>
