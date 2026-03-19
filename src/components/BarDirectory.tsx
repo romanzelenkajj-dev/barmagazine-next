@@ -3,6 +3,7 @@
 import { useState, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
+import { getGeoScore, getCountryFromCode } from '@/lib/geo';
 
 interface Props {
   initialBars: Bar[];
@@ -12,6 +13,9 @@ interface Props {
   countries: string[];
   cities: string[];
   types: string[];
+  geoCity?: string;
+  geoCountryCode?: string;
+  geoContinent?: string;
 }
 
 const ITEMS_PER_PAGE = 24;
@@ -35,23 +39,35 @@ const FIFTY_BEST_2025 = new Set([
   'BKK Social Club', 'Nutmeg & Clove',
 ]);
 
-// Sort bars: articles first, then 50 Best, then photo bars, then text listings
-function sortBars(bars: Bar[]): Bar[] {
+// Sort bars with geo-targeting: nearby bars first, then articles, 50 Best, photos
+function sortBars(
+  bars: Bar[],
+  geoCity: string = '',
+  geoCountryCode: string = '',
+  geoContinent: string = ''
+): Bar[] {
   return [...bars].sort((a, b) => {
+    // 1. Geo proximity (city → country → continent)
+    const aGeo = getGeoScore(a, geoCity, geoCountryCode, geoContinent);
+    const bGeo = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
+    if (aGeo !== bGeo) return bGeo - aGeo;
+
+    // 2. Bars with editorial articles
     const aHasArticle = a.wp_article_slug ? 1 : 0;
     const bHasArticle = b.wp_article_slug ? 1 : 0;
+    if (aHasArticle !== bHasArticle) return bHasArticle - aHasArticle;
+
+    // 3. World's 50 Best
     const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
     const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+    if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
+
+    // 4. Bars with photos
     const aHasPhoto = (a.photos && a.photos.length > 0) ? 1 : 0;
     const bHasPhoto = (b.photos && b.photos.length > 0) ? 1 : 0;
-
-    // First: bars with articles
-    if (aHasArticle !== bHasArticle) return bHasArticle - aHasArticle;
-    // Then: 50 Best bars
-    if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
-    // Then: bars with photos
     if (aHasPhoto !== bHasPhoto) return bHasPhoto - aHasPhoto;
-    // Finally: alphabetical
+
+    // 5. Alphabetical
     return a.name.localeCompare(b.name);
   });
 }
@@ -64,7 +80,11 @@ export function BarDirectoryClient({
   countries,
   cities,
   types,
+  geoCity = '',
+  geoCountryCode = '',
+  geoContinent = '',
 }: Props) {
+  const visitorCountry = useMemo(() => getCountryFromCode(geoCountryCode), [geoCountryCode]);
   const [search, setSearch] = useState('');
   const [countryFilter, setCountryFilter] = useState('');
   const [cityFilter, setCityFilter] = useState('');
@@ -95,8 +115,8 @@ export function BarDirectoryClient({
       const matchType = !typeFilter || bar.type === typeFilter;
       return matchSearch && matchCountry && matchCity && matchType;
     });
-    return sortBars(result);
-  }, [search, countryFilter, cityFilter, typeFilter, initialBars]);
+    return sortBars(result, geoCity, geoCountryCode, geoContinent);
+  }, [search, countryFilter, cityFilter, typeFilter, initialBars, geoCity, geoCountryCode, geoContinent]);
 
   // Split into featured (have article + photo), photo cards, and text listings
   const { featuredBars, photoBars } = useMemo(() => {
@@ -149,7 +169,14 @@ export function BarDirectoryClient({
         <div className="directory-hero-inner">
           <div className="directory-hero-badge">Global Bar Directory</div>
           <h1>Discover the World&apos;s<br /> Best Bars</h1>
-          <p>{totalBars} curated bars across {totalCities} cities in {totalCountries} countries</p>
+          <p>
+            {totalBars} curated bars across {totalCities} cities in {totalCountries} countries
+            {visitorCountry && (
+              <span style={{ display: 'block', marginTop: 6, fontSize: 13, opacity: 0.7 }}>
+                Showing bars near you first
+              </span>
+            )}
+          </p>
           <div className="directory-hero-stats">
             {topCountries.slice(0, 4).map(([country, count]) => (
               <button

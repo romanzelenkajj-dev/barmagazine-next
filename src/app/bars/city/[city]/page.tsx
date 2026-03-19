@@ -1,0 +1,260 @@
+// TODO: Add to sitemap.ts once indexing is enabled
+
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import { getBarsByCity, getCitiesWithCounts } from '@/lib/supabase';
+import type { Bar } from '@/lib/supabase';
+import { toUrlSlug, fromUrlSlug } from '@/lib/utils';
+
+export const revalidate = 300;
+
+const SITE_URL = 'https://barmagazine.com';
+
+// ---------------------------------------------------------------------------
+// Static params — pre-build all city pages at build time
+// ---------------------------------------------------------------------------
+export async function generateStaticParams() {
+  const cities = await getCitiesWithCounts();
+  return cities.map(c => ({ city: toUrlSlug(c.city) }));
+}
+
+// ---------------------------------------------------------------------------
+// Metadata
+// ---------------------------------------------------------------------------
+export async function generateMetadata({
+  params,
+}: {
+  params: { city: string };
+}): Promise<Metadata> {
+  // Resolve exact city name from slug
+  const allCities = await getCitiesWithCounts();
+  const match = allCities.find(c => toUrlSlug(c.city) === params.city);
+
+  if (!match) return {};
+
+  const cityName = match.city;
+  const countryName = match.country;
+  const bars = await getBarsByCity(cityName);
+
+  const description =
+    `Discover the ${bars.length} best bars in ${cityName}, ${countryName}. ` +
+    `From cocktail bars and speakeasies to hotel bars and wine bars — ` +
+    `curated by BarMagazine.`;
+
+  const title = `Best Bars in ${cityName}, ${countryName} | BarMagazine`;
+  const canonical = `${SITE_URL}/bars/city/${params.city}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    robots: { index: false, follow: false },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: canonical,
+      siteName: 'BarMagazine',
+    },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Page
+// ---------------------------------------------------------------------------
+export default async function CityPage({
+  params,
+}: {
+  params: { city: string };
+}) {
+  // Resolve the real city name from slug, matching case-insensitively
+  const allCities = await getCitiesWithCounts();
+  const match = allCities.find(c => toUrlSlug(c.city) === params.city);
+
+  if (!match) notFound();
+
+  const cityName = match.city;
+  const countryName = match.country;
+  const bars = await getBarsByCity(cityName);
+
+  if (bars.length === 0) notFound();
+
+  // Sort: photo bars first, then text-only
+  const sorted = [...bars].sort((a, b) => {
+    const aPhoto = a.photos && a.photos.length > 0 ? 1 : 0;
+    const bPhoto = b.photos && b.photos.length > 0 ? 1 : 0;
+    if (aPhoto !== bPhoto) return bPhoto - aPhoto;
+    return a.name.localeCompare(b.name);
+  });
+
+  // Bar types breakdown for subtitle
+  const types = Array.from(new Set(bars.map(b => b.type))).sort();
+
+  // JSON-LD — ItemList schema
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `Best Bars in ${cityName}`,
+    description: `Curated list of the best bars in ${cityName}, ${countryName} by BarMagazine.`,
+    url: `${SITE_URL}/bars/city/${params.city}`,
+    numberOfItems: bars.length,
+    itemListElement: sorted.slice(0, 50).map((bar, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'BarOrPub',
+        name: bar.name,
+        url: `${SITE_URL}/bars/${bar.slug}`,
+        ...(bar.address && {
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: bar.address,
+            addressLocality: cityName,
+            addressCountry: countryName,
+          },
+        }),
+        ...(bar.photos?.[0] && { image: bar.photos[0] }),
+      },
+    })),
+    creator: {
+      '@type': 'SoftwareApplication',
+      name: 'Perplexity Computer',
+      url: 'https://www.perplexity.ai/computer',
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* Breadcrumb */}
+      <nav className="bar-breadcrumb">
+        <Link href="/">Home</Link>
+        <span className="bar-breadcrumb-sep">/</span>
+        <Link href="/bars">Bar Directory</Link>
+        <span className="bar-breadcrumb-sep">/</span>
+        <Link href={`/bars/country/${toUrlSlug(countryName)}`}>{countryName}</Link>
+        <span className="bar-breadcrumb-sep">/</span>
+        <span>{cityName}</span>
+      </nav>
+
+      {/* Hero */}
+      <div className="directory-hero">
+        <div className="directory-hero-inner">
+          <div className="directory-hero-badge">{bars.length} Bars</div>
+          <h1>Best Bars in {cityName}</h1>
+          <p>
+            {bars.length} curated {bars.length === 1 ? 'bar' : 'bars'} in {cityName},{' '}
+            {countryName}
+            {types.length > 0 && ` — ${types.slice(0, 3).join(', ')}${types.length > 3 ? ' & more' : ''}`}
+          </p>
+        </div>
+      </div>
+
+      {/* Results count */}
+      <div className="directory-results-bar">
+        <span className="directory-count">
+          {bars.length} {bars.length === 1 ? 'bar' : 'bars'} in {cityName}
+        </span>
+        <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="directory-count" style={{ marginLeft: '1rem', opacity: 0.6 }}>
+          All bars in {countryName} →
+        </Link>
+      </div>
+
+      {/* Bar grid */}
+      <BarGrid bars={sorted} />
+
+      {/* CTA */}
+      <div className="directory-cta">
+        <div className="directory-cta-inner">
+          <div className="directory-cta-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M12 2v20M2 12h20" />
+            </svg>
+          </div>
+          <h2>List Your Bar in {cityName}</h2>
+          <p>
+            Join the BarMagazine directory and reach cocktail enthusiasts worldwide.
+            Free basic listing, or upgrade for premium visibility.
+          </p>
+          <div className="directory-cta-actions">
+            <Link href="/add-your-bar" className="directory-cta-btn">Get Listed Free</Link>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Shared bar grid — server component (no client state needed for static pages)
+// ---------------------------------------------------------------------------
+function BarGrid({ bars }: { bars: Bar[] }) {
+  const photoBars = bars.filter(b => b.photos && b.photos.length > 0);
+  const textBars = bars.filter(b => !b.photos || b.photos.length === 0);
+
+  return (
+    <>
+      {photoBars.length > 0 && (
+        <div className="directory-grid">
+          {photoBars.map(bar => (
+            <BarCard key={bar.id} bar={bar} />
+          ))}
+        </div>
+      )}
+
+      {textBars.length > 0 && (
+        <div className="directory-list-section">
+          {photoBars.length > 0 && (
+            <div className="directory-section-label directory-section-label--all">
+              More Bars
+            </div>
+          )}
+          <div className="directory-list">
+            {textBars.map(bar => (
+              <Link key={bar.id} href={`/bars/${bar.slug}`} className="directory-list-item">
+                <div className="directory-list-name">{bar.name}</div>
+                <div className="directory-list-location">
+                  {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+                </div>
+                <div className="directory-list-type">{bar.type}</div>
+                <svg className="directory-list-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+function BarCard({ bar }: { bar: Bar }) {
+  const imageUrl = bar.photos?.[0] || null;
+  return (
+    <Link href={`/bars/${bar.slug}`} className="bar-dir-card">
+      <div className="bar-dir-card-visual">
+        {imageUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={imageUrl} alt={bar.name} loading="lazy" />
+        )}
+      </div>
+      <div className="bar-dir-card-body">
+        <h3>{bar.name}</h3>
+        <div className="bar-dir-card-meta">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
+        </div>
+        <span className="bar-dir-type">{bar.type}</span>
+      </div>
+    </Link>
+  );
+}

@@ -1,3 +1,11 @@
+export function toUrlSlug(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+export function fromUrlSlug(slug: string): string {
+  return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
 /**
  * Fix WordPress content images:
  * 1. Replace lazy-load SVG placeholders with real data-src URLs

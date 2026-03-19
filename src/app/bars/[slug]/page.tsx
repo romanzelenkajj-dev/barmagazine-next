@@ -11,13 +11,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const bar = await getBarBySlug(params.slug);
   if (!bar) return {};
 
-  const title = `${bar.name} — ${bar.city}`;
-  const description = bar.short_excerpt || bar.description || `${bar.name} is a ${bar.type.toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on BarMagazine.`;
+  const title = `${bar.name} | ${bar.type} in ${bar.city}, ${bar.country} | BarMagazine`;
+  const description = bar.short_excerpt || bar.description || `${bar.name} is a ${bar.type.toLowerCase()} located in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`;
 
   return {
     title,
     description,
     alternates: { canonical: `${SITE_URL}/bars/${bar.slug}` },
+    robots: { index: false, follow: false },
     openGraph: {
       title,
       description,
@@ -25,6 +26,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       url: `${SITE_URL}/bars/${bar.slug}`,
       siteName: 'BarMagazine',
       images: bar.photos?.[0] ? [{ url: bar.photos[0] }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: bar.photos?.[0] ? [bar.photos[0]] : [],
     },
   };
 }
@@ -41,22 +48,69 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const hasContact = bar.website || bar.instagram || bar.phone || bar.email;
   const hasDescription = bar.description || bar.short_excerpt;
 
-  // JSON-LD structured data
+  // JSON-LD structured data — BarOrNightclub
   const jsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
-    '@type': 'BarOrPub',
+    '@type': 'BarOrNightclub',
     name: bar.name,
     description: bar.short_excerpt || bar.description || `${bar.name} is a ${bar.type.toLowerCase()} in ${bar.city}, ${bar.country}.`,
     url: `${SITE_URL}/bars/${bar.slug}`,
-    ...(bar.address && { address: { '@type': 'PostalAddress', streetAddress: bar.address, addressLocality: bar.city, addressCountry: bar.country } }),
+    ...(bar.address && {
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: bar.address,
+        addressLocality: bar.city,
+        addressCountry: bar.country,
+      },
+    }),
+    containedInPlace: {
+      '@type': 'City',
+      name: bar.city,
+      containedInPlace: {
+        '@type': 'Country',
+        name: bar.country,
+      },
+    },
     ...(bar.lat && bar.lng && { geo: { '@type': 'GeoCoordinates', latitude: bar.lat, longitude: bar.lng } }),
-    ...(hasImage && { image: bar.photos[0] }),
-    ...(bar.website && { sameAs: bar.website }),
+    ...(hasImage && { image: bar.photos }),
+    ...(bar.phone && { telephone: bar.phone }),
+    ...(bar.email && { email: bar.email }),
+    ...(bar.instagram && {
+      sameAs: [`https://instagram.com/${bar.instagram.replace('@', '')}`],
+    }),
+    ...(bar.tier === 'premium' && { priceRange: '$$$' }),
+    ...(bar.tier === 'featured' && { priceRange: '$$' }),
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'BarMagazine Bar Directory',
+      url: `${SITE_URL}/bars`,
+    },
+  };
+
+  // BreadcrumbList JSON-LD
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Bar Directory',
+        item: `${SITE_URL}/bars`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: bar.name,
+        item: `${SITE_URL}/bars/${bar.slug}`,
+      },
+    ],
   };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
 
       {/* Breadcrumb */}
       <nav className="bar-breadcrumb">

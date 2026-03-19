@@ -1,4 +1,6 @@
 import type { MetadataRoute } from 'next';
+import { getBars, getCountriesWithCounts, getCitiesWithCounts } from '@/lib/supabase';
+import { toUrlSlug } from '@/lib/utils';
 
 const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com';
 const SITE_URL = 'https://barmagazine.com';
@@ -94,5 +96,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...categoryPages, ...articlePages];
+  // All bar profile pages from Supabase
+  const { bars } = await getBars({ perPage: 1000 });
+  const barPages: MetadataRoute.Sitemap = bars.map((bar) => ({
+    url: `${SITE_URL}/bars/${bar.slug}`,
+    lastModified: new Date(bar.updated_at || bar.created_at),
+    changeFrequency: 'weekly' as const,
+    priority: bar.tier === 'premium' ? 0.7 : bar.tier === 'featured' ? 0.6 : 0.5,
+  }));
+
+  // /bars directory listing page
+  const directoryPage: MetadataRoute.Sitemap = [{
+    url: `${SITE_URL}/bars`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.7,
+  }];
+
+  // Country and city landing pages
+  const countries = await getCountriesWithCounts();
+  const countryPages: MetadataRoute.Sitemap = countries.map((c) => ({
+    url: `${SITE_URL}/bars/country/${toUrlSlug(c.country)}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }));
+
+  const cities = await getCitiesWithCounts();
+  const cityPages: MetadataRoute.Sitemap = cities.map((c) => ({
+    url: `${SITE_URL}/bars/city/${toUrlSlug(c.city)}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.5,
+  }));
+
+  return [...staticPages, ...categoryPages, ...articlePages, ...directoryPage, ...barPages, ...countryPages, ...cityPages];
 }

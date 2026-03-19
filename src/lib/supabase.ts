@@ -160,6 +160,67 @@ export async function submitBar(submission: BarSubmission) {
   return { success: true, data };
 }
 
+/** Get all bars for a specific country */
+export async function getBarsByCountry(country: string) {
+  const { data, error } = await supabase
+    .from('bars')
+    .select('*')
+    .eq('is_active', true)
+    .eq('country', country)
+    .order('name', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching bars by country:', error);
+    return [];
+  }
+  return data as Bar[];
+}
+
+/** Get all bars for a specific city */
+export async function getBarsByCity(city: string) {
+  const { data, error } = await supabase
+    .from('bars')
+    .select('*')
+    .eq('is_active', true)
+    .eq('city', city)
+    .order('name', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching bars by city:', error);
+    return [];
+  }
+  return data as Bar[];
+}
+
+/** Get all unique countries with bar counts */
+export async function getCountriesWithCounts() {
+  const { data } = await supabase
+    .from('bars')
+    .select('country')
+    .eq('is_active', true);
+
+  if (!data) return [];
+  const counts: Record<string, number> = {};
+  data.forEach(b => { counts[b.country] = (counts[b.country] || 0) + 1; });
+  return Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([country, count]) => ({ country, count }));
+}
+
+/** Get all unique cities with bar counts and their country */
+export async function getCitiesWithCounts() {
+  const { data } = await supabase
+    .from('bars')
+    .select('city, country')
+    .eq('is_active', true);
+
+  if (!data) return [];
+  const map: Record<string, { count: number; country: string }> = {};
+  data.forEach(b => {
+    if (!map[b.city]) map[b.city] = { count: 0, country: b.country };
+    map[b.city].count++;
+  });
+  return Object.entries(map).sort((a, b) => b[1].count - a[1].count).map(([city, info]) => ({ city, count: info.count, country: info.country }));
+}
+
 /** Get bar count stats */
 export async function getBarStats() {
   const { count } = await supabase
