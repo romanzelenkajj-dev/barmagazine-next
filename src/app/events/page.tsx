@@ -1,4 +1,4 @@
-import { getPostsByMultipleCategories } from '@/lib/wordpress';
+import { getPostsByCategory } from '@/lib/wordpress';
 import { LoadMoreGrid } from '@/components/LoadMoreGrid';
 import type { Metadata } from 'next';
 
@@ -7,11 +7,11 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: 'Events | BarMagazine',
   description: 'Bar industry events, cocktail competitions, award ceremonies, and trade shows worldwide.',
+  alternates: { canonical: 'https://barmagazine.com/events' },
 };
 
 export default async function EventsPage() {
-  // Events (202)
-  const result = await getPostsByMultipleCategories([202], 1, 12);
+  const result = await getPostsByCategory('events', 1, 12);
   const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=202&per_page=12`;
 
   return (

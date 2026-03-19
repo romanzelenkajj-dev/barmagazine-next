@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Terms of Use | BarMagazine',
   description: 'Terms and conditions for using the BarMagazine website.',
+  alternates: { canonical: 'https://barmagazine.com/terms' },
 };
 
 export default function TermsPage() {

@@ -5,6 +5,8 @@ import { SearchForm } from './SearchForm';
 
 export const metadata: Metadata = {
   title: 'Search | BarMagazine',
+  alternates: { canonical: 'https://barmagazine.com/search' },
+  robots: { index: false, follow: true },
 };
 
 export default async function SearchPage({

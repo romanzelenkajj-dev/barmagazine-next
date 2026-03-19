@@ -1,4 +1,4 @@
-import { getPostsByMultipleCategories } from '@/lib/wordpress';
+import { getPostsByCategory } from '@/lib/wordpress';
 import { LoadMoreGrid } from '@/components/LoadMoreGrid';
 import type { Metadata } from 'next';
 
@@ -13,8 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AwardsEventsPage() {
-  // Awards only (200)
-  const result = await getPostsByMultipleCategories([200], 1, 12);
+  const result = await getPostsByCategory('awards', 1, 12);
   const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=200&per_page=12`;
 
   return (

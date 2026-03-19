@@ -1,4 +1,4 @@
-import { getPostsByMultipleCategories } from '@/lib/wordpress';
+import { getPostsByCategory } from '@/lib/wordpress';
 import { LoadMoreGrid } from '@/components/LoadMoreGrid';
 import type { Metadata } from 'next';
 
@@ -7,11 +7,12 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: 'Cocktails | BarMagazine',
   description: 'Cocktail recipes, trends, and mocktail inspiration from the bar world.',
+  alternates: { canonical: 'https://barmagazine.com/category/cocktails' },
 };
 
 export default async function CocktailsPage() {
-  const result = await getPostsByMultipleCategories([8, 64], 1, 12);
-  const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=8,64&per_page=12`;
+  const result = await getPostsByCategory('cocktails', 1, 12);
+  const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=8&per_page=12`;
 
   return (
     <div className="category-header-wrapper">

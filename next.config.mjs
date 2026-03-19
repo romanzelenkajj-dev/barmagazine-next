@@ -28,6 +28,16 @@ const nextConfig = {
       },
     ],
   },
+  // Redirect old sub-category slugs to their parent grouped pages
+  async redirects() {
+    return [
+      { source: '/category/spirits', destination: '/category/brands', permanent: true },
+      { source: '/category/wines', destination: '/category/brands', permanent: true },
+      { source: '/category/mocktails', destination: '/category/cocktails', permanent: true },
+      { source: '/category/interviews', destination: '/category/people', permanent: true },
+      { source: '/category/books', destination: '/category/people', permanent: true },
+    ];
+  },
   // Proxy /wp-content/uploads/* to WordPress.com CDN so old image URLs still work
   async rewrites() {
     return [

@@ -1,4 +1,4 @@
-import { getPostsByMultipleCategories } from '@/lib/wordpress';
+import { getPostsByCategory } from '@/lib/wordpress';
 import { LoadMoreGrid } from '@/components/LoadMoreGrid';
 import type { Metadata } from 'next';
 
@@ -7,12 +7,12 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: 'People | BarMagazine',
   description: 'Interviews, profiles, and books from the world of bars and cocktails.',
+  alternates: { canonical: 'https://barmagazine.com/category/people' },
 };
 
 export default async function PeoplePage() {
-  // People (199) + legacy: Interviews (4), Books (5)
-  const result = await getPostsByMultipleCategories([199, 4, 5], 1, 12);
-  const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=199,4,5&per_page=12`;
+  const result = await getPostsByCategory('people', 1, 12);
+  const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=199&per_page=12`;
 
   return (
     <div className="category-header-wrapper">

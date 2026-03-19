@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Claim & Upgrade Your Bar — BarMagazine',
   description: 'Claim your bar listing on BarMagazine. Choose from Free, Featured, or Premium tiers to boost your visibility.',
+  robots: { index: false, follow: false },
 };
 
 const tiers = [

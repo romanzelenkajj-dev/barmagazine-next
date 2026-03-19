@@ -130,10 +130,6 @@ export async function getPosts(page = 1, perPage = 12, categoryId?: number, cate
   return wpFetchWithTotal<WPPost[]>('/posts', params);
 }
 
-export async function getPostsByMultipleCategories(categoryIds: number[], page = 1, perPage = 12) {
-  return getPosts(page, perPage, undefined, categoryIds);
-}
-
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   const posts = await wpFetch<WPPost[]>('/posts', { slug, _embed: 'true' }, []);
   return posts[0] || null;
@@ -281,16 +277,10 @@ export const CATEGORY_MAP: Record<string, number> = {
   'bar-tour': 6,
   'bars': 63,
   'blog': 1,
-  'books': 5,
   'cocktails': 8,
   'features': 40,
   'flavours': 44,
-  'interviews': 4,
-  'mocktails': 64,
   'news': 52,
-  'spirits': 59,
-  'wines': 41,
-  // New categories matching site nav
   'people': 199,
   'awards': 200,
   'brands': 201,

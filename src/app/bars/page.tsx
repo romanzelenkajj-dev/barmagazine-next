@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Bar Directory',
   description: 'Discover the world\'s best cocktail bars, speakeasies, hotel bars, and more. Search by city, country, or style.',
   alternates: { canonical: 'https://barmagazine.com/bars' },
+  robots: { index: false, follow: false },
 };
 
 export default async function BarsPage() {
