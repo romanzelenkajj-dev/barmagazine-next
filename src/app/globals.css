@@ -3097,18 +3097,18 @@ textarea.form-input {
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: var(--text-primary);
-  color: var(--bg);
+  background: var(--bg-dark);
+  color: #fff;
   font-size: 14px;
   font-weight: 600;
   border-radius: 8px;
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity 0.15s;
+  transition: background 0.15s;
 }
 
 .directory-inline-cta-btn:hover {
-  opacity: 0.85;
+  background: var(--accent);
 }
 
 @media (max-width: 640px) {
