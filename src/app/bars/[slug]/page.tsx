@@ -120,7 +120,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         <span>{bar.name}</span>
       </nav>
 
-      {/* Hero: photo as background with all info overlaid */}
+      {/* Hero: full-screen photo with everything overlaid */}
       <div className={`bar-profile-hero${hasImage ? '' : ' bar-profile-hero--no-image'}`}>
         {hasImage && (
           <div className="bar-profile-hero-img">
@@ -131,71 +131,54 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         {!hasImage && (
           <span className="bar-profile-decorative-initial" aria-hidden="true">{bar.name.charAt(0)}</span>
         )}
-        <div className="bar-profile-hero-content">
-          <div className="bar-profile-hero-badges">
-            <span className="bar-profile-hero-badge">{bar.type}</span>
-            {isPaid && <span className="bar-profile-hero-badge bar-profile-hero-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
-            {bar.is_verified && <span className="bar-profile-hero-badge">&#10003; Verified</span>}
-          </div>
-          <h1>{bar.name}</h1>
-          <div className="bar-profile-hero-location">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            <span>{bar.city}, {bar.country}</span>
-          </div>
-        </div>
-      </div>
 
-      {/* Contact bar */}
-      {(bar.address || bar.website || bar.instagram) && (
-        <div className="bar-profile-quick-info">
-          {bar.address && (
-            <div className="bar-profile-qi-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <span>{bar.address}</span>
+        {/* Top-left: bar type + featured badge */}
+        <div className="bar-profile-hero-top">
+          <span className="bar-profile-hero-badge">{bar.type}</span>
+          {isPaid && <span className="bar-profile-hero-badge bar-profile-hero-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+          {bar.is_verified && <span className="bar-profile-hero-badge">&#10003; Verified</span>}
+        </div>
+
+        {/* Bottom row: info left, article button right */}
+        <div className="bar-profile-hero-bottom">
+          <div className="bar-profile-hero-info">
+            <h1>{bar.name}</h1>
+            <div className="bar-profile-hero-meta">
+              {bar.address && (
+                <span className="bar-profile-hero-meta-item">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                  {bar.address}
+                </span>
+              )}
+              {bar.website && (
+                <a href={bar.website} target="_blank" rel="noopener noreferrer" className="bar-profile-hero-meta-item bar-profile-hero-meta-link">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" /></svg>
+                  {bar.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+                </a>
+              )}
+              {bar.instagram && (
+                <a href={`https://instagram.com/${bar.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="bar-profile-hero-meta-item bar-profile-hero-meta-link">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="5" /><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" /></svg>
+                  @{bar.instagram.replace('@', '')}
+                </a>
+              )}
             </div>
-          )}
-          {bar.website && (
-            <a href={bar.website} target="_blank" rel="noopener noreferrer" className="bar-profile-qi-item bar-profile-qi-link">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-              </svg>
-              <span>{bar.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
-            </a>
-          )}
-          {bar.instagram && (
-            <a href={`https://instagram.com/${bar.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="bar-profile-qi-item bar-profile-qi-link">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="2" y="2" width="20" height="20" rx="5" />
-                <circle cx="12" cy="12" r="5" />
-                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
-              </svg>
-              <span>@{bar.instagram.replace('@', '')}</span>
-            </a>
-          )}
+          </div>
+          <div className="bar-profile-hero-actions">
+            {bar.wp_article_slug && (
+              <Link href={`/${bar.wp_article_slug}`} className="bar-profile-article-btn">
+                Read the BarMagazine Feature
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
+            )}
+            {bar.tier === 'free' && (
+              <Link href="/claim-your-bar" className="bar-profile-claim-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                Is this your bar?
+              </Link>
+            )}
+          </div>
         </div>
-      )}
-
-      {/* Action row: article link + claim CTA side by side */}
-      <div className="bar-profile-actions">
-        {bar.wp_article_slug && (
-          <Link href={`/${bar.wp_article_slug}`} className="bar-profile-article-btn">
-            Read the BarMagazine Feature
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-          </Link>
-        )}
-        {bar.tier === 'free' && (
-          <Link href="/claim-your-bar" className="bar-profile-claim-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-            Is this your bar?
-          </Link>
-        )}
       </div>
 
       {/* Rich content: About, Gallery (only for bars with descriptions/photos) */}
