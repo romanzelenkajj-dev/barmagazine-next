@@ -3023,6 +3023,126 @@ textarea.form-input {
 }
 
 /* ==============================
+   DIRECTORY INLINE CTA
+   ============================== */
+
+.directory-inline-cta {
+  margin: 32px 0;
+  padding: 0;
+}
+
+.directory-inline-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 32px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.directory-inline-cta-text h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.directory-inline-cta-text p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.directory-inline-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--text-primary);
+  color: var(--bg);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.directory-inline-cta-btn:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .directory-inline-cta-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 20px;
+  }
+}
+
+/* ==============================
+   ARTICLE LIST-YOUR-BAR CTA
+   ============================== */
+
+.article-list-bar-cta {
+  margin: 32px 0;
+}
+
+.article-list-bar-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.article-list-bar-cta-text h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 2px 0;
+}
+
+.article-list-bar-cta-text p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.article-list-bar-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--text-primary);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.article-list-bar-cta-btn:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .article-list-bar-cta-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 16px;
+  }
+}
+
+/* ==============================
    BAR PROFILE PAGE
    ============================== */
 

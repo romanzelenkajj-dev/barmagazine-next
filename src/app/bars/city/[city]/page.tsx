@@ -180,7 +180,7 @@ export default async function CityPage({
             Free basic listing, or upgrade for premium visibility.
           </p>
           <div className="directory-cta-actions">
-            <Link href="/add-your-bar" className="directory-cta-btn">Get Listed Free</Link>
+            <Link href="/claim-your-bar" className="directory-cta-btn">List Your Bar</Link>
           </div>
         </div>
       </div>

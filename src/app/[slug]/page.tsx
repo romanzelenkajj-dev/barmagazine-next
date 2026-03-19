@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { format } from 'date-fns';
 import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
@@ -184,6 +185,20 @@ export default async function ArticlePage({ params }: { params: { slug: string }
                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
               </svg>
             </button>
+          </div>
+
+          {/* LIST YOUR BAR CTA */}
+          <div className="article-list-bar-cta">
+            <div className="article-list-bar-cta-inner">
+              <div className="article-list-bar-cta-text">
+                <h3>Own a bar?</h3>
+                <p>Get featured on BarMagazine and reach cocktail enthusiasts worldwide.</p>
+              </div>
+              <Link href="/claim-your-bar" className="article-list-bar-cta-btn">
+                List Your Bar
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
           </div>
 
           {/* AD BANNER: Pampero */}

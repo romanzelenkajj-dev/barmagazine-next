@@ -96,8 +96,8 @@ export function Nav() {
             {link.label}
           </Link>
         ))}
-        <Link href="/work-with-us" onClick={() => setMenuOpen(false)}>
-          Work With Us
+        <Link href="/claim-your-bar" onClick={() => setMenuOpen(false)}>
+          List Your Bar
         </Link>
       </div>
     </>
