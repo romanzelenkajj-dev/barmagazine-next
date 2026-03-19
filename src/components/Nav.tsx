@@ -27,7 +27,7 @@ export function Nav() {
     { href: '/category/awards-events', label: 'Awards' },
     { href: '/category/brands', label: 'Brands' },
     { href: '/events', label: 'Events' },
-    { href: '/bars', label: 'Directory' },
+    { href: '/bars', label: 'Bar Directory' },
   ];
 
   return (

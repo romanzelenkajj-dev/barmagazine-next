@@ -39,7 +39,7 @@ export function Footer() {
             <li><Link href="/category/awards-events">Awards</Link></li>
             <li><Link href="/category/brands">Brands</Link></li>
             <li><Link href="/events">Events</Link></li>
-            <li><Link href="/claim-your-bar">List Your Bar</Link></li>
+            <li><Link href="/bars">Bar Directory</Link></li>
           </ul>
         </div>
         <div className="footer-col footer-contact">
