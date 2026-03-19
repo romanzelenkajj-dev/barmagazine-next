@@ -2894,10 +2894,11 @@ textarea.form-input {
 .directory-cta {
   margin-top: 48px;
   border-radius: var(--radius);
-  padding: 56px 40px;
+  padding: 36px 32px;
   position: relative;
   overflow: hidden;
-  background: var(--bg-dark);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
 }
 
 .directory-cta--orange {
@@ -2915,8 +2916,8 @@ textarea.form-input {
 }
 
 .directory-cta-icon {
-  margin-bottom: 16px;
-  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 12px;
+  color: var(--text-tertiary);
 }
 
 .directory-cta-inner {
@@ -2928,17 +2929,17 @@ textarea.form-input {
 }
 
 .directory-cta h2 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 10px;
-  color: #fff;
+  margin-bottom: 8px;
+  color: var(--text-primary);
 }
 
 .directory-cta p {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 28px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
   line-height: 1.6;
 }
 
@@ -2951,18 +2952,17 @@ textarea.form-input {
 
 .directory-cta-btn {
   display: inline-block;
-  padding: 14px 28px;
-  background: #fff;
-  color: var(--bg-dark);
+  padding: 12px 24px;
+  background: var(--bg-dark);
+  color: #fff;
   border-radius: 100px;
   font-size: 14px;
   font-weight: 600;
-  transition: opacity 0.2s, transform 0.2s var(--ease);
+  transition: background 0.2s;
 }
 
 .directory-cta-btn:hover {
-  opacity: 0.92;
-  transform: scale(1.03);
+  background: var(--accent);
 }
 
 .directory-cta-btn--dark {
