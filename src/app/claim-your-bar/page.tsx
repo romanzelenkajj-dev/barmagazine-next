@@ -74,11 +74,20 @@ function getTiers(isEU: boolean) {
   ];
 }
 
+function getCurrencyFromCookie(): boolean | null {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.match(/(?:^|; )geo_currency=([^;]*)/);
+  if (!match) return null;
+  return match[1] === 'EUR';
+}
+
 export default function ClaimYourBarPage() {
-  const [isEU, setIsEU] = useState(true); // default EUR while loading
-  const [loaded, setLoaded] = useState(false);
+  const cookieEU = getCurrencyFromCookie();
+  const [isEU, setIsEU] = useState(cookieEU ?? true);
+  const [loaded, setLoaded] = useState(cookieEU !== null);
 
   useEffect(() => {
+    if (loaded) return; // cookie was available, no need to fetch
     fetch('/api/geo')
       .then((r) => r.json())
       .then((data) => {
@@ -86,10 +95,9 @@ export default function ClaimYourBarPage() {
         setLoaded(true);
       })
       .catch(() => {
-        // Fallback: default to EUR
         setLoaded(true);
       });
-  }, []);
+  }, [loaded]);
 
   const tiers = getTiers(isEU);
 
