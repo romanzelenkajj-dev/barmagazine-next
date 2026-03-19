@@ -122,20 +122,20 @@ export default function ClaimYourBarPage() {
         <h2>Frequently Asked Questions</h2>
         <div className="claim-faq-grid">
           <div className="claim-faq-item">
-            <h3>How do I claim my bar?</h3>
-            <p>If your bar is already listed, email us at <a href="mailto:office@barmagazine.com">office@barmagazine.com</a> with your bar name and we&apos;ll verify your ownership and upgrade your listing.</p>
+            <h3>How do I get started?</h3>
+            <p>Click &apos;Get Featured&apos; or &apos;Get Started&apos; and we&apos;ll reach out within 24 hours to set everything up. Already listed? We&apos;ll upgrade your existing profile.</p>
           </div>
           <div className="claim-faq-item">
             <h3>What if my bar isn&apos;t listed yet?</h3>
-            <p>Use our <Link href="/add-your-bar">submission form</Link> to add your bar for free. You can then upgrade at any time.</p>
+            <p>No problem. Use our <Link href="/add-your-bar">submission form</Link> to add your bar for free, or go straight to a paid tier and we&apos;ll create your profile for you.</p>
           </div>
           <div className="claim-faq-item">
-            <h3>Can I cancel or downgrade?</h3>
-            <p>Yes. Contact us anytime and we&apos;ll adjust your listing tier. No long-term commitments required.</p>
+            <h3>How long until my listing is live?</h3>
+            <p>Free listings go live within 48 hours. Featured and Featured + Social listings include a feature article — we&apos;ll have everything published within 2 weeks.</p>
           </div>
           <div className="claim-faq-item">
             <h3>What does the feature article include?</h3>
-            <p>Featured and Featured + Social listings receive a professionally written article on BarMagazine, highlighting your bar&apos;s story, cocktails, and atmosphere.</p>
+            <p>A professionally written article on BarMagazine highlighting your bar&apos;s story, cocktails, and atmosphere — optimized for search so new guests can find you.</p>
           </div>
         </div>
       </div>
