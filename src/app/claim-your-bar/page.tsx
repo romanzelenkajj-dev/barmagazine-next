@@ -157,6 +157,10 @@ export default function ClaimYourBarPage() {
         ))}
       </div>
 
+      <div className="claim-legal-notice">
+        <p>Paid plans are billed annually and renew automatically. You can cancel anytime through the Stripe Customer Portal or by emailing <a href="mailto:office@barmagazine.com">office@barmagazine.com</a>. EU consumers have a 14-day right of withdrawal after purchase. All payments are processed securely by <a href="https://stripe.com" target="_blank" rel="noopener noreferrer">Stripe</a>. By subscribing, you agree to our <Link href="/terms">Terms of Use</Link> and <Link href="/privacy">Privacy Policy</Link>.</p>
+      </div>
+
       <div className="claim-faq">
         <h2>Frequently Asked Questions</h2>
         <div className="claim-faq-grid">
@@ -175,6 +179,14 @@ export default function ClaimYourBarPage() {
           <div className="claim-faq-item">
             <h3>What does the feature article include?</h3>
             <p>A professionally written article on BarMagazine highlighting your bar&apos;s story, cocktails, and atmosphere — optimized for search so new guests can find you.</p>
+          </div>
+          <div className="claim-faq-item">
+            <h3>Can I cancel my subscription?</h3>
+            <p>Yes. You can cancel anytime through the Stripe Customer Portal (linked in your confirmation email) or by contacting us at <a href="mailto:office@barmagazine.com">office@barmagazine.com</a>. Your paid features will remain active until the end of your billing period.</p>
+          </div>
+          <div className="claim-faq-item">
+            <h3>What is the refund policy?</h3>
+            <p>EU consumers have a 14-day right of withdrawal after purchase. Outside of this period, subscriptions are non-refundable but remain active until the end of your billing cycle. For exceptional cases, contact us and we&apos;ll review your request.</p>
           </div>
         </div>
       </div>
