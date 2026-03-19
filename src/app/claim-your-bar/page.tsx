@@ -45,7 +45,7 @@ function getTiers(isEU: boolean) {
         'Unlimited profile updates',
       ],
       cta: 'Get Featured',
-      ctaLink: '/add-your-bar',
+      ctaLink: '/add-your-bar?plan=featured',
       highlight: true,
     },
     {
@@ -61,7 +61,7 @@ function getTiers(isEU: boolean) {
         'Cross-promotion collab',
       ],
       cta: 'Get Started',
-      ctaLink: '/add-your-bar',
+      ctaLink: '/add-your-bar?plan=featured_social',
       highlight: false,
     },
   ];
@@ -159,7 +159,7 @@ export default function ClaimYourBarPage() {
         <div className="claim-faq-grid">
           <div className="claim-faq-item">
             <h3>How do I get started?</h3>
-            <p>Submit your bar details through our form. Once we review your submission, we&apos;ll send you a payment link for your chosen plan and have everything set up within a few days.</p>
+            <p>Click your preferred plan, fill out the form with your bar details, and for paid plans you&apos;ll be redirected to complete payment via Stripe. We&apos;ll have everything set up within a few days.</p>
           </div>
           <div className="claim-faq-item">
             <h3>What if my bar isn&apos;t listed yet?</h3>
