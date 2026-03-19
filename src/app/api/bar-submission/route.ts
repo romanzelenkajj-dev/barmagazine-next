@@ -2,17 +2,21 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
 // Server-side Supabase client with service role key (bypasses RLS)
-const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
-const supabaseAdmin = serviceKey
-  ? createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, serviceKey)
-  : null;
+// Lazy init to avoid build-time errors when env vars aren't available
+function getSupabaseAdmin() {
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  if (!serviceKey || !supabaseUrl) return null;
+  return createClient(supabaseUrl, serviceKey);
+}
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || '';
 
 
 async function uploadPhotoToStorage(base64Data: string, barName: string): Promise<string | null> {
-  if (!supabaseAdmin) return null;
+  const supabase = getSupabaseAdmin();
+  if (!supabase) return null;
 
   try {
     // Extract mime type and data from base64 string
@@ -28,7 +32,7 @@ async function uploadPhotoToStorage(base64Data: string, barName: string): Promis
     const timestamp = Date.now();
     const filePath = `submissions/${slug}-${timestamp}.${ext}`;
 
-    const { error } = await supabaseAdmin.storage
+    const { error } = await supabase.storage
       .from('bar-photos')
       .upload(filePath, buffer, {
         contentType: mimeType,
@@ -39,11 +43,11 @@ async function uploadPhotoToStorage(base64Data: string, barName: string): Promis
       console.error('Photo upload error:', error);
       // Try creating the bucket if it doesn't exist
       if (error.message?.includes('not found') || error.message?.includes('Bucket')) {
-        await supabaseAdmin.storage.createBucket('bar-photos', {
+        await supabase.storage.createBucket('bar-photos', {
           public: true,
           fileSizeLimit: 5 * 1024 * 1024,
         });
-        const retryResult = await supabaseAdmin.storage
+        const retryResult = await supabase.storage
           .from('bar-photos')
           .upload(filePath, buffer, { contentType: mimeType, upsert: false });
         if (retryResult.error) {
@@ -56,7 +60,7 @@ async function uploadPhotoToStorage(base64Data: string, barName: string): Promis
     }
 
     // Get public URL
-    const { data: urlData } = supabaseAdmin.storage
+    const { data: urlData } = supabase.storage
       .from('bar-photos')
       .getPublicUrl(filePath);
 
@@ -142,6 +146,7 @@ export async function POST(request: Request) {
     }
 
     // Insert into Supabase using service role key
+    const supabaseAdmin = getSupabaseAdmin();
     if (!supabaseAdmin) {
       console.error('SUPABASE_SERVICE_ROLE_KEY not configured');
       // Fallback: log the submission — it will be visible in Vercel logs

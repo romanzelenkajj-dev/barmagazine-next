@@ -3,10 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 function getServiceClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!serviceKey) {
-    throw new Error('Service role key not configured');
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  if (!serviceKey || !supabaseUrl) {
+    throw new Error('Supabase URL or service role key not configured');
   }
-  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, serviceKey);
+  return createClient(supabaseUrl, serviceKey);
 }
 
 function checkAuth(request: NextRequest): boolean {
