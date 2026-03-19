@@ -16,6 +16,7 @@ interface Props {
 
 const ITEMS_PER_PAGE = 24;
 const LIST_PER_PAGE = 40;
+const FEATURED_LIMIT = 15;
 
 // World's 50 Best Bars 2025 — used as a ranking signal
 const FIFTY_BEST_2025 = new Set([
@@ -98,12 +99,15 @@ export function BarDirectoryClient({
   }, [search, countryFilter, cityFilter, typeFilter, initialBars]);
 
   // Split into featured (have article + photo), photo cards, and text listings
-  const featuredBars = useMemo(() => {
-    return filtered.filter(b => b.wp_article_slug && b.photos && b.photos.length > 0);
-  }, [filtered]);
-
-  const photoBars = useMemo(() => {
-    return filtered.filter(b => (!b.wp_article_slug) && b.photos && b.photos.length > 0);
+  const { featuredBars, photoBars } = useMemo(() => {
+    const allFeatured = filtered.filter(b => b.wp_article_slug && b.photos && b.photos.length > 0);
+    const featured = allFeatured.slice(0, FEATURED_LIMIT);
+    const overflow = allFeatured.slice(FEATURED_LIMIT);
+    const nonArticlePhoto = filtered.filter(b => (!b.wp_article_slug) && b.photos && b.photos.length > 0);
+    return {
+      featuredBars: featured,
+      photoBars: [...overflow, ...nonArticlePhoto],
+    };
   }, [filtered]);
 
   const textBars = useMemo(() => {
