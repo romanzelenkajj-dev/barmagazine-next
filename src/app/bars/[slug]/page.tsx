@@ -44,7 +44,8 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const isFeatured = bar.tier === 'featured';
   const isPaid = isPremium || isFeatured;
   const hasImage = bar.photos && bar.photos.length > 0;
-  const hasMultiplePhotos = bar.photos && bar.photos.length > 1;
+  // Show gallery only when there are 2+ extra photos beyond the hero image
+  const hasGallery = bar.photos && bar.photos.length > 2;
 
   // JSON-LD structured data — BarOrNightclub
   const jsonLd: Record<string, unknown> = {
@@ -179,7 +180,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
       </div>
 
       {/* Gallery (only for bars with multiple photos) */}
-      {hasMultiplePhotos && (
+      {hasGallery && (
         <div className="bar-profile-content">
           <section className="bar-profile-section">
             <h2>Photos</h2>
