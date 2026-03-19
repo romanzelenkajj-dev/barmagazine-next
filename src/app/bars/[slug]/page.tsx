@@ -45,9 +45,6 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const isPaid = isPremium || isFeatured;
   const hasImage = bar.photos && bar.photos.length > 0;
   const hasMultiplePhotos = bar.photos && bar.photos.length > 1;
-  // For bars with editorial articles, short_excerpt is article text — don't show as "About"
-  const hasDescription = bar.wp_article_slug ? bar.description : (bar.description || bar.short_excerpt);
-  const hasRichContent = hasDescription || hasMultiplePhotos;
 
   // JSON-LD structured data — BarOrNightclub
   const jsonLd: Record<string, unknown> = {
@@ -181,35 +178,26 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         </div>
       </div>
 
-      {/* Rich content: About, Gallery (only for bars with descriptions/photos) */}
-      {hasRichContent && (
+      {/* Gallery (only for bars with multiple photos) */}
+      {hasMultiplePhotos && (
         <div className="bar-profile-content">
-          {hasDescription && (
-            <section className="bar-profile-section">
-              <h2>About</h2>
-              <p>{hasDescription}</p>
-            </section>
-          )}
-
-          {hasMultiplePhotos && (
-            <section className="bar-profile-section">
-              <h2>Photos</h2>
-              <div className="bar-profile-gallery">
-                {bar.photos.slice(1).map((photo, i) => (
-                  <div key={i} className="bar-profile-gallery-item">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={photo} alt={`${bar.name} photo ${i + 2}`} loading="lazy" />
-                    <div className="bar-profile-gallery-zoom" aria-hidden="true">
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="11" cy="11" r="8" />
-                        <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
-                      </svg>
-                    </div>
+          <section className="bar-profile-section">
+            <h2>Photos</h2>
+            <div className="bar-profile-gallery">
+              {bar.photos.slice(1).map((photo, i) => (
+                <div key={i} className="bar-profile-gallery-item">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={photo} alt={`${bar.name} photo ${i + 2}`} loading="lazy" />
+                  <div className="bar-profile-gallery-zoom" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                    </svg>
                   </div>
-                ))}
-              </div>
-            </section>
-          )}
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
       )}
     </>
