@@ -9,7 +9,7 @@ const supabaseAdmin = serviceKey
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || 'office@barmagazine.com';
-const GMAIL_NOTIFICATION = process.env.GMAIL_NOTIFICATION_EMAIL || '';
+
 
 async function uploadPhotoToStorage(base64Data: string, barName: string): Promise<string | null> {
   if (!supabaseAdmin) return null;
