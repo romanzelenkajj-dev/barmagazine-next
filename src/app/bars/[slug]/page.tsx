@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!bar) return {};
 
   const title = `${bar.name} | ${bar.type} in ${bar.city}, ${bar.country} | BarMagazine`;
-  const description = bar.short_excerpt || bar.description || `${bar.name} is a ${bar.type.toLowerCase()} located in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`;
+  const description = bar.description || `${bar.name} is a ${bar.type.toLowerCase()} located in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`;
 
   return {
     title,
@@ -46,14 +46,16 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const hasImage = bar.photos && bar.photos.length > 0;
   const hasMultiplePhotos = bar.photos && bar.photos.length > 1;
   const hasContact = bar.website || bar.instagram || bar.phone || bar.email;
-  const hasDescription = bar.description || bar.short_excerpt;
+  // For bars with editorial articles, short_excerpt is article text — don't show as "About"
+  // Only show About section for bars that have a genuine bar description (not article excerpts)
+  const hasDescription = bar.wp_article_slug ? bar.description : (bar.description || bar.short_excerpt);
 
   // JSON-LD structured data — BarOrNightclub
   const jsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'BarOrNightclub',
     name: bar.name,
-    description: bar.short_excerpt || bar.description || `${bar.name} is a ${bar.type.toLowerCase()} in ${bar.city}, ${bar.country}.`,
+    description: bar.description || `${bar.name} is a ${bar.type.toLowerCase()} in ${bar.city}, ${bar.country}.`,
     url: `${SITE_URL}/bars/${bar.slug}`,
     ...(bar.address && {
       address: {
@@ -195,11 +197,11 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
       {/* Content */}
       <div className="bar-profile-layout">
         <div className="bar-profile-main">
-          {/* About */}
+          {/* About — only show for bars with genuine descriptions, not article excerpts */}
           {hasDescription && (
             <section className="bar-profile-section">
               <h2>About</h2>
-              <p>{bar.description || bar.short_excerpt}</p>
+              <p>{hasDescription}</p>
             </section>
           )}
 
