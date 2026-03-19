@@ -7,8 +7,8 @@ const supabaseAdmin = serviceKey
   ? createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, serviceKey)
   : null;
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
-const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || 'office@barmagazine.com';
+const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_eDUo1cfv_sNRoEUTfaEfSzzPCPdiEzrZH';
+const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || 'romanzelenkajj@gmail.com';
 
 
 async function uploadPhotoToStorage(base64Data: string, barName: string): Promise<string | null> {
@@ -85,7 +85,7 @@ async function sendNotificationEmail(data: Record<string, string | undefined>, p
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'BarMagazine <notifications@barmagazine.com>',
+        from: 'BarMagazine <onboarding@resend.dev>',
         to: [NOTIFICATION_EMAIL],
         subject: `New Bar Submission: ${data.name} — ${data.city}, ${data.country}`,
         html: `
