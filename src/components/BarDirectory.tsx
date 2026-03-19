@@ -265,8 +265,8 @@ export function BarDirectoryClient({
         </>
       )}
 
-      {/* Show More Bars button — reveals text-only bars after all photo bars */}
-      {!showTextBars && textBars.length > 0 && (
+      {/* Show More Bars button — reveals text-only bars only after all photo bars are visible */}
+      {!showTextBars && !hasMorePhotoBars && textBars.length > 0 && (
         <div className="directory-load-more">
           <button onClick={() => setShowTextBars(true)}>
             Show More Bars
@@ -325,16 +325,7 @@ export function BarDirectoryClient({
         </div>
       )}
 
-      {/* CTA — outside of featured section, at the bottom */}
-      <div className="directory-cta directory-cta--orange">
-        <div className="directory-cta-inner">
-          <h2>Is This Your Bar?</h2>
-          <p>Add photos, contact details, and more. Get discovered by cocktail enthusiasts worldwide.</p>
-          <div className="directory-cta-actions">
-            <Link href="/add-your-bar" className="directory-cta-btn directory-cta-btn--dark">Get Listed</Link>
-          </div>
-        </div>
-      </div>
+
     </div>
   );
 }
