@@ -7,6 +7,19 @@ export function fromUrlSlug(slug: string): string {
 }
 
 /**
+ * Format bar type from DB value to display label.
+ * Handles snake_case ("cocktail_bar" → "Cocktail Bar") and already-formatted values.
+ */
+export function formatBarType(type: string): string {
+  if (!type) return '';
+  // If it contains underscores, it's snake_case — convert
+  if (type.includes('_')) {
+    return type.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+  }
+  return type;
+}
+
+/**
  * Fix WordPress content images:
  * 1. Replace lazy-load SVG placeholders with real data-src URLs
  * 2. Upgrade Jetpack tiled gallery thumbnails to data-large-file URLs

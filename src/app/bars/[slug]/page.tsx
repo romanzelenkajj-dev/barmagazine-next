@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBarBySlug } from '@/lib/supabase';
+import { formatBarType } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 export const revalidate = 300;
@@ -11,8 +12,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const bar = await getBarBySlug(params.slug);
   if (!bar) return {};
 
-  const title = `${bar.name} | ${bar.type} in ${bar.city}, ${bar.country} | BarMagazine`;
-  const description = bar.description || `${bar.name} is a ${bar.type.toLowerCase()} located in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`;
+  const title = `${bar.name} | ${formatBarType(bar.type)} in ${bar.city}, ${bar.country} | BarMagazine`;
+  const description = bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} located in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`;
 
   return {
     title,
@@ -52,7 +53,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
     '@context': 'https://schema.org',
     '@type': 'BarOrNightclub',
     name: bar.name,
-    description: bar.description || `${bar.name} is a ${bar.type.toLowerCase()} in ${bar.city}, ${bar.country}.`,
+    description: bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} in ${bar.city}, ${bar.country}.`,
     url: `${SITE_URL}/bars/${bar.slug}`,
     ...(bar.address && {
       address: {
@@ -132,7 +133,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
 
         {/* Top-left: bar type + featured badge */}
         <div className="bar-profile-hero-top">
-          <span className="bar-profile-hero-badge">{bar.type}</span>
+          <span className="bar-profile-hero-badge">{formatBarType(bar.type)}</span>
           {isPaid && <span className="bar-profile-hero-badge bar-profile-hero-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
           {bar.is_verified && <span className="bar-profile-hero-badge">&#10003; Verified</span>}
         </div>

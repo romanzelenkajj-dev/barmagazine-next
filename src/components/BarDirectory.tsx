@@ -4,6 +4,7 @@ import { useState, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { getGeoScore } from '@/lib/geo';
+import { formatBarType } from '@/lib/utils';
 
 interface Props {
   initialBars: Bar[];
@@ -304,7 +305,7 @@ export function BarDirectoryClient({
                 <div className="directory-list-location">
                   {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
                 </div>
-                <div className="directory-list-type">{bar.type}</div>
+                <div className="directory-list-type">{formatBarType(bar.type)}</div>
                 <svg className="directory-list-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
@@ -389,7 +390,7 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
           </svg>
           <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
         </div>
-        <span className="bar-dir-type">{bar.type}</span>
+        <span className="bar-dir-type">{formatBarType(bar.type)}</span>
       </div>
     </Link>
   );

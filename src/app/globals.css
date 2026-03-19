@@ -2860,13 +2860,14 @@ textarea.form-input {
   color: var(--text-tertiary);
 }
 
-/* CTA Section — Orange variant */
+/* CTA Section */
 .directory-cta {
   margin-top: 48px;
   border-radius: var(--radius);
   padding: 56px 40px;
   position: relative;
   overflow: hidden;
+  background: var(--bg-dark);
 }
 
 .directory-cta--orange {
@@ -2881,6 +2882,11 @@ textarea.form-input {
     radial-gradient(ellipse 60% 80% at 80% 80%, rgba(255,255,255,0.08), transparent),
     radial-gradient(ellipse 80% 60% at 20% 20%, rgba(0,0,0,0.06), transparent);
   pointer-events: none;
+}
+
+.directory-cta-icon {
+  margin-bottom: 16px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .directory-cta-inner {

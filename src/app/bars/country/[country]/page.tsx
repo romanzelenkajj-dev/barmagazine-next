@@ -3,7 +3,8 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getBarsByCountry, getCountriesWithCounts } from '@/lib/supabase';
 import type { Bar } from '@/lib/supabase';
-import { toUrlSlug, fromUrlSlug } from '@/lib/utils';
+import { toUrlSlug, fromUrlSlug, formatBarType } from '@/lib/utils';
+import { CollapsibleBarList } from '@/components/CollapsibleBarList';
 
 export const revalidate = 300;
 
@@ -174,8 +175,14 @@ export default async function CountryPage({
         <span className="directory-count">{bars.length} bars in {countryName}</span>
       </div>
 
-      {/* Bar grid */}
-      <BarGrid bars={sorted} />
+      {/* Bar grid — only bars with photos */}
+      <BarPhotoGrid bars={sorted} />
+
+      {/* Text-only bars — collapsed by default */}
+      <CollapsibleBarList
+        bars={sorted.filter(b => !b.photos || b.photos.length === 0)}
+        hasPhotoBars={sorted.some(b => b.photos && b.photos.length > 0)}
+      />
 
       {/* CTA */}
       <div className="directory-cta">
@@ -200,46 +207,19 @@ export default async function CountryPage({
 }
 
 // ---------------------------------------------------------------------------
-// Shared bar grid — server component (no client state needed for static pages)
+// Photo-only grid — server component
 // ---------------------------------------------------------------------------
-function BarGrid({ bars }: { bars: Bar[] }) {
+function BarPhotoGrid({ bars }: { bars: Bar[] }) {
   const photoBars = bars.filter(b => b.photos && b.photos.length > 0);
-  const textBars = bars.filter(b => !b.photos || b.photos.length === 0);
+
+  if (photoBars.length === 0) return null;
 
   return (
-    <>
-      {photoBars.length > 0 && (
-        <div className="directory-grid">
-          {photoBars.map(bar => (
-            <BarCard key={bar.id} bar={bar} />
-          ))}
-        </div>
-      )}
-
-      {textBars.length > 0 && (
-        <div className="directory-list-section">
-          {photoBars.length > 0 && (
-            <div className="directory-section-label directory-section-label--all">
-              More Bars
-            </div>
-          )}
-          <div className="directory-list">
-            {textBars.map(bar => (
-              <Link key={bar.id} href={`/bars/${bar.slug}`} className="directory-list-item">
-                <div className="directory-list-name">{bar.name}</div>
-                <div className="directory-list-location">
-                  {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
-                </div>
-                <div className="directory-list-type">{bar.type}</div>
-                <svg className="directory-list-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-    </>
+    <div className="directory-grid">
+      {photoBars.map(bar => (
+        <BarCard key={bar.id} bar={bar} />
+      ))}
+    </div>
   );
 }
 
@@ -262,7 +242,7 @@ function BarCard({ bar }: { bar: Bar }) {
           </svg>
           <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
         </div>
-        <span className="bar-dir-type">{bar.type}</span>
+        <span className="bar-dir-type">{formatBarType(bar.type)}</span>
       </div>
     </Link>
   );
