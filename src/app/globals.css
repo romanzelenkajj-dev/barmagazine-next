@@ -2099,7 +2099,7 @@ textarea.form-input {
 .directory-hero {
   background: var(--bg-dark);
   border-radius: var(--radius);
-  padding: 56px 40px;
+  padding: 56px 40px 72px;
   position: relative;
   overflow: hidden;
 }
@@ -2112,6 +2112,19 @@ textarea.form-input {
     radial-gradient(ellipse 80% 60% at 20% 80%, rgba(196, 96, 60, 0.15), transparent),
     radial-gradient(ellipse 60% 80% at 80% 20%, rgba(196, 96, 60, 0.08), transparent);
   pointer-events: none;
+}
+
+/* Bottom fade for smooth hero → filters transition */
+.directory-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.18));
+  pointer-events: none;
+  z-index: 0;
 }
 
 .directory-hero-inner {
@@ -2132,7 +2145,16 @@ textarea.form-input {
   padding: 6px 16px;
   border: 1px solid rgba(196, 96, 60, 0.3);
   border-radius: 100px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+}
+
+/* Decorative rule accent between badge and title */
+.directory-hero-divider {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(196, 96, 60, 0.5), transparent);
+  margin: 0 auto 18px;
 }
 
 .directory-hero h1 {
@@ -2163,17 +2185,21 @@ textarea.form-input {
   align-items: center;
   gap: 2px;
   padding: 10px 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
-  transition: background 0.2s, border-color 0.2s;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
   cursor: pointer;
   color: #fff;
 }
 
 .directory-hero-stat:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 16px rgba(0,0,0,0.2);
 }
 
 .directory-hero-stat-count {
@@ -2190,13 +2216,14 @@ textarea.form-input {
 
 /* Filters */
 .directory-filters {
-  margin-top: var(--gap);
+  margin-top: calc(var(--gap) * 0.5);
   background: var(--bg-card);
   border-radius: var(--radius);
   padding: 20px 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .directory-search {
@@ -2206,7 +2233,7 @@ textarea.form-input {
   border: 1.5px solid var(--border);
   border-radius: 100px;
   padding: 12px 20px;
-  background: var(--bg-page);
+  background: color-mix(in srgb, var(--bg-page) 98%, #000 2%);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -2334,10 +2361,11 @@ textarea.form-input {
 }
 
 .directory-count {
-  font-size: 13px;
-  color: var(--text-tertiary);
-  font-weight: 500;
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 700;
   flex-shrink: 0;
+  letter-spacing: -0.01em;
 }
 
 /* Section labels */
@@ -2345,13 +2373,14 @@ textarea.form-input {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--accent);
   margin-top: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
 }
 
 .directory-section-label svg {
@@ -2403,7 +2432,7 @@ textarea.form-input {
 .bar-dir-featured-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.05) 70%, rgba(0,0,0,0) 100%);
   pointer-events: none;
 }
 
@@ -2482,6 +2511,7 @@ textarea.form-input {
   background: var(--bg-card);
   border-radius: var(--radius);
   overflow: hidden;
+  border: 1px solid var(--border);
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
   cursor: pointer;
   display: flex;
@@ -2586,7 +2616,7 @@ textarea.form-input {
 
 /* Card body */
 .bar-dir-card-body {
-  padding: 14px 16px 16px;
+  padding: 12px 16px 14px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -2596,7 +2626,7 @@ textarea.form-input {
   font-size: 14px;
   font-weight: 700;
   line-height: 1.3;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   letter-spacing: -0.01em;
 }
 
@@ -2606,7 +2636,7 @@ textarea.form-input {
   gap: 5px;
   font-size: 12px;
   color: var(--text-secondary);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .bar-dir-card-meta svg {
@@ -2690,6 +2720,11 @@ textarea.form-input {
   border-bottom: 1px solid var(--border);
   transition: background 0.15s;
   color: var(--text-primary);
+  background: var(--bg-page);
+}
+
+.directory-list-item:nth-child(odd) {
+  background: var(--bg-card);
 }
 
 .directory-list-item:last-child {
@@ -2697,7 +2732,7 @@ textarea.form-input {
 }
 
 .directory-list-item:hover {
-  background: var(--bg-card);
+  background: var(--bg-card-warm) !important;
 }
 
 .directory-list-name {
@@ -2707,6 +2742,11 @@ textarea.form-input {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.15s;
+}
+
+.directory-list-item:hover .directory-list-name {
+  color: var(--accent);
 }
 
 .directory-list-location {
@@ -2816,22 +2856,24 @@ textarea.form-input {
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
-  padding: 14px 36px;
+  padding: 16px 44px;
   border-radius: 100px;
   background: var(--bg-card);
   border: 1.5px solid var(--border);
   color: var(--text-primary);
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
 .directory-load-more button:hover {
   background: var(--bg-card-warm);
   border-color: var(--text-tertiary);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .directory-load-more-count {
@@ -2872,13 +2914,14 @@ textarea.form-input {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--accent);
   margin-bottom: 20px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 .directory-cta h2 {
@@ -2911,11 +2954,12 @@ textarea.form-input {
   border-radius: 100px;
   font-size: 14px;
   font-weight: 600;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s var(--ease);
 }
 
 .directory-cta-btn:hover {
-  opacity: 0.9;
+  opacity: 0.92;
+  transform: scale(1.03);
 }
 
 .directory-cta-btn--secondary {
@@ -3049,13 +3093,61 @@ textarea.form-input {
 }
 
 .bar-profile-hero--no-image {
-  padding: 48px 40px;
+  padding: 64px 40px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(196, 96, 60, 0.10), transparent),
+    radial-gradient(ellipse 50% 40% at 20% 50%, rgba(255, 255, 255, 0.02), transparent),
+    var(--bg-dark);
+  position: relative;
+}
+
+.bar-profile-hero--no-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.012) 40px,
+      rgba(255,255,255,0.012) 41px
+    );
+  border-radius: var(--radius);
+  pointer-events: none;
+}
+
+.bar-profile-hero--no-image .bar-profile-decorative-initial {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(80px, 12vw, 140px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.04);
+  user-select: none;
+  pointer-events: none;
+  font-family: Georgia, serif;
 }
 
 .bar-profile-hero-img {
   width: 100%;
   height: 400px;
   overflow: hidden;
+  position: relative;
+}
+
+.bar-profile-hero-img::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(26, 26, 26, 0.7));
+  pointer-events: none;
 }
 
 .bar-profile-hero-img img {
@@ -3065,7 +3157,7 @@ textarea.form-input {
 }
 
 .bar-profile-hero-content {
-  padding: 24px 32px 28px;
+  padding: 28px 36px 32px;
 }
 
 .bar-profile-hero--no-image .bar-profile-hero-content {
@@ -3106,6 +3198,7 @@ textarea.form-input {
   color: #fff;
   margin-bottom: 8px;
   line-height: 1.15;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
 .bar-profile-location {
@@ -3141,34 +3234,91 @@ textarea.form-input {
   font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid var(--border);
+  position: relative;
+}
+
+.bar-profile-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -1.5px;
+  left: 0;
+  width: 32px;
+  height: 1.5px;
+  background: var(--accent);
 }
 
 .bar-profile-section p {
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--text-secondary);
+  max-width: 640px;
 }
 
 /* Photo gallery */
 .bar-profile-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 8px;
+  gap: 10px;
   border-radius: var(--radius);
   overflow: hidden;
 }
 
-.bar-profile-gallery img {
+.bar-profile-gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.bar-profile-gallery-item img {
   width: 100%;
   aspect-ratio: 4/3;
   object-fit: cover;
-  border-radius: 6px;
+  display: block;
   transition: transform 0.4s var(--ease);
 }
 
-.bar-profile-gallery img:hover {
-  transform: scale(1.03);
+.bar-profile-gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.bar-profile-gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar-profile-gallery-item:hover::after {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.bar-profile-gallery-zoom {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bar-profile-gallery-item:hover .bar-profile-gallery-zoom {
+  opacity: 1;
+}
+
+.bar-profile-gallery-zoom svg {
+  color: #fff;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
 /* Article link */
@@ -3176,19 +3326,20 @@ textarea.form-input {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 24px;
-  background: var(--bg-card);
+  padding: 14px 20px 14px 18px;
+  background: var(--bg-card-warm);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
   font-size: 14px;
   font-weight: 600;
   color: var(--text-primary);
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
 }
 
 .bar-profile-article-link:hover {
-  border-color: var(--text-tertiary);
-  background: var(--bg-card-warm);
+  background: #ede4da;
+  color: var(--accent);
 }
 
 /* Sidebar cards */
@@ -3219,7 +3370,7 @@ textarea.form-input {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
 }
 
 .bar-profile-info-list li {
@@ -3227,6 +3378,17 @@ textarea.form-input {
   align-items: center;
   gap: 10px;
   font-size: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.bar-profile-info-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.bar-profile-info-list li:first-child {
+  padding-top: 0;
 }
 
 .bar-profile-info-list li svg {
@@ -3313,7 +3475,7 @@ textarea.form-input {
 
 @media (max-width: 768px) {
   .bar-profile-hero-img {
-    height: 260px;
+    height: 220px;
   }
 
   .bar-profile-hero-content {
@@ -3322,6 +3484,34 @@ textarea.form-input {
 
   .bar-profile-sidebar {
     flex-direction: column;
+  }
+
+  .bar-profile-quick-info {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 16px;
+  }
+
+  .bar-profile-qi-item {
+    padding: 10px 4px;
+  }
+
+  .bar-profile-qi-item:not(:last-child)::after {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 1px;
+  }
+
+  .bar-profile-hero--no-image {
+    padding: 48px 24px;
+  }
+
+  .bar-profile-hero--no-image .bar-profile-decorative-initial {
+    right: 16px;
+    opacity: 0.6;
   }
 }
 
@@ -3589,22 +3779,34 @@ textarea.form-input {
 /* Quick info bar */
 .bar-profile-quick-info {
   display: flex;
-  gap: 8px;
+  align-items: center;
   flex-wrap: wrap;
   margin-top: 12px;
-  padding: 0 4px;
+  padding: 12px 20px;
+  background: var(--bg-card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  gap: 0;
 }
 
 .bar-profile-qi-item {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   font-size: 13px;
   color: var(--text-secondary);
-  padding: 6px 14px;
-  background: var(--bg-card);
-  border-radius: 100px;
-  border: 1px solid var(--border);
+  padding: 8px 20px;
+  position: relative;
+}
+
+.bar-profile-qi-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: var(--border);
 }
 
 .bar-profile-qi-item svg {
@@ -3613,44 +3815,76 @@ textarea.form-input {
 }
 
 .bar-profile-qi-link {
-  transition: border-color 0.2s, color 0.2s;
+  transition: color 0.2s;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .bar-profile-qi-link:hover {
-  border-color: var(--text-tertiary);
-  color: var(--text-primary);
+  color: var(--accent);
+}
+
+.bar-profile-qi-link:hover svg {
+  color: var(--accent);
 }
 
 /* Empty content state for basic listings */
 .bar-profile-empty-content {
-  background: var(--bg-card);
-  border: 1px dashed var(--border);
+  background: linear-gradient(145deg, #fdf8f4 0%, #f5ede4 100%);
+  border: 1.5px dashed rgba(196, 96, 60, 0.25);
   border-radius: var(--radius);
-  padding: 32px;
+  padding: 48px 32px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.bar-profile-empty-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(196, 96, 60, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.bar-profile-empty-content h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
 }
 
 .bar-profile-empty-content p {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  max-width: 360px;
 }
 
 .bar-profile-upgrade-inline {
   display: inline-block;
-  padding: 10px 24px;
-  background: var(--text-primary);
+  padding: 11px 28px;
+  background: var(--accent);
   color: #fff;
   border-radius: 100px;
   font-size: 13px;
   font-weight: 600;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
+  text-decoration: none;
 }
 
 .bar-profile-upgrade-inline:hover {
-  opacity: 0.85;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 /* Map placeholder */
@@ -3660,7 +3894,7 @@ textarea.form-input {
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 10px;
-  background: var(--bg-card-warm);
+  background: linear-gradient(135deg, #e8ddd4 0%, #d4c8bc 50%, #c9bdb0 100%);
   position: relative;
 }
 
@@ -3695,8 +3929,8 @@ textarea.form-input {
 
 /* Enhanced upgrade CTA */
 .bar-profile-upgrade {
-  background: var(--bg-card);
-  border: 1px dashed var(--border);
+  background: linear-gradient(145deg, #fdf8f4 0%, #f5ede4 100%);
+  border: 1px dashed rgba(196, 96, 60, 0.3);
   border-radius: var(--radius);
   padding: 28px 24px;
   text-align: center;
@@ -3732,16 +3966,17 @@ textarea.form-input {
 .bar-profile-upgrade a {
   display: inline-block;
   padding: 10px 24px;
-  background: var(--text-primary);
+  background: var(--accent);
   color: #fff;
   border-radius: 100px;
   font-size: 13px;
   font-weight: 600;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .bar-profile-upgrade a:hover {
-  opacity: 0.85;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 /* ====== ADD YOUR BAR ====== */

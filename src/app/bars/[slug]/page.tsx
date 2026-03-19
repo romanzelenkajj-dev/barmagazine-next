@@ -127,6 +127,11 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             <img src={bar.photos[0]} alt={bar.name} />
           </div>
         )}
+        {!hasImage && (
+          <span className="bar-profile-decorative-initial" aria-hidden="true">
+            {bar.name.charAt(0)}
+          </span>
+        )}
         <div className="bar-profile-hero-content">
           <div className="bar-profile-hero-badges">
             <span className="bar-profile-type">{bar.type}</span>
@@ -154,6 +159,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
       </div>
 
       {/* Quick Info Bar */}
+      {(bar.address || bar.website || bar.instagram) && (
       <div className="bar-profile-quick-info">
         {bar.address && (
           <div className="bar-profile-qi-item">
@@ -184,6 +190,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           </a>
         )}
       </div>
+      )}
 
       {/* Content */}
       <div className="bar-profile-layout">
@@ -202,8 +209,16 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               <h2>Photos</h2>
               <div className="bar-profile-gallery">
                 {bar.photos.slice(1).map((photo, i) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img key={i} src={photo} alt={`${bar.name} photo ${i + 2}`} loading="lazy" />
+                  <div key={i} className="bar-profile-gallery-item">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={photo} alt={`${bar.name} photo ${i + 2}`} loading="lazy" />
+                    <div className="bar-profile-gallery-zoom" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+                      </svg>
+                    </div>
+                  </div>
                 ))}
               </div>
             </section>
@@ -227,8 +242,16 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           {!hasDescription && !hasMultiplePhotos && !bar.wp_article_slug && (
             <section className="bar-profile-section">
               <div className="bar-profile-empty-content">
-                <p>This is a basic listing. Upgrade to a Featured or Premium listing to add a full description, photo gallery, and editorial features.</p>
-                <Link href="/add-your-bar" className="bar-profile-upgrade-inline">Add Your Bar</Link>
+                <div className="bar-profile-empty-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M8 2h8l2 6H6L8 2z" />
+                    <path d="M6 8c0 0-2 2-2 6s2 6 2 6h12s2-2 2-6-2-6-2-6" />
+                    <path d="M12 12v4M10 14h4" />
+                  </svg>
+                </div>
+                <h3>Claim this profile to showcase your bar</h3>
+                <p>Add photos, a description, contact details, and more. Get discovered by bar enthusiasts around the world.</p>
+                <Link href="/add-your-bar" className="bar-profile-upgrade-inline">Get Listed &rarr;</Link>
               </div>
             </section>
           )}

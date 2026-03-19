@@ -168,6 +168,7 @@ export function BarDirectoryClient({
       <div className="directory-hero">
         <div className="directory-hero-inner">
           <div className="directory-hero-badge">Global Bar Directory</div>
+          <span className="directory-hero-divider" aria-hidden="true" />
           <h1>Discover the World&apos;s<br /> Best Bars</h1>
           <p>
             {totalBars} curated bars across {totalCities} cities in {totalCountries} countries
