@@ -102,6 +102,7 @@ async function sendNotificationEmail(data: Record<string, string | undefined>, p
               <tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Contact Name</td><td style="padding: 8px 12px;">${data.contact_name || '—'}</td></tr>
               <tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Contact Email</td><td style="padding: 8px 12px;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
               ${data.phone ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Phone</td><td style="padding: 8px 12px;">${data.phone}</td></tr>` : ''}
+              ${data.preferred_plan && data.preferred_plan !== 'free' ? `<tr style="background: #fff3cd;"><td style="padding: 8px 12px; font-weight: 600; color: #856404;">💰 Preferred Plan</td><td style="padding: 8px 12px; font-weight: 600; color: #856404;">${data.preferred_plan === 'featured_social' ? 'Featured + Social ($79/mo)' : data.preferred_plan === 'featured' ? 'Featured ($39/mo)' : data.preferred_plan}</td></tr>` : `<tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Preferred Plan</td><td style="padding: 8px 12px;">Free (Listed)</td></tr>`}
               ${data.description ? `<tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Description</td><td style="padding: 8px 12px;">${data.description}</td></tr>` : ''}
               ${photoRow}
             </table>
@@ -144,7 +145,7 @@ export async function POST(request: Request) {
     if (!supabaseAdmin) {
       console.error('SUPABASE_SERVICE_ROLE_KEY not configured');
       // Fallback: log the submission — it will be visible in Vercel logs
-      console.log('BAR_SUBMISSION:', JSON.stringify({ ...data, photo: data.photo ? '[base64 photo]' : null, photo_url: photoUrl }));
+      console.log('BAR_SUBMISSION:', JSON.stringify({ ...data, photo: data.photo ? '[base64 photo]' : null, photo_url: photoUrl, preferred_plan: data.preferred_plan || 'free' }));
       return NextResponse.json({ success: true, note: 'Submission logged, database save pending env setup' });
     }
 

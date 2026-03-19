@@ -71,6 +71,7 @@ export default function AddYourBarPage() {
       phone: (data.get('phone') as string) || undefined,
       description: (data.get('description') as string) || undefined,
       contact_name: (data.get('contactName') as string) || undefined,
+      preferred_plan: (data.get('preferredPlan') as string) || 'free',
       photo: photoBase64,
     };
 
@@ -252,6 +253,16 @@ export default function AddYourBarPage() {
                     <option value="Lounge">Lounge</option>
                     <option value="Other">Other</option>
                   </select>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Preferred Plan</label>
+                  <select name="preferredPlan" className="form-input" defaultValue="free">
+                    <option value="free">Listed (Free)</option>
+                    <option value="featured">Featured ($39/mo — billed annually)</option>
+                    <option value="featured_social">Featured + Social ($79/mo — billed annually)</option>
+                  </select>
+                  <span className="form-hint">Not sure? Start with Free — you can upgrade anytime. <a href="/claim-your-bar" style={{textDecoration: 'underline'}}>Compare plans</a></span>
                 </div>
               </div>
 

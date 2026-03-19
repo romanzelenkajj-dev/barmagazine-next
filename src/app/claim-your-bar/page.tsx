@@ -3,21 +3,14 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-// EUR payment links (EU visitors)
-const EUR_LINKS = {
-  featured: 'https://buy.stripe.com/4gM28r1TSaCz9CYfOLaAw00',
-  featuredSocial: 'https://buy.stripe.com/7sYeVd2XWaCzdTe5a7aAw01',
-};
-
-// USD payment links (rest of world)
-const USD_LINKS = {
-  featured: 'https://buy.stripe.com/cNieVdbuseSPeXi463aAw03',
-  featuredSocial: 'https://buy.stripe.com/14A28r564cKH7uQ31ZaAw02',
-};
+// Stripe payment links (kept for future automated flow)
+// EUR: Featured https://buy.stripe.com/4gM28r1TSaCz9CYfOLaAw00
+// EUR: Featured+Social https://buy.stripe.com/7sYeVd2XWaCzdTe5a7aAw01
+// USD: Featured https://buy.stripe.com/cNieVdbuseSPeXi463aAw03
+// USD: Featured+Social https://buy.stripe.com/14A28r564cKH7uQ31ZaAw02
 
 function getTiers(isEU: boolean) {
   const symbol = isEU ? '€' : '$';
-  const links = isEU ? EUR_LINKS : USD_LINKS;
 
   return [
     {
@@ -52,7 +45,7 @@ function getTiers(isEU: boolean) {
         'Unlimited profile updates',
       ],
       cta: 'Get Featured',
-      ctaLink: links.featured,
+      ctaLink: '/add-your-bar',
       highlight: true,
     },
     {
@@ -68,7 +61,7 @@ function getTiers(isEU: boolean) {
         'Cross-promotion collab',
       ],
       cta: 'Get Started',
-      ctaLink: links.featuredSocial,
+      ctaLink: '/add-your-bar',
       highlight: false,
     },
   ];
@@ -166,11 +159,11 @@ export default function ClaimYourBarPage() {
         <div className="claim-faq-grid">
           <div className="claim-faq-item">
             <h3>How do I get started?</h3>
-            <p>Click &apos;Get Featured&apos; or &apos;Get Started&apos; to complete your subscription. Once payment is confirmed, we&apos;ll reach out within 24 hours to set everything up. Already listed? We&apos;ll upgrade your existing profile.</p>
+            <p>Submit your bar details through our form. Once we review your submission, we&apos;ll send you a payment link for your chosen plan and have everything set up within a few days.</p>
           </div>
           <div className="claim-faq-item">
             <h3>What if my bar isn&apos;t listed yet?</h3>
-            <p>No problem. Use our <Link href="/add-your-bar">submission form</Link> to add your bar for free, or go straight to a paid tier and we&apos;ll create your profile for you.</p>
+            <p>No problem — all plans start with the same <Link href="/add-your-bar">submission form</Link>. Tell us about your bar and choose your plan. We&apos;ll handle the rest.</p>
           </div>
           <div className="claim-faq-item">
             <h3>How long until my listing is live?</h3>
