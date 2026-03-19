@@ -50,10 +50,9 @@ const tiers = [
     description: 'Maximum exposure across editorial and social channels.',
     features: [
       'Everything in Featured',
-      'Instagram post & Reel',
-      '2–3 Instagram Stories',
+      'Instagram post or Reel',
+      '3 Instagram Stories',
       'Cross-promotion collab',
-      'Social media highlight',
     ],
     cta: 'Get Started',
     ctaLink: 'mailto:office@barmagazine.com?subject=Featured%20%2B%20Social%20Listing%20Inquiry',
