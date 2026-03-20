@@ -223,7 +223,8 @@ function AddYourBarForm() {
               <div className="add-bar-tier-card add-bar-tier-card--featured">
                 <div className="add-bar-tier-popular">Most Popular</div>
                 <div className="add-bar-tier-name">Featured</div>
-                <div className="add-bar-tier-price">{currency === 'EUR' ? '€468' : '$468'}<span>/year</span></div>
+                <div className="add-bar-tier-price">{currency === 'EUR' ? '€39' : '$39'}<span>/mo</span></div>
+                <div className="add-bar-tier-annual">Billed annually ({currency === 'EUR' ? '€468' : '$468'}/year)</div>
                 <ul className="add-bar-tier-features">
                   <li>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
@@ -252,7 +253,8 @@ function AddYourBarForm() {
               {/* Featured + Social */}
               <div className="add-bar-tier-card add-bar-tier-card--premium">
                 <div className="add-bar-tier-name">Featured + Social</div>
-                <div className="add-bar-tier-price">{currency === 'EUR' ? '€948' : '$948'}<span>/year</span></div>
+                <div className="add-bar-tier-price">{currency === 'EUR' ? '€79' : '$79'}<span>/mo</span></div>
+                <div className="add-bar-tier-annual">Billed annually ({currency === 'EUR' ? '€948' : '$948'}/year)</div>
                 <ul className="add-bar-tier-features">
                   <li>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
@@ -264,7 +266,7 @@ function AddYourBarForm() {
                   </li>
                   <li>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
-                    2-3 Instagram Stories
+                    3 Instagram Stories
                   </li>
                   <li>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>

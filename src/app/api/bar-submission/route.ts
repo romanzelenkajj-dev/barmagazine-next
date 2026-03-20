@@ -184,8 +184,8 @@ export async function POST(request: Request) {
 
     console.log('New bar submission saved:', submission.id, photoUrl ? `with photo: ${photoUrl}` : 'no photo');
 
-    // Send notification email (non-blocking)
-    sendNotificationEmail(data, photoUrl);
+    // Send notification email — must await in serverless to prevent early termination
+    await sendNotificationEmail(data, photoUrl);
 
     return NextResponse.json({ success: true, id: submission.id });
   } catch (e) {

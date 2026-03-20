@@ -5,6 +5,49 @@ const MAILCHIMP_API_KEY = process.env.MAILCHIMP_API_KEY || '';
 const MAILCHIMP_LIST_ID = '7857dc28c0';
 const MAILCHIMP_DC = MAILCHIMP_API_KEY.split('-').pop(); // us22
 
+const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
+const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || '';
+
+async function sendSignupNotification(subscriberEmail: string) {
+  if (!RESEND_API_KEY || !NOTIFICATION_EMAIL) {
+    console.log('Resend not configured — skipping newsletter signup notification');
+    return;
+  }
+
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'BarMagazine <onboarding@resend.dev>',
+        to: [NOTIFICATION_EMAIL],
+        subject: `New Newsletter Subscriber: ${subscriberEmail}`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #1A1A1A;">New Newsletter Subscriber</h2>
+            <p style="font-size: 16px; color: #333;">
+              <strong>${subscriberEmail}</strong> just subscribed to the BarMagazine newsletter.
+            </p>
+            <p style="margin-top: 24px; font-size: 13px; color: #999;">This notification was sent from barmagazine.com</p>
+          </div>
+        `,
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.text();
+      console.error('Resend newsletter notification error:', err);
+    } else {
+      console.log('Newsletter signup notification sent for:', subscriberEmail);
+    }
+  } catch (e) {
+    console.error('Failed to send newsletter signup notification:', e);
+  }
+}
+
 export async function POST(request: NextRequest) {
   if (!MAILCHIMP_API_KEY) {
     console.error('MAILCHIMP_API_KEY environment variable is not set');
@@ -48,6 +91,8 @@ export async function POST(request: NextRequest) {
     const data = await res.json();
 
     if (res.ok) {
+      // Send notification email — must await in serverless
+      await sendSignupNotification(email);
       return NextResponse.json({ success: true });
     }
 
@@ -76,4 +121,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
