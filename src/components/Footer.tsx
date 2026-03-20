@@ -49,7 +49,7 @@ export function Footer() {
             press opportunities, or simply want to connect with our team, reach out anytime.
           </p>
           <span className="footer-email">
-            Just send an email to:<br />office@barmagazine.com
+            <span style={{ fontWeight: 400 }}>Just send an email to:</span><br />office@barmagazine.com
           </span>
         </div>
       </div>
