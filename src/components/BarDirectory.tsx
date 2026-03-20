@@ -74,6 +74,7 @@ function sortBars(
 
 export function BarDirectoryClient({
   initialBars,
+  totalBars,
   countries,
   cities,
   types,
