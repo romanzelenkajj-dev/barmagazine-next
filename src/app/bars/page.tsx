@@ -7,12 +7,16 @@ export const revalidate = 300; // 5 min ISR
 
 const SITE_URL = 'https://barmagazine.com';
 
-export const metadata: Metadata = {
-  title: 'Global Bar Directory | Discover the World\'s Best Bars',
-  description: 'Discover the world\'s best cocktail bars, speakeasies, hotel bars, and more. Search by city, country, or style. 600+ curated bars across 70+ cities worldwide.',
-  alternates: { canonical: `${SITE_URL}/bars` },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const stats = await getBarStats();
+  const barCount = Math.floor((stats.totalBars || 600) / 100) * 100;
+  return {
+    title: 'Global Bar Directory | Discover the World\'s Best Bars',
+    description: `Discover the world's best cocktail bars, speakeasies, hotel bars, and more. Search by city, country, or style. ${barCount}+ curated bars across ${stats.totalCities || 70}+ cities worldwide.`,
+    alternates: { canonical: `${SITE_URL}/bars` },
+    robots: { index: true, follow: true },
+  };
+}
 
 export default async function BarsPage() {
   // Read Vercel geo headers for IP-based personalization
