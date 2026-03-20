@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Script from 'next/script';
 import './globals.css';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
+import { CookieConsent } from '@/components/CookieConsent';
+import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -60,20 +61,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-JBGVJDXD9E"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-JBGVJDXD9E');
-          `}
-        </Script>
-      </head>
       <body className={inter.className}>
         <script
           type="application/ld+json"
@@ -97,12 +84,14 @@ export default function RootLayout({
             }),
           }}
         />
+        <GoogleAnalytics />
         <Nav />
         <div className="nav-spacer" />
         <div className="container">
           {children}
           <Footer />
         </div>
+        <CookieConsent />
       </body>
     </html>
   );
