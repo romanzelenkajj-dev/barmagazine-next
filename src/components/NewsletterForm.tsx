@@ -1,11 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback, type FormEvent } from 'react';
-
-// Mailchimp audience config
-const MC_URL = 'https://barmagazine.us22.list-manage.com/subscribe/post';
-const MC_U = '7abc9521cafc177653476a2f9';
-const MC_ID = '7857dc28c0';
+import { useState, type FormEvent } from 'react';
 
 interface NewsletterFormProps {
   className?: string;
@@ -13,28 +8,43 @@ interface NewsletterFormProps {
 
 export function NewsletterForm({ className }: NewsletterFormProps) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
-    // Don't prevent default — let the form submit naturally to the iframe target
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus('submitting');
+    setErrorMsg('');
+
     const form = e.currentTarget;
     const email = new FormData(form).get('EMAIL') as string;
 
     if (!email) {
-      e.preventDefault();
+      setStatus('error');
+      setErrorMsg('Please enter your email address.');
       return;
     }
 
-    setStatus('submitting');
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
 
-    // The form will POST to Mailchimp via the hidden iframe.
-    // After submission, show success after a short delay
-    // (we can't read the iframe response due to cross-origin, but the POST itself works)
-    setTimeout(() => {
-      setStatus('success');
-    }, 1500);
-  }, []);
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+        setErrorMsg(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch {
+      setStatus('error');
+      setErrorMsg('Network error. Please try again.');
+    }
+  }
 
   if (status === 'success') {
     return (
@@ -45,30 +55,17 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
   }
 
   return (
-    <>
-      {/* Hidden iframe to receive the Mailchimp form submission */}
-      <iframe
-        ref={iframeRef}
-        name="mc-iframe"
-        style={{ display: 'none' }}
-        tabIndex={-1}
-        aria-hidden="true"
-      />
-      <form
-        ref={formRef}
-        className={className}
-        action={MC_URL}
-        method="POST"
-        target="mc-iframe"
-        onSubmit={handleSubmit}
-      >
-        <input type="hidden" name="u" value={MC_U} />
-        <input type="hidden" name="id" value={MC_ID} />
-        <input type="email" name="EMAIL" required placeholder="Your email address" />
-        <button type="submit" disabled={status === 'submitting'}>
-          {status === 'submitting' ? 'Subscribing…' : 'Subscribe'}
-        </button>
-      </form>
-    </>
+    <form
+      className={className}
+      onSubmit={handleSubmit}
+    >
+      <input type="email" name="EMAIL" required placeholder="Your email address" />
+      <button type="submit" disabled={status === 'submitting'}>
+        {status === 'submitting' ? 'Subscribing…' : 'Subscribe'}
+      </button>
+      {status === 'error' && (
+        <p style={{ color: '#e74c3c', fontSize: 13, marginTop: 8 }}>{errorMsg}</p>
+      )}
+    </form>
   );
 }
