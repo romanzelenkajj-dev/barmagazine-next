@@ -48,9 +48,15 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
 
   if (status === 'success') {
     return (
-      <p style={{ fontWeight: 600, fontSize: 15 }}>
-        Thanks for subscribing!
-      </p>
+      <div className="newsletter-success">
+        <div className="newsletter-success-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.12" />
+            <path d="M6 10.5L8.5 13L14 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+        <p className="newsletter-success-text">You&apos;re in! Stay tuned for the latest from the bar world.</p>
+      </div>
     );
   }
 
