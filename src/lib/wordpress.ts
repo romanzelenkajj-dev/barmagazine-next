@@ -5,6 +5,7 @@ const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.
 export interface WPPost {
   id: number;
   date: string;
+  modified: string;
   slug: string;
   title: { rendered: string };
   content: { rendered: string };
@@ -192,6 +193,11 @@ export function getPostCategories(post: WPPost): WPCategory[] {
 
 export function getPostAuthor(post: WPPost): WPAuthor | null {
   return post._embedded?.author?.[0] || null;
+}
+
+export function getPostTags(post: WPPost): WPTag[] {
+  // Tags are the second array in wp:term (first is categories)
+  return (post._embedded?.['wp:term']?.[1] as unknown as WPTag[]) || [];
 }
 
 export function stripHtml(html: string): string {

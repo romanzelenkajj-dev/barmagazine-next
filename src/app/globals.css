@@ -506,6 +506,36 @@ button {
   background: #333;
 }
 
+/* ====== ARTICLE BREADCRUMB ====== */
+.article-breadcrumb {
+  margin-top: var(--gap);
+  font-size: 13px;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.article-breadcrumb a {
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.article-breadcrumb a:hover {
+  color: var(--text-primary);
+}
+
+.article-breadcrumb-sep {
+  color: var(--border);
+}
+
+.article-breadcrumb > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* ====== ARTICLE PAGE ====== */
 .article-hero {
   position: relative;

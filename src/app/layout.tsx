@@ -84,6 +84,35 @@ export default function RootLayout({
             }),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              '@id': 'https://barmagazine.com/#organization',
+              name: 'BarMagazine',
+              url: 'https://barmagazine.com',
+              logo: {
+                '@type': 'ImageObject',
+                url: 'https://barmagazine.com/og-image.png',
+                width: 1200,
+                height: 630,
+              },
+              description: 'Global bar news, cocktail culture, and spirits industry trends. Discover the world\'s best bars, latest cocktail recipes, and industry insights.',
+              sameAs: [
+                'https://www.facebook.com/BARMAGAZINEcom',
+                'https://www.instagram.com/barmagazine',
+                'https://www.linkedin.com/company/barmagazine',
+              ],
+              contactPoint: {
+                '@type': 'ContactPoint',
+                email: 'office@barmagazine.com',
+                contactType: 'customer service',
+              },
+            }),
+          }}
+        />
         <GoogleAnalytics />
         <Nav />
         <div className="nav-spacer" />

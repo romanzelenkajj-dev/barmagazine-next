@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { format } from 'date-fns';
-import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls } from '@/lib/wordpress';
+import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, getPostTags, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
 import { upgradeGalleryImages, cleanTitle } from '@/lib/utils';
 import type { Metadata } from 'next';
@@ -16,6 +16,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const title = stripHtml(post.title.rendered).replace(/\|/g, '').trim();
   const description = truncateAtWord(stripHtml(post.excerpt.rendered), 160);
   const heroImage = getFeaturedImageUrl(post, 'full');
+  const categories = getPostCategories(post);
+  const author = getPostAuthor(post);
+  const tags = getPostTags(post);
+  const authorName = author?.name && author.name !== 'BarMagazine' ? author.name : 'BarMagazine';
 
   return {
     title: title,
@@ -28,6 +32,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description,
       type: 'article',
       publishedTime: post.date,
+      modifiedTime: post.modified || post.date,
+      authors: [authorName],
+      section: categories[0]?.name || undefined,
+      tags: tags.map(t => t.name),
       url: `${SITE_URL}/${params.slug}`,
       siteName: 'BarMagazine',
       images: heroImage ? [{ url: heroImage, width: 1200, height: 630 }] : [],
@@ -47,11 +55,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
   const categories = getPostCategories(post);
   const author = getPostAuthor(post);
+  const tags = getPostTags(post);
   const heroImage = getFeaturedImageUrl(post, 'full');
   const heroImgFull = getFeaturedImageData(post, 'full');
   const heroImgMedium = getFeaturedImageData(post, 'medium_large');
   const heroImgLarge = getFeaturedImageData(post, 'large');
   const readTime = estimateReadTime(post.content.rendered);
+  const wordCount = stripHtml(post.content.rendered).split(/\s+/).length;
   const authorName = author?.name && author.name !== 'BarMagazine' ? author.name : null;
 
   // Get related posts from the same category, fall back to recent posts
@@ -70,23 +80,55 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     description: truncateAtWord(stripHtml(post.excerpt.rendered), 160),
     image: heroImage || undefined,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.modified || post.date,
     url: `${SITE_URL}/${params.slug}`,
     publisher: {
       '@type': 'Organization',
       name: 'BarMagazine',
       url: SITE_URL,
-    },
-    ...(authorName && {
-      author: {
-        '@type': 'Person',
-        name: authorName,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
       },
-    }),
+    },
+    author: authorName
+      ? { '@type': 'Person', name: authorName }
+      : { '@type': 'Organization', name: 'BarMagazine', url: SITE_URL },
+    ...(categories[0] && { articleSection: categories[0].name }),
+    ...(tags.length > 0 && { keywords: tags.map(t => t.name).join(', ') }),
+    wordCount,
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${SITE_URL}/${params.slug}`,
     },
+  };
+
+  // BreadcrumbList JSON-LD
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: SITE_URL,
+      },
+      ...(categories[0] ? [{
+        '@type': 'ListItem',
+        position: 2,
+        name: categories[0].name,
+        item: `${SITE_URL}/category/${categories[0].slug}`,
+      }] : []),
+      {
+        '@type': 'ListItem',
+        position: categories[0] ? 3 : 2,
+        name: stripHtml(post.title.rendered).replace(/\|/g, '').trim(),
+        item: `${SITE_URL}/${params.slug}`,
+      },
+    ],
   };
 
   return (
@@ -95,6 +137,24 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
+
+      {/* Breadcrumb navigation */}
+      <nav className="article-breadcrumb">
+        <Link href="/">Home</Link>
+        <span className="article-breadcrumb-sep">/</span>
+        {categories[0] && (
+          <>
+            <Link href={`/category/${categories[0].slug}`}>{categories[0].name}</Link>
+            <span className="article-breadcrumb-sep">/</span>
+          </>
+        )}
+        <span>{stripHtml(post.title.rendered).replace(/\|/g, '').trim()}</span>
+      </nav>
+
       {/* ARTICLE HERO */}
       <div className="article-hero" style={{ marginTop: 'var(--gap)' }}>
         {heroImgFull && (
@@ -107,7 +167,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
               `${heroImgFull.url} ${heroImgFull.width}w`,
             ].filter(Boolean).join(', ')}
             sizes="100vw"
-            alt={stripHtml(post.title.rendered)}
+            alt={stripHtml(post.title.rendered).replace(/\|/g, '').trim()}
             width={heroImgFull.width}
             height={heroImgFull.height}
             className="article-hero-img"

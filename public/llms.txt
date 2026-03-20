@@ -1,0 +1,39 @@
+# BarMagazine
+
+> Global bar news, cocktail culture, and spirits industry trends. Discover the world's best bars, latest cocktail recipes, and industry insights.
+
+## About
+
+BarMagazine is a digital publication covering the global bar and spirits industry. We publish news, features, and profiles about bars, bartenders, cocktails, spirits brands, and industry events worldwide. Our bar directory lists 600+ bars across 50+ countries with contact details, photos, and editorial features.
+
+## Key Content Areas
+
+- **Bar News & Features**: In-depth articles about the world's best bars, new openings, and industry trends
+- **Cocktail Culture**: Recipes, techniques, and stories behind classic and contemporary cocktails
+- **People & Bartenders**: Profiles of influential bartenders, brand ambassadors, and industry leaders
+- **Awards & Events**: Coverage of World's 50 Best Bars, Tales of the Cocktail, Diageo World Class, and more
+- **Spirits & Brands**: News and features about spirits brands, new releases, and brand stories
+- **Bar Directory**: Searchable directory of 600+ bars worldwide with addresses, websites, and Instagram
+
+## Important Pages
+
+- Homepage: https://barmagazine.com
+- Bar Directory: https://barmagazine.com/bars
+- Latest Articles: https://barmagazine.com
+- Awards Coverage: https://barmagazine.com/category/awards-events
+- Cocktails: https://barmagazine.com/category/cocktails
+- People & Bartenders: https://barmagazine.com/category/people
+- Brands: https://barmagazine.com/category/brands
+- Events: https://barmagazine.com/events
+
+## Contact
+
+- Email: office@barmagazine.com
+- Website: https://barmagazine.com
+- Instagram: https://instagram.com/barmagazine
+- Facebook: https://facebook.com/BARMAGAZINEcom
+- LinkedIn: https://linkedin.com/company/barmagazine
+
+## Sitemap
+
+https://barmagazine.com/sitemap.xml

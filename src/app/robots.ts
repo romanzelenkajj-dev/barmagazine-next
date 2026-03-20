@@ -8,6 +8,31 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/api/', '/search'],
       },
+      // Explicitly allow AI search crawlers
+      {
+        userAgent: 'GPTBot',
+        allow: '/',
+        disallow: ['/api/'],
+      },
+      {
+        userAgent: 'ChatGPT-User',
+        allow: '/',
+        disallow: ['/api/'],
+      },
+      {
+        userAgent: 'ClaudeBot',
+        allow: '/',
+        disallow: ['/api/'],
+      },
+      {
+        userAgent: 'PerplexityBot',
+        allow: '/',
+        disallow: ['/api/'],
+      },
+      {
+        userAgent: 'Google-Extended',
+        allow: '/',
+      },
     ],
     sitemap: 'https://barmagazine.com/sitemap.xml',
   };
