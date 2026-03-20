@@ -307,7 +307,7 @@ function AddYourBarForm() {
 
                 <div className="form-group">
                   <label className="form-label">Address</label>
-                  <input name="address" className="form-input" placeholder="Street address" />
+                  <input name="address" autoComplete="street-address" className="form-input" placeholder="Street address" />
                 </div>
 
                 <div className="form-group">
@@ -389,7 +389,7 @@ function AddYourBarForm() {
                 <div className="add-bar-form-row">
                   <div className="form-group">
                     <label className="form-label">Website</label>
-                    <input name="website" type="url" className="form-input" placeholder="https://" />
+                    <input name="website" type="url" autoComplete="url" className="form-input" placeholder="https://" />
                   </div>
                   <div className="form-group">
                     <label className="form-label">Instagram</label>
@@ -403,17 +403,17 @@ function AddYourBarForm() {
                 <div className="add-bar-form-row">
                   <div className="form-group">
                     <label className="form-label">Contact Name <span className="form-required">*</span></label>
-                    <input name="contactName" required className="form-input" placeholder="Your name" />
+                    <input name="contactName" required autoComplete="name" className="form-input" placeholder="Your name" />
                   </div>
                   <div className="form-group">
                     <label className="form-label">Contact Email <span className="form-required">*</span></label>
-                    <input name="contactEmail" required type="email" className="form-input" placeholder="your@email.com" />
+                    <input name="contactEmail" required type="email" autoComplete="email" className="form-input" placeholder="your@email.com" />
                   </div>
                 </div>
 
                 <div className="form-group">
                   <label className="form-label">Phone</label>
-                  <input name="phone" type="tel" className="form-input" placeholder="+1 234 567 890" />
+                  <input name="phone" type="tel" autoComplete="tel" className="form-input" placeholder="+1 234 567 890" />
                 </div>
               </div>
 
