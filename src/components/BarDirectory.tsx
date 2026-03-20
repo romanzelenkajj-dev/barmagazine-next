@@ -222,8 +222,9 @@ export function BarDirectoryClient({
       {/* Results count */}
       <div className="directory-results-bar">
         <span className="directory-count">
-          {filtered.length} {filtered.length === 1 ? 'bar' : 'bars'}
-          {isFiltering && ' found'}
+          {isFiltering
+            ? `${filtered.length} ${filtered.length === 1 ? 'bar' : 'bars'} found`
+            : `${totalBars || filtered.length} ${(totalBars || filtered.length) === 1 ? 'bar' : 'bars'}`}
         </span>
       </div>
 
