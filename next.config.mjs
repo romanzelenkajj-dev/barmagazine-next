@@ -38,6 +38,29 @@ const nextConfig = {
       { source: '/category/books', destination: '/category/people', permanent: true },
     ];
   },
+  // Prevent browsers from caching stale favicons
+  async headers() {
+    return [
+      {
+        source: '/favicon.ico',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, must-revalidate' },
+        ],
+      },
+      {
+        source: '/favicon-:size.png',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, must-revalidate' },
+        ],
+      },
+      {
+        source: '/apple-touch-icon.png',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, must-revalidate' },
+        ],
+      },
+    ];
+  },
   // Proxy /wp-content/uploads/* to WordPress.com CDN so old image URLs still work
   async rewrites() {
     return [
