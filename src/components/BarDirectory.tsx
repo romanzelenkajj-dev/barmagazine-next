@@ -275,7 +275,6 @@ export function BarDirectoryClient({
             <div className="directory-load-more">
               <button onClick={() => setVisibleCount(prev => prev + ITEMS_PER_PAGE)}>
                 Show More Bars
-                <span className="directory-load-more-count">{photoBars.length - visibleCount} remaining</span>
               </button>
             </div>
           )}
@@ -287,7 +286,6 @@ export function BarDirectoryClient({
         <div className="directory-load-more">
           <button onClick={() => setShowTextBars(true)}>
             Show More Bars
-            <span className="directory-load-more-count">{textBars.length} more</span>
           </button>
         </div>
       )}
@@ -318,7 +316,6 @@ export function BarDirectoryClient({
             <div className="directory-load-more">
               <button onClick={() => setListVisibleCount(prev => prev + LIST_PER_PAGE)}>
                 Show More Bars
-                <span className="directory-load-more-count">{textBars.length - listVisibleCount} remaining</span>
               </button>
             </div>
           )}
