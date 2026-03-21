@@ -2,33 +2,8 @@ import Link from 'next/link';
 import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, stripHtml, truncateAtWord } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
 import { NewsletterForm } from '@/components/NewsletterForm';
-import type { Metadata } from 'next';
 
 export const revalidate = 300;
-
-const SITE_URL = 'https://barmagazine.com';
-
-export async function generateMetadata(): Promise<Metadata> {
-  const result = await getPosts(1, 1);
-  const latestPost = result.data?.[0];
-  const heroImg = latestPost ? getFeaturedImageUrl(latestPost, 'full') : null;
-
-  return {
-    openGraph: {
-      title: 'BarMagazine | Best Bars, Cocktails & Spirits',
-      description: 'Global bar news, cocktail culture, and spirits industry trends.',
-      url: SITE_URL,
-      images: heroImg
-        ? [{ url: heroImg, width: 1200, height: 630, alt: 'BarMagazine' }]
-        : [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: 'BarMagazine' }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'BarMagazine | Best Bars, Cocktails & Spirits',
-      images: heroImg ? [heroImg] : [`${SITE_URL}/og-image.png`],
-    },
-  };
-}
 
 export default async function HomePage() {
   const [result, barsResult] = await Promise.all([

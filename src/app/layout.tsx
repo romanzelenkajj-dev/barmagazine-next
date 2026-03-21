@@ -5,54 +5,69 @@ import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
+import { getPosts, getFeaturedImageUrl } from '@/lib/wordpress';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://barmagazine.com'),
-  title: {
-    default: 'BarMagazine | Best Bars, Cocktails & Spirits',
-    template: '%s | BarMagazine',
-  },
-  description: 'Global bar news, cocktail culture, and spirits industry trends. Discover the world\'s best bars, latest cocktail recipes, and industry insights.',
-  alternates: {
-    canonical: 'https://barmagazine.com',
-  },
-  icons: {
-    icon: [
-      { url: '/favicon-32x32.png?v=20260320', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png?v=20260320', sizes: '16x16', type: 'image/png' },
-    ],
-    shortcut: '/favicon.ico?v=20260320',
-    apple: '/apple-touch-icon.png?v=20260320',
-  },
-  openGraph: {
-    title: 'BarMagazine',
-    description: 'Global bar news, cocktail culture, and spirits industry trends.',
-    type: 'website',
-    locale: 'en_US',
-    siteName: 'BarMagazine',
-    url: 'https://barmagazine.com',
-    images: [{ url: 'https://barmagazine.com/og-image.png', width: 1200, height: 630, alt: 'BarMagazine' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'BarMagazine',
-    description: 'Global bar news, cocktail culture, and spirits industry trends.',
-    images: ['https://barmagazine.com/og-image.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+const SITE_URL = 'https://barmagazine.com';
+
+export async function generateMetadata(): Promise<Metadata> {
+  let heroImg: string | null = null;
+  try {
+    const result = await getPosts(1, 1);
+    heroImg = result.data?.[0] ? getFeaturedImageUrl(result.data[0], 'full') : null;
+  } catch {
+    // fallback to static OG image
+  }
+
+  const ogImage = heroImg || `${SITE_URL}/og-image.png`;
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: 'BarMagazine | Best Bars, Cocktails & Spirits',
+      template: '%s | BarMagazine',
+    },
+    description: 'Global bar news, cocktail culture, and spirits industry trends. Discover the world\'s best bars, latest cocktail recipes, and industry insights.',
+    alternates: {
+      canonical: SITE_URL,
+    },
+    icons: {
+      icon: [
+        { url: '/favicon-32x32.png?v=20260320', sizes: '32x32', type: 'image/png' },
+        { url: '/favicon-16x16.png?v=20260320', sizes: '16x16', type: 'image/png' },
+      ],
+      shortcut: '/favicon.ico?v=20260320',
+      apple: '/apple-touch-icon.png?v=20260320',
+    },
+    openGraph: {
+      title: 'BarMagazine',
+      description: 'Global bar news, cocktail culture, and spirits industry trends.',
+      type: 'website',
+      locale: 'en_US',
+      siteName: 'BarMagazine',
+      url: SITE_URL,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: 'BarMagazine' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'BarMagazine',
+      description: 'Global bar news, cocktail culture, and spirits industry trends.',
+      images: [ogImage],
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-};
+  };
+}
 
 export default function RootLayout({
   children,
