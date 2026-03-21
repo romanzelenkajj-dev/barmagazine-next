@@ -15,6 +15,17 @@ export async function generateMetadata(): Promise<Metadata> {
     description: `Discover the world's best cocktail bars, speakeasies, hotel bars, and more. Search by city, country, or style. ${barCount}+ curated bars across ${stats.totalCities || 70}+ cities worldwide.`,
     alternates: { canonical: `${SITE_URL}/bars` },
     robots: { index: true, follow: true },
+    openGraph: {
+      title: 'Global Bar Directory | BarMagazine',
+      description: `${barCount}+ curated bars across ${stats.totalCities || 70}+ cities worldwide.`,
+      url: `${SITE_URL}/bars`,
+      images: [{ url: `${SITE_URL}/og-bars.jpg`, width: 1200, height: 630, alt: 'BarMagazine Bar Directory' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Global Bar Directory | BarMagazine',
+      images: [`${SITE_URL}/og-bars.jpg`],
+    },
   };
 }
 
