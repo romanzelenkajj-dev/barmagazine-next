@@ -7,7 +7,7 @@ const SITE_URL = 'https://barmagazine.com';
 
 // Category slugs used in navigation
 const CATEGORY_SLUGS = [
-  'cocktails', 'spirits', 'wines', 'mocktails', 'bars',
+  'cocktails', 'spirits', 'wines', 'mocktails',
   'news', 'features', 'interviews', 'people', 'awards', 'brands', 'events',
 ];
 
@@ -97,13 +97,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // All bar profile pages from Supabase
+  // Exclude bars that have a WordPress article — those are already in articlePages
   const { bars } = await getBars({ perPage: 1000 });
-  const barPages: MetadataRoute.Sitemap = bars.map((bar) => ({
-    url: `${SITE_URL}/bars/${bar.slug}`,
-    lastModified: new Date(bar.updated_at || bar.created_at),
-    changeFrequency: 'weekly' as const,
-    priority: bar.tier === 'premium' ? 0.7 : bar.tier === 'featured' ? 0.6 : 0.5,
-  }));
+  const articleSlugs = new Set(posts.map(p => p.slug));
+  const barPages: MetadataRoute.Sitemap = bars
+    .filter(bar => !bar.wp_article_slug || !articleSlugs.has(bar.wp_article_slug))
+    .map((bar) => ({
+      url: `${SITE_URL}/bars/${bar.slug}`,
+      lastModified: new Date(bar.updated_at || bar.created_at),
+      changeFrequency: 'weekly' as const,
+      priority: bar.tier === 'premium' ? 0.7 : bar.tier === 'featured' ? 0.6 : 0.5,
+    }));
 
   // /bars directory listing page
   const directoryPage: MetadataRoute.Sitemap = [{

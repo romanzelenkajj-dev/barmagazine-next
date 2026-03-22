@@ -14,6 +14,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     alternates: {
       canonical: `https://barmagazine.com/category/${params.slug}`,
     },
+    // Noindex /category/bars — the /bars directory is the canonical bars page
+    ...(params.slug === 'bars' && { robots: { index: false, follow: true } }),
   };
 }
 
