@@ -365,8 +365,7 @@ export function BarDirectoryMapClient({
 
   const { featuredBars, photoBars } = useMemo(() => {
     const allFeatured = filtered
-      .filter(b => b.wp_article_slug && b.photos && b.photos.length > 0)
-      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      .filter(b => b.wp_article_slug && b.photos && b.photos.length > 0);
     const nonArticlePhoto = filtered.filter(b => (!b.wp_article_slug) && b.photos && b.photos.length > 0);
     return { featuredBars: allFeatured, photoBars: nonArticlePhoto };
   }, [filtered]);

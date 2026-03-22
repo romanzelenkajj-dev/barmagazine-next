@@ -115,11 +115,10 @@ export function BarDirectoryClient({
     return sortBars(result, geoCity, geoCountryCode, geoContinent);
   }, [search, countryFilter, cityFilter, typeFilter, initialBars, geoCity, geoCountryCode, geoContinent]);
 
-  // Split: featured (article + photo) sorted newest first, photo bars, text-only bars
+  // Split: featured (article + photo) geo-sorted, photo bars, text-only bars
   const { featuredBars, photoBars } = useMemo(() => {
     const allFeatured = filtered
-      .filter(b => b.wp_article_slug && b.photos && b.photos.length > 0)
-      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      .filter(b => b.wp_article_slug && b.photos && b.photos.length > 0);
     const nonArticlePhoto = filtered.filter(b => (!b.wp_article_slug) && b.photos && b.photos.length > 0);
     return {
       featuredBars: allFeatured,
