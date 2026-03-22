@@ -85,7 +85,7 @@ export default async function BarPreviewPage({ params }: { params: { slug: strin
             {/* Badges */}
             <div className="bar-v2-badges">
               <span className="bar-v2-badge">{formatBarType(bar.type)}</span>
-              {isPaid && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+              {(isPaid || bar.wp_article_slug) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
             </div>
           </div>
 
@@ -103,7 +103,9 @@ export default async function BarPreviewPage({ params }: { params: { slug: strin
         <div className="bar-v2-info">
           <div className="bar-v2-info-main">
             <h1>{bar.name}</h1>
-            {bar.description && <p className="bar-v2-description">{bar.description}</p>}
+            <p className="bar-v2-description">
+              {bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`}
+            </p>
             
             <div className="bar-v2-details">
               {bar.address && (
@@ -200,19 +202,21 @@ export default async function BarPreviewPage({ params }: { params: { slug: strin
           </div>
         )}
 
-        {/* CTA Banner */}
-        <div className="bar-v2-cta">
-          <div className="bar-v2-cta-inner">
-            <div>
-              <h3>Get your bar featured on BarMagazine</h3>
-              <p>Boost visibility with a premium listing, feature article, and social media coverage.</p>
+        {/* CTA Banner — only for free/non-featured bars */}
+        {!isPaid && !bar.wp_article_slug && (
+          <div className="bar-v2-cta">
+            <div className="bar-v2-cta-inner">
+              <div>
+                <h3>Get your bar featured on BarMagazine</h3>
+                <p>Boost visibility with a premium listing, feature article, and social media coverage.</p>
+              </div>
+              <Link href="/claim-your-bar" className="bar-v2-btn bar-v2-btn--primary">
+                List Your Bar
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </Link>
             </div>
-            <Link href="/claim-your-bar" className="bar-v2-btn bar-v2-btn--primary">
-              List Your Bar
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-            </Link>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

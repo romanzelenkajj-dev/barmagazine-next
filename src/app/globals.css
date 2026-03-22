@@ -5105,3 +5105,16 @@ textarea.form-input {
     text-align: center;
   }
 }
+
+/* Hide Mapbox logo on bar profile map (small panel) */
+.bar-v2-map .mapboxgl-ctrl-logo {
+  display: none !important;
+}
+.bar-v2-map .mapboxgl-ctrl-attrib {
+  background: rgba(26,26,26,0.7) !important;
+  font-size: 9px !important;
+  padding: 2px 5px !important;
+}
+.bar-v2-map .mapboxgl-ctrl-attrib a {
+  color: #555 !important;
+}
