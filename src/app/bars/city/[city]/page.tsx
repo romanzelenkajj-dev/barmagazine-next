@@ -41,7 +41,7 @@ export async function generateMetadata({
     `From cocktail bars and speakeasies to hotel bars and wine bars — ` +
     `curated by BarMagazine.`;
 
-  const title = `Best Bars in ${cityName}, ${countryName} | BarMagazine`;
+  const title = `Best Bars in ${cityName}, ${countryName} `;
   const canonical = `${SITE_URL}/bars/city/${params.city}`;
 
   return {

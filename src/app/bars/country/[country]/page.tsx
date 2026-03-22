@@ -44,7 +44,7 @@ export async function generateMetadata({
     `${cities.slice(0, 3).join(', ')}${cities.length > 3 ? ' and more' : ''}. ` +
     `Curated by BarMagazine.`;
 
-  const title = `Best Bars in ${countryName} | BarMagazine`;
+  const title = `Best Bars in ${countryName} `;
   const canonical = `${SITE_URL}/bars/country/${params.country}`;
 
   return {

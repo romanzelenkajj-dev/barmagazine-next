@@ -16,14 +16,14 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: `${SITE_URL}/bars` },
     robots: { index: true, follow: true },
     openGraph: {
-      title: 'Global Bar Directory | BarMagazine',
+      title: 'Global Bar Directory | Discover the World\'s Best Bars',
       description: `${barCount}+ curated bars across ${stats.totalCities || 70}+ cities worldwide.`,
       url: `${SITE_URL}/bars`,
       images: [{ url: `${SITE_URL}/og-bars.jpg`, width: 1200, height: 630, alt: 'BarMagazine Bar Directory' }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Global Bar Directory | BarMagazine',
+      title: 'Global Bar Directory | Discover the World\'s Best Bars',
       images: [`${SITE_URL}/og-bars.jpg`],
     },
   };

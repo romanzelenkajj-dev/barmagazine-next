@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const bar = await getBarBySlug(params.slug);
   if (!bar) return {};
 
-  const title = `${bar.name} | ${formatBarType(bar.type)} in ${bar.city}, ${bar.country} | BarMagazine`;
+  const title = `${bar.name} | ${formatBarType(bar.type)} in ${bar.city}, ${bar.country}`;
   const description = bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} located in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`;
 
   return {

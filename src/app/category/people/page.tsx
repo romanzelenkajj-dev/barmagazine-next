@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: 'People | BarMagazine',
+  title: 'People',
   description: 'Interviews, profiles, and books from the world of bars and cocktails.',
   alternates: { canonical: 'https://barmagazine.com/category/people' },
 };

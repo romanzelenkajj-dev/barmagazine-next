@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Use | BarMagazine',
+  title: 'Terms of Use',
   description: 'Terms and conditions for using the BarMagazine website, including subscription terms.',
   alternates: { canonical: 'https://barmagazine.com/terms' },
 };

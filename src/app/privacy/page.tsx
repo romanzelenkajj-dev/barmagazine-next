@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | BarMagazine',
+  title: 'Privacy Policy',
   description: 'BarMagazine privacy policy — how we collect, use, and protect your data.',
   alternates: { canonical: 'https://barmagazine.com/privacy' },
 };

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { NewsletterForm } from '@/components/NewsletterForm';
 
 export const metadata: Metadata = {
-  title: 'Stay in the Mix | BarMagazine',
+  title: 'Stay in the Mix',
   description: 'Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.',
   alternates: { canonical: 'https://barmagazine.com/work-with-us' },
 };

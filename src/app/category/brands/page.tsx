@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: 'Brands | BarMagazine',
+  title: 'Brands',
   description: 'Discover the latest spirits and wines shaping the bar industry.',
   alternates: { canonical: 'https://barmagazine.com/category/brands' },
 };

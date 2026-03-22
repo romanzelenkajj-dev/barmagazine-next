@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { SearchForm } from './SearchForm';
 
 export const metadata: Metadata = {
-  title: 'Search | BarMagazine',
+  title: 'Search',
   alternates: { canonical: 'https://barmagazine.com/search' },
   robots: { index: false, follow: true },
 };
