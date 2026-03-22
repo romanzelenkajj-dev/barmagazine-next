@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { jwtVerify } from 'jose';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -20,6 +21,27 @@ export function createAdminClient() {
     throw new Error('Supabase URL or service role key not configured');
   }
   return createClient(supabaseUrl, serviceKey);
+}
+
+// Verify owner JWT token and return owner profile
+export async function verifyOwnerToken(token: string): Promise<OwnerProfile | null> {
+  try {
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret');
+    const { payload } = await jwtVerify(token, secret);
+    const ownerId = payload.ownerId as string;
+    if (!ownerId) return null;
+
+    const supabase = createAdminClient();
+    const { data } = await supabase
+      .from('bar_owners')
+      .select('*')
+      .eq('id', ownerId)
+      .single();
+
+    return data as OwnerProfile | null;
+  } catch {
+    return null;
+  }
 }
 
 // ---------- Types ----------
