@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 import { getBars, getBarFilterOptions, getBarStats } from '@/lib/supabase';
-import { BarDirectoryClient } from '@/components/BarDirectory';
+import { BarDirectoryMapClient } from '@/components/BarDirectoryMap';
 import type { Metadata } from 'next';
 
 export const revalidate = 300; // 5 min ISR
@@ -61,7 +61,7 @@ export default async function BarsPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
-      <BarDirectoryClient
+      <BarDirectoryMapClient
         initialBars={bars}
         totalBars={stats.totalBars}
         totalCountries={stats.totalCountries}
