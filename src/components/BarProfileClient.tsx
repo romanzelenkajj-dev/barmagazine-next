@@ -50,6 +50,11 @@ export function BarProfileClient({ lat, lng, name }: Props) {
         .setLngLat([lng, lat])
         .addTo(map);
 
+      // Ensure map fills container after render
+      map.on('load', () => {
+        map.resize();
+      });
+
       mapRef.current = map;
     };
 
