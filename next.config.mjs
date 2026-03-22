@@ -65,6 +65,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/partner',
+        destination: '/partner.html',
+      },
+      {
         source: '/wp-content/uploads/:path*',
         destination: 'https://i0.wp.com/barmagazine.com/wp-content/uploads/:path*',
       },

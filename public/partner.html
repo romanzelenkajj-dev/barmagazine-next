@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BarMagazine — Put Your Bar on the Map</title>
+<meta name="description" content="Join 600+ of the world's best bars in the BarMagazine Global Directory. Reach cocktail enthusiasts, industry professionals, and guests actively searching for their next drink.">
+<meta property="og:title" content="BarMagazine — Put Your Bar on the Map">
+<meta property="og:description" content="Join 600+ of the world's best bars in the BarMagazine Global Directory.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="preload" as="image" href="/bars/the-connaught-bar.jpg">
+
+<style>
+/* ========================================
+   CSS CUSTOM PROPERTIES
+   ======================================== */
+:root {
+  /* Colors */
+  --color-bg: #0a0a0a;
+  --color-bg-alt: #111111;
+  --color-bg-elevated: #1a1a1a;
+  --color-bg-card: #141414;
+  --color-gold: #c9a84c;
+  --color-gold-light: #dfc06e;
+  --color-gold-dim: #9a7a2e;
+  --color-text: #f5f5f0;
+  --color-text-muted: #8a8a80;
+  --color-text-dim: #5a5a52;
+  --color-border: #2a2a2a;
+
+  /* Typography */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+
+  /* Layout */
+  --max-width: 1200px;
+  --max-width-narrow: 800px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ========================================
+   RESET & BASE
+   ======================================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.container--narrow {
+  max-width: var(--max-width-narrow);
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-interactive),
+              transform var(--transition-interactive),
+              box-shadow var(--transition-interactive);
+}
+
+.btn--primary {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.btn--primary:hover {
+  background: var(--color-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(201, 168, 76, 0.25);
+}
+
+.btn--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(201, 168, 76, 0.15);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+}
+
+.btn--outline:hover {
+  background: rgba(201, 168, 76, 0.08);
+  transform: translateY(-1px);
+}
+
+.btn--outline:active {
+  transform: translateY(0);
+}
+
+/* ========================================
+   SECTION: HERO
+   ======================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.55) 0%,
+    rgba(10, 10, 10, 0.7) 40%,
+    rgba(10, 10, 10, 0.85) 70%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 780px;
+  padding: var(--space-3xl) var(--space-xl);
+}
+
+.hero__logo {
+  margin: 0 auto var(--space-3xl);
+  width: 220px;
+  opacity: 0.95;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+}
+
+.hero__subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto var(--space-2xl);
+}
+
+.hero__cta {
+  margin-bottom: var(--space-xl);
+}
+
+.hero__credibility {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+}
+
+.hero__credibility span {
+  color: var(--color-gold-dim);
+}
+
+/* ========================================
+   SECTION: STATS
+   ======================================== */
+.stats {
+  padding: var(--space-4xl) 0;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+.stat {
+  padding: var(--space-lg) var(--space-sm);
+}
+
+.stat__number {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.stat__label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   SECTION: WHY BARMAGAZINE
+   ======================================== */
+.why {
+  padding: var(--space-5xl) 0;
+  background: var(--color-bg);
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-md);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: var(--space-3xl);
+  max-width: 600px;
+}
+
+.why__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.why-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  padding: var(--space-2xl);
+  transition: border-color var(--transition-interactive);
+}
+
+.why-card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+}
+
+.why-card__icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--space-lg);
+  color: var(--color-gold);
+}
+
+.why-card__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: var(--space-md);
+  color: var(--color-text);
+}
+
+.why-card__text {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   SECTION: BAR SHOWCASE
+   ======================================== */
+.showcase {
+  padding: var(--space-5xl) 0;
+  background: var(--color-bg-alt);
+}
+
+.showcase__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.showcase__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 280px;
+  gap: 4px;
+}
+
+.showcase__item {
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase__item--tall {
+  grid-row: span 2;
+}
+
+.showcase__item--wide {
+  grid-column: span 2;
+}
+
+.showcase__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.showcase__item:hover img {
+  transform: scale(1.04);
+}
+
+.showcase__item__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-lg) var(--space-lg);
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.showcase__item:hover .showcase__item__overlay {
+  opacity: 1;
+}
+
+.showcase__item__name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.showcase__item__city {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-top: 2px;
+}
+
+/* ========================================
+   SECTION: WHAT YOU GET
+   ======================================== */
+.features {
+  padding: var(--space-5xl) 0;
+  background: var(--color-bg);
+}
+
+.features__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.features__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.features__col {
+  padding: var(--space-2xl);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+}
+
+.features__col-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.features__col-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: var(--space-xl);
+  color: var(--color-text);
+}
+
+.features__list {
+  list-style: none;
+}
+
+.features__list li {
+  position: relative;
+  padding: 10px 0 10px 28px;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid rgba(42, 42, 42, 0.5);
+  line-height: 1.5;
+}
+
+.features__list li:last-child {
+  border-bottom: none;
+}
+
+.features__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 50%;
+}
+
+.features__col--premium .features__list li::before {
+  background: var(--color-gold);
+}
+
+/* ========================================
+   SECTION: FEATURED BARS
+   ======================================== */
+.featured-bars {
+  padding: var(--space-5xl) 0;
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+}
+
+.featured-bars__header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.featured-bars__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.featured-bar {
+  text-align: center;
+  padding: var(--space-xl);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  transition: border-color var(--transition-interactive);
+}
+
+.featured-bar:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+}
+
+.featured-bar__img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--space-md);
+  border: 2px solid var(--color-border);
+}
+
+.featured-bar__name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.featured-bar__city {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold-dim);
+}
+
+/* ========================================
+   SECTION: FINAL CTA
+   ======================================== */
+.final-cta {
+  padding: var(--space-5xl) 0;
+  background: var(--color-bg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.final-cta__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.final-cta__text {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  max-width: 560px;
+  margin: 0 auto var(--space-2xl);
+  line-height: 1.7;
+  position: relative;
+}
+
+.final-cta__contact {
+  font-size: 14px;
+  color: var(--color-text-dim);
+  margin-top: var(--space-xl);
+  position: relative;
+}
+
+.final-cta__contact a {
+  color: var(--color-gold-dim);
+  transition: color var(--transition-interactive);
+}
+
+.final-cta__contact a:hover {
+  color: var(--color-gold);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  padding: var(--space-3xl) 0;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.footer__logo {
+  width: 140px;
+  opacity: 0.6;
+}
+
+.footer__center {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-dim);
+  line-height: 1.8;
+}
+
+.footer__center a {
+  color: var(--color-text-muted);
+  transition: color var(--transition-interactive);
+}
+
+.footer__center a:hover {
+  color: var(--color-gold);
+}
+
+.footer__center span {
+  margin: 0 8px;
+  color: var(--color-border);
+}
+
+.footer__right {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  text-align: right;
+}
+
+.footer__right a {
+  color: var(--color-text-dim);
+  font-size: 11px;
+  transition: color var(--transition-interactive);
+}
+
+.footer__right a:hover {
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   DIVIDER
+   ======================================== */
+.gold-line {
+  width: 48px;
+  height: 1px;
+  background: var(--color-gold);
+  margin: 0 auto var(--space-xl);
+  opacity: 0.5;
+}
+
+/* ========================================
+   RESPONSIVE — TABLET
+   ======================================== */
+@media (max-width: 1024px) {
+  .stats__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .why__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .showcase__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .showcase__item--wide {
+    grid-column: span 1;
+  }
+
+  .showcase__item--tall {
+    grid-row: span 1;
+  }
+}
+
+/* ========================================
+   RESPONSIVE — MOBILE
+   ======================================== */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--space-lg);
+  }
+
+  .hero__logo {
+    width: 160px;
+  }
+
+  .hero__title {
+    font-size: 2.4rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 14px 32px;
+    font-size: 13px;
+    width: 100%;
+  }
+
+  .stats {
+    padding: var(--space-3xl) 0;
+  }
+
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .stats__grid .stat:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .stat__number {
+    font-size: 1.8rem;
+  }
+
+  .why {
+    padding: var(--space-3xl) 0;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .why-card {
+    padding: var(--space-xl);
+  }
+
+  .showcase {
+    padding: var(--space-3xl) 0;
+  }
+
+  .showcase__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .showcase__item__overlay {
+    opacity: 1;
+    padding: var(--space-md);
+  }
+
+  .features {
+    padding: var(--space-3xl) 0;
+  }
+
+  .features__columns {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .features__col {
+    padding: var(--space-xl);
+  }
+
+  .featured-bars {
+    padding: var(--space-3xl) 0;
+  }
+
+  .featured-bars__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .featured-bar {
+    padding: var(--space-lg);
+  }
+
+  .final-cta {
+    padding: var(--space-3xl) 0;
+  }
+
+  .footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer__right {
+    text-align: center;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .showcase__item img {
+    transition: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ========================================
+     HERO SECTION
+     ======================================== -->
+<section class="hero" id="hero">
+  <div class="hero__bg">
+    <img src="/bars/the-connaught-bar.jpg" alt="The Connaught Bar — one of the world's finest cocktail bars" width="1600" height="900" loading="eager">
+  </div>
+  <div class="hero__content">
+    <img src="/logo-white.png" alt="BarMagazine" class="hero__logo" width="220" height="33">
+    <h1 class="hero__title">Put Your Bar<br>on the Map</h1>
+    <p class="hero__subtitle">Join 600+ of the world's best bars in the BarMagazine Global Directory. Reach cocktail enthusiasts, industry professionals, and guests actively searching for their next drink.</p>
+    <div class="hero__cta">
+      <a href="https://barmagazine.com/claim-your-bar" class="btn btn--primary">List Your Bar</a>
+    </div>
+    <p class="hero__credibility">Trusted by bars in <span>40+ countries</span> across <span>80+ cities</span></p>
+  </div>
+</section>
+
+<!-- ========================================
+     STATS SECTION
+     ======================================== -->
+<section class="stats" id="stats">
+  <div class="container">
+    <div class="stats__grid">
+      <div class="stat reveal">
+        <div class="stat__number" data-target="88" data-suffix="K+">0</div>
+        <div class="stat__label">Instagram Followers</div>
+      </div>
+      <div class="stat reveal reveal-delay-1">
+        <div class="stat__number" data-target="1.7" data-suffix="M+" data-decimal="true">0</div>
+        <div class="stat__label">Monthly Views</div>
+      </div>
+      <div class="stat reveal reveal-delay-2">
+        <div class="stat__number" data-target="10" data-suffix="K+">0</div>
+        <div class="stat__label">Monthly Readers</div>
+      </div>
+      <div class="stat reveal reveal-delay-3">
+        <div class="stat__number" data-target="50" data-suffix="+">0</div>
+        <div class="stat__label">World's 50 Best Bars</div>
+      </div>
+      <div class="stat reveal reveal-delay-4">
+        <div class="stat__number" data-target="600" data-suffix="+">0</div>
+        <div class="stat__label">Bars Listed</div>
+      </div>
+      <div class="stat reveal reveal-delay-4">
+        <div class="stat__number" data-target="40" data-suffix="+">0</div>
+        <div class="stat__label">Countries</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     WHY BARMAGAZINE
+     ======================================== -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Why BarMagazine</p>
+      <h2 class="section-title">The directory that serious bars take seriously.</h2>
+    </div>
+    <div class="why__grid">
+      <div class="why-card reveal">
+        <svg class="why-card__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 10h24v3H8zm0 6h18v3H8zm0 6h22v3H8zm0 6h14v3H8z" fill="currentColor" opacity="0.3"/>
+          <rect x="4" y="4" width="32" height="32" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M28 18l-6 6-3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="why-card__title">Editorial Credibility</h3>
+        <p class="why-card__text">Every featured bar gets a professionally written article on BarMagazine.com — permanent, SEO-optimized content that ranks in Google and tells your bar's story to the world.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <svg class="why-card__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="16" r="6" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="10" cy="18" r="4" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+          <circle cx="30" cy="18" r="4" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+          <path d="M12 34c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M4 34c0-3.3 2.7-6 6-6" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+          <path d="M36 34c0-3.3-2.7-6-6-6" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+        </svg>
+        <h3 class="why-card__title">Targeted Audience</h3>
+        <p class="why-card__text">Our community of 88K+ organic followers consists of bar owners, bartenders, brand ambassadors, and cocktail enthusiasts who actively seek out new bars to visit.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <svg class="why-card__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="1.5"/>
+          <ellipse cx="20" cy="20" rx="8" ry="15" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="5" y1="14" x2="35" y2="14" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="5" y1="26" x2="35" y2="26" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="20" cy="20" r="2" fill="currentColor"/>
+        </svg>
+        <h3 class="why-card__title">Global Reach, Local Impact</h3>
+        <p class="why-card__text">From New York to Tokyo, London to Bangkok — our directory helps guests find your bar whether they're locals or traveling. Geo-targeted search puts you first in your city.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     BAR SHOWCASE
+     ======================================== -->
+<section class="showcase" id="showcase">
+  <div class="container">
+    <div class="showcase__header reveal">
+      <p class="section-label">The Directory</p>
+      <h2 class="section-title" style="margin: 0 auto;">Featured bars from around the world</h2>
+    </div>
+  </div>
+  <div class="container" style="max-width: 1400px;">
+    <div class="showcase__grid reveal">
+      <div class="showcase__item showcase__item--tall">
+        <img src="/bars/paradiso.jpg" alt="Paradiso, Barcelona" loading="lazy">
+        <div class="showcase__item__overlay">
+          <div class="showcase__item__name">Paradiso</div>
+          <div class="showcase__item__city">Barcelona</div>
+        </div>
+      </div>
+      <div class="showcase__item">
+        <img src="/bars/bar-leone.jpg" alt="Bar Leone, Hong Kong" loading="lazy">
+        <div class="showcase__item__overlay">
+          <div class="showcase__item__name">Bar Leone</div>
+          <div class="showcase__item__city">Hong Kong</div>
+        </div>
+      </div>
+      <div class="showcase__item">
+        <img src="/bars/handshake-speakeasy.jpg" alt="Handshake Speakeasy, Mexico City" loading="lazy">
+        <div class="showcase__item__overlay">
+          <div class="showcase__item__name">Handshake Speakeasy</div>
+          <div class="showcase__item__city">Mexico City</div>
+        </div>
+      </div>
+      <div class="showcase__item showcase__item--tall">
+        <img src="/bars/jin-bo-law.jpg" alt="Jin Bo Law, Hong Kong" loading="lazy">
+        <div class="showcase__item__overlay">
+          <div class="showcase__item__name">Jin Bo Law</div>
+          <div class="showcase__item__city">Hong Kong</div>
+        </div>
+      </div>
+      <div class="showcase__item">
+        <img src="/bars/overstory.jpg" alt="Overstory, New York" loading="lazy">
+        <div class="showcase__item__overlay">
+          <div class="showcase__item__name">Overstory</div>
+          <div class="showcase__item__city">New York</div>
+        </div>
+      </div>
+      <div class="showcase__item">
+        <img src="/bars/locale-firenze.jpg" alt="Locale Firenze, Florence" loading="lazy">
+        <div class="showcase__item__overlay">
+          <div class="showcase__item__name">Locale Firenze</div>
+          <div class="showcase__item__city">Florence</div>
+        </div>
+      </div>
+      <div class="showcase__item showcase__item--wide">
+        <img src="/bars/maybe-sammy.jpg" alt="Maybe Sammy, Sydney" loading="lazy">
+        <div class="showcase__item__overlay">
+          <div class="showcase__item__name">Maybe Sammy</div>
+          <div class="showcase__item__city">Sydney</div>
+        </div>
+      </div>
+      <div class="showcase__item showcase__item--wide">
+        <img src="/bars/moebius-milano.jpg" alt="Moebius Milano, Milan" loading="lazy">
+        <div class="showcase__item__overlay">
+          <div class="showcase__item__name">Moebius Milano</div>
+          <div class="showcase__item__city">Milan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     WHAT YOU GET
+     ======================================== -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="features__header reveal">
+      <p class="section-label">What You Get</p>
+      <h2 class="section-title" style="margin: 0 auto;">Everything your bar needs to be discovered.</h2>
+    </div>
+    <div class="features__columns">
+      <div class="features__col reveal">
+        <p class="features__col-label">Every Listing</p>
+        <h3 class="features__col-title">Standard Directory</h3>
+        <ul class="features__list">
+          <li>Your bar in our searchable global directory</li>
+          <li>Bar profile page with photo, description &amp; contact details</li>
+          <li>SEO-optimized listing on BarMagazine.com</li>
+        </ul>
+      </div>
+      <div class="features__col features__col--premium reveal reveal-delay-1">
+        <p class="features__col-label">Featured &amp; Premium</p>
+        <h3 class="features__col-title">Premium Listings Add</h3>
+        <ul class="features__list">
+          <li>Professional feature article on BarMagazine</li>
+          <li>Priority placement in directory search</li>
+          <li>Instagram promotion — posts, reels, stories</li>
+          <li>Unlimited updates: menus, events, pop-ups</li>
+          <li>"Featured in BarMagazine" badge</li>
+          <li>Cross-promotion across all channels</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     FEATURED / TRUST BARS
+     ======================================== -->
+<section class="featured-bars" id="featured">
+  <div class="container">
+    <div class="featured-bars__header reveal">
+      <p class="section-label">Already Listed</p>
+      <h2 class="section-title" style="margin: 0 auto;">Bars that call BarMagazine home.</h2>
+    </div>
+    <div class="featured-bars__grid">
+      <div class="featured-bar reveal">
+        <img src="/bars/the-connaught-bar.jpg" alt="The Connaught Bar" class="featured-bar__img" loading="lazy" width="80" height="80">
+        <div class="featured-bar__name">The Connaught Bar</div>
+        <div class="featured-bar__city">London</div>
+      </div>
+      <div class="featured-bar reveal reveal-delay-1">
+        <img src="/bars/paradiso.jpg" alt="Paradiso" class="featured-bar__img" loading="lazy" width="80" height="80">
+        <div class="featured-bar__name">Paradiso</div>
+        <div class="featured-bar__city">Barcelona</div>
+      </div>
+      <div class="featured-bar reveal reveal-delay-2">
+        <img src="/bars/the-grey-room.jpg" alt="The Grey Room" class="featured-bar__img" loading="lazy" width="80" height="80">
+        <div class="featured-bar__name">The Grey Room</div>
+        <div class="featured-bar__city">Tokyo</div>
+      </div>
+      <div class="featured-bar reveal reveal-delay-1">
+        <img src="/bars/wing-lei-bar.jpg" alt="Wing Lei Bar" class="featured-bar__img" loading="lazy" width="80" height="80">
+        <div class="featured-bar__name">Wing Lei Bar</div>
+        <div class="featured-bar__city">Macau</div>
+      </div>
+      <div class="featured-bar reveal reveal-delay-2">
+        <img src="/bars/overstory.jpg" alt="Overstory" class="featured-bar__img" loading="lazy" width="80" height="80">
+        <div class="featured-bar__name">Overstory</div>
+        <div class="featured-bar__city">New York</div>
+      </div>
+      <div class="featured-bar reveal reveal-delay-3">
+        <img src="/bars/handshake-speakeasy.jpg" alt="Handshake Speakeasy" class="featured-bar__img" loading="lazy" width="80" height="80">
+        <div class="featured-bar__name">Handshake Speakeasy</div>
+        <div class="featured-bar__city">Mexico City</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     FINAL CTA
+     ======================================== -->
+<section class="final-cta" id="cta">
+  <div class="container reveal">
+    <div class="gold-line"></div>
+    <h2 class="final-cta__title">Ready to grow your<br>bar's presence?</h2>
+    <p class="final-cta__text">Join the BarMagazine Global Directory and connect with cocktail enthusiasts worldwide.</p>
+    <a href="https://barmagazine.com/claim-your-bar" class="btn btn--primary">List Your Bar Now</a>
+    <p class="final-cta__contact">Questions? Email <a href="mailto:office@barmagazine.com">office@barmagazine.com</a></p>
+  </div>
+</section>
+
+<!-- ========================================
+     FOOTER
+     ======================================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <img src="/logo-white.png" alt="BarMagazine" class="footer__logo" width="140" height="21">
+      <div class="footer__center">
+        <a href="mailto:office@barmagazine.com">office@barmagazine.com</a>
+        <span>|</span>
+        <a href="tel:+18582578199">+1 858 257 8199</a>
+        <br>
+        <a href="https://instagram.com/barmagazine" target="_blank" rel="noopener noreferrer">Instagram @barmagazine</a>
+        <span>|</span>
+        <a href="https://barmagazine.com" target="_blank" rel="noopener noreferrer">barmagazine.com</a>
+      </div>
+      <div class="footer__right">
+        &copy; 2026 BarMagazine. All rights reserved.
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================================
+     JAVASCRIPT
+     ======================================== -->
+<script>
+(function() {
+  'use strict';
+
+  // ---- IntersectionObserver for scroll reveals ----
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ---- Animated number counters ----
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  const statsSection = document.getElementById('stats');
+  if (statsSection) counterObserver.observe(statsSection);
+
+  function animateCounters() {
+    const counters = document.querySelectorAll('.stat__number[data-target]');
+    counters.forEach(counter => {
+      const target = parseFloat(counter.dataset.target);
+      const suffix = counter.dataset.suffix || '';
+      const isDecimal = counter.dataset.decimal === 'true';
+      const duration = 1600;
+      const startTime = performance.now();
+
+      function easeOutQuart(t) {
+        return 1 - Math.pow(1 - t, 4);
+      }
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        const currentValue = target * easedProgress;
+
+        if (isDecimal) {
+          counter.textContent = currentValue.toFixed(1) + suffix;
+        } else {
+          counter.textContent = Math.floor(currentValue).toLocaleString() + suffix;
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          if (isDecimal) {
+            counter.textContent = target.toFixed(1) + suffix;
+          } else {
+            counter.textContent = target.toLocaleString() + suffix;
+          }
+        }
+      }
+
+      requestAnimationFrame(update);
+    });
+  }
+
+  // ---- Parallax effect on hero background ----
+  const heroBg = document.querySelector('.hero__bg img');
+  if (heroBg && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrolled = window.scrollY;
+          if (scrolled < window.innerHeight) {
+            heroBg.style.transform = `translateY(${scrolled * 0.3}px) scale(1.1)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+    // Initialize scale
+    heroBg.style.transform = 'scale(1.1)';
+  }
+
+})();
+</script>
+
+</body>
+</html>
