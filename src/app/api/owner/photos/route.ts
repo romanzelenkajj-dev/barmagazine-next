@@ -43,15 +43,14 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    await supabase.from('bar_submissions').insert({
+    await supabase.from('owner_submissions').insert({
       bar_id: barId, owner_id: owner.id, status: 'pending',
       submitted_data: { gallery_images: uploadedUrls },
       submission_type: 'photo_upload',
     });
 
     return NextResponse.json({ success: true, urls: uploadedUrls });
-  } catch (error) {
-    console.error('Photo upload error:', error);
+  } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
