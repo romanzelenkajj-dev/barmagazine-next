@@ -4758,3 +4758,338 @@ textarea.form-input {
     flex-wrap: wrap;
   }
 }
+
+/* ═══ Bar Profile V2 ═══ */
+.bar-v2 {
+  max-width: 100%;
+}
+
+/* Top: Photo + Map side by side */
+.bar-v2-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 380px;
+  max-height: 420px;
+  margin-bottom: 0;
+}
+.bar-v2-photo {
+  position: relative;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+.bar-v2-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.bar-v2-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.3) 100%);
+}
+.bar-v2-photo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #2a2520;
+}
+.bar-v2-initial {
+  font-size: 120px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.06);
+}
+.bar-v2-badges {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+.bar-v2-badge {
+  background: rgba(30,30,30,0.85);
+  color: #f5f0eb;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
+}
+.bar-v2-badge--featured {
+  background: #c47843;
+  color: #fff;
+}
+
+/* Map column */
+.bar-v2-map-col {
+  min-height: 380px;
+}
+.bar-v2-map {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+}
+.bar-v2-map-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 380px;
+  background: #1a1a1a;
+  color: #555;
+  gap: 8px;
+  font-size: 13px;
+}
+
+/* Info section */
+.bar-v2-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.bar-v2-info-main {
+  flex: 1;
+}
+.bar-v2-info h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+}
+.bar-v2-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 1.25rem;
+  max-width: 600px;
+}
+.bar-v2-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+.bar-v2-detail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #666;
+}
+.bar-v2-detail svg {
+  flex-shrink: 0;
+  color: #999;
+}
+.bar-v2-detail--link {
+  text-decoration: none;
+  color: #666;
+  transition: color 0.2s;
+}
+.bar-v2-detail--link:hover {
+  color: #c47843;
+}
+.bar-v2-detail--link:hover svg {
+  color: #c47843;
+}
+
+/* Action buttons */
+.bar-v2-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.bar-v2-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+}
+.bar-v2-btn--primary {
+  background: #c47843;
+  color: #fff;
+}
+.bar-v2-btn--primary:hover {
+  background: #b06835;
+}
+.bar-v2-btn--secondary {
+  background: #f5f0eb;
+  color: #1a1a1a;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.bar-v2-btn--secondary:hover {
+  background: #eae3db;
+}
+.bar-v2-btn--claim {
+  background: transparent;
+  color: #c47843;
+  border: 1px solid #c47843;
+  font-size: 13px;
+  padding: 10px 16px;
+}
+.bar-v2-btn--claim:hover {
+  background: #c47843;
+  color: #fff;
+}
+
+/* Gallery */
+.bar-v2-gallery {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.bar-v2-gallery h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+.bar-v2-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.bar-v2-gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.bar-v2-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.bar-v2-gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Nearby Bars */
+.bar-v2-nearby {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.bar-v2-nearby h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+.bar-v2-nearby-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.bar-v2-nearby-card {
+  text-decoration: none;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.bar-v2-nearby-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+.bar-v2-nearby-img {
+  aspect-ratio: 3/2;
+  overflow: hidden;
+}
+.bar-v2-nearby-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.bar-v2-nearby-card:hover .bar-v2-nearby-img img {
+  transform: scale(1.05);
+}
+.bar-v2-nearby-body {
+  padding: 12px 14px;
+}
+.bar-v2-nearby-body h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+}
+.bar-v2-nearby-body span {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* CTA Banner */
+.bar-v2-cta {
+  margin: 2rem 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2a2520 0%, #1a1a1a 100%);
+  padding: 2rem;
+}
+.bar-v2-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.bar-v2-cta h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #f5f0eb;
+  margin: 0 0 6px;
+}
+.bar-v2-cta p {
+  font-size: 14px;
+  color: #a09888;
+  margin: 0;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .bar-v2-top {
+    grid-template-columns: 1fr;
+    max-height: none;
+  }
+  .bar-v2-photo {
+    aspect-ratio: 16/10;
+  }
+  .bar-v2-map-col {
+    min-height: 250px;
+  }
+  .bar-v2-map {
+    min-height: 250px;
+  }
+  .bar-v2-info {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .bar-v2-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .bar-v2-nearby-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bar-v2-cta-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
