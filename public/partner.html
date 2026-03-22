@@ -42,7 +42,7 @@
   --color-border: #2a2a2a;
 
   /* Typography */
-  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */
@@ -147,6 +147,7 @@ a {
   text-transform: uppercase;
   padding: 16px 40px;
   border: none;
+  border-radius: 100px;
   cursor: pointer;
   transition: background var(--transition-interactive),
               transform var(--transition-interactive),
@@ -173,6 +174,7 @@ a {
   background: transparent;
   color: var(--color-gold);
   border: 1px solid var(--color-gold);
+  border-radius: 100px;
 }
 
 .btn--outline:hover {
@@ -239,7 +241,7 @@ a {
 .hero__title {
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 7vw, 5.5rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--color-text);
@@ -343,6 +345,7 @@ a {
 .why-card {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
+  border-radius: 20px;
   padding: var(--space-2xl);
   transition: border-color var(--transition-interactive);
 }
@@ -396,6 +399,7 @@ a {
 .showcase__item {
   position: relative;
   overflow: hidden;
+  border-radius: 16px;
 }
 
 .showcase__item--tall {
@@ -470,6 +474,7 @@ a {
 .features__col {
   padding: var(--space-2xl);
   border: 1px solid var(--color-border);
+  border-radius: 20px;
   background: var(--color-bg-card);
 }
 
@@ -549,6 +554,7 @@ a {
   text-align: center;
   padding: var(--space-xl);
   border: 1px solid var(--color-border);
+  border-radius: 20px;
   background: var(--color-bg-card);
   transition: border-color var(--transition-interactive);
 }
