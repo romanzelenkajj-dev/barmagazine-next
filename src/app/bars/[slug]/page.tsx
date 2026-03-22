@@ -99,29 +99,24 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         <span>{bar.name}</span>
       </nav>
 
-      {/* ═══ V2 LAYOUT: Photo + Map side by side ═══ */}
+      {/* ═══ V2 LAYOUT: Photo hero on top, map at bottom ═══ */}
       <div className="bar-v2">
-        <div className="bar-v2-top">
-          <div className="bar-v2-photo">
-            {hasImage ? (
-              <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={bar.photos[0]} alt={bar.name} />
-                <div className="bar-v2-photo-overlay" />
-              </>
-            ) : (
-              <div className="bar-v2-photo-placeholder">
-                <span className="bar-v2-initial">{bar.name.charAt(0)}</span>
-              </div>
-            )}
-            <div className="bar-v2-badges">
-              <span className="bar-v2-badge">{formatBarType(bar.type)}</span>
-              {(isPaid || bar.wp_article_slug) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+        {/* Hero Photo — full width */}
+        <div className="bar-v2-hero">
+          {hasImage ? (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={bar.photos[0]} alt={bar.name} />
+              <div className="bar-v2-photo-overlay" />
+            </>
+          ) : (
+            <div className="bar-v2-photo-placeholder">
+              <span className="bar-v2-initial">{bar.name.charAt(0)}</span>
             </div>
-          </div>
-
-          <div className="bar-v2-map-col">
-            <BarProfileClient lat={bar.lat} lng={bar.lng} name={bar.name} />
+          )}
+          <div className="bar-v2-badges">
+            <span className="bar-v2-badge">{formatBarType(bar.type)}</span>
+            {(isPaid || bar.wp_article_slug) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
           </div>
         </div>
 
@@ -230,6 +225,16 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 List Your Bar
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
               </Link>
+            </div>
+          </div>
+        )}
+
+        {/* Location Map — bottom of page */}
+        {bar.lat && bar.lng && (
+          <div className="bar-v2-location">
+            <h2>Location</h2>
+            <div className="bar-v2-location-map">
+              <BarProfileClient lat={bar.lat} lng={bar.lng} name={bar.name} />
             </div>
           </div>
         )}
