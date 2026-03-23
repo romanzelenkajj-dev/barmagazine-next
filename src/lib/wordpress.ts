@@ -265,12 +265,17 @@ export function rewriteImageUrl(url: string): string {
 export function rewriteContentImageUrls(html: string): string {
   if (!html) return html;
   let result = html;
-  // Rewrite barmagazine.com URLs to CDN
+  // Rewrite staging domain article links to barmagazine.com (NOT images/uploads)
+  result = result.replace(
+    /href="https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/(?!wp-content\/uploads\/)([^"]*)"/g,
+    'href="https://barmagazine.com/$1"'
+  );
+  // Rewrite barmagazine.com image URLs to CDN
   result = result.replace(
     /https:\/\/barmagazine\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
     'https://i0.wp.com/barmagazine.com/wp-content/uploads/$1'
   );
-  // Rewrite wpcomstaging.com URLs to CDN
+  // Rewrite wpcomstaging.com image URLs to CDN
   result = result.replace(
     /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
     'https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/$1'
