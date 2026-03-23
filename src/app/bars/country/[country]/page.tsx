@@ -92,6 +92,17 @@ export default async function CountryPage({
     return a.name.localeCompare(b.name);
   });
 
+  // JSON-LD — BreadcrumbList
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Bar Directory', item: `${SITE_URL}/bars` },
+      { '@type': 'ListItem', position: 3, name: countryName, item: `${SITE_URL}/bars/country/${params.country}` },
+    ],
+  };
+
   // JSON-LD — ItemList schema
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -118,11 +129,6 @@ export default async function CountryPage({
         ...(bar.photos?.[0] && { image: bar.photos[0] }),
       },
     })),
-    creator: {
-      '@type': 'SoftwareApplication',
-      name: 'Perplexity Computer',
-      url: 'https://www.perplexity.ai/computer',
-    },
   };
 
   return (
@@ -130,6 +136,10 @@ export default async function CountryPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
       {/* Breadcrumb */}

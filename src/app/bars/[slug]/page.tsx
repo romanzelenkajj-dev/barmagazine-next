@@ -1,11 +1,20 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getBarBySlug, getBarsByCity } from '@/lib/supabase';
-import { formatBarType } from '@/lib/utils';
+import { getBarBySlug, getBarsByCity, getBars } from '@/lib/supabase';
+import { formatBarType, toUrlSlug } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
 
 export const revalidate = 300;
+
+// ---------------------------------------------------------------------------
+// Static params — pre-build bar profile pages at build time for faster
+// indexing by search engines
+// ---------------------------------------------------------------------------
+export async function generateStaticParams() {
+  const { bars } = await getBars({ perPage: 2000 });
+  return bars.map(bar => ({ slug: bar.slug }));
+}
 
 const SITE_URL = 'https://barmagazine.com';
 
@@ -82,8 +91,11 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Bar Directory', item: `${SITE_URL}/bars` },
-      { '@type': 'ListItem', position: 2, name: bar.name, item: `${SITE_URL}/bars/${bar.slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Bar Directory', item: `${SITE_URL}/bars` },
+      { '@type': 'ListItem', position: 3, name: bar.country, item: `${SITE_URL}/bars/country/${toUrlSlug(bar.country)}` },
+      { '@type': 'ListItem', position: 4, name: bar.city, item: `${SITE_URL}/bars/city/${toUrlSlug(bar.city)}` },
+      { '@type': 'ListItem', position: 5, name: bar.name, item: `${SITE_URL}/bars/${bar.slug}` },
     ],
   };
 
@@ -95,6 +107,10 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
       {/* Breadcrumb */}
       <nav className="bar-breadcrumb">
         <Link href="/bars">Bar Directory</Link>
+        <span className="bar-breadcrumb-sep">/</span>
+        <Link href={`/bars/country/${toUrlSlug(bar.country)}`}>{bar.country}</Link>
+        <span className="bar-breadcrumb-sep">/</span>
+        <Link href={`/bars/city/${toUrlSlug(bar.city)}`}>{bar.city}</Link>
         <span className="bar-breadcrumb-sep">/</span>
         <span>{bar.name}</span>
       </nav>

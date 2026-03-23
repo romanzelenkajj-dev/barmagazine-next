@@ -36,6 +36,7 @@ export default function robots(): MetadataRoute.Robots {
     ],
     sitemap: [
       'https://barmagazine.com/sitemap.xml',
+      'https://barmagazine.com/sitemap-bars.xml',
       'https://barmagazine.com/sitemap-news.xml',
     ],
   };

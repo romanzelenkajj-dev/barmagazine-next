@@ -128,11 +128,6 @@ export default async function CityPage({
         ...(bar.photos?.[0] && { image: bar.photos[0] }),
       },
     })),
-    creator: {
-      '@type': 'SoftwareApplication',
-      name: 'Perplexity Computer',
-      url: 'https://www.perplexity.ai/computer',
-    },
   };
 
   return (

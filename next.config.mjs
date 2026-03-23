@@ -69,6 +69,10 @@ const nextConfig = {
         destination: '/api/sitemap-news',
       },
       {
+        source: '/sitemap-bars.xml',
+        destination: '/api/sitemap-bars',
+      },
+      {
         source: '/partner',
         destination: '/partner.html',
       },
