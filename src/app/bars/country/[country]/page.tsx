@@ -39,7 +39,7 @@ export async function generateMetadata({
   const cities = Array.from(new Set(bars.map(b => b.city))).sort();
   const cityCount = cities.length;
   const description =
-    `Discover the ${bars.length} best bars in ${countryName} — ` +
+    `Discover the best bars in ${countryName} — ` +
     `spanning ${cityCount} ${cityCount === 1 ? 'city' : 'cities'} including ` +
     `${cities.slice(0, 3).join(', ')}${cities.length > 3 ? ' and more' : ''}. ` +
     `Curated by BarMagazine.`;

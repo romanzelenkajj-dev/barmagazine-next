@@ -37,7 +37,7 @@ export async function generateMetadata({
   const bars = await getBarsByCity(cityName);
 
   const description =
-    `Discover the ${bars.length} best bars in ${cityName}, ${countryName}. ` +
+    `Discover the best bars in ${cityName}, ${countryName}. ` +
     `From cocktail bars and speakeasies to hotel bars and wine bars — ` +
     `curated by BarMagazine.`;
 
