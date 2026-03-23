@@ -294,7 +294,7 @@ export function extractFaqPairs(html: string): Array<{ question: string; answer:
   const pairs: Array<{ question: string; answer: string }> = [];
 
   // Pattern 1: Bold text ending with "?" followed by a paragraph
-  const boldQA = html.matchAll(/<(?:b|strong)[^>]*>([^<]*\?)<\/(?:b|strong)>\s*<\/p>\s*<p[^>]*>(.*?)<\/p>/gi);
+  const boldQA = Array.from(html.matchAll(/<(?:b|strong)[^>]*>([^<]*\?)<\/(?:b|strong)>\s*<\/p>\s*<p[^>]*>(.*?)<\/p>/gi));
   for (const m of boldQA) {
     const q = m[1].replace(/<[^>]+>/g, '').trim();
     const a = m[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -305,7 +305,7 @@ export function extractFaqPairs(html: string): Array<{ question: string; answer:
 
   // Pattern 2: H2/H3 headings phrased as questions
   if (pairs.length < 3) {
-    const headingQA = html.matchAll(/<h[23][^>]*>([^<]*\?[^<]*)<\/h[23]>\s*<p[^>]*>(.*?)<\/p>/gi);
+    const headingQA = Array.from(html.matchAll(/<h[23][^>]*>([^<]*\?[^<]*)<\/h[23]>\s*<p[^>]*>(.*?)<\/p>/gi));
     for (const m of headingQA) {
       const q = m[1].replace(/<[^>]+>/g, '').trim();
       const a = m[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -317,7 +317,7 @@ export function extractFaqPairs(html: string): Array<{ question: string; answer:
 
   // Pattern 3: Numbered list items with questions ("1. What is...") — common in listicle articles
   if (pairs.length < 3) {
-    const numberedQA = html.matchAll(/<h[23][^>]*>\s*(?:\d+\.?\s*)?([^<]*\?[^<]*)<\/h[23]>\s*(?:<[^>]+>)*\s*<p[^>]*>(.*?)<\/p>/gi);
+    const numberedQA = Array.from(html.matchAll(/<h[23][^>]*>\s*(?:\d+\.?\s*)?([^<]*\?[^<]*)<\/h[23]>\s*(?:<[^>]+>)*\s*<p[^>]*>(.*?)<\/p>/gi));
     for (const m of numberedQA) {
       const q = m[1].replace(/<[^>]+>/g, '').trim();
       const a = m[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
