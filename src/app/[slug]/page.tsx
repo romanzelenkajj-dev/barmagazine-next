@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { format } from 'date-fns';
-import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, getPostTags, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls } from '@/lib/wordpress';
+import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, getPostTags, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls, extractFaqPairs } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
 import { upgradeGalleryImages, cleanTitle } from '@/lib/utils';
 import type { Metadata } from 'next';
@@ -105,6 +105,21 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     },
   };
 
+  // FAQPage JSON-LD (auto-extracted from Q&A content)
+  const faqPairs = extractFaqPairs(post.content.rendered);
+  const faqLd = faqPairs.length >= 2 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqPairs.map(pair => ({
+      '@type': 'Question',
+      name: pair.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: pair.answer,
+      },
+    })),
+  } : null;
+
   // BreadcrumbList JSON-LD
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -141,6 +156,12 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
 
       {/* Breadcrumb navigation */}
       <nav className="article-breadcrumb">
