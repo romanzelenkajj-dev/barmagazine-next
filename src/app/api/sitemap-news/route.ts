@@ -6,15 +6,35 @@ const SITE_URL = 'https://barmagazine.com';
 interface WPNewsPost {
   slug: string;
   date: string;
-  modified: string;
   title: { rendered: string };
-  _embedded?: {
-    'wp:term'?: Array<Array<{ name: string; taxonomy: string }>>;
-  };
+  categories: number[];
 }
 
+// Map of category IDs to names (from CATEGORY_MAP in wordpress.ts)
+const CATEGORY_NAMES: Record<number, string> = {
+  6: 'Bar Tour',
+  63: 'Bars',
+  1: 'Blog',
+  8: 'Cocktails',
+  40: 'Features',
+  44: 'Flavours',
+  52: 'News',
+  199: 'People',
+  200: 'Awards & Events',
+  201: 'Brands',
+};
+
 function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#8217;/g, "'").replace(/&#8216;/g, "'").replace(/&#8220;/g, '"').replace(/&#8221;/g, '"').replace(/&quot;/g, '"');
+  return html
+    .replace(/<[^>]*>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8216;/g, "'")
+    .replace(/&#8220;/g, '"')
+    .replace(/&#8221;/g, '"')
+    .replace(/&quot;/g, '"');
 }
 
 function escapeXml(str: string): string {
@@ -28,10 +48,10 @@ function escapeXml(str: string): string {
 
 export async function GET() {
   try {
-    // Fetch recent posts (last 48 hours is the Google News sitemap standard, but we include up to 50 recent ones)
+    // Fetch the 50 most recent posts
     const res = await fetch(
-      `${WP_API}/posts?per_page=50&orderby=date&order=desc&_fields=slug,date,modified,title&_embed=wp:term`,
-      { next: { revalidate: 900 } } // refresh every 15 minutes
+      `${WP_API}/posts?per_page=50&orderby=date&order=desc&_fields=slug,date,title,categories`,
+      { next: { revalidate: 900 } }
     );
 
     if (!res.ok) {
@@ -40,23 +60,21 @@ export async function GET() {
 
     const posts: WPNewsPost[] = await res.json();
 
-    // Filter to only posts from the last 48 hours (Google News requirement)
+    // Filter to posts from the last 48 hours (Google News sitemap standard)
     const cutoff = new Date();
     cutoff.setHours(cutoff.getHours() - 48);
-
     const recentPosts = posts.filter(post => new Date(post.date) >= cutoff);
 
     const urls = recentPosts.map(post => {
       const title = escapeXml(stripHtml(post.title.rendered));
       const pubDate = new Date(post.date).toISOString();
 
-      // Get categories from embedded terms
-      const categories = post._embedded?.['wp:term']?.[0]
-        ?.filter(t => t.taxonomy === 'category')
-        ?.map(t => t.name) || [];
+      const keywords = post.categories
+        .map(id => CATEGORY_NAMES[id])
+        .filter(Boolean);
 
-      const keywordsTag = categories.length > 0
-        ? `        <news:keywords>${escapeXml(categories.join(', '))}</news:keywords>\n`
+      const keywordsTag = keywords.length > 0
+        ? `        <news:keywords>${escapeXml(keywords.join(', '))}</news:keywords>\n`
         : '';
 
       return `  <url>
@@ -80,11 +98,11 @@ ${urls.join('\n')}
 
     return new NextResponse(xml, {
       headers: {
-        'Content-Type': 'application/xml',
+        'Content-Type': 'application/xml; charset=utf-8',
         'Cache-Control': 'public, max-age=900, s-maxage=900',
       },
     });
-  } catch (error) {
+  } catch {
     return new NextResponse('Error generating news sitemap', { status: 500 });
   }
 }
