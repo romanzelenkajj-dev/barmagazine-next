@@ -486,12 +486,11 @@ export default function AdminBarsClient() {
               })}
             <PhotoManager
               barId={editingBar.id}
-              barName={editingBar.name}
-              existingPhotos={editingBar.photos || []}
+                             photos={editingBar.photos || []}
               adminSecret={adminSecret}
-              onPhotosUpdated={(photos) => {
-                setBars(prev => prev.map(b => b.id === editingBar.id ? { ...b, photos } : b));
-                setEditingBar(prev => prev ? { ...prev, photos } : prev);
+              onUpdate={(updatedBar) => {
+                setBars(prev => prev.map(b => b.id === editingBar.id ? { ...b, photos: updatedBar.photos } : b));
+                setEditingBar(prev => prev ? { ...prev, photos: updatedBar.photos } : prev);
               }}
             />
           </div>
