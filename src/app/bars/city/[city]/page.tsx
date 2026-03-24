@@ -34,7 +34,6 @@ export async function generateMetadata({
 
   const cityName = match.city;
   const countryName = match.country;
-  const bars = await getBarsByCity(cityName);
 
   const description =
     `Discover the best bars in ${cityName}, ${countryName}. ` +
