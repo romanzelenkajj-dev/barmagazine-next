@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import Link from 'next/link';
+import PhotoManager from './PhotoManager';
 
 interface Bar {
   id: string;
@@ -197,6 +199,23 @@ export default function AdminBarsClient() {
     }
   };
 
+  const deleteBar = async (bar: Bar) => {
+    if (!confirm(`Delete \"${bar.name}\"? This cannot be undone.`)) return;
+    try {
+      const res = await fetch('/api/admin/manage-bar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret },
+        body: JSON.stringify({ action: 'delete', barId: bar.id }),
+      });
+      if (!res.ok) throw new Error('Delete failed');
+      setBars(prev => prev.filter(b => b.id !== bar.id));
+      setEditingBar(null);
+      showToast(`${bar.name} deleted`, 'success');
+    } catch {
+      showToast('Failed to delete bar', 'error');
+    }
+  };
+
   // Filtered + sorted bars
   const filteredBars = useMemo(() => {
     const q = search.toLowerCase();
@@ -270,6 +289,7 @@ export default function AdminBarsClient() {
         <div style={styles.headerLeft}>
           <h1 style={styles.title}>Bar Directory Admin</h1>
           <span style={styles.badge}>{filteredBars.length} / {bars.length} bars</span>
+            <Link href="/admin/submissions" style={styles.submissionsLink}>Submissions</Link>
         </div>
         <button
           style={styles.logoutBtn}
@@ -388,7 +408,10 @@ export default function AdminBarsClient() {
           <div style={styles.modal} onClick={e => e.stopPropagation()}>
             <div style={styles.modalHeader}>
               <h2 style={styles.modalTitle}>Edit: {editingBar.name}</h2>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <button onClick={() => deleteBar(editingBar)} style={styles.deleteBtn} disabled={saving}>Delete Bar</button>
               <button onClick={() => !saving && setEditingBar(null)} style={styles.modalClose}>✕</button>
+            </div>
             </div>
             <div style={styles.modalBody}>
               {EDITABLE_FIELDS.map(field => {
@@ -461,8 +484,18 @@ export default function AdminBarsClient() {
                   </label>
                 );
               })}
-            </div>
-            <div style={styles.modalFooter}>
+            <PhotoManager
+              barId={editingBar.id}
+              barName={editingBar.name}
+              existingPhotos={editingBar.photos || []}
+              adminSecret={adminSecret}
+              onPhotosUpdated={(photos) => {
+                setBars(prev => prev.map(b => b.id === editingBar.id ? { ...b, photos } : b));
+                setEditingBar(prev => prev ? { ...prev, photos } : prev);
+              }}
+            />
+          </div>
+          <div style={styles.modalFooter}>
               <button onClick={() => setEditingBar(null)} style={styles.cancelBtn} disabled={saving}>Cancel</button>
               <button onClick={saveChanges} style={styles.saveBtn} disabled={saving}>
                 {saving ? 'Saving...' : 'Save Changes'}
@@ -821,6 +854,25 @@ const styles: Record<string, React.CSSProperties> = {
     outline: 'none',
     fontFamily: 'inherit',
     textAlign: 'center' as const,
+  },
+  submissionsLink: {
+    fontSize: 13,
+    fontWeight: 600,
+    color: '#C4603C',
+    border: '1px solid #C4603C',
+    borderRadius: 100,
+    padding: '4px 14px',
+    textDecoration: 'none',
+  },
+  deleteBtn: {
+    fontSize: 12,
+    fontWeight: 600,
+    color: '#dc2626',
+    background: 'none',
+    border: '1px solid #dc2626',
+    borderRadius: 8,
+    padding: '6px 14px',
+    cursor: 'pointer',
   },
   loginBtn: {
     fontSize: 15,
