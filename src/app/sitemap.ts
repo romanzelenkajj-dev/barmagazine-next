@@ -5,10 +5,12 @@ import { toUrlSlug } from '@/lib/utils';
 const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com';
 const SITE_URL = 'https://barmagazine.com';
 
-// Category slugs used in navigation
+// Category slugs that exist in WordPress and have dedicated/redirected pages
+// Removed: news, features (don't exist in WP, were causing 404s)
+// spirits/wines redirect to brands; mocktails redirects to cocktails;
+// interviews/books redirect to people (handled in next.config.js)
 const CATEGORY_SLUGS = [
-  'cocktails', 'spirits', 'wines', 'mocktails',
-  'news', 'features', 'interviews', 'people', 'awards', 'brands', 'events',
+  'cocktails', 'people', 'awards', 'brands', 'events', 'bars',
 ];
 
 interface WPPostSitemap {
