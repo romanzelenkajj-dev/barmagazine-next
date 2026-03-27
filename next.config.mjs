@@ -1,32 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'barmagazine.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i0.wp.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i1.wp.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'i2.wp.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'secure.gravatar.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'romanzelenka-wjgek.wpcomstaging.com',
-      },
-    ],
+    unoptimized: true,
   },
   // 301 redirects: old WordPress URLs → new Next.js equivalents
   async redirects() {
