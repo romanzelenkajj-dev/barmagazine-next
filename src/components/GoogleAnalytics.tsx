@@ -14,11 +14,11 @@ declare global {
 
 export function GoogleAnalytics() {
   useEffect(() => {
-    // On mount, check if user previously accepted and upgrade consent
+    // On mount, if user previously rejected, downgrade to cookieless
     const status = getConsentStatus();
-    if (status === 'accepted' && typeof window.gtag === 'function') {
+    if (status === 'rejected' && typeof window.gtag === 'function') {
       window.gtag('consent', 'update', {
-        analytics_storage: 'granted',
+        analytics_storage: 'denied',
       });
     }
 
@@ -35,15 +35,19 @@ export function GoogleAnalytics() {
     return () => window.removeEventListener('cookie-consent-change', handler);
   }, []);
 
-  // Always render GA — consent mode handles cookie compliance
   return (
     <>
+      {/* 
+        Consent Mode v2: default to granted so all visits are tracked.
+        If the user rejects cookies, we downgrade to cookieless pings
+        (GA still records the session but without personal identifiers).
+      */}
       <Script id="ga-consent-default" strategy="beforeInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('consent', 'default', {
-            analytics_storage: 'denied',
+            analytics_storage: 'granted',
           });
         `}
       </Script>
