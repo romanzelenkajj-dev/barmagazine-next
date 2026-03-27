@@ -5,10 +5,12 @@ import { toUrlSlug } from '@/lib/utils';
 const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com';
 const SITE_URL = 'https://barmagazine.com';
 
-// Category slugs used in navigation
+// Category slugs that exist in WordPress and have dedicated/redirected pages
+// Removed: news, features (don't exist in WP, were causing 404s)
+// spirits/wines redirect to brands; mocktails redirects to cocktails;
+// interviews/books redirect to people (handled in next.config.js)
 const CATEGORY_SLUGS = [
-  'cocktails', 'spirits', 'wines', 'mocktails',
-  'news', 'features', 'interviews', 'people', 'awards', 'brands', 'events',
+  'cocktails', 'people', 'awards', 'brands', 'events', 'bars',
 ];
 
 interface WPPostSitemap {
@@ -106,7 +108,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${SITE_URL}/bars/${bar.slug}`,
       lastModified: new Date(bar.updated_at || bar.created_at),
       changeFrequency: 'weekly' as const,
-      priority: bar.tier === 'premium' ? 0.7 : bar.tier === 'featured' ? 0.6 : 0.5,
+      priority: bar.tier === 'premium' ? 0.8 : bar.tier === 'featured' ? 0.7 : 0.6,
     }));
 
   // /bars directory listing page
@@ -114,7 +116,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${SITE_URL}/bars`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
-    priority: 0.7,
+    priority: 0.9,
   }];
 
   // Country and city landing pages
@@ -123,7 +125,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${SITE_URL}/bars/country/${toUrlSlug(c.country)}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: 0.6,
+    priority: 0.8,
   }));
 
   const cities = await getCitiesWithCounts();
@@ -131,7 +133,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${SITE_URL}/bars/city/${toUrlSlug(c.city)}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: 0.5,
+    priority: 0.7,
   }));
 
   return [...staticPages, ...categoryPages, ...articlePages, ...directoryPage, ...barPages, ...countryPages, ...cityPages];

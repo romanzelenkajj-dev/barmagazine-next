@@ -147,6 +147,7 @@ function AddYourBarForm() {
         }
         // Free plan: show success message
         setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setError('Something went wrong. Please try again or email us directly at office@barmagazine.com.');
       }

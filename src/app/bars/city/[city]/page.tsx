@@ -34,10 +34,9 @@ export async function generateMetadata({
 
   const cityName = match.city;
   const countryName = match.country;
-  const bars = await getBarsByCity(cityName);
 
   const description =
-    `Discover the ${bars.length} best bars in ${cityName}, ${countryName}. ` +
+    `Discover the best bars in ${cityName}, ${countryName}. ` +
     `From cocktail bars and speakeasies to hotel bars and wine bars — ` +
     `curated by BarMagazine.`;
 
@@ -90,6 +89,18 @@ export default async function CityPage({
   // Bar types breakdown for subtitle
   const types = Array.from(new Set(bars.map(b => b.type))).sort();
 
+  // JSON-LD — BreadcrumbList
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Bar Directory', item: `${SITE_URL}/bars` },
+      { '@type': 'ListItem', position: 3, name: countryName, item: `${SITE_URL}/bars/country/${toUrlSlug(countryName)}` },
+      { '@type': 'ListItem', position: 4, name: cityName, item: `${SITE_URL}/bars/city/${params.city}` },
+    ],
+  };
+
   // JSON-LD — ItemList schema
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -116,11 +127,6 @@ export default async function CityPage({
         ...(bar.photos?.[0] && { image: bar.photos[0] }),
       },
     })),
-    creator: {
-      '@type': 'SoftwareApplication',
-      name: 'Perplexity Computer',
-      url: 'https://www.perplexity.ai/computer',
-    },
   };
 
   return (
@@ -128,6 +134,10 @@ export default async function CityPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
       {/* Breadcrumb */}
@@ -147,9 +157,9 @@ export default async function CityPage({
           <div className="directory-hero-badge">{bars.length} Bars</div>
           <h1>Best Bars in {cityName}</h1>
           <p>
-            {bars.length} curated {bars.length === 1 ? 'bar' : 'bars'} in {cityName},{' '}
-            {countryName}
-            {types.length > 0 && ` — ${types.slice(0, 3).map(t => formatBarType(t)).join(', ')}${types.length > 3 ? ' & more' : ''}`}
+            Explore {bars.length === 1 ? 'the top bar' : `the ${bars.length} best bars`} in {cityName},{' '}
+            {countryName} — handpicked by BarMagazine.
+            {types.length > 0 && ` Featuring ${types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}${types.length > 3 ? ' and more' : ''}.`}
           </p>
         </div>
       </div>

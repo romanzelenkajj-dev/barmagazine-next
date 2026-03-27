@@ -265,17 +265,75 @@ export function rewriteImageUrl(url: string): string {
 export function rewriteContentImageUrls(html: string): string {
   if (!html) return html;
   let result = html;
-  // Rewrite barmagazine.com URLs to CDN
+  // Rewrite staging domain article links to barmagazine.com (NOT images/uploads)
+  result = result.replace(
+    /href="https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/(?!wp-content\/uploads\/)([^"]*)"/g,
+    'href="https://barmagazine.com/$1"'
+  );
+  // Rewrite barmagazine.com image URLs to CDN
   result = result.replace(
     /https:\/\/barmagazine\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
     'https://i0.wp.com/barmagazine.com/wp-content/uploads/$1'
   );
-  // Rewrite wpcomstaging.com URLs to CDN
+  // Rewrite wpcomstaging.com image URLs to CDN
   result = result.replace(
     /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
     'https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/$1'
   );
   return result;
+}
+
+/**
+ * Extract FAQ-style Q&A pairs from article HTML content.
+ * Detects bold questions followed by paragraph answers, or h2/h3 headings
+ * phrased as questions (containing "?") followed by content.
+ * Returns up to 5 pairs for FAQPage schema.
+ */
+export function extractFaqPairs(html: string): Array<{ question: string; answer: string }> {
+  if (!html) return [];
+  const pairs: Array<{ question: string; answer: string }> = [];
+
+  // Pattern 1: Bold text ending with "?" followed by a paragraph
+  const boldQA = Array.from(html.matchAll(/<(?:b|strong)[^>]*>([^<]*\?)<\/(?:b|strong)>\s*<\/p>\s*<p[^>]*>(.*?)<\/p>/gi));
+  for (const m of boldQA) {
+    const q = m[1].replace(/<[^>]+>/g, '').trim();
+    const a = m[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    if (q.length > 15 && q.length < 200 && a.length > 30 && a.length < 500) {
+      pairs.push({ question: q, answer: a });
+    }
+  }
+
+  // Pattern 2: H2/H3 headings phrased as questions
+  if (pairs.length < 3) {
+    const headingQA = Array.from(html.matchAll(/<h[23][^>]*>([^<]*\?[^<]*)<\/h[23]>\s*<p[^>]*>(.*?)<\/p>/gi));
+    for (const m of headingQA) {
+      const q = m[1].replace(/<[^>]+>/g, '').trim();
+      const a = m[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+      if (q.length > 15 && q.length < 200 && a.length > 30 && a.length < 500) {
+        pairs.push({ question: q, answer: a });
+      }
+    }
+  }
+
+  // Pattern 3: Numbered list items with questions ("1. What is...") — common in listicle articles
+  if (pairs.length < 3) {
+    const numberedQA = Array.from(html.matchAll(/<h[23][^>]*>\s*(?:\d+\.?\s*)?([^<]*\?[^<]*)<\/h[23]>\s*(?:<[^>]+>)*\s*<p[^>]*>(.*?)<\/p>/gi));
+    for (const m of numberedQA) {
+      const q = m[1].replace(/<[^>]+>/g, '').trim();
+      const a = m[2].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+      if (q.length > 15 && q.length < 200 && a.length > 30) {
+        pairs.push({ question: q, answer: a.slice(0, 500) });
+      }
+    }
+  }
+
+  // Deduplicate and limit to 5
+  const seen = new Set<string>();
+  return pairs.filter(p => {
+    if (seen.has(p.question)) return false;
+    seen.add(p.question);
+    return true;
+  }).slice(0, 5);
 }
 
 // Category ID map (from the live site)

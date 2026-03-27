@@ -1,32 +1,56 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Script from 'next/script';
-import { getConsentStatus, type ConsentStatus } from './CookieConsent';
+import { getConsentStatus } from './CookieConsent';
 
 const GA_ID = 'G-JBGVJDXD9E';
 
+declare global {
+  interface Window {
+    gtag: (...args: unknown[]) => void;
+  }
+}
+
 export function GoogleAnalytics() {
-  const [consent, setConsent] = useState<ConsentStatus>(null);
-
   useEffect(() => {
-    // Check initial consent status
-    setConsent(getConsentStatus());
+    // On mount, if user previously rejected, downgrade to cookieless
+    const status = getConsentStatus();
+    if (status === 'rejected' && typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        analytics_storage: 'denied',
+      });
+    }
 
-    // Listen for consent changes
+    // Listen for future consent changes from the cookie banner
     const handler = (e: Event) => {
-      const detail = (e as CustomEvent).detail as ConsentStatus;
-      setConsent(detail);
+      const detail = (e as CustomEvent).detail;
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          analytics_storage: detail === 'accepted' ? 'granted' : 'denied',
+        });
+      }
     };
     window.addEventListener('cookie-consent-change', handler);
     return () => window.removeEventListener('cookie-consent-change', handler);
   }, []);
 
-  // Only render GA scripts when consent is explicitly accepted
-  if (consent !== 'accepted') return null;
-
   return (
     <>
+      {/* 
+        Consent Mode v2: default to granted so all visits are tracked.
+        If the user rejects cookies, we downgrade to cookieless pings
+        (GA still records the session but without personal identifiers).
+      */}
+      <Script id="ga-consent-default" strategy="beforeInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            analytics_storage: 'granted',
+          });
+        `}
+      </Script>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
         strategy="afterInteractive"
