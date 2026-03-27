@@ -168,6 +168,9 @@ export async function POST(request: Request) {
       contact_name: data.contact_name || null,
     };
 
+    // Send notification email FIRST — even if DB insert fails, we want the email
+    await sendNotificationEmail(data, photoUrl);
+
     const { data: submission, error } = await supabaseAdmin
       .from('bar_submissions')
       .insert(insertData)
@@ -176,16 +179,12 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error('Supabase insert error:', JSON.stringify(error));
-      return NextResponse.json(
-        { success: false, error: 'Failed to save submission' },
-        { status: 500 }
-      );
+      // Still return success — the email was sent, submission is logged
+      console.log('BAR_SUBMISSION_FALLBACK:', JSON.stringify({ ...insertData, photo_url: photoUrl }));
+      return NextResponse.json({ success: true, note: 'Email sent, DB save failed — check logs' });
     }
 
     console.log('New bar submission saved:', submission.id, photoUrl ? `with photo: ${photoUrl}` : 'no photo');
-
-    // Send notification email — must await in serverless to prevent early termination
-    await sendNotificationEmail(data, photoUrl);
 
     return NextResponse.json({ success: true, id: submission.id });
   } catch (e) {

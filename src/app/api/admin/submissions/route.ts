@@ -25,24 +25,29 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const status = searchParams.get('status') || 'pending';
 
+  // First try with status filter, fall back to all if column doesn't exist
+  let submissions;
   const { data, error } = await supabase
     .from('bar_submissions')
     .select('*')
-    .eq('status', status)
     .order('created_at', { ascending: false });
 
   if (error) {
-    // If status column doesn't exist, try without filter
-    const { data: allData, error: allError } = await supabase
-      .from('bar_submissions')
-      .select('*')
-      .order('created_at', { ascending: false });
-    
-    if (allError) return NextResponse.json({ error: allError.message }, { status: 500 });
-    return NextResponse.json({ submissions: allData });
+    return NextResponse.json({ error: error.message, submissions: [] }, { status: 500 });
   }
 
-  return NextResponse.json({ submissions: data });
+  // Filter by status client-side (in case column exists or doesn't)
+  if (status && status !== 'all') {
+    submissions = (data || []).filter((s: Record<string, unknown>) => {
+      // If no status column, treat all as pending
+      const sStatus = s.status || 'pending';
+      return sStatus === status;
+    });
+  } else {
+    submissions = data || [];
+  }
+
+  return NextResponse.json({ submissions });
 }
 
 // POST — approve or reject a submission
