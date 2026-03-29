@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
+import { geocodeBar } from '@/lib/geocode';
 
 function getServiceClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -79,6 +80,14 @@ export async function POST(request: NextRequest) {
       .replace(/[\s-]+/g, '-')
       .trim();
 
+    // Geocode the bar
+    const coords = await geocodeBar({
+      name: submission.name,
+      address: submission.address,
+      city: submission.city,
+      country: submission.country,
+    });
+
     // Insert into bars table
     const { data: bar, error: insertError } = await supabase
       .from('bars')
@@ -97,6 +106,7 @@ export async function POST(request: NextRequest) {
         photos: [],
         tier: 'free',
         is_active: true,
+        ...(coords && { lat: coords.lat, lng: coords.lng }),
       })
       .select()
       .single();

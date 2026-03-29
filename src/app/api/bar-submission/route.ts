@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { geocodeBar } from '@/lib/geocode';
 
 // Server-side Supabase client with service role key (bypasses RLS)
 // Lazy init to avoid build-time errors when env vars aren't available
@@ -154,6 +155,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true, note: 'Submission logged, database save pending env setup' });
     }
 
+    // Geocode the bar location
+    const coords = await geocodeBar({
+      name: data.name,
+      address: data.address,
+      city: data.city,
+      country: data.country,
+    });
+
     const insertData: Record<string, unknown> = {
       name: data.name,
       city: data.city,
@@ -166,6 +175,7 @@ export async function POST(request: Request) {
       phone: data.phone || null,
       description: data.description || null,
       contact_name: data.contact_name || null,
+      ...(coords && { lat: coords.lat, lng: coords.lng }),
     };
 
     // Send notification email FIRST — even if DB insert fails, we want the email
