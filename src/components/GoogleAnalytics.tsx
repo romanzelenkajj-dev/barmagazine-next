@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { getConsentStatus } from './CookieConsent';
 
@@ -10,6 +11,22 @@ declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
   }
+}
+
+/** Tracks client-side route changes so GA4 records every page navigation */
+function RouteChangeTracker() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (typeof window.gtag !== 'function') return;
+    const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
+    window.gtag('config', GA_ID, {
+      page_path: url,
+    });
+  }, [pathname, searchParams]);
+
+  return null;
 }
 
 export function GoogleAnalytics() {
@@ -63,6 +80,9 @@ export function GoogleAnalytics() {
           gtag('config', '${GA_ID}');
         `}
       </Script>
+      <Suspense fallback={null}>
+        <RouteChangeTracker />
+      </Suspense>
     </>
   );
 }
