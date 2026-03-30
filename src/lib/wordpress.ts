@@ -167,8 +167,11 @@ export async function getTags(perPage = 20) {
 }
 
 // ---------- Search ----------
-export async function searchPosts(query: string, perPage = 10) {
-  return wpFetch<WPPost[]>('/posts', { search: query, per_page: perPage, _embed: 'true' }, []);
+export async function searchPosts(query: string, perPage = 100) {
+  // orderby=relevance ensures WordPress ranks by how well the title/content matches
+  // the query, not by modified date. Without this, recent bulk-edited posts crowd out
+  // older but highly relevant posts (e.g. 50 Best articles).
+  return wpFetch<WPPost[]>('/posts', { search: query, per_page: perPage, orderby: 'relevance', order: 'desc', _embed: 'true' }, []);
 }
 
 // ---------- Helpers ----------

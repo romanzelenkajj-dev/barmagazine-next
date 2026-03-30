@@ -1,7 +1,7 @@
 import { searchPosts } from '@/lib/wordpress';
-import { ArticleCard } from '@/components/ArticleCard';
 import type { Metadata } from 'next';
 import { SearchForm } from './SearchForm';
+import { SearchResults } from './SearchResults';
 
 export const metadata: Metadata = {
   title: 'Search',
@@ -15,7 +15,9 @@ export default async function SearchPage({
   searchParams: { q?: string };
 }) {
   const query = searchParams.q || '';
-  const results = query ? await searchPosts(query, 20) : [];
+  // Fetch up to 100 results sorted by relevance so important posts (e.g. 50 Best)
+  // always surface regardless of when they were last modified.
+  const results = query ? await searchPosts(query, 100) : [];
 
   return (
     <div style={{ marginTop: 'var(--gap)' }}>
@@ -27,17 +29,11 @@ export default async function SearchPage({
 
       {query && (
         <p style={{ fontSize: 14, color: 'var(--text-secondary)', marginBottom: 24 }}>
-          {results.length} results for &ldquo;{query}&rdquo;
+          {results.length} result{results.length !== 1 ? 's' : ''} for &ldquo;{query}&rdquo;
         </p>
       )}
 
-      {results.length > 0 && (
-        <div className="article-grid">
-          {results.map(post => (
-            <ArticleCard key={post.id} post={post} />
-          ))}
-        </div>
-      )}
+      {results.length > 0 && <SearchResults posts={results} />}
 
       {query && results.length === 0 && (
         <div style={{ textAlign: 'center', padding: '80px 20px', color: 'var(--text-tertiary)' }}>
