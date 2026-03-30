@@ -22,6 +22,101 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ====== DARK MODE VARIABLES ====== */
+[data-theme="dark"] {
+  --bg-page: #111111;
+  --bg-card: #1C1C1C;
+  --bg-card-warm: #222222;
+  --bg-dark: #0A0A0A;
+  --bg-accent: #2A1F18;
+  --bg-accent-pink: #2A1A1A;
+  --text-primary: #F0EBE4;
+  --text-secondary: #A8A09A;
+  --text-tertiary: #6B6560;
+  --text-inverse: #111111;
+  --border: #2E2A26;
+}
+
+/* Dark mode: invert logo to light version */
+[data-theme="dark"] .nav-logo img {
+  filter: brightness(1);
+}
+
+/* Dark mode: page background */
+[data-theme="dark"] body {
+  background: var(--bg-page);
+}
+
+/* Dark mode: nav stays dark charcoal (already dark, just deepen slightly) */
+[data-theme="dark"] .nav {
+  background: #0D0D0D;
+}
+
+/* Dark mode: article body */
+[data-theme="dark"] .article-body {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* Dark mode: cards */
+[data-theme="dark"] .card,
+[data-theme="dark"] .article-card {
+  background: var(--bg-card);
+}
+
+/* Dark mode: newsletter strip */
+[data-theme="dark"] .newsletter-strip {
+  background: var(--bg-accent);
+}
+
+/* Dark mode: footer stays dark (no change needed) */
+
+/* Dark mode: bar directory */
+[data-theme="dark"] .bars-wrapper,
+[data-theme="dark"] .directory-inline-cta {
+  background: var(--bg-card);
+}
+
+/* Dark mode: bar cards */
+[data-theme="dark"] .bar-dir-card,
+[data-theme="dark"] .dir-featured-card {
+  background: var(--bg-card-warm);
+}
+
+/* Dark mode: inputs */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+/* Dark mode: filter selects */
+[data-theme="dark"] .filter-select {
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+/* Dark mode: load more buttons */
+[data-theme="dark"] .directory-load-more button {
+  background: var(--bg-card);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+/* Dark mode: claim/pricing page */
+[data-theme="dark"] .claim-hero,
+[data-theme="dark"] .pricing-card {
+  background: var(--bg-card);
+}
+
+/* Dark mode: mobile menu */
+[data-theme="dark"] .mobile-menu {
+  background: #0D0D0D;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -158,6 +253,46 @@ button {
 
 .nav-cta:hover {
   opacity: 0.88;
+}
+
+/* ====== DARK MODE TOGGLE BUTTON ====== */
+.nav-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.nav-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.mobile-menu-theme-toggle {
+  margin-top: 8px;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mobile-menu-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
 .nav-search {
@@ -339,7 +474,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 48px 0 20px;
+  margin: 72px 0 24px;
 }
 
 .section-title {
@@ -493,7 +628,7 @@ button {
 
 .newsletter-form button {
   padding: 14px 28px;
-  background: var(--text-primary);
+  background: var(--accent);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
@@ -503,7 +638,7 @@ button {
 }
 
 .newsletter-form button:hover {
-  background: #333;
+  background: #a84e2e;
 }
 
 .newsletter-success {
@@ -690,7 +825,7 @@ button {
 }
 
 .article-body p {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.8;
   color: var(--text-secondary);
   margin-bottom: 20px;
@@ -754,7 +889,7 @@ button {
 }
 
 .article-body li {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.8;
   margin-bottom: 8px;
 }
@@ -1120,7 +1255,7 @@ button {
 .sidebar-newsletter button {
   width: 100%;
   padding: 12px 20px;
-  background: var(--text-primary);
+  background: var(--accent);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
@@ -1129,7 +1264,7 @@ button {
 }
 
 .sidebar-newsletter button:hover {
-  background: #333;
+  background: #a84e2e;
 }
 
 /* ====== FOOTER ====== */
@@ -1413,7 +1548,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 48px 0 24px;
+  margin: 72px 0 24px;
 }
 
 .section-bar h2 {
@@ -1706,7 +1841,7 @@ button {
 
 .cta-submit {
   padding: 14px 36px;
-  background: var(--bg-dark);
+  background: var(--accent);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
@@ -1721,7 +1856,7 @@ button {
 }
 
 .cta-submit:hover {
-  background: #333;
+  background: #a84e2e;
 }
 
 /* ====== FEATURED BARS ====== */
@@ -1941,11 +2076,11 @@ button {
   }
 
   .section-header {
-    margin: 16px 0 12px;
+    margin: 40px 0 16px;
   }
 
   .section-bar {
-    margin: 16px 0 12px;
+    margin: 40px 0 16px;
   }
 
   .article-grid {
@@ -3073,13 +3208,13 @@ textarea.form-input {
   font-weight: 600;
   padding: 12px 28px;
   border-radius: 100px;
-  background: var(--text-primary);
+  background: var(--accent);
   color: #fff;
-  transition: opacity 0.2s;
+  transition: background 0.2s;
 }
 
 .directory-empty button:hover {
-  opacity: 0.85;
+  background: #a84e2e;
 }
 
 /* Load More */
@@ -3181,7 +3316,7 @@ textarea.form-input {
 .directory-cta-btn {
   display: inline-block;
   padding: 12px 24px;
-  background: var(--bg-dark);
+  background: var(--accent);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
@@ -3190,16 +3325,16 @@ textarea.form-input {
 }
 
 .directory-cta-btn:hover {
-  background: var(--accent);
+  background: #a84e2e;
 }
 
 .directory-cta-btn--dark {
-  background: var(--bg-dark);
+  background: var(--accent);
   color: #fff;
 }
 
 .directory-cta-btn--dark:hover {
-  opacity: 0.9;
+  background: #a84e2e;
 }
 
 /* Directory responsive */

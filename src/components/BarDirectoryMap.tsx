@@ -337,13 +337,15 @@ export function BarDirectoryMapClient({
           featured_until: null, is_verified: false, is_active: true,
           wp_article_slug: null, created_at: '', updated_at: '',
         }));
-        setMapBars(bars);
+        // Apply geo sorting so closest bars appear first on the map too
+        const sorted = sortByGeo(bars, geoCity, geoCountryCode, geoContinent);
+        setMapBars(sorted);
         setMapBarsLoaded(true);
       }
     } catch (e) {
       console.error('Failed to load map bars', e);
     }
-  }, [mapBarsLoaded]);
+  }, [mapBarsLoaded, geoCity, geoCountryCode, geoContinent]);
 
   // Server-side pagination state
   const [allBars, setAllBars] = useState<Bar[]>(initialBars);
@@ -609,7 +611,7 @@ export function BarDirectoryMapClient({
               )}
 
               {/* ══ SECTION 2: BARS WITH PHOTOS — revealed on demand ══ */}
-              {photoBars.length > 0 && !isFiltering && !showPhotoBars && (
+              {photoBars.length > 0 && !isFiltering && !showPhotoBars && featuredVisible >= featuredBars.length && (
                 <div className="directory-load-more">
                   <button onClick={() => setShowPhotoBars(true)}>
                     Show Bars
