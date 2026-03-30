@@ -317,6 +317,34 @@ export function BarDirectoryMapClient({
   const [showListedBars, setShowListedBars] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  // Dedicated lightweight map data — fetched once when map view is first opened
+  const [mapBars, setMapBars] = useState<Bar[]>([]);
+  const [mapBarsLoaded, setMapBarsLoaded] = useState(false);
+
+  const openMapView = useCallback(async () => {
+    setViewMode('map');
+    if (mapBarsLoaded) return; // already fetched
+    try {
+      const res = await fetch('/api/bars/map');
+      if (res.ok) {
+        const data = await res.json();
+        // Convert MapBar shape to Bar shape (fill missing fields with defaults)
+        const bars: Bar[] = (data.bars || []).map((b: { id: string; name: string; slug: string; city: string; country: string; type: string; tier: string; lat: number | null; lng: number | null; photo: string | null }) => ({
+          ...b,
+          region: null, address: null, website: null, instagram: null,
+          phone: null, email: null, description: null, short_excerpt: null,
+          photos: b.photo ? [b.photo] : [],
+          featured_until: null, is_verified: false, is_active: true,
+          wp_article_slug: null, created_at: '', updated_at: '',
+        }));
+        setMapBars(bars);
+        setMapBarsLoaded(true);
+      }
+    } catch (e) {
+      console.error('Failed to load map bars', e);
+    }
+  }, [mapBarsLoaded]);
+
   // Server-side pagination state
   const [allBars, setAllBars] = useState<Bar[]>(initialBars);
   const [isFetchingMore, setIsFetchingMore] = useState(false);
@@ -483,7 +511,7 @@ export function BarDirectoryMapClient({
               </svg>
               Grid
             </button>
-            <button className={`directory-view-btn ${viewMode === 'map' ? 'active' : ''}`} onClick={() => setViewMode('map')} aria-label="Map view">
+            <button className={`directory-view-btn ${viewMode === 'map' ? 'active' : ''}`} onClick={openMapView} aria-label="Map view">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
               </svg>
@@ -517,7 +545,7 @@ export function BarDirectoryMapClient({
       </div>
 
       {/* ═══ MAP VIEW ═══ */}
-      {viewMode === 'map' && <DirectoryMap bars={allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} />}
+      {viewMode === 'map' && <DirectoryMap bars={mapBarsLoaded ? mapBars : allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} />}
 
       {/* ═══ GRID VIEW ═══ */}
       {viewMode === 'grid' && (
