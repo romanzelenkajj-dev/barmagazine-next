@@ -44,7 +44,10 @@ export async function generateMetadata({
     `${cities.slice(0, 3).join(', ')}${cities.length > 3 ? ' and more' : ''}. ` +
     `Curated by BarMagazine.`;
 
-  const title = `Best Bars in ${countryName} `;
+  // FIX: was generic "Best Bars in United States" with a trailing space
+  // Now: "127 Best Bars in United States (2026 Guide)" — includes count + year for CTR
+  const currentYear = new Date().getFullYear();
+  const title = `${bars.length} Best Bars in ${countryName} (${currentYear} Guide)`;
   const canonical = `${SITE_URL}/bars/country/${params.country}`;
 
   return {

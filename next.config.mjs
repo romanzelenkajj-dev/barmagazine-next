@@ -48,6 +48,13 @@ const nextConfig = {
       { source: '/contact', destination: '/work-with-us', permanent: true },
       { source: '/homepage', destination: '/', permanent: true },
 
+      // FIX: intuitive URLs that were returning 404 — users type these, external sites link to them
+      { source: '/bar-directory', destination: '/bars', permanent: true },
+      { source: '/list-your-bar', destination: '/claim-your-bar', permanent: true },
+      { source: '/cocktails', destination: '/category/cocktails', permanent: true },
+      { source: '/privacy-policy', destination: '/privacy', permanent: true },
+      { source: '/advertise', destination: '/work-with-us', permanent: true },
+
       // Author pages (no equivalent in new site)
       { source: '/author/:slug', destination: '/', permanent: true },
 

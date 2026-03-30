@@ -78,7 +78,8 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
       containedInPlace: { '@type': 'Country', name: bar.country },
     },
     ...(bar.lat && bar.lng && { geo: { '@type': 'GeoCoordinates', latitude: bar.lat, longitude: bar.lng } }),
-    ...(hasImage && { image: bar.photos }),
+    // FIX: ensure all image URLs are absolute — relative paths break Google's schema validator
+    ...(hasImage && { image: bar.photos.map((p: string) => p.startsWith('/') ? `${SITE_URL}${p}` : p) }),
     ...(bar.phone && { telephone: bar.phone }),
     ...(bar.email && { email: bar.email }),
     ...(bar.instagram && { sameAs: [`https://instagram.com/${bar.instagram.replace('@', '')}`] }),

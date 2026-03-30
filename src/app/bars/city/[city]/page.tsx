@@ -35,12 +35,20 @@ export async function generateMetadata({
   const cityName = match.city;
   const countryName = match.country;
 
+  // FIX: fetch bar count so we can include it in the title and description
+  // e.g. "15 Best Cocktail Bars in London (2026 Guide)" — dramatically improves CTR
+  const bars = await getBarsByCity(cityName);
+  const barCount = bars.length;
+  const currentYear = new Date().getFullYear();
+
   const description =
-    `Discover the best bars in ${cityName}, ${countryName}. ` +
+    `Discover the ${barCount} best bars in ${cityName}, ${countryName}. ` +
     `From cocktail bars and speakeasies to hotel bars and wine bars — ` +
     `curated by BarMagazine.`;
 
-  const title = `Best Bars in ${cityName}, ${countryName} `;
+  // FIX: was generic "Best Bars in London, United Kingdom" with a trailing space
+  // Now: "15 Best Bars in London (2026 Guide) | BarMagazine" — includes count + year for CTR
+  const title = `${barCount} Best Bars in ${cityName} (${currentYear} Guide)`;
   const canonical = `${SITE_URL}/bars/city/${params.city}`;
 
   return {
