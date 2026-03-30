@@ -58,7 +58,23 @@ function sortByGeo(bars: Bar[], geoCity = '', geoCountryCode = '', geoContinent 
 }
 
 /* ─── Map Component (loaded dynamically) ─── */
-function DirectoryMap({ bars }: { bars: Bar[] }) {
+// Approximate country center coordinates for map initial view
+const COUNTRY_CENTER: Record<string, [number, number, number]> = {
+  // [lng, lat, zoom]
+  US: [-98.5, 39.5, 3.5], GB: [-2.0, 54.0, 5.0], CA: [-96.0, 60.0, 3.0],
+  AU: [134.0, -25.0, 3.5], DE: [10.5, 51.2, 5.0], FR: [2.5, 46.5, 5.0],
+  ES: [-3.7, 40.4, 5.0], IT: [12.5, 42.0, 5.0], JP: [138.0, 36.5, 5.0],
+  CN: [104.0, 35.0, 3.5], IN: [78.9, 20.6, 4.0], BR: [-51.9, -14.2, 3.5],
+  MX: [-102.5, 23.6, 4.5], SG: [103.8, 1.35, 10.5], HK: [114.2, 22.3, 10.0],
+  AE: [54.0, 24.0, 7.0], TH: [101.0, 15.0, 5.5], NL: [5.3, 52.1, 6.0],
+  PT: [-8.2, 39.4, 6.0], GR: [22.0, 39.0, 6.0], AR: [-63.6, -38.4, 3.5],
+  CO: [-74.3, 4.6, 5.5], ZA: [25.0, -29.0, 4.5], NZ: [172.5, -41.0, 5.0],
+  SE: [18.6, 60.1, 4.5], NO: [8.5, 60.5, 4.5], DK: [10.0, 56.0, 6.0],
+  CH: [8.2, 46.8, 6.5], AT: [14.5, 47.5, 6.5], IE: [-8.0, 53.2, 6.0],
+  PL: [19.1, 52.1, 5.5], CZ: [15.5, 49.8, 6.5], KR: [127.8, 36.5, 6.0],
+};
+
+function DirectoryMap({ bars, geoCity = '', geoCountryCode = '' }: { bars: Bar[]; geoCity?: string; geoCountryCode?: string }) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -77,11 +93,33 @@ function DirectoryMap({ bars }: { bars: Bar[] }) {
       const mapboxgl = (await import('mapbox-gl')).default;
       mapboxgl.accessToken = MAPBOX_TOKEN;
 
+      // Determine initial map center from visitor's geo location
+      const CITY_COORDS_MAP: Record<string, [number, number]> = {
+        'new york': [-74.01, 40.71], 'los angeles': [-118.24, 34.05], 'chicago': [-87.63, 41.88],
+        'san francisco': [-122.42, 37.77], 'miami': [-80.19, 25.76], 'las vegas': [-115.14, 36.17],
+        'seattle': [-122.33, 47.61], 'austin': [-97.74, 30.27], 'boston': [-71.06, 42.36],
+        'houston': [-95.37, 29.76], 'atlanta': [-84.39, 33.75], 'new orleans': [-90.07, 29.95],
+        'london': [-0.13, 51.51], 'paris': [2.35, 48.86], 'berlin': [13.41, 52.52],
+        'barcelona': [2.17, 41.39], 'madrid': [-3.70, 40.42], 'rome': [12.50, 41.90],
+        'amsterdam': [4.90, 52.37], 'prague': [14.44, 50.08], 'vienna': [16.37, 48.21],
+        'lisbon': [-9.14, 38.72], 'dublin': [-6.26, 53.35], 'budapest': [19.04, 47.50],
+        'singapore': [103.82, 1.35], 'hong kong': [114.16, 22.28], 'tokyo': [139.69, 35.68],
+        'bangkok': [100.50, 13.75], 'dubai': [55.27, 25.20], 'sydney': [151.21, -33.87],
+        'toronto': [-79.38, 43.65], 'mexico city': [-99.13, 19.43],
+      };
+      const cityKey = geoCity.toLowerCase();
+      const cityCoords = CITY_COORDS_MAP[cityKey];
+      const countryCenter = geoCountryCode ? COUNTRY_CENTER[geoCountryCode.toUpperCase()] : null;
+      const initialCenter: [number, number] = cityCoords
+        ? cityCoords
+        : countryCenter ? [countryCenter[0], countryCenter[1]] : [15, 30];
+      const initialZoom = cityCoords ? 9 : countryCenter ? countryCenter[2] : 1.5;
+
       const map = new mapboxgl.Map({
         container: mapContainer.current!,
         style: 'mapbox://styles/mapbox/dark-v11',
-        center: [15, 30],
-        zoom: 1.5,
+        center: initialCenter,
+        zoom: initialZoom,
         attributionControl: false,
         minZoom: 1,
         maxZoom: 18,
@@ -476,7 +514,7 @@ export function BarDirectoryMapClient({
       </div>
 
       {/* ═══ MAP VIEW ═══ */}
-      {viewMode === 'map' && <DirectoryMap bars={allFiltered} />}
+      {viewMode === 'map' && <DirectoryMap bars={allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} />}
 
       {/* ═══ GRID VIEW ═══ */}
       {viewMode === 'grid' && (
