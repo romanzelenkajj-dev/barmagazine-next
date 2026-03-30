@@ -659,7 +659,7 @@ export function BarDirectoryMapClient({
               )}
 
               {/* ══ SECTION 3: LISTED BARS — revealed on demand ══ */}
-              {listedBars.length > 0 && !isFiltering && !showListedBars && (isFiltering || showPhotoBars) && (
+              {listedBars.length > 0 && !isFiltering && !showListedBars && showPhotoBars && photoVisible >= photoBars.length && !hasMoreFromServer && (
                 <div className="directory-load-more">
                   <button onClick={() => setShowListedBars(true)}>
                     Show More Bars

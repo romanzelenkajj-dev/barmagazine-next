@@ -23,23 +23,19 @@
 }
 
 /* ====== DARK MODE VARIABLES ====== */
+/* Three-layer surface system: page (#1A1A2E deep navy-charcoal) → card (#252530) → elevated (#2E2E3A) */
 [data-theme="dark"] {
-  --bg-page: #111111;
-  --bg-card: #1C1C1C;
-  --bg-card-warm: #222222;
-  --bg-dark: #0A0A0A;
-  --bg-accent: #2A1F18;
-  --bg-accent-pink: #2A1A1A;
+  --bg-page: #1A1A22;
+  --bg-card: #252530;
+  --bg-card-warm: #2E2E3A;
+  --bg-dark: #0F0F14;
+  --bg-accent: #2D1F18;
+  --bg-accent-pink: #2D1A1A;
   --text-primary: #F0EBE4;
-  --text-secondary: #A8A09A;
-  --text-tertiary: #6B6560;
-  --text-inverse: #111111;
-  --border: #2E2A26;
-}
-
-/* Dark mode: invert logo to light version */
-[data-theme="dark"] .nav-logo img {
-  filter: brightness(1);
+  --text-secondary: #B0A89E;
+  --text-tertiary: #7A7270;
+  --text-inverse: #1A1A22;
+  --border: #38363E;
 }
 
 /* Dark mode: page background */
@@ -47,74 +43,114 @@
   background: var(--bg-page);
 }
 
-/* Dark mode: nav stays dark charcoal (already dark, just deepen slightly) */
+/* Dark mode: nav — slightly lighter than page so it reads as a distinct layer */
 [data-theme="dark"] .nav {
-  background: #0D0D0D;
+  background: #0F0F14;
 }
 
-/* Dark mode: article body */
-[data-theme="dark"] .article-body {
-  background: var(--bg-card);
-  color: var(--text-primary);
+/* Dark mode: main container gets page bg */
+[data-theme="dark"] .container {
+  background: var(--bg-page);
 }
 
-/* Dark mode: cards */
+/* Dark mode: article cards — clearly elevated above page */
 [data-theme="dark"] .card,
 [data-theme="dark"] .article-card {
   background: var(--bg-card);
+  border-color: var(--border);
 }
 
-/* Dark mode: newsletter strip */
+/* Dark mode: article body text area */
+[data-theme="dark"] .article-body {
+  color: var(--text-primary);
+}
+
+/* Dark mode: newsletter strip — warm dark accent */
 [data-theme="dark"] .newsletter-strip {
-  background: var(--bg-accent);
+  background: #2D1F18;
+  border-color: #4A3020;
 }
 
-/* Dark mode: footer stays dark (no change needed) */
+/* Dark mode: bar directory wrapper — elevated card surface */
+[data-theme="dark"] .bars-wrapper {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
 
-/* Dark mode: bar directory */
-[data-theme="dark"] .bars-wrapper,
+/* Dark mode: inline CTA between sections */
 [data-theme="dark"] .directory-inline-cta {
   background: var(--bg-card);
+  border-color: var(--border);
 }
 
-/* Dark mode: bar cards */
-[data-theme="dark"] .bar-dir-card,
+/* Dark mode: directory filters bar */
+[data-theme="dark"] .directory-filters {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+/* Dark mode: bar photo cards — elevated above directory wrapper */
+[data-theme="dark"] .bar-dir-card {
+  background: var(--bg-card-warm);
+  border-color: var(--border);
+}
+
+/* Dark mode: featured bar cards */
 [data-theme="dark"] .dir-featured-card {
   background: var(--bg-card-warm);
+  border-color: var(--border);
 }
 
-/* Dark mode: inputs */
+/* Dark mode: dir-section-header */
+[data-theme="dark"] .dir-section-header {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+/* Dark mode: inputs and selects */
 [data-theme="dark"] input,
 [data-theme="dark"] select,
 [data-theme="dark"] textarea {
-  background: var(--bg-card);
+  background: var(--bg-card-warm);
   color: var(--text-primary);
   border-color: var(--border);
 }
 
 /* Dark mode: filter selects */
 [data-theme="dark"] .filter-select {
-  background: var(--bg-card);
+  background: var(--bg-card-warm);
   color: var(--text-secondary);
   border-color: var(--border);
 }
 
-/* Dark mode: load more buttons */
+/* Dark mode: load more / show more buttons */
 [data-theme="dark"] .directory-load-more button {
   background: var(--bg-card);
   border-color: var(--border);
   color: var(--text-primary);
+}
+[data-theme="dark"] .directory-load-more button:hover {
+  background: var(--bg-card-warm);
+  border-color: #4A4850;
 }
 
 /* Dark mode: claim/pricing page */
 [data-theme="dark"] .claim-hero,
 [data-theme="dark"] .pricing-card {
   background: var(--bg-card);
+  border-color: var(--border);
 }
 
 /* Dark mode: mobile menu */
 [data-theme="dark"] .mobile-menu {
-  background: #0D0D0D;
+  background: #0F0F14;
+}
+
+/* Dark mode: search input */
+[data-theme="dark"] .directory-search-input {
+  background: var(--bg-card-warm);
+  border-color: var(--border);
+  color: var(--text-primary);
 }
 
 *, *::before, *::after {
