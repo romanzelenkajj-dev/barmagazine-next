@@ -317,22 +317,6 @@ export function BarDirectoryMapClient({
   const [showListedBars, setShowListedBars] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // GPS-based sorting: request browser location on mount and re-sort by true distance
-  const [userLat, setUserLat] = useState<number | null>(null);
-  const [userLng, setUserLng] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (typeof window === 'undefined' || !navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setUserLat(pos.coords.latitude);
-        setUserLng(pos.coords.longitude);
-      },
-      () => { /* denied or unavailable — fall back to IP-based geo */ },
-      { timeout: 5000, maximumAge: 60000 }
-    );
-  }, []);
-
   // Dedicated lightweight map data — fetched once when map view is first opened
   const [mapBars, setMapBars] = useState<Bar[]>([]);
   const [mapBarsLoaded, setMapBarsLoaded] = useState(false);
@@ -401,14 +385,7 @@ export function BarDirectoryMapClient({
     if (isFetchingMore || !hasMoreFromServer) return;
     setIsFetchingMore(true);
     try {
-      // Fetch the next page of non-featured bars with photos specifically
-      // so the photo section paginates correctly through the right subset.
-      const params = new URLSearchParams({
-        page: String(serverPage),
-        perPage: '24',
-        tier: 'free',
-        hasPhoto: 'true',
-      });
+      const params = new URLSearchParams({ page: String(serverPage), perPage: '100' });
       const res = await fetch(`/api/bars?${params}`);
       if (res.ok) {
         const data = await res.json();
@@ -418,15 +395,14 @@ export function BarDirectoryMapClient({
           return [...prev, ...newBars];
         });
         setServerPage(prev => prev + 1);
-        // No more results if this page returned fewer than requested
-        if (!data.bars || data.bars.length < 24) setHasMoreFromServer(false);
+        if (allBars.length + data.bars.length >= (totalBars || 0)) setHasMoreFromServer(false);
       }
     } catch (e) {
       console.error('Failed to fetch more bars:', e);
     } finally {
       setIsFetchingMore(false);
     }
-  }, [isFetchingMore, hasMoreFromServer, serverPage]);
+  }, [isFetchingMore, hasMoreFromServer, serverPage, allBars.length, totalBars]);
 
   const availableCities = useMemo(() => {
     if (!countryFilter) return cities;
@@ -447,50 +423,28 @@ export function BarDirectoryMapClient({
     });
   }, [search, countryFilter, cityFilter, typeFilter, allBars]);
 
-  // GPS distance sort: if user granted location, sort by true haversine distance.
-  // Otherwise fall back to IP-based geo score from sortByGeo.
-  const sortBars = useCallback((bars: Bar[]): Bar[] => {
-    if (userLat !== null && userLng !== null) {
-      return [...bars].sort((a, b) => {
-        const aDist = (a.lat && a.lng)
-          ? Math.hypot(a.lat - userLat, (a.lng - userLng) * Math.cos(userLat * Math.PI / 180))
-          : 999999;
-        const bDist = (b.lat && b.lng)
-          ? Math.hypot(b.lat - userLat, (b.lng - userLng) * Math.cos(userLat * Math.PI / 180))
-          : 999999;
-        if (aDist !== bDist) return aDist - bDist;
-        // Tiebreak: 50 Best first, then alphabetical
-        const aIs50 = FIFTY_BEST_2025.has(a.name) ? 0 : 1;
-        const bIs50 = FIFTY_BEST_2025.has(b.name) ? 0 : 1;
-        if (aIs50 !== bIs50) return aIs50 - bIs50;
-        return a.name.localeCompare(b.name);
-      });
-    }
-    return sortByGeo(bars, geoCity, geoCountryCode, geoContinent);
-  }, [userLat, userLng, geoCity, geoCountryCode, geoContinent]);
-
   // ── SECTION 1: Featured bars (tier = featured | premium) ──
   // Sorted by geo proximity closest-first within the featured tier
   const featuredBars = useMemo(() => {
     const featured = filtered.filter(b => b.tier === 'featured' || b.tier === 'premium');
-    return sortBars(featured);
-  }, [filtered, sortBars]);
+    return sortByGeo(featured, geoCity, geoCountryCode, geoContinent);
+  }, [filtered, geoCity, geoCountryCode, geoContinent]);
 
   // ── SECTION 2: Photo bars (non-featured bars with photos) ──
   // Sorted by geo proximity closest-first
   const photoBars = useMemo(() => {
     const isFeatured = (b: Bar) => b.tier === 'featured' || b.tier === 'premium';
     const withPhotos = filtered.filter(b => !isFeatured(b) && b.photos && b.photos.length > 0);
-    return sortBars(withPhotos);
-  }, [filtered, sortBars]);
+    return sortByGeo(withPhotos, geoCity, geoCountryCode, geoContinent);
+  }, [filtered, geoCity, geoCountryCode, geoContinent]);
 
   // ── SECTION 3: Listed bars (non-featured bars with no photo) ──
   // Sorted by geo proximity, then alphabetical
   const listedBars = useMemo(() => {
     const isFeatured = (b: Bar) => b.tier === 'featured' || b.tier === 'premium';
     const noPhoto = filtered.filter(b => !isFeatured(b) && (!b.photos || b.photos.length === 0));
-    return sortBars(noPhoto);
-  }, [filtered, sortBars]);
+    return sortByGeo(noPhoto, geoCity, geoCountryCode, geoContinent);
+  }, [filtered, geoCity, geoCountryCode, geoContinent]);
 
   // All bars for map view
   const allFiltered = useMemo(() => [...featuredBars, ...photoBars, ...listedBars], [featuredBars, photoBars, listedBars]);
@@ -512,8 +466,7 @@ export function BarDirectoryMapClient({
     setListVisible(LIST_PER_PAGE);
   };
 
-  const hasGeo = !!(userLat !== null || geoCity || geoCountryCode);
-  const usingGPS = userLat !== null && userLng !== null;
+  const hasGeo = !!(geoCity || geoCountryCode);
 
   return (
     <div className="directory-page">
@@ -619,17 +572,7 @@ export function BarDirectoryMapClient({
             : `${totalBars || allFiltered.length} bars worldwide`}
         </span>
         {!isFiltering && hasGeo && (
-          usingGPS
-            ? (
-              <div className="dir-geo-label">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                Sorted by distance from your location
-              </div>
-            )
-            : <GeoLabel geoCity={geoCity} geoCountryCode={geoCountryCode} />
+          <GeoLabel geoCity={geoCity} geoCountryCode={geoCountryCode} />
         )}
       </div>
 
@@ -702,7 +645,7 @@ export function BarDirectoryMapClient({
               )}
 
               {/* ══ SECTION 2: BARS WITH PHOTOS — revealed on demand ══ */}
-              {photoBars.length > 0 && !isFiltering && !showPhotoBars && featuredVisible >= featuredBars.length && (
+              {photoBars.length > 0 && !isFiltering && !showPhotoBars && (
                 <div className="directory-load-more">
                   <button onClick={() => setShowPhotoBars(true)}>
                     Show Bars
