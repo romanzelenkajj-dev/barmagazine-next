@@ -332,17 +332,19 @@ export function BarDirectoryMapClient({
     return sortByGeo(featured, geoCity, geoCountryCode, geoContinent);
   }, [filtered, geoCity, geoCountryCode, geoContinent]);
 
-  // ── SECTION 2: Photo bars (free tier with photos) ──
+  // ── SECTION 2: Photo bars (non-featured bars with photos) ──
   // Sorted by geo proximity closest-first
   const photoBars = useMemo(() => {
-    const withPhotos = filtered.filter(b => b.tier === 'free' && b.photos && b.photos.length > 0);
+    const isFeatured = (b: Bar) => b.tier === 'featured' || b.tier === 'premium';
+    const withPhotos = filtered.filter(b => !isFeatured(b) && b.photos && b.photos.length > 0);
     return sortByGeo(withPhotos, geoCity, geoCountryCode, geoContinent);
   }, [filtered, geoCity, geoCountryCode, geoContinent]);
 
-  // ── SECTION 3: Listed bars (no photo) ──
+  // ── SECTION 3: Listed bars (non-featured bars with no photo) ──
   // Sorted by geo proximity, then alphabetical
   const listedBars = useMemo(() => {
-    const noPhoto = filtered.filter(b => !b.photos || b.photos.length === 0);
+    const isFeatured = (b: Bar) => b.tier === 'featured' || b.tier === 'premium';
+    const noPhoto = filtered.filter(b => !isFeatured(b) && (!b.photos || b.photos.length === 0));
     return sortByGeo(noPhoto, geoCity, geoCountryCode, geoContinent);
   }, [filtered, geoCity, geoCountryCode, geoContinent]);
 
@@ -503,7 +505,6 @@ export function BarDirectoryMapClient({
                       </svg>
                     }
                     label="Featured Bars"
-                    sublabel={hasGeo && !isFiltering ? `Closest to you first` : undefined}
                     count={isFiltering ? featuredBars.length : undefined}
                   />
                   <div className="directory-featured-grid">
