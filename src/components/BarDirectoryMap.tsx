@@ -313,6 +313,8 @@ export function BarDirectoryMapClient({
   const [photoVisible, setPhotoVisible] = useState(PHOTO_PER_PAGE);
   const [listVisible, setListVisible] = useState(LIST_PER_PAGE);
   const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
+  const [showPhotoBars, setShowPhotoBars] = useState(false);
+  const [showListedBars, setShowListedBars] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Server-side pagination state
@@ -397,6 +399,7 @@ export function BarDirectoryMapClient({
   const clearAll = useCallback(() => {
     setSearch(''); setCountryFilter(''); setCityFilter(''); setTypeFilter('');
     setFeaturedVisible(FEATURED_PER_PAGE); setPhotoVisible(PHOTO_PER_PAGE); setListVisible(LIST_PER_PAGE);
+    setShowPhotoBars(false); setShowListedBars(false);
   }, []);
 
   const resetPagination = () => {
@@ -577,8 +580,16 @@ export function BarDirectoryMapClient({
                 </div>
               )}
 
-              {/* ══ SECTION 2: BARS WITH PHOTOS ══ */}
-              {photoBars.length > 0 && (
+              {/* ══ SECTION 2: BARS WITH PHOTOS — revealed on demand ══ */}
+              {photoBars.length > 0 && !isFiltering && !showPhotoBars && (
+                <div className="directory-load-more">
+                  <button onClick={() => setShowPhotoBars(true)}>
+                    Show Bars
+                    <span className="directory-load-more-count">{photoBars.length} bars with photos</span>
+                  </button>
+                </div>
+              )}
+              {photoBars.length > 0 && (isFiltering || showPhotoBars) && (
                 <div className="dir-section">
                   <SectionHeader
                     icon={
@@ -589,7 +600,6 @@ export function BarDirectoryMapClient({
                       </svg>
                     }
                     label="Bars"
-                    sublabel={hasGeo && !isFiltering ? `Closest to you first` : undefined}
                     count={isFiltering ? photoBars.length : undefined}
                   />
                   <div className="directory-grid">
@@ -618,8 +628,16 @@ export function BarDirectoryMapClient({
                 </div>
               )}
 
-              {/* ══ SECTION 3: LISTED BARS (no photo) ══ */}
-              {listedBars.length > 0 && (
+              {/* ══ SECTION 3: LISTED BARS — revealed on demand ══ */}
+              {listedBars.length > 0 && !isFiltering && !showListedBars && (isFiltering || showPhotoBars) && (
+                <div className="directory-load-more">
+                  <button onClick={() => setShowListedBars(true)}>
+                    Show More Bars
+                    <span className="directory-load-more-count">{listedBars.length} listed bars</span>
+                  </button>
+                </div>
+              )}
+              {listedBars.length > 0 && (isFiltering || showListedBars) && (
                 <div className="dir-section">
                   <SectionHeader
                     icon={
@@ -633,7 +651,6 @@ export function BarDirectoryMapClient({
                       </svg>
                     }
                     label="More Bars"
-                    sublabel={hasGeo && !isFiltering ? `Closest to you first` : undefined}
                     count={isFiltering ? listedBars.length : undefined}
                   />
                   <div className="directory-list">
