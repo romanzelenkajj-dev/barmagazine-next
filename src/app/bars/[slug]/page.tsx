@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBarBySlug, getBarsByCity, getBars } from '@/lib/supabase';
+import type { Bar } from '@/lib/supabase';
 import { formatBarType, toUrlSlug } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';

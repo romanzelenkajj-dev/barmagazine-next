@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
     if (insertError) {
       // Try with city-suffixed slug if duplicate
       const slugWithCity = `${slug}-${submission.city.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
-      const { data: bar2, error: insertError2 } = await supabase
+      const { data: _bar2, error: insertError2 } = await supabase
         .from('bars')
         .insert({
           name: submission.name,

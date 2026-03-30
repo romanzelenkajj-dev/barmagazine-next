@@ -55,7 +55,7 @@ export default function AdminSubmissionsPage() {
         body: JSON.stringify({ action, submissionId: id }),
       });
       fetchSubmissions(tab);
-    } catch (e) {
+    } catch (_e) {
       alert('Action failed');
     }
     setActionLoading(null);
