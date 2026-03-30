@@ -599,16 +599,24 @@ export function BarDirectoryMapClient({
                   />
                   <div className="directory-list">
                     {listedBars.slice(0, listVisible).map(bar => (
-                      <Link key={bar.id} href={`/bars/${bar.slug}`} className="directory-list-item">
-                        <div className="directory-list-name">{bar.name}</div>
+                      <div key={bar.id} className="directory-list-item">
+                        <Link href={`/bars/${bar.slug}`} className="directory-list-name">{bar.name}</Link>
                         <div className="directory-list-location">
                           {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
                         </div>
                         <div className="directory-list-type">{formatBarType(bar.type)}</div>
-                        <svg className="directory-list-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </Link>
+                        <Link
+                          href={`/claim-your-bar?bar=${encodeURIComponent(bar.name)}`}
+                          className="directory-list-add-photo"
+                          onClick={e => e.stopPropagation()}
+                          title="Add a photo to stand out"
+                        >
+                          Add photo
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      </div>
                     ))}
                   </div>
                   {listVisible < listedBars.length && (

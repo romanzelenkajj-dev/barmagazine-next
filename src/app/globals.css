@@ -2923,7 +2923,7 @@ textarea.form-input {
 
 .directory-list-item {
   display: grid;
-  grid-template-columns: 1fr auto auto 20px;
+  grid-template-columns: 1fr auto auto auto;
   align-items: center;
   gap: 16px;
   padding: 14px 20px;
@@ -2990,6 +2990,31 @@ textarea.form-input {
   transform: translateX(0);
 }
 
+/* Add photo CTA in listed bars */
+.directory-list-add-photo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s, transform 0.2s, color 0.15s;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.directory-list-item:hover .directory-list-add-photo {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.directory-list-add-photo:hover {
+  color: var(--text-primary);
+}
+
 @media (max-width: 768px) {
   .directory-list-item {
     grid-template-columns: 1fr auto;
@@ -2998,7 +3023,8 @@ textarea.form-input {
   }
 
   .directory-list-type,
-  .directory-list-arrow {
+  .directory-list-arrow,
+  .directory-list-add-photo {
     display: none;
   }
 
