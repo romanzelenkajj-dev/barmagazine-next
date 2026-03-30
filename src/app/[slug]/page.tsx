@@ -63,6 +63,23 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   const readTime = estimateReadTime(post.content.rendered);
   const wordCount = stripHtml(post.content.rendered).split(/\s+/).length;
   const authorName = author?.name && author.name !== 'BarMagazine' ? author.name : null;
+  // Build a rich author object for schema — includes profile URL, bio, and avatar
+  // Google uses these signals to verify real human authorship (E-E-A-T)
+  const authorSchema = authorName && author
+    ? {
+        '@type': 'Person',
+        name: authorName,
+        // Use the barmagazine.com author URL (not the staging WP URL)
+        url: `${SITE_URL}/author/${author.slug}`,
+        ...(author.description && { description: author.description }),
+        ...(author.avatar_urls?.['96'] && {
+          image: {
+            '@type': 'ImageObject',
+            url: author.avatar_urls['96'],
+          },
+        }),
+      }
+    : { '@type': 'Organization', name: 'BarMagazine', url: SITE_URL };
 
   // Get related posts from the same category, fall back to recent posts
   const relatedResult = await getPosts(1, 5, categories[0]?.id);
@@ -93,9 +110,9 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         height: 630,
       },
     },
-    author: authorName
-      ? { '@type': 'Person', name: authorName }
-      : { '@type': 'Organization', name: 'BarMagazine', url: SITE_URL },
+    // FIX: was { '@type': 'Person', name: authorName } — now includes url, description, image
+    // Google needs these to verify the author is a real person with industry expertise
+    author: authorSchema,
     ...(categories[0] && { articleSection: categories[0].name }),
     ...(tags.length > 0 && { keywords: tags.map(t => t.name).join(', ') }),
     wordCount,

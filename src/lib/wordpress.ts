@@ -52,6 +52,10 @@ export interface WPMedia {
 export interface WPAuthor {
   id: number;
   name: string;
+  url: string;
+  description: string;
+  slug: string;
+  link: string;
   avatar_urls: { [key: string]: string };
 }
 

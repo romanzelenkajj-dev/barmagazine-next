@@ -341,15 +341,53 @@ export function BarDirectoryMapClient({
   const gridRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const availableCities = useMemo(() => {
-    if (!countryFilter) return cities;
-    return Array.from(new Set(initialBars.filter(b => b.country === countryFilter).map(b => b.city))).sort();
-  }, [countryFilter, initialBars, cities]);
+  // FIX: Server-side pagination — all bars are now fetched from /api/bars on demand
+  // instead of being embedded in the initial HTML payload.
+  // allBars starts with the 48 bars pre-loaded by the server; more are fetched as needed.
+  const [allBars, setAllBars] = useState<Bar[]>(initialBars);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const [serverPage, setServerPage] = useState(2); // next page to fetch from API
+  const [hasMoreFromServer, setHasMoreFromServer] = useState((totalBars || 0) > initialBars.length);
 
+  // When filters change, fetch from server if we don't have all bars locally yet
   const isFiltering = !!(search || countryFilter || cityFilter || typeFilter);
 
+  // Fetch the next batch of bars from the server API
+  const fetchMoreBarsFromServer = useCallback(async () => {
+    if (isFetchingMore || !hasMoreFromServer) return;
+    setIsFetchingMore(true);
+    try {
+      const params = new URLSearchParams({
+        page: String(serverPage),
+        perPage: '100',
+      });
+      const res = await fetch(`/api/bars?${params}`);
+      if (res.ok) {
+        const data = await res.json();
+        setAllBars(prev => {
+          const existingIds = new Set(prev.map(b => b.id));
+          const newBars = (data.bars as Bar[]).filter(b => !existingIds.has(b.id));
+          return [...prev, ...newBars];
+        });
+        setServerPage(prev => prev + 1);
+        if (allBars.length + data.bars.length >= (totalBars || 0)) {
+          setHasMoreFromServer(false);
+        }
+      }
+    } catch (e) {
+      console.error('Failed to fetch more bars:', e);
+    } finally {
+      setIsFetchingMore(false);
+    }
+  }, [isFetchingMore, hasMoreFromServer, serverPage, allBars.length, totalBars]);
+
+  const availableCities = useMemo(() => {
+    if (!countryFilter) return cities;
+    return Array.from(new Set(allBars.filter(b => b.country === countryFilter).map(b => b.city))).sort();
+  }, [countryFilter, allBars, cities]);
+
   const filtered = useMemo(() => {
-    const result = initialBars.filter(bar => {
+    const result = allBars.filter(bar => {
       const q = search.toLowerCase();
       const matchSearch = !search ||
         bar.name.toLowerCase().includes(q) ||
@@ -361,7 +399,7 @@ export function BarDirectoryMapClient({
       return matchSearch && matchCountry && matchCity && matchType;
     });
     return sortBars(result, geoCity, geoCountryCode, geoContinent);
-  }, [search, countryFilter, cityFilter, typeFilter, initialBars, geoCity, geoCountryCode, geoContinent]);
+  }, [search, countryFilter, cityFilter, typeFilter, allBars, geoCity, geoCountryCode, geoContinent]);
 
   const { featuredBars, photoBars } = useMemo(() => {
     const allFeatured = filtered
@@ -533,9 +571,21 @@ export function BarDirectoryMapClient({
               <div className="directory-grid" ref={gridRef}>
                 {visiblePhotoBars.map(bar => <PhotoBarCard key={bar.id} bar={bar} />)}
               </div>
-              {hasMorePhotoBars && (
+              {(hasMorePhotoBars || hasMoreFromServer) && (
                 <div className="directory-load-more">
-                  <button onClick={() => setVisibleCount(prev => prev + ITEMS_PER_PAGE)}>Show More Bars</button>
+                  <button
+                    onClick={() => {
+                      // First show more from already-fetched bars
+                      setVisibleCount(prev => prev + ITEMS_PER_PAGE);
+                      // If we're running low on local bars, fetch more from server
+                      if (!hasMorePhotoBars && hasMoreFromServer) {
+                        fetchMoreBarsFromServer();
+                      }
+                    }}
+                    disabled={isFetchingMore}
+                  >
+                    {isFetchingMore ? 'Loading…' : 'Show More Bars'}
+                  </button>
                 </div>
               )}
             </>

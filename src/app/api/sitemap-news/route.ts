@@ -60,9 +60,11 @@ export async function GET() {
 
     const posts: WPNewsPost[] = await res.json();
 
-    // Filter to posts from the last 48 hours (Google News sitemap standard)
+    // FIX: was 48 hours — too short when publishing cadence is a few articles per week.
+    // Google News sitemap supports up to 2 days, but Google Discover crawls up to 7 days.
+    // Using 7 days ensures the sitemap always has a healthy number of entries for Discover.
     const cutoff = new Date();
-    cutoff.setHours(cutoff.getHours() - 48);
+    cutoff.setDate(cutoff.getDate() - 7);
     const recentPosts = posts.filter(post => new Date(post.date) >= cutoff);
 
     const urls = recentPosts.map(post => {

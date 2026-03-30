@@ -85,6 +85,13 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
     ...(bar.instagram && { sameAs: [`https://instagram.com/${bar.instagram.replace('@', '')}`] }),
     ...(bar.tier === 'premium' && { priceRange: '$$$' }),
     ...(bar.tier === 'featured' && { priceRange: '$$' }),
+    // openingHours: when you add an opening_hours column to the bars table in Supabase,
+    // store it as an array of strings in schema.org format, e.g.:
+    // ["Mo-Fr 17:00-02:00", "Sa-Su 15:00-03:00"]
+    // It will automatically appear in Google search results (rich results).
+    ...((bar as Bar & { opening_hours?: string[] }).opening_hours?.length && {
+      openingHours: (bar as Bar & { opening_hours?: string[] }).opening_hours,
+    }),
     isPartOf: { '@type': 'WebSite', name: 'BarMagazine Bar Directory', url: `${SITE_URL}/bars` },
   };
 
