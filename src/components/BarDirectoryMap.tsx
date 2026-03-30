@@ -57,6 +57,62 @@ function sortByGeo(bars: Bar[], geoCity = '', geoCountryCode = '', geoContinent 
   });
 }
 
+/**
+ * Haversine distance in km between two lat/lng pairs.
+ */
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+/**
+ * Hybrid sort: when GPS coords are available, bars WITH lat/lng are sorted by
+ * true haversine distance (closest first). Bars WITHOUT lat/lng are sorted by
+ * IP-based geo score and appended after. This prevents bars in far-away countries
+ * from appearing before nearby bars that simply lack coordinates.
+ */
+function sortByGPS(
+  bars: Bar[],
+  userLat: number,
+  userLng: number,
+  geoCity: string,
+  geoCountryCode: string,
+  geoContinent: string,
+): Bar[] {
+  const withCoords = bars.filter(b => b.lat != null && b.lng != null);
+  const withoutCoords = bars.filter(b => b.lat == null || b.lng == null);
+
+  // Group A: sort by true distance
+  withCoords.sort((a, b) => {
+    const distA = haversineKm(userLat, userLng, a.lat!, a.lng!);
+    const distB = haversineKm(userLat, userLng, b.lat!, b.lng!);
+    if (Math.abs(distA - distB) > 0.5) return distA - distB;
+    const fiftyA = FIFTY_BEST_2025.has(a.name) ? 0 : 1;
+    const fiftyB = FIFTY_BEST_2025.has(b.name) ? 0 : 1;
+    if (fiftyA !== fiftyB) return fiftyA - fiftyB;
+    return a.name.localeCompare(b.name);
+  });
+
+  // Group B: sort by IP-based geo score (same logic as sortByGeo)
+  withoutCoords.sort((a, b) => {
+    const aGeo = getGeoScore(a, geoCity, geoCountryCode, geoContinent);
+    const bGeo = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
+    if (aGeo !== bGeo) return bGeo - aGeo;
+    const fiftyA = FIFTY_BEST_2025.has(a.name) ? 0 : 1;
+    const fiftyB = FIFTY_BEST_2025.has(b.name) ? 0 : 1;
+    if (fiftyA !== fiftyB) return fiftyA - fiftyB;
+    return a.name.localeCompare(b.name);
+  });
+
+  return [...withCoords, ...withoutCoords];
+}
+
 /* ─── Map Component (loaded dynamically) ─── */
 // Approximate country center coordinates for map initial view
 const COUNTRY_CENTER: Record<string, [number, number, number]> = {
@@ -309,6 +365,10 @@ export function BarDirectoryMapClient({
   const [countryFilter, setCountryFilter] = useState('');
   const [cityFilter, setCityFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
+
+  // GPS-based sorting state
+  const [userLat, setUserLat] = useState<number | null>(null);
+  const [userLng, setUserLng] = useState<number | null>(null);
   const [featuredVisible, setFeaturedVisible] = useState(FEATURED_PER_PAGE);
   const [photoVisible, setPhotoVisible] = useState(PHOTO_PER_PAGE);
   const [listVisible, setListVisible] = useState(LIST_PER_PAGE);
@@ -316,6 +376,21 @@ export function BarDirectoryMapClient({
   const [showPhotoBars, setShowPhotoBars] = useState(false);
   const [showListedBars, setShowListedBars] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Request GPS location on mount for true distance sorting
+  useEffect(() => {
+    if (typeof window === 'undefined' || !navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setUserLat(pos.coords.latitude);
+        setUserLng(pos.coords.longitude);
+      },
+      () => {
+        // Permission denied or error — keep using IP-based sorting
+      },
+      { timeout: 8000, maximumAge: 300000 }
+    );
+  }, []);
 
   // Dedicated lightweight map data — fetched once when map view is first opened
   const [mapBars, setMapBars] = useState<Bar[]>([]);
@@ -338,14 +413,16 @@ export function BarDirectoryMapClient({
           wp_article_slug: null, created_at: '', updated_at: '',
         }));
         // Apply geo sorting so closest bars appear first on the map too
-        const sorted = sortByGeo(bars, geoCity, geoCountryCode, geoContinent);
+        const sorted = userLat !== null && userLng !== null
+          ? sortByGPS(bars, userLat, userLng, geoCity, geoCountryCode, geoContinent)
+          : sortByGeo(bars, geoCity, geoCountryCode, geoContinent);
         setMapBars(sorted);
         setMapBarsLoaded(true);
       }
     } catch (e) {
       console.error('Failed to load map bars', e);
     }
-  }, [mapBarsLoaded, geoCity, geoCountryCode, geoContinent]);
+  }, [mapBarsLoaded, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
   // Server-side pagination state
   const [allBars, setAllBars] = useState<Bar[]>(initialBars);
@@ -424,27 +501,36 @@ export function BarDirectoryMapClient({
   }, [search, countryFilter, cityFilter, typeFilter, allBars]);
 
   // ── SECTION 1: Featured bars (tier = featured | premium) ──
-  // Sorted by geo proximity closest-first within the featured tier
+  // Sorted by GPS distance when available, otherwise by IP-based geo proximity
   const featuredBars = useMemo(() => {
     const featured = filtered.filter(b => b.tier === 'featured' || b.tier === 'premium');
+    if (userLat !== null && userLng !== null) {
+      return sortByGPS(featured, userLat, userLng, geoCity, geoCountryCode, geoContinent);
+    }
     return sortByGeo(featured, geoCity, geoCountryCode, geoContinent);
-  }, [filtered, geoCity, geoCountryCode, geoContinent]);
+  }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
   // ── SECTION 2: Photo bars (non-featured bars with photos) ──
-  // Sorted by geo proximity closest-first
+  // Sorted by GPS distance when available, otherwise by IP-based geo proximity
   const photoBars = useMemo(() => {
     const isFeatured = (b: Bar) => b.tier === 'featured' || b.tier === 'premium';
     const withPhotos = filtered.filter(b => !isFeatured(b) && b.photos && b.photos.length > 0);
+    if (userLat !== null && userLng !== null) {
+      return sortByGPS(withPhotos, userLat, userLng, geoCity, geoCountryCode, geoContinent);
+    }
     return sortByGeo(withPhotos, geoCity, geoCountryCode, geoContinent);
-  }, [filtered, geoCity, geoCountryCode, geoContinent]);
+  }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
   // ── SECTION 3: Listed bars (non-featured bars with no photo) ──
-  // Sorted by geo proximity, then alphabetical
+  // Sorted by GPS distance when available, otherwise by IP-based geo proximity
   const listedBars = useMemo(() => {
     const isFeatured = (b: Bar) => b.tier === 'featured' || b.tier === 'premium';
     const noPhoto = filtered.filter(b => !isFeatured(b) && (!b.photos || b.photos.length === 0));
+    if (userLat !== null && userLng !== null) {
+      return sortByGPS(noPhoto, userLat, userLng, geoCity, geoCountryCode, geoContinent);
+    }
     return sortByGeo(noPhoto, geoCity, geoCountryCode, geoContinent);
-  }, [filtered, geoCity, geoCountryCode, geoContinent]);
+  }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
   // All bars for map view
   const allFiltered = useMemo(() => [...featuredBars, ...photoBars, ...listedBars], [featuredBars, photoBars, listedBars]);
@@ -571,8 +657,16 @@ export function BarDirectoryMapClient({
             ? `${allFiltered.length} ${allFiltered.length === 1 ? 'bar' : 'bars'} found`
             : `${totalBars || allFiltered.length} bars worldwide`}
         </span>
-        {!isFiltering && hasGeo && (
-          <GeoLabel geoCity={geoCity} geoCountryCode={geoCountryCode} />
+        {!isFiltering && (hasGeo || (userLat !== null && userLng !== null)) && (
+          userLat !== null && userLng !== null
+            ? <div className="dir-geo-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Sorted by distance from your location
+              </div>
+            : <GeoLabel geoCity={geoCity} geoCountryCode={geoCountryCode} />
         )}
       </div>
 
