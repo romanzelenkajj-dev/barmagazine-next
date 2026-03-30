@@ -31,14 +31,6 @@ const CONTINENT_COUNTRIES: Record<string, string[]> = {
   AF: ['ZA', 'NG', 'KE', 'EG', 'MA'],
 };
 
-export function getCountryFromCode(code: string): string | null {
-  return COUNTRY_CODE_MAP[code.toUpperCase()] || null;
-}
-
-export function getContinentCountryNames(continentCode: string): string[] {
-  const codes = CONTINENT_COUNTRIES[continentCode.toUpperCase()] || [];
-  return codes.map(c => COUNTRY_CODE_MAP[c]).filter(Boolean);
-}
 
 // Approximate city coordinates for distance-based sorting.
 // Avoids an API call — covers major cities visitors come from.
@@ -90,7 +82,7 @@ const CITY_COORDS: Record<string, [number, number]> = {
   'helsinki': [60.17, 24.94], 'edinburgh': [55.95, -3.19], 'manchester': [53.48, -2.24],
   'birmingham': [52.48, -1.90], 'glasgow': [55.86, -4.25], 'munich': [48.14, 11.58],
   'hamburg': [53.55, 9.99], 'frankfurt': [50.11, 8.68], 'cologne': [50.94, 6.96],
-  'zurich': [47.38, 8.54], 'geneva': [46.20, 6.15], 'porto': [41.16, -8.63],
+  'bern': [46.95, 7.45], 'geneva': [46.20, 6.15], 'porto': [41.16, -8.63],
   'seville': [37.39, -5.99], 'valencia': [39.47, -0.38], 'florence': [43.77, 11.26],
   'naples': [40.85, 14.27], 'venice': [45.44, 12.33],
   // Asia
