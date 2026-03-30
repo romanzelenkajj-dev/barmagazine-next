@@ -352,6 +352,34 @@ export function BarDirectoryMapClient({
   const [isFetchingMore, setIsFetchingMore] = useState(false);
   const [serverPage, setServerPage] = useState(2);
   const [hasMoreFromServer, setHasMoreFromServer] = useState((totalBars || 0) > initialBars.length);
+  const [isFilterFetching, setIsFilterFetching] = useState(false);
+
+  // When a country, city, or type filter is applied, fetch ALL matching bars from the server.
+  // This is critical because the initial load only has 48 bars — filtering in memory would miss
+  // bars like Mirror Bar Bratislava that aren't in the first 48.
+  useEffect(() => {
+    if (!countryFilter && !cityFilter && !typeFilter) {
+      // No filters — reset to initial bars and allow normal pagination
+      setAllBars(initialBars);
+      setServerPage(2);
+      setHasMoreFromServer((totalBars || 0) > initialBars.length);
+      return;
+    }
+    // Fetch all bars matching the current filters from the server
+    setIsFilterFetching(true);
+    const params = new URLSearchParams({ perPage: '1000' });
+    if (countryFilter) params.set('country', countryFilter);
+    if (cityFilter) params.set('city', cityFilter);
+    if (typeFilter) params.set('type', typeFilter);
+    fetch(`/api/bars?${params}`)
+      .then(r => r.json())
+      .then(data => {
+        setAllBars(data.bars || []);
+        setHasMoreFromServer(false); // All filtered results are loaded
+      })
+      .catch(e => console.error('Filter fetch failed:', e))
+      .finally(() => setIsFilterFetching(false));
+  }, [countryFilter, cityFilter, typeFilter]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchMoreBarsFromServer = useCallback(async () => {
     if (isFetchingMore || !hasMoreFromServer) return;
@@ -537,7 +565,9 @@ export function BarDirectoryMapClient({
       {/* ── Results count + geo label ── */}
       <div className="directory-results-bar">
         <span className="directory-count">
-          {isFiltering
+          {isFilterFetching
+            ? 'Loading…'
+            : isFiltering
             ? `${allFiltered.length} ${allFiltered.length === 1 ? 'bar' : 'bars'} found`
             : `${totalBars || allFiltered.length} bars worldwide`}
         </span>
@@ -552,7 +582,11 @@ export function BarDirectoryMapClient({
       {/* ═══ GRID VIEW ═══ */}
       {viewMode === 'grid' && (
         <>
-          {allFiltered.length === 0 ? (
+          {isFilterFetching ? (
+            <div className="directory-empty">
+              <p style={{ color: 'var(--color-muted)', textAlign: 'center', padding: '3rem 0' }}>Loading bars…</p>
+            </div>
+          ) : allFiltered.length === 0 ? (
             <div className="directory-empty">
               <div className="directory-empty-icon">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

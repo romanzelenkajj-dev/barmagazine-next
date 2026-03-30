@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
 
   const page = parseInt(searchParams.get('page') || '1', 10);
-  const perPage = Math.min(parseInt(searchParams.get('perPage') || '24', 10), 100); // cap at 100
+  const perPage = Math.min(parseInt(searchParams.get('perPage') || '24', 10), 1000); // cap at 1000 for filter fetches
   const country = searchParams.get('country') || undefined;
   const city = searchParams.get('city') || undefined;
   const type = searchParams.get('type') || undefined;
