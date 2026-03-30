@@ -36,15 +36,24 @@ export default async function BarsPage() {
   const geoCountryCode = headersList.get('x-vercel-ip-country') || '';
   const geoContinent = headersList.get('x-vercel-ip-continent') || '';
 
-  // FIX: was fetching all 1000+ bars upfront, embedding them all in the initial HTML payload
-  // (~600KB inline JSON script). Now we only fetch the first 48 bars for the initial render.
-  // The BarDirectoryMapClient fetches more via /api/bars as the user scrolls or filters.
-  // This reduces the initial page payload by ~95% and dramatically improves Time to Interactive.
-  const [{ bars: initialBars }, filters, stats] = await Promise.all([
-    getBars({ perPage: 48 }),
+  // Fetch featured bars and photo bars separately so both sections start with a full grid.
+  // Previously we fetched 48 bars total — but most were featured, leaving the photo section
+  // with only 2-3 bars. Now we fetch:
+  //   - up to 48 featured/premium bars for the Featured section
+  //   - up to 24 non-featured bars with photos for the Bars section
+  // Total initial payload stays small (~72 bars max) while both sections render properly.
+  const [{ bars: featuredInitial }, { bars: photoInitial }, filters, stats] = await Promise.all([
+    getBars({ perPage: 48, tier: 'featured' }),
+    getBars({ perPage: 24, tier: 'free', hasPhoto: true }),
     getBarFilterOptions(),
     getBarStats(),
   ]);
+  // Merge: featured first, then photo bars (dedup by id just in case)
+  const seenIds = new Set(featuredInitial.map(b => b.id));
+  const initialBars = [
+    ...featuredInitial,
+    ...photoInitial.filter(b => !seenIds.has(b.id)),
+  ];
 
   // ItemList JSON-LD — use stats.totalBars for the count, list the top 50 by name for schema
   const itemListLd = {

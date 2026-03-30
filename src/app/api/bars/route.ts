@@ -19,9 +19,12 @@ export async function GET(request: NextRequest) {
   const city = searchParams.get('city') || undefined;
   const type = searchParams.get('type') || undefined;
   const search = searchParams.get('search') || undefined;
+  const tier = searchParams.get('tier') || undefined;
+  const hasPhotoParam = searchParams.get('hasPhoto');
+  const hasPhoto = hasPhotoParam === 'true' ? true : hasPhotoParam === 'false' ? false : undefined;
 
   try {
-    const { bars, total } = await getBars({ page, perPage, country, city, type, search });
+    const { bars, total } = await getBars({ page, perPage, country, city, type, search, tier, hasPhoto });
 
     return NextResponse.json(
       { bars, total, page, perPage },

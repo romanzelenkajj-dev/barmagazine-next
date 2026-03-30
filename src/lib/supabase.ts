@@ -57,6 +57,8 @@ export async function getBars(filters?: {
   search?: string;
   page?: number;
   perPage?: number;
+  tier?: string;
+  hasPhoto?: boolean;
 }) {
   const page = filters?.page || 1;
   const perPage = filters?.perPage || 24;
@@ -84,6 +86,13 @@ export async function getBars(filters?: {
     query = query.or(
       `name.ilike.%${filters.search}%,city.ilike.%${filters.search}%,country.ilike.%${filters.search}%`
     );
+  }
+  if (filters?.tier) {
+    query = query.eq('tier', filters.tier);
+  }
+  if (filters?.hasPhoto === true) {
+    // photos is a jsonb array — filter for non-empty arrays
+    query = query.not('photos', 'eq', '[]').not('photos', 'is', null);
   }
 
   const { data, count, error } = await query;
