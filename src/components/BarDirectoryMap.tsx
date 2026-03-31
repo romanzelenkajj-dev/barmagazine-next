@@ -815,7 +815,7 @@ export function BarDirectoryMapClient({
                         <line x1="3" y1="18" x2="3.01" y2="18" />
                       </svg>
                     }
-                    label="More Bars"
+                    label="Bars"
                     count={isFiltering ? listedBars.length : undefined}
                   />
                   <div className="directory-list">
