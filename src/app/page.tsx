@@ -6,10 +6,14 @@ import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
 
 export const revalidate = 300;
 
+const CATEGORY_SLUGS = ['bars', 'people', 'cocktails', 'awards-events', 'brands', 'events'] as const;
+
 export default async function HomePage() {
-  const [result, barsResult] = await Promise.all([
+  // Fetch all data in parallel: latest posts, bars for Featured Bars, and all 6 category sets
+  const [result, barsResult, ...categoryResults] = await Promise.all([
     getPosts(1, 7),
     getPostsByCategory('bars', 1, 12),
+    ...CATEGORY_SLUGS.map(slug => getPostsByCategory(slug, 1, 6)),
   ]);
   const posts = result.data;
   const barsPosts = barsResult.data;
@@ -19,6 +23,12 @@ export default async function HomePage() {
   const heroImgFull = hero ? getFeaturedImageData(hero, 'full') : null;
   const heroImgMedium = hero ? getFeaturedImageData(hero, 'medium_large') : null;
   const heroImgLarge = hero ? getFeaturedImageData(hero, 'large') : null;
+
+  // Build pre-fetched category map: { bars: [...], people: [...], ... }
+  const categoryData: Record<string, unknown[]> = {};
+  CATEGORY_SLUGS.forEach((slug, i) => {
+    categoryData[slug] = categoryResults[i].data;
+  });
 
   return (
     <>
@@ -54,8 +64,11 @@ export default async function HomePage() {
         </Link>
       )}
 
-      {/* B) SECTION BAR + C) MIXED CARD GRID — now with working category filter */}
-      <HomeCategoryGrid initialPosts={JSON.stringify(cardPosts)} />
+      {/* B) SECTION BAR + C) MIXED CARD GRID — instant category switching */}
+      <HomeCategoryGrid
+        initialPosts={JSON.stringify(cardPosts)}
+        categoryData={JSON.stringify(categoryData)}
+      />
 
       {/* D) CTA BANNER + AD */}
       <div className="cta-row">

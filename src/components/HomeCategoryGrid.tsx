@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { formatCardTitle } from '@/lib/utils';
 
@@ -52,57 +52,32 @@ function getCategory(post: WPPost): string {
   return filtered[0]?.name || terms[0]?.name || 'Latest';
 }
 
-/* formatCardTitle imported from @/lib/utils — handles pipe markers and bold_title */
-
-/* ── Category map (slug → WP category ID) ── */
-const CATEGORIES: { label: string; slug: string; id: number }[] = [
-  { label: 'Bars', slug: 'bars', id: 63 },
-  { label: 'People', slug: 'people', id: 199 },
-  { label: 'Cocktails', slug: 'cocktails', id: 8 },
-  { label: 'Awards', slug: 'awards', id: 200 },
-  { label: 'Brands', slug: 'brands', id: 201 },
-  { label: 'Events', slug: 'events', id: 202 },
+/* ── Category options ── */
+const CATEGORIES = [
+  { label: 'Bars', slug: 'bars' },
+  { label: 'People', slug: 'people' },
+  { label: 'Cocktails', slug: 'cocktails' },
+  { label: 'Awards', slug: 'awards-events' },
+  { label: 'Brands', slug: 'brands' },
+  { label: 'Events', slug: 'events' },
 ];
 
-/* ── WP API base ── */
-const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com';
-
 interface Props {
-  initialPosts: string; // JSON-serialized WPPost[]
+  initialPosts: string;   // JSON-serialized WPPost[] (the "All Categories" default)
+  categoryData: string;   // JSON-serialized Record<string, WPPost[]> (pre-fetched per category)
 }
 
-export function HomeCategoryGrid({ initialPosts }: Props) {
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [posts, setPosts] = useState<WPPost[]>(() => {
-    try { return JSON.parse(initialPosts); } catch { return []; }
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const allPosts = JSON.parse(initialPosts) as WPPost[];
+export function HomeCategoryGrid({ initialPosts, categoryData }: Props) {
+  const allPosts: WPPost[] = (() => { try { return JSON.parse(initialPosts); } catch { return []; } })();
+  const catMap: Record<string, WPPost[]> = (() => { try { return JSON.parse(categoryData); } catch { return {}; } })();
 
-  const fetchCategory = useCallback(async (categoryId: number) => {
-    setIsLoading(true);
-    try {
-      const res = await fetch(
-        `${WP_API}/posts?per_page=6&page=1&categories=${categoryId}&_embed=wp:featuredmedia,wp:term`
-      );
-      if (!res.ok) throw new Error('Failed to fetch');
-      const data: WPPost[] = await res.json();
-      setPosts(data);
-    } catch {
-      setPosts([]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  // Determine which posts to show — instant, no fetch needed
+  const posts = selectedCategory ? (catMap[selectedCategory] || []) : allPosts;
 
   const handleChange = (value: string) => {
     setSelectedCategory(value);
-    if (!value) {
-      setPosts(allPosts);
-      return;
-    }
-    const cat = CATEGORIES.find(c => c.slug === value);
-    if (cat) fetchCategory(cat.id);
   };
 
   return (
@@ -125,11 +100,7 @@ export function HomeCategoryGrid({ initialPosts }: Props) {
 
       {/* Card grid */}
       <div className="cards-grid">
-        {isLoading ? (
-          <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem 0', color: 'var(--color-muted, #888)' }}>
-            Loading…
-          </div>
-        ) : posts.length === 0 ? (
+        {posts.length === 0 ? (
           <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem 0', color: 'var(--color-muted, #888)' }}>
             No articles found in this category.
           </div>
