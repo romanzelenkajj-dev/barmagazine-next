@@ -20,7 +20,6 @@ interface Props {
 }
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
-const TOP10_PER_PAGE = 12;
 const FEATURED_PER_PAGE = 12;
 const PHOTO_PER_PAGE = 24;
 const LIST_PER_PAGE = 60;
@@ -860,46 +859,6 @@ export function BarDirectoryMapClient({
 }
 
 /* ─── Card Components ─── */
-
-function Top10BarCard({ bar }: { bar: Bar }) {
-  const imageUrl = bar.photos?.[0] || null;
-  return (
-    <Link href={`/bars/${bar.slug}`} className="bar-dir-top10-card">
-      <div className="bar-dir-featured-visual">
-        {imageUrl
-          ? <img src={imageUrl} alt={bar.name} loading="lazy" />
-          : (
-            <div className="bar-dir-featured-placeholder">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3">
-                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
-              <span>{bar.name.slice(0, 2).toUpperCase()}</span>
-            </div>
-          )
-        }
-        <div className="bar-dir-featured-overlay" />
-        <div className="bar-dir-top10-badge-corner">
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
-          TOP 10
-        </div>
-        <div className="bar-dir-featured-content">
-          <h3>{bar.name}</h3>
-          <span className="bar-dir-featured-location">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-            </svg>
-            {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
-          </span>
-          {bar.type && (
-            <span className="bar-dir-featured-type">{formatBarType(bar.type)}</span>
-          )}
-        </div>
-      </div>
-    </Link>
-  );
-}
 
 function FeaturedBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;
