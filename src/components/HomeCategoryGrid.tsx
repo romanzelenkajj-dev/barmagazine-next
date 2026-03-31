@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
+import { formatCardTitle } from '@/lib/utils';
 
 /* ── Types (matching WP REST shape) ── */
 interface WPCategory { id: number; name: string; slug: string }
@@ -51,16 +52,7 @@ function getCategory(post: WPPost): string {
   return filtered[0]?.name || terms[0]?.name || 'Latest';
 }
 
-function formatTitle(html: string, boldTitle?: string): string {
-  if (!boldTitle) return html;
-  const plain = stripHtml(html);
-  const idx = plain.toLowerCase().indexOf(boldTitle.toLowerCase());
-  if (idx === -1) return html;
-  const before = plain.slice(0, idx);
-  const match = plain.slice(idx, idx + boldTitle.length);
-  const after = plain.slice(idx + boldTitle.length);
-  return `${before}<strong>${match}</strong>${after}`;
-}
+/* formatCardTitle imported from @/lib/utils — handles pipe markers and bold_title */
 
 /* ── Category map (slug → WP category ID) ── */
 const CATEGORIES: { label: string; slug: string; id: number }[] = [
@@ -146,7 +138,7 @@ export function HomeCategoryGrid({ initialPosts }: Props) {
             const isBleed = i % 3 === 1;
             const cat = getCategory(post);
             const imgUrl = getImgUrl(post, 'large');
-            const formattedTitle = formatTitle(post.title.rendered, post.meta?.bold_title);
+            const formattedTitle = formatCardTitle(post.title.rendered, post.meta?.bold_title);
             const excerpt = truncateAtWord(stripHtml(post.excerpt.rendered), 120);
 
             if (isBleed) {
