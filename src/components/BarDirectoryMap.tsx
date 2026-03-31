@@ -130,7 +130,7 @@ const COUNTRY_CENTER: Record<string, [number, number, number]> = {
   PL: [19.1, 52.1, 5.5], CZ: [15.5, 49.8, 6.5], KR: [127.8, 36.5, 6.0],
 };
 
-function DirectoryMap({ bars, geoCity = '', geoCountryCode = '' }: { bars: Bar[]; geoCity?: string; geoCountryCode?: string }) {
+function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null, userLng = null }: { bars: Bar[]; geoCity?: string; geoCountryCode?: string; userLat?: number | null; userLng?: number | null }) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -166,10 +166,16 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '' }: { bars: Bar[]
       const cityKey = geoCity.toLowerCase();
       const cityCoords = CITY_COORDS_MAP[cityKey];
       const countryCenter = geoCountryCode ? COUNTRY_CENTER[geoCountryCode.toUpperCase()] : null;
-      const initialCenter: [number, number] = cityCoords
+
+      // Priority: GPS coordinates > IP city > IP country > world view
+      const initialCenter: [number, number] = (userLat != null && userLng != null)
+        ? [userLng, userLat]
+        : cityCoords
         ? cityCoords
         : countryCenter ? [countryCenter[0], countryCenter[1]] : [15, 30];
-      const initialZoom = cityCoords ? 9 : countryCenter ? countryCenter[2] : 1.5;
+      const initialZoom = (userLat != null && userLng != null)
+        ? 9
+        : cityCoords ? 9 : countryCenter ? countryCenter[2] : 1.5;
 
       const map = new mapboxgl.Map({
         container: mapContainer.current!,
@@ -671,7 +677,7 @@ export function BarDirectoryMapClient({
       </div>
 
       {/* ═══ MAP VIEW ═══ */}
-      {viewMode === 'map' && <DirectoryMap bars={mapBarsLoaded ? mapBars : allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} />}
+      {viewMode === 'map' && <DirectoryMap bars={mapBarsLoaded ? mapBars : allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} userLat={userLat} userLng={userLng} />}
 
       {/* ═══ GRID VIEW ═══ */}
       {viewMode === 'grid' && (
