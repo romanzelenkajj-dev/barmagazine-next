@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --bg-page: #F5F0EB;
+  --bg-page: #E8E3DC;
   --bg-card: #FFFFFF;
   --bg-card-warm: #F0EBE4;
   --bg-dark: #1A1A1A;
-  --bg-accent: #F0D0B8;
+  --bg-accent: #C8DFE3;
   --bg-accent-pink: #EDBBBB;
   --text-primary: #1A1A1A;
   --text-secondary: #6B6B6B;
@@ -17,7 +17,7 @@
   --border: #E0D8D0;
   --radius: 20px;
   --gap: 16px;
-  --container: 1280px;
+  --container: 1536px;
   --nav-h: 64px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -491,7 +491,7 @@ button {
 
 .newsletter-form button {
   padding: 14px 28px;
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
@@ -501,7 +501,7 @@ button {
 }
 
 .newsletter-form button:hover {
-  background: #a84e2e;
+  background: #333;
 }
 
 .newsletter-success {
@@ -1118,7 +1118,7 @@ button {
 .sidebar-newsletter button {
   width: 100%;
   padding: 12px 20px;
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
@@ -1127,7 +1127,7 @@ button {
 }
 
 .sidebar-newsletter button:hover {
-  background: #a84e2e;
+  background: #333;
 }
 
 /* ====== FOOTER ====== */
