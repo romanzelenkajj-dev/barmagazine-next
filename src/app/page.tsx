@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, stripHtml, truncateAtWord } from '@/lib/wordpress';
+import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, stripHtml } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
 import { NewsletterForm } from '@/components/NewsletterForm';
 import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
