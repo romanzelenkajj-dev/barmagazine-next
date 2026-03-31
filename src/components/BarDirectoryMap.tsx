@@ -542,9 +542,10 @@ export function BarDirectoryMapClient({
 
   // ── SECTION 2: Photo bars (non-featured, non-top10 bars with photos) ──
   // Sorted by GPS distance when available, otherwise by IP-based geo proximity
+  // NOTE: top10 bars are intentionally excluded here — they are hidden until photos are ready
   const photoBars = useMemo(() => {
-    const isPriority = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
-    const withPhotos = filtered.filter(b => !isPriority(b) && b.photos && b.photos.length > 0);
+    const isHidden = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
+    const withPhotos = filtered.filter(b => !isHidden(b) && b.photos && b.photos.length > 0);
     if (userLat !== null && userLng !== null) {
       return sortByGPS(withPhotos, userLat, userLng, geoCity, geoCountryCode, geoContinent);
     }
@@ -553,17 +554,18 @@ export function BarDirectoryMapClient({
 
   // ── SECTION 3: Listed bars (non-priority bars with no photo) ──
   // Sorted by GPS distance when available, otherwise by IP-based geo proximity
+  // NOTE: top10 bars are intentionally excluded here — they are hidden until photos are ready
   const listedBars = useMemo(() => {
-    const isPriority = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
-    const noPhoto = filtered.filter(b => !isPriority(b) && (!b.photos || b.photos.length === 0));
+    const isHidden = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
+    const noPhoto = filtered.filter(b => !isHidden(b) && (!b.photos || b.photos.length === 0));
     if (userLat !== null && userLng !== null) {
       return sortByGPS(noPhoto, userLat, userLng, geoCity, geoCountryCode, geoContinent);
     }
     return sortByGeo(noPhoto, geoCity, geoCountryCode, geoContinent);
   }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
-  // All bars for map view
-  const allFiltered = useMemo(() => [...top10Bars, ...featuredBars, ...photoBars, ...listedBars], [top10Bars, featuredBars, photoBars, listedBars]);
+  // All bars for map view — top10 excluded until photos are ready
+  const allFiltered = useMemo(() => [...featuredBars, ...photoBars, ...listedBars], [featuredBars, photoBars, listedBars]);
 
   const activeFilters: { label: string; clear: () => void }[] = [];
   if (countryFilter) activeFilters.push({ label: countryFilter, clear: () => { setCountryFilter(''); setCityFilter(''); } });
