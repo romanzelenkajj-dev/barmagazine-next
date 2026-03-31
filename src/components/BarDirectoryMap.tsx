@@ -20,6 +20,7 @@ interface Props {
 }
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
+const TOP10_PER_PAGE = 12;
 const FEATURED_PER_PAGE = 12;
 const PHOTO_PER_PAGE = 24;
 const LIST_PER_PAGE = 60;
@@ -224,6 +225,12 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
         });
 
         map.addLayer({
+          id: 'bar-points-top10', type: 'circle', source: 'bars',
+          filter: ['all', ['!', ['has', 'point_count']], ['==', ['get', 'tier'], 'top10']],
+          paint: { 'circle-radius': 8, 'circle-color': '#C9A84C', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#fff8e1', 'circle-opacity': 1 },
+        });
+
+        map.addLayer({
           id: 'bar-points-featured', type: 'circle', source: 'bars',
           filter: ['all', ['!', ['has', 'point_count']], ['in', ['get', 'tier'], ['literal', ['featured', 'premium']]]],
           paint: { 'circle-radius': 7, 'circle-color': '#d4a44a', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#f5f0eb', 'circle-opacity': 1 },
@@ -252,11 +259,14 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
           const props = e.features[0].properties!;
           const coords = (e.features[0].geometry as GeoJSON.Point).coordinates.slice() as [number, number];
           const isFeatured = props.tier === 'featured' || props.tier === 'premium';
+          const isTop10 = props.tier === 'top10';
           const photoHtml = props.photo && props.hasPhoto
             ? `<img src="${props.photo}" alt="${props.name}" style="width:100%;height:120px;object-fit:cover;border-radius:6px 6px 0 0;margin:-12px -12px 8px -12px;width:calc(100% + 24px);" />`
             : '';
-          const badgeHtml = isFeatured ? '<span style="display:inline-block;background:#c47843;color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;margin-bottom:4px;letter-spacing:0.5px;">FEATURED</span><br/>' : '';
-          const upgradeHtml = !isFeatured ? '<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.1);font-size:10px;color:#c47843;"><a href="/claim-your-bar" style="color:#c47843;text-decoration:none;">★ Upgrade to stand out →</a></div>' : '';
+          const badgeHtml = isTop10
+            ? '<span style="display:inline-block;background:linear-gradient(135deg,#B8973A,#D4B84A);color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:700;margin-bottom:4px;letter-spacing:0.5px;">★ TOP 10</span><br/>'
+            : isFeatured ? '<span style="display:inline-block;background:#c47843;color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;margin-bottom:4px;letter-spacing:0.5px;">FEATURED</span><br/>' : '';
+          const upgradeHtml = (!isFeatured && !isTop10) ? '<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.1);font-size:10px;color:#c47843;"><a href="/claim-your-bar" style="color:#c47843;text-decoration:none;">★ Upgrade to stand out →</a></div>' : '';
           new mapboxgl.Popup({ closeButton: true, closeOnClick: true, maxWidth: '220px', className: 'bar-map-popup' })
             .setLngLat(coords)
             .setHTML(`<div style="cursor:pointer;" onclick="window.location.href='/bars/${props.slug}'">${photoHtml}${badgeHtml}<strong style="font-size:14px;color:#f5f0eb;">${props.name}</strong><br/><span style="font-size:12px;color:#a09888;">${props.city}, ${props.country}</span><br/><span style="font-size:11px;color:#7a7060;text-transform:uppercase;letter-spacing:0.5px;">${props.type || 'Bar'}</span>${upgradeHtml}</div>`)
@@ -265,12 +275,15 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
 
         map.on('click', 'bar-points-free', showPopup);
         map.on('click', 'bar-points-featured', showPopup);
+        map.on('click', 'bar-points-top10', showPopup);
         map.on('mouseenter', 'clusters', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'clusters', () => { map.getCanvas().style.cursor = ''; });
         map.on('mouseenter', 'bar-points-free', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'bar-points-free', () => { map.getCanvas().style.cursor = ''; });
         map.on('mouseenter', 'bar-points-featured', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'bar-points-featured', () => { map.getCanvas().style.cursor = ''; });
+        map.on('mouseenter', 'bar-points-top10', () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', 'bar-points-top10', () => { map.getCanvas().style.cursor = ''; });
         setMapLoaded(true);
       });
 
@@ -315,16 +328,17 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
 
 /* ─── Section Header Component ─── */
 function SectionHeader({
-  icon, label, sublabel, count, accent = false,
+  icon, label, sublabel, count, accent = false, top10 = false,
 }: {
   icon: React.ReactNode;
   label: string;
   sublabel?: string;
   count?: number;
   accent?: boolean;
+  top10?: boolean;
 }) {
   return (
-    <div className={`dir-section-header ${accent ? 'dir-section-header--accent' : ''}`}>
+    <div className={`dir-section-header ${accent ? 'dir-section-header--accent' : ''} ${top10 ? 'dir-section-header--top10' : ''}`}>
       <div className="dir-section-header-left">
         <span className="dir-section-header-icon">{icon}</span>
         <div>
@@ -375,6 +389,7 @@ export function BarDirectoryMapClient({
   // GPS-based sorting state
   const [userLat, setUserLat] = useState<number | null>(null);
   const [userLng, setUserLng] = useState<number | null>(null);
+  const [top10Visible, setTop10Visible] = useState(TOP10_PER_PAGE);
   const [featuredVisible, setFeaturedVisible] = useState(FEATURED_PER_PAGE);
   const [photoVisible, setPhotoVisible] = useState(PHOTO_PER_PAGE);
   const [listVisible, setListVisible] = useState(LIST_PER_PAGE);
@@ -506,6 +521,15 @@ export function BarDirectoryMapClient({
     });
   }, [search, countryFilter, cityFilter, typeFilter, allBars]);
 
+  // ── SECTION 0: TOP 10 bars ──
+  const top10Bars = useMemo(() => {
+    const top10 = filtered.filter(b => b.tier === 'top10');
+    if (userLat !== null && userLng !== null) {
+      return sortByGPS(top10, userLat, userLng, geoCity, geoCountryCode, geoContinent);
+    }
+    return sortByGeo(top10, geoCity, geoCountryCode, geoContinent);
+  }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
+
   // ── SECTION 1: Featured bars (tier = featured | premium) ──
   // Sorted by GPS distance when available, otherwise by IP-based geo proximity
   const featuredBars = useMemo(() => {
@@ -516,22 +540,22 @@ export function BarDirectoryMapClient({
     return sortByGeo(featured, geoCity, geoCountryCode, geoContinent);
   }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
-  // ── SECTION 2: Photo bars (non-featured bars with photos) ──
+  // ── SECTION 2: Photo bars (non-featured, non-top10 bars with photos) ──
   // Sorted by GPS distance when available, otherwise by IP-based geo proximity
   const photoBars = useMemo(() => {
-    const isFeatured = (b: Bar) => b.tier === 'featured' || b.tier === 'premium';
-    const withPhotos = filtered.filter(b => !isFeatured(b) && b.photos && b.photos.length > 0);
+    const isPriority = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
+    const withPhotos = filtered.filter(b => !isPriority(b) && b.photos && b.photos.length > 0);
     if (userLat !== null && userLng !== null) {
       return sortByGPS(withPhotos, userLat, userLng, geoCity, geoCountryCode, geoContinent);
     }
     return sortByGeo(withPhotos, geoCity, geoCountryCode, geoContinent);
   }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
-  // ── SECTION 3: Listed bars (non-featured bars with no photo) ──
+  // ── SECTION 3: Listed bars (non-priority bars with no photo) ──
   // Sorted by GPS distance when available, otherwise by IP-based geo proximity
   const listedBars = useMemo(() => {
-    const isFeatured = (b: Bar) => b.tier === 'featured' || b.tier === 'premium';
-    const noPhoto = filtered.filter(b => !isFeatured(b) && (!b.photos || b.photos.length === 0));
+    const isPriority = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
+    const noPhoto = filtered.filter(b => !isPriority(b) && (!b.photos || b.photos.length === 0));
     if (userLat !== null && userLng !== null) {
       return sortByGPS(noPhoto, userLat, userLng, geoCity, geoCountryCode, geoContinent);
     }
@@ -539,7 +563,7 @@ export function BarDirectoryMapClient({
   }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
   // All bars for map view
-  const allFiltered = useMemo(() => [...featuredBars, ...photoBars, ...listedBars], [featuredBars, photoBars, listedBars]);
+  const allFiltered = useMemo(() => [...top10Bars, ...featuredBars, ...photoBars, ...listedBars], [top10Bars, featuredBars, photoBars, listedBars]);
 
   const activeFilters: { label: string; clear: () => void }[] = [];
   if (countryFilter) activeFilters.push({ label: countryFilter, clear: () => { setCountryFilter(''); setCityFilter(''); } });
@@ -548,11 +572,12 @@ export function BarDirectoryMapClient({
 
   const clearAll = useCallback(() => {
     setSearch(''); setCountryFilter(''); setCityFilter(''); setTypeFilter('');
-    setFeaturedVisible(FEATURED_PER_PAGE); setPhotoVisible(PHOTO_PER_PAGE); setListVisible(LIST_PER_PAGE);
+    setTop10Visible(TOP10_PER_PAGE); setFeaturedVisible(FEATURED_PER_PAGE); setPhotoVisible(PHOTO_PER_PAGE); setListVisible(LIST_PER_PAGE);
     setShowPhotoBars(false); setShowListedBars(false);
   }, []);
 
   const resetPagination = () => {
+    setTop10Visible(TOP10_PER_PAGE);
     setFeaturedVisible(FEATURED_PER_PAGE);
     setPhotoVisible(PHOTO_PER_PAGE);
     setListVisible(LIST_PER_PAGE);
@@ -699,6 +724,35 @@ export function BarDirectoryMapClient({
             </div>
           ) : (
             <>
+              {/* ══ SECTION 0: TOP 10 BARS ══ */}
+              {top10Bars.length > 0 && (
+                <div className="dir-section">
+                  <SectionHeader
+                    top10
+                    icon={
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    }
+                    label="Top 10 Bars"
+                    count={isFiltering ? top10Bars.length : undefined}
+                  />
+                  <div className="directory-featured-grid">
+                    {top10Bars.slice(0, top10Visible).map(bar => (
+                      <Top10BarCard key={bar.id} bar={bar} />
+                    ))}
+                  </div>
+                  {top10Visible < top10Bars.length && (
+                    <div className="directory-load-more">
+                      <button onClick={() => setTop10Visible(prev => prev + TOP10_PER_PAGE)}>
+                        Show More Top 10 Bars
+                        <span className="directory-load-more-count">{top10Bars.length - top10Visible} remaining</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* ══ SECTION 1: FEATURED BARS ══ */}
               {featuredBars.length > 0 && (
                 <div className="dir-section">
@@ -858,6 +912,46 @@ export function BarDirectoryMapClient({
 }
 
 /* ─── Card Components ─── */
+
+function Top10BarCard({ bar }: { bar: Bar }) {
+  const imageUrl = bar.photos?.[0] || null;
+  return (
+    <Link href={`/bars/${bar.slug}`} className="bar-dir-top10-card">
+      <div className="bar-dir-featured-visual">
+        {imageUrl
+          ? <img src={imageUrl} alt={bar.name} loading="lazy" />
+          : (
+            <div className="bar-dir-featured-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+              <span>{bar.name.slice(0, 2).toUpperCase()}</span>
+            </div>
+          )
+        }
+        <div className="bar-dir-featured-overlay" />
+        <div className="bar-dir-top10-badge-corner">
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          TOP 10
+        </div>
+        <div className="bar-dir-featured-content">
+          <h3>{bar.name}</h3>
+          <span className="bar-dir-featured-location">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+            </svg>
+            {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+          </span>
+          {bar.type && (
+            <span className="bar-dir-featured-type">{formatBarType(bar.type)}</span>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 function FeaturedBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;

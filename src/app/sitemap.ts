@@ -108,7 +108,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${SITE_URL}/bars/${bar.slug}`,
       lastModified: new Date(bar.updated_at || bar.created_at),
       changeFrequency: 'weekly' as const,
-      priority: bar.tier === 'premium' ? 0.8 : bar.tier === 'featured' ? 0.7 : 0.6,
+      priority: bar.tier === 'top10' ? 0.9 : bar.tier === 'premium' ? 0.8 : bar.tier === 'featured' ? 0.7 : 0.6,
     }));
 
   // /bars directory listing page

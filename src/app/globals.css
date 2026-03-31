@@ -2297,6 +2297,58 @@ textarea.form-input {
   background: linear-gradient(135deg, #C4603C, #D4834A) !important;
 }
 
+/* TOP 10 badge — top-right corner, gold gradient */
+.bar-dir-top10-badge-corner {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #B8973A, #D4B84A);
+  box-shadow: 0 2px 8px rgba(180,150,50,0.45);
+  z-index: 2;
+}
+
+/* TOP 10 card — same visual as featured but with gold border accent */
+.bar-dir-top10-card {
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px rgba(201,168,76,0.55);
+  transition: box-shadow 0.25s var(--ease);
+}
+
+.bar-dir-top10-card:hover {
+  box-shadow: 0 0 0 2.5px #C9A84C, 0 8px 32px rgba(0,0,0,0.18);
+}
+
+.bar-dir-top10-card:hover .bar-dir-featured-visual img {
+  transform: scale(1.05);
+}
+
+/* TOP 10 section header accent */
+.dir-section-header--top10 {
+  background: linear-gradient(90deg, rgba(201,168,76,0.12) 0%, transparent 100%);
+  border-left: 3px solid #C9A84C;
+  padding-left: 14px;
+  border-radius: 0 8px 8px 0;
+}
+
+.dir-section-header--top10 .dir-section-header-icon {
+  color: #C9A84C;
+}
+
+.dir-section-header--top10 .dir-section-header-label {
+  color: #B8973A;
+}
+
 .bar-dir-featured-placeholder {
   width: 100%;
   height: 100%;
@@ -4978,6 +5030,12 @@ textarea.form-input {
 .bar-v2-badge--featured {
   background: #c47843;
   color: #fff;
+}
+
+.bar-v2-badge--top10 {
+  background: linear-gradient(135deg, #B8973A, #D4B84A);
+  color: #fff;
+  font-weight: 700;
 }
 
 /* Location Map — bottom of page */

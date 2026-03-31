@@ -24,7 +24,8 @@ export interface Bar {
   description: string | null;
   short_excerpt: string | null;
   photos: string[];
-  tier: 'free' | 'featured' | 'premium';
+  tier: 'free' | 'featured' | 'premium' | 'top10';
+  opening_hours: string | null;
   featured_until: string | null;
   is_verified: boolean;
   is_active: boolean;
@@ -101,8 +102,8 @@ export async function getBars(filters?: {
     return { bars: [], total: 0 };
   }
 
-  // Sort: premium first, then featured, then free
-  const tierOrder: Record<string, number> = { premium: 0, featured: 1, free: 2 };
+  // Sort: top10 first, then premium, then featured, then free
+  const tierOrder: Record<string, number> = { top10: 0, premium: 1, featured: 2, free: 3 };
   const sorted = (data || []).sort((a, b) => {
     const ta = tierOrder[a.tier] ?? 2;
     const tb = tierOrder[b.tier] ?? 2;

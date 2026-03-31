@@ -36,22 +36,22 @@ export default async function BarsPage() {
   const geoCountryCode = headersList.get('x-vercel-ip-country') || '';
   const geoContinent = headersList.get('x-vercel-ip-continent') || '';
 
-  // Fetch featured bars and photo bars separately so both sections start with a full grid.
-  // Previously we fetched 48 bars total — but most were featured, leaving the photo section
-  // with only 2-3 bars. Now we fetch:
-  //   - up to 48 featured/premium bars for the Featured section
-  //   - up to 24 non-featured bars with photos for the Bars section
-  // Total initial payload stays small (~72 bars max) while both sections render properly.
-  const [{ bars: featuredInitial }, { bars: photoInitial }, filters, stats] = await Promise.all([
+  // Fetch top10, featured, and photo bars separately so all sections start with a full grid.
+  // Load order: top10 (170 bars) → featured/premium → photo bars
+  const [{ bars: top10Initial }, { bars: featuredInitial }, { bars: photoInitial }, filters, stats] = await Promise.all([
+    getBars({ perPage: 200, tier: 'top10' }),
     getBars({ perPage: 48, tier: 'featured' }),
     getBars({ perPage: 24, tier: 'free', hasPhoto: true }),
     getBarFilterOptions(),
     getBarStats(),
   ]);
-  // Merge: featured first, then photo bars (dedup by id just in case)
-  const seenIds = new Set(featuredInitial.map(b => b.id));
+  // Merge: top10 first, then featured, then photo bars (dedup by id)
+  const seenIds = new Set(top10Initial.map(b => b.id));
+  const featuredDeduped = featuredInitial.filter(b => !seenIds.has(b.id));
+  featuredDeduped.forEach(b => seenIds.add(b.id));
   const initialBars = [
-    ...featuredInitial,
+    ...top10Initial,
+    ...featuredDeduped,
     ...photoInitial.filter(b => !seenIds.has(b.id)),
   ];
 

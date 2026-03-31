@@ -60,7 +60,8 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
 
   const isPremium = bar.tier === 'premium';
   const isFeatured = bar.tier === 'featured';
-  const isPaid = isPremium || isFeatured;
+  const isTop10 = bar.tier === 'top10';
+  const isPaid = isPremium || isFeatured || isTop10;
   const hasImage = bar.photos && bar.photos.length > 0;
   const hasGallery = bar.photos && bar.photos.length > 2;
 
@@ -86,6 +87,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
     ...(bar.instagram && { sameAs: [`https://instagram.com/${bar.instagram.replace('@', '')}`] }),
     ...(bar.tier === 'premium' && { priceRange: '$$$' }),
     ...(bar.tier === 'featured' && { priceRange: '$$' }),
+    ...(bar.tier === 'top10' && { priceRange: '$$' }),
     // openingHours: when you add an opening_hours column to the bars table in Supabase,
     // store it as an array of strings in schema.org format, e.g.:
     // ["Mo-Fr 17:00-02:00", "Sa-Su 15:00-03:00"]
@@ -141,7 +143,8 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           )}
           <div className="bar-v2-badges">
             <span className="bar-v2-badge">{formatBarType(bar.type)}</span>
-            {(isPaid || bar.wp_article_slug) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+            {isTop10 && <span className="bar-v2-badge bar-v2-badge--top10">★ Top 10</span>}
+            {(isFeatured || isPremium || bar.wp_article_slug) && !isTop10 && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
           </div>
         </div>
 
@@ -177,6 +180,12 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                   <span>{bar.phone}</span>
                 </a>
               )}
+              {(bar as Bar & { opening_hours?: string }).opening_hours && (
+                <div className="bar-v2-detail">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                  <span>{(bar as Bar & { opening_hours?: string }).opening_hours}</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -193,7 +202,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" /></svg>
               </a>
             )}
-            {bar.tier === 'free' && !bar.wp_article_slug && (
+            {(bar.tier === 'free') && !bar.wp_article_slug && (
               <Link href="/claim-your-bar" className="bar-v2-btn bar-v2-btn--claim">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                 Is this your bar? Claim it

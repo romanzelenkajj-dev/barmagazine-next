@@ -26,16 +26,17 @@ interface Bar {
   featured_until: string | null;
   is_verified: boolean;
   is_active: boolean;
+  opening_hours: string | null;
   wp_article_slug: string | null;
   created_at: string;
   updated_at: string;
 }
 
-type EditableField = 'name' | 'slug' | 'city' | 'country' | 'type' | 'tier' | 'address' | 'website' | 'instagram' | 'phone' | 'email' | 'description' | 'short_excerpt' | 'wp_article_slug' | 'is_active' | 'is_verified';
+type EditableField = 'name' | 'slug' | 'city' | 'country' | 'type' | 'tier' | 'address' | 'website' | 'instagram' | 'phone' | 'email' | 'opening_hours' | 'description' | 'short_excerpt' | 'wp_article_slug' | 'is_active' | 'is_verified';
 
 const EDITABLE_FIELDS: EditableField[] = [
   'name', 'slug', 'city', 'country', 'type', 'tier', 'address',
-  'website', 'instagram', 'phone', 'email', 'description', 'short_excerpt',
+  'website', 'instagram', 'phone', 'email', 'opening_hours', 'description', 'short_excerpt',
   'wp_article_slug', 'is_active', 'is_verified',
 ];
 
@@ -45,7 +46,7 @@ const TYPE_OPTIONS = [
   'Mezcal Bar', 'Rum Bar', 'Gin Bar', 'Whisky Bar', 'Sake Bar',
 ];
 
-const TIER_OPTIONS = ['free', 'featured', 'premium'];
+const TIER_OPTIONS = ['free', 'featured', 'premium', 'top10'];
 
 // Visible columns in the main table
 const TABLE_COLUMNS: { key: keyof Bar; label: string; width: string }[] = [

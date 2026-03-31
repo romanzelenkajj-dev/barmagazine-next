@@ -48,7 +48,7 @@ export async function GET() {
   // Individual bar profile pages
   for (const bar of bars) {
     const lastmod = bar.updated_at || bar.created_at;
-    const priority = bar.tier === 'premium' ? 0.8 : bar.tier === 'featured' ? 0.7 : 0.6;
+    const priority = bar.tier === 'top10' ? 0.9 : bar.tier === 'premium' ? 0.8 : bar.tier === 'featured' ? 0.7 : 0.6;
     xml += `  <url>
     <loc>${SITE_URL}/bars/${bar.slug}</loc>
     <lastmod>${new Date(lastmod).toISOString()}</lastmod>
