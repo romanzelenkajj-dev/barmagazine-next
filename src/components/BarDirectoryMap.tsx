@@ -389,8 +389,7 @@ export function BarDirectoryMapClient({
   // GPS-based sorting state
   const [userLat, setUserLat] = useState<number | null>(null);
   const [userLng, setUserLng] = useState<number | null>(null);
-  const [top10Visible, setTop10Visible] = useState(TOP10_PER_PAGE);
-  const [featuredVisible, setFeaturedVisible] = useState(FEATURED_PER_PAGE);
+  const [priorityVisible, setPriorityVisible] = useState(FEATURED_PER_PAGE);
   const [photoVisible, setPhotoVisible] = useState(PHOTO_PER_PAGE);
   const [listVisible, setListVisible] = useState(LIST_PER_PAGE);
   const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
@@ -521,51 +520,38 @@ export function BarDirectoryMapClient({
     });
   }, [search, countryFilter, cityFilter, typeFilter, allBars]);
 
-  // ── SECTION 0: TOP 10 bars ──
-  const top10Bars = useMemo(() => {
-    const top10 = filtered.filter(b => b.tier === 'top10');
+  // ── PRIORITY GRID: top10 + featured + premium all merged, sorted by proximity ──
+  // No hierarchy between top10 and featured — closest bar wins position 1 regardless of tier
+  const priorityBars = useMemo(() => {
+    const priority = filtered.filter(b => b.tier === 'top10' || b.tier === 'featured' || b.tier === 'premium');
     if (userLat !== null && userLng !== null) {
-      return sortByGPS(top10, userLat, userLng, geoCity, geoCountryCode, geoContinent);
+      return sortByGPS(priority, userLat, userLng, geoCity, geoCountryCode, geoContinent);
     }
-    return sortByGeo(top10, geoCity, geoCountryCode, geoContinent);
+    return sortByGeo(priority, geoCity, geoCountryCode, geoContinent);
   }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
-  // ── SECTION 1: Featured bars (tier = featured | premium) ──
-  // Sorted by GPS distance when available, otherwise by IP-based geo proximity
-  const featuredBars = useMemo(() => {
-    const featured = filtered.filter(b => b.tier === 'featured' || b.tier === 'premium');
-    if (userLat !== null && userLng !== null) {
-      return sortByGPS(featured, userLat, userLng, geoCity, geoCountryCode, geoContinent);
-    }
-    return sortByGeo(featured, geoCity, geoCountryCode, geoContinent);
-  }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
-
-  // ── SECTION 2: Photo bars (non-featured, non-top10 bars with photos) ──
-  // Sorted by GPS distance when available, otherwise by IP-based geo proximity
-  // NOTE: top10 bars are intentionally excluded here — they are hidden until photos are ready
+  // ── Photo bars (non-priority bars with photos) ──
   const photoBars = useMemo(() => {
-    const isHidden = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
-    const withPhotos = filtered.filter(b => !isHidden(b) && b.photos && b.photos.length > 0);
+    const isPriority = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
+    const withPhotos = filtered.filter(b => !isPriority(b) && b.photos && b.photos.length > 0);
     if (userLat !== null && userLng !== null) {
       return sortByGPS(withPhotos, userLat, userLng, geoCity, geoCountryCode, geoContinent);
     }
     return sortByGeo(withPhotos, geoCity, geoCountryCode, geoContinent);
   }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
-  // ── SECTION 3: Listed bars (non-priority bars with no photo) ──
-  // Sorted by GPS distance when available, otherwise by IP-based geo proximity
-  // NOTE: top10 bars are intentionally excluded here — they are hidden until photos are ready
+  // ── Listed bars (non-priority bars with no photo) ──
   const listedBars = useMemo(() => {
-    const isHidden = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
-    const noPhoto = filtered.filter(b => !isHidden(b) && (!b.photos || b.photos.length === 0));
+    const isPriority = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
+    const noPhoto = filtered.filter(b => !isPriority(b) && (!b.photos || b.photos.length === 0));
     if (userLat !== null && userLng !== null) {
       return sortByGPS(noPhoto, userLat, userLng, geoCity, geoCountryCode, geoContinent);
     }
     return sortByGeo(noPhoto, geoCity, geoCountryCode, geoContinent);
   }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
-  // All bars for map view — top10 excluded until photos are ready
-  const allFiltered = useMemo(() => [...featuredBars, ...photoBars, ...listedBars], [featuredBars, photoBars, listedBars]);
+  // All bars for map view
+  const allFiltered = useMemo(() => [...priorityBars, ...photoBars, ...listedBars], [priorityBars, photoBars, listedBars]);
 
   const activeFilters: { label: string; clear: () => void }[] = [];
   if (countryFilter) activeFilters.push({ label: countryFilter, clear: () => { setCountryFilter(''); setCityFilter(''); } });
@@ -574,13 +560,12 @@ export function BarDirectoryMapClient({
 
   const clearAll = useCallback(() => {
     setSearch(''); setCountryFilter(''); setCityFilter(''); setTypeFilter('');
-    setTop10Visible(TOP10_PER_PAGE); setFeaturedVisible(FEATURED_PER_PAGE); setPhotoVisible(PHOTO_PER_PAGE); setListVisible(LIST_PER_PAGE);
+    setPriorityVisible(FEATURED_PER_PAGE); setPhotoVisible(PHOTO_PER_PAGE); setListVisible(LIST_PER_PAGE);
     setShowPhotoBars(false); setShowListedBars(false);
   }, []);
 
   const resetPagination = () => {
-    setTop10Visible(TOP10_PER_PAGE);
-    setFeaturedVisible(FEATURED_PER_PAGE);
+    setPriorityVisible(FEATURED_PER_PAGE);
     setPhotoVisible(PHOTO_PER_PAGE);
     setListVisible(LIST_PER_PAGE);
   };
@@ -726,60 +711,19 @@ export function BarDirectoryMapClient({
             </div>
           ) : (
             <>
-              {/* ══ SECTION 0: TOP 10 BARS — hidden until photos are ready ══ */}
-              {/* top10Bars section temporarily hidden — uncomment when photos are uploaded
-              {top10Bars.length > 0 && (
+              {/* ══ PRIORITY GRID: top10 + featured + premium — unified, sorted by proximity, no section label ══ */}
+              {priorityBars.length > 0 && (
                 <div className="dir-section">
-                  <SectionHeader
-                    top10
-                    icon={
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                      </svg>
-                    }
-                    label="Top 10 Bars"
-                    count={isFiltering ? top10Bars.length : undefined}
-                  />
                   <div className="directory-featured-grid">
-                    {top10Bars.slice(0, top10Visible).map(bar => (
-                      <Top10BarCard key={bar.id} bar={bar} />
-                    ))}
-                  </div>
-                  {top10Visible < top10Bars.length && (
-                    <div className="directory-load-more">
-                      <button onClick={() => setTop10Visible(prev => prev + TOP10_PER_PAGE)}>
-                        Show More Top 10 Bars
-                        <span className="directory-load-more-count">{top10Bars.length - top10Visible} remaining</span>
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
-              */}
-
-              {/* ══ SECTION 1: FEATURED BARS ══ */}
-              {featuredBars.length > 0 && (
-                <div className="dir-section">
-                  <SectionHeader
-                    accent
-                    icon={
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                      </svg>
-                    }
-                    label="Featured Bars"
-                    count={isFiltering ? featuredBars.length : undefined}
-                  />
-                  <div className="directory-featured-grid">
-                    {featuredBars.slice(0, featuredVisible).map(bar => (
+                    {priorityBars.slice(0, priorityVisible).map(bar => (
                       <FeaturedBarCard key={bar.id} bar={bar} />
                     ))}
                   </div>
-                  {featuredVisible < featuredBars.length && (
+                  {priorityVisible < priorityBars.length && (
                     <div className="directory-load-more">
-                      <button onClick={() => setFeaturedVisible(prev => prev + FEATURED_PER_PAGE)}>
-                        Show More Featured Bars
-                        <span className="directory-load-more-count">{featuredBars.length - featuredVisible} remaining</span>
+                      <button onClick={() => setPriorityVisible(prev => prev + FEATURED_PER_PAGE)}>
+                        Show More Bars
+                        <span className="directory-load-more-count">{priorityBars.length - priorityVisible} remaining</span>
                       </button>
                     </div>
                   )}
@@ -960,6 +904,7 @@ function Top10BarCard({ bar }: { bar: Bar }) {
 function FeaturedBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;
   const isPremium = bar.tier === 'premium';
+  const isTop10 = bar.tier === 'top10';
   return (
     <Link href={`/bars/${bar.slug}`} className={`bar-dir-featured-card ${isPremium ? 'bar-dir-featured-card--premium' : ''}`}>
       <div className="bar-dir-featured-visual">
@@ -975,9 +920,17 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
           )
         }
         <div className="bar-dir-featured-overlay" />
-        <div className={`bar-dir-featured-badge-corner ${isPremium ? 'bar-dir-featured-badge-corner--premium' : ''}`}>
-          {isPremium ? '★ Premium' : 'Featured'}
-        </div>
+        {isTop10
+          ? <div className="bar-dir-top10-badge-corner">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              TOP 10
+            </div>
+          : <div className={`bar-dir-featured-badge-corner ${isPremium ? 'bar-dir-featured-badge-corner--premium' : ''}`}>
+              {isPremium ? '★ Premium' : 'Featured'}
+            </div>
+        }
         <div className="bar-dir-featured-content">
           <h3>{bar.name}</h3>
           <span className="bar-dir-featured-location">

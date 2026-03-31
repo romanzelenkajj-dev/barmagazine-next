@@ -36,18 +36,24 @@ export default async function BarsPage() {
   const geoCountryCode = headersList.get('x-vercel-ip-country') || '';
   const geoContinent = headersList.get('x-vercel-ip-continent') || '';
 
-  // Fetch featured and photo bars for initial load.
-  // NOTE: top10 bars are intentionally excluded until photos are ready.
-  const [{ bars: featuredInitial }, { bars: photoInitial }, filters, stats] = await Promise.all([
+  // Fetch top10 + featured (priority grid) and photo bars for initial load.
+  // top10 and featured are merged into one proximity-sorted grid — no hierarchy between them.
+  const [{ bars: top10Initial }, { bars: featuredInitial }, { bars: photoInitial }, filters, stats] = await Promise.all([
+    getBars({ perPage: 200, tier: 'top10' }),
     getBars({ perPage: 48, tier: 'featured' }),
     getBars({ perPage: 24, tier: 'free', hasPhoto: true }),
     getBarFilterOptions(),
     getBarStats(),
   ]);
-  // Merge: featured first, then photo bars (dedup by id)
-  const seenIds = new Set(featuredInitial.map(b => b.id));
+  // Merge all priority bars first (top10 + featured), then photo bars (dedup by id)
+  const seenIds = new Set<string>();
+  const priorityInitial = [...top10Initial, ...featuredInitial].filter(b => {
+    if (seenIds.has(b.id)) return false;
+    seenIds.add(b.id);
+    return true;
+  });
   const initialBars = [
-    ...featuredInitial,
+    ...priorityInitial,
     ...photoInitial.filter(b => !seenIds.has(b.id)),
   ];
 
