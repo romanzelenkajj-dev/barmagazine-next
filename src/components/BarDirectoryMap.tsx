@@ -724,7 +724,8 @@ export function BarDirectoryMapClient({
             </div>
           ) : (
             <>
-              {/* ══ SECTION 0: TOP 10 BARS ══ */}
+              {/* ══ SECTION 0: TOP 10 BARS — hidden until photos are ready ══ */}
+              {/* top10Bars section temporarily hidden — uncomment when photos are uploaded
               {top10Bars.length > 0 && (
                 <div className="dir-section">
                   <SectionHeader
@@ -752,6 +753,7 @@ export function BarDirectoryMapClient({
                   )}
                 </div>
               )}
+              */}
 
               {/* ══ SECTION 1: FEATURED BARS ══ */}
               {featuredBars.length > 0 && (
