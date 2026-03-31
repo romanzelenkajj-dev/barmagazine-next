@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, stripHtml, truncateAtWord } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
 import { NewsletterForm } from '@/components/NewsletterForm';
+import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
 
 export const revalidate = 300;
 
@@ -53,69 +54,8 @@ export default async function HomePage() {
         </Link>
       )}
 
-      {/* B) SECTION BAR */}
-      <div className="section-bar">
-        <h2>Featured Content You Might Like</h2>
-        <select className="filter-select" aria-label="Filter content">
-          <option>All Categories</option>
-          <option>Bars</option>
-          <option>People</option>
-          <option>Cocktails</option>
-          <option>Awards</option>
-          <option>Brands</option>
-          <option>Events</option>
-        </select>
-      </div>
-
-      {/* C) MIXED CARD GRID */}
-      <div className="cards-grid">
-        {cardPosts.map((post, i) => {
-          const isBleed = i % 3 === 1;
-          const cat = getPostCategories(post)[0];
-          const imgUrl = getFeaturedImageUrl(post, 'large');
-          const formattedTitle = formatCardTitle(post.title.rendered, post.meta?.bold_title);
-          const excerpt = truncateAtWord(stripHtml(post.excerpt.rendered), 120);
-
-          if (isBleed) {
-            return (
-              <Link key={post.id} href={`/${post.slug}`} className="card card-bleed">
-                {imgUrl && (
-                  <div className="card-bleed-bg">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={imgUrl} alt={stripHtml(post.title.rendered)} />
-                  </div>
-                )}
-                <div className="card-bleed-overlay" />
-                <div className="card-top">
-                  <span className="card-tag">{cat?.name || 'Latest'}</span>
-                </div>
-                <div className="card-body">
-                  <h3 dangerouslySetInnerHTML={{ __html: formattedTitle }} />
-                  <p className="card-excerpt">{excerpt}</p>
-                </div>
-              </Link>
-            );
-          }
-
-          return (
-            <Link key={post.id} href={`/${post.slug}`} className="card">
-              {imgUrl && (
-                <div className="card-img-top">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={imgUrl} alt={stripHtml(post.title.rendered)} />
-                </div>
-              )}
-              <div className="card-body">
-                <div className="card-tags">
-                  <span className="card-tag">{cat?.name || 'Latest'}</span>
-                </div>
-                <h3 dangerouslySetInnerHTML={{ __html: formattedTitle }} />
-                <p className="card-excerpt">{excerpt}</p>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+      {/* B) SECTION BAR + C) MIXED CARD GRID — now with working category filter */}
+      <HomeCategoryGrid initialPosts={JSON.stringify(cardPosts)} />
 
       {/* D) CTA BANNER + AD */}
       <div className="cta-row">
