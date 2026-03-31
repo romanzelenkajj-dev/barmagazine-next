@@ -53,10 +53,12 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   if (!bar) notFound();
 
   // Fetch nearby bars (same city, exclude current bar)
+  // Priority: top10 bars first (with or without photo), then other bars with photos
   const cityBars = await getBarsByCity(bar.city);
-  const nearbyBars = cityBars
-    .filter(b => b.id !== bar.id && b.photos && b.photos.length > 0)
-    .slice(0, 4);
+  const otherCityBars = cityBars.filter(b => b.id !== bar.id);
+  const top10CityBars = otherCityBars.filter(b => b.tier === 'top10');
+  const otherCityBarsWithPhoto = otherCityBars.filter(b => b.tier !== 'top10' && b.photos && b.photos.length > 0);
+  const nearbyBars = [...top10CityBars, ...otherCityBarsWithPhoto].slice(0, 4);
 
   const isPremium = bar.tier === 'premium';
   const isFeatured = bar.tier === 'featured';
@@ -143,8 +145,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           )}
           <div className="bar-v2-badges">
             <span className="bar-v2-badge">{formatBarType(bar.type)}</span>
-            {/* isTop10 badge hidden until photos are ready — uncomment to re-enable: */}
-            {/* {isTop10 && <span className="bar-v2-badge bar-v2-badge--top10">★ Top 10</span>} */}
+            {isTop10 && <span className="bar-v2-badge bar-v2-badge--top10">★ Top 10</span>}
             {(isFeatured || isPremium || bar.wp_article_slug) && !isTop10 && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
           </div>
         </div>
@@ -235,8 +236,17 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               {nearbyBars.map(nb => (
                 <Link key={nb.id} href={`/bars/${nb.slug}`} className="bar-v2-nearby-card">
                   <div className="bar-v2-nearby-img">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={nb.photos[0]} alt={nb.name} loading="lazy" />
+                    {nb.photos && nb.photos.length > 0
+                      ? <img src={nb.photos[0]} alt={nb.name} loading="lazy" />
+                      : (
+                        <div className="bar-v2-nearby-placeholder">
+                          <span>{nb.name.slice(0, 2).toUpperCase()}</span>
+                        </div>
+                      )
+                    }
+                    {nb.tier === 'top10' && (
+                      <div className="bar-v2-nearby-top10-badge">★ TOP 10</div>
+                    )}
                   </div>
                   <div className="bar-v2-nearby-body">
                     <h3>{nb.name}</h3>
