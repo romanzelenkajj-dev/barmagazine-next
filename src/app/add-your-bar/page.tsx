@@ -139,11 +139,33 @@ function AddYourBarForm() {
       });
       const result = await response.json();
       if (result.success) {
-        // If paid plan, redirect to Stripe payment
-        if (plan !== 'free' && STRIPE_LINKS[plan]) {
-          const stripeUrl = STRIPE_LINKS[plan][currency] || STRIPE_LINKS[plan]['USD'];
-          window.location.href = stripeUrl;
-          return; // Don't setSubmitting(false), page is navigating away
+        // If paid plan, create Stripe Checkout Session with coupon applied
+        if (plan !== 'free') {
+          try {
+            const checkoutRes = await fetch('/api/create-checkout', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                plan,
+                currency,
+                barName: data.get('barName') as string || '',
+                email: data.get('contactEmail') as string || '',
+              }),
+            });
+            const checkoutData = await checkoutRes.json();
+            if (checkoutData.url) {
+              window.location.href = checkoutData.url;
+              return;
+            }
+          } catch (checkoutErr) {
+            console.error('Checkout session error:', checkoutErr);
+          }
+          // Fallback to payment links if checkout session fails
+          if (STRIPE_LINKS[plan]) {
+            const stripeUrl = STRIPE_LINKS[plan][currency] || STRIPE_LINKS[plan]['USD'];
+            window.location.href = stripeUrl;
+            return;
+          }
         }
         // Free plan: show success message
         setSubmitted(true);
@@ -224,8 +246,8 @@ function AddYourBarForm() {
               <div className="add-bar-tier-card add-bar-tier-card--featured">
                 <div className="add-bar-tier-popular">Most Popular</div>
                 <div className="add-bar-tier-name">Featured</div>
-                <div className="add-bar-tier-price">{currency === 'EUR' ? '€39' : '$39'}<span>/mo</span></div>
-                <div className="add-bar-tier-annual">Billed annually ({currency === 'EUR' ? '€468' : '$468'}/year)</div>
+                <div className="add-bar-tier-price"><span style={{textDecoration:'line-through',opacity:0.4,fontSize:'0.6em',marginRight:4}}>{currency === 'EUR' ? '€39' : '$39'}</span>{currency === 'EUR' ? '€19.50' : '$19.50'}<span>/mo</span></div>
+                <div className="add-bar-tier-annual">Billed annually {currency === 'EUR' ? '€234' : '$234'}/year (50% off first year)</div>
                 <ul className="add-bar-tier-features">
                   <li>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
@@ -254,8 +276,8 @@ function AddYourBarForm() {
               {/* Featured + Social */}
               <div className="add-bar-tier-card add-bar-tier-card--premium">
                 <div className="add-bar-tier-name">Featured + Social</div>
-                <div className="add-bar-tier-price">{currency === 'EUR' ? '€79' : '$79'}<span>/mo</span></div>
-                <div className="add-bar-tier-annual">Billed annually ({currency === 'EUR' ? '€948' : '$948'}/year)</div>
+                <div className="add-bar-tier-price"><span style={{textDecoration:'line-through',opacity:0.4,fontSize:'0.6em',marginRight:4}}>{currency === 'EUR' ? '€79' : '$79'}</span>{currency === 'EUR' ? '€39.50' : '$39.50'}<span>/mo</span></div>
+                <div className="add-bar-tier-annual">Billed annually {currency === 'EUR' ? '€474' : '$474'}/year (50% off first year)</div>
                 <ul className="add-bar-tier-features">
                   <li>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
@@ -336,8 +358,8 @@ function AddYourBarForm() {
                     onChange={(e) => setSelectedPlan(e.target.value)}
                   >
                     <option value="free">Listed (Free)</option>
-                    <option value="featured">Featured ({currency === 'EUR' ? '€39' : '$39'}/mo &mdash; billed annually)</option>
-                    <option value="featured_social">Featured + Social ({currency === 'EUR' ? '€79' : '$79'}/mo &mdash; billed annually)</option>
+                    <option value="featured">Featured ({currency === 'EUR' ? '€19.50' : '$19.50'}/mo &mdash; 50% off first year)</option>
+                    <option value="featured_social">Featured + Social ({currency === 'EUR' ? '€39.50' : '$39.50'}/mo &mdash; 50% off first year)</option>
                   </select>
                   <span className="form-hint">
                     {isPaidPlan
@@ -524,11 +546,12 @@ function AddYourBarForm() {
             {isPaidPlan && (
               <div className="add-bar-info-card" style={{ background: 'var(--bg-card)', border: '1px solid var(--accent)' }}>
                 <h3 style={{ color: 'var(--accent)' }}>
-                  {currency === 'EUR' ? '€' : '$'}{selectedPlan === 'featured_social' ? '79' : '39'}/mo
+                  <span style={{textDecoration:'line-through',opacity:0.4,fontSize:'0.7em',marginRight:4}}>{currency === 'EUR' ? '€' : '$'}{selectedPlan === 'featured_social' ? '79' : '39'}</span>
+                  {currency === 'EUR' ? '€' : '$'}{selectedPlan === 'featured_social' ? '39.50' : '19.50'}/mo
                 </h3>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0 }}>
-                  Billed annually ({currency === 'EUR' ? '€' : '$'}{selectedPlan === 'featured_social' ? '948' : '468'}/year).
-                  Payment via Stripe after form submission.
+                  50% off first year. Billed annually {currency === 'EUR' ? '€' : '$'}{selectedPlan === 'featured_social' ? '474' : '234'}/year.
+                  Renews at standard rate.
                 </p>
               </div>
             )}
