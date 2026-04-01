@@ -1868,17 +1868,17 @@ button {
 
 @media (max-width: 768px) {
   :root {
-    --nav-h: 56px;
-    --gap: 10px;
+    --nav-h: 88px;
+    --gap: 16px;
   }
 
   body {
-    padding-left: var(--gap);
-    padding-right: var(--gap);
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .nav-spacer {
-    height: calc(var(--nav-h) + 6px);
+    height: calc(var(--nav-h) + 16px);
   }
 
   .nav-wrapper {
@@ -1930,8 +1930,8 @@ button {
   }
 
   .hero {
-    min-height: 360px;
-    margin-top: 6px;
+    min-height: 600px;
+    margin-top: 16px;
   }
 
   .hero-cat {
@@ -1948,11 +1948,7 @@ button {
   }
 
   .section-header {
-    margin: 16px 0 12px;
-  }
-
-  .section-bar {
-    margin: 16px 0 12px;
+    margin: 16px 0 16px;
   }
 
   .article-grid {
@@ -1982,7 +1978,11 @@ button {
   .section-bar {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 8px;
+    height: auto;
+    margin: 16px 0 16px;
+    padding: 24px 32px;
+    border-radius: 16px;
   }
 
   .cta-row {
@@ -1990,7 +1990,7 @@ button {
   }
 
   .cta-banner {
-    padding: 32px 20px;
+    padding: 48px 20px;
   }
 
   .cta-banner h2 {
@@ -2085,7 +2085,12 @@ button {
 
   .newsletter-strip,
   .newsletter-hero {
-    padding: 32px 20px !important;
+    padding: 48px 20px !important;
+  }
+
+  .newsletter-strip h2 {
+    font-size: 48px;
+    line-height: 56px;
   }
 
   .newsletter-form {
