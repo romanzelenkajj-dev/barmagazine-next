@@ -233,12 +233,12 @@ button {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  min-height: 490px;
+  min-height: 560px;
   display: flex;
   align-items: flex-end;
   background-size: cover;
   background-position: center;
-  margin-top: var(--gap);
+  margin-top: 20px;
 }
 
 .hero img {
@@ -337,7 +337,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 14px 0 10px;
+  margin: 16px 0 16px;
 }
 
 .section-title {
@@ -1411,10 +1411,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 14px 0 10px;
+  margin: 16px 0 16px;
   background: var(--bg-card);
   border-radius: var(--radius);
-  padding: 12px 28px;
+  padding: 22px 28px;
 }
 
 .section-bar h2 {
