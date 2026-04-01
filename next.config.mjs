@@ -41,6 +41,12 @@ const nextConfig = {
       // Categories that don't exist in WordPress
       { source: '/category/news', destination: '/category/events', permanent: true },
       { source: '/category/features', destination: '/', permanent: true },
+      // /category/latest — users click "Latest" nav link expecting this path
+      { source: '/category/latest', destination: '/', permanent: true },
+
+      // Accented bar slug — some links use raw name with é instead of the ASCII slug
+      { source: '/bars/m%C3%A9lange-by-cali-sober', destination: '/bars/melange-by-cali-sober', permanent: true },
+      { source: '/bars/mlange-by-cali-sober', destination: '/bars/melange-by-cali-sober', permanent: true },
 
       // Old WordPress pages
       { source: '/trending', destination: '/', permanent: true },
