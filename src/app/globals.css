@@ -1412,12 +1412,16 @@ button {
   align-items: center;
   justify-content: space-between;
   margin: 72px 0 24px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 20px 28px;
 }
 
 .section-bar h2 {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .filter-select {
@@ -1736,6 +1740,7 @@ button {
   margin-bottom: 0;
   padding: 0 0 8px;
   background: transparent;
+  border-radius: 0;
 }
 
 .bars-grid-scroll {
