@@ -288,10 +288,10 @@ button {
 }
 
 .hero-title {
-  font-size: clamp(30px, 3.5vw, 48px);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 62px;
+  letter-spacing: -0.5px;
   color: #fff;
   margin-bottom: 0;
 }
@@ -1938,11 +1938,13 @@ button {
   }
 
   .hero-content {
-    padding: 24px 24px 18px;
+    padding: 24px 24px 32px;
   }
 
   .hero-title {
-    font-size: 26px;
+    font-size: 36px;
+    line-height: 46px;
+    letter-spacing: -0.3px;
   }
 
   .section-header {
