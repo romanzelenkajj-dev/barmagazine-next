@@ -7,6 +7,9 @@ import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
 
 export const revalidate = 300;
+// Allow slugs not pre-built at deploy time to be rendered on-demand (ISR)
+// This means new bars added to the DB are immediately accessible without a redeploy
+export const dynamicParams = true;
 
 // ---------------------------------------------------------------------------
 // Static params — pre-build bar profile pages at build time for faster
