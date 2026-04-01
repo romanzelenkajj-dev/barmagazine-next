@@ -233,7 +233,7 @@ button {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  min-height: 520px;
+  min-height: 460px;
   display: flex;
   align-items: flex-end;
   background-size: cover;
@@ -337,7 +337,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 72px 0 24px;
+  margin: 24px 0 16px;
 }
 
 .section-title {
@@ -1411,7 +1411,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 72px 0 24px;
+  margin: 24px 0 16px;
   background: var(--bg-card);
   border-radius: var(--radius);
   padding: 20px 28px;
@@ -1926,7 +1926,7 @@ button {
   }
 
   .hero {
-    min-height: 360px;
+    min-height: 300px;
     margin-top: 6px;
   }
 
@@ -1944,11 +1944,11 @@ button {
   }
 
   .section-header {
-    margin: 40px 0 16px;
+    margin: 16px 0 12px;
   }
 
   .section-bar {
-    margin: 40px 0 16px;
+    margin: 16px 0 12px;
   }
 
   .article-grid {
