@@ -3845,7 +3845,33 @@ textarea.form-input {
 
 /* ====== CLAIM YOUR BAR ====== */
 .claim-page {
+  margin-top: 0;
+}
+
+/* Promo banner */
+.claim-promo-banner {
+  background: linear-gradient(135deg, var(--accent) 0%, #a14e30 100%);
+  color: #fff;
+  text-align: center;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--radius);
+  margin-bottom: var(--gap);
   margin-top: var(--gap);
+}
+
+.claim-promo-banner-tag {
+  background: rgba(255,255,255,0.2);
+  padding: 3px 12px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .claim-hero {
@@ -3881,13 +3907,17 @@ textarea.form-input {
 }
 
 .claim-hero h1 {
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(28px, 4vw, 44px);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: #fff;
   margin-bottom: 12px;
-  line-height: 1.1;
+  line-height: 1.15;
   position: relative;
+}
+
+.claim-hero-highlight {
+  color: var(--accent);
 }
 
 .claim-hero p {
@@ -3953,6 +3983,20 @@ textarea.form-input {
   margin-bottom: 12px;
 }
 
+.claim-tier-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.claim-tier-price-original {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  opacity: 0.35;
+  text-decoration: line-through;
+}
+
 .claim-tier-price {
   font-size: 36px;
   font-weight: 700;
@@ -3972,6 +4016,65 @@ textarea.form-input {
 .claim-tier-annual {
   font-size: 12px;
   color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.claim-tier-annual-original {
+  text-decoration: line-through;
+}
+
+.claim-tier-savings {
+  display: inline-block;
+  background: #E7F5E8;
+  color: #2D7A32;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.claim-tier-footnote {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  margin-top: 12px;
+}
+
+.claim-tier-cta--dark {
+  background: var(--bg-dark);
+  color: #fff;
+  border-color: var(--bg-dark);
+}
+
+.claim-tier-cta--dark:hover {
+  opacity: 0.9;
+  background: var(--bg-dark);
+  border-color: var(--bg-dark);
+}
+
+/* Stats bar */
+.claim-stats-bar {
+  background: var(--bg-dark);
+  border-radius: var(--radius);
+  padding: 40px 48px;
+  margin-top: var(--gap);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+
+.claim-stat-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.claim-stat-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
   margin-top: 4px;
 }
 
@@ -4114,6 +4217,17 @@ textarea.form-input {
 
   .claim-faq-grid {
     grid-template-columns: 1fr;
+  }
+
+  .claim-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 32px 24px;
+  }
+
+  .claim-promo-banner {
+    font-size: 13px;
+    padding: 12px 16px;
+    flex-wrap: wrap;
   }
 }
 
