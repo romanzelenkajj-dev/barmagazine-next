@@ -233,7 +233,7 @@ button {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  min-height: 520px;
+  min-height: 490px;
   display: flex;
   align-items: flex-end;
   background-size: cover;
@@ -337,7 +337,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 24px 0 16px;
+  margin: 14px 0 10px;
 }
 
 .section-title {
@@ -1411,10 +1411,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 24px 0 16px;
+  margin: 14px 0 10px;
   background: var(--bg-card);
   border-radius: var(--radius);
-  padding: 20px 28px;
+  padding: 12px 28px;
 }
 
 .section-bar h2 {
