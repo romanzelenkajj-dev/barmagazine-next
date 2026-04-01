@@ -745,7 +745,7 @@ export function BarDirectoryMapClient({
                 </div>
               )}
 
-              {/* ══ SECTION 2: BARS WITH PHOTOS — revealed on demand ══ */}
+              {/* ══ SECTION 2: BARS WITH PHOTOS — revealed on demand (non-filtering) ══ */}
               {photoBars.length > 0 && !isFiltering && !showPhotoBars && (
                 <div className="directory-load-more">
                   <button onClick={() => setShowPhotoBars(true)}>
@@ -754,7 +754,9 @@ export function BarDirectoryMapClient({
                   </button>
                 </div>
               )}
-              {photoBars.length > 0 && (isFiltering || showPhotoBars) && (
+
+              {/* ── When NOT filtering: photo bars section with its own header ── */}
+              {photoBars.length > 0 && !isFiltering && showPhotoBars && (
                 <div className="dir-section">
                   <SectionHeader
                     icon={
@@ -765,7 +767,6 @@ export function BarDirectoryMapClient({
                       </svg>
                     }
                     label="Bars"
-                    count={isFiltering ? photoBars.length : undefined}
                   />
                   <div className="directory-grid">
                     {photoBars.slice(0, photoVisible).map(bar => (
@@ -793,7 +794,7 @@ export function BarDirectoryMapClient({
                 </div>
               )}
 
-              {/* ══ SECTION 3: LISTED BARS — revealed on demand ══ */}
+              {/* ══ SECTION 3: LISTED BARS — revealed on demand (non-filtering) ══ */}
               {listedBars.length > 0 && !isFiltering && !showListedBars && showPhotoBars && photoVisible >= photoBars.length && !hasMoreFromServer && (
                 <div className="directory-load-more">
                   <button onClick={() => setShowListedBars(true)}>
@@ -802,7 +803,7 @@ export function BarDirectoryMapClient({
                   </button>
                 </div>
               )}
-              {listedBars.length > 0 && (isFiltering || showListedBars) && (
+              {listedBars.length > 0 && !isFiltering && showListedBars && (
                 <div className="dir-section">
                   <SectionHeader
                     icon={
@@ -816,7 +817,6 @@ export function BarDirectoryMapClient({
                       </svg>
                     }
                     label="Bars"
-                    count={isFiltering ? listedBars.length : undefined}
                   />
                   <div className="directory-list">
                     {listedBars.slice(0, listVisible).map(bar => (
@@ -845,6 +845,78 @@ export function BarDirectoryMapClient({
                       <button onClick={() => setListVisible(prev => prev + LIST_PER_PAGE)}>
                         Show More Bars
                         <span className="directory-load-more-count">{listedBars.length - listVisible} remaining</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* ══ WHEN FILTERING: single unified 'Bars' section — photo grid first, then listed, one header, no break ══ */}
+              {isFiltering && (photoBars.length > 0 || listedBars.length > 0) && (
+                <div className="dir-section">
+                  <SectionHeader
+                    icon={
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <path d="M21 15l-5-5L5 21" />
+                      </svg>
+                    }
+                    label="Bars"
+                    count={photoBars.length + listedBars.length}
+                  />
+                  {/* Photo bars grid */}
+                  {photoBars.length > 0 && (
+                    <div className="directory-grid">
+                      {photoBars.slice(0, photoVisible).map(bar => (
+                        <PhotoBarCard key={bar.id} bar={bar} />
+                      ))}
+                    </div>
+                  )}
+                  {/* Listed bars (no photo) — shown directly below photo grid, no extra header */}
+                  {listedBars.length > 0 && (
+                    <div className="directory-list" style={{ marginTop: photoBars.length > 0 ? '1rem' : 0 }}>
+                      {listedBars.slice(0, listVisible).map(bar => (
+                        <div key={bar.id} className="directory-list-item">
+                          <Link href={`/bars/${bar.slug}`} className="directory-list-name">{bar.name}</Link>
+                          <div className="directory-list-location">
+                            {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+                          </div>
+                          <div className="directory-list-type">{formatBarType(bar.type)}</div>
+                          <Link
+                            href={`/claim-your-bar?bar=${encodeURIComponent(bar.name)}`}
+                            className="directory-list-add-photo"
+                            onClick={e => e.stopPropagation()}
+                            title="Add a photo to stand out"
+                          >
+                            Add photo
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                              <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {/* Load more — covers both photo and listed remaining */}
+                  {(photoVisible < photoBars.length || listVisible < listedBars.length || hasMoreFromServer) && (
+                    <div className="directory-load-more">
+                      <button
+                        onClick={() => {
+                          setPhotoVisible(prev => prev + PHOTO_PER_PAGE);
+                          setListVisible(prev => prev + LIST_PER_PAGE);
+                          if (photoVisible + PHOTO_PER_PAGE >= photoBars.length && hasMoreFromServer) {
+                            fetchMoreBarsFromServer();
+                          }
+                        }}
+                        disabled={isFetchingMore}
+                      >
+                        {isFetchingMore ? 'Loading…' : 'Show More Bars'}
+                        {!isFetchingMore && (photoBars.length - photoVisible + listedBars.length - listVisible) > 0 && (
+                          <span className="directory-load-more-count">
+                            {photoBars.length - photoVisible + listedBars.length - listVisible} more
+                          </span>
+                        )}
                       </button>
                     </div>
                   )}
