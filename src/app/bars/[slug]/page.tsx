@@ -146,7 +146,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           <div className="bar-v2-badges">
             <span className="bar-v2-badge">{formatBarType(bar.type)}</span>
             {isTop10 && <span className="bar-v2-badge bar-v2-badge--top10">★ Top 10</span>}
-            {(isFeatured || isPremium || bar.wp_article_slug) && !isTop10 && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+            {(isFeatured || isPremium || bar.wp_article_slug) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
           </div>
         </div>
 
