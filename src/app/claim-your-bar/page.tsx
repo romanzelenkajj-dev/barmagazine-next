@@ -9,8 +9,7 @@ import { useEffect, useState } from 'react';
 // USD: Featured https://buy.stripe.com/cNieVdbuseSPeXi463aAw03
 // USD: Featured+Social https://buy.stripe.com/14A28r564cKH7uQ31ZaAw02
 
-// Stripe coupon ID for 50% off first year
-const PROMO_COUPON_ID = 'raZGg4DL';
+// Stripe coupon ID for 50% off first year: raZGg4DL
 
 function getTiers(isEU: boolean) {
   const symbol = isEU ? '€' : '$';
