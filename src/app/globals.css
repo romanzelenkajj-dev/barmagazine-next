@@ -579,9 +579,7 @@ button {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  aspect-ratio: 21 / 9;
-  min-height: 400px;
-  max-height: 560px;
+  height: 600px;
   display: flex;
   align-items: flex-end;
   max-width: 100%;
@@ -2036,10 +2034,7 @@ button {
   }
 
   .article-hero {
-    aspect-ratio: auto;
-    min-height: 280px;
-    max-height: 360px;
-    height: 320px;
+    height: 400px;
   }
 
   .article-hero-cat {
