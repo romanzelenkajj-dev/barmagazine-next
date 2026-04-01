@@ -233,7 +233,7 @@ button {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  min-height: calc(100vh - var(--nav-h) - var(--gap) * 3);
+  min-height: 580px;
   display: flex;
   align-items: flex-end;
   background-size: cover;
@@ -1926,7 +1926,7 @@ button {
   }
 
   .hero {
-    min-height: calc(100vh - var(--nav-h) - 24px);
+    min-height: 400px;
     margin-top: 6px;
   }
 
