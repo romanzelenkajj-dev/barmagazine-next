@@ -73,18 +73,18 @@ button {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 0 var(--gap) 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   pointer-events: none;
 }
 
 .nav {
-  max-width: var(--container);
+  max-width: 100%;
   width: 100%;
   height: var(--nav-h);
   background: var(--bg-dark);
-  border-radius: 0 0 var(--radius) var(--radius);
+  border-radius: 0;
   pointer-events: all;
   transition: box-shadow 0.4s var(--ease);
 }
@@ -94,6 +94,8 @@ button {
 }
 
 .nav-inner {
+  max-width: var(--container);
+  margin: 0 auto;
   padding: 0 28px;
   height: 100%;
   display: flex;
@@ -1883,7 +1885,7 @@ button {
 
   .nav {
     max-width: 100%;
-    border-radius: 0 0 var(--radius) var(--radius);
+    border-radius: 0;
   }
 
   .nav-links {
