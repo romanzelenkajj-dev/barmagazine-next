@@ -382,9 +382,16 @@ export function BarDirectoryMapClient({
   geoContinent = '',
 }: Props) {
   const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
   const [countryFilter, setCountryFilter] = useState('');
   const [cityFilter, setCityFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
+
+  // Debounce search input — only trigger server fetch after user stops typing for 400ms
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedSearch(search), 400);
+    return () => clearTimeout(t);
+  }, [search]);
 
   // GPS-based sorting state
   const [userLat, setUserLat] = useState<number | null>(null);
@@ -452,11 +459,12 @@ export function BarDirectoryMapClient({
   const [hasMoreFromServer, setHasMoreFromServer] = useState((totalBars || 0) > initialBars.length);
   const [isFilterFetching, setIsFilterFetching] = useState(false);
 
-  // When a country, city, or type filter is applied, fetch ALL matching bars from the server.
-  // This is critical because the initial load only has 48 bars — filtering in memory would miss
-  // bars like Mirror Bar Bratislava that aren't in the first 48.
+  // When a search term or filter is applied, fetch ALL matching bars from the server.
+  // This is critical because the initial load only fetches top10/featured/photo bars —
+  // free bars without photos are not in the initial payload and would be missed by
+  // in-memory search. Fetching from the server ensures all bars are searchable.
   useEffect(() => {
-    if (!countryFilter && !cityFilter && !typeFilter) {
+    if (!debouncedSearch && !countryFilter && !cityFilter && !typeFilter) {
       // No filters — reset to initial bars and allow normal pagination
       setAllBars(initialBars);
       setServerPage(2);
@@ -466,6 +474,7 @@ export function BarDirectoryMapClient({
     // Fetch all bars matching the current filters from the server
     setIsFilterFetching(true);
     const params = new URLSearchParams({ perPage: '1000' });
+    if (debouncedSearch) params.set('search', debouncedSearch);
     if (countryFilter) params.set('country', countryFilter);
     if (cityFilter) params.set('city', cityFilter);
     if (typeFilter) params.set('type', typeFilter);
@@ -477,7 +486,7 @@ export function BarDirectoryMapClient({
       })
       .catch(e => console.error('Filter fetch failed:', e))
       .finally(() => setIsFilterFetching(false));
-  }, [countryFilter, cityFilter, typeFilter]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [debouncedSearch, countryFilter, cityFilter, typeFilter]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchMoreBarsFromServer = useCallback(async () => {
     if (isFetchingMore || !hasMoreFromServer) return;
