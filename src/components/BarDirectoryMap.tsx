@@ -326,6 +326,7 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
 }
 
 /* ─── Section Header Component ─── */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function SectionHeader({
   icon, label, sublabel, count, accent = false, top10 = false,
 }: {
@@ -388,13 +389,14 @@ export function BarDirectoryMapClient({
   // GPS-based sorting state
   const [userLat, setUserLat] = useState<number | null>(null);
   const [userLng, setUserLng] = useState<number | null>(null);
-  const [priorityVisible, setPriorityVisible] = useState(FEATURED_PER_PAGE);
-  const [photoVisible, setPhotoVisible] = useState(PHOTO_PER_PAGE);
-  const [listVisible, setListVisible] = useState(LIST_PER_PAGE);
+  const [gridVisible, setGridVisible] = useState(FEATURED_PER_PAGE);
   const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
-  const [showPhotoBars, setShowPhotoBars] = useState(false);
-  const [showListedBars, setShowListedBars] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  // Legacy pagination state — unused but kept to avoid refactor churn
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_photoVisible] = useState(PHOTO_PER_PAGE);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_listVisible] = useState(LIST_PER_PAGE);
 
   // Request GPS location on mount for true distance sorting
   useEffect(() => {
@@ -519,38 +521,34 @@ export function BarDirectoryMapClient({
     });
   }, [search, countryFilter, cityFilter, typeFilter, allBars]);
 
-  // ── PRIORITY GRID: top10 + featured + premium all merged, sorted by proximity ──
-  // No hierarchy between top10 and featured — closest bar wins position 1 regardless of tier
-  const priorityBars = useMemo(() => {
-    const priority = filtered.filter(b => b.tier === 'top10' || b.tier === 'featured' || b.tier === 'premium');
-    if (userLat !== null && userLng !== null) {
-      return sortByGPS(priority, userLat, userLng, geoCity, geoCountryCode, geoContinent);
-    }
-    return sortByGeo(priority, geoCity, geoCountryCode, geoContinent);
-  }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
+  // ── UNIFIED SORTED GRID ──
+  // Sort order: 1) Featured with article (wp_article_slug set) → 2) TOP 10 → 3) Free with photos → 4) Free listed
+  // Within each tier group, sort by proximity
+  const allFiltered = useMemo(() => {
+    // Assign tier rank for sorting
+    const tierRank = (b: Bar): number => {
+      if (b.wp_article_slug) return 0;          // Featured with article — highest
+      if (b.tier === 'top10') return 1;          // TOP 10
+      if (b.tier === 'premium') return 1;        // Premium same level as TOP 10
+      if (b.photos && b.photos.length > 0) return 2; // Free with photos
+      return 3;                                  // Free listed (no photo)
+    };
 
-  // ── Photo bars (non-priority bars with photos) ──
-  const photoBars = useMemo(() => {
-    const isPriority = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
-    const withPhotos = filtered.filter(b => !isPriority(b) && b.photos && b.photos.length > 0);
-    if (userLat !== null && userLng !== null) {
-      return sortByGPS(withPhotos, userLat, userLng, geoCity, geoCountryCode, geoContinent);
+    // Sort each tier group by proximity, then merge in tier order
+    const groups: Bar[][] = [[], [], [], []];
+    for (const b of filtered) {
+      groups[tierRank(b)].push(b);
     }
-    return sortByGeo(withPhotos, geoCity, geoCountryCode, geoContinent);
-  }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
-  // ── Listed bars (non-priority bars with no photo) ──
-  const listedBars = useMemo(() => {
-    const isPriority = (b: Bar) => b.tier === 'featured' || b.tier === 'premium' || b.tier === 'top10';
-    const noPhoto = filtered.filter(b => !isPriority(b) && (!b.photos || b.photos.length === 0));
-    if (userLat !== null && userLng !== null) {
-      return sortByGPS(noPhoto, userLat, userLng, geoCity, geoCountryCode, geoContinent);
-    }
-    return sortByGeo(noPhoto, geoCity, geoCountryCode, geoContinent);
-  }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
+    const sortGroup = (bars: Bar[]) => {
+      if (userLat !== null && userLng !== null) {
+        return sortByGPS(bars, userLat, userLng, geoCity, geoCountryCode, geoContinent);
+      }
+      return sortByGeo(bars, geoCity, geoCountryCode, geoContinent);
+    };
 
-  // All bars for map view
-  const allFiltered = useMemo(() => [...priorityBars, ...photoBars, ...listedBars], [priorityBars, photoBars, listedBars]);
+    return [...sortGroup(groups[0]), ...sortGroup(groups[1]), ...sortGroup(groups[2]), ...sortGroup(groups[3])];
+  }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
   const activeFilters: { label: string; clear: () => void }[] = [];
   if (countryFilter) activeFilters.push({ label: countryFilter, clear: () => { setCountryFilter(''); setCityFilter(''); } });
@@ -559,14 +557,11 @@ export function BarDirectoryMapClient({
 
   const clearAll = useCallback(() => {
     setSearch(''); setCountryFilter(''); setCityFilter(''); setTypeFilter('');
-    setPriorityVisible(FEATURED_PER_PAGE); setPhotoVisible(PHOTO_PER_PAGE); setListVisible(LIST_PER_PAGE);
-    setShowPhotoBars(false); setShowListedBars(false);
+    setGridVisible(FEATURED_PER_PAGE);
   }, []);
 
   const resetPagination = () => {
-    setPriorityVisible(FEATURED_PER_PAGE);
-    setPhotoVisible(PHOTO_PER_PAGE);
-    setListVisible(LIST_PER_PAGE);
+    setGridVisible(FEATURED_PER_PAGE);
   };
 
   const hasGeo = !!(geoCity || geoCountryCode);
@@ -709,28 +704,16 @@ export function BarDirectoryMapClient({
               <button onClick={clearAll}>Clear all filters</button>
             </div>
           ) : (
-            <>
-              {/* ══ PRIORITY GRID: top10 + featured + premium — unified, sorted by proximity, no section label ══ */}
-              {priorityBars.length > 0 && (
-                <div className="dir-section">
-                  <div className="directory-featured-grid">
-                    {priorityBars.slice(0, priorityVisible).map(bar => (
-                      <FeaturedBarCard key={bar.id} bar={bar} />
-                    ))}
-                  </div>
-                  {priorityVisible < priorityBars.length && (
-                    <div className="directory-load-more">
-                      <button onClick={() => setPriorityVisible(prev => prev + FEATURED_PER_PAGE)}>
-                        Show More Bars
-                        <span className="directory-load-more-count">{priorityBars.length - priorityVisible} remaining</span>
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
+            <div className="dir-section">
+              {/* ══ UNIFIED GRID: all bars, same card design, sorted by tier then proximity ══ */}
+              <div className="directory-featured-grid">
+                {allFiltered.slice(0, gridVisible).map(bar => (
+                  <FeaturedBarCard key={bar.id} bar={bar} />
+                ))}
+              </div>
 
-              {/* ── Inline CTA between featured and photo sections ── */}
-              {!isFiltering && (
+              {/* Inline CTA after first page of results */}
+              {!isFiltering && gridVisible >= FEATURED_PER_PAGE && (
                 <div className="directory-inline-cta">
                   <div className="directory-inline-cta-inner">
                     <div className="directory-inline-cta-text">
@@ -745,173 +728,26 @@ export function BarDirectoryMapClient({
                 </div>
               )}
 
-              {/* ══ SECTION 2: BARS WITH PHOTOS — revealed on demand (non-filtering) ══ */}
-              {photoBars.length > 0 && !isFiltering && !showPhotoBars && (
+              {/* Load more */}
+              {(gridVisible < allFiltered.length || hasMoreFromServer) && (
                 <div className="directory-load-more">
-                  <button onClick={() => setShowPhotoBars(true)}>
-                    Show Bars
-                    <span className="directory-load-more-count">{photoBars.length} bars with photos</span>
+                  <button
+                    onClick={() => {
+                      setGridVisible(prev => prev + PHOTO_PER_PAGE);
+                      if (gridVisible + PHOTO_PER_PAGE >= allFiltered.length && hasMoreFromServer) {
+                        fetchMoreBarsFromServer();
+                      }
+                    }}
+                    disabled={isFetchingMore}
+                  >
+                    {isFetchingMore ? 'Loading…' : 'Show More Bars'}
+                    {!isFetchingMore && allFiltered.length - gridVisible > 0 && (
+                      <span className="directory-load-more-count">{allFiltered.length - gridVisible} more</span>
+                    )}
                   </button>
                 </div>
               )}
-
-              {/* ── When NOT filtering: photo bars section with its own header ── */}
-              {photoBars.length > 0 && !isFiltering && showPhotoBars && (
-                <div className="dir-section">
-                  <SectionHeader
-                    icon={
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <path d="M21 15l-5-5L5 21" />
-                      </svg>
-                    }
-                    label="Bars"
-                  />
-                  <div className="directory-grid">
-                    {photoBars.slice(0, photoVisible).map(bar => (
-                      <PhotoBarCard key={bar.id} bar={bar} />
-                    ))}
-                  </div>
-                  {(photoVisible < photoBars.length || hasMoreFromServer) && (
-                    <div className="directory-load-more">
-                      <button
-                        onClick={() => {
-                          setPhotoVisible(prev => prev + PHOTO_PER_PAGE);
-                          if (photoVisible + PHOTO_PER_PAGE >= photoBars.length && hasMoreFromServer) {
-                            fetchMoreBarsFromServer();
-                          }
-                        }}
-                        disabled={isFetchingMore}
-                      >
-                        {isFetchingMore ? 'Loading…' : 'Show More Bars'}
-                        {!isFetchingMore && photoBars.length - photoVisible > 0 && (
-                          <span className="directory-load-more-count">{photoBars.length - photoVisible} more</span>
-                        )}
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* ══ SECTION 3: LISTED BARS — revealed on demand (non-filtering) ══ */}
-              {listedBars.length > 0 && !isFiltering && !showListedBars && showPhotoBars && photoVisible >= photoBars.length && !hasMoreFromServer && (
-                <div className="directory-load-more">
-                  <button onClick={() => setShowListedBars(true)}>
-                    Show More Bars
-                    <span className="directory-load-more-count">{listedBars.length} listed bars</span>
-                  </button>
-                </div>
-              )}
-              {listedBars.length > 0 && !isFiltering && showListedBars && (
-                <div className="dir-section">
-                  <SectionHeader
-                    icon={
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <line x1="8" y1="6" x2="21" y2="6" />
-                        <line x1="8" y1="12" x2="21" y2="12" />
-                        <line x1="8" y1="18" x2="21" y2="18" />
-                        <line x1="3" y1="6" x2="3.01" y2="6" />
-                        <line x1="3" y1="12" x2="3.01" y2="12" />
-                        <line x1="3" y1="18" x2="3.01" y2="18" />
-                      </svg>
-                    }
-                    label="Bars"
-                  />
-                  <div className="directory-list">
-                    {listedBars.slice(0, listVisible).map(bar => (
-                      <div key={bar.id} className="directory-list-item">
-                        <Link href={`/bars/${bar.slug}`} className="directory-list-name">{bar.name}</Link>
-                        <div className="directory-list-location">
-                          {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
-                        </div>
-                        <div className="directory-list-type">{formatBarType(bar.type)}</div>
-                        <Link
-                          href={`/claim-your-bar?bar=${encodeURIComponent(bar.name)}`}
-                          className="directory-list-add-photo"
-                          onClick={e => e.stopPropagation()}
-                          title="Add a photo to stand out"
-                        >
-                          Add photo
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                  {listVisible < listedBars.length && (
-                    <div className="directory-load-more">
-                      <button onClick={() => setListVisible(prev => prev + LIST_PER_PAGE)}>
-                        Show More Bars
-                        <span className="directory-load-more-count">{listedBars.length - listVisible} remaining</span>
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* ══ WHEN FILTERING: single unified bars section — photo grid first, then listed, no header ══ */}
-              {isFiltering && (photoBars.length > 0 || listedBars.length > 0) && (
-                <div className="dir-section">
-                  {/* Photo bars grid */}
-                  {photoBars.length > 0 && (
-                    <div className="directory-grid">
-                      {photoBars.slice(0, photoVisible).map(bar => (
-                        <PhotoBarCard key={bar.id} bar={bar} />
-                      ))}
-                    </div>
-                  )}
-                  {/* Listed bars (no photo) — shown directly below photo grid, no extra header */}
-                  {listedBars.length > 0 && (
-                    <div className="directory-list" style={{ marginTop: photoBars.length > 0 ? '1rem' : 0 }}>
-                      {listedBars.slice(0, listVisible).map(bar => (
-                        <div key={bar.id} className="directory-list-item">
-                          <Link href={`/bars/${bar.slug}`} className="directory-list-name">{bar.name}</Link>
-                          <div className="directory-list-location">
-                            {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
-                          </div>
-                          <div className="directory-list-type">{formatBarType(bar.type)}</div>
-                          <Link
-                            href={`/claim-your-bar?bar=${encodeURIComponent(bar.name)}`}
-                            className="directory-list-add-photo"
-                            onClick={e => e.stopPropagation()}
-                            title="Add a photo to stand out"
-                          >
-                            Add photo
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                              <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                          </Link>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {/* Load more — covers both photo and listed remaining */}
-                  {(photoVisible < photoBars.length || listVisible < listedBars.length || hasMoreFromServer) && (
-                    <div className="directory-load-more">
-                      <button
-                        onClick={() => {
-                          setPhotoVisible(prev => prev + PHOTO_PER_PAGE);
-                          setListVisible(prev => prev + LIST_PER_PAGE);
-                          if (photoVisible + PHOTO_PER_PAGE >= photoBars.length && hasMoreFromServer) {
-                            fetchMoreBarsFromServer();
-                          }
-                        }}
-                        disabled={isFetchingMore}
-                      >
-                        {isFetchingMore ? 'Loading…' : 'Show More Bars'}
-                        {!isFetchingMore && (photoBars.length - photoVisible + listedBars.length - listVisible) > 0 && (
-                          <span className="directory-load-more-count">
-                            {photoBars.length - photoVisible + listedBars.length - listVisible} more
-                          </span>
-                        )}
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )}
-            </>
+            </div>
           )}
         </>
       )}
@@ -948,7 +784,7 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
             TOP 10
           </div>
         )}
-        {(!isTop10 || bar.wp_article_slug) && (
+        {(isPremium || bar.wp_article_slug) && (
           <div className={`bar-dir-featured-badge-corner ${isPremium ? 'bar-dir-featured-badge-corner--premium' : ''}`}>
             {isPremium ? '★ Premium' : 'Featured'}
           </div>
@@ -970,6 +806,7 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function PhotoBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;
   const is50Best = FIFTY_BEST_2025.has(bar.name);
