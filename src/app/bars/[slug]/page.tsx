@@ -130,9 +130,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
 
       {/* ═══ V2 LAYOUT: Photo hero on top, map at bottom ═══ */}
       <div className="bar-v2">
-        {/* Desktop: two-column hero+sidebar layout */}
-        <div className="bar-v2-hero-layout">
-        {/* Hero Photo */}
+        {/* Hero Photo — full width */}
         <div className="bar-v2-hero">
           {hasImage ? (
             <>
@@ -150,9 +148,9 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             {isTop10 && <span className="bar-v2-badge bar-v2-badge--top10">★ Top 10</span>}
             {(isFeatured || isPremium || bar.wp_article_slug) && !isTop10 && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
           </div>
-        </div>{/* end bar-v2-hero */}
+        </div>
 
-        {/* Sidebar: Bar Info */}
+        {/* Bar Info */}
         <div className="bar-v2-info">
           <div className="bar-v2-info-main">
             <h1>{bar.name}</h1>
@@ -213,8 +211,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               </Link>
             )}
           </div>
-        </div>{/* end bar-v2-info */}
-        </div>{/* end bar-v2-hero-layout */}
+        </div>
 
         {/* Gallery */}
         {hasGallery && (
