@@ -2,20 +2,34 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getBarsByCountry, getCountriesWithCounts } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 import type { Bar } from '@/lib/supabase';
 import { toUrlSlug, fromUrlSlug, formatBarType } from '@/lib/utils';
 import { CollapsibleBarList } from '@/components/CollapsibleBarList';
 
 export const revalidate = 300;
+// On-demand ISR for countries not pre-built (e.g. countries with only free-tier bars)
+export const dynamicParams = true;
 
 const SITE_URL = 'https://barmagazine.com';
 
 // ---------------------------------------------------------------------------
-// Static params — pre-build all country pages at build time
+// Static params — only pre-build country pages that have top10 or featured bars.
+// Other country pages are rendered on-demand via ISR (dynamicParams = true).
 // ---------------------------------------------------------------------------
 export async function generateStaticParams() {
-  const countries = await getCountriesWithCounts();
-  return countries.map(c => ({ country: toUrlSlug(c.country) }));
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+  const { data } = await supabase
+    .from('bars')
+    .select('country')
+    .eq('is_active', true)
+    .in('tier', ['top10', 'featured']);
+  if (!data) return [];
+  const uniqueCountries = Array.from(new Set(data.map(b => b.country)));
+  return uniqueCountries.map(country => ({ country: toUrlSlug(country) }));
 }
 
 // ---------------------------------------------------------------------------

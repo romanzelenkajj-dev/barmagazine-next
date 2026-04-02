@@ -2,20 +2,35 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getBarsByCity, getCitiesWithCounts } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 import type { Bar } from '@/lib/supabase';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { CollapsibleBarList } from '@/components/CollapsibleBarList';
 
 export const revalidate = 300;
+// On-demand ISR for cities not pre-built (e.g. cities with only free-tier bars)
+export const dynamicParams = true;
 
 const SITE_URL = 'https://barmagazine.com';
 
 // ---------------------------------------------------------------------------
-// Static params — pre-build all city pages at build time
+// Static params — only pre-build city pages that have top10 or featured bars.
+// Other city pages are rendered on-demand via ISR (dynamicParams = true).
 // ---------------------------------------------------------------------------
 export async function generateStaticParams() {
-  const cities = await getCitiesWithCounts();
-  return cities.map(c => ({ city: toUrlSlug(c.city) }));
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+  // Only fetch cities that have at least one top10 or featured bar
+  const { data } = await supabase
+    .from('bars')
+    .select('city')
+    .eq('is_active', true)
+    .in('tier', ['top10', 'featured']);
+  if (!data) return [];
+  const uniqueCities = Array.from(new Set(data.map(b => b.city)));
+  return uniqueCities.map(city => ({ city: toUrlSlug(city) }));
 }
 
 // ---------------------------------------------------------------------------

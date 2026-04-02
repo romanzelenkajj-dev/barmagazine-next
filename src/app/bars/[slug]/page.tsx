@@ -12,12 +12,15 @@ export const revalidate = 300;
 export const dynamicParams = true;
 
 // ---------------------------------------------------------------------------
-// Static params — pre-build bar profile pages at build time for faster
-// indexing by search engines
+// Static params — only pre-build top-tier bars (top10 + featured) at build
+// time. Free-tier bars are rendered on-demand via ISR (dynamicParams = true)
+// already set above). This keeps build times short as the directory grows.
 // ---------------------------------------------------------------------------
 export async function generateStaticParams() {
-  const { bars } = await getBars({ perPage: 2000 });
-  return bars.map(bar => ({ slug: bar.slug }));
+  const { bars } = await getBars({ tier: 'top10', perPage: 500 });
+  const { bars: featuredBars } = await getBars({ tier: 'featured', perPage: 200 });
+  const allPriority = [...bars, ...featuredBars];
+  return allPriority.map(bar => ({ slug: bar.slug }));
 }
 
 const SITE_URL = 'https://barmagazine.com';
