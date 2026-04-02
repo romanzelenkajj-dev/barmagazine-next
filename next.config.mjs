@@ -76,6 +76,25 @@ const nextConfig = {
       { source: '/privacy-policy', destination: '/privacy', permanent: true },
       { source: '/advertise', destination: '/work-with-us', permanent: true },
 
+      // Specific bar pages that 404 — redirect to bar directory
+      { source: '/bars/the-dead-rabbit', destination: '/bars', permanent: true },
+
+      // /home and /home/ → homepage
+      { source: '/home', destination: '/', permanent: true },
+      { source: '/home/', destination: '/', permanent: true },
+
+      // Category pages that 404 — redirect to closest equivalent
+      { source: '/category/wine', destination: '/category/brands', permanent: true },
+      { source: '/category/wine/', destination: '/category/brands', permanent: true },
+      { source: '/category/interview', destination: '/category/people', permanent: true },
+      { source: '/category/interview/', destination: '/category/people', permanent: true },
+
+      // Paginated article pages → canonical article URL
+      { source: '/:slug/2', destination: '/:slug', permanent: true },
+      { source: '/:slug/3', destination: '/:slug', permanent: true },
+      { source: '/:slug/4', destination: '/:slug', permanent: true },
+      { source: '/:slug/5', destination: '/:slug', permanent: true },
+
       // Author pages (no equivalent in new site)
       { source: '/author/:slug', destination: '/', permanent: true },
 

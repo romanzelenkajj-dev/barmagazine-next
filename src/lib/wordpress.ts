@@ -272,6 +272,11 @@ export function rewriteImageUrl(url: string): string {
 export function rewriteContentImageUrls(html: string): string {
   if (!html) return html;
   let result = html;
+  // Fix malformed href values missing the https:// prefix (e.g. href="www.example.com")
+  result = result.replace(
+    /href="(www\.[^"]+)"/g,
+    'href="https://$1"'
+  );
   // Rewrite staging domain article links to barmagazine.com (NOT images/uploads)
   result = result.replace(
     /href="https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/(?!wp-content\/uploads\/)([^"]*)"/g,

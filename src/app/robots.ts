@@ -6,7 +6,16 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/search'],
+        disallow: [
+          '/api/',
+          '/search',
+          '/cdn-cgi/',
+          '/wp-json/eventon/',
+          '/wp-json/',
+          '/?s=',
+          '/?p=',
+          '/?page_id=',
+        ],
       },
       // Explicitly allow AI search crawlers
       {
