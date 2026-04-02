@@ -20,6 +20,8 @@ interface Submission {
   contact_name?: string;
   status?: string;
   created_at: string;
+  photo_url?: string;
+  preferred_plan?: string;
 }
 
 export default function AdminSubmissionsPage() {
@@ -129,6 +131,18 @@ export default function AdminSubmissionsPage() {
                 {s.contact_name && <div><strong>Contact:</strong> {s.contact_name}</div>}
                 {s.email && <div><strong>Email:</strong> <a href={`mailto:${s.email}`} style={{ color: '#c47843' }}>{s.email}</a></div>}
               </div>
+
+              {s.preferred_plan && s.preferred_plan !== 'free' && (
+                <div style={{ display: 'inline-block', background: '#fff3cd', color: '#856404', fontSize: 13, fontWeight: 600, padding: '4px 10px', borderRadius: 6, marginBottom: 10 }}>
+                  💰 Preferred Plan: {s.preferred_plan === 'featured_social' ? 'Featured + Social ($79/mo)' : s.preferred_plan === 'featured' ? 'Featured ($39/mo)' : s.preferred_plan}
+                </div>
+              )}
+
+              {s.photo_url && (
+                <div style={{ marginBottom: 12 }}>
+                  <img src={s.photo_url} alt="Submitted photo" style={{ maxWidth: '100%', maxHeight: 200, borderRadius: 8, objectFit: 'cover' }} />
+                </div>
+              )}
 
               {s.description && (
                 <p style={{ fontSize: 14, color: '#666', lineHeight: 1.5, margin: '0 0 12px', borderTop: '1px solid rgba(0,0,0,0.05)', paddingTop: 12 }}>

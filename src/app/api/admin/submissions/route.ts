@@ -89,6 +89,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Insert into bars table
+    const barPhotos = submission.photo_url ? [submission.photo_url] : [];
     const { data: bar, error: insertError } = await supabase
       .from('bars')
       .insert({
@@ -103,7 +104,7 @@ export async function POST(request: NextRequest) {
         phone: submission.phone,
         email: submission.email,
         description: submission.description,
-        photos: [],
+        photos: barPhotos,
         tier: 'free',
         is_active: true,
         ...(coords && { lat: coords.lat, lng: coords.lng }),

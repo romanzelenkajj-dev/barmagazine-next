@@ -175,6 +175,8 @@ export async function POST(request: Request) {
       phone: data.phone || null,
       description: data.description || null,
       contact_name: data.contact_name || null,
+      photo_url: photoUrl || null,
+      preferred_plan: data.preferred_plan || 'free',
       // Note: lat/lng stored in notes for future use — bar_submissions table doesn't have geo columns
       ...(coords && { notes: `geo:${coords.lat},${coords.lng}` }),
     };
