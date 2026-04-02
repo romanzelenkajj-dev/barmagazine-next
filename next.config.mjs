@@ -44,9 +44,24 @@ const nextConfig = {
       // /category/latest — users click "Latest" nav link expecting this path
       { source: '/category/latest', destination: '/', permanent: true },
 
-      // Accented bar slug — some links use raw name with é instead of the ASCII slug
+      // Broken bar slugs — old URLs with accented/garbled characters redirected to clean ASCII slugs
       { source: '/bars/m%C3%A9lange-by-cali-sober', destination: '/bars/melange-by-cali-sober', permanent: true },
       { source: '/bars/mlange-by-cali-sober', destination: '/bars/melange-by-cali-sober', permanent: true },
+      { source: '/bars/caf%C3%A9-de-nadie', destination: '/bars/cafe-de-nadie', permanent: true },
+      { source: '/bars/caf%C3%A9-la-trova', destination: '/bars/cafe-la-trova', permanent: true },
+      { source: '/bars/comp%C3%A8re-lapin', destination: '/bars/compere-lapin', permanent: true },
+      { source: '/bars/deux-fr%C3%A8res', destination: '/bars/deux-freres', permanent: true },
+      { source: '/bars/m%C3%ADrate', destination: '/bars/mirate', permanent: true },
+      { source: '/bars/virt%C3%B9', destination: '/bars/virtu', permanent: true },
+      { source: '/bars/alqu-mico', destination: '/bars/alquimico', permanent: true },
+      { source: '/bars/bar-des-prs', destination: '/bars/bar-des-pres', permanent: true },
+      { source: '/bars/bar-le-mal-ncessaire', destination: '/bars/bar-le-mal-necessaire', permanent: true },
+      { source: '/bars/bootlegger-cocktail-bar-cuisine-montral', destination: '/bars/bootlegger-cocktail-bar-cuisine-montreal', permanent: true },
+      { source: '/bars/caf-de-la-paix', destination: '/bars/cafe-de-la-paix', permanent: true },
+      { source: '/bars/caf-pacifico', destination: '/bars/cafe-pacifico', permanent: true },
+      { source: '/bars/barmnster', destination: '/bars/barmunster', permanent: true },
+      { source: '/bars/florera-atlntico', destination: '/bars/floreria-atlantico', permanent: true },
+      { source: '/bars/kw%C3%A3nt', destination: '/bars/kwant', permanent: true },
 
       // Old WordPress pages
       { source: '/trending', destination: '/', permanent: true },
