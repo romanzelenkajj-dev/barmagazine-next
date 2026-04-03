@@ -135,17 +135,24 @@ export function getContinentCountryNames(continentCode: string): string[] {
 }
 
 /**
- * Calculate distance in degrees between two points (fast approximation).
+ * Haversine distance in km between two lat/lng pairs.
  */
-function degDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
-  const dLat = lat1 - lat2;
-  const dLng = (lng1 - lng2) * Math.cos(((lat1 + lat2) / 2) * Math.PI / 180);
-  return Math.sqrt(dLat * dLat + dLng * dLng);
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
 /**
  * Geo-sort scoring: higher = shown first.
- * Uses actual distance when possible, falls back to country-level coords, then categorical matching.
+ * Uses haversine distance in km so that cities at different distances
+ * (e.g. Hong Kong vs Oslo when visitor is in Sydney) are correctly ranked.
+ * Score: 0km = 1000, 20,000km ≈ 0. Falls back to categorical when no coords.
  */
 export function getGeoScore(
   bar: { city: string; country: string; lat?: number | null; lng?: number | null },
@@ -156,26 +163,29 @@ export function getGeoScore(
   const visitorCountry = getCountryFromCode(geoCountryCode);
   const continentCountries = getContinentCountryNames(geoContinent);
 
-  // Try city-level coordinates first
+  // Try city-level coordinates first, fall back to country-level
   const cityKey = geoCity ? geoCity.toLowerCase() : '';
   const visitorCoords = cityKey ? CITY_COORDS[cityKey] : null;
-
-  // Fall back to country-level coordinates if city not found
   const countryCoords = geoCountryCode ? COUNTRY_COORDS[geoCountryCode.toUpperCase()] : null;
-
   const effectiveCoords = visitorCoords || countryCoords || null;
 
   if (effectiveCoords && bar.lat && bar.lng) {
-    const dist = degDistance(bar.lat, bar.lng, effectiveCoords[0], effectiveCoords[1]);
-    // Convert distance to score: closer = higher score
-    // Max score 1000 for same location, decreasing with distance
-    // Country-level fallback gets a small penalty (max 800) to rank below exact city matches
+    const distKm = haversineKm(bar.lat, bar.lng, effectiveCoords[0], effectiveCoords[1]);
+    // Convert km to score: 0km=1000, 20000km≈0
+    // Country-level fallback capped at 800 to rank below exact city matches
     const maxScore = visitorCoords ? 1000 : 800;
-    const distScore = Math.max(0, maxScore - Math.round(dist * 50));
-    return distScore;
+    return Math.max(0, maxScore - Math.round(distKm / 20));
   }
 
-  // Final fallback to categorical scoring (no coordinates available)
+  // Fallback: bar has no coordinates — use categorical scoring
+  // Use bar's city coords if available to get a distance-based score
+  const barCityCoords = CITY_COORDS[bar.city.toLowerCase()];
+  if (effectiveCoords && barCityCoords) {
+    const distKm = haversineKm(barCityCoords[0], barCityCoords[1], effectiveCoords[0], effectiveCoords[1]);
+    return Math.max(0, 700 - Math.round(distKm / 20)); // max 700 to rank below bars with own coords
+  }
+
+  // Last resort: categorical
   if (geoCity && bar.city.toLowerCase() === cityKey) return 100;
   if (visitorCountry && bar.country === visitorCountry) return 50;
   if (continentCountries.includes(bar.country)) return 10;
