@@ -531,14 +531,20 @@ export function BarDirectoryMapClient({
   }, [search, countryFilter, cityFilter, typeFilter, allBars]);
 
   // ── UNIFIED SORTED GRID ──
-  // Sort order:
-  //   PRIMARY split: bars WITH photos always before bars WITHOUT photos.
-  // Sort order when geo is active:
-  //   Primary:   proximity (closest first) — binned into 200km bands so nearby bars stay together
-  //   Secondary: tier (Featured > TOP 10 > Free) within the same proximity band
-  //   Tertiary:  photo present (photo > no photo) within the same tier+band
-  //   Quaternary: 50 Best membership, then alphabetical
-  // When no geo: strict tier order (Featured → TOP 10 → Free), then alphabetical.
+  //
+  // MODE A — City or country filter is active (user has chosen a specific location):
+  //   1. Tier: Featured (with article) → TOP 10 → Free
+  //   2. Photo: with photo before without photo (within same tier)
+  //   3. 50 Best, then alphabetical
+  //
+  // MODE B — No filter active (browsing all bars, geo detected):
+  //   1. Photo: all bars WITH photos before any bar WITHOUT photo
+  //   2. Proximity band (100km buckets): closest area first
+  //   3. Tier within band: Featured → TOP 10 → Free
+  //   4. 50 Best, then alphabetical
+  //
+  // MODE C — No filter, no geo:
+  //   Strict tier order, then alphabetical
   const allFiltered = useMemo(() => {
     const hasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);
 
@@ -549,20 +555,30 @@ export function BarDirectoryMapClient({
     };
 
     const hasGeoSignal = !!(geoCity || geoCountryCode);
+    const hasLocationFilter = !!(cityFilter || countryFilter);
 
-    const getDistKm = (b: Bar): number => {
-      if (userLat !== null && userLng !== null) {
-        return (b.lat != null && b.lng != null)
-          ? haversineKm(userLat, userLng, b.lat, b.lng)
-          : 99999;
-      }
-      // Convert getGeoScore (0–1000) back to a pseudo-distance so we can bin it
-      const score = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
-      return Math.max(0, (1000 - score) * 20); // inverse of 1000 - dist/20
-    };
+    // MODE A: city or country filter active — tier first, then photo, then alpha
+    if (hasLocationFilter) {
+      return [...filtered].sort((a, b) => {
+        // 1. Tier
+        const tA = tierRank(a);
+        const tB = tierRank(b);
+        if (tA !== tB) return tA - tB;
+        // 2. Photo within tier
+        const pA = hasPhoto(a) ? 0 : 1;
+        const pB = hasPhoto(b) ? 0 : 1;
+        if (pA !== pB) return pA - pB;
+        // 3. 50 Best
+        const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
+        const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+        if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
+        // 4. Alphabetical
+        return a.name.localeCompare(b.name);
+      });
+    }
 
+    // MODE C: no geo — strict tier order, then alphabetical
     if (!hasGeoSignal) {
-      // No geo: strict tier order, then alphabetical
       return [...filtered].sort((a, b) => {
         const rankA = tierRank(a);
         const rankB = tierRank(b);
@@ -574,24 +590,28 @@ export function BarDirectoryMapClient({
       });
     }
 
-    // Geo active:
-    // Sort by: photo (has photo first) → proximity band (100km) → tier → 50Best → name
-    // All bars with photos appear before any bar without a photo.
-    // Within the photo group: closest area first, then tier, then name.
-    // Within the no-photo group: same order (closest, tier, name).
+    // MODE B: geo active, no filter — photo first, then proximity band, then tier
+    const getDistKm = (b: Bar): number => {
+      if (userLat !== null && userLng !== null) {
+        return (b.lat != null && b.lng != null)
+          ? haversineKm(userLat, userLng, b.lat, b.lng)
+          : 99999;
+      }
+      const score = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
+      return Math.max(0, (1000 - score) * 20);
+    };
+
     const BAND_KM = 100;
     return [...filtered].sort((a, b) => {
       // 1. Photo (has photo = first — always)
       const pA = hasPhoto(a) ? 0 : 1;
       const pB = hasPhoto(b) ? 0 : 1;
       if (pA !== pB) return pA - pB;
-      // 2. Proximity band (closer = lower band number = first)
-      const distA = getDistKm(a);
-      const distB = getDistKm(b);
-      const bandA = Math.floor(distA / BAND_KM);
-      const bandB = Math.floor(distB / BAND_KM);
+      // 2. Proximity band
+      const bandA = Math.floor(getDistKm(a) / BAND_KM);
+      const bandB = Math.floor(getDistKm(b) / BAND_KM);
       if (bandA !== bandB) return bandA - bandB;
-      // 3. Tier within band (Featured=0 > TOP10=1 > Free=2)
+      // 3. Tier within band
       const tA = tierRank(a);
       const tB = tierRank(b);
       if (tA !== tB) return tA - tB;
@@ -602,7 +622,7 @@ export function BarDirectoryMapClient({
       // 5. Alphabetical
       return a.name.localeCompare(b.name);
     });
-  }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
+  }, [filtered, cityFilter, countryFilter, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
   const activeFilters: { label: string; clear: () => void }[] = [];
   if (countryFilter) activeFilters.push({ label: countryFilter, clear: () => { setCountryFilter(''); setCityFilter(''); } });
