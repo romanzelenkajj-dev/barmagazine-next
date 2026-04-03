@@ -575,24 +575,26 @@ export function BarDirectoryMapClient({
     }
 
     // Geo active:
-    // Sort by: proximity band (100km) → tier → photo → 50Best → name
-    // 100km keeps San Diego (52km from Carlsbad) in band 0 while LA (129km) is band 1
+    // Sort by: photo (has photo first) → proximity band (100km) → tier → 50Best → name
+    // All bars with photos appear before any bar without a photo.
+    // Within the photo group: closest area first, then tier, then name.
+    // Within the no-photo group: same order (closest, tier, name).
     const BAND_KM = 100;
     return [...filtered].sort((a, b) => {
+      // 1. Photo (has photo = first — always)
+      const pA = hasPhoto(a) ? 0 : 1;
+      const pB = hasPhoto(b) ? 0 : 1;
+      if (pA !== pB) return pA - pB;
+      // 2. Proximity band (closer = lower band number = first)
       const distA = getDistKm(a);
       const distB = getDistKm(b);
       const bandA = Math.floor(distA / BAND_KM);
       const bandB = Math.floor(distB / BAND_KM);
-      // 1. Proximity band (closer = lower band number = first)
       if (bandA !== bandB) return bandA - bandB;
-      // 2. Tier (Featured=0 > TOP10=1 > Free=2)
+      // 3. Tier within band (Featured=0 > TOP10=1 > Free=2)
       const tA = tierRank(a);
       const tB = tierRank(b);
       if (tA !== tB) return tA - tB;
-      // 3. Photo (has photo = first)
-      const pA = hasPhoto(a) ? 0 : 1;
-      const pB = hasPhoto(b) ? 0 : 1;
-      if (pA !== pB) return pA - pB;
       // 4. 50 Best
       const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
       const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
