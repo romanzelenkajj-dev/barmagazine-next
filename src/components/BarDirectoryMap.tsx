@@ -533,63 +533,72 @@ export function BarDirectoryMapClient({
   // ── UNIFIED SORTED GRID ──
   // Sort order:
   //   PRIMARY split: bars WITH photos always before bars WITHOUT photos.
-  //   WITHIN each photo group:
-  //     When geo is active: proximity-first hybrid score
-  //       = proximityScore (0–1000) + tierBonus (featured=200, top10=100, free=0)
-  //       Nearby Sydney bars beat far-away Featured bars.
-  //     When no geo: strict tier order (Featured → TOP 10 → Free), then alphabetical.
+  // Sort order when geo is active:
+  //   Primary:   proximity (closest first) — binned into 200km bands so nearby bars stay together
+  //   Secondary: tier (Featured > TOP 10 > Free) within the same proximity band
+  //   Tertiary:  photo present (photo > no photo) within the same tier+band
+  //   Quaternary: 50 Best membership, then alphabetical
+  // When no geo: strict tier order (Featured → TOP 10 → Free), then alphabetical.
   const allFiltered = useMemo(() => {
     const hasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);
 
-    const tierBonus = (b: Bar): number => {
-      if (b.wp_article_slug) return 200;         // Featured with article
-      if (b.tier === 'top10' || b.tier === 'premium') return 100; // TOP 10
-      return 0;                                  // Free
+    const tierRank = (b: Bar): number => {
+      if (b.wp_article_slug) return 0;                                    // Featured with article
+      if (b.tier === 'top10' || b.tier === 'premium') return 1;          // TOP 10
+      return 2;                                                           // Free
     };
 
     const hasGeoSignal = !!(geoCity || geoCountryCode);
 
-    const getProximityScore = (b: Bar): number => {
+    const getDistKm = (b: Bar): number => {
       if (userLat !== null && userLng !== null) {
-        const dist = (b.lat != null && b.lng != null)
+        return (b.lat != null && b.lng != null)
           ? haversineKm(userLat, userLng, b.lat, b.lng)
           : 99999;
-        return Math.max(0, 1000 - Math.round(dist / 20));
       }
-      return getGeoScore(b, geoCity, geoCountryCode, geoContinent);
+      // Convert getGeoScore (0–1000) back to a pseudo-distance so we can bin it
+      const score = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
+      return Math.max(0, (1000 - score) * 20); // inverse of 1000 - dist/20
     };
 
-    const sortBars = (bars: Bar[]): Bar[] => {
-      if (!hasGeoSignal) {
-        // No geo: strict tier order, then alphabetical
-        return [...bars].sort((a, b) => {
-          const rankA = a.wp_article_slug ? 0 : (a.tier === 'top10' || a.tier === 'premium') ? 1 : 2;
-          const rankB = b.wp_article_slug ? 0 : (b.tier === 'top10' || b.tier === 'premium') ? 1 : 2;
-          if (rankA !== rankB) return rankA - rankB;
-          const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
-          const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
-          if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
-          return a.name.localeCompare(b.name);
-        });
-      }
-      // Geo active: proximity + tier hybrid
-      return [...bars].sort((a, b) => {
-        const totalA = getProximityScore(a) + tierBonus(a);
-        const totalB = getProximityScore(b) + tierBonus(b);
-        if (totalA !== totalB) return totalB - totalA;
+    if (!hasGeoSignal) {
+      // No geo: strict tier order, then alphabetical
+      return [...filtered].sort((a, b) => {
+        const rankA = tierRank(a);
+        const rankB = tierRank(b);
+        if (rankA !== rankB) return rankA - rankB;
         const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
         const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
         if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
         return a.name.localeCompare(b.name);
       });
-    };
+    }
 
-    // Split into two groups: with photo and without photo
-    const withPhoto = filtered.filter(b => hasPhoto(b));
-    const withoutPhoto = filtered.filter(b => !hasPhoto(b));
-
-    // Sort each group independently, then concatenate: photos first
-    return [...sortBars(withPhoto), ...sortBars(withoutPhoto)];
+    // Geo active:
+    // Sort by: proximity band (200km) → tier → photo → 50Best → name
+    const BAND_KM = 200;
+    return [...filtered].sort((a, b) => {
+      const distA = getDistKm(a);
+      const distB = getDistKm(b);
+      const bandA = Math.floor(distA / BAND_KM);
+      const bandB = Math.floor(distB / BAND_KM);
+      // 1. Proximity band (closer = lower band number = first)
+      if (bandA !== bandB) return bandA - bandB;
+      // 2. Tier (Featured=0 > TOP10=1 > Free=2)
+      const tA = tierRank(a);
+      const tB = tierRank(b);
+      if (tA !== tB) return tA - tB;
+      // 3. Photo (has photo = first)
+      const pA = hasPhoto(a) ? 0 : 1;
+      const pB = hasPhoto(b) ? 0 : 1;
+      if (pA !== pB) return pA - pB;
+      // 4. 50 Best
+      const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
+      const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+      if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
+      // 5. Alphabetical
+      return a.name.localeCompare(b.name);
+    });
   }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
   const activeFilters: { label: string; clear: () => void }[] = [];
