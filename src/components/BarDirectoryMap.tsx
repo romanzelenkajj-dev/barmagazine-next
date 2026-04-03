@@ -531,32 +531,66 @@ export function BarDirectoryMapClient({
   }, [search, countryFilter, cityFilter, typeFilter, allBars]);
 
   // ── UNIFIED SORTED GRID ──
-  // Sort order: 1) Featured with article (wp_article_slug set) → 2) TOP 10 → 3) Free with photos → 4) Free listed
-  // Within each tier group, sort by proximity
+  // Sort order:
+  //   When geo is active: proximity-first hybrid — nearby bars bubble up across tiers.
+  //     Score = proximityScore (0–1000) + tierBonus (featured=200, top10=100, photo=50, free=0)
+  //     This means a Sydney bar beats a far-away featured bar when user is in Sydney.
+  //   When no geo: strict tier order (Featured → TOP 10 → Free with photos → Free listed),
+  //     within each tier sorted by editorial quality.
   const allFiltered = useMemo(() => {
-    // Assign tier rank for sorting
-    const tierRank = (b: Bar): number => {
-      if (b.wp_article_slug) return 0;          // Featured with article — highest
-      if (b.tier === 'top10') return 1;          // TOP 10
-      if (b.tier === 'premium') return 1;        // Premium same level as TOP 10
-      if (b.photos && b.photos.length > 0) return 2; // Free with photos
-      return 3;                                  // Free listed (no photo)
+    const tierBonus = (b: Bar): number => {
+      if (b.wp_article_slug) return 200;         // Featured with article
+      if (b.tier === 'top10' || b.tier === 'premium') return 100; // TOP 10
+      if (b.photos && b.photos.length > 0) return 50; // Free with photos
+      return 0;                                  // Free listed
     };
 
-    // Sort each tier group by proximity, then merge in tier order
-    const groups: Bar[][] = [[], [], [], []];
-    for (const b of filtered) {
-      groups[tierRank(b)].push(b);
+    const hasGeoSignal = !!(geoCity || geoCountryCode);
+
+    if (!hasGeoSignal) {
+      // No geo: strict tier grouping, within tier sort alphabetically
+      const groups: Bar[][] = [[], [], [], []];
+      for (const b of filtered) {
+        const rank = b.wp_article_slug ? 0 : (b.tier === 'top10' || b.tier === 'premium') ? 1 : (b.photos && b.photos.length > 0) ? 2 : 3;
+        groups[rank].push(b);
+      }
+      const sortGroup = (bars: Bar[]) => [...bars].sort((a, b) => {
+        const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
+        const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+        if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
+        return a.name.localeCompare(b.name);
+      });
+      return [...sortGroup(groups[0]), ...sortGroup(groups[1]), ...sortGroup(groups[2]), ...sortGroup(groups[3])];
     }
 
-    const sortGroup = (bars: Bar[]) => {
-      if (userLat !== null && userLng !== null) {
-        return sortByGPS(bars, userLat, userLng, geoCity, geoCountryCode, geoContinent);
-      }
-      return sortByGeo(bars, geoCity, geoCountryCode, geoContinent);
-    };
+    // Geo is active: hybrid proximity+tier score
+    return [...filtered].sort((a, b) => {
+      let scoreA: number;
+      let scoreB: number;
 
-    return [...sortGroup(groups[0]), ...sortGroup(groups[1]), ...sortGroup(groups[2]), ...sortGroup(groups[3])];
+      if (userLat !== null && userLng !== null) {
+        // GPS available: use haversine distance converted to score
+        const distA = (a.lat != null && a.lng != null) ? haversineKm(userLat, userLng, a.lat, a.lng) : 99999;
+        const distB = (b.lat != null && b.lng != null) ? haversineKm(userLat, userLng, b.lat, b.lng) : 99999;
+        // Convert km to score: 0km=1000, 20000km≈0
+        scoreA = Math.max(0, 1000 - Math.round(distA / 20));
+        scoreB = Math.max(0, 1000 - Math.round(distB / 20));
+      } else {
+        // IP-based: use getGeoScore
+        scoreA = getGeoScore(a, geoCity, geoCountryCode, geoContinent);
+        scoreB = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
+      }
+
+      const totalA = scoreA + tierBonus(a);
+      const totalB = scoreB + tierBonus(b);
+
+      if (totalA !== totalB) return totalB - totalA;
+      // Tiebreak: 50 Best first, then alphabetical
+      const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
+      const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+      if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
+      return a.name.localeCompare(b.name);
+    });
   }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
   const activeFilters: { label: string; clear: () => void }[] = [];
