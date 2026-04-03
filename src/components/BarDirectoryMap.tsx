@@ -532,65 +532,64 @@ export function BarDirectoryMapClient({
 
   // ── UNIFIED SORTED GRID ──
   // Sort order:
-  //   When geo is active: proximity-first hybrid — nearby bars bubble up across tiers.
-  //     Score = proximityScore (0–1000) + tierBonus (featured=200, top10=100, photo=50, free=0)
-  //     This means a Sydney bar beats a far-away featured bar when user is in Sydney.
-  //   When no geo: strict tier order (Featured → TOP 10 → Free with photos → Free listed),
-  //     within each tier sorted by editorial quality.
+  //   PRIMARY split: bars WITH photos always before bars WITHOUT photos.
+  //   WITHIN each photo group:
+  //     When geo is active: proximity-first hybrid score
+  //       = proximityScore (0–1000) + tierBonus (featured=200, top10=100, free=0)
+  //       Nearby Sydney bars beat far-away Featured bars.
+  //     When no geo: strict tier order (Featured → TOP 10 → Free), then alphabetical.
   const allFiltered = useMemo(() => {
+    const hasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);
+
     const tierBonus = (b: Bar): number => {
       if (b.wp_article_slug) return 200;         // Featured with article
       if (b.tier === 'top10' || b.tier === 'premium') return 100; // TOP 10
-      if (b.photos && b.photos.length > 0) return 50; // Free with photos
-      return 0;                                  // Free listed
+      return 0;                                  // Free
     };
 
     const hasGeoSignal = !!(geoCity || geoCountryCode);
 
-    if (!hasGeoSignal) {
-      // No geo: strict tier grouping, within tier sort alphabetically
-      const groups: Bar[][] = [[], [], [], []];
-      for (const b of filtered) {
-        const rank = b.wp_article_slug ? 0 : (b.tier === 'top10' || b.tier === 'premium') ? 1 : (b.photos && b.photos.length > 0) ? 2 : 3;
-        groups[rank].push(b);
+    const getProximityScore = (b: Bar): number => {
+      if (userLat !== null && userLng !== null) {
+        const dist = (b.lat != null && b.lng != null)
+          ? haversineKm(userLat, userLng, b.lat, b.lng)
+          : 99999;
+        return Math.max(0, 1000 - Math.round(dist / 20));
       }
-      const sortGroup = (bars: Bar[]) => [...bars].sort((a, b) => {
+      return getGeoScore(b, geoCity, geoCountryCode, geoContinent);
+    };
+
+    const sortBars = (bars: Bar[]): Bar[] => {
+      if (!hasGeoSignal) {
+        // No geo: strict tier order, then alphabetical
+        return [...bars].sort((a, b) => {
+          const rankA = a.wp_article_slug ? 0 : (a.tier === 'top10' || a.tier === 'premium') ? 1 : 2;
+          const rankB = b.wp_article_slug ? 0 : (b.tier === 'top10' || b.tier === 'premium') ? 1 : 2;
+          if (rankA !== rankB) return rankA - rankB;
+          const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
+          const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+          if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
+          return a.name.localeCompare(b.name);
+        });
+      }
+      // Geo active: proximity + tier hybrid
+      return [...bars].sort((a, b) => {
+        const totalA = getProximityScore(a) + tierBonus(a);
+        const totalB = getProximityScore(b) + tierBonus(b);
+        if (totalA !== totalB) return totalB - totalA;
         const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
         const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
         if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
         return a.name.localeCompare(b.name);
       });
-      return [...sortGroup(groups[0]), ...sortGroup(groups[1]), ...sortGroup(groups[2]), ...sortGroup(groups[3])];
-    }
+    };
 
-    // Geo is active: hybrid proximity+tier score
-    return [...filtered].sort((a, b) => {
-      let scoreA: number;
-      let scoreB: number;
+    // Split into two groups: with photo and without photo
+    const withPhoto = filtered.filter(b => hasPhoto(b));
+    const withoutPhoto = filtered.filter(b => !hasPhoto(b));
 
-      if (userLat !== null && userLng !== null) {
-        // GPS available: use haversine distance converted to score
-        const distA = (a.lat != null && a.lng != null) ? haversineKm(userLat, userLng, a.lat, a.lng) : 99999;
-        const distB = (b.lat != null && b.lng != null) ? haversineKm(userLat, userLng, b.lat, b.lng) : 99999;
-        // Convert km to score: 0km=1000, 20000km≈0
-        scoreA = Math.max(0, 1000 - Math.round(distA / 20));
-        scoreB = Math.max(0, 1000 - Math.round(distB / 20));
-      } else {
-        // IP-based: use getGeoScore
-        scoreA = getGeoScore(a, geoCity, geoCountryCode, geoContinent);
-        scoreB = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
-      }
-
-      const totalA = scoreA + tierBonus(a);
-      const totalB = scoreB + tierBonus(b);
-
-      if (totalA !== totalB) return totalB - totalA;
-      // Tiebreak: 50 Best first, then alphabetical
-      const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
-      const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
-      if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
-      return a.name.localeCompare(b.name);
-    });
+    // Sort each group independently, then concatenate: photos first
+    return [...sortBars(withPhoto), ...sortBars(withoutPhoto)];
   }, [filtered, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
 
   const activeFilters: { label: string; clear: () => void }[] = [];
