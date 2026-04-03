@@ -575,8 +575,9 @@ export function BarDirectoryMapClient({
     }
 
     // Geo active:
-    // Sort by: proximity band (200km) → tier → photo → 50Best → name
-    const BAND_KM = 200;
+    // Sort by: proximity band (100km) → tier → photo → 50Best → name
+    // 100km keeps San Diego (52km from Carlsbad) in band 0 while LA (129km) is band 1
+    const BAND_KM = 100;
     return [...filtered].sort((a, b) => {
       const distA = getDistKm(a);
       const distB = getDistKm(b);
