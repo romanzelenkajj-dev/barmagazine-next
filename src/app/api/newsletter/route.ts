@@ -16,7 +16,7 @@ const WELCOME_EMAIL_HTML = `<!DOCTYPE html>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Welcome to BarMagazine</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background-color: #F5F0E8; font-family: 'Inter', Arial, sans-serif; color: #1A1A1A; -webkit-font-smoothing: antialiased; }
     .email-wrapper { background-color: #F5F0E8; padding: 40px 20px; }
@@ -24,12 +24,12 @@ const WELCOME_EMAIL_HTML = `<!DOCTYPE html>
     .email-header { background-color: #1A1A1A; padding: 32px 48px; text-align: center; }
     .email-header img { height: 28px; width: auto; display: inline-block; }
     .email-hero { background-color: #1A1A1A; padding: 0 48px 48px; text-align: center; border-bottom: 3px solid #C85A2A; }
-    .email-hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 36px; font-weight: 700; color: #F5F0E8; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .email-hero h1 { font-family: 'Inter', Arial, sans-serif; font-size: 36px; font-weight: 700; color: #F5F0E8; line-height: 1.2; margin-bottom: 16px; letter-spacing: -1px; text-transform: uppercase; }
     .email-hero p { font-family: 'Inter', Arial, sans-serif; font-size: 16px; color: #A89880; line-height: 1.6; max-width: 420px; margin: 0 auto; }
     .email-body { padding: 48px; background-color: #FFFFFF; }
     .email-body p { font-family: 'Inter', Arial, sans-serif; font-size: 16px; color: #333333; line-height: 1.7; margin-bottom: 20px; }
     .expect-section { background-color: #F5F0E8; border-left: 3px solid #C85A2A; padding: 24px 28px; margin: 32px 0; }
-    .expect-section h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 600; color: #1A1A1A; margin-bottom: 16px; }
+    .expect-section h2 { font-family: 'Inter', Arial, sans-serif; font-size: 14px; font-weight: 700; color: #1A1A1A; margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; }
     .expect-item { display: flex; align-items: flex-start; margin-bottom: 12px; }
     .expect-item:last-child { margin-bottom: 0; }
     .expect-dot { width: 6px; height: 6px; background-color: #C85A2A; border-radius: 50%; margin-top: 8px; margin-right: 12px; flex-shrink: 0; }
