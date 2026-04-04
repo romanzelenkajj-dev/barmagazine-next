@@ -25,7 +25,7 @@ export const WELCOME_EMAIL_HTML = `<!DOCTYPE html>
     .expect-dot { width: 6px; height: 6px; background-color: #C85A2A; border-radius: 50%; margin-top: 8px; margin-right: 12px; flex-shrink: 0; }
     .expect-item p { font-size: 15px; color: #444444; line-height: 1.5; margin-bottom: 0; }
     .cta-wrapper { text-align: center; margin: 36px 0; }
-    .cta-button { display: inline-block; background-color: #C85A2A; color: #FFFFFF !important; font-family: 'Inter', Arial, sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; text-decoration: none; padding: 14px 36px; }
+    .cta-button { display: inline-block; background-color: #C85A2A; color: #FFFFFF !important; font-family: 'Inter', Arial, sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0; text-decoration: none; padding: 14px 36px; }
     .divider { border: none; border-top: 1px solid #E8E0D4; margin: 32px 0; }
     .email-footer { background-color: #1A1A1A; padding: 32px 48px; text-align: center; }
     .email-footer p { font-family: 'Inter', Arial, sans-serif; font-size: 13px; color: #666666; line-height: 1.6; margin-bottom: 8px; }
