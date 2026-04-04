@@ -2,6 +2,21 @@ import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { WELCOME_EMAIL_HTML } from '@/lib/emails/welcome';
 
+// Simple in-memory rate limiter: max 3 signups per IP per hour
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + 60 * 60 * 1000 });
+    return false;
+  }
+  if (entry.count >= 3) return true;
+  entry.count++;
+  return false;
+}
+
 const MAILCHIMP_API_KEY = process.env.MAILCHIMP_API_KEY || '';
 const MAILCHIMP_LIST_ID = '7857dc28c0';
 const MAILCHIMP_DC = MAILCHIMP_API_KEY.split('-').pop(); // us22
@@ -88,6 +103,12 @@ export async function POST(request: NextRequest) {
       { error: 'Newsletter service is not configured.' },
       { status: 500 }
     );
+  }
+
+  // Rate limit by IP
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (isRateLimited(ip)) {
+    return NextResponse.json({ success: true }); // Silent rejection
   }
 
   try {

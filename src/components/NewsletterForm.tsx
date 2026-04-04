@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, useRef, type FormEvent } from 'react';
 
 interface NewsletterFormProps {
   className?: string;
@@ -9,6 +9,12 @@ interface NewsletterFormProps {
 export function NewsletterForm({ className }: NewsletterFormProps) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const loadTimeRef = useRef<number>(0);
+
+  useEffect(() => {
+    // Record when the form was rendered — bots submit too fast
+    loadTimeRef.current = Date.now();
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -16,11 +22,29 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
     setErrorMsg('');
 
     const form = e.currentTarget;
-    const email = new FormData(form).get('EMAIL') as string;
+    const formData = new FormData(form);
+    const email = formData.get('EMAIL') as string;
+    const honeypot = formData.get('website') as string; // hidden field bots fill in
 
     if (!email) {
       setStatus('error');
       setErrorMsg('Please enter your email address.');
+      return;
+    }
+
+    // Bot check: honeypot filled = bot
+    if (honeypot) {
+      // Silently pretend success
+      setStatus('success');
+      form.reset();
+      return;
+    }
+
+    // Bot check: submitted too fast (under 2 seconds) = bot
+    const elapsed = Date.now() - loadTimeRef.current;
+    if (elapsed < 2000) {
+      setStatus('success');
+      form.reset();
       return;
     }
 
@@ -65,6 +89,15 @@ export function NewsletterForm({ className }: NewsletterFormProps) {
       className={className}
       onSubmit={handleSubmit}
     >
+      {/* Honeypot: hidden from real users, bots fill this in */}
+      <input
+        type="text"
+        name="website"
+        autoComplete="off"
+        tabIndex={-1}
+        aria-hidden="true"
+        style={{ display: 'none' }}
+      />
       <input type="email" name="EMAIL" required placeholder="Your email address" />
       <button type="submit" disabled={status === 'submitting'}>
         {status === 'submitting' ? 'Subscribing…' : 'Subscribe'}
