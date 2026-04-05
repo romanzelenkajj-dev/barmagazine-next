@@ -5486,7 +5486,7 @@ textarea.form-input {
   margin: 0 0 1rem;
 }
 .bar-v2-location-map {
-  border-radius: 12px;
+  border-radius: var(--radius);
   overflow: hidden;
   height: 350px;
   background: #1a1a1a;
