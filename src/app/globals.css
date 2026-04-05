@@ -5370,6 +5370,31 @@ textarea.form-input {
 }
 
 /* ═══ Bar Profile V2 ═══ */
+/* Bar profile page: 3/4 main + 1/4 sidebar */
+.bar-profile-outer {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: var(--gap);
+  align-items: start;
+}
+
+.bar-profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  position: sticky;
+  top: calc(var(--nav-h) + 16px);
+}
+
+@media (max-width: 1024px) {
+  .bar-profile-outer {
+    grid-template-columns: 1fr;
+  }
+  .bar-profile-sidebar {
+    display: none;
+  }
+}
+
 .bar-v2 {
   max-width: 100%;
 }

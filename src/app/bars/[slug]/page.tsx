@@ -5,6 +5,7 @@ import type { Bar } from '@/lib/supabase';
 import { formatBarType, toUrlSlug } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
+import { BarDirectorySidebarPromo, BarDirectorySidebar } from '@/components/BarDirectorySidebar';
 
 export const revalidate = 300;
 // Allow slugs not pre-built at deploy time to be rendered on-demand (ISR)
@@ -134,7 +135,8 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         <span>{bar.name}</span>
       </nav>
 
-      {/* ═══ V2 LAYOUT: Photo hero on top, map at bottom ═══ */}
+      {/* ═══ V2 LAYOUT: 3/4 main + 1/4 sidebar ═══ */}
+      <div className="bar-profile-outer">
       <div className="bar-v2">
         {/* Hero Photo — full width */}
         <div className="bar-v2-hero">
@@ -240,23 +242,42 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             <h2>More Bars in {bar.city}</h2>
             <div className="bar-v2-nearby-grid">
               {nearbyBars.map(nb => (
-                <Link key={nb.id} href={`/bars/${nb.slug}`} className="bar-v2-nearby-card">
-                  <div className="bar-v2-nearby-img">
+                <Link key={nb.id} href={`/bars/${nb.slug}`} className="bar-dir-featured-card">
+                  <div className="bar-dir-featured-visual">
                     {nb.photos && nb.photos.length > 0
                       ? <img src={nb.photos[0]} alt={nb.name} loading="lazy" />
                       : (
-                        <div className="bar-v2-nearby-placeholder">
+                        <div className="bar-dir-featured-placeholder">
                           <span>{nb.name.slice(0, 2).toUpperCase()}</span>
                         </div>
                       )
                     }
+                    <div className="bar-dir-featured-overlay" />
                     {nb.tier === 'top10' && (
-                      <div className="bar-v2-nearby-top10-badge">★ TOP 10</div>
+                      <div className="bar-dir-top10-badge-corner">
+                        <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        TOP 10
+                      </div>
                     )}
-                  </div>
-                  <div className="bar-v2-nearby-body">
-                    <h3>{nb.name}</h3>
-                    <span>{formatBarType(nb.type)}</span>
+                    {(nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug) && (
+                      <div className={`bar-dir-featured-badge-corner ${nb.tier === 'premium' ? 'bar-dir-featured-badge-corner--premium' : ''}`}>
+                        {nb.tier === 'premium' ? '★ Premium' : 'Featured'}
+                      </div>
+                    )}
+                    <div className="bar-dir-featured-content">
+                      <h3>{nb.name}</h3>
+                      <span className="bar-dir-featured-location">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                        </svg>
+                        {nb.city}{nb.city !== nb.country ? `, ${nb.country}` : ''}
+                      </span>
+                      {nb.type && (
+                        <span className="bar-dir-featured-type">{formatBarType(nb.type)}</span>
+                      )}
+                    </div>
                   </div>
                 </Link>
               ))}
@@ -289,7 +310,15 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             </div>
           </div>
         )}
+      </div>{/* end bar-v2 */}
+
+      {/* Sidebar: promo + ad + top10 */}
+      <div className="bar-profile-sidebar">
+        <BarDirectorySidebarPromo />
+        <BarDirectorySidebar />
       </div>
+
+      </div>{/* end bar-profile-outer */}
     </>
   );
 }
