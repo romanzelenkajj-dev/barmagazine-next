@@ -822,9 +822,6 @@ export function BarDirectoryMapClient({
                     disabled={isFetchingMore}
                   >
                     {isFetchingMore ? 'Loading…' : 'Show More Bars'}
-                    {!isFetchingMore && allFiltered.length - gridVisible > 0 && (
-                      <span className="directory-load-more-count">{allFiltered.length - gridVisible} more</span>
-                    )}
                   </button>
                 </div>
               )}
