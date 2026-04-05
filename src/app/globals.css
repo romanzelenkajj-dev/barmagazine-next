@@ -574,8 +574,7 @@ button {
 /* ====== ARTICLE PAGE ====== */
 .article-hero {
   position: relative;
-  /* top-left rounded, top-right square (sidebar), bottom-left square (body), bottom-right square (body+sidebar) */
-  border-radius: var(--radius) 0 0 0;
+  border-radius: var(--radius);
   overflow: hidden;
   height: 600px;
   display: flex;
@@ -672,8 +671,7 @@ button {
 /* ====== ARTICLE BODY (WP Content) ====== */
 .article-body {
   background: var(--bg-card);
-  /* top corners square (hero above), bottom-right square (sidebar), bottom-left rounded (outer) */
-  border-radius: 0 0 0 var(--radius);
+  border-radius: var(--radius);
   padding: 48px 56px;
   overflow: hidden;
   min-width: 0;
@@ -1025,7 +1023,7 @@ button {
 
 .sidebar-card {
   background: var(--bg-card);
-  border-radius: 0 var(--radius) var(--radius) 0; /* left corners square, right corners rounded */
+  border-radius: var(--radius);
   padding: 28px;
 }
 
@@ -1057,8 +1055,8 @@ button {
 }
 
 .related-thumb {
-  width: 80px;
-  height: 60px;
+  width: 100px;
+  height: 75px;
   border-radius: 10px;
   overflow: hidden;
   flex-shrink: 0;
@@ -1071,7 +1069,7 @@ button {
 }
 
 .related-info h4 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.35;
   margin-bottom: 4px;
@@ -1085,7 +1083,7 @@ button {
 /* Sidebar newsletter */
 .sidebar-newsletter {
   background: var(--bg-accent);
-  border-radius: 0 var(--radius) var(--radius) 0; /* left corners square, right corners rounded */
+  border-radius: var(--radius);
   padding: 28px;
   text-align: center;
 }
@@ -1094,11 +1092,12 @@ button {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .sidebar-newsletter h3 {
-  font-size: 27px;
+  font-size: 32px;
   font-weight: 700;
   letter-spacing: -0.01em;
   text-transform: none;
@@ -1634,12 +1633,12 @@ button {
 .sidebar .ad-banner {
   margin-top: 0;
   flex-shrink: 0;
-  border-radius: 0 var(--radius) var(--radius) 0; /* left corners square */
+  border-radius: var(--radius);
   overflow: hidden;
 }
 
 .sidebar .ad-banner img {
-  border-radius: 0 var(--radius) var(--radius) 0; /* left corners square, right corners rounded */
+  border-radius: var(--radius);
 }
 
 /* ====== CTA ROW ====== */
@@ -2109,21 +2108,8 @@ button {
     grid-template-columns: 1fr;
   }
 
-  /* On mobile, restore full rounded corners since there's no sidebar beside main col */
-  .article-hero {
-    border-radius: var(--radius) var(--radius) 0 0;
-  }
-
   .article-body {
-    border-radius: 0 0 var(--radius) var(--radius);
     padding: 32px 24px;
-  }
-
-  .sidebar-card,
-  .sidebar-newsletter,
-  .sidebar .ad-banner,
-  .sidebar .ad-banner img {
-    border-radius: var(--radius);
   }
 
   .article-body .gallery-clean-row {
