@@ -32,39 +32,44 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* A) SINGLE FULL-WIDTH HERO */}
+      {/* A) TWO-COLUMN HERO */}
       {hero && (
-        <Link href={`/${hero.slug}`} className="hero">
-          {heroImgFull && (
-            // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
-            <img
-              src={heroImgFull.url}
-              srcSet={[
-                heroImgMedium && `${heroImgMedium.url} ${heroImgMedium.width}w`,
-                heroImgLarge && `${heroImgLarge.url} ${heroImgLarge.width}w`,
-                `${heroImgFull.url} ${heroImgFull.width}w`,
-              ].filter(Boolean).join(', ')}
-              sizes="100vw"
-              alt={stripHtml(hero.title.rendered)}
-              width={heroImgFull.width}
-              height={heroImgFull.height}
-              // @ts-expect-error fetchPriority is valid HTML
-              fetchpriority="high"
-              decoding="sync"
-              loading="eager"
-            />
-          )}
-          <div className="hero-overlay" />
-          <span className="hero-cat">
-            {getPostCategories(hero)[0]?.name || 'Latest'}
-          </span>
-          <div className="hero-content">
+        <section className="hero">
+          {/* Left 1/3 \u2014 title + CTA on white */}
+          <div className="hero-title-col">
             <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: formatCardTitle(hero.title.rendered, hero.meta?.bold_title) }} />
+            <Link href={`/${hero.slug}`} className="hero-btn">
+              Read the Story
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </Link>
           </div>
-        </Link>
+
+          {/* Right 2/3 \u2014 featured image */}
+          <Link href={`/${hero.slug}`} className="hero-image-col">
+            {heroImgFull && (
+              // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+              <img
+                src={heroImgFull.url}
+                srcSet={[
+                  heroImgMedium && `${heroImgMedium.url} ${heroImgMedium.width}w`,
+                  heroImgLarge && `${heroImgLarge.url} ${heroImgLarge.width}w`,
+                  `${heroImgFull.url} ${heroImgFull.width}w`,
+                ].filter(Boolean).join(', ')}
+                sizes="66vw"
+                alt={stripHtml(hero.title.rendered)}
+                width={heroImgFull.width}
+                height={heroImgFull.height}
+                // @ts-expect-error fetchPriority is valid HTML
+                fetchpriority="high"
+                decoding="sync"
+                loading="eager"
+              />
+            )}
+          </Link>
+        </section>
       )}
 
-      {/* B) SECTION BAR + C) MIXED CARD GRID — instant category switching */}
+      {/* B) SECTION BAR + C) MIXED CARD GRID \u2014 instant category switching */}
       <HomeCategoryGrid
         initialPosts={JSON.stringify(cardPosts)}
         categoryData={JSON.stringify(categoryData)}
@@ -119,3 +124,4 @@ export default async function HomePage() {
     </>
   );
 }
+
