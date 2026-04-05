@@ -5376,6 +5376,7 @@ textarea.form-input {
   grid-template-columns: 3fr 1fr;
   gap: var(--gap);
   align-items: start;
+  margin-bottom: var(--gap);
 }
 
 .bar-profile-sidebar {
@@ -5402,7 +5403,7 @@ textarea.form-input {
 /* Hero Photo — full width */
 .bar-v2-hero {
   position: relative;
-  border-radius: 12px;
+  border-radius: var(--radius);
   overflow: hidden;
   max-height: 480px;
   margin-bottom: 0;
