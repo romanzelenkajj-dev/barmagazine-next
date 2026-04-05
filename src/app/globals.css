@@ -1925,25 +1925,62 @@ button {
   }
 
   .hero {
-    grid-template-columns: 1fr;
-    min-height: auto;
+    display: block;
+    position: relative;
+    min-height: 480px;
+    border-radius: 20px;
+    overflow: hidden;
     margin-top: 16px;
   }
 
+  .hero-image-col {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    order: unset;
+  }
+
+  .hero-image-col::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.10) 60%);
+    pointer-events: none;
+  }
+
   .hero-title-col {
-    padding: 32px 24px;
-    order: 2;
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 480px;
+    padding: 28px 24px 32px;
+    order: unset;
+  }
+
+  .hero-tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.25);
+    color: #fff;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
   .hero-title {
     font-size: 36px;
     line-height: 1.15;
-    margin-bottom: 24px;
+    color: #fff;
+    margin-bottom: 0;
   }
 
-  .hero-image-col {
-    order: 1;
-    height: 280px;
+  .hero-btn {
+    display: none;
   }
 
   .section-header {
