@@ -193,8 +193,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         <span>{stripHtml(post.title.rendered).replace(/\|/g, '').trim()}</span>
       </nav>
 
+      {/* OUTER GRID: 2/3 main + 1/3 sidebar from the top */}
+      <div className="article-outer-grid">
+      {/* LEFT COLUMN: hero + body */}
+      <div className="article-main-col">
+
       {/* ARTICLE HERO */}
-      <div className="article-hero" style={{ marginTop: 'var(--gap)' }}>
+      <div className="article-hero">
         {heroImgFull && (
           // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
           <img
@@ -238,7 +243,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         </div>
       </div>
 
-      {/* ARTICLE + SIDEBAR */}
+      {/* ARTICLE BODY */}
       <div className="article-layout">
         <article className="article-body">
           <div dangerouslySetInnerHTML={{ __html: upgradeGalleryImages(rewriteContentImageUrls(post.content.rendered)) }} />
@@ -306,8 +311,12 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           </a>
         </article>
 
-        <Sidebar relatedPosts={relatedPosts} />
-      </div>
+      </div>{/* end article-layout */}
+      </div>{/* end article-main-col */}
+
+      {/* RIGHT COLUMN: sidebar */}
+      <Sidebar relatedPosts={relatedPosts} />
+      </div>{/* end article-outer-grid */}
     </>
   );
 }

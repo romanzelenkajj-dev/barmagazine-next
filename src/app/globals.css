@@ -646,13 +646,26 @@ button {
   background: rgba(255, 255, 255, 0.4);
 }
 
-/* ====== ARTICLE LAYOUT ====== */
-.article-layout {
+/* ====== ARTICLE OUTER GRID: 2/3 main + 1/3 sidebar ====== */
+.article-outer-grid {
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: var(--gap);
   margin-top: var(--gap);
   align-items: start;
+}
+
+.article-main-col {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+/* ====== ARTICLE LAYOUT (body only, single col now sidebar is outside) ====== */
+.article-layout {
+  display: block;
+  margin-top: 0;
 }
 
 /* ====== ARTICLE BODY (WP Content) ====== */
@@ -1848,7 +1861,7 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .article-layout {
+  .article-outer-grid {
     grid-template-columns: 1fr 280px;
   }
 
@@ -2088,7 +2101,7 @@ button {
     font-size: 24px;
   }
 
-  .article-layout {
+  .article-outer-grid {
     grid-template-columns: 1fr;
   }
 
