@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { getGeoScore } from '@/lib/geo';
 import { formatBarType } from '@/lib/utils';
+import { BarDirectorySidebar } from './BarDirectorySidebar';
 
 interface Props {
   initialBars: Bar[];
@@ -641,6 +642,7 @@ export function BarDirectoryMapClient({
   const hasGeo = !!(geoCity || geoCountryCode);
 
   return (
+    <div className="directory-outer-with-sidebar">
     <div className="directory-page">
       {/* ── Hero ── */}
       <div className="directory-hero">
@@ -825,6 +827,8 @@ export function BarDirectoryMapClient({
           )}
         </>
       )}
+    </div>
+    <BarDirectorySidebar />
     </div>
   );
 }
