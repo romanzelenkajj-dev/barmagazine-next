@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, stripHtml } from '@/lib/wordpress';
+import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, stripHtml, getPostCategories } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
 import { NewsletterForm } from '@/components/NewsletterForm';
 import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
@@ -37,6 +37,7 @@ export default async function HomePage() {
         <section className="hero">
           {/* Left 1/3 \u2014 title + CTA on white */}
           <div className="hero-title-col">
+            {(() => { const cats = getPostCategories(hero); return cats[0] ? <span className="hero-tag">{cats[0].name}</span> : null; })()}
             <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: formatCardTitle(hero.title.rendered, hero.meta?.bold_title) }} />
             <Link href={`/${hero.slug}`} className="hero-btn">
               Read the Story
