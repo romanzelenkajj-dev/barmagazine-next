@@ -1974,6 +1974,7 @@ button {
     height: 380px;
     padding: 28px 24px 32px;
     order: unset;
+    pointer-events: none; /* let taps pass through to the image link below */
   }
 
   .hero-tag {
