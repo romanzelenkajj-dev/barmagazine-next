@@ -2299,9 +2299,19 @@ textarea.form-input {
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
-  gap: 12px;
   padding: 28px 24px;
+  justify-content: space-between;
+  gap: 0;
+}
+
+/* Group heading + desc together in the middle */
+.bars-sidebar-promo-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
   justify-content: center;
+  padding: 16px 0;
 }
 
 .bars-sidebar-promo-badge {

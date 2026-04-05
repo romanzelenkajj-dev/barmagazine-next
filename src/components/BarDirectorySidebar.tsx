@@ -19,12 +19,14 @@ export function BarDirectorySidebarPromo() {
       <div className="bars-sidebar-promo-badge">
         🔥 Launch Special — 50% Off First Year
       </div>
-      <h2 className="bars-sidebar-promo-title">
-        Get Your Bar <span className="bars-sidebar-promo-accent">Featured</span>
-      </h2>
-      <p className="bars-sidebar-promo-desc">
-        Put your bar in front of thousands of cocktail enthusiasts and industry professionals — starting at just €19.50/month.
-      </p>
+      <div className="bars-sidebar-promo-body">
+        <h2 className="bars-sidebar-promo-title">
+          Get Your Bar <span className="bars-sidebar-promo-accent">Featured</span>
+        </h2>
+        <p className="bars-sidebar-promo-desc">
+          Put your bar in front of thousands of cocktail enthusiasts and industry professionals — starting at just €19.50/month.
+        </p>
+      </div>
       <Link href="/claim-your-bar" className="bars-sidebar-promo-btn">
         List Your Bar →
       </Link>
@@ -58,7 +60,7 @@ export function BarDirectorySidebar() {
 
       {/* ── Top 10 Bars dropdown ── */}
       <div className="bars-sidebar-top10">
-        <h3 className="bars-sidebar-top10-title">Top 10 Bars In</h3>
+        <h3 className="bars-sidebar-top10-title">Top 10 Bars</h3>
         <div className="bars-sidebar-top10-select-wrap">
           <select
             defaultValue=""
