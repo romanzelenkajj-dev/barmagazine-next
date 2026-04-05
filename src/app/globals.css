@@ -5770,7 +5770,7 @@ textarea.form-input {
     flex-wrap: wrap;
   }
   .bar-v2-nearby-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
   .bar-v2-cta-inner {
     flex-direction: column;
