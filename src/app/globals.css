@@ -2300,18 +2300,15 @@ textarea.form-input {
   display: flex;
   flex-direction: column;
   padding: 28px 24px;
-  justify-content: space-between;
-  gap: 0;
+  gap: 14px;
 }
 
-/* Group heading + desc together in the middle */
+/* Group heading + desc together */
 .bars-sidebar-promo-body {
   display: flex;
   flex-direction: column;
   gap: 10px;
   flex: 1;
-  justify-content: center;
-  padding: 16px 0;
 }
 
 .bars-sidebar-promo-badge {
@@ -2359,6 +2356,7 @@ textarea.form-input {
   text-decoration: none;
   width: fit-content;
   transition: background 0.2s;
+  margin-top: auto;
 }
 
 .bars-sidebar-promo-btn:hover {
