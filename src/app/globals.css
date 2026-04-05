@@ -574,7 +574,8 @@ button {
 /* ====== ARTICLE PAGE ====== */
 .article-hero {
   position: relative;
-  border-radius: var(--radius);
+  /* top-left rounded, top-right square (sidebar), bottom-left square (body), bottom-right square (body+sidebar) */
+  border-radius: var(--radius) 0 0 0;
   overflow: hidden;
   height: 600px;
   display: flex;
@@ -649,7 +650,7 @@ button {
 /* ====== ARTICLE OUTER GRID: 2/3 main + 1/3 sidebar ====== */
 .article-outer-grid {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 2fr 1fr;
   gap: var(--gap);
   margin-top: var(--gap);
   align-items: start;
@@ -659,7 +660,7 @@ button {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--gap);
+  gap: 0; /* no gap — corners meet flush */
 }
 
 /* ====== ARTICLE LAYOUT (body only, single col now sidebar is outside) ====== */
@@ -671,7 +672,8 @@ button {
 /* ====== ARTICLE BODY (WP Content) ====== */
 .article-body {
   background: var(--bg-card);
-  border-radius: var(--radius);
+  /* top corners square (hero above), bottom-right square (sidebar), bottom-left rounded (outer) */
+  border-radius: 0 0 0 var(--radius);
   padding: 48px 56px;
   overflow: hidden;
   min-width: 0;
@@ -1023,7 +1025,7 @@ button {
 
 .sidebar-card {
   background: var(--bg-card);
-  border-radius: var(--radius);
+  border-radius: 0 var(--radius) var(--radius) 0; /* left corners square, right corners rounded */
   padding: 28px;
 }
 
@@ -1083,7 +1085,7 @@ button {
 /* Sidebar newsletter */
 .sidebar-newsletter {
   background: var(--bg-accent);
-  border-radius: var(--radius);
+  border-radius: 0 var(--radius) var(--radius) 0; /* left corners square, right corners rounded */
   padding: 28px;
   text-align: center;
 }
@@ -1632,10 +1634,12 @@ button {
 .sidebar .ad-banner {
   margin-top: 0;
   flex-shrink: 0;
+  border-radius: 0 var(--radius) var(--radius) 0; /* left corners square */
+  overflow: hidden;
 }
 
 .sidebar .ad-banner img {
-  border-radius: var(--radius);
+  border-radius: 0 var(--radius) var(--radius) 0; /* left corners square, right corners rounded */
 }
 
 /* ====== CTA ROW ====== */
@@ -1862,7 +1866,7 @@ button {
   }
 
   .article-outer-grid {
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: 2fr 1fr; /* maintain ratio on medium screens */
   }
 
   .article-body {
@@ -2105,16 +2109,29 @@ button {
     grid-template-columns: 1fr;
   }
 
+  /* On mobile, restore full rounded corners since there's no sidebar beside main col */
+  .article-hero {
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  .article-body {
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 32px 24px;
+  }
+
+  .sidebar-card,
+  .sidebar-newsletter,
+  .sidebar .ad-banner,
+  .sidebar .ad-banner img {
+    border-radius: var(--radius);
+  }
+
   .article-body .gallery-clean-row {
     flex-direction: column;
   }
 
   .sidebar {
     position: static;
-  }
-
-  .article-body {
-    padding: 32px 24px;
   }
 
   .category-header {
