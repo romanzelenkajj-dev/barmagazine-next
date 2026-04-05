@@ -2251,22 +2251,39 @@ textarea.form-input {
 
 /* ====== BAR DIRECTORY ====== */
 
-/* Outer wrapper: 3fr main + 1fr sidebar */
+/* Outer wrapper: 3fr main + 1fr sidebar, 2 rows */
 .directory-outer-with-sidebar {
   display: grid;
   grid-template-columns: 3fr 1fr;
+  grid-template-rows: auto auto;
   gap: var(--gap);
-  align-items: start;
+  align-items: stretch; /* row 1: hero and promo same height */
   margin-top: var(--gap);
 }
 
-.directory-page {
-  min-width: 0;
-  margin-top: 0;
+/* Hero: row 1, col 1 */
+.directory-outer-with-sidebar > .directory-hero {
+  grid-column: 1;
+  grid-row: 1;
 }
 
-/* ── Bars Sidebar ── */
+/* Promo: row 1, col 2 — stretches to hero height */
+.bars-sidebar-promo {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* Page body: row 2, col 1 */
+.directory-page-body {
+  grid-column: 1;
+  grid-row: 2;
+  min-width: 0;
+}
+
+/* Sidebar (ad + top10): row 2, col 2 */
 .bars-sidebar {
+  grid-column: 2;
+  grid-row: 2;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
@@ -2276,14 +2293,15 @@ textarea.form-input {
   min-width: 0;
 }
 
-/* Promo box */
+/* Promo box — stretches to match hero height via grid row alignment */
 .bars-sidebar-promo {
   background: var(--bg-dark);
   border-radius: var(--radius);
-  padding: 28px 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 28px 24px;
+  justify-content: center;
 }
 
 .bars-sidebar-promo-badge {
@@ -3500,6 +3518,10 @@ textarea.form-input {
     grid-template-columns: 2fr 1fr;
   }
 
+  .bars-sidebar-promo-title {
+    font-size: 22px;
+  }
+
   .directory-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -3514,6 +3536,7 @@ textarea.form-input {
     display: block; /* single column, no grid */
   }
 
+  .bars-sidebar-promo,
   .bars-sidebar {
     display: none; /* hide sidebar on mobile — keep layout as-is */
   }

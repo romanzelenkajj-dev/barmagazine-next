@@ -5,7 +5,7 @@ import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { getGeoScore } from '@/lib/geo';
 import { formatBarType } from '@/lib/utils';
-import { BarDirectorySidebar } from './BarDirectorySidebar';
+import { BarDirectorySidebar, BarDirectorySidebarPromo } from './BarDirectorySidebar';
 
 interface Props {
   initialBars: Bar[];
@@ -643,8 +643,7 @@ export function BarDirectoryMapClient({
 
   return (
     <div className="directory-outer-with-sidebar">
-    <div className="directory-page">
-      {/* ── Hero ── */}
+      {/* Row 1: hero (left) + promo (right) — same height */}
       <div className="directory-hero">
         <div className="directory-hero-inner">
           <div className="directory-hero-badge">Global Bar Directory</div>
@@ -674,6 +673,12 @@ export function BarDirectoryMapClient({
           )}
         </div>
       </div>
+
+      {/* Row 1 right: promo box — same grid row as hero */}
+      <BarDirectorySidebarPromo />
+
+      {/* Row 2 left: filters + grid */}
+      <div className="directory-page-body">
 
       {/* ── Search & Filters ── */}
       <div className="directory-filters">
