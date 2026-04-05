@@ -5478,7 +5478,7 @@ textarea.form-input {
 
 /* Location Map — bottom of page */
 .bar-v2-location {
-  padding: 2rem 0;
+  padding: 2rem 0 0;
 }
 .bar-v2-location h2 {
   font-size: 1.2rem;
