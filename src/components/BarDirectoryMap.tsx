@@ -134,6 +134,7 @@ const COUNTRY_CENTER: Record<string, [number, number, number]> = {
 function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null, userLng = null }: { bars: Bar[]; geoCity?: string; geoCountryCode?: string; userLat?: number | null; userLng?: number | null }) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
+  const isInitialBarsRender = useRef(true);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -299,15 +300,44 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
     if (!mapRef.current || !mapLoaded) return;
     const source = mapRef.current.getSource('bars') as mapboxgl.GeoJSONSource | undefined;
     if (!source) return;
+    const validBars = bars.filter(b => b.lat && b.lng);
     const geojson: GeoJSON.FeatureCollection = {
       type: 'FeatureCollection',
-      features: bars.filter(b => b.lat && b.lng).map(bar => ({
+      features: validBars.map(bar => ({
         type: 'Feature' as const,
         geometry: { type: 'Point' as const, coordinates: [bar.lng!, bar.lat!] },
         properties: { id: bar.id, name: bar.name, slug: bar.slug, city: bar.city, country: bar.country, type: bar.type, tier: bar.tier, hasPhoto: bar.photos && bar.photos.length > 0 ? 1 : 0, photo: bar.photos?.[0] || '', hasArticle: bar.wp_article_slug ? 1 : 0 },
       })),
     };
     source.setData(geojson);
+
+    // Fit the map to the filtered set of bars whenever filters change.
+    // Skip the very first render so we respect the initial IP/GPS-based
+    // center that was set when the map was created.
+    if (isInitialBarsRender.current) {
+      isInitialBarsRender.current = false;
+      return;
+    }
+    if (validBars.length === 0) return;
+    if (validBars.length === 1) {
+      mapRef.current.flyTo({
+        center: [validBars[0].lng!, validBars[0].lat!],
+        zoom: 14,
+        duration: 1200,
+        essential: true,
+      });
+      return;
+    }
+    const lngs = validBars.map(b => b.lng!);
+    const lats = validBars.map(b => b.lat!);
+    const minLng = Math.min(...lngs);
+    const maxLng = Math.max(...lngs);
+    const minLat = Math.min(...lats);
+    const maxLat = Math.max(...lats);
+    mapRef.current.fitBounds(
+      [[minLng, minLat], [maxLng, maxLat]],
+      { padding: 60, maxZoom: 14, duration: 1200, essential: true }
+    );
   }, [bars, mapLoaded]);
 
   const toggleExpand = () => { setIsExpanded(!isExpanded); setTimeout(() => mapRef.current?.resize(), 100); };
