@@ -1,8 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import type { WPPost } from '@/lib/wordpress';
 import { getFeaturedImageUrl, stripHtml } from '@/lib/wordpress';
 import { cleanTitle } from '@/lib/utils';
 import { NewsletterForm } from './NewsletterForm';
+import { Top10CityPicker } from './Top10CityPicker';
 
 export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
   return (
@@ -19,6 +22,9 @@ export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
         <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
         <NewsletterForm />
       </div>
+
+      {/* TOP 10 BARS city picker */}
+      <Top10CityPicker />
 
       {/* Related Articles */}
       {relatedPosts.length > 0 && (

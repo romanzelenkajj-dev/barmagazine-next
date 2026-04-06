@@ -1,16 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-
-// Cities with a dedicated Top 10 article slug → navigate to the article
-// Cities without a slug → navigate to /bars?city=CityName (directory filter)
-const TOP10_CITIES: { label: string; slug?: string; city?: string }[] = [
-  { label: 'Dubai', slug: 'top-10-bars-in-dubai-2025' },
-  // Add more as articles are published, e.g.:
-  // { label: 'London', city: 'London' },
-  // { label: 'New York', city: 'New York' },
-];
+import { Top10CityPicker } from './Top10CityPicker';
 
 /** Promo box — rendered as a direct grid child alongside the hero */
 export function BarDirectorySidebarPromo() {
@@ -34,16 +25,8 @@ export function BarDirectorySidebarPromo() {
   );
 }
 
-/** Sidebar rest — ad + Top 10 dropdown, rendered as a direct grid child below the promo */
+/** Sidebar rest — ad + Top 10 city picker, rendered as a direct grid child below the promo */
 export function BarDirectorySidebar() {
-  const router = useRouter();
-
-  function handleCityChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const value = e.target.value;
-    if (!value) return;
-    router.push(value);
-  }
-
   return (
     <div className="bars-sidebar">
 
@@ -58,30 +41,8 @@ export function BarDirectorySidebar() {
         <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster — CODE: BarMagazine" />
       </a>
 
-      {/* ── Top 10 Bars dropdown ── */}
-      <div className="bars-sidebar-top10">
-        <h3 className="bars-sidebar-top10-title">Top 10 Bars</h3>
-        <div className="bars-sidebar-top10-select-wrap">
-          <select
-            defaultValue=""
-            onChange={handleCityChange}
-            className="bars-sidebar-top10-select"
-          >
-            <option value="">Select a city…</option>
-            {TOP10_CITIES.map(c => {
-              const href = c.slug
-                ? `/${c.slug}`
-                : `/bars?city=${encodeURIComponent(c.city || c.label)}`;
-              return (
-                <option key={c.label} value={href}>{c.label}</option>
-              );
-            })}
-          </select>
-          <svg className="bars-sidebar-top10-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M6 9l6 6 6-6" />
-          </svg>
-        </div>
-      </div>
+      {/* ── Top 10 Bars city picker ── */}
+      <Top10CityPicker />
 
     </div>
   );
