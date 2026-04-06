@@ -3,37 +3,38 @@
 import Link from 'next/link';
 
 const TOP10_CITIES = [
-  { label: 'Austin',        dirSlug: 'austin',        flag: '🤠' },
-  { label: 'Barcelona',     dirSlug: 'barcelona',     flag: '🇪🇸' },
-  { label: 'Boston',        dirSlug: 'boston',        flag: '🦞' },
-  { label: 'Chicago',       dirSlug: 'chicago',       flag: '🏙️' },
-  { label: 'Denver',        dirSlug: 'denver',        flag: '🏔️' },
-  { label: 'Hong Kong',     dirSlug: 'hong-kong',     flag: '🇭🇰' },
-  { label: 'Las Vegas',     dirSlug: 'las-vegas',     flag: '🎰' },
-  { label: 'London',        dirSlug: 'london',        flag: '🇬🇧' },
-  { label: 'Los Angeles',   dirSlug: 'los-angeles',   flag: '🌴' },
-  { label: 'Mexico City',   dirSlug: 'mexico-city',   flag: '🇲🇽' },
-  { label: 'Miami',         dirSlug: 'miami',         flag: '🌊' },
-  { label: 'New Orleans',   dirSlug: 'new-orleans',   flag: '🎷' },
-  { label: 'New York',      dirSlug: 'new-york',      flag: '🗽' },
-  { label: 'Paris',         dirSlug: 'paris',         flag: '🇫🇷' },
-  { label: 'Philadelphia',  dirSlug: 'philadelphia',  flag: '🔔' },
-  { label: 'San Diego',     dirSlug: 'san-diego',     flag: '☀️' },
-  { label: 'San Francisco', dirSlug: 'san-francisco', flag: '🌉' },
-  { label: 'Seattle',       dirSlug: 'seattle',       flag: '☕' },
-  { label: 'Singapore',     dirSlug: 'singapore',     flag: '🇸🇬' },
-  { label: 'Sydney',        dirSlug: 'sydney',        flag: '🦘' },
-  { label: 'Tokyo',         dirSlug: 'tokyo',         flag: '🇯🇵' },
-  { label: 'Washington DC', dirSlug: 'washington-dc', flag: '🏛️' },
+  { label: 'Austin',        dirSlug: 'austin' },
+  { label: 'Barcelona',     dirSlug: 'barcelona' },
+  { label: 'Boston',        dirSlug: 'boston' },
+  { label: 'Chicago',       dirSlug: 'chicago' },
+  { label: 'Denver',        dirSlug: 'denver' },
+  { label: 'Hong Kong',     dirSlug: 'hong-kong' },
+  { label: 'Las Vegas',     dirSlug: 'las-vegas' },
+  { label: 'London',        dirSlug: 'london' },
+  { label: 'Los Angeles',   dirSlug: 'los-angeles' },
+  { label: 'Mexico City',   dirSlug: 'mexico-city' },
+  { label: 'Miami',         dirSlug: 'miami' },
+  { label: 'New Orleans',   dirSlug: 'new-orleans' },
+  { label: 'New York',      dirSlug: 'new-york' },
+  { label: 'Paris',         dirSlug: 'paris' },
+  { label: 'Philadelphia',  dirSlug: 'philadelphia' },
+  { label: 'San Diego',     dirSlug: 'san-diego' },
+  { label: 'San Francisco', dirSlug: 'san-francisco' },
+  { label: 'Seattle',       dirSlug: 'seattle' },
+  { label: 'Singapore',     dirSlug: 'singapore' },
+  { label: 'Sydney',        dirSlug: 'sydney' },
+  { label: 'Tokyo',         dirSlug: 'tokyo' },
+  { label: 'Washington DC', dirSlug: 'washington-dc' },
 ];
 
 export function Top10CityPicker() {
   return (
     <div className="top10-picker">
       <div className="top10-picker-header">
-        <span className="top10-picker-label">TOP 10 BARS</span>
-        <span className="top10-picker-sub">Select a city</span>
+        <span className="top10-picker-eyebrow">Top 10 Bars</span>
+        <Link href="/bars" className="top10-picker-viewall-inline">View all →</Link>
       </div>
+      <p className="top10-picker-tagline">The world&rsquo;s best bars, by city</p>
       <div className="top10-picker-grid">
         {TOP10_CITIES.map(c => (
           <Link
@@ -41,14 +42,10 @@ export function Top10CityPicker() {
             href={`/bars/city/${c.dirSlug}`}
             className="top10-picker-city"
           >
-            <span className="top10-picker-flag">{c.flag}</span>
-            <span className="top10-picker-name">{c.label}</span>
+            {c.label}
           </Link>
         ))}
       </div>
-      <Link href="/bars" className="top10-picker-all">
-        View All Cities →
-      </Link>
     </div>
   );
 }
