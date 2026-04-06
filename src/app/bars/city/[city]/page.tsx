@@ -282,7 +282,8 @@ function CityBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] ? normalisePhotoUrl(bar.photos[0]) : null;
 
   return (
-    <Link href={`/bars/${bar.slug}`} className="bar-dir-featured-card">
+    <Link href={`/bars/${bar.slug}`} className="city-bar-card">
+      {/* Photo area — fixed height, name/location/type overlaid at bottom */}
       <div className="bar-dir-featured-visual">
         {imageUrl
           ? (
@@ -309,11 +310,14 @@ function CityBarCard({ bar }: { bar: Bar }) {
           {bar.type && (
             <span className="bar-dir-featured-type">{formatBarType(bar.type)}</span>
           )}
-          {bar.description && (
-            <p className="bar-dir-featured-desc">{bar.description}</p>
-          )}
         </div>
       </div>
+      {/* Description below photo — never inside the overlay */}
+      {bar.description && (
+        <div className="city-bar-card-body">
+          <p className="city-bar-card-desc">{bar.description}</p>
+        </div>
+      )}
     </Link>
   );
 }
