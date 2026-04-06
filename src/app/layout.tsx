@@ -5,22 +5,15 @@ import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
-import { getPosts, getFeaturedImageUrl } from '@/lib/wordpress';
+
 
 const inter = Inter({ subsets: ['latin'] });
 
 const SITE_URL = 'https://barmagazine.com';
 
 export async function generateMetadata(): Promise<Metadata> {
-  let heroImg: string | null = null;
-  try {
-    const result = await getPosts(1, 1);
-    heroImg = result.data?.[0] ? getFeaturedImageUrl(result.data[0], 'full') : null;
-  } catch {
-    // fallback to static OG image
-  }
-
-  const ogImage = heroImg || `${SITE_URL}/og-image.png`;
+  // Always use the static OG image hosted on barmagazine.com to avoid staging domain in meta tags
+  const ogImage = `${SITE_URL}/og-image.png`;
 
   return {
     metadataBase: new URL(SITE_URL),
