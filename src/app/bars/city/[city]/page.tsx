@@ -90,8 +90,10 @@ export async function generateMetadata({
 // ---------------------------------------------------------------------------
 export default async function CityPage({
   params,
+  searchParams,
 }: {
   params: { city: string };
+  searchParams?: { view?: string };
 }) {
   const allCities = await getCitiesWithCounts();
   const match = allCities.find(c => toUrlSlug(c.city) === params.city);
@@ -102,13 +104,41 @@ export default async function CityPage({
   const bars = await getBarsByCity(cityName);
   if (bars.length === 0) notFound();
 
-  // Sort: top10 first → featured → bars with photos → bars without photos
-  // Within each group, sort alphabetically
+  // Determine view mode: ?view=top10 means Top 10 bars appear first (sidebar link)
+  const isTop10View = searchParams?.view === 'top10';
+
+  // Default sort priority (paid first):
+  //   0 — Featured AND Top 10 (paid + editorial)
+  //   1 — Featured only (paid)
+  //   2 — Top 10 only (editorial)
+  //   3 — Bars with photos
+  //   4 — Bars without photos
+  //
+  // Top 10 view sort priority (?view=top10):
+  //   0 — Top 10 AND Featured
+  //   1 — Top 10 only
+  //   2 — Featured only
+  //   3 — Bars with photos
+  //   4 — Bars without photos
   const tierRank = (b: Bar) => {
-    if (b.tier === 'top10') return 0;
-    if (b.tier === 'featured' || b.wp_article_slug) return 1;
-    if (b.photos && b.photos.length > 0) return 2;
-    return 3;
+    const isTop10 = b.tier === 'top10';
+    const isFeatured = b.tier === 'featured' || !!b.wp_article_slug;
+    const hasPhoto = !!(b.photos && b.photos.length > 0);
+    if (isTop10View) {
+      // Top 10 view: editorial first
+      if (isTop10 && isFeatured) return 0;
+      if (isTop10) return 1;
+      if (isFeatured) return 2;
+      if (hasPhoto) return 3;
+      return 4;
+    } else {
+      // Default view: paid (featured) first
+      if (isTop10 && isFeatured) return 0;
+      if (isFeatured) return 1;
+      if (isTop10) return 2;
+      if (hasPhoto) return 3;
+      return 4;
+    }
   };
   const sorted = [...bars].sort((a, b) => {
     const rankDiff = tierRank(a) - tierRank(b);
@@ -319,8 +349,8 @@ function CityBarCard({ bar }: { bar: Bar }) {
             TOP 10
           </div>
         )}
-        {/* FEATURED badge */}
-        {bar.tier !== 'top10' && (bar.tier === 'featured' || bar.wp_article_slug) && (
+        {/* FEATURED badge — shown for featured bars, including those that are also top10 */}
+        {(bar.tier === 'featured' || bar.wp_article_slug) && (
           <div className="bar-dir-featured-badge-corner">Featured</div>
         )}
         <div className="bar-dir-featured-content">

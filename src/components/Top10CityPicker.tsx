@@ -39,7 +39,7 @@ export function Top10CityPicker() {
         {TOP10_CITIES.map(c => (
           <Link
             key={c.dirSlug}
-            href={`/bars/city/${c.dirSlug}`}
+            href={`/bars/city/${c.dirSlug}?view=top10`}
             className="top10-picker-city"
           >
             {c.label}
