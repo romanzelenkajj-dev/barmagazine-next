@@ -120,24 +120,24 @@ export default async function CityPage({
   //   2 — Featured only
   //   3 — Bars with photos
   //   4 — Bars without photos
+  // Within every tier, bars with photos rank above bars without photos.
+  // 8 buckets total (0–7), alphabetical within each bucket.
   const tierRank = (b: Bar) => {
     const isTop10 = b.tier === 'top10';
     const isFeatured = b.tier === 'featured' || !!b.wp_article_slug;
-    const hasPhoto = !!(b.photos && b.photos.length > 0);
+    const p = !!(b.photos && b.photos.length > 0) ? 0 : 1; // 0 = has photo, 1 = no photo
     if (isTop10View) {
       // Top 10 view: editorial first
-      if (isTop10 && isFeatured) return 0;
-      if (isTop10) return 1;
-      if (isFeatured) return 2;
-      if (hasPhoto) return 3;
-      return 4;
+      if (isTop10 && isFeatured) return 0 + p;  // 0 or 1
+      if (isTop10)               return 2 + p;  // 2 or 3
+      if (isFeatured)            return 4 + p;  // 4 or 5
+      return 6 + p;                             // 6 or 7
     } else {
       // Default view: paid (featured) first
-      if (isTop10 && isFeatured) return 0;
-      if (isFeatured) return 1;
-      if (isTop10) return 2;
-      if (hasPhoto) return 3;
-      return 4;
+      if (isTop10 && isFeatured) return 0 + p;  // 0 or 1
+      if (isFeatured)            return 2 + p;  // 2 or 3
+      if (isTop10)               return 4 + p;  // 4 or 5
+      return 6 + p;                             // 6 or 7
     }
   };
   const sorted = [...bars].sort((a, b) => {
