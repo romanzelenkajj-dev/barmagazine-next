@@ -5,6 +5,7 @@ import { getBarsByCity, getCitiesWithCounts } from '@/lib/supabase';
 import { createClient } from '@supabase/supabase-js';
 import type { Bar } from '@/lib/supabase';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
+import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarDirectorySidebar';
 
 /**
  * Normalise a Supabase bar photo URL.
@@ -206,7 +207,7 @@ export default async function CityPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
 
-      {/* Breadcrumb */}
+      {/* Breadcrumb — full width above the sidebar grid */}
       <nav className="bar-breadcrumb">
         <Link href="/">Home</Link>
         <span className="bar-breadcrumb-sep">/</span>
@@ -217,89 +218,105 @@ export default async function CityPage({
         <span>{cityName}</span>
       </nav>
 
-      {/* Hero */}
-      <div className="directory-hero">
-        <div className="directory-hero-inner">
-          <div className="directory-hero-badge">{bars.length} Bars</div>
-          <h1>Best Bars in {cityName}</h1>
-          <p>
-            Explore {bars.length === 1 ? 'the top bar' : `the ${bars.length} best bars`} in {cityName},{' '}
-            {countryName} — handpicked by the BarMagazine editorial team.
-            {types.length > 0 && (
-              <>
-                {' '}Our curated list covers {types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}
-                {types.length > 3 ? ` and ${types.length - 3} more bar type${types.length - 3 > 1 ? 's' : ''}` : ''},{' '}
-                ranging from intimate neighbourhood spots to world-renowned cocktail destinations.
-              </>
+      {/* Two-column layout: 3fr main + 1fr sidebar — matches /bars page */}
+      <div className="directory-outer-with-sidebar">
+
+        {/* Row 1 left: Hero */}
+        <div className="directory-hero">
+          <div className="directory-hero-inner">
+            <div className="directory-hero-badge">{bars.length} Bars</div>
+            <h1>Best Bars in {cityName}</h1>
+            <p>
+              Explore {bars.length === 1 ? 'the top bar' : `the ${bars.length} best bars`} in {cityName},{' '}
+              {countryName} — handpicked by the BarMagazine editorial team.
+              {types.length > 0 && (
+                <>
+                  {' '}Our curated list covers {types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}
+                  {types.length > 3 ? ` and ${types.length - 3} more bar type${types.length - 3 > 1 ? 's' : ''}` : ''},{' '}
+                  ranging from intimate neighbourhood spots to world-renowned cocktail destinations.
+                </>
+              )}
+              {' '}Whether you are a local looking for your next favourite haunt or a visitor planning a bar crawl,
+              this guide covers the essential {cityName} bars you should not miss.
+            </p>
+            {types.length > 1 && (
+              <div className="directory-hero-types">
+                {types.map(t => (
+                  <span key={t} className="directory-hero-type-tag">{formatBarType(t)}</span>
+                ))}
+              </div>
             )}
-            {' '}Whether you are a local looking for your next favourite haunt or a visitor planning a bar crawl,
-            this guide covers the essential {cityName} bars you should not miss.
-          </p>
-          {types.length > 1 && (
-            <div className="directory-hero-types">
-              {types.map(t => (
-                <span key={t} className="directory-hero-type-tag">{formatBarType(t)}</span>
-              ))}
-            </div>
-          )}
+          </div>
         </div>
-      </div>
 
-      {/* Results count */}
-      <div className="directory-results-bar">
-        <span className="directory-count">
-          {bars.length} {bars.length === 1 ? 'bar' : 'bars'} in {cityName}
-        </span>
-        <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="directory-count" style={{ marginLeft: '1rem', opacity: 0.6 }}>
-          All bars in {countryName} →
-        </Link>
-      </div>
+        {/* Row 1 right: Promo sidebar */}
+        <BarDirectorySidebarPromo />
 
-      {/* Bar grid — unified card layout for all bars */}
-      <CityBarGrid bars={sorted} />
+        {/* Row 2 left: results bar + card grid + nearby cities + CTA */}
+        <div className="directory-page-body">
 
-      {/* Nearby Cities */}
-      {nearbyCities.length > 0 && (
-        <div className="nearby-cities-section">
-          <div className="nearby-cities-header">
-            <h2>More Cities in {countryName}</h2>
-            <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="nearby-cities-all">
-              All {countryName} bars &rarr;
+          {/* Results count */}
+          <div className="directory-results-bar">
+            <span className="directory-count">
+              {bars.length} {bars.length === 1 ? 'bar' : 'bars'} in {cityName}
+            </span>
+            <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="directory-count" style={{ marginLeft: '1rem', opacity: 0.6 }}>
+              All bars in {countryName} →
             </Link>
           </div>
-          <div className="nearby-cities-grid">
-            {nearbyCities.map(({ city, count }) => (
-              <Link
-                key={city}
-                href={`/bars/city/${toUrlSlug(city)}`}
-                className="nearby-city-card"
-              >
-                <span className="nearby-city-name">{city}</span>
-                <span className="nearby-city-count">{count} {count === 1 ? 'bar' : 'bars'}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
 
-      {/* CTA */}
-      <div className="directory-cta">
-        <div className="directory-cta-inner">
-          <div className="directory-cta-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M12 2v20M2 12h20" />
-            </svg>
+          {/* Bar grid — unified card layout for all bars */}
+          <CityBarGrid bars={sorted} />
+
+          {/* Nearby Cities */}
+          {nearbyCities.length > 0 && (
+            <div className="nearby-cities-section">
+              <div className="nearby-cities-header">
+                <h2>More Cities in {countryName}</h2>
+                <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="nearby-cities-all">
+                  All {countryName} bars &rarr;
+                </Link>
+              </div>
+              <div className="nearby-cities-grid">
+                {nearbyCities.map(({ city, count }) => (
+                  <Link
+                    key={city}
+                    href={`/bars/city/${toUrlSlug(city)}`}
+                    className="nearby-city-card"
+                  >
+                    <span className="nearby-city-name">{city}</span>
+                    <span className="nearby-city-count">{count} {count === 1 ? 'bar' : 'bars'}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* CTA */}
+          <div className="directory-cta">
+            <div className="directory-cta-inner">
+              <div className="directory-cta-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M12 2v20M2 12h20" />
+                </svg>
+              </div>
+              <h2>List Your Bar in {cityName}</h2>
+              <p>
+                Join the BarMagazine directory and reach cocktail enthusiasts worldwide.
+                Free basic listing, or upgrade for premium visibility.
+              </p>
+              <div className="directory-cta-actions">
+                <Link href="/claim-your-bar" className="directory-cta-btn">List Your Bar</Link>
+              </div>
+            </div>
           </div>
-          <h2>List Your Bar in {cityName}</h2>
-          <p>
-            Join the BarMagazine directory and reach cocktail enthusiasts worldwide.
-            Free basic listing, or upgrade for premium visibility.
-          </p>
-          <div className="directory-cta-actions">
-            <Link href="/claim-your-bar" className="directory-cta-btn">List Your Bar</Link>
-          </div>
-        </div>
-      </div>
+
+        </div>{/* end directory-page-body */}
+
+        {/* Row 2 right: sticky sidebar */}
+        <BarDirectorySidebar />
+
+      </div>{/* end directory-outer-with-sidebar */}
     </>
   );
 }
