@@ -5,16 +5,14 @@ import { getBarsByCity, getCitiesWithCounts } from '@/lib/supabase';
 import { createClient } from '@supabase/supabase-js';
 import type { Bar } from '@/lib/supabase';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
-import { CollapsibleBarList } from '@/components/CollapsibleBarList';
 
 /**
- * Normalise a Supabase bar photo URL for use in JSON-LD schema.
+ * Normalise a Supabase bar photo URL.
  * Replaces the wpcomstaging CDN host with barmagazine.com so Google
  * credits the production domain, not the staging origin.
  */
 function normalisePhotoUrl(url: string): string {
   if (!url) return url;
-  // i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/... → i0.wp.com/barmagazine.com/...
   return url.replace(
     /https:\/\/i[0-9]\.wp\.com\/romanzelenka-wjgek\.wpcomstaging\.com\//g,
     'https://i0.wp.com/barmagazine.com/'
@@ -25,26 +23,22 @@ function normalisePhotoUrl(url: string): string {
 }
 
 export const revalidate = 300;
-// On-demand ISR for cities not pre-built (e.g. cities with only free-tier bars)
 export const dynamicParams = true;
 
 const SITE_URL = 'https://barmagazine.com';
 
 // ---------------------------------------------------------------------------
-// Static params — only pre-build city pages that have top10 or featured bars.
-// Other city pages are rendered on-demand via ISR (dynamicParams = true).
+// Static params — pre-build ALL active city pages
 // ---------------------------------------------------------------------------
 export async function generateStaticParams() {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
-  // Only fetch cities that have at least one top10 or featured bar
   const { data } = await supabase
     .from('bars')
     .select('city')
-    .eq('is_active', true)
-    .in('tier', ['top10', 'featured']);
+    .eq('is_active', true);
   if (!data) return [];
   const uniqueCities = Array.from(new Set(data.map(b => b.city)));
   return uniqueCities.map(city => ({ city: toUrlSlug(city) }));
@@ -58,17 +52,12 @@ export async function generateMetadata({
 }: {
   params: { city: string };
 }): Promise<Metadata> {
-  // Resolve exact city name from slug
   const allCities = await getCitiesWithCounts();
   const match = allCities.find(c => toUrlSlug(c.city) === params.city);
-
   if (!match) return {};
 
   const cityName = match.city;
   const countryName = match.country;
-
-  // FIX: fetch bar count so we can include it in the title and description
-  // e.g. "15 Best Cocktail Bars in London (2026 Guide)" — dramatically improves CTR
   const bars = await getBarsByCity(cityName);
   const barCount = bars.length;
   const currentYear = new Date().getFullYear();
@@ -78,8 +67,6 @@ export async function generateMetadata({
     `From cocktail bars and speakeasies to hotel bars and wine bars — ` +
     `curated by BarMagazine.`;
 
-  // FIX: was generic "Best Bars in London, United Kingdom" with a trailing space
-  // Now: "15 Best Bars in London (2026 Guide) | BarMagazine" — includes count + year for CTR
   const title = `${barCount} Best Bars in ${cityName} (${currentYear} Guide)`;
   const canonical = `${SITE_URL}/bars/city/${params.city}`;
 
@@ -106,31 +93,22 @@ export default async function CityPage({
 }: {
   params: { city: string };
 }) {
-  // Resolve the real city name from slug, matching case-insensitively
   const allCities = await getCitiesWithCounts();
   const match = allCities.find(c => toUrlSlug(c.city) === params.city);
-
   if (!match) notFound();
 
   const cityName = match.city;
   const countryName = match.country;
   const bars = await getBarsByCity(cityName);
-
   if (bars.length === 0) notFound();
 
-  // Sort: photo bars first, then text-only
-  const sorted = [...bars].sort((a, b) => {
-    const aPhoto = a.photos && a.photos.length > 0 ? 1 : 0;
-    const bPhoto = b.photos && b.photos.length > 0 ? 1 : 0;
-    if (aPhoto !== bPhoto) return bPhoto - aPhoto;
-    return a.name.localeCompare(b.name);
-  });
+  // Sort alphabetically — no tier or photo bias
+  const sorted = [...bars].sort((a, b) => a.name.localeCompare(b.name));
 
-  // Bar types breakdown for subtitle
+  // Bar types for hero subtitle
   const types = Array.from(new Set(bars.map(b => b.type))).sort();
 
-  // Nearby Cities — other cities in the same country, sorted by bar count
-  // This creates internal links between city pages (critical for crawl depth + PageRank flow)
+  // Nearby Cities — other cities in the same country
   const nearbyCities = allCities
     .filter(c => c.country === countryName && c.city !== cityName)
     .sort((a, b) => b.count - a.count)
@@ -236,16 +214,10 @@ export default async function CityPage({
         </Link>
       </div>
 
-      {/* Bar grid — only bars with photos */}
-      <BarPhotoGrid bars={sorted} />
+      {/* Bar grid — unified card layout for all bars */}
+      <CityBarGrid bars={sorted} />
 
-      {/* Text-only bars — collapsed by default */}
-      <CollapsibleBarList
-        bars={sorted.filter(b => !b.photos || b.photos.length === 0)}
-        hasPhotoBars={sorted.some(b => b.photos && b.photos.length > 0)}
-      />
-
-      {/* Nearby Cities — internal links to other cities in the same country */}
+      {/* Nearby Cities */}
       {nearbyCities.length > 0 && (
         <div className="nearby-cities-section">
           <div className="nearby-cities-header">
@@ -292,45 +264,55 @@ export default async function CityPage({
 }
 
 // ---------------------------------------------------------------------------
-// Photo-only grid — server component
+// Unified bar grid — same card design as /bars for every bar
 // ---------------------------------------------------------------------------
-function BarPhotoGrid({ bars }: { bars: Bar[] }) {
-  const photoBars = bars.filter(b => b.photos && b.photos.length > 0);
-
-  if (photoBars.length === 0) return null;
+function CityBarGrid({ bars }: { bars: Bar[] }) {
+  if (bars.length === 0) return null;
 
   return (
     <div className="directory-grid">
-      {photoBars.map(bar => (
-        <BarCard key={bar.id} bar={bar} />
+      {bars.map(bar => (
+        <CityBarCard key={bar.id} bar={bar} />
       ))}
     </div>
   );
 }
 
-function BarCard({ bar }: { bar: Bar }) {
+function CityBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] ? normalisePhotoUrl(bar.photos[0]) : null;
+
   return (
-    <Link href={`/bars/${bar.slug}`} className="bar-dir-card">
-      <div className="bar-dir-card-visual">
-        {imageUrl && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={imageUrl} alt={bar.name} loading="lazy" />
-        )}
-      </div>
-      <div className="bar-dir-card-body">
-        <h3>{bar.name}</h3>
-        <div className="bar-dir-card-meta">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-          <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
+    <Link href={`/bars/${bar.slug}`} className="bar-dir-featured-card">
+      <div className="bar-dir-featured-visual">
+        {imageUrl
+          ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={imageUrl} alt={bar.name} loading="lazy" />
+          ) : (
+            <div className="bar-dir-featured-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+              <span>{bar.name.slice(0, 2).toUpperCase()}</span>
+            </div>
+          )
+        }
+        <div className="bar-dir-featured-overlay" />
+        <div className="bar-dir-featured-content">
+          <h3>{bar.name}</h3>
+          <span className="bar-dir-featured-location">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+            </svg>
+            {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+          </span>
+          {bar.type && (
+            <span className="bar-dir-featured-type">{formatBarType(bar.type)}</span>
+          )}
+          {bar.description && (
+            <p className="bar-dir-featured-desc">{bar.description}</p>
+          )}
         </div>
-        <span className="bar-dir-type">{formatBarType(bar.type)}</span>
-        {bar.description && (
-          <p className="bar-dir-card-desc">{bar.description}</p>
-        )}
       </div>
     </Link>
   );
