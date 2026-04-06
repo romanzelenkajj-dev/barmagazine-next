@@ -561,6 +561,20 @@ export function BarDirectoryMapClient({
     });
   }, [search, countryFilter, cityFilter, typeFilter, allBars]);
 
+  // Apply the same filters to the map-only bar dataset so that when a
+  // country/city/type filter is active, the map shows only matching bars
+  // and can zoom to their bounds.
+  const filteredMapBars = useMemo(() => {
+    return mapBars.filter(bar => {
+      const q = search.toLowerCase();
+      const matchSearch = !search || bar.name.toLowerCase().includes(q) || bar.city.toLowerCase().includes(q) || bar.country.toLowerCase().includes(q);
+      const matchCountry = !countryFilter || bar.country === countryFilter;
+      const matchCity = !cityFilter || bar.city === cityFilter;
+      const matchType = !typeFilter || bar.type === typeFilter;
+      return matchSearch && matchCountry && matchCity && matchType;
+    });
+  }, [search, countryFilter, cityFilter, typeFilter, mapBars]);
+
   // ── UNIFIED SORTED GRID ──
   //
   // MODE A — City or country filter is active (user has chosen a specific location):
@@ -794,7 +808,7 @@ export function BarDirectoryMapClient({
       </div>
 
       {/* ═══ MAP VIEW ═══ */}
-      {viewMode === 'map' && <DirectoryMap bars={mapBarsLoaded ? mapBars : allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} userLat={userLat} userLng={userLng} />}
+      {viewMode === 'map' && <DirectoryMap bars={mapBarsLoaded ? filteredMapBars : allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} userLat={userLat} userLng={userLng} />}
 
       {/* ═══ GRID VIEW ═══ */}
       {viewMode === 'grid' && (
