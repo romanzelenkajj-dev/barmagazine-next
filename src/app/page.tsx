@@ -1,20 +1,43 @@
 import Link from 'next/link';
 import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, stripHtml, getPostCategories } from '@/lib/wordpress';
-import { formatCardTitle } from '@/lib/utils';
+import { formatCardTitle, toUrlSlug } from '@/lib/utils';
 import { NewsletterForm } from '@/components/NewsletterForm';
 import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
+import { getCitiesWithCounts } from '@/lib/supabase';
 
 export const revalidate = 300;
 
 const CATEGORY_SLUGS = ['bars', 'people', 'cocktails', 'awards-events', 'brands', 'events'] as const;
 
+// Top cities to feature in the Browse by City section on the homepage.
+// These are the highest-traffic commercial queries for the Bar Directory.
+const FEATURED_CITIES = [
+  'New York', 'London', 'Tokyo', 'Paris', 'Singapore',
+  'Hong Kong', 'Los Angeles', 'Miami', 'Barcelona', 'Berlin',
+  'Sydney', 'Dubai', 'Mexico City', 'Chicago', 'San Francisco',
+  'Las Vegas', 'New Orleans', 'Austin', 'Denver', 'Seattle',
+  'Toronto', 'Melbourne', 'Amsterdam', 'Bangkok', 'Seoul',
+];
+
 export default async function HomePage() {
-  // Fetch all data in parallel: latest posts, bars for Featured Bars, and all 6 category sets
-  const [result, barsResult, ...categoryResults] = await Promise.all([
+  // Fetch all data in parallel: latest posts, bars for Featured Bars, all 6 category sets, and city counts
+  const [result, barsResult, citiesData, ...categoryResults] = await Promise.all([
     getPosts(1, 7),
     getPostsByCategory('bars', 1, 12),
+    getCitiesWithCounts(),
     ...CATEGORY_SLUGS.map(slug => getPostsByCategory(slug, 1, 6)),
   ]);
+
+  // Build city list: prefer FEATURED_CITIES order, fall back to top cities by bar count
+  const cityMap = new Map(citiesData.map(c => [c.city, c]));
+  const featuredCityData = FEATURED_CITIES
+    .map(name => cityMap.get(name))
+    .filter(Boolean) as { city: string; count: number; country: string }[];
+  // Add any top cities not in the featured list (up to 25 total)
+  const extraCities = citiesData
+    .filter(c => !FEATURED_CITIES.includes(c.city))
+    .slice(0, Math.max(0, 25 - featuredCityData.length));
+  const homepageCities = [...featuredCityData, ...extraCities].slice(0, 25);
   const posts = result.data;
   const barsPosts = barsResult.data;
 
@@ -25,6 +48,7 @@ export default async function HomePage() {
   const heroImgLarge = hero ? getFeaturedImageData(hero, 'large') : null;
 
   // Build pre-fetched category map: { bars: [...], people: [...], ... }
+  // Note: categoryResults starts at index 0 of the spread (after result, barsResult, citiesData)
   const categoryData: Record<string, unknown[]> = {};
   CATEGORY_SLUGS.forEach((slug, i) => {
     categoryData[slug] = categoryResults[i].data;
@@ -89,7 +113,29 @@ export default async function HomePage() {
         </a>
       </div>
 
-      {/* E) FEATURED BARS (from WP bars category) */}
+      {/* E) BROWSE BY CITY — internal links to all 25 priority city pages */}
+      {homepageCities.length > 0 && (
+        <div className="city-directory-section">
+          <div className="section-bar">
+            <h2>Browse Bars by City</h2>
+            <Link href="/bars" className="section-link">View All Cities &rarr;</Link>
+          </div>
+          <div className="city-directory-grid">
+            {homepageCities.map(({ city, count }) => (
+              <Link
+                key={city}
+                href={`/bars/city/${toUrlSlug(city)}`}
+                className="city-directory-card"
+              >
+                <span className="city-directory-name">{city}</span>
+                <span className="city-directory-count">{count} {count === 1 ? 'bar' : 'bars'}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* F) FEATURED BARS (from WP bars category) */}
       {barsPosts.length > 0 && (
         <div className="bars-wrapper">
           <div className="section-bar">

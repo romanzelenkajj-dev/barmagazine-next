@@ -1822,6 +1822,154 @@ button {
   text-underline-offset: 3px;
 }
 
+/* ====== BROWSE BY CITY (homepage) ====== */
+.city-directory-section {
+  margin-top: var(--gap);
+}
+
+.city-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gap);
+  margin-top: var(--gap);
+}
+
+.city-directory-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 20px 20px 18px;
+  border: 1px solid var(--border);
+  transition: background 0.15s, transform 0.2s var(--ease), box-shadow 0.2s;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.city-directory-card:hover {
+  background: var(--bg-card-warm);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.city-directory-name {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.city-directory-count {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .city-directory-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .city-directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .city-directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .city-directory-card {
+    padding: 14px 14px 12px;
+  }
+}
+
+/* ====== END BROWSE BY CITY ====== */
+
+/* ====== NEARBY CITIES (city pages) ====== */
+.nearby-cities-section {
+  margin-top: var(--gap);
+}
+
+.nearby-cities-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--gap);
+  background: var(--bg-card);
+  border-radius: 16px;
+  height: 64px;
+  padding: 0 24px;
+}
+
+.nearby-cities-header h2 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.nearby-cities-all {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.nearby-cities-all:hover {
+  opacity: 0.75;
+}
+
+.nearby-cities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+
+.nearby-city-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 18px 20px 16px;
+  border: 1px solid var(--border);
+  transition: background 0.15s, transform 0.2s var(--ease), box-shadow 0.2s;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.nearby-city-card:hover {
+  background: var(--bg-card-warm);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.nearby-city-name {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.nearby-city-count {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .nearby-cities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ====== END NEARBY CITIES ====== */
+
 .bars-scroll-btn {
   position: absolute;
   top: 50%;
@@ -2764,6 +2912,29 @@ textarea.form-input {
   font-weight: 500;
 }
 
+/* Bar type tags in city page hero */
+.directory-hero-types {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.directory-hero-type-tag {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255, 255, 255, 0.65);
+  padding: 5px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
 /* Filters */
 .directory-filters {
   margin-top: calc(var(--gap) * 0.5);
@@ -3239,6 +3410,20 @@ textarea.form-input {
   overflow: hidden;
 }
 
+/* SEO: bars are always in the DOM (for Googlebot) but visually hidden until
+   the user clicks 'More Bars'. This avoids client-side rendering of the list. */
+.directory-list--hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
 .directory-list-item {
   display: grid;
   grid-template-columns: 1fr auto auto auto;
@@ -3271,6 +3456,10 @@ textarea.form-input {
   overflow: hidden;
   text-overflow: ellipsis;
   transition: color 0.15s;
+  /* Reset h3 browser defaults so the list item layout is unchanged */
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
 }
 
 .directory-list-item:hover .directory-list-name {

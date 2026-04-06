@@ -7,6 +7,23 @@ import type { Bar } from '@/lib/supabase';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { CollapsibleBarList } from '@/components/CollapsibleBarList';
 
+/**
+ * Normalise a Supabase bar photo URL for use in JSON-LD schema.
+ * Replaces the wpcomstaging CDN host with barmagazine.com so Google
+ * credits the production domain, not the staging origin.
+ */
+function normalisePhotoUrl(url: string): string {
+  if (!url) return url;
+  // i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/... → i0.wp.com/barmagazine.com/...
+  return url.replace(
+    /https:\/\/i[0-9]\.wp\.com\/romanzelenka-wjgek\.wpcomstaging\.com\//g,
+    'https://i0.wp.com/barmagazine.com/'
+  ).replace(
+    /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\//g,
+    'https://barmagazine.com/'
+  );
+}
+
 export const revalidate = 300;
 // On-demand ISR for cities not pre-built (e.g. cities with only free-tier bars)
 export const dynamicParams = true;
@@ -112,6 +129,13 @@ export default async function CityPage({
   // Bar types breakdown for subtitle
   const types = Array.from(new Set(bars.map(b => b.type))).sort();
 
+  // Nearby Cities — other cities in the same country, sorted by bar count
+  // This creates internal links between city pages (critical for crawl depth + PageRank flow)
+  const nearbyCities = allCities
+    .filter(c => c.country === countryName && c.city !== cityName)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 8);
+
   // JSON-LD — BreadcrumbList
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -147,7 +171,7 @@ export default async function CityPage({
             addressCountry: countryName,
           },
         }),
-        ...(bar.photos?.[0] && { image: bar.photos[0] }),
+        ...(bar.photos?.[0] && { image: normalisePhotoUrl(bar.photos[0]) }),
       },
     })),
   };
@@ -181,9 +205,24 @@ export default async function CityPage({
           <h1>Best Bars in {cityName}</h1>
           <p>
             Explore {bars.length === 1 ? 'the top bar' : `the ${bars.length} best bars`} in {cityName},{' '}
-            {countryName} — handpicked by BarMagazine.
-            {types.length > 0 && ` Featuring ${types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}${types.length > 3 ? ' and more' : ''}.`}
+            {countryName} — handpicked by the BarMagazine editorial team.
+            {types.length > 0 && (
+              <>
+                {' '}Our curated list covers {types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}
+                {types.length > 3 ? ` and ${types.length - 3} more bar type${types.length - 3 > 1 ? 's' : ''}` : ''},{' '}
+                ranging from intimate neighbourhood spots to world-renowned cocktail destinations.
+              </>
+            )}
+            {' '}Whether you are a local looking for your next favourite haunt or a visitor planning a bar crawl,
+            this guide covers the essential {cityName} bars you should not miss.
           </p>
+          {types.length > 1 && (
+            <div className="directory-hero-types">
+              {types.map(t => (
+                <span key={t} className="directory-hero-type-tag">{formatBarType(t)}</span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -205,6 +244,30 @@ export default async function CityPage({
         bars={sorted.filter(b => !b.photos || b.photos.length === 0)}
         hasPhotoBars={sorted.some(b => b.photos && b.photos.length > 0)}
       />
+
+      {/* Nearby Cities — internal links to other cities in the same country */}
+      {nearbyCities.length > 0 && (
+        <div className="nearby-cities-section">
+          <div className="nearby-cities-header">
+            <h2>More Cities in {countryName}</h2>
+            <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="nearby-cities-all">
+              All {countryName} bars &rarr;
+            </Link>
+          </div>
+          <div className="nearby-cities-grid">
+            {nearbyCities.map(({ city, count }) => (
+              <Link
+                key={city}
+                href={`/bars/city/${toUrlSlug(city)}`}
+                className="nearby-city-card"
+              >
+                <span className="nearby-city-name">{city}</span>
+                <span className="nearby-city-count">{count} {count === 1 ? 'bar' : 'bars'}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* CTA */}
       <div className="directory-cta">
@@ -246,7 +309,7 @@ function BarPhotoGrid({ bars }: { bars: Bar[] }) {
 }
 
 function BarCard({ bar }: { bar: Bar }) {
-  const imageUrl = bar.photos?.[0] || null;
+  const imageUrl = bar.photos?.[0] ? normalisePhotoUrl(bar.photos[0]) : null;
   return (
     <Link href={`/bars/${bar.slug}`} className="bar-dir-card">
       <div className="bar-dir-card-visual">
