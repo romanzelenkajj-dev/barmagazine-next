@@ -248,7 +248,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                       ? <img src={nb.photos[0]} alt={nb.name} loading="lazy" />
                       : (
                         <div className="bar-dir-featured-placeholder">
-                          <span>{nb.name.slice(0, 2).toUpperCase()}</span>
+                          <span>{nb.name.split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
                         </div>
                       )
                     }

@@ -892,10 +892,7 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
           ? <img src={imageUrl} alt={bar.name} loading="lazy" />
           : (
             <div className="bar-dir-featured-placeholder">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3">
-                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
-              <span>{bar.name.slice(0, 2).toUpperCase()}</span>
+              <span>{bar.name.split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
             </div>
           )
         }
@@ -941,10 +938,7 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
           ? <img src={imageUrl} alt={bar.name} loading="lazy" />
           : (
             <div className="bar-dir-card-placeholder">
-              <svg className="bar-dir-card-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
-              <span className="bar-dir-card-initials">{bar.name.slice(0, 2).toUpperCase()}</span>
+              <span className="bar-dir-card-initials">{bar.name.split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
             </div>
           )
         }
