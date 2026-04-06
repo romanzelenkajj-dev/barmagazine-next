@@ -47,7 +47,7 @@ export function CollapsibleBarList({ bars, hasPhotoBars }: Props) {
           </div>
         )}
         {bars.map(bar => (
-          <Link key={bar.id} href={`/bars/${bar.slug}`} className="directory-list-item">
+          <Link key={bar.id} href={`/bars/${bar.slug}`} className={`directory-list-item${bar.description ? ' directory-list-item--has-desc' : ''}`}>
             {/* FIX: was <div className="directory-list-name"> — now <h3> so Google
                 recognises each bar as a named entity in a structured list */}
             <h3 className="directory-list-name">{bar.name}</h3>
@@ -55,6 +55,9 @@ export function CollapsibleBarList({ bars, hasPhotoBars }: Props) {
               {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
             </div>
             <div className="directory-list-type">{formatBarType(bar.type)}</div>
+            {bar.description && (
+              <p className="directory-list-desc">{bar.description}</p>
+            )}
             <svg className="directory-list-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>

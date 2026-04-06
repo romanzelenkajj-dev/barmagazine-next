@@ -328,6 +328,9 @@ function BarCard({ bar }: { bar: Bar }) {
           <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
         </div>
         <span className="bar-dir-type">{formatBarType(bar.type)}</span>
+        {bar.description && (
+          <p className="bar-dir-card-desc">{bar.description}</p>
+        )}
       </div>
     </Link>
   );

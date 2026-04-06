@@ -3353,6 +3353,18 @@ textarea.form-input {
   padding-top: 2px;
 }
 
+.bar-dir-card-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 6px 0 0 0;
+  padding: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Also keep badge classes for profile page */
 .bar-dir-badge {
   display: inline-block;
@@ -3434,6 +3446,36 @@ textarea.form-input {
   transition: background 0.15s;
   color: var(--text-primary);
   background: var(--bg-page);
+}
+
+/* When a bar has a description, switch to a 2-row layout */
+.directory-list-item--has-desc {
+  grid-template-columns: 1fr auto auto auto;
+  grid-template-rows: auto auto;
+  align-items: start;
+}
+
+.directory-list-item--has-desc .directory-list-name {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+.directory-list-item--has-desc .directory-list-location,
+.directory-list-item--has-desc .directory-list-type,
+.directory-list-item--has-desc .directory-list-arrow {
+  align-self: start;
+  margin-top: 2px;
+}
+
+.directory-list-desc {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 4px 0 0 0;
+  padding: 0;
+  max-width: 680px;
 }
 
 .directory-list-item:nth-child(odd) {
