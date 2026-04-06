@@ -320,7 +320,9 @@ function CityBarGrid({ bars }: { bars: Bar[] }) {
 }
 
 function CityBarCard({ bar }: { bar: Bar }) {
-  const imageUrl = bar.photos?.[0] ? normalisePhotoUrl(bar.photos[0]) : null;
+  // Use the raw URL for the img tag — normalisePhotoUrl is only needed for JSON-LD/SEO.
+  // Many photos are still hosted on the staging CDN and the normalised production URL returns 404.
+  const imageUrl = bar.photos?.[0] ?? null;
 
   return (
     <Link href={`/bars/${bar.slug}`} className="city-bar-card">
@@ -366,12 +368,7 @@ function CityBarCard({ bar }: { bar: Bar }) {
           )}
         </div>
       </div>
-      {/* Description below photo — never inside the overlay */}
-      {bar.description && (
-        <div className="city-bar-card-body">
-          <p className="city-bar-card-desc">{bar.description}</p>
-        </div>
-      )}
+      {/* No description shown on city page cards — photo + overlay only, matching /bars page design */}
     </Link>
   );
 }
