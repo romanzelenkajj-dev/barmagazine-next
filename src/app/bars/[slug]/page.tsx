@@ -164,8 +164,10 @@ function barColourSlug(name: string): string {
               <div className="bar-v2-photo-overlay" />
             </>
           ) : (
-            <div className="bar-v2-photo-placeholder">
-              <span className="bar-v2-initial">{bar.name.charAt(0)}</span>
+            <div className="bar-v2-photo-placeholder" style={{ background: barColourSlug(bar.name) }}>
+              <span className="bar-v2-hero-acronym">
+                {bar.name.replace(/([a-z])([A-Z])/g, '$1 $2').split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 5)}
+              </span>
             </div>
           )}
           <div className="bar-v2-badges">

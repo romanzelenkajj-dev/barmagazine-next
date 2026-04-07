@@ -5932,12 +5932,20 @@ textarea.form-input {
   align-items: center;
   justify-content: center;
   height: 100%;
-  background: #2a2520;
+  background: #1a1a1a;
 }
-.bar-v2-initial {
-  font-size: 120px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.06);
+.bar-v2-hero-acronym {
+  font-size: clamp(80px, 18vw, 200px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: linear-gradient(160deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.12) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 40px rgba(255,255,255,0.08)) drop-shadow(0 0 80px rgba(255,255,255,0.04));
+  user-select: none;
 }
 .bar-v2-badges {
   position: absolute;
