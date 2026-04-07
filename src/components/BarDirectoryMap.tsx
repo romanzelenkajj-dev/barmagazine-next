@@ -908,7 +908,7 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
           ? <img src={imageUrl} alt={bar.name} loading="lazy" />
           : (
             <div className="bar-dir-featured-placeholder" style={{ background: barColour(bar.name) }}>
-              <span>{bar.name.split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
+              <span>{bar.name.replace(/([a-z])([A-Z])/g, '$1 $2').split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
             </div>
           )
         }
@@ -954,7 +954,7 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
           ? <img src={imageUrl} alt={bar.name} loading="lazy" />
           : (
             <div className="bar-dir-card-placeholder" style={{ background: barColour(bar.name) }}>
-              <span className="bar-dir-card-initials">{bar.name.split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
+              <span className="bar-dir-card-initials">{bar.name.replace(/([a-z])([A-Z])/g, '$1 $2').split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
             </div>
           )
         }

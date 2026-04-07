@@ -265,7 +265,7 @@ function barColourSlug(name: string): string {
                       ? <img src={nb.photos[0]} alt={nb.name} loading="lazy" />
                       : (
                         <div className="bar-dir-featured-placeholder" style={{ background: barColourSlug(nb.name) }}>
-                          <span>{nb.name.split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
+                          <span>{nb.name.replace(/([a-z])([A-Z])/g, '$1 $2').split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
                         </div>
                       )
                     }

@@ -542,6 +542,81 @@ button {
   }
 }
 
+/* ====== NEWSLETTER + TOP 10 STRIP ====== */
+.newsletter-top10-strip {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0;
+  background: var(--bg-accent);
+  border-radius: var(--radius);
+  margin-top: var(--gap);
+  overflow: hidden;
+}
+
+.newsletter-top10-left {
+  padding: 80px 48px;
+  text-align: center;
+  border-right: 1px solid rgba(26,26,26,0.08);
+}
+
+.newsletter-top10-left h2 {
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 80px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.newsletter-top10-left p {
+  font-size: 18px;
+  line-height: 28px;
+  color: rgba(26, 26, 26, 0.7);
+  margin-bottom: 24px;
+}
+
+.newsletter-top10-left .newsletter-form {
+  margin: 0 auto;
+}
+
+.top10-footer-block {
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.top10-footer-heading {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.top10-footer-cities {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.top10-footer-cities li a {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.top10-footer-cities li a:hover {
+  opacity: 1;
+}
+
 /* ====== ARTICLE BREADCRUMB ====== */
 .article-breadcrumb {
   margin-top: var(--gap);
@@ -2290,6 +2365,29 @@ button {
   .newsletter-strip h2 {
     font-size: 48px;
     line-height: 56px;
+  }
+
+  .newsletter-top10-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .newsletter-top10-left {
+    padding: 48px 24px;
+    border-right: none;
+    border-bottom: 1px solid rgba(26,26,26,0.08);
+  }
+
+  .newsletter-top10-left h2 {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  .top10-footer-block {
+    padding: 36px 24px;
+  }
+
+  .top10-footer-heading {
+    font-size: 26px;
   }
 
   .newsletter-form {

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, stripHtml, getPostCategories } from '@/lib/wordpress';
 import { formatCardTitle } from '@/lib/utils';
 import { NewsletterForm } from '@/components/NewsletterForm';
+import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
 export const revalidate = 300;
 
@@ -119,11 +120,16 @@ export default async function HomePage() {
         </div>
       )}
 
-      {/* F) NEWSLETTER BANNER */}
-      <div className="newsletter-strip">
-        <h2>Stay in the Mix</h2>
-        <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
-        <NewsletterForm className="newsletter-form" />
+      {/* F) NEWSLETTER + TOP 10 BANNER */}
+      <div className="newsletter-top10-strip">
+        <div className="newsletter-top10-left">
+          <h2>Stay in the Mix</h2>
+          <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
+          <NewsletterForm className="newsletter-form" />
+        </div>
+        <div className="newsletter-top10-right">
+          <Top10FooterBlock />
+        </div>
       </div>
     </>
   );
