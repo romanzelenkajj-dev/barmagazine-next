@@ -322,6 +322,28 @@ export default async function CityPage({
 }
 
 // ---------------------------------------------------------------------------
+// Deterministic dark colour from bar name — 8 rich dark palettes
+// ---------------------------------------------------------------------------
+const PLACEHOLDER_COLOURS = [
+  'linear-gradient(135deg, #0a0f1e 0%, #0d1530 100%)',  // deep navy
+  'linear-gradient(135deg, #0a1a0e 0%, #0d2412 100%)',  // dark forest
+  'linear-gradient(135deg, #1a0a0e 0%, #240d12 100%)',  // dark burgundy
+  'linear-gradient(135deg, #0e0a1a 0%, #140d24 100%)',  // dark plum
+  'linear-gradient(135deg, #1a100a 0%, #24160d 100%)',  // dark amber
+  'linear-gradient(135deg, #0a1a1a 0%, #0d2424 100%)',  // dark teal
+  'linear-gradient(135deg, #151515 0%, #1e1e1e 100%)',  // near-black charcoal
+  'linear-gradient(135deg, #0f0a1a 0%, #160d24 100%)',  // dark indigo
+];
+
+function barColour(name: string): string {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
+  }
+  return PLACEHOLDER_COLOURS[hash % PLACEHOLDER_COLOURS.length];
+}
+
+// ---------------------------------------------------------------------------
 // Unified bar grid — same card design as /bars for every bar
 // ---------------------------------------------------------------------------
 function CityBarGrid({ bars }: { bars: Bar[] }) {
@@ -350,7 +372,7 @@ function CityBarCard({ bar }: { bar: Bar }) {
             // eslint-disable-next-line @next/next/no-img-element
             <img src={imageUrl} alt={bar.name} loading="lazy" />
           ) : (
-            <div className="bar-dir-featured-placeholder">
+            <div className="bar-dir-featured-placeholder" style={{ background: barColour(bar.name) }}>
               <span>{bar.name.split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
             </div>
           )
