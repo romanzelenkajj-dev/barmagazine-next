@@ -1955,13 +1955,13 @@ button {
 
 @media (max-width: 768px) {
   .city-directory-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
   .city-directory-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 10px;
   }
   .city-directory-card {
@@ -4077,7 +4077,7 @@ textarea.form-input {
   }
 
   .directory-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .directory-cta {
@@ -4097,6 +4097,7 @@ textarea.form-input {
   .directory-featured-grid {
     grid-template-columns: 1fr;
   }
+  /* already 1fr at 768px, no change needed */
 
   .directory-featured-visual {
     height: 200px;
@@ -6253,13 +6254,27 @@ textarea.form-input {
   margin: 0;
 }
 
+/* Mobile-only Top 10 box (hidden on desktop where sidebar shows it) */
+.bar-v2-mobile-top10 {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .bar-v2-mobile-top10 {
+    display: block;
+    margin-top: var(--gap);
+  }
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
   .bar-v2-hero {
     max-height: 320px;
+    min-height: 260px;
   }
   .bar-v2-hero img {
     max-height: 320px;
+    min-height: 260px;
+    height: 320px;
   }
   .bar-v2-location-map {
     height: 280px;

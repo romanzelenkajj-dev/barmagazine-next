@@ -6,6 +6,7 @@ import { formatBarType, toUrlSlug } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
 import { BarDirectorySidebarPromo, BarDirectorySidebar } from '@/components/BarDirectorySidebar';
+import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 
 export const revalidate = 300;
 // Allow slugs not pre-built at deploy time to be rendered on-demand (ISR)
@@ -329,6 +330,10 @@ function barColourSlug(name: string): string {
             </div>
           </div>
         )}
+        {/* Mobile-only Top 10 box — shown below map on mobile, hidden on desktop (sidebar shows it) */}
+        <div className="bar-v2-mobile-top10">
+          <Top10FooterBlock />
+        </div>
       </div>{/* end bar-v2 */}
 
       {/* Sidebar: promo + ad + top10 */}
