@@ -547,7 +547,6 @@ button {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 0;
-  background: var(--bg-accent);
   border-radius: var(--radius);
   margin-top: var(--gap);
   overflow: hidden;
@@ -556,7 +555,7 @@ button {
 .newsletter-top10-left {
   padding: 80px 48px;
   text-align: center;
-  border-right: 1px solid rgba(26,26,26,0.08);
+  background: var(--bg-accent);
 }
 
 .newsletter-top10-left h2 {
@@ -584,13 +583,14 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: var(--bg-dark);
 }
 
 .top10-footer-heading {
   font-size: 32px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--text-primary);
+  color: #ffffff;
   margin-bottom: 20px;
   line-height: 1.1;
 }
@@ -607,14 +607,13 @@ button {
 .top10-footer-cities li a {
   font-size: 16px;
   font-weight: 500;
-  color: var(--text-primary);
+  color: rgba(255,255,255,0.7);
   text-decoration: none;
-  opacity: 0.75;
-  transition: opacity 0.2s;
+  transition: color 0.2s;
 }
 
 .top10-footer-cities li a:hover {
-  opacity: 1;
+  color: #ffffff;
 }
 
 /* ====== ARTICLE BREADCRUMB ====== */
@@ -2373,8 +2372,6 @@ button {
 
   .newsletter-top10-left {
     padding: 48px 24px;
-    border-right: none;
-    border-bottom: 1px solid rgba(26,26,26,0.08);
   }
 
   .newsletter-top10-left h2 {
@@ -5931,20 +5928,20 @@ textarea.form-input {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  min-height: 320px;
   height: 100%;
-  background: #1a1a1a;
 }
 .bar-v2-hero-acronym {
-  font-size: clamp(80px, 18vw, 200px);
+  font-size: clamp(96px, 20vw, 240px);
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1;
-  background: linear-gradient(160deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.12) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: none;
-  filter: drop-shadow(0 0 40px rgba(255,255,255,0.08)) drop-shadow(0 0 80px rgba(255,255,255,0.04));
+  color: rgba(255,255,255,0.82);
+  text-shadow:
+    0 0 40px rgba(255,255,255,0.55),
+    0 0 100px rgba(255,255,255,0.25),
+    0 2px 8px rgba(0,0,0,0.5);
   user-select: none;
 }
 .bar-v2-badges {
