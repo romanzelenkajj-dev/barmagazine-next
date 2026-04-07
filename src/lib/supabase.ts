@@ -231,6 +231,17 @@ export async function getCitiesWithCounts() {
   return Object.entries(map).sort((a, b) => b[1].count - a[1].count).map(([city, info]) => ({ city, count: info.count, country: info.country }));
 }
 
+/** Get all wp_article_slug values for bars that have a directory listing */
+export async function getBarArticleSlugs(): Promise<Set<string>> {
+  const { data, error } = await supabase
+    .from('bars')
+    .select('wp_article_slug')
+    .eq('is_active', true)
+    .not('wp_article_slug', 'is', null);
+  if (error || !data) return new Set();
+  return new Set(data.map(b => b.wp_article_slug as string).filter(Boolean));
+}
+
 /** Get bar count stats */
 export async function getBarStats() {
   const { count } = await supabase

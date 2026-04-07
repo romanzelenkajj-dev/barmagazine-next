@@ -4,20 +4,26 @@ import { formatCardTitle } from '@/lib/utils';
 import { NewsletterForm } from '@/components/NewsletterForm';
 import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
+import { getBarArticleSlugs } from '@/lib/supabase';
 export const revalidate = 300;
 
 const CATEGORY_SLUGS = ['bars', 'people', 'cocktails', 'awards-events', 'brands', 'events'] as const;
 
 export default async function HomePage() {
   // Fetch all data in parallel: latest posts, bars for Featured Bars, all 6 category sets
-  const [result, barsResult, ...categoryResults] = await Promise.all([
+  const [result, barsResult, barArticleSlugs, ...categoryResults] = await Promise.all([
     getPosts(1, 7),
-    getPostsByCategory('bars', 1, 12),
+    getPostsByCategory('bars', 1, 30), // fetch more so we have enough after filtering
+    getBarArticleSlugs(),
     ...CATEGORY_SLUGS.map(slug => getPostsByCategory(slug, 1, 6)),
   ]);
 
   const posts = result.data;
-  const barsPosts = barsResult.data;
+  // Only show bar articles that have a matching listing in the Bar Directory
+  const allBarsPosts = barsResult.data;
+  const barsPosts = allBarsPosts
+    .filter((post: { slug: string }) => barArticleSlugs.has(post.slug))
+    .slice(0, 12);
 
   const hero = posts[0];
   const cardPosts = posts.slice(1, 7);
