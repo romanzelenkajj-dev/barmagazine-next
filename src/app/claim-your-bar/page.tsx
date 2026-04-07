@@ -181,11 +181,11 @@ export default function ClaimYourBarPage() {
           <div className="claim-stat-label">Instagram followers</div>
         </div>
         <div className="claim-stat">
-          <div className="claim-stat-number">138</div>
+          <div className="claim-stat-number">140</div>
           <div className="claim-stat-label">Cities</div>
         </div>
         <div className="claim-stat">
-          <div className="claim-stat-number">900+</div>
+          <div className="claim-stat-number">987+</div>
           <div className="claim-stat-label">Bars in directory</div>
         </div>
         <div className="claim-stat">
