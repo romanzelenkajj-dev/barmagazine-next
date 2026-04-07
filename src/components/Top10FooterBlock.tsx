@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { TOP10_CITIES } from './Top10CityPicker';
+import { TOP10_CITIES } from '@/lib/top10-cities';
 
 export function Top10FooterBlock() {
   return (

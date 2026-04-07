@@ -1,15 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { TOP10_CITIES } from '@/lib/top10-cities';
 
-export const TOP10_CITIES = [
-  { label: 'Dubai',      dirSlug: 'dubai' },
-  { label: 'Hong Kong',  dirSlug: 'hong-kong' },
-  { label: 'London',     dirSlug: 'london' },
-  { label: 'New York',   dirSlug: 'new-york' },
-  { label: 'Singapore',  dirSlug: 'singapore' },
-  { label: 'Tokyo',      dirSlug: 'tokyo' },
-];
+export { TOP10_CITIES };
 
 export function Top10CityPicker() {
   return (
