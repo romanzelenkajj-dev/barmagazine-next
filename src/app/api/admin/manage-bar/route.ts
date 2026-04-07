@@ -22,13 +22,23 @@ export async function GET(request: NextRequest) {
   }
 
   const supabase = getServiceClient();
-  const { data, error } = await supabase
-    .from('bars')
-    .select('*')
-    .order('name', { ascending: true });
-
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json({ bars: data });
+  // Paginate to bypass Supabase's default 1000-row limit
+  const PAGE_SIZE = 1000;
+  const allBars: Record<string, unknown>[] = [];
+  let from = 0;
+  while (true) {
+    const { data, error } = await supabase
+      .from('bars')
+      .select('*')
+      .order('name', { ascending: true })
+      .range(from, from + PAGE_SIZE - 1);
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    if (!data || data.length === 0) break;
+    allBars.push(...data);
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
+  }
+  return NextResponse.json({ bars: allBars });
 }
 
 // POST — update or delete a bar
