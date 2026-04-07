@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { TOP10_CITIES } from '@/lib/top10-cities';
 

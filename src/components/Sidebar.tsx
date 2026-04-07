@@ -5,7 +5,7 @@ import type { WPPost } from '@/lib/wordpress';
 import { getFeaturedImageUrl, stripHtml } from '@/lib/wordpress';
 import { cleanTitle } from '@/lib/utils';
 import { NewsletterForm } from './NewsletterForm';
-import { Top10CityPicker } from './Top10CityPicker';
+import { Top10FooterBlock } from './Top10FooterBlock';
 
 export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
   return (
@@ -22,9 +22,6 @@ export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
         <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
         <NewsletterForm />
       </div>
-
-      {/* TOP 10 BARS city picker */}
-      <Top10CityPicker />
 
       {/* Related Articles */}
       {relatedPosts.length > 0 && (
@@ -48,6 +45,8 @@ export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
           })}
         </div>
       )}
+      {/* Top 10 Bars */}
+      <Top10FooterBlock />
     </aside>
   );
 }

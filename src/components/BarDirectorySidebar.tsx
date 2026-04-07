@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Top10CityPicker } from './Top10CityPicker';
+import { Top10FooterBlock } from './Top10FooterBlock';
 
 /** Promo box — rendered as a direct grid child alongside the hero */
 export function BarDirectorySidebarPromo() {
@@ -41,8 +41,8 @@ export function BarDirectorySidebar() {
         <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster — CODE: BarMagazine" />
       </a>
 
-      {/* ── Top 10 Bars city picker ── */}
-      <Top10CityPicker />
+      {/* ── Top 10 Bars ── */}
+      <Top10FooterBlock />
 
     </div>
   );
