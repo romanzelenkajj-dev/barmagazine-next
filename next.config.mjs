@@ -22,10 +22,8 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'secure.gravatar.com',
       },
-      {
-        protocol: 'https',
-        hostname: 'romanzelenka-wjgek.wpcomstaging.com',
-      },
+      // NOTE: romanzelenka-wjgek.wpcomstaging.com removed — all image URLs
+      // are now rewritten to barmagazine.com via sanitizeResponse() in wordpress.ts
     ],
   },
   // 301 redirects: old WordPress URLs → new Next.js equivalents

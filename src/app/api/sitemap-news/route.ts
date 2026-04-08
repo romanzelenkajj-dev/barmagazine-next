@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-
-const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com';
+import { WP_API } from '@/lib/wordpress';
 const SITE_URL = 'https://barmagazine.com';
 
 interface WPNewsPost {

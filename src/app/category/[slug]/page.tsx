@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getCategoryBySlug, getPostsByCategory } from '@/lib/wordpress';
+import { getCategoryBySlug, getPostsByCategory, WP_API } from '@/lib/wordpress';
 import { LoadMoreGrid } from '@/components/LoadMoreGrid';
 import type { Metadata } from 'next';
 
@@ -28,7 +28,7 @@ export default async function CategoryPage({
   if (!category) notFound();
 
   const result = await getPostsByCategory(params.slug, 1, 12);
-  const fetchUrl = `https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com/posts?categories=${category.id}&per_page=12`;
+  const fetchUrl = `${WP_API}/posts?categories=${category.id}&per_page=12`;
 
   return (
     <div className="category-header-wrapper">

@@ -1,8 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getBars, getCountriesWithCounts, getCitiesWithCounts } from '@/lib/supabase';
 import { toUrlSlug } from '@/lib/utils';
-
-const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com';
+import { WP_API } from '@/lib/wordpress';
 const SITE_URL = 'https://barmagazine.com';
 
 // Category slugs that exist in WordPress and have dedicated/redirected pages

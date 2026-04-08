@@ -1,5 +1,48 @@
-// WordPress.com public API — use the wpcomstaging.com address (primary site URL after DNS move)
-const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com';
+// WordPress.com public API — the site identifier for the WP.com REST API.
+// IMPORTANT: This staging domain is ONLY used as a site identifier in the API URL.
+// It must NEVER appear in rendered HTML. The sanitizeResponse() function below
+// rewrites all staging-domain references in API responses before they reach
+// any component. DO NOT remove or bypass this sanitisation.
+const STAGING_DOMAIN = 'romanzelenka-wjgek.wpcomstaging.com';
+export const WP_API = `https://public-api.wordpress.com/wp/v2/sites/${STAGING_DOMAIN}`;
+const PROD_DOMAIN = 'barmagazine.com';
+
+/**
+ * Globally rewrite every occurrence of the WordPress staging domain in a raw
+ * API response string so that the staging hostname never leaks into rendered
+ * HTML, RSC payloads, or serialised JSON.
+ *
+ * Rules (applied in order):
+ * 1. CDN-wrapped image URLs  → rewrite origin to production domain
+ *    `i0.wp.com/romanzelenka-…/wp-content/uploads/` → `i0.wp.com/barmagazine.com/wp-content/uploads/`
+ * 2. Raw image/upload URLs   → wrap with CDN + production domain
+ *    `romanzelenka-…/wp-content/uploads/` → `i0.wp.com/barmagazine.com/wp-content/uploads/`
+ * 3. All remaining refs      → replace with production domain
+ *    `romanzelenka-…/some-slug/` → `barmagazine.com/some-slug/`
+ */
+function sanitizeResponse(text: string): string {
+  return text
+    // 1. CDN-wrapped upload URLs → production CDN
+    .replace(
+      /https:\/\/i[0-9]\.wp\.com\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g,
+      `https://i0.wp.com/${PROD_DOMAIN}/wp-content/uploads/`
+    )
+    // 2. Raw upload URLs → production CDN
+    .replace(
+      /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g,
+      `https://i0.wp.com/${PROD_DOMAIN}/wp-content/uploads/`
+    )
+    // 3. Everything else (post links, guid, _links, etc.) → production domain
+    .replace(
+      /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\//g,
+      `https://${PROD_DOMAIN}/`
+    )
+    // 4. Catch any remaining bare domain references (without protocol)
+    .replace(
+      /romanzelenka-wjgek\.wpcomstaging\.com/g,
+      PROD_DOMAIN
+    );
+}
 
 // ---------- Types ----------
 export interface WPPost {
@@ -91,7 +134,8 @@ async function wpFetch<T>(endpoint: string, params: Record<string, string | numb
       if (fallback !== undefined) return fallback;
       throw new Error(`WP API error: ${res.status} on ${endpoint}`);
     }
-    return res.json();
+    const raw = await res.text();
+    return JSON.parse(sanitizeResponse(raw));
   } catch (e) {
     console.warn(`WP API fetch failed on ${endpoint}:`, e);
     if (fallback !== undefined) return fallback;
@@ -109,8 +153,9 @@ async function wpFetchWithTotal<T>(endpoint: string, params: Record<string, stri
       console.warn(`WP API error: ${res.status} on ${endpoint}, returning empty`);
       return { data: [] as unknown as T, total: 0, totalPages: 0 };
     }
+    const raw = await res.text();
     return {
-      data: await res.json(),
+      data: JSON.parse(sanitizeResponse(raw)),
       total: parseInt(res.headers.get('X-WP-Total') || '0'),
       totalPages: parseInt(res.headers.get('X-WP-TotalPages') || '0'),
     };
@@ -255,11 +300,11 @@ export function rewriteImageUrl(url: string): string {
   if (url.includes('barmagazine.com/wp-content/')) {
     return url.replace('https://barmagazine.com/', 'https://i0.wp.com/barmagazine.com/');
   }
-  // Rewrite wpcomstaging.com URLs to CDN
-  if (url.includes('romanzelenka-wjgek.wpcomstaging.com/wp-content/')) {
+  // Rewrite wpcomstaging.com URLs to CDN (via production domain)
+  if (url.includes(`${STAGING_DOMAIN}/wp-content/`)) {
     return url.replace(
-      'https://romanzelenka-wjgek.wpcomstaging.com/',
-      'https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/'
+      `https://${STAGING_DOMAIN}/`,
+      `https://i0.wp.com/${PROD_DOMAIN}/`
     );
   }
   return url;
@@ -280,17 +325,17 @@ export function rewriteContentImageUrls(html: string): string {
   // Rewrite staging domain article links to barmagazine.com (NOT images/uploads)
   result = result.replace(
     /href="https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/(?!wp-content\/uploads\/)([^"]*)"/g,
-    'href="https://barmagazine.com/$1"'
+    `href="https://${PROD_DOMAIN}/$1"`
   );
   // Rewrite barmagazine.com image URLs to CDN
   result = result.replace(
     /https:\/\/barmagazine\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
-    'https://i0.wp.com/barmagazine.com/wp-content/uploads/$1'
+    `https://i0.wp.com/${PROD_DOMAIN}/wp-content/uploads/$1`
   );
-  // Rewrite wpcomstaging.com image URLs to CDN
+  // Rewrite wpcomstaging.com image URLs to CDN (via production domain)
   result = result.replace(
     /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
-    'https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/$1'
+    `https://i0.wp.com/${PROD_DOMAIN}/wp-content/uploads/$1`
   );
   return result;
 }
