@@ -97,14 +97,7 @@ export function LoadMoreGrid({
       const nextPage = page + 1;
       const res = await fetch(`${fetchUrl}&page=${nextPage}&_embed=true`);
       if (res.ok) {
-        // Sanitize the raw response text to strip staging domain before parsing
-        const raw = await res.text();
-        const sanitized = raw
-          .replace(/https:\/\/i[0-9]\.wp\.com\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g, 'https://i0.wp.com/barmagazine.com/wp-content/uploads/')
-          .replace(/https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g, 'https://i0.wp.com/barmagazine.com/wp-content/uploads/')
-          .replace(/https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\//g, 'https://barmagazine.com/')
-          .replace(/romanzelenka-wjgek\.wpcomstaging\.com/g, 'barmagazine.com');
-        const newPosts: Post[] = JSON.parse(sanitized);
+        const newPosts: Post[] = await res.json();
         setPosts(prev => [...prev, ...newPosts]);
         setPage(nextPage);
       }

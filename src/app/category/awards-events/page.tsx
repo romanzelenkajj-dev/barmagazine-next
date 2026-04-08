@@ -1,4 +1,4 @@
-import { getPostsByCategory, WP_API } from '@/lib/wordpress';
+import { getPostsByCategory } from '@/lib/wordpress';
 import { LoadMoreGrid } from '@/components/LoadMoreGrid';
 import type { Metadata } from 'next';
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default async function AwardsEventsPage() {
   const result = await getPostsByCategory('awards', 1, 12);
-  const fetchUrl = `${WP_API}/posts?categories=200&per_page=12`;
+  const fetchUrl = `/api/wp-posts?categories=200&per_page=12`;
 
   return (
     <div className="category-header-wrapper">
