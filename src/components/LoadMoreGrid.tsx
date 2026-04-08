@@ -19,24 +19,29 @@ interface Post {
 }
 
 /**
- * Rewrite any staging-domain URLs in a string to the production domain.
- * This mirrors the server-side sanitizeResponse() in wordpress.ts and
- * is needed because LoadMoreGrid fetches from the WP API directly on
- * the client side ("Load More" button).
+ * Rewrite staging-domain URLs for display.
+ *
+ * IMPORTANT: CDN image URLs (i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/...)
+ * MUST keep the staging domain because barmagazine.com points to Vercel, not
+ * WordPress. The wp.com CDN resolves the origin hostname in the URL path, so
+ * i0.wp.com/barmagazine.com/... returns 404.
+ *
+ * This is only needed for the client-side "Load More" fetch, since the
+ * /api/wp-posts proxy already sanitises the response.
  */
 function sanitizeUrl(url: string): string {
   if (!url) return url;
   return url
-    .replace(
-      /https:\/\/i[0-9]\.wp\.com\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g,
-      'https://i0.wp.com/barmagazine.com/wp-content/uploads/'
-    )
+    // CDN-wrapped upload URLs → keep staging domain (CDN needs it to resolve)
+    // Already correct: i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/...
+    // Raw upload URLs → wrap with CDN, keep staging domain
     .replace(
       /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g,
-      'https://i0.wp.com/barmagazine.com/wp-content/uploads/'
+      'https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/'
     )
+    // Non-upload staging URLs → production domain
     .replace(
-      /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\//g,
+      /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/(?!wp-content\/uploads\/)/g,
       'https://barmagazine.com/'
     );
 }
