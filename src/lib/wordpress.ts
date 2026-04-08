@@ -23,28 +23,32 @@ const PROD_DOMAIN = 'barmagazine.com';
  *    `romanzelenka-…/some-slug/` → `barmagazine.com/some-slug/`
  */
 function sanitizeResponse(text: string): string {
-  return text
-    // 1. CDN-wrapped upload URLs → leave alone (already correct)
-    //    No replacement needed — i0.wp.com/romanzelenka-… is the working form.
-
-    // 2. Raw (non-CDN) upload URLs → wrap with CDN (keep staging domain as origin)
-    .replace(
-      /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g,
-      `https://i0.wp.com/${STAGING_DOMAIN}/wp-content/uploads/`
-    )
-    // 3. Everything else (post links, guid, _links, etc.) → production domain
-    //    This regex uses a negative lookahead to skip wp-content/uploads paths
-    //    (those are handled by rule 2 above).
-    .replace(
-      /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/(?!wp-content\/uploads\/)/g,
-      `https://${PROD_DOMAIN}/`
-    )
-    // 4. Catch remaining bare domain refs that aren't part of a CDN URL
-    //    (e.g. in JSON keys or non-URL contexts). Skip if preceded by wp.com/
-    .replace(
-      /(?<!wp\.com\/)romanzelenka-wjgek\.wpcomstaging\.com(?!\/wp-content\/uploads)/g,
-      PROD_DOMAIN
-    );
+  // NOTE: The WP REST API returns JSON with escaped forward slashes (\/).
+  // All regexes must handle both `/` and `\/` variants.
+  //
+  // Strategy: instead of fragile lookaheads/lookbehinds, we use a single
+  // pass that matches ALL occurrences of the staging domain and decides
+  // the replacement based on the surrounding context.
+  return text.replace(
+    /(i[0-9]\.wp\.com\\?\/)?(romanzelenka-wjgek\.wpcomstaging\.com)(\\?\/wp-content\\?\/uploads\\?\/)?/g,
+    (match, cdnPrefix, _domain, uploadsPath) => {
+      if (cdnPrefix && uploadsPath) {
+        // CDN-wrapped upload URL → keep staging domain (CDN needs it)
+        return match;
+      }
+      if (!cdnPrefix && uploadsPath) {
+        // Raw upload URL (no CDN) → wrap with CDN, keep staging domain
+        return `i0.wp.com/${STAGING_DOMAIN}${uploadsPath}`;
+      }
+      if (cdnPrefix && !uploadsPath) {
+        // CDN prefix but not an upload path → keep staging domain
+        // (could be a favicon or other CDN-proxied asset)
+        return match;
+      }
+      // No CDN prefix, no uploads path → rewrite to production domain
+      return PROD_DOMAIN;
+    }
+  );
 }
 
 // ---------- Types ----------

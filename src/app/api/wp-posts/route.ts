@@ -35,25 +35,19 @@ export async function GET(request: NextRequest) {
 
     const raw = await res.text();
 
-    // Sanitise: rewrite staging domain in non-image contexts.
-    // CDN image URLs (i0.wp.com/romanzelenka-…) MUST keep the staging domain
-    // because barmagazine.com points to Vercel, not WordPress.
-    const sanitized = raw
-      // 1. Raw upload URLs → wrap with CDN (keep staging domain as origin)
-      .replace(
-        /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g,
-        'https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/'
-      )
-      // 2. Non-upload staging URLs → production domain
-      .replace(
-        /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/(?!wp-content\/uploads\/)/g,
-        'https://barmagazine.com/'
-      )
-      // 3. Remaining bare domain refs (not in CDN URLs)
-      .replace(
-        /(?<!wp\.com\/)romanzelenka-wjgek\.wpcomstaging\.com(?!\/wp-content\/uploads)/g,
-        'barmagazine.com'
-      );
+    // Sanitise staging domain references. CDN image URLs MUST keep the
+    // staging domain because barmagazine.com points to Vercel, not WordPress.
+    // WP API JSON uses escaped slashes (\/) so we handle both forms.
+    const STAGING = 'romanzelenka-wjgek.wpcomstaging.com';
+    const sanitized = raw.replace(
+      /(i[0-9]\.wp\.com\\?\/)?(romanzelenka-wjgek\.wpcomstaging\.com)(\\?\/wp-content\\?\/uploads\\?\/)?/g,
+      (match: string, cdnPrefix: string | undefined, _domain: string, uploadsPath: string | undefined) => {
+        if (cdnPrefix && uploadsPath) return match; // CDN upload URL → keep
+        if (!cdnPrefix && uploadsPath) return `i0.wp.com/${STAGING}${uploadsPath}`; // Raw upload → wrap with CDN
+        if (cdnPrefix) return match; // CDN non-upload → keep
+        return 'barmagazine.com'; // Everything else → production
+      }
+    );
 
     // Forward pagination headers
     const headers = new Headers();
