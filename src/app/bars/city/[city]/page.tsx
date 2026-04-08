@@ -9,15 +9,26 @@ import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarD
 
 /**
  * Normalise a Supabase bar photo URL.
- * Replaces the wpcomstaging CDN host with barmagazine.com so Google
- * credits the production domain, not the staging origin.
+ * CDN image URLs MUST keep the staging domain as the origin because
+ * barmagazine.com now points to Vercel, not WordPress.
+ * Raw (non-CDN) upload URLs are wrapped with the CDN.
+ * Non-upload URLs are rewritten to barmagazine.com.
  */
 function normalisePhotoUrl(url: string): string {
   if (!url) return url;
+  // Already on CDN with staging domain → leave as-is
+  if (url.match(/https:\/\/i[0-9]\.wp\.com\/romanzelenka-wjgek\.wpcomstaging\.com\//)) {
+    return url;
+  }
+  // Raw upload URL → wrap with CDN (keep staging domain)
+  if (url.includes('romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/')) {
+    return url.replace(
+      'https://romanzelenka-wjgek.wpcomstaging.com/',
+      'https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/'
+    );
+  }
+  // Non-upload staging URL → production domain
   return url.replace(
-    /https:\/\/i[0-9]\.wp\.com\/romanzelenka-wjgek\.wpcomstaging\.com\//g,
-    'https://i0.wp.com/barmagazine.com/'
-  ).replace(
     /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\//g,
     'https://barmagazine.com/'
   );

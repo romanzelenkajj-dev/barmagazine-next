@@ -35,22 +35,23 @@ export async function GET(request: NextRequest) {
 
     const raw = await res.text();
 
-    // Sanitise: remove all staging domain references
+    // Sanitise: rewrite staging domain in non-image contexts.
+    // CDN image URLs (i0.wp.com/romanzelenka-…) MUST keep the staging domain
+    // because barmagazine.com points to Vercel, not WordPress.
     const sanitized = raw
-      .replace(
-        /https:\/\/i[0-9]\.wp\.com\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g,
-        'https://i0.wp.com/barmagazine.com/wp-content/uploads/'
-      )
+      // 1. Raw upload URLs → wrap with CDN (keep staging domain as origin)
       .replace(
         /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g,
-        'https://i0.wp.com/barmagazine.com/wp-content/uploads/'
+        'https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/'
       )
+      // 2. Non-upload staging URLs → production domain
       .replace(
-        /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\//g,
+        /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/(?!wp-content\/uploads\/)/g,
         'https://barmagazine.com/'
       )
+      // 3. Remaining bare domain refs (not in CDN URLs)
       .replace(
-        /romanzelenka-wjgek\.wpcomstaging\.com/g,
+        /(?<!wp\.com\/)romanzelenka-wjgek\.wpcomstaging\.com(?!\/wp-content\/uploads)/g,
         'barmagazine.com'
       );
 

@@ -8,38 +8,41 @@ export const WP_API = `https://public-api.wordpress.com/wp/v2/sites/${STAGING_DO
 const PROD_DOMAIN = 'barmagazine.com';
 
 /**
- * Globally rewrite every occurrence of the WordPress staging domain in a raw
- * API response string so that the staging hostname never leaks into rendered
- * HTML, RSC payloads, or serialised JSON.
+ * Globally rewrite staging-domain references in WP API response text.
+ *
+ * IMPORTANT: The WordPress.com CDN (i0.wp.com) proxies images by resolving
+ * the origin hostname in the URL path. Since barmagazine.com now points to
+ * Vercel (not WordPress), `i0.wp.com/barmagazine.com/...` returns 404.
+ * Therefore CDN-wrapped image URLs MUST keep the staging domain as the origin.
  *
  * Rules (applied in order):
- * 1. CDN-wrapped image URLs  → rewrite origin to production domain
- *    `i0.wp.com/romanzelenka-…/wp-content/uploads/` → `i0.wp.com/barmagazine.com/wp-content/uploads/`
- * 2. Raw image/upload URLs   → wrap with CDN + production domain
- *    `romanzelenka-…/wp-content/uploads/` → `i0.wp.com/barmagazine.com/wp-content/uploads/`
- * 3. All remaining refs      → replace with production domain
+ * 1. CDN-wrapped image URLs  → KEEP AS-IS (staging domain required for CDN)
+ * 2. Raw upload URLs (no CDN) → wrap with CDN + staging domain
+ *    `romanzelenka-…/wp-content/uploads/` → `i0.wp.com/romanzelenka-…/wp-content/uploads/`
+ * 3. Non-upload refs (links, guid, _links) → rewrite to production domain
  *    `romanzelenka-…/some-slug/` → `barmagazine.com/some-slug/`
  */
 function sanitizeResponse(text: string): string {
   return text
-    // 1. CDN-wrapped upload URLs → production CDN
-    .replace(
-      /https:\/\/i[0-9]\.wp\.com\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g,
-      `https://i0.wp.com/${PROD_DOMAIN}/wp-content/uploads/`
-    )
-    // 2. Raw upload URLs → production CDN
+    // 1. CDN-wrapped upload URLs → leave alone (already correct)
+    //    No replacement needed — i0.wp.com/romanzelenka-… is the working form.
+
+    // 2. Raw (non-CDN) upload URLs → wrap with CDN (keep staging domain as origin)
     .replace(
       /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\//g,
-      `https://i0.wp.com/${PROD_DOMAIN}/wp-content/uploads/`
+      `https://i0.wp.com/${STAGING_DOMAIN}/wp-content/uploads/`
     )
     // 3. Everything else (post links, guid, _links, etc.) → production domain
+    //    This regex uses a negative lookahead to skip wp-content/uploads paths
+    //    (those are handled by rule 2 above).
     .replace(
-      /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\//g,
+      /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/(?!wp-content\/uploads\/)/g,
       `https://${PROD_DOMAIN}/`
     )
-    // 4. Catch any remaining bare domain references (without protocol)
+    // 4. Catch remaining bare domain refs that aren't part of a CDN URL
+    //    (e.g. in JSON keys or non-URL contexts). Skip if preceded by wp.com/
     .replace(
-      /romanzelenka-wjgek\.wpcomstaging\.com/g,
+      /(?<!wp\.com\/)romanzelenka-wjgek\.wpcomstaging\.com(?!\/wp-content\/uploads)/g,
       PROD_DOMAIN
     );
 }
@@ -296,15 +299,16 @@ export function rewriteImageUrl(url: string): string {
   if (!url) return url;
   // Already on wp.com CDN
   if (url.includes('i0.wp.com') || url.includes('i1.wp.com') || url.includes('i2.wp.com')) return url;
-  // Rewrite barmagazine.com/wp-content/ to CDN
+  // Rewrite barmagazine.com/wp-content/ to CDN via staging domain
+  // (barmagazine.com points to Vercel, so CDN must use staging domain as origin)
   if (url.includes('barmagazine.com/wp-content/')) {
-    return url.replace('https://barmagazine.com/', 'https://i0.wp.com/barmagazine.com/');
+    return url.replace('https://barmagazine.com/', `https://i0.wp.com/${STAGING_DOMAIN}/`);
   }
-  // Rewrite wpcomstaging.com URLs to CDN (via production domain)
+  // Rewrite raw wpcomstaging.com URLs to CDN (keep staging domain as origin)
   if (url.includes(`${STAGING_DOMAIN}/wp-content/`)) {
     return url.replace(
       `https://${STAGING_DOMAIN}/`,
-      `https://i0.wp.com/${PROD_DOMAIN}/`
+      `https://i0.wp.com/${STAGING_DOMAIN}/`
     );
   }
   return url;
@@ -327,15 +331,16 @@ export function rewriteContentImageUrls(html: string): string {
     /href="https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/(?!wp-content\/uploads\/)([^"]*)"/g,
     `href="https://${PROD_DOMAIN}/$1"`
   );
-  // Rewrite barmagazine.com image URLs to CDN
+  // Rewrite barmagazine.com image URLs to CDN via staging domain
+  // (barmagazine.com points to Vercel, so CDN must use staging domain as origin)
   result = result.replace(
     /https:\/\/barmagazine\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
-    `https://i0.wp.com/${PROD_DOMAIN}/wp-content/uploads/$1`
+    `https://i0.wp.com/${STAGING_DOMAIN}/wp-content/uploads/$1`
   );
-  // Rewrite wpcomstaging.com image URLs to CDN (via production domain)
+  // Rewrite raw wpcomstaging.com image URLs to CDN (keep staging domain as origin)
   result = result.replace(
     /https:\/\/romanzelenka-wjgek\.wpcomstaging\.com\/wp-content\/uploads\/([^"'\s)]+)/g,
-    `https://i0.wp.com/${PROD_DOMAIN}/wp-content/uploads/$1`
+    `https://i0.wp.com/${STAGING_DOMAIN}/wp-content/uploads/$1`
   );
   return result;
 }
