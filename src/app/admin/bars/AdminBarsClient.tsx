@@ -41,9 +41,8 @@ const EDITABLE_FIELDS: EditableField[] = [
 ];
 
 const TYPE_OPTIONS = [
-  'Cocktail Bar', 'Hotel Bar', 'Speakeasy', 'Rooftop Bar', 'Wine Bar',
-  'Dive Bar', 'Tiki Bar', 'Restaurant Bar', 'Lounge', 'Pub', 'Beer Bar',
-  'Mezcal Bar', 'Rum Bar', 'Gin Bar', 'Whisky Bar', 'Sake Bar',
+  'Cocktail Bar', 'Speakeasy', 'Hotel Bar', 'Rooftop Bar', 'Wine Bar',
+  'Pub', 'Tiki Bar', 'Whiskey Bar',
 ];
 
 const TIER_OPTIONS = ['free', 'featured', 'premium', 'top10'];

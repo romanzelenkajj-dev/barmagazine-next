@@ -337,15 +337,13 @@ function AddYourBarForm() {
                   <label className="form-label">Bar Type</label>
                   <select name="barType" className="form-input" defaultValue="Cocktail Bar">
                     <option value="Cocktail Bar">Cocktail Bar</option>
-                    <option value="Hotel Bar">Hotel Bar</option>
                     <option value="Speakeasy">Speakeasy</option>
-                    <option value="Wine Bar">Wine Bar</option>
+                    <option value="Hotel Bar">Hotel Bar</option>
                     <option value="Rooftop Bar">Rooftop Bar</option>
-                    <option value="Dive Bar">Dive Bar</option>
-                    <option value="Tiki Bar">Tiki Bar</option>
+                    <option value="Wine Bar">Wine Bar</option>
                     <option value="Pub">Pub</option>
-                    <option value="Lounge">Lounge</option>
-                    <option value="Other">Other</option>
+                    <option value="Tiki Bar">Tiki Bar</option>
+                    <option value="Whiskey Bar">Whiskey Bar</option>
                   </select>
                 </div>
 
