@@ -6019,8 +6019,11 @@ textarea.form-input {
   justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;
-  padding: 2rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 2rem 2.5rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  margin-top: var(--gap);
+  border: 1px solid rgba(0,0,0,0.06);
 }
 .bar-v2-info-main {
   flex: 1;
@@ -6282,6 +6285,7 @@ textarea.form-input {
   .bar-v2-info {
     flex-direction: column;
     gap: 1.5rem;
+    padding: 1.5rem 1.25rem;
   }
   .bar-v2-actions {
     flex-direction: row;
