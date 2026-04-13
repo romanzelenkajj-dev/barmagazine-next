@@ -912,7 +912,6 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
             </div>
           )
         }
-        <div className="bar-dir-featured-overlay" />
         {isTop10 && (
           <div className="bar-dir-top10-badge-corner">
             <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
@@ -926,18 +925,18 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
             {isPremium ? '★ Premium' : 'Featured'}
           </div>
         )}
-        <div className="bar-dir-featured-content">
-          <h3>{bar.name}</h3>
-          <span className="bar-dir-featured-location">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-            </svg>
-            {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
-          </span>
-          {bar.type && (
-            <span className="bar-dir-featured-type">{formatBarType(bar.type)}</span>
-          )}
-        </div>
+      </div>
+      <div className="bar-dir-featured-content">
+        <h3>{bar.name}</h3>
+        <span className="bar-dir-featured-location">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+          </svg>
+          {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+        </span>
+        {bar.type && (
+          <span className="bar-dir-featured-type">{formatBarType(bar.type)}</span>
+        )}
       </div>
     </Link>
   );
