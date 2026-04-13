@@ -161,11 +161,12 @@ export default async function CityPage({
   // Bar types for hero subtitle
   const types = Array.from(new Set(bars.map(b => b.type))).sort();
 
-  // Nearby Cities — other cities in the same country
-  const nearbyCities = allCities
+  // Nearby Cities — removed from UI but kept for potential future use
+  const _nearbyCities = allCities
     .filter(c => c.country === countryName && c.city !== cityName)
     .sort((a, b) => b.count - a.count)
     .slice(0, 8);
+  void _nearbyCities;
 
   // JSON-LD — BreadcrumbList
   const breadcrumbLd = {
@@ -234,6 +235,11 @@ export default async function CityPage({
 
         {/* Row 1 left: Hero */}
         <div className="directory-hero">
+          <div className="directory-hero-bg">
+            {/* Use first bar photo as city hero background, fallback to generic */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={sorted.find(b => b.photos?.[0])?.photos?.[0] || '/images/directory-hero.jpg'} alt="" />
+          </div>
           <div className="directory-hero-inner">
             <div className="directory-hero-badge">{bars.length} Bars</div>
             <h1>Best Bars in {cityName}</h1>
@@ -279,29 +285,7 @@ export default async function CityPage({
           {/* Bar grid — unified card layout for all bars */}
           <CityBarGrid bars={sorted} />
 
-          {/* Nearby Cities */}
-          {nearbyCities.length > 0 && (
-            <div className="nearby-cities-section">
-              <div className="nearby-cities-header">
-                <h2>More Cities in {countryName}</h2>
-                <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="nearby-cities-all">
-                  All {countryName} bars &rarr;
-                </Link>
-              </div>
-              <div className="nearby-cities-grid">
-                {nearbyCities.map(({ city, count }) => (
-                  <Link
-                    key={city}
-                    href={`/bars/city/${toUrlSlug(city)}`}
-                    className="nearby-city-card"
-                  >
-                    <span className="nearby-city-name">{city}</span>
-                    <span className="nearby-city-count">{count} {count === 1 ? 'bar' : 'bars'}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* Nearby Cities — removed by design */}
 
           {/* CTA */}
           <div className="directory-cta">
@@ -370,13 +354,12 @@ function CityBarGrid({ bars }: { bars: Bar[] }) {
 }
 
 function CityBarCard({ bar }: { bar: Bar }) {
-  // Use the raw URL for the img tag — normalisePhotoUrl is only needed for JSON-LD/SEO.
-  // Many photos are still hosted on the staging CDN and the normalised production URL returns 404.
   const imageUrl = bar.photos?.[0] ?? null;
+  const isTop10 = bar.tier === 'top10';
+  const isFeatured = bar.tier === 'featured' || !!bar.wp_article_slug;
 
   return (
-    <Link href={`/bars/${bar.slug}`} className="city-bar-card">
-      {/* Photo area — fixed height, name/location/type overlaid at bottom */}
+    <Link href={`/bars/${bar.slug}`} className="bar-dir-featured-card">
       <div className="bar-dir-featured-visual">
         {imageUrl
           ? (
@@ -388,34 +371,21 @@ function CityBarCard({ bar }: { bar: Bar }) {
             </div>
           )
         }
-        <div className="bar-dir-featured-overlay" />
-        {/* TOP 10 badge */}
-        {bar.tier === 'top10' && (
-          <div className="bar-dir-top10-badge-corner">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-            TOP 10
-          </div>
-        )}
-        {/* FEATURED badge — shown for featured bars, including those that are also top10 */}
-        {(bar.tier === 'featured' || bar.wp_article_slug) && (
-          <div className="bar-dir-featured-badge-corner">Featured</div>
-        )}
-        <div className="bar-dir-featured-content">
-          <h3>{bar.name}</h3>
-          <span className="bar-dir-featured-location">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-            </svg>
-            {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
-          </span>
-          {bar.type && (
-            <span className="bar-dir-featured-type">{formatBarType(bar.type)}</span>
-          )}
-        </div>
       </div>
-      {/* No description shown on city page cards — photo + overlay only, matching /bars page design */}
+      <div className="bar-dir-featured-body">
+        <div className="bar-dir-featured-badges">
+          {isTop10 && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
+          {isFeatured && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">Featured</span>}
+          {bar.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(bar.type)}</span>}
+        </div>
+        <h3 className="bar-dir-featured-name">{bar.name}</h3>
+        <span className="bar-dir-featured-location">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+          </svg>
+          {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+        </span>
+      </div>
     </Link>
   );
 }
