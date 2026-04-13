@@ -102,6 +102,10 @@ const nextConfig = {
       // Old event sub-pages → article slugs
       { source: '/events/:slug', destination: '/:slug', permanent: true },
 
+      // Article URL fixes — truncated slugs shared in the wild
+      // BCA 2026: people shared /bartenders-choice-awards-2026 (truncated from the full slug)
+      { source: '/bartenders-choice-awards-2026', destination: '/bartenders-choice-awards-2026-all-the-winners', permanent: true },
+
       // WordPress infrastructure paths
       { source: '/feed', destination: '/', permanent: true },
       { source: '/wp-login.php', destination: '/', permanent: false },
