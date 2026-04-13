@@ -793,12 +793,7 @@ button {
   margin-bottom: 20px;
 }
 
-.article-body p:first-child,
-.article-body > p:first-of-type {
-  font-size: 18px;
-  line-height: 1.75;
-  color: var(--text-primary);
-}
+/* Removed first-child override — all paragraphs use the same 17px/secondary style */
 
 .article-body a {
   color: var(--accent);
