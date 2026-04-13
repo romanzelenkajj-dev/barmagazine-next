@@ -1820,7 +1820,7 @@ button {
 }
 
 .cta-submit:hover {
-  background: #a84e2e;
+  background: #333;
 }
 
 /* ====== FEATURED BARS ====== */
@@ -2568,9 +2568,9 @@ textarea.form-input {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: #fff;
-  background: rgba(200, 90, 42, 0.25);
-  border: 1px solid rgba(200, 90, 42, 0.5);
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 100px;
   padding: 5px 14px;
   width: fit-content;
@@ -2586,7 +2586,7 @@ textarea.form-input {
 }
 
 .bars-sidebar-promo-accent {
-  color: var(--accent);
+  color: #fff;
 }
 
 .bars-sidebar-promo-desc {
@@ -2598,8 +2598,8 @@ textarea.form-input {
 
 .bars-sidebar-promo-btn {
   display: inline-block;
-  background: var(--accent);
-  color: #fff;
+  background: #fff;
+  color: #1a1a1a;
   font-size: 13px;
   font-weight: 600;
   padding: 11px 22px;
@@ -2611,7 +2611,7 @@ textarea.form-input {
 }
 
 .bars-sidebar-promo-btn:hover {
-  background: #b04d22;
+  background: #f0ebe4;
 }
 
 /* Ad */
@@ -2705,7 +2705,7 @@ textarea.form-input {
 }
 
 .bars-sidebar-top10-link svg {
-  color: var(--accent);
+  color: var(--text-secondary);
   flex-shrink: 0;
 }
 
@@ -2735,7 +2735,7 @@ textarea.form-input {
 .top10-picker-viewall-inline {
   font-size: 11px;
   font-weight: 600;
-  color: var(--accent);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   letter-spacing: 0.02em;
   transition: opacity 0.15s;
@@ -2777,7 +2777,7 @@ textarea.form-input {
 }
 
 .top10-picker-city:hover {
-  background: rgba(196,96,60,0.22);
+  background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
 }
 
@@ -2800,8 +2800,8 @@ textarea.form-input {
 }
 
 .dir-section-header--accent {
-  background: linear-gradient(135deg, rgba(196, 96, 60, 0.06) 0%, rgba(196, 96, 60, 0.02) 100%);
-  border-color: rgba(196, 96, 60, 0.2);
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.04) 0%, rgba(26, 26, 26, 0.01) 100%);
+  border-color: rgba(26, 26, 26, 0.12);
 }
 
 .dir-section-header-left {
@@ -2824,9 +2824,9 @@ textarea.form-input {
 }
 
 .dir-section-header--accent .dir-section-header-icon {
-  background: rgba(196, 96, 60, 0.1);
-  border-color: rgba(196, 96, 60, 0.2);
-  color: var(--accent);
+  background: rgba(26, 26, 26, 0.06);
+  border-color: rgba(26, 26, 26, 0.12);
+  color: var(--text-primary);
 }
 
 .dir-section-header-label {
@@ -2838,7 +2838,7 @@ textarea.form-input {
 }
 
 .dir-section-header--accent .dir-section-header-label {
-  color: var(--accent);
+  color: var(--text-primary);
 }
 
 .dir-section-header-sublabel {
@@ -2870,7 +2870,7 @@ textarea.form-input {
 }
 
 .dir-geo-label svg {
-  color: var(--accent);
+  color: var(--text-secondary);
   flex-shrink: 0;
 }
 
@@ -2881,11 +2881,11 @@ textarea.form-input {
 
 /* ── Featured card improvements ── */
 .bar-dir-featured-card--premium .bar-dir-featured-visual {
-  box-shadow: 0 0 0 2px var(--accent);
+  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.3);
 }
 
 .bar-dir-featured-badge-corner--premium {
-  background: linear-gradient(135deg, #C4603C, #D4834A) !important;
+  background: #1a1a1a !important;
 }
 
 /* TOP 10 badge — top-right corner, gold gradient */
@@ -3006,8 +3006,8 @@ textarea.form-input {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(196, 96, 60, 0.15), transparent),
-    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(196, 96, 60, 0.08), transparent);
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(255, 255, 255, 0.04), transparent),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(255, 255, 255, 0.02), transparent);
   pointer-events: none;
 }
 
@@ -3038,9 +3038,9 @@ textarea.form-input {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--accent);
+  color: rgba(255, 255, 255, 0.7);
   padding: 6px 16px;
-  border: 1px solid rgba(196, 96, 60, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 100px;
   margin-bottom: 16px;
 }
@@ -3050,7 +3050,7 @@ textarea.form-input {
   display: block;
   width: 40px;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(196, 96, 60, 0.5), transparent);
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
   margin: 0 auto 18px;
 }
 
@@ -3377,7 +3377,9 @@ textarea.form-input {
   color: #fff;
   padding: 4px 10px;
   border-radius: 6px;
-  background: var(--accent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(26, 26, 26, 0.75);
   z-index: 2;
 }
 
@@ -3558,23 +3560,23 @@ textarea.form-input {
 }
 
 .bar-dir-tier-badge--premium {
-  background: linear-gradient(135deg, #C4603C, #D4834A);
+  background: #1a1a1a;
   color: #fff;
 }
 
 /* Featured card treatment */
 .bar-dir-card--featured {
-  border: 1.5px solid rgba(196, 96, 60, 0.25);
+  border: 1.5px solid rgba(26, 26, 26, 0.12);
 }
 
 /* Premium card treatment */
 .bar-dir-card--premium {
-  border: 1.5px solid var(--accent);
-  box-shadow: 0 0 0 1px rgba(196, 96, 60, 0.08);
+  border: 1.5px solid rgba(26, 26, 26, 0.2);
+  box-shadow: 0 0 0 1px rgba(26, 26, 26, 0.05);
 }
 
 .bar-dir-card--premium:hover {
-  box-shadow: 0 16px 40px rgba(196, 96, 60, 0.12), 0 0 0 1px rgba(196, 96, 60, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(26, 26, 26, 0.1);
 }
 
 /* Card body */
@@ -3636,7 +3638,7 @@ textarea.form-input {
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 8px;
-  background: var(--accent);
+  background: #1a1a1a;
   color: #fff;
   letter-spacing: 0.02em;
   flex-shrink: 0;
@@ -3769,7 +3771,7 @@ textarea.form-input {
 }
 
 .directory-list-item:hover .directory-list-name {
-  color: var(--accent);
+  color: var(--text-primary);
 }
 
 .directory-list-location {
@@ -3810,7 +3812,7 @@ textarea.form-input {
   gap: 4px;
   font-size: 11px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--text-secondary);
   white-space: nowrap;
   opacity: 0;
   transform: translateX(-4px);
@@ -3886,13 +3888,13 @@ textarea.form-input {
   font-weight: 600;
   padding: 12px 28px;
   border-radius: 100px;
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
   transition: background 0.2s;
 }
 
 .directory-empty button:hover {
-  background: #a84e2e;
+  background: #333;
 }
 
 /* Load More */
@@ -3943,7 +3945,7 @@ textarea.form-input {
 }
 
 .directory-cta--orange {
-  background: var(--accent);
+  background: var(--bg-dark);
 }
 
 .directory-cta--orange::before {
@@ -3994,7 +3996,7 @@ textarea.form-input {
 .directory-cta-btn {
   display: inline-block;
   padding: 12px 24px;
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
@@ -4003,16 +4005,16 @@ textarea.form-input {
 }
 
 .directory-cta-btn:hover {
-  background: #a84e2e;
+  background: #333;
 }
 
 .directory-cta-btn--dark {
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
 }
 
 .directory-cta-btn--dark:hover {
-  background: #a84e2e;
+  background: #333;
 }
 
 /* Directory responsive */
@@ -4167,7 +4169,7 @@ textarea.form-input {
 }
 
 .directory-inline-cta-btn:hover {
-  background: var(--accent);
+  background: #333;
 }
 
 @media (max-width: 640px) {
@@ -4305,7 +4307,7 @@ textarea.form-input {
 /* No-image fallback */
 .bar-profile-hero--no-image {
   background:
-    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(196, 96, 60, 0.10), transparent),
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(255, 255, 255, 0.06), transparent),
     var(--bg-dark);
 }
 
@@ -4349,7 +4351,7 @@ textarea.form-input {
 }
 
 .bar-profile-hero-badge--featured {
-  background: var(--accent);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* Bottom row: bar info left, actions right */
@@ -4491,7 +4493,7 @@ textarea.form-input {
   left: 0;
   width: 32px;
   height: 1.5px;
-  background: var(--accent);
+  background: var(--text-primary);
 }
 
 .bar-profile-section p {
@@ -4623,7 +4625,7 @@ textarea.form-input {
 
 /* Promo banner */
 .claim-promo-banner {
-  background: linear-gradient(135deg, var(--accent) 0%, #a14e30 100%);
+  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
   color: #fff;
   text-align: center;
   padding: 14px 24px;
@@ -4661,7 +4663,7 @@ textarea.form-input {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(196, 96, 60, 0.12), transparent);
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(255, 255, 255, 0.06), transparent);
   pointer-events: none;
 }
 
@@ -4671,9 +4673,9 @@ textarea.form-input {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--accent);
+  color: rgba(255, 255, 255, 0.7);
   padding: 6px 16px;
-  border: 1px solid rgba(196, 96, 60, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 100px;
   margin-bottom: 20px;
   position: relative;
@@ -4690,7 +4692,7 @@ textarea.form-input {
 }
 
 .claim-hero-highlight {
-  color: var(--accent);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .claim-hero p {
@@ -4722,8 +4724,8 @@ textarea.form-input {
 }
 
 .claim-tier--highlight {
-  border-color: var(--accent);
-  box-shadow: 0 8px 32px rgba(196, 96, 60, 0.08);
+  border-color: var(--text-primary);
+  box-shadow: 0 8px 32px rgba(26, 26, 26, 0.08);
 }
 
 .claim-tier-popular {
@@ -4737,7 +4739,7 @@ textarea.form-input {
   letter-spacing: 0.08em;
   padding: 4px 14px;
   border-radius: 100px;
-  background: var(--accent);
+  background: #1a1a1a;
   color: #fff;
 }
 
@@ -4878,7 +4880,7 @@ textarea.form-input {
 }
 
 .claim-tier-features li svg {
-  color: var(--accent);
+  color: var(--text-secondary);
   flex-shrink: 0;
 }
 
@@ -4976,7 +4978,7 @@ textarea.form-input {
 }
 
 .claim-faq-item a {
-  color: var(--accent);
+  color: var(--text-primary);
   font-weight: 500;
 }
 
@@ -5056,8 +5058,8 @@ textarea.form-input {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(196, 96, 60, 0.12), transparent),
-    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(196, 96, 60, 0.06), transparent);
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(255, 255, 255, 0.06), transparent),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(255, 255, 255, 0.03), transparent);
   pointer-events: none;
 }
 
@@ -5075,9 +5077,9 @@ textarea.form-input {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--accent);
+  color: rgba(255, 255, 255, 0.7);
   padding: 5px 14px;
-  border: 1px solid rgba(196, 96, 60, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 100px;
   margin-bottom: 16px;
 }
@@ -5149,7 +5151,7 @@ textarea.form-input {
 }
 
 .form-required {
-  color: var(--accent);
+  color: #dc2626;
 }
 
 .form-hint {
@@ -5228,7 +5230,7 @@ textarea.form-input {
 }
 
 .add-bar-info-card a {
-  color: var(--accent);
+  color: var(--text-primary);
   font-weight: 500;
 }
 
@@ -5251,7 +5253,7 @@ textarea.form-input {
 }
 
 .add-bar-benefits li svg {
-  color: var(--accent);
+  color: var(--text-secondary);
   flex-shrink: 0;
 }
 
@@ -5268,7 +5270,7 @@ textarea.form-input {
   height: 36px;
   border-radius: 50%;
   background: var(--bg-card-warm);
-  color: var(--accent);
+  color: var(--text-primary);
   margin-bottom: 10px;
 }
 
@@ -5280,7 +5282,7 @@ textarea.form-input {
   display: inline-block;
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--text-primary);
   transition: opacity 0.2s;
 }
 
@@ -5315,8 +5317,8 @@ textarea.form-input {
 }
 
 .add-bar-photo-dropzone:hover {
-  border-color: var(--accent);
-  background: rgba(196, 96, 60, 0.03);
+  border-color: var(--text-secondary);
+  background: rgba(26, 26, 26, 0.03);
 }
 
 .add-bar-photo-dropzone span {
@@ -5391,7 +5393,7 @@ textarea.form-input {
   height: 64px;
   border-radius: 50%;
   background: var(--bg-card-warm);
-  color: var(--accent);
+  color: var(--text-primary);
   margin-bottom: 20px;
 }
 
@@ -5445,8 +5447,8 @@ textarea.form-input {
 }
 
 .add-bar-tier-card--featured {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(196, 96, 60, 0.1);
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 1px var(--text-primary), 0 8px 24px rgba(26, 26, 26, 0.1);
 }
 
 .add-bar-tier-card--premium {
@@ -5459,7 +5461,7 @@ textarea.form-input {
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--accent);
+  background: #1a1a1a;
   color: #fff;
   font-size: 10px;
   font-weight: 700;
@@ -5531,11 +5533,11 @@ textarea.form-input {
 
 .add-bar-tier-features li svg {
   flex-shrink: 0;
-  color: var(--accent);
+  color: var(--text-secondary);
 }
 
 .add-bar-tier-card--premium .add-bar-tier-features li svg {
-  color: var(--accent);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .add-bar-tier-current {
@@ -5551,7 +5553,7 @@ textarea.form-input {
 .add-bar-tier-btn {
   display: inline-block;
   padding: 12px 28px;
-  background: var(--accent);
+  background: #1a1a1a;
   color: #fff;
   border-radius: 100px;
   font-size: 13px;
@@ -5578,7 +5580,7 @@ textarea.form-input {
   display: inline-block;
   font-size: 14px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--text-primary);
   transition: opacity 0.2s;
 }
 
@@ -5970,8 +5972,8 @@ textarea.form-input {
   backdrop-filter: blur(8px);
 }
 .bar-v2-badge--featured {
-  background: #c47843;
-  color: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
 }
 
 .bar-v2-badge--top10 {
@@ -6064,10 +6066,10 @@ textarea.form-input {
   transition: color 0.2s;
 }
 .bar-v2-detail--link:hover {
-  color: #c47843;
+  color: #1a1a1a;
 }
 .bar-v2-detail--link:hover svg {
-  color: #c47843;
+  color: #1a1a1a;
 }
 
 /* Action buttons */
@@ -6092,11 +6094,11 @@ textarea.form-input {
   cursor: pointer;
 }
 .bar-v2-btn--primary {
-  background: #c47843;
+  background: #1a1a1a;
   color: #fff;
 }
 .bar-v2-btn--primary:hover {
-  background: #b06835;
+  background: #333;
 }
 .bar-v2-btn--secondary {
   background: #f5f0eb;
@@ -6108,13 +6110,13 @@ textarea.form-input {
 }
 .bar-v2-btn--claim {
   background: transparent;
-  color: #c47843;
-  border: 1px solid #c47843;
+  color: #1a1a1a;
+  border: 1.5px solid #1a1a1a;
   font-size: 13px;
   padding: 10px 16px;
 }
 .bar-v2-btn--claim:hover {
-  background: #c47843;
+  background: #1a1a1a;
   color: #fff;
 }
 
