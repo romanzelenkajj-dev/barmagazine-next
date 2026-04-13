@@ -171,11 +171,13 @@ function barColourSlug(name: string): string {
               </span>
             </div>
           )}
-          <div className="bar-v2-badges">
-            <span className="bar-v2-badge">{formatBarType(bar.type)}</span>
-            {isTop10 && <span className="bar-v2-badge bar-v2-badge--top10">★ Top 10</span>}
-            {(isFeatured || isPremium || bar.wp_article_slug) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
-          </div>
+        </div>
+
+        {/* Badge pills — below the hero photo */}
+        <div className="bar-v2-badges">
+          {isTop10 && <span className="bar-v2-badge bar-v2-badge--top10">★ TOP 10</span>}
+          {(isFeatured || isPremium || bar.wp_article_slug) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+          {bar.type && <span className="bar-v2-badge bar-v2-badge--type">{formatBarType(bar.type)}</span>}
         </div>
 
         {/* Bar Info */}

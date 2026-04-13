@@ -5993,33 +5993,44 @@ textarea.form-input {
   user-select: none;
 }
 .bar-v2-badges {
-  position: absolute;
-  top: 16px;
-  left: 16px;
+  position: static;
   display: flex;
-  gap: 8px;
-  z-index: 2;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 16px 0 0;
 }
 .bar-v2-badge {
-  background: rgba(30,30,30,0.85);
-  color: #f5f0eb;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding: 6px 12px;
-  border-radius: 6px;
-  backdrop-filter: blur(8px);
+  letter-spacing: 0.05em;
+  padding: 5px 12px;
+  border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+  background: transparent;
+  color: #6b6b6b;
+  border: 1px solid #e5e5e5;
 }
 .bar-v2-badge--featured {
-  background: rgba(255, 255, 255, 0.9);
-  color: #1a1a1a;
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
 }
 
 .bar-v2-badge--top10 {
-  background: linear-gradient(135deg, #B8973A, #D4B84A);
+  background: #1a1a1a;
   color: #fff;
+  border-color: #1a1a1a;
   font-weight: 700;
+}
+
+.bar-v2-badge--type {
+  background: transparent;
+  color: #6b6b6b;
+  border: 1px solid #e5e5e5;
 }
 
 /* Location Map — bottom of page */
