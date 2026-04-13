@@ -3401,8 +3401,9 @@ textarea.form-input {
 }
 
 .bar-dir-badge-pill--top10 {
-  background: #1a1a1a;
-  color: #fff;
+  background: transparent;
+  color: #6b6b6b;
+  border: 1px solid #e5e5e5;
 }
 
 .bar-dir-badge-pill--featured {
@@ -6021,9 +6022,9 @@ textarea.form-input {
 }
 
 .bar-v2-badge--top10 {
-  background: #1a1a1a;
-  color: #fff;
-  border-color: #1a1a1a;
+  background: transparent;
+  color: #6b6b6b;
+  border: 1px solid #e5e5e5;
   font-weight: 700;
 }
 
