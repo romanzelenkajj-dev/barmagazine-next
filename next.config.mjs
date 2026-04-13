@@ -134,6 +134,17 @@ const nextConfig = {
   // Proxy /wp-content/uploads/* to WordPress.com CDN so old image URLs still work
   async rewrites() {
     return [
+      // Sitemap index — replaces the Next.js auto-generated /sitemap.xml
+      // with a proper <sitemapindex> referencing all three sub-sitemaps.
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap-index',
+      },
+      // Articles sub-sitemap (WordPress posts + static pages + category pages)
+      {
+        source: '/sitemap-articles.xml',
+        destination: '/api/sitemap-articles',
+      },
       {
         source: '/sitemap-news.xml',
         destination: '/api/sitemap-news',
