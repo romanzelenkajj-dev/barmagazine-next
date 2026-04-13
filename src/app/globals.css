@@ -1998,7 +1998,7 @@ button {
 .nearby-cities-all {
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent);
+  color: #1a1a1a;
   text-decoration: none;
   transition: opacity 0.15s;
 }
@@ -2018,7 +2018,7 @@ button {
   flex-direction: column;
   gap: 4px;
   background: var(--bg-card);
-  border-radius: 16px;
+  border-radius: 24px;
   padding: 18px 20px 16px;
   border: 1px solid var(--border);
   transition: background 0.15s, transform 0.2s var(--ease), box-shadow 0.2s;
@@ -2469,7 +2469,7 @@ button {
 }
 
 .form-input:focus {
-  border-color: var(--accent);
+  border-color: var(--text-primary);
 }
 
 .form-input::placeholder {
@@ -2899,7 +2899,7 @@ textarea.form-input {
   letter-spacing: 0.1em;
   color: #fff;
   padding: 4px 10px;
-  border-radius: 6px;
+  border-radius: 100px;
   background: linear-gradient(135deg, #B8973A, #D4B84A);
   box-shadow: 0 2px 8px rgba(180,150,50,0.45);
   z-index: 2;
@@ -2994,42 +2994,57 @@ textarea.form-input {
 
 /* Hero */
 .directory-hero {
-  background: var(--bg-dark);
-  border-radius: var(--radius);
-  padding: 36px 40px 36px;
   position: relative;
+  border-radius: var(--radius);
   overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 48px;
+  min-height: 380px;
 }
 
+/* Photo background */
+.directory-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.directory-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/* Dark gradient overlay so text is readable */
 .directory-hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(255, 255, 255, 0.04), transparent),
-    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(255, 255, 255, 0.02), transparent);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.3) 45%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  z-index: 1;
   pointer-events: none;
 }
 
-/* Bottom fade for smooth hero → filters transition */
+/* Remove the old ::after bottom fade */
 .directory-hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 56px;
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.18));
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
+/* Content — left-aligned at bottom */
 .directory-hero-inner {
   position: relative;
-  z-index: 1;
-  text-align: center;
+  z-index: 2;
+  text-align: left;
   max-width: 640px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .directory-hero-badge {
@@ -3037,87 +3052,60 @@ textarea.form-input {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.7);
-  padding: 6px 16px;
+  padding: 6px 14px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 100px;
   margin-bottom: 16px;
 }
 
-/* Decorative rule accent between badge and title */
+/* Hide the divider */
 .directory-hero-divider {
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
-  margin: 0 auto 18px;
+  display: none;
 }
 
 .directory-hero h1 {
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: #fff;
   margin-bottom: 12px;
-  line-height: 1.1;
+  line-height: 1.12;
 }
 
 .directory-hero p {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 460px;
   margin-bottom: 0;
 }
 
+/* Hide stats entirely */
 .directory-hero-stats {
   display: none;
-  gap: 8px;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .directory-hero-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  padding: 10px 18px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0,0,0,0.15);
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-  color: #fff;
+  display: none;
 }
 
 .directory-hero-stat:hover {
-  background: rgba(255, 255, 255, 0.13);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 16px rgba(0,0,0,0.2);
+  display: none;
 }
 
 .directory-hero-stat-count {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  display: none;
 }
 
 .directory-hero-stat-label {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.45);
-  font-weight: 500;
+  display: none;
 }
 
-/* Bar type tags in city page hero */
+/* Bar type tags in city page hero — Fix 8: hidden */
 .directory-hero-types {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 4px;
+  display: none;
 }
 
 .directory-hero-type-tag {
@@ -3136,30 +3124,30 @@ textarea.form-input {
 
 /* Filters */
 .directory-filters {
-  margin-top: calc(var(--gap) * 0.5);
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  padding: 20px 24px;
+  margin-top: 16px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+  gap: 16px;
+  box-shadow: none;
 }
 
 .directory-search {
   display: flex;
   align-items: center;
-  gap: 10px;
-  border: 1.5px solid var(--border);
-  border-radius: 100px;
-  padding: 12px 20px;
+  gap: 12px;
+  border: none;
+  border-radius: 24px;
+  padding: 18px 24px;
   background: #fff;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: box-shadow 0.2s;
 }
 
 .directory-search:focus-within {
-  border-color: var(--text-primary);
-  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.06);
+  border-color: transparent;
+  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.08);
 }
 
 .directory-search svg {
@@ -3201,8 +3189,13 @@ textarea.form-input {
 
 .directory-filter-row {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
   flex-wrap: wrap;
+  background: #fff;
+  border-radius: 24px;
+  padding: 14px 24px;
 }
 
 .directory-filter-row select {
@@ -3211,8 +3204,8 @@ textarea.form-input {
   font-weight: 500;
   padding: 10px 34px 10px 16px;
   border-radius: 100px;
-  border: 1.5px solid var(--border);
-  background: var(--bg-page);
+  border: 1px solid #e5e5e5;
+  background: #fff;
   color: var(--text-secondary);
   cursor: pointer;
   outline: none;
@@ -3297,7 +3290,7 @@ textarea.form-input {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--accent);
+  color: #1a1a1a;
   margin-top: 8px;
   margin-bottom: 8px;
   padding-bottom: 4px;
@@ -3363,48 +3356,86 @@ textarea.form-input {
   display: none;
 }
 
+/* Hide old featured-content (replaced by featured-body) */
 .bar-dir-featured-content {
-  position: static;
+  display: none;
+}
+
+/* Hide old badge corners that were on the photo */
+.bar-dir-featured-badge-corner,
+.bar-dir-featured-badge-corner--premium,
+.bar-dir-top10-badge-corner {
+  display: none;
+}
+
+.bar-dir-featured-type {
+  display: none;
+}
+
+/* Body below the photo */
+.bar-dir-featured-body {
   padding: 18px 20px 22px;
-  background: #fff;
-  z-index: auto;
+}
+
+/* Badges row */
+.bar-dir-featured-badges {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
-/* "Featured" corner badge — matches 50 Best style */
-.bar-dir-featured-badge-corner {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  font-size: 9px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 6px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background: rgba(26, 26, 26, 0.75);
-  z-index: 2;
-}
-
-.bar-dir-featured-content h3 {
-  font-size: 16px;
+/* Badge pill styles */
+.bar-dir-badge-pill {
+  font-size: 10px;
   font-weight: 600;
-  line-height: 1.3;
-  margin-bottom: 4px;
-  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+}
+
+.bar-dir-badge-pill--top10 {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.bar-dir-badge-pill--featured {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.bar-dir-badge-pill--type {
+  background: transparent;
+  color: #6b6b6b;
+  border: 1px solid #e5e5e5;
+}
+
+.bar-dir-featured-name {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.25;
   color: #1a1a1a;
-  text-shadow: none;
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
 }
 
 .bar-dir-featured-location {
   font-size: 12px;
   color: #6B6B6B;
-  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   text-shadow: none;
+}
+
+.bar-dir-featured-location svg {
+  color: #b0b0b0;
 }
 
 .bar-dir-featured-desc {
@@ -3556,7 +3587,7 @@ textarea.form-input {
   font-size: 10px;
   font-weight: 700;
   padding: 4px 10px;
-  border-radius: 8px;
+  border-radius: 100px;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -3646,7 +3677,7 @@ textarea.form-input {
   font-size: 10px;
   font-weight: 700;
   padding: 4px 10px;
-  border-radius: 8px;
+  border-radius: 100px;
   background: #1a1a1a;
   color: #fff;
   letter-spacing: 0.02em;
@@ -3945,7 +3976,7 @@ textarea.form-input {
 /* CTA Section */
 .directory-cta {
   margin-top: 48px;
-  border-radius: var(--radius);
+  border-radius: 24px;
   padding: 36px 32px;
   position: relative;
   overflow: hidden;
@@ -4900,14 +4931,14 @@ textarea.form-input {
   border-radius: 100px;
   font-size: 14px;
   font-weight: 600;
-  background: var(--bg-page);
+  background: #fff;
   color: var(--text-primary);
   border: 1.5px solid var(--border);
   transition: background 0.2s, border-color 0.2s;
 }
 
 .claim-tier-cta:hover {
-  background: var(--bg-card-warm);
+  background: #f5f5f5;
   border-color: var(--text-tertiary);
 }
 
@@ -5829,7 +5860,7 @@ textarea.form-input {
   border-radius: 8px !important;
   padding: 12px !important;
   box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
-  border: 1px solid rgba(196,120,67,0.2) !important;
+  border: 1px solid rgba(26,26,26,0.2) !important;
   min-width: 180px;
 }
 .bar-map-popup .mapboxgl-popup-tip {

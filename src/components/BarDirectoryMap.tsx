@@ -403,8 +403,8 @@ function GeoLabel({ geoCity, geoCountryCode }: { geoCity: string; geoCountryCode
 export function BarDirectoryMapClient({
   initialBars,
   totalBars,
-  totalCountries,
-  totalCities,
+  totalCountries: _totalCountries,
+  totalCities: _totalCities,
   countries,
   cities,
   types,
@@ -689,32 +689,13 @@ export function BarDirectoryMapClient({
     <div className="directory-outer-with-sidebar">
       {/* Row 1: hero (left) + promo (right) — same height */}
       <div className="directory-hero">
+        <div className="directory-hero-bg">
+          <img src="/images/directory-hero.jpg" alt="" />
+        </div>
         <div className="directory-hero-inner">
           <div className="directory-hero-badge">Global Bar Directory</div>
-          <span className="directory-hero-divider" aria-hidden="true" />
-          <h1>Discover the World&apos;s<br /> Best Bars</h1>
-          {(totalBars || totalCountries || totalCities) && (
-            <div className="directory-hero-stats">
-              {totalBars && (
-                <div className="directory-hero-stat" onClick={() => { setCountryFilter(''); setCityFilter(''); setSearch(''); }}>
-                  <span className="directory-hero-stat-count">{totalBars.toLocaleString()}+</span>
-                  <span className="directory-hero-stat-label">Bars</span>
-                </div>
-              )}
-              {totalCountries && (
-                <div className="directory-hero-stat">
-                  <span className="directory-hero-stat-count">{totalCountries}</span>
-                  <span className="directory-hero-stat-label">Countries</span>
-                </div>
-              )}
-              {totalCities && (
-                <div className="directory-hero-stat">
-                  <span className="directory-hero-stat-count">{totalCities}</span>
-                  <span className="directory-hero-stat-label">Cities</span>
-                </div>
-              )}
-            </div>
-          )}
+          <h1>Discover the World&apos;s Best Bars</h1>
+          <p>986+ handpicked cocktail bars, speakeasies, and world-renowned destinations across 58 countries and 140 cities.</p>
         </div>
       </div>
 
@@ -902,7 +883,7 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
   const isPremium = bar.tier === 'premium';
   const isTop10 = bar.tier === 'top10';
   return (
-    <Link href={`/bars/${bar.slug}`} className={`bar-dir-featured-card ${isPremium ? 'bar-dir-featured-card--premium' : ''}`}>
+    <Link href={`/bars/${bar.slug}`} className="bar-dir-featured-card">
       <div className="bar-dir-featured-visual">
         {imageUrl
           ? <img src={imageUrl} alt={bar.name} loading="lazy" />
@@ -912,31 +893,20 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
             </div>
           )
         }
-        {isTop10 && (
-          <div className="bar-dir-top10-badge-corner">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-            TOP 10
-          </div>
-        )}
-        {(isPremium || bar.wp_article_slug) && (
-          <div className={`bar-dir-featured-badge-corner ${isPremium ? 'bar-dir-featured-badge-corner--premium' : ''}`}>
-            {isPremium ? '★ Premium' : 'Featured'}
-          </div>
-        )}
       </div>
-      <div className="bar-dir-featured-content">
-        <h3>{bar.name}</h3>
+      <div className="bar-dir-featured-body">
+        <div className="bar-dir-featured-badges">
+          {isTop10 && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
+          {(isPremium || bar.wp_article_slug) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+          {bar.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(bar.type)}</span>}
+        </div>
+        <h3 className="bar-dir-featured-name">{bar.name}</h3>
         <span className="bar-dir-featured-location">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
           </svg>
           {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
         </span>
-        {bar.type && (
-          <span className="bar-dir-featured-type">{formatBarType(bar.type)}</span>
-        )}
       </div>
     </Link>
   );
