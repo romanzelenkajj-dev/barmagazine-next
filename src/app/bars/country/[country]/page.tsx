@@ -6,6 +6,7 @@ import { createClient } from '@supabase/supabase-js';
 import type { Bar } from '@/lib/supabase';
 import { toUrlSlug, fromUrlSlug, formatBarType } from '@/lib/utils';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarDirectorySidebar';
+import CountryBarGridClient from './CountryBarGridClient';
 
 export const revalidate = 300;
 // On-demand ISR for countries not pre-built (e.g. countries with only free-tier bars)
@@ -96,8 +97,7 @@ export default async function CountryPage({
   const cities = Array.from(new Set(bars.map(b => b.city))).sort();
   const cityCount = cities.length;
 
-  // Sort: Featured+Top10 with photo → Featured+Top10 no photo → Featured with photo →
-  //       Featured no photo → Top10 with photo → Top10 no photo → Free with photo → Free no photo
+  // Sort: Featured+Top10 first, then featured, then top10, then with photo, then no photo
   const tierRank = (bar: Bar): number => {
     const isFeatured = bar.tier === 'featured' || !!bar.wp_article_slug;
     const isTop10 = bar.tier === 'top10';
@@ -113,6 +113,12 @@ export default async function CountryPage({
     if (rankDiff !== 0) return rankDiff;
     return a.name.localeCompare(b.name);
   });
+
+  // Hero background: use first bar with a photo
+  const heroPhoto = sorted.find(b => b.photos?.[0])?.photos?.[0] || '/images/directory-hero.jpg';
+
+  // Bar types for hero subtitle
+  const types = Array.from(new Set(bars.map(b => b.type))).sort();
 
   // JSON-LD — BreadcrumbList
   const breadcrumbLd = {
@@ -176,28 +182,35 @@ export default async function CountryPage({
       {/* Two-column layout: 3fr main + 1fr sidebar — matches /bars and city pages */}
       <div className="directory-outer-with-sidebar">
 
-        {/* Row 1 left: Hero */}
+        {/* Row 1 left: Hero with photo background */}
         <div className="directory-hero">
+          <div className="directory-hero-bg">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={heroPhoto} alt="" />
+          </div>
           <div className="directory-hero-inner">
             <div className="directory-hero-badge">{bars.length} Bars</div>
             <h1>Best Bars in {countryName}</h1>
             <p>
               {bars.length} curated bars across {cityCount}{' '}
               {cityCount === 1 ? 'city' : 'cities'} in {countryName}
+              {types.length > 0 && (
+                <>
+                  {' '}— covering {types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}
+                  {types.length > 3 ? ` and more` : ''}.
+                </>
+              )}
             </p>
             {/* City quick-links */}
             {cities.length > 0 && (
-              <div className="directory-hero-stats">
+              <div className="directory-hero-types">
                 {cities.slice(0, 6).map(city => (
                   <Link
                     key={city}
                     href={`/bars/city/${toUrlSlug(city)}`}
-                    className="directory-hero-stat"
+                    className="directory-hero-type-tag"
                   >
-                    <span className="directory-hero-stat-count">
-                      {bars.filter(b => b.city === city).length}
-                    </span>
-                    <span className="directory-hero-stat-label">{city}</span>
+                    {city}
                   </Link>
                 ))}
               </div>
@@ -216,8 +229,8 @@ export default async function CountryPage({
             <span className="directory-count">{bars.length} bars in {countryName}</span>
           </div>
 
-          {/* Unified bar grid — same dark card design as city pages */}
-          <CountryBarGrid bars={sorted} />
+          {/* Client component handles Show More pagination */}
+          <CountryBarGridClient bars={sorted} />
 
           {/* CTA */}
           <div className="directory-cta">
@@ -245,87 +258,5 @@ export default async function CountryPage({
 
       </div>{/* end directory-outer-with-sidebar */}
     </>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Deterministic dark colour from bar name — 8 rich dark palettes
-// ---------------------------------------------------------------------------
-const PLACEHOLDER_COLOURS = [
-  'linear-gradient(135deg, #0a0f1e 0%, #0d1530 100%)',
-  'linear-gradient(135deg, #0a1a0e 0%, #0d2412 100%)',
-  'linear-gradient(135deg, #1a0a0e 0%, #240d12 100%)',
-  'linear-gradient(135deg, #0e0a1a 0%, #140d24 100%)',
-  'linear-gradient(135deg, #1a100a 0%, #24160d 100%)',
-  'linear-gradient(135deg, #0a1a1a 0%, #0d2424 100%)',
-  'linear-gradient(135deg, #151515 0%, #1e1e1e 100%)',
-  'linear-gradient(135deg, #0f0a1a 0%, #160d24 100%)',
-];
-function barColour(name: string): string {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
-  return PLACEHOLDER_COLOURS[hash % PLACEHOLDER_COLOURS.length];
-}
-
-// ---------------------------------------------------------------------------
-// Unified bar grid — same dark card design as city pages
-// ---------------------------------------------------------------------------
-function CountryBarGrid({ bars }: { bars: Bar[] }) {
-  if (bars.length === 0) return null;
-  return (
-    <div className="directory-grid">
-      {bars.map(bar => (
-        <CountryBarCard key={bar.id} bar={bar} />
-      ))}
-    </div>
-  );
-}
-
-function CountryBarCard({ bar }: { bar: Bar }) {
-  const imageUrl = bar.photos?.[0] ?? null;
-  const isFeatured = bar.tier === 'featured' || !!bar.wp_article_slug;
-  const isTop10 = bar.tier === 'top10';
-
-  return (
-    <Link href={`/bars/${bar.slug}`} className="city-bar-card">
-      <div className="bar-dir-featured-visual">
-        {imageUrl
-          ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={imageUrl} alt={bar.name} loading="lazy" />
-          ) : (
-            <div className="bar-dir-featured-placeholder" style={{ background: barColour(bar.name) }}>
-              <span>{bar.name.replace(/([a-z])([A-Z])/g, '$1 $2').split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
-            </div>
-          )
-        }
-        <div className="bar-dir-featured-overlay" />
-        {/* TOP 10 badge */}
-        {isTop10 && (
-          <div className="bar-dir-top10-badge-corner">
-            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-            TOP 10
-          </div>
-        )}
-        {/* FEATURED badge */}
-        {isFeatured && (
-          <div className="bar-dir-featured-badge-corner">Featured</div>
-        )}
-        <div className="bar-dir-featured-content">
-          <h3>{bar.name}</h3>
-          <span className="bar-dir-featured-location">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-            </svg>
-            {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
-          </span>
-          {bar.type && (
-            <span className="bar-dir-featured-type">{formatBarType(bar.type)}</span>
-          )}
-        </div>
-      </div>
-    </Link>
   );
 }
