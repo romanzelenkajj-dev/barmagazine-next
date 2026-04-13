@@ -5974,6 +5974,18 @@ textarea.form-input {
   inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%);
 }
+
+/* TOP 10 + FEATURED badges overlaid at bottom-left of hero photo */
+.bar-v2-hero-badges {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
 .bar-v2-photo-placeholder {
   position: absolute;
   inset: 0;
