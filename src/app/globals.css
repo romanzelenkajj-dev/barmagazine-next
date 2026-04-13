@@ -782,9 +782,9 @@ button {
 
 .article-body p,
 .article-body div[data-slate-node="element"] {
-  font-size: 17px;
-  line-height: 1.8;
-  color: var(--text-secondary);
+  font-size: 17px !important;
+  line-height: 1.8 !important;
+  color: var(--text-secondary) !important;
   margin-bottom: 0;
 }
 
@@ -793,7 +793,14 @@ button {
   margin-bottom: 20px;
 }
 
-/* Removed first-child override — all paragraphs use the same 17px/secondary style */
+/* Explicit override: ensure first-child/first-of-type p elements are NOT styled differently */
+.article-body p:first-child,
+.article-body p:first-of-type,
+.article-body > p:first-of-type {
+  font-size: 17px !important;
+  line-height: 1.8 !important;
+  color: var(--text-secondary) !important;
+}
 
 .article-body a {
   color: var(--accent);
