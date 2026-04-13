@@ -4177,7 +4177,7 @@ textarea.form-input {
   padding: 28px 32px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 24px;
 }
 
 .directory-inline-cta-text h3 {
