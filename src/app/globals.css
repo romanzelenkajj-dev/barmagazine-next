@@ -3423,8 +3423,8 @@ textarea.form-input {
 
 .bar-dir-badge-pill--type {
   background: transparent;
-  color: #6b6b6b;
-  border: 1px solid #e5e5e5;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .bar-dir-featured-name {
@@ -6057,8 +6057,8 @@ textarea.form-input {
 
 .bar-v2-badge--type {
   background: transparent;
-  color: #6b6b6b;
-  border: 1px solid #e5e5e5;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 /* Location Map — bottom of page */
