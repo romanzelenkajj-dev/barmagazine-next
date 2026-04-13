@@ -780,10 +780,16 @@ button {
   line-height: 1.3;
 }
 
-.article-body p {
+.article-body p,
+.article-body div[data-slate-node="element"] {
   font-size: 17px;
   line-height: 1.8;
   color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+/* Wrapper divs around each paragraph block */
+.article-body div.w-full {
   margin-bottom: 20px;
 }
 
