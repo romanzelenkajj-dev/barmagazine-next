@@ -4257,23 +4257,28 @@ textarea.form-input {
   margin: 0;
 }
 
-.article-list-bar-cta-btn {
+.article-list-bar-cta-btn,
+.article-list-bar-cta-btn:link,
+.article-list-bar-cta-btn:visited,
+.article-list-bar-cta-btn:active {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: var(--bg-dark);
-  color: #fff;
+  background: #1a1a1a;
+  color: #fff !important;
   font-size: 13px;
   font-weight: 600;
   border-radius: 100px;
-  text-decoration: none;
+  text-decoration: none !important;
   white-space: nowrap;
   transition: background 0.15s;
 }
 
 .article-list-bar-cta-btn:hover {
   background: #333;
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 @media (max-width: 640px) {
