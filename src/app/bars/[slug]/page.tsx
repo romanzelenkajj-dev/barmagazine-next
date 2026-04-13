@@ -171,18 +171,14 @@ function barColourSlug(name: string): string {
               </span>
             </div>
           )}
-          {/* TOP 10 + FEATURED badges overlaid at bottom-left of hero photo */}
-          {(isTop10 || isFeatured || isPremium || bar.wp_article_slug) && (
+          {/* All badges overlaid at bottom-left of hero photo */}
+          {(isTop10 || isFeatured || isPremium || bar.wp_article_slug || bar.type) && (
             <div className="bar-v2-hero-badges">
               {isTop10 && <span className="bar-v2-badge bar-v2-badge--top10">★ TOP 10</span>}
               {(isFeatured || isPremium || bar.wp_article_slug) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+              {bar.type && <span className="bar-v2-badge bar-v2-badge--type">{formatBarType(bar.type)}</span>}
             </div>
           )}
-        </div>
-
-        {/* Type badge only — below the hero photo */}
-        <div className="bar-v2-badges">
-          {bar.type && <span className="bar-v2-badge bar-v2-badge--type">{formatBarType(bar.type)}</span>}
         </div>
 
         {/* Bar Info */}
