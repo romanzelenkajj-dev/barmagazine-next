@@ -233,7 +233,7 @@ button {
 .hero {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  min-height: 600px;
+  min-height: 480px;
   border-radius: 24px;
   overflow: hidden;
   background: #fff;
@@ -245,8 +245,8 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 48px 48px 52px;
+  justify-content: center;
+  padding: 48px 48px 48px;
 }
 
 .hero-tag {
