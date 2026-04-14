@@ -275,32 +275,20 @@ function barColourSlug(name: string): string {
                         </div>
                       )
                     }
-                    <div className="bar-dir-featured-overlay" />
-                    {nb.tier === 'top10' && (
-                      <div className="bar-dir-top10-badge-corner">
-                        <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        TOP 10
-                      </div>
-                    )}
-                    {(nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug) && (
-                      <div className={`bar-dir-featured-badge-corner ${nb.tier === 'premium' ? 'bar-dir-featured-badge-corner--premium' : ''}`}>
-                        {nb.tier === 'premium' ? '★ Premium' : 'Featured'}
-                      </div>
-                    )}
-                    <div className="bar-dir-featured-content">
-                      <h3>{nb.name}</h3>
-                      <span className="bar-dir-featured-location">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ display: 'inline', marginRight: 3, verticalAlign: 'middle' }}>
-                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-                        </svg>
-                        {nb.city}{nb.city !== nb.country ? `, ${nb.country}` : ''}
-                      </span>
-                      {nb.type && (
-                        <span className="bar-dir-featured-type">{formatBarType(nb.type)}</span>
-                      )}
+                  </div>
+                  <div className="bar-dir-featured-body">
+                    <div className="bar-dir-featured-badges">
+                      {nb.tier === 'top10' && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
+                      {(nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">Featured</span>}
+                      {nb.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(nb.type)}</span>}
                     </div>
+                    <h3 className="bar-dir-featured-name">{nb.name}</h3>
+                    <span className="bar-dir-featured-location">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+                      </svg>
+                      {nb.city}{nb.city !== nb.country ? `, ${nb.country}` : ''}
+                    </span>
                   </div>
                 </Link>
               ))}
