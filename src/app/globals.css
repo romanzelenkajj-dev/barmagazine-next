@@ -234,6 +234,8 @@ button {
   display: grid;
   grid-template-columns: 1fr 2fr;
   height: 480px;
+  max-height: 480px;
+  grid-auto-rows: 480px;
   border-radius: 24px;
   overflow: hidden;
   background: #fff;
