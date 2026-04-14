@@ -43,10 +43,14 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
+    // Single sitemap index — Google discovers all sub-sitemaps from here.
+    // Submit https://barmagazine.com/sitemap.xml to Search Console.
+    // Sub-sitemaps:
+    //   /sitemap-articles.xml  — WordPress articles + static + category pages
+    //   /sitemap-bars.xml      — Bar directory (bars, cities, countries)
+    //   /sitemap-news.xml      — Google News (last 7 days)
     sitemap: [
       'https://barmagazine.com/sitemap.xml',
-      'https://barmagazine.com/sitemap-bars.xml',
-      'https://barmagazine.com/sitemap-news.xml',
     ],
   };
 }
