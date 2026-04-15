@@ -129,9 +129,10 @@ export async function POST(request: NextRequest) {
           phone: submission.phone,
           email: submission.email,
           description: submission.description,
-          photos: [],
+          photos: barPhotos,
           tier: 'free',
           is_active: true,
+          ...(coords && { lat: coords.lat, lng: coords.lng }),
         })
         .select()
         .single();

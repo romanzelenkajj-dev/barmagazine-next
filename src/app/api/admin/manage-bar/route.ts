@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
+import { geocodeBar } from '@/lib/geocode';
 
 function getServiceClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -73,7 +74,20 @@ export async function POST(request: NextRequest) {
   }
 
   if (action === 'create') {
-    const { data, error } = await supabase.from('bars').insert(updates).select();
+    // Auto-geocode if lat/lng not already provided
+    let insertData = { ...updates };
+    if (!insertData.lat && !insertData.lng && insertData.name && insertData.city && insertData.country) {
+      const coords = await geocodeBar({
+        name: insertData.name,
+        address: insertData.address || null,
+        city: insertData.city,
+        country: insertData.country,
+      });
+      if (coords) {
+        insertData = { ...insertData, lat: coords.lat, lng: coords.lng };
+      }
+    }
+    const { data, error } = await supabase.from('bars').insert(insertData).select();
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     return NextResponse.json({ created: data });
   }
