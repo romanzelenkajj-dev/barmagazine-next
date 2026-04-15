@@ -235,7 +235,7 @@ function barColourSlug(name: string): string {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" /></svg>
               </a>
             )}
-            {(bar.tier === 'free') && !bar.wp_article_slug && (
+            {(bar.tier === 'free') && !bar.wp_article_slug && !bar.is_verified && !bar.email && (
               <Link href="/claim-your-bar" className="bar-v2-btn bar-v2-btn--claim">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                 Is this your bar? Claim it
