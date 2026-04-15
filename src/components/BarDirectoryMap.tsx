@@ -129,9 +129,33 @@ const COUNTRY_CENTER: Record<string, [number, number, number]> = {
   SE: [18.6, 60.1, 4.5], NO: [8.5, 60.5, 4.5], DK: [10.0, 56.0, 6.0],
   CH: [8.2, 46.8, 6.5], AT: [14.5, 47.5, 6.5], IE: [-8.0, 53.2, 6.0],
   PL: [19.1, 52.1, 5.5], CZ: [15.5, 49.8, 6.5], KR: [127.8, 36.5, 6.0],
+  HR: [15.2, 45.1, 6.5], RS: [21.0, 44.0, 6.0], SI: [14.8, 46.1, 7.0],
+  RO: [25.0, 45.9, 5.5], HU: [19.0, 47.2, 6.5], SK: [19.4, 48.7, 7.0],
+  UA: [31.2, 48.4, 5.0], TR: [35.2, 39.0, 5.0], IL: [34.9, 31.5, 7.0],
+  SA: [45.1, 23.9, 5.0], EG: [30.8, 26.8, 5.5], NG: [8.7, 9.1, 5.0],
+  KE: [37.9, 0.0, 6.0], MA: [-7.1, 31.8, 5.5], PE: [-75.0, -9.2, 5.0],
+  CL: [-71.5, -35.7, 4.5], VE: [-66.6, 6.4, 5.5], PH: [122.0, 12.9, 5.5],
+  MY: [109.7, 4.2, 5.5], ID: [113.9, -0.8, 4.5], VN: [106.0, 16.2, 5.0],
+  TW: [120.9, 23.7, 7.0], PK: [69.3, 30.4, 5.0], BD: [90.4, 23.7, 7.0],
 };
 
-function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null, userLng = null }: { bars: Bar[]; geoCity?: string; geoCountryCode?: string; userLat?: number | null; userLng?: number | null }) {
+const COUNTRY_NAME_TO_CODE: Record<string, string> = {
+  'united states': 'US', 'usa': 'US', 'united kingdom': 'GB', 'uk': 'GB', 'canada': 'CA',
+  'australia': 'AU', 'germany': 'DE', 'france': 'FR', 'spain': 'ES', 'italy': 'IT',
+  'japan': 'JP', 'china': 'CN', 'india': 'IN', 'brazil': 'BR', 'mexico': 'MX',
+  'singapore': 'SG', 'hong kong': 'HK', 'uae': 'AE', 'united arab emirates': 'AE',
+  'thailand': 'TH', 'netherlands': 'NL', 'portugal': 'PT', 'greece': 'GR',
+  'argentina': 'AR', 'colombia': 'CO', 'south africa': 'ZA', 'new zealand': 'NZ',
+  'sweden': 'SE', 'norway': 'NO', 'denmark': 'DK', 'switzerland': 'CH', 'austria': 'AT',
+  'ireland': 'IE', 'poland': 'PL', 'czech republic': 'CZ', 'czechia': 'CZ', 'south korea': 'KR',
+  'croatia': 'HR', 'serbia': 'RS', 'slovenia': 'SI', 'romania': 'RO', 'hungary': 'HU',
+  'slovakia': 'SK', 'ukraine': 'UA', 'turkey': 'TR', 'israel': 'IL', 'saudi arabia': 'SA',
+  'egypt': 'EG', 'nigeria': 'NG', 'kenya': 'KE', 'morocco': 'MA', 'peru': 'PE',
+  'chile': 'CL', 'venezuela': 'VE', 'philippines': 'PH', 'malaysia': 'MY',
+  'indonesia': 'ID', 'vietnam': 'VN', 'taiwan': 'TW', 'pakistan': 'PK', 'bangladesh': 'BD',
+};
+
+function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null, userLng = null, countryFilter = '' }: { bars: Bar[]; geoCity?: string; geoCountryCode?: string; userLat?: number | null; userLng?: number | null; countryFilter?: string }) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const isInitialBarsRender = useRef(true);
@@ -318,7 +342,17 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
       isInitialBarsRender.current = false;
       return;
     }
-    if (validBars.length === 0) return;
+    if (validBars.length === 0) {
+      // No bars with coordinates — try to fly to the filtered country center
+      if (countryFilter) {
+        const code = COUNTRY_NAME_TO_CODE[countryFilter.toLowerCase()];
+        const center = code ? COUNTRY_CENTER[code] : null;
+        if (center) {
+          mapRef.current.flyTo({ center: [center[0], center[1]], zoom: center[2], duration: 1200, essential: true });
+        }
+      }
+      return;
+    }
     if (validBars.length === 1) {
       mapRef.current.flyTo({
         center: [validBars[0].lng!, validBars[0].lat!],
@@ -789,7 +823,7 @@ export function BarDirectoryMapClient({
       </div>
 
       {/* ═══ MAP VIEW ═══ */}
-      {viewMode === 'map' && <DirectoryMap bars={mapBarsLoaded ? filteredMapBars : allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} userLat={userLat} userLng={userLng} />}
+      {viewMode === 'map' && <DirectoryMap bars={mapBarsLoaded ? filteredMapBars : allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} userLat={userLat} userLng={userLng} countryFilter={countryFilter} />}
 
       {/* ═══ GRID VIEW ═══ */}
       {viewMode === 'grid' && (
