@@ -155,7 +155,7 @@ const COUNTRY_NAME_TO_CODE: Record<string, string> = {
   'indonesia': 'ID', 'vietnam': 'VN', 'taiwan': 'TW', 'pakistan': 'PK', 'bangladesh': 'BD',
 };
 
-function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null, userLng = null, countryFilter = '' }: { bars: Bar[]; geoCity?: string; geoCountryCode?: string; userLat?: number | null; userLng?: number | null; countryFilter?: string }) {
+function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null, userLng = null, countryFilter = '', cityFilter = '' }: { bars: Bar[]; geoCity?: string; geoCountryCode?: string; userLat?: number | null; userLng?: number | null; countryFilter?: string; cityFilter?: string }) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const isInitialBarsRender = useRef(true);
@@ -193,14 +193,40 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
       const cityCoords = CITY_COORDS_MAP[cityKey];
       const countryCenter = geoCountryCode ? COUNTRY_CENTER[geoCountryCode.toUpperCase()] : null;
 
-      // Priority: GPS coordinates > IP city > IP country > world view
-      const initialCenter: [number, number] = (userLat != null && userLng != null)
-        ? [userLng, userLat]
-        : cityCoords
-        ? cityCoords
+      // Priority: active filter (city/country) > bars with coords > GPS > IP city > IP country > world view
+      // Determine center from active city filter
+      const activeCityKey = cityFilter.toLowerCase();
+      const activeCityCoords = CITY_COORDS_MAP[activeCityKey];
+      // Determine center from active country filter
+      const activeCountryCode = countryFilter ? COUNTRY_NAME_TO_CODE[countryFilter.toLowerCase()] : null;
+      const activeCountryCenter = activeCountryCode ? COUNTRY_CENTER[activeCountryCode] : null;
+      // Determine center from bars that already have coordinates
+      const barsWithCoords = bars.filter(b => b.lat && b.lng);
+      let barsCenter: [number, number] | null = null;
+      let barsZoom = 9;
+      if (barsWithCoords.length === 1) {
+        barsCenter = [barsWithCoords[0].lng!, barsWithCoords[0].lat!];
+        barsZoom = 13;
+      } else if (barsWithCoords.length > 1) {
+        const lngs = barsWithCoords.map(b => b.lng!);
+        const lats = barsWithCoords.map(b => b.lat!);
+        barsCenter = [(Math.min(...lngs) + Math.max(...lngs)) / 2, (Math.min(...lats) + Math.max(...lats)) / 2];
+        barsZoom = 9;
+      }
+      const initialCenter: [number, number] = activeCityCoords
+        ? activeCityCoords
+        : barsCenter
+        ? barsCenter
+        : activeCountryCenter ? [activeCountryCenter[0], activeCountryCenter[1]]
+        : (userLat != null && userLng != null) ? [userLng, userLat]
+        : cityCoords ? cityCoords
         : countryCenter ? [countryCenter[0], countryCenter[1]] : [15, 30];
-      const initialZoom = (userLat != null && userLng != null)
-        ? 9
+      const initialZoom = activeCityCoords
+        ? 11
+        : barsCenter
+        ? barsZoom
+        : activeCountryCenter ? activeCountryCenter[2]
+        : (userLat != null && userLng != null) ? 9
         : cityCoords ? 9 : countryCenter ? countryCenter[2] : 1.5;
 
       const map = new mapboxgl.Map({
@@ -823,7 +849,7 @@ export function BarDirectoryMapClient({
       </div>
 
       {/* ═══ MAP VIEW ═══ */}
-      {viewMode === 'map' && <DirectoryMap bars={mapBarsLoaded ? filteredMapBars : allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} userLat={userLat} userLng={userLng} countryFilter={countryFilter} />}
+      {viewMode === 'map' && <DirectoryMap bars={mapBarsLoaded ? filteredMapBars : allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} userLat={userLat} userLng={userLng} countryFilter={countryFilter} cityFilter={cityFilter} />}
 
       {/* ═══ GRID VIEW ═══ */}
       {viewMode === 'grid' && (
