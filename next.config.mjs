@@ -99,6 +99,10 @@ const nextConfig = {
       // Tag pages (no equivalent in new site)
       { source: '/tag/:slug', destination: '/', permanent: true },
 
+      // Specific /events/* redirects — MUST come before the /events/:slug catch-all below
+      { source: '/events/the-worlds-50-best-bars-2025-live-from-hong-kong', destination: '/worlds-50-best-bars-2025-bar-leone-tops-the-list', permanent: true },
+      { source: '/events/the-worlds-50-best-bars-2025-live-from-hong-kong/', destination: '/worlds-50-best-bars-2025-bar-leone-tops-the-list', permanent: true },
+
       // Old event sub-pages → article slugs
       { source: '/events/:slug', destination: '/:slug', permanent: true },
 
