@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getBarBySlug, getBarsByCity, getBars } from '@/lib/supabase';
 import type { Bar } from '@/lib/supabase';
 import { formatBarType, toUrlSlug } from '@/lib/utils';
+import { hasSlug, safeHref } from '@/lib/safe-slug';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
 import { BarDirectorySidebarPromo, BarDirectorySidebar } from '@/components/BarDirectorySidebar';
@@ -21,7 +22,7 @@ export const dynamicParams = true;
 export async function generateStaticParams() {
   const { bars } = await getBars({ tier: 'top10', perPage: 500 });
   const { bars: featuredBars } = await getBars({ tier: 'featured', perPage: 200 });
-  const allPriority = [...bars, ...featuredBars];
+  const allPriority = [...bars, ...featuredBars].filter(hasSlug);
   return allPriority.map(bar => ({ slug: bar.slug }));
 }
 
@@ -264,8 +265,8 @@ function barColourSlug(name: string): string {
           <div className="bar-v2-nearby">
             <h2>More Bars in {bar.city}</h2>
             <div className="bar-v2-nearby-grid">
-              {nearbyBars.map(nb => (
-                <Link key={nb.id} href={`/bars/${nb.slug}`} className="bar-dir-featured-card">
+              {nearbyBars.filter(hasSlug).map(nb => (
+                <Link key={nb.id} href={safeHref('/bars', nb.slug)} className="bar-dir-featured-card">
                   <div className="bar-dir-featured-visual">
                     {nb.photos && nb.photos.length > 0
                       ? <img src={nb.photos[0]} alt={nb.name} loading="lazy" />

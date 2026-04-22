@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { formatBarType } from '@/lib/utils';
+import { hasSlug, safeHref } from '@/lib/safe-slug';
 
 const PAGE_SIZE = 12;
 
@@ -38,7 +39,7 @@ function CountryBarCard({ bar }: { bar: Bar }) {
   const isFeatured = bar.tier === 'featured' || !!bar.wp_article_slug;
 
   return (
-    <Link href={`/bars/${bar.slug}`} className="bar-dir-featured-card">
+    <Link href={safeHref('/bars', bar.slug)} className="bar-dir-featured-card">
       <div className="bar-dir-featured-visual">
         {imageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -104,7 +105,7 @@ export default function CountryBarGridClient({ bars }: { bars: Bar[] }) {
 
   if (bars.length === 0) return null;
 
-  const visible = bars.slice(0, visibleCount);
+  const visible = bars.filter(hasSlug).slice(0, visibleCount);
   const hasMore = visibleCount < bars.length;
 
   return (

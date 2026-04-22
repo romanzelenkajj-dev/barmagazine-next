@@ -1,6 +1,7 @@
 import { headers } from 'next/headers';
 import { getBars, getBarFilterOptions, getBarStats } from '@/lib/supabase';
 import { BarDirectoryMapClient } from '@/components/BarDirectoryMap';
+import { hasSlug, safeHref } from '@/lib/safe-slug';
 import type { Metadata } from 'next';
 
 export const revalidate = 300; // 5 min ISR
@@ -55,7 +56,7 @@ export default async function BarsPage() {
   const initialBars = [
     ...priorityInitial,
     ...photoInitial.filter(b => !seenIds.has(b.id)),
-  ];
+  ].filter(hasSlug);
 
   // ItemList JSON-LD — use stats.totalBars for the count, list the top 50 by name for schema
   const itemListLd = {
@@ -69,7 +70,7 @@ export default async function BarsPage() {
       '@type': 'ListItem',
       position: index + 1,
       name: bar.name,
-      url: `${SITE_URL}/bars/${bar.slug}`,
+      url: `${SITE_URL}${safeHref('/bars', bar.slug)}`,
     })),
   };
 

@@ -114,6 +114,56 @@ const nextConfig = {
       { source: '/feed', destination: '/', permanent: true },
       { source: '/wp-login.php', destination: '/', permanent: false },
       { source: '/wp-admin', destination: '/', permanent: false },
+
+      // ---------------------------------------------------------------
+      // Legacy WordPress (Yoast) sitemap URLs — still hit ~25x/day by
+      // Googlebot/Bingbot per logs. Each was 404ing and eating crawl
+      // budget. Point them all at the current sitemap index so crawlers
+      // discover the new structure without a dead-end.
+      // ---------------------------------------------------------------
+      { source: '/sitemap.rss', destination: '/sitemap.xml', permanent: true },
+      { source: '/sitemap_index.xml', destination: '/sitemap.xml', permanent: true },
+      { source: '/post-sitemap.xml', destination: '/sitemap-articles.xml', permanent: true },
+      { source: '/post-sitemap1.xml', destination: '/sitemap-articles.xml', permanent: true },
+      { source: '/post-sitemap2.xml', destination: '/sitemap-articles.xml', permanent: true },
+      { source: '/post-archive-sitemap.xml', destination: '/sitemap-articles.xml', permanent: true },
+      { source: '/page-sitemap.xml', destination: '/sitemap-articles.xml', permanent: true },
+      { source: '/category-sitemap.xml', destination: '/sitemap.xml', permanent: true },
+      { source: '/event_organizer-sitemap.xml', destination: '/sitemap-bars.xml', permanent: true },
+      { source: '/news-sitemap.xml', destination: '/sitemap-news.xml', permanent: true },
+      { source: '/author-sitemap.xml', destination: '/sitemap.xml', permanent: true },
+
+      // Orphan category pages still linked externally
+      { source: '/category/all-about', destination: '/', permanent: true },
+      { source: '/category/all-about/:slug*', destination: '/', permanent: true },
+      { source: '/most-popular', destination: '/', permanent: true },
+      { source: '/most-popular/', destination: '/', permanent: true },
+
+      // ---------------------------------------------------------------
+      // Bar slugs that 404'd in Search Console. Each one is either a
+      // rename, an accent-strip, or a bar we haven't migrated yet —
+      // send to /bars so the user lands on something useful.
+      // ---------------------------------------------------------------
+      { source: '/bars/seed-library', destination: '/bars', permanent: true },
+      { source: '/bars/satan-s-whiskers', destination: '/bars/satans-whiskers', permanent: true },
+      { source: '/bars/virt', destination: '/bars/virtu', permanent: true },
+      { source: '/bars/eau-de-vie-bar-melbourne', destination: '/bars/eau-de-vie-melbourne', permanent: true },
+      { source: '/bars/attaboy-nashville', destination: '/bars', permanent: true },
+      { source: '/bars/employees-only-singapore', destination: '/bars', permanent: true },
+      { source: '/bars/the-savory-project-shanghai', destination: '/bars/the-savory-project', permanent: true },
+
+      // ---------------------------------------------------------------
+      // Articles that exist on old WP but weren't migrated — redirect
+      // to the best-fit landing so Google stops showing 404s. Review
+      // quarterly: when content is re-added, drop the redirect.
+      // ---------------------------------------------------------------
+      { source: '/2025-shake-it-up-national-finals', destination: '/category/events', permanent: true },
+      { source: '/tales-of-the-cocktail-2025', destination: '/category/events', permanent: true },
+      { source: '/athens-bar-show-2025', destination: '/category/events', permanent: true },
+      { source: '/india-bar-show-2025', destination: '/category/events', permanent: true },
+      { source: '/the-bars-of-barcelona', destination: '/category/places', permanent: true },
+      { source: '/the-art-of-wine-production', destination: '/category/brands', permanent: true },
+      { source: '/drinky-juznej-ameriky', destination: '/category/cocktails', permanent: true },
     ];
   },
   // Prevent browsers from caching stale favicons

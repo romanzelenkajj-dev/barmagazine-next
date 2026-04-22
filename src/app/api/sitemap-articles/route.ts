@@ -1,101 +1,85 @@
 import { NextResponse } from 'next/server';
-import { WP_API } from '@/lib/wordpress';
 
 const SITE_URL = 'https://barmagazine.com';
+const WP_API = process.env.WP_API ?? 'https://barmagazine.com/wp-json/wp/v2';
+const PER_PAGE = 100;
+const MAX_PAGES = 20;
 
-// Category slugs that exist in WordPress and have dedicated pages
-const CATEGORY_SLUGS = [
-  'cocktails', 'people', 'awards', 'brands', 'events', 'bars',
-];
+export const revalidate = 3600;
 
-// Static non-article pages (homepage, utility pages)
-const STATIC_PAGES = [
-  { url: `${SITE_URL}`, changefreq: 'daily', priority: 1.0 },
-  { url: `${SITE_URL}/work-with-us`, changefreq: 'monthly', priority: 0.5 },
-  { url: `${SITE_URL}/add-your-bar`, changefreq: 'monthly', priority: 0.4 },
-  { url: `${SITE_URL}/privacy`, changefreq: 'yearly', priority: 0.2 },
-  { url: `${SITE_URL}/terms`, changefreq: 'yearly', priority: 0.2 },
-];
-
-interface WPPostSitemap {
+type WPEntry = {
   slug: string;
   modified: string;
+  _type: 'post' | 'page';
+};
+
+async function fetchAll(endpoint: 'posts' | 'pages'): Promise<WPEntry[]> {
+  const out: WPEntry[] = [];
+  for (let page = 1; page <= MAX_PAGES; page++) {
+    const url = `${WP_API}/${endpoint}?per_page=${PER_PAGE}&page=${page}&_fields=slug,modified&status=publish`;
+    const res = await fetch(url, { next: { revalidate: 3600 } });
+    if (!res.ok) {
+      if (res.status === 400) break;
+      throw new Error(`WP ${endpoint} page ${page} returned ${res.status}`);
+    }
+    const items = (await res.json()) as Array<{ slug: string; modified: string }>;
+    if (!items.length) break;
+    for (const i of items) {
+      if (i.slug) out.push({ slug: i.slug, modified: i.modified, _type: endpoint.slice(0, -1) as 'post' | 'page' });
+    }
+    if (items.length < PER_PAGE) break;
+  }
+  return out;
 }
 
-export const revalidate = 3600; // 1 hour
+function escapeXml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
 
 export async function GET() {
+  let posts: WPEntry[] = [];
+  let pages: WPEntry[] = [];
+
   try {
-    // Fetch all WordPress posts across all pages
-    const allPosts: WPPostSitemap[] = [];
-    let page = 1;
-    const perPage = 100;
-
-    while (true) {
-      const res = await fetch(
-        `${WP_API}/posts?per_page=${perPage}&page=${page}&_fields=slug,modified`,
-        { next: { revalidate: 3600 } }
-      );
-      if (!res.ok) break;
-
-      const posts: WPPostSitemap[] = await res.json();
-      if (posts.length === 0) break;
-
-      allPosts.push(...posts);
-      const totalPages = parseInt(res.headers.get('X-WP-TotalPages') || '1');
-      if (page >= totalPages) break;
-      page++;
-    }
-
-    const now = new Date().toISOString();
-
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-`;
-
-    // Static pages
-    for (const p of STATIC_PAGES) {
-      xml += `  <url>
-    <loc>${p.url}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>${p.changefreq}</changefreq>
-    <priority>${p.priority.toFixed(1)}</priority>
-  </url>
-`;
-    }
-
-    // Category pages
-    for (const slug of CATEGORY_SLUGS) {
-      xml += `  <url>
-    <loc>${SITE_URL}/category/${slug}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-`;
-    }
-
-    // All WordPress article pages
-    for (const post of allPosts) {
-      const lastmod = new Date(post.modified).toISOString();
-      xml += `  <url>
-    <loc>${SITE_URL}/${post.slug}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-`;
-    }
-
-    xml += `</urlset>`;
-
-    return new NextResponse(xml, {
-      headers: {
-        'Content-Type': 'application/xml; charset=utf-8',
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200',
-      },
-    });
-  } catch {
-    return new NextResponse('Error generating articles sitemap', { status: 500 });
+    [posts, pages] = await Promise.all([fetchAll('posts'), fetchAll('pages')]);
+  } catch (err) {
+    console.error('[sitemap-articles] WP fetch failed:', err);
+    return new NextResponse(
+      `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>`,
+      { headers: { 'Content-Type': 'application/xml' } },
+    );
   }
+
+  const seen = new Set<string>();
+  const merged = [...posts, ...pages].filter((e) => {
+    if (seen.has(e.slug)) return false;
+    seen.add(e.slug);
+    return true;
+  });
+
+  merged.sort((a, b) => (b.modified ?? '').localeCompare(a.modified ?? ''));
+
+  const urls = merged
+    .map((e) => {
+      const loc = `${SITE_URL}/${escapeXml(e.slug)}`;
+      const lastmod = e.modified ? new Date(e.modified).toISOString() : new Date().toISOString();
+      const priority = e._type === 'post' ? '0.8' : '0.6';
+      const changefreq = e._type === 'post' ? 'daily' : 'weekly';
+      return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+    })
+    .join('\n');
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
+
+  return new NextResponse(xml, {
+    headers: {
+      'Content-Type': 'application/xml',
+      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+    },
+  });
 }
