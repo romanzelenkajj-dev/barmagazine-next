@@ -5,6 +5,7 @@ import { getBarsByCity, getCitiesWithCounts } from '@/lib/supabase';
 import { createClient } from '@supabase/supabase-js';
 import type { Bar } from '@/lib/supabase';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
+import { hasSlug, safeHref } from '@/lib/safe-slug';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarDirectorySidebar';
 
 /**
@@ -346,7 +347,7 @@ function CityBarGrid({ bars }: { bars: Bar[] }) {
 
   return (
     <div className="directory-grid">
-      {bars.map(bar => (
+      {bars.filter(hasSlug).map(bar => (
         <CityBarCard key={bar.id} bar={bar} />
       ))}
     </div>
@@ -359,7 +360,7 @@ function CityBarCard({ bar }: { bar: Bar }) {
   const isFeatured = bar.tier === 'featured' || !!bar.wp_article_slug;
 
   return (
-    <Link href={`/bars/${bar.slug}`} className="bar-dir-featured-card">
+    <Link href={safeHref('/bars', bar.slug)} className="bar-dir-featured-card">
       <div className="bar-dir-featured-visual">
         {imageUrl
           ? (

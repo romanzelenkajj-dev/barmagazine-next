@@ -5,6 +5,7 @@ import { NewsletterForm } from '@/components/NewsletterForm';
 import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
 import { getBarArticleSlugs } from '@/lib/supabase';
+import { hasSlug, safeHref } from '@/lib/safe-slug';
 export const revalidate = 300;
 
 const CATEGORY_SLUGS = ['bars', 'people', 'cocktails', 'awards-events', 'brands', 'events'] as const;
@@ -18,10 +19,11 @@ export default async function HomePage() {
     ...CATEGORY_SLUGS.map(slug => getPostsByCategory(slug, 1, 6)),
   ]);
 
-  const posts = result.data;
+  const posts = result.data.filter(hasSlug);
   // Only show bar articles that have a matching listing in the Bar Directory
   const allBarsPosts = barsResult.data;
   const barsPosts = allBarsPosts
+    .filter(hasSlug)
     .filter((post: { slug: string }) => barArticleSlugs.has(post.slug))
     .slice(0, 12);
 
@@ -47,14 +49,14 @@ export default async function HomePage() {
           <div className="hero-title-col">
             {(() => { const cats = getPostCategories(hero); return cats[0] ? <span className="hero-tag">{cats[0].name}</span> : null; })()}
             <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: formatCardTitle(hero.title.rendered, hero.meta?.bold_title) }} />
-            <Link href={`/${hero.slug}`} className="hero-btn">
+            <Link href={safeHref('/', hero.slug)} className="hero-btn">
               Read the Story
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </Link>
           </div>
 
           {/* Right 2/3 \u2014 featured image */}
-          <Link href={`/${hero.slug}`} className="hero-image-col">
+          <Link href={safeHref('/', hero.slug)} className="hero-image-col">
             {heroImgFull && (
               // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
               <img
@@ -107,10 +109,10 @@ export default async function HomePage() {
             <Link href="/category/bars" className="section-link">View All &rarr;</Link>
           </div>
           <div className="bars-grid-scroll">
-            {barsPosts.map(post => {
+            {barsPosts.filter(hasSlug).map(post => {
               const imgUrl = getFeaturedImageUrl(post, 'medium_large') || getFeaturedImageUrl(post, 'large');
               return (
-                <Link key={post.id} href={`/${post.slug}`} className="bar-card">
+                <Link key={post.id} href={safeHref('/', post.slug)} className="bar-card">
                   <div className="bar-img">
                     {imgUrl && (
                       // eslint-disable-next-line @next/next/no-img-element
