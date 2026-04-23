@@ -10,11 +10,26 @@ import { Top10FooterBlock } from './Top10FooterBlock';
 export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
   return (
     <aside className="sidebar">
-      <div className="sidebar-inner">
-        {/* Editorial cards first so they can scroll off the top in sticky-bottom
-            mode, leaving the monetizable Newsletter + Flavour Blaster ad
-            visible at the viewport bottom for longer. */}
+      {/* Pinned group: short enough to fit a viewport, stays at top-right
+          under sticky. */}
+      <div className="sidebar-sticky">
+        {/* Ad: Flavour Blaster */}
+        <a href="https://flavourblaster.com/BARMAGAZINE" target="_blank" rel="noopener noreferrer sponsored" className="ad-banner">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster" width={1026} height={1026} loading="eager" />
+        </a>
 
+        {/* Newsletter */}
+        <div className="sidebar-newsletter">
+          <h3>Stay in the Mix</h3>
+          <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
+          <NewsletterForm />
+        </div>
+      </div>
+
+      {/* Scroll group: too tall to sit in a viewport; scrolls with the
+          article normally below the pinned group. */}
+      <div className="sidebar-scroll">
         {/* Related Articles */}
         {relatedPosts.length > 0 && (
           <div className="sidebar-card">
@@ -40,19 +55,6 @@ export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
 
         {/* Top 10 Bars */}
         <Top10FooterBlock />
-
-        {/* Newsletter */}
-        <div className="sidebar-newsletter">
-          <h3>Stay in the Mix</h3>
-          <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
-          <NewsletterForm />
-        </div>
-
-        {/* Ad: Flavour Blaster */}
-        <a href="https://flavourblaster.com/BARMAGAZINE" target="_blank" rel="noopener noreferrer sponsored" className="ad-banner">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster" width={1026} height={1026} loading="eager" />
-        </a>
       </div>
     </aside>
   );
