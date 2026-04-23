@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { WP_API } from '@/lib/wordpress';
+import { cleanTitle } from '@/lib/utils';
 const SITE_URL = 'https://barmagazine.com';
 
 interface WPNewsPost {
@@ -22,19 +23,6 @@ const CATEGORY_NAMES: Record<number, string> = {
   200: 'Awards & Events',
   201: 'Brands',
 };
-
-function stripHtml(html: string): string {
-  return html
-    .replace(/<[^>]*>/g, '')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&#8217;/g, "'")
-    .replace(/&#8216;/g, "'")
-    .replace(/&#8220;/g, '"')
-    .replace(/&#8221;/g, '"')
-    .replace(/&quot;/g, '"');
-}
 
 function escapeXml(str: string): string {
   return str
@@ -67,7 +55,7 @@ export async function GET() {
     const recentPosts = posts.filter(post => new Date(post.date) >= cutoff);
 
     const urls = recentPosts.map(post => {
-      const title = escapeXml(stripHtml(post.title.rendered));
+      const title = escapeXml(cleanTitle(post.title.rendered));
       const pubDate = new Date(post.date).toISOString();
 
       const keywords = post.categories

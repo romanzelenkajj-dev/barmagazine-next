@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import type { WPPost } from '@/lib/wordpress';
-import { getFeaturedImageUrl, stripHtml } from '@/lib/wordpress';
-import { cleanTitle } from '@/lib/utils';
+import { getFeaturedImageUrl } from '@/lib/wordpress';
+import { cleanTitle, formatCardTitle } from '@/lib/utils';
 import { NewsletterForm } from './NewsletterForm';
 import { Top10FooterBlock } from './Top10FooterBlock';
 
@@ -34,11 +34,11 @@ export function Sidebar({ relatedPosts }: { relatedPosts: WPPost[] }) {
                 <div className="related-thumb">
                   {thumb && (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={thumb} alt={stripHtml(post.title.rendered)} />
+                    <img src={thumb} alt={cleanTitle(post.title.rendered)} />
                   )}
                 </div>
                 <div className="related-info">
-                  <h4>{cleanTitle(post.title.rendered)}</h4>
+                  <h4 dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }} />
                 </div>
               </Link>
             );

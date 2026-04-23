@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, stripHtml, getPostCategories } from '@/lib/wordpress';
-import { formatCardTitle } from '@/lib/utils';
+import { getPosts, getPostsByCategory, getFeaturedImageUrl, getFeaturedImageData, getPostCategories } from '@/lib/wordpress';
+import { formatCardTitle, cleanTitle } from '@/lib/utils';
 import { NewsletterForm } from '@/components/NewsletterForm';
 import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
@@ -67,7 +67,7 @@ export default async function HomePage() {
                   `${heroImgFull.url} ${heroImgFull.width}w`,
                 ].filter(Boolean).join(', ')}
                 sizes="66vw"
-                alt={stripHtml(hero.title.rendered)}
+                alt={cleanTitle(hero.title.rendered)}
                 width={heroImgFull.width}
                 height={heroImgFull.height}
                 // @ts-expect-error fetchPriority is valid HTML
@@ -116,7 +116,7 @@ export default async function HomePage() {
                   <div className="bar-img">
                     {imgUrl && (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={imgUrl} alt={stripHtml(post.title.rendered)} />
+                      <img src={imgUrl} alt={cleanTitle(post.title.rendered)} />
                     )}
                   </div>
                   <h4 dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }} />
