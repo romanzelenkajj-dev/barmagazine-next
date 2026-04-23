@@ -1089,29 +1089,31 @@ button {
 }
 
 /* ====== SIDEBAR ====== */
-/* Split into two groups: `.sidebar-sticky` holds the Ad + Newsletter
-   (short enough to fit a viewport, gets position: sticky so it pins
-   top-right as the article scrolls). `.sidebar-scroll` holds the tall
-   editorial content (Related + Top 10) which scrolls with the article
-   normally below the pinned group. */
 .sidebar {
-  align-self: stretch;
-  min-width: 0;
-}
-
-.sidebar-sticky {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
   position: sticky;
   top: calc(var(--nav-h) + var(--gap));
-  margin-bottom: var(--gap);
+  align-self: start;
+  min-width: 0;
+  max-height: calc(100vh - var(--nav-h) - var(--gap) * 2);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.15) transparent;
 }
 
-.sidebar-scroll {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap);
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.15);
+  border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .sidebar-card {
@@ -2367,8 +2369,7 @@ button {
     flex-direction: column;
   }
 
-  .sidebar,
-  .sidebar-sticky {
+  .sidebar {
     position: static;
   }
 
