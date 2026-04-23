@@ -7,7 +7,7 @@
   --bg-card: #FFFFFF;
   --bg-card-warm: #F0EBE4;
   --bg-dark: #1A1A1A;
-  --bg-accent: #C8DFE3;
+  --bg-accent: #2A4A3B;
   --bg-accent-pink: #EDBBBB;
   --text-primary: #1A1A1A;
   --text-secondary: #6B6B6B;
@@ -455,14 +455,14 @@ button {
   font-weight: 400;
   line-height: 80px;
   letter-spacing: -0.02em;
-  color: var(--text-primary);
+  color: #fff;
   margin-bottom: 10px;
 }
 
 .newsletter-strip p {
-  font-size: 18px;
-  line-height: 28px;
-  color: rgba(26, 26, 26, 0.7);
+  font-size: 21px;
+  line-height: 32px;
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 24px;
 }
 
@@ -566,14 +566,14 @@ button {
   font-weight: 400;
   line-height: 80px;
   letter-spacing: -0.02em;
-  color: var(--text-primary);
+  color: #fff;
   margin-bottom: 10px;
 }
 
 .newsletter-top10-left p {
-  font-size: 18px;
-  line-height: 28px;
-  color: rgba(26, 26, 26, 0.7);
+  font-size: 21px;
+  line-height: 32px;
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 24px;
 }
 
@@ -1190,17 +1190,18 @@ button {
 }
 
 .sidebar-newsletter h3 {
-  font-size: 36px;
+  font-size: 44px;
   font-weight: 700;
   letter-spacing: -0.01em;
   text-transform: none;
   margin-bottom: 8px;
+  color: #fff;
 }
 
 .sidebar-newsletter p {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.6;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
   margin-bottom: 18px;
 }
 
@@ -1217,7 +1218,7 @@ button {
 }
 
 .sidebar-newsletter input:focus {
-  border-color: var(--text-primary);
+  border-color: #fff;
 }
 
 .sidebar-newsletter button {
@@ -1774,7 +1775,7 @@ button {
 }
 
 .cta-banner h2 {
-  font-size: 42px;
+  font-size: 50px;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 16px;
@@ -1783,8 +1784,8 @@ button {
 }
 
 .cta-banner p {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 19px;
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 32px;
   max-width: 500px;
   margin-left: auto;
