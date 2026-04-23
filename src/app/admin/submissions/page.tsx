@@ -67,7 +67,7 @@ export default function AdminSubmissionsPage() {
     <div style={{ padding: '2rem 0' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
         <h1 style={{ fontSize: '1.5rem', fontWeight: 700, margin: 0 }}>Admin: Submissions</h1>
-        <Link href="/admin/bars" style={{ color: '#9B4A2D', textDecoration: 'none', fontSize: 14, fontWeight: 500 }}>
+        <Link href="/admin/bars" style={{ color: '#7B1E1E', textDecoration: 'none', fontSize: 14, fontWeight: 500 }}>
           Manage Bars
         </Link>
       </div>
@@ -86,7 +86,7 @@ export default function AdminSubmissionsPage() {
               fontWeight: 600,
               fontSize: 14,
               textTransform: 'capitalize',
-              background: tab === t ? (t === 'pending' ? '#9B4A2D' : t === 'approved' ? '#22c55e' : '#666') : '#f0ebe5',
+              background: tab === t ? (t === 'pending' ? '#7B1E1E' : t === 'approved' ? '#22c55e' : '#666') : '#f0ebe5',
               color: tab === t ? '#fff' : '#666',
             }}
           >
@@ -125,11 +125,11 @@ export default function AdminSubmissionsPage() {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 24px', fontSize: 14, color: '#555', marginBottom: 12 }}>
                 {s.address && <div><strong>Address:</strong> {s.address}</div>}
-                {s.website && <div><strong>Website:</strong> <a href={s.website.startsWith('http') ? s.website : `https://${s.website}`} target="_blank" rel="noopener" style={{ color: '#9B4A2D' }}>{s.website}</a></div>}
+                {s.website && <div><strong>Website:</strong> <a href={s.website.startsWith('http') ? s.website : `https://${s.website}`} target="_blank" rel="noopener" style={{ color: '#7B1E1E' }}>{s.website}</a></div>}
                 {s.instagram && <div><strong>Instagram:</strong> {s.instagram}</div>}
                 {s.phone && <div><strong>Phone:</strong> {s.phone}</div>}
                 {s.contact_name && <div><strong>Contact:</strong> {s.contact_name}</div>}
-                {s.email && <div><strong>Email:</strong> <a href={`mailto:${s.email}`} style={{ color: '#9B4A2D' }}>{s.email}</a></div>}
+                {s.email && <div><strong>Email:</strong> <a href={`mailto:${s.email}`} style={{ color: '#7B1E1E' }}>{s.email}</a></div>}
               </div>
 
               {s.preferred_plan && s.preferred_plan !== 'free' && (

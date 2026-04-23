@@ -674,7 +674,7 @@ const styles: Record<string, React.CSSProperties> = {
     color: '#6b6b6b',
   },
   tierPremium: {
-    background: '#9B4A2D',
+    background: '#7B1E1E',
     color: '#fff',
   },
   tierFeatured: {
@@ -698,9 +698,9 @@ const styles: Record<string, React.CSSProperties> = {
   editBtn: {
     fontSize: 12,
     fontWeight: 600,
-    color: '#9B4A2D',
+    color: '#7B1E1E',
     background: 'none',
-    border: '1px solid #9B4A2D',
+    border: '1px solid #7B1E1E',
     borderRadius: 6,
     padding: '4px 12px',
     cursor: 'pointer',
@@ -857,8 +857,8 @@ const styles: Record<string, React.CSSProperties> = {
   submissionsLink: {
     fontSize: 13,
     fontWeight: 600,
-    color: '#9B4A2D',
-    border: '1px solid #9B4A2D',
+    color: '#7B1E1E',
+    border: '1px solid #7B1E1E',
     borderRadius: 100,
     padding: '4px 14px',
     textDecoration: 'none',
