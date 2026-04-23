@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { formatCardTitle } from '@/lib/utils';
+import { formatCardTitle, cleanTitle } from '@/lib/utils';
 
 /* ── Types (matching WP REST shape) ── */
 interface WPCategory { id: number; name: string; slug: string }
@@ -118,7 +118,7 @@ export function HomeCategoryGrid({ initialPosts, categoryData }: Props) {
                   {imgUrl && (
                     <div className="card-bleed-bg">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={imgUrl} alt={stripHtml(post.title.rendered)} />
+                      <img src={imgUrl} alt={cleanTitle(post.title.rendered)} />
                     </div>
                   )}
                   <div className="card-bleed-overlay" />
@@ -138,7 +138,7 @@ export function HomeCategoryGrid({ initialPosts, categoryData }: Props) {
                 {imgUrl && (
                   <div className="card-img-top">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={imgUrl} alt={stripHtml(post.title.rendered)} />
+                    <img src={imgUrl} alt={cleanTitle(post.title.rendered)} />
                   </div>
                 )}
                 <div className="card-body">

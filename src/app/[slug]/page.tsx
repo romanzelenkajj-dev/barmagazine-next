@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, getPostTags, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls, extractFaqPairs } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
-import { upgradeGalleryImages, cleanTitle } from '@/lib/utils';
+import { upgradeGalleryImages, formatCardTitle } from '@/lib/utils';
 import type { Metadata } from 'next';
 
 const SITE_URL = 'https://barmagazine.com';
@@ -227,7 +227,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         <div className="article-hero-content">
           <h1
             className="article-hero-title"
-            dangerouslySetInnerHTML={{ __html: cleanTitle(post.title.rendered) }}
+            dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }}
           />
           <div className="article-hero-meta">
             {authorName && (

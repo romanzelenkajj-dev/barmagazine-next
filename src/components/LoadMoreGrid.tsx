@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { cleanTitle } from '@/lib/utils';
+import { cleanTitle, formatCardTitle } from '@/lib/utils';
 
 interface Post {
   id: number;
@@ -124,13 +124,13 @@ export function LoadMoreGrid({
               <div className="article-card-img">
                 {imageUrl && (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={imageUrl} alt={strip(post.title.rendered)} loading="lazy" />
+                  <img src={imageUrl} alt={cleanTitle(post.title.rendered)} loading="lazy" />
                 )}
               </div>
               <div className="article-card-body">
                 <h3
                   className="article-card-title"
-                  dangerouslySetInnerHTML={{ __html: cleanTitle(post.title.rendered) }}
+                  dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }}
                 />
                 <p className="article-card-excerpt">{excerpt}</p>
               </div>
