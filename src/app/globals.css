@@ -1089,15 +1089,18 @@ button {
 }
 
 /* ====== SIDEBAR ====== */
-/* Sidebar scrolls naturally with the page; once the article is longer than
-   the sidebar, sticky + align-self: start on the parent grid pins it at
-   the bottom of its content. No nested scroll region. */
+/* Pin-to-bottom sticky: the sidebar scrolls naturally with the article
+   until its bottom edge reaches the viewport bottom, then pins there
+   (keeping the Flavour Blaster ad + newsletter visible) until the article
+   column releases it at the end. Using `bottom` instead of `top` is what
+   produces this feel on short sidebars; `top:` would stick immediately at
+   the viewport top and feel glued. */
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
   position: sticky;
-  top: calc(var(--nav-h) + var(--gap));
+  bottom: var(--gap);
   align-self: start;
   min-width: 0;
 }
