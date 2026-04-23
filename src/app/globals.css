@@ -1089,6 +1089,9 @@ button {
 }
 
 /* ====== SIDEBAR ====== */
+/* Sidebar scrolls naturally with the page; once the article is longer than
+   the sidebar, sticky + align-self: start on the parent grid pins it at
+   the bottom of its content. No nested scroll region. */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -1097,23 +1100,6 @@ button {
   top: calc(var(--nav-h) + var(--gap));
   align-self: start;
   min-width: 0;
-  max-height: calc(100vh - var(--nav-h) - var(--gap) * 2);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.15) transparent;
-}
-
-.sidebar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.15);
-  border-radius: 4px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-  background: transparent;
 }
 
 .sidebar-card {
