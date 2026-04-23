@@ -263,7 +263,7 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
         map.addLayer({
           id: 'clusters', type: 'circle', source: 'bars', filter: ['has', 'point_count'],
           paint: {
-            'circle-color': ['step', ['get', 'point_count'], '#c47843', 10, '#b06835', 30, '#9a5a2a'],
+            'circle-color': ['step', ['get', 'point_count'], '#9B4A2D', 10, '#854026', 30, '#6F3321'],
             'circle-radius': ['step', ['get', 'point_count'], 18, 10, 24, 30, 32, 100, 40],
             'circle-stroke-width': 2, 'circle-stroke-color': 'rgba(244, 237, 228, 0.3)',
           },
@@ -290,7 +290,7 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
         map.addLayer({
           id: 'bar-points-free', type: 'circle', source: 'bars',
           filter: ['all', ['!', ['has', 'point_count']], ['==', ['get', 'tier'], 'free']],
-          paint: { 'circle-radius': 5, 'circle-color': '#c47843', 'circle-stroke-width': 1.5, 'circle-stroke-color': 'rgba(244, 237, 228, 0.4)', 'circle-opacity': 0.85 },
+          paint: { 'circle-radius': 5, 'circle-color': '#9B4A2D', 'circle-stroke-width': 1.5, 'circle-stroke-color': 'rgba(244, 237, 228, 0.4)', 'circle-opacity': 0.85 },
         });
 
         map.on('click', 'clusters', (e) => {
@@ -316,8 +316,8 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
             : '';
           const badgeHtml = isTop10
             ? '<span style="display:inline-block;background:linear-gradient(135deg,#B8973A,#D4B84A);color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:700;margin-bottom:4px;letter-spacing:0.5px;">★ TOP 10</span><br/>'
-            : isFeatured ? '<span style="display:inline-block;background:#c47843;color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;margin-bottom:4px;letter-spacing:0.5px;">FEATURED</span><br/>' : '';
-          const upgradeHtml = (!isFeatured && !isTop10) ? '<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.1);font-size:10px;color:#c47843;"><a href="/claim-your-bar" style="color:#c47843;text-decoration:none;">★ Upgrade to stand out →</a></div>' : '';
+            : isFeatured ? '<span style="display:inline-block;background:#9B4A2D;color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;margin-bottom:4px;letter-spacing:0.5px;">FEATURED</span><br/>' : '';
+          const upgradeHtml = (!isFeatured && !isTop10) ? '<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.1);font-size:10px;color:#9B4A2D;"><a href="/claim-your-bar" style="color:#9B4A2D;text-decoration:none;">★ Upgrade to stand out →</a></div>' : '';
           new mapboxgl.Popup({ closeButton: true, closeOnClick: true, maxWidth: '220px', className: 'bar-map-popup' })
             .setLngLat(coords)
             .setHTML(`<div style="cursor:pointer;" onclick="window.location.href='/bars/${props.slug}'">${photoHtml}${badgeHtml}<strong style="font-size:14px;color:#f5f0eb;">${props.name}</strong><br/><span style="font-size:12px;color:#a09888;">${props.city}, ${props.country}</span><br/><span style="font-size:11px;color:#7a7060;text-transform:uppercase;letter-spacing:0.5px;">${props.type || 'Bar'}</span>${upgradeHtml}</div>`)

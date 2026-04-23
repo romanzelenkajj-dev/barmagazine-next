@@ -86,7 +86,7 @@ export default function PhotoManager({ barId, photos, adminSecret, onUpdate }: P
       <button
         onClick={() => fileRef.current?.click()}
         disabled={uploading}
-        style={{ fontSize: 13, fontWeight: 600, padding: '8px 16px', borderRadius: 8, border: '1.5px dashed #C4603C', background: 'transparent', color: '#C4603C', cursor: 'pointer' }}
+        style={{ fontSize: 13, fontWeight: 600, padding: '8px 16px', borderRadius: 8, border: '1.5px dashed #9B4A2D', background: 'transparent', color: '#9B4A2D', cursor: 'pointer' }}
       >
         {uploading ? 'Uploading...' : '+ Upload Photo'}
       </button>

@@ -42,7 +42,7 @@ export function BarProfileClient({ lat, lng, name }: Props) {
       const el = document.createElement('div');
       el.style.cssText = `
         width: 24px; height: 24px; border-radius: 50%;
-        background: #c47843; border: 3px solid #f5f0eb;
+        background: #9B4A2D; border: 3px solid #f5f0eb;
         box-shadow: 0 2px 8px rgba(0,0,0,0.4);
       `;
 
