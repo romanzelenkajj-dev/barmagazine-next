@@ -1089,31 +1089,24 @@ button {
 }
 
 /* ====== SIDEBAR ====== */
+/* Scroll-with-article, then pin when the sidebar's bottom reaches the
+   viewport's bottom. Trick: a sticky element at the top of its container
+   can't fire sticky-bottom (it would need to scroll INTO view from below).
+   Instead, use sticky-top with a NEGATIVE `top` equal to (sidebar height −
+   viewport height + gap). The sticky threshold is then hit exactly when
+   the bottom edge reaches the viewport bottom — so the sidebar scrolls
+   naturally up to that point, then pins. 1800px is a safety margin above
+   the current ~1780px sidebar content; retune if cards are added/removed.
+   On viewports taller than ~1820px the calc goes positive and this
+   degrades to an ordinary top-pin. */
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
   position: sticky;
-  top: calc(var(--nav-h) + var(--gap));
+  top: calc(100vh - 1800px - var(--gap));
   align-self: start;
   min-width: 0;
-  max-height: calc(100vh - var(--nav-h) - var(--gap) * 2);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0,0,0,0.15) transparent;
-}
-
-.sidebar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.15);
-  border-radius: 4px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-  background: transparent;
 }
 
 .sidebar-card {
