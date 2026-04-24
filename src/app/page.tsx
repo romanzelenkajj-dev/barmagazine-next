@@ -8,7 +8,7 @@ import { getBarArticleSlugs } from '@/lib/supabase';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 export const revalidate = 300;
 
-const CATEGORY_SLUGS = ['bars', 'people', 'cocktails', 'awards-events', 'brands', 'events'] as const;
+const CATEGORY_SLUGS = ['bars', 'people', 'cocktails', 'awards', 'brands', 'events'] as const;
 
 export default async function HomePage() {
   // Fetch all data in parallel: latest posts, bars for Featured Bars, all 6 category sets
