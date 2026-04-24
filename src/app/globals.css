@@ -2161,6 +2161,11 @@ button {
     transform: translateX(-50%);
   }
 
+  .nav-logo img {
+    height: 40px;
+    width: auto;
+  }
+
   .nav-search {
     position: absolute;
     left: 16px;
