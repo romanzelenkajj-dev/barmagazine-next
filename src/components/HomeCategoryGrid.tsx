@@ -57,7 +57,7 @@ const CATEGORIES = [
   { label: 'Bars', slug: 'bars' },
   { label: 'People', slug: 'people' },
   { label: 'Cocktails', slug: 'cocktails' },
-  { label: 'Awards', slug: 'awards-events' },
+  { label: 'Awards', slug: 'awards' },
   { label: 'Brands', slug: 'brands' },
   { label: 'Events', slug: 'events' },
 ];
