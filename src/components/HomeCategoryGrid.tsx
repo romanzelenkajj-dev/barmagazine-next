@@ -65,16 +65,23 @@ const CATEGORIES = [
 interface Props {
   initialPosts: string;   // JSON-serialized WPPost[] (the "All Categories" default)
   categoryData: string;   // JSON-serialized Record<string, WPPost[]> (pre-fetched per category)
+  heroId?: number;        // ID of the hero article above the grid — filtered out so it doesn't duplicate
 }
 
-export function HomeCategoryGrid({ initialPosts, categoryData }: Props) {
+const DISPLAY_COUNT = 6;
+
+export function HomeCategoryGrid({ initialPosts, categoryData, heroId }: Props) {
   const allPosts: WPPost[] = (() => { try { return JSON.parse(initialPosts); } catch { return []; } })();
   const catMap: Record<string, WPPost[]> = (() => { try { return JSON.parse(categoryData); } catch { return {}; } })();
 
   const [selectedCategory, setSelectedCategory] = useState('');
 
-  // Determine which posts to show — instant, no fetch needed
-  const posts = selectedCategory ? (catMap[selectedCategory] || []) : allPosts;
+  // Determine which posts to show — instant, no fetch needed.
+  // Filter out the hero article (prevents duplicate render beneath the hero
+  // when hero's category is selected, or when the WP "All Categories" feed
+  // happens to repeat it) and cap at the display count.
+  const rawPosts = selectedCategory ? (catMap[selectedCategory] || []) : allPosts;
+  const posts = rawPosts.filter(p => p.id !== heroId).slice(0, DISPLAY_COUNT);
 
   const handleChange = (value: string) => {
     setSelectedCategory(value);
