@@ -11,12 +11,14 @@ export const revalidate = 300;
 const CATEGORY_SLUGS = ['bars', 'people', 'cocktails', 'awards', 'brands', 'events'] as const;
 
 export default async function HomePage() {
-  // Fetch all data in parallel: latest posts, bars for Featured Bars, all 6 category sets
+  // Fetch all data in parallel: latest posts, bars for Featured Bars, all 6 category sets.
+  // We fetch 1 extra per set so the grid can filter out the hero article client-side
+  // and still render the full 6-card count.
   const [result, barsResult, barArticleSlugs, ...categoryResults] = await Promise.all([
-    getPosts(1, 7),
+    getPosts(1, 8),
     getPostsByCategory('bars', 1, 30), // fetch more so we have enough after filtering
     getBarArticleSlugs(),
-    ...CATEGORY_SLUGS.map(slug => getPostsByCategory(slug, 1, 6)),
+    ...CATEGORY_SLUGS.map(slug => getPostsByCategory(slug, 1, 7)),
   ]);
 
   const posts = result.data.filter(hasSlug);
@@ -28,7 +30,7 @@ export default async function HomePage() {
     .slice(0, 12);
 
   const hero = posts[0];
-  const cardPosts = posts.slice(1, 7);
+  const cardPosts = posts.slice(1, 8);
   const heroImgFull = hero ? getFeaturedImageData(hero, 'full') : null;
   const heroImgMedium = hero ? getFeaturedImageData(hero, 'medium_large') : null;
   const heroImgLarge = hero ? getFeaturedImageData(hero, 'large') : null;
@@ -84,6 +86,7 @@ export default async function HomePage() {
       <HomeCategoryGrid
         initialPosts={JSON.stringify(cardPosts)}
         categoryData={JSON.stringify(categoryData)}
+        heroId={hero?.id}
       />
 
       {/* D) CTA BANNER + AD */}
