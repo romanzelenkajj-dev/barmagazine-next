@@ -1,5 +1,13 @@
 export function toUrlSlug(text: string): string {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  // NFD-decompose then strip combining marks so accented characters
+  // transliterate to ASCII (ã → a, é → e, ç → c) instead of being dropped
+  // by the [^a-z0-9] filter ("São Paulo" → "sao-paulo", not "s-o-paulo").
+  return text
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 }
 
 export function fromUrlSlug(slug: string): string {
