@@ -42,6 +42,30 @@ const nextConfig = {
       // /category/latest — users click "Latest" nav link expecting this path
       { source: '/category/latest', destination: '/', permanent: true },
 
+      // ---------------------------------------------------------------
+      // Broken city slugs — toUrlSlug used to drop accented chars (ã → '')
+      // instead of transliterating them (ã → 'a'), producing slugs like
+      // 's-o-paulo' for "São Paulo". Fixed in src/lib/utils.ts; these
+      // 301s redirect any inbound links / cached search results from the
+      // broken slugs to the new correct ASCII slugs.
+      // ---------------------------------------------------------------
+      { source: '/bars/city/s-o-paulo', destination: '/bars/city/sao-paulo', permanent: true },
+      { source: '/bars/city/m-xico', destination: '/bars/city/mexico', permanent: true },
+      { source: '/bars/city/c-rdoba', destination: '/bars/city/cordoba', permanent: true },
+      { source: '/bars/city/m-laga', destination: '/bars/city/malaga', permanent: true },
+      { source: '/bars/city/canc-n', destination: '/bars/city/cancun', permanent: true },
+      { source: '/bars/city/bogot', destination: '/bars/city/bogota', permanent: true },
+      { source: '/bars/city/medell-n', destination: '/bars/city/medellin', permanent: true },
+      { source: '/bars/city/bras-lia', destination: '/bars/city/brasilia', permanent: true },
+      { source: '/bars/city/d-sseldorf', destination: '/bars/city/dusseldorf', permanent: true },
+      { source: '/bars/city/z-rich', destination: '/bars/city/zurich', permanent: true },
+      { source: '/bars/city/reykjav-k', destination: '/bars/city/reykjavik', permanent: true },
+      { source: '/bars/city/asunci-n', destination: '/bars/city/asuncion', permanent: true },
+      { source: '/bars/city/cura-ao', destination: '/bars/city/curacao', permanent: true },
+      { source: '/bars/city/quer-taro', destination: '/bars/city/queretaro', permanent: true },
+      { source: '/bars/city/val-ncia', destination: '/bars/city/valencia', permanent: true },
+      { source: '/bars/city/m-rida', destination: '/bars/city/merida', permanent: true },
+
       // Broken bar slugs — old URLs with accented/garbled characters redirected to clean ASCII slugs
       { source: '/bars/m%C3%A9lange-by-cali-sober', destination: '/bars/melange-by-cali-sober', permanent: true },
       { source: '/bars/mlange-by-cali-sober', destination: '/bars/melange-by-cali-sober', permanent: true },
