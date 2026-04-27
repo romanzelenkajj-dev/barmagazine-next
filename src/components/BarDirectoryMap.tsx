@@ -193,14 +193,15 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
       const cityCoords = CITY_COORDS_MAP[cityKey];
       const countryCenter = geoCountryCode ? COUNTRY_CENTER[geoCountryCode.toUpperCase()] : null;
 
-      // Priority: active filter (city/country) > bars with coords > GPS > IP city > IP country > world view
-      // Determine center from active city filter
+      // Priority: active city filter > active country filter > user GPS > IP city > IP country
+      // > bars-bounding-box (only useful when bars are a tight subset, e.g. country filter applied)
+      // > world view.
+      // NOTE: bars-bounding-box must NOT take priority over GPS / IP, otherwise the
+      // global "all bars" set yields a degenerate midpoint (~lng 15, lat 10 — Africa).
       const activeCityKey = cityFilter.toLowerCase();
       const activeCityCoords = CITY_COORDS_MAP[activeCityKey];
-      // Determine center from active country filter
       const activeCountryCode = countryFilter ? COUNTRY_NAME_TO_CODE[countryFilter.toLowerCase()] : null;
       const activeCountryCenter = activeCountryCode ? COUNTRY_CENTER[activeCountryCode] : null;
-      // Determine center from bars that already have coordinates
       const barsWithCoords = bars.filter(b => b.lat && b.lng);
       let barsCenter: [number, number] | null = null;
       let barsZoom = 9;
@@ -215,19 +216,20 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
       }
       const initialCenter: [number, number] = activeCityCoords
         ? activeCityCoords
-        : barsCenter
-        ? barsCenter
         : activeCountryCenter ? [activeCountryCenter[0], activeCountryCenter[1]]
         : (userLat != null && userLng != null) ? [userLng, userLat]
         : cityCoords ? cityCoords
-        : countryCenter ? [countryCenter[0], countryCenter[1]] : [15, 30];
+        : countryCenter ? [countryCenter[0], countryCenter[1]]
+        : barsCenter ? barsCenter
+        : [-98.5, 39.5];
       const initialZoom = activeCityCoords
         ? 11
-        : barsCenter
-        ? barsZoom
         : activeCountryCenter ? activeCountryCenter[2]
         : (userLat != null && userLng != null) ? 9
-        : cityCoords ? 9 : countryCenter ? countryCenter[2] : 1.5;
+        : cityCoords ? 9
+        : countryCenter ? countryCenter[2]
+        : barsCenter ? barsZoom
+        : 3.5;
 
       const map = new mapboxgl.Map({
         container: mapContainer.current!,
@@ -388,6 +390,11 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
       });
       return;
     }
+    // Only auto-fit when the user has narrowed the set with a filter. Without a filter
+    // the global bar set spans the whole world; fitBounds would zoom out to a centroid
+    // near (lng 0, lat ~8) and override the initial GPS/IP-based center.
+    const hasLocationFilter = !!(cityFilter || countryFilter);
+    if (!hasLocationFilter) return;
     const lngs = validBars.map(b => b.lng!);
     const lats = validBars.map(b => b.lat!);
     const minLng = Math.min(...lngs);
@@ -398,7 +405,20 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
       [[minLng, minLat], [maxLng, maxLat]],
       { padding: 60, maxZoom: 14, duration: 1200, essential: true }
     );
-  }, [bars, mapLoaded]);
+  }, [bars, mapLoaded, cityFilter, countryFilter]);
+
+  // If GPS resolves AFTER the map is created and no filter is active, fly to the user.
+  // Without this, a user who opens Map before geolocation resolves stays on the IP/default
+  // center even after granting location.
+  const didFlyToGPS = useRef(false);
+  useEffect(() => {
+    if (!mapRef.current || !mapLoaded) return;
+    if (didFlyToGPS.current) return;
+    if (userLat == null || userLng == null) return;
+    if (cityFilter || countryFilter) return;
+    didFlyToGPS.current = true;
+    mapRef.current.flyTo({ center: [userLng, userLat], zoom: 9, duration: 1200, essential: true });
+  }, [userLat, userLng, mapLoaded, cityFilter, countryFilter]);
 
   const toggleExpand = () => { setIsExpanded(!isExpanded); setTimeout(() => mapRef.current?.resize(), 100); };
 
