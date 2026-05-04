@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "vitest run && node scripts/seo-check.mjs --mode=build",
+    "prebuild": "vitest run && node scripts/seo-check.mjs --mode=build && node scripts/generate-bar-redirects.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
     "test:watch": "vitest",
     "seo:check:build": "node scripts/seo-check.mjs --mode=build",
-    "seo:check:live": "node scripts/seo-check.mjs --mode=live"
+    "seo:check:live": "node scripts/seo-check.mjs --mode=live",
+    "seo:gen-redirects": "node scripts/generate-bar-redirects.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.99.2",

@@ -35,3 +35,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# build-time generated SEO data — Supabase + WP are the sources of truth,
+# regenerated on every build (see scripts/generate-bar-redirects.mjs).
+src/lib/bar-redirects.generated.json
