@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
 import { WP_API as WP_API_DEFAULT } from '@/lib/wordpress';
+import {
+  shouldExcludeFromSitemap,
+  type ExclusionReason,
+} from '@/lib/sitemap-filters';
 
 const SITE_URL = 'https://barmagazine.com';
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 // barmagazine.com/wp-json/* is blocked by Vercel's WAF (returns 403). The
 // real WP origin is the WordPress.com public API — see src/lib/wordpress.ts.
 // The previous default of `https://barmagazine.com/wp-json/wp/v2` is what
@@ -23,6 +29,49 @@ type WPEntry = {
   modified: string;
   _type: 'post' | 'page';
 };
+
+/**
+ * Fetch active bar slugs from Supabase (anon key + public-read RLS).
+ * Used for the A1.1 cross-reference: any WP slug whose /bars/{slug}
+ * counterpart exists is excluded from sitemap-articles to avoid splitting
+ * ranking signals between root-level and /bars/* URLs.
+ *
+ * Tolerant of missing env vars or upstream failure — returns an empty set
+ * and logs a warning. The other filters (Slovak, WP system, stub pages)
+ * still apply.
+ */
+async function fetchActiveBarSlugs(): Promise<Set<string>> {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    console.warn(
+      '[sitemap-articles] Supabase env missing; bar-shadow filter disabled.',
+    );
+    return new Set();
+  }
+  try {
+    const url = `${SUPABASE_URL}/rest/v1/bars?select=slug&is_active=eq.true&limit=10000`;
+    const res = await fetch(url, {
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      },
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) {
+      console.warn(
+        `[sitemap-articles] Supabase /bars returned ${res.status}; bar-shadow filter disabled this cycle.`,
+      );
+      return new Set();
+    }
+    const rows = (await res.json()) as Array<{ slug: string }>;
+    return new Set(rows.map((r) => r.slug).filter(Boolean));
+  } catch (err) {
+    console.warn(
+      `[sitemap-articles] Supabase fetch error; bar-shadow filter disabled this cycle:`,
+      err,
+    );
+    return new Set();
+  }
+}
 
 async function fetchAll(endpoint: 'posts' | 'pages'): Promise<WPEntry[]> {
   const out: WPEntry[] = [];
@@ -65,23 +114,59 @@ function escapeXml(s: string): string {
 export async function GET() {
   let posts: WPEntry[] = [];
   let pages: WPEntry[] = [];
+  let barSlugs: Set<string> = new Set();
 
   try {
-    [posts, pages] = await Promise.all([fetchAll('posts'), fetchAll('pages')]);
+    [posts, pages, barSlugs] = await Promise.all([
+      fetchAll('posts'),
+      fetchAll('pages'),
+      fetchActiveBarSlugs(),
+    ]);
   } catch (err) {
     // Re-throw so Next returns 5xx. An empty <urlset/> would be cached by
     // Google as "correct" for up to an hour, masking the failure. A 5xx
     // makes Googlebot retry, which is what we want when WP is misconfigured.
+    // (Note: fetchActiveBarSlugs never throws — only WP failures escape.)
     console.error('[sitemap-articles] WP fetch failed, returning 500:', err);
     throw err;
   }
 
   const seen = new Set<string>();
+  const excludedCounts: Record<ExclusionReason, number> = {
+    empty: 0,
+    'shadows-bar-directory': 0,
+    'slovak-legacy': 0,
+    'wp-system': 0,
+    'stub-pending-rebuild': 0,
+  };
+  const excludedSamples: Array<{ slug: string; reason: ExclusionReason }> = [];
+
   const merged = [...posts, ...pages].filter((e) => {
     if (seen.has(e.slug)) return false;
     seen.add(e.slug);
+    const decision = shouldExcludeFromSitemap(e.slug, { barSlugs });
+    if (decision.exclude && decision.reason) {
+      excludedCounts[decision.reason]++;
+      if (excludedSamples.length < 20) {
+        excludedSamples.push({ slug: e.slug, reason: decision.reason });
+      }
+      return false;
+    }
     return true;
   });
+
+  // Observability: log a summary so excluded slugs are auditable in Vercel
+  // function logs without flooding the output. Sample first 20 inline.
+  const totalExcluded = Object.values(excludedCounts).reduce((a, b) => a + b, 0);
+  if (totalExcluded > 0) {
+    console.log(
+      `[sitemap-articles] kept=${merged.length} excluded=${totalExcluded}`,
+      JSON.stringify(excludedCounts),
+    );
+    for (const s of excludedSamples) {
+      console.log(`  - /${s.slug}: ${s.reason}`);
+    }
+  }
 
   merged.sort((a, b) => (b.modified ?? '').localeCompare(a.modified ?? ''));
 
