@@ -48,6 +48,15 @@ function serveGone(): NextResponse {
 // next.config.mjs `trailingSlash` setting.
 const TAG_PATH_RE = /^\/tag(\/.*)?$/;
 
+// Match /events/{slug} or deeper — but NOT bare /events (the events index
+// page at src/app/events/page.tsx). The 5 known /events/X URLs that should
+// redirect have explicit rules in next.config.mjs's redirects(), which run
+// BEFORE middleware in the Next.js routing pipeline. So this regex only
+// fires for unlisted /events/X URLs — legacy WordPress event taxonomy
+// remnants. 410 Gone is a stronger crawler signal than 404 (permanent,
+// drop from index now) and matches the /tag/* / /author/* convention.
+const STALE_EVENTS_RE = /^\/events\/.+$/;
+
 // EU member state ISO codes — used by the /claim-your-bar currency cookie.
 const EU_COUNTRIES = new Set([
   'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
@@ -73,6 +82,14 @@ export function middleware(request: NextRequest) {
   // Google drops the URLs from the index instead of keeping them as redirects.
   // 393 such URLs were flagged in Search Console.
   if (TAG_PATH_RE.test(request.nextUrl.pathname)) {
+    return serveGone();
+  }
+
+  // /events/{unlisted-slug} — 410. Reaches here only if no explicit redirect
+  // in next.config.mjs matched (redirects() runs before middleware), so this
+  // is by definition an unlisted legacy /events/X URL. Cleaner signal than
+  // letting Next.js fall through to a 404 page.
+  if (STALE_EVENTS_RE.test(request.nextUrl.pathname)) {
     return serveGone();
   }
 
