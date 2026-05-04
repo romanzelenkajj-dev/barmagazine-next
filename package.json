@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/seo-check.mjs --mode=build",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seo:check:build": "node scripts/seo-check.mjs --mode=build",
+    "seo:check:live": "node scripts/seo-check.mjs --mode=live"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.99.2",
