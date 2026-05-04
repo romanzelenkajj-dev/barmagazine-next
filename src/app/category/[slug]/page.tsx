@@ -19,6 +19,22 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
+// HTML-decode WP-rendered titles for the ItemList schema (the rendered
+// field arrives with entities like &#8217; for typographic apostrophes).
+function decodeHtmlEntities(s: string): string {
+  return s
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#8217;|&apos;|&#39;/g, "'")
+    .replace(/&#8211;/g, '–')
+    .replace(/&#8212;/g, '—')
+    .replace(/&#8220;|&#8221;/g, '"')
+    .replace(/&hellip;|&#8230;/g, '…')
+    .replace(/&nbsp;/g, ' ');
+}
+
 export default async function CategoryPage({
   params,
 }: {
@@ -31,8 +47,31 @@ export default async function CategoryPage({
   // Use the local proxy to avoid exposing the WP staging domain in client HTML
   const fetchUrl = `/api/wp-posts?categories=${category.id}&per_page=12`;
 
+  // A6: ItemList JSON-LD enumerating the posts on this category page.
+  // Helps Google understand the page's content as an editorial collection
+  // and unlocks SERP carousel / list-style rich results.
+  const itemListLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${category.name} — BarMagazine`,
+    url: `https://barmagazine.com/category/${params.slug}`,
+    numberOfItems: result.data.length,
+    itemListElement: (result.data as Array<{ slug: string; title?: { rendered?: string } }>).map(
+      (post, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `https://barmagazine.com/${post.slug}`,
+        name: decodeHtmlEntities(post.title?.rendered ?? ''),
+      }),
+    ),
+  };
+
   return (
     <div className="category-header-wrapper">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }}
+      />
       <div className="category-header">
         <h1>{category.name.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}</h1>
         <div className="category-header-line" />

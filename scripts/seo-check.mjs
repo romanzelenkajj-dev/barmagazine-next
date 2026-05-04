@@ -149,9 +149,9 @@ async function checkSitemapIndex() {
     return;
   }
   const subs = (r.text.match(/<sitemap>/g) ?? []).length;
-  // Currently 3 (articles, bars, news). After A6 ships, expect 4 (+ categories).
-  if (subs < 3) {
-    record('sitemap-index', 'fail', 'enforce', `index has ${subs} sub-sitemaps (< 3)`);
+  // 4 expected post-A6: articles, bars, news, categories.
+  if (subs < 4) {
+    record('sitemap-index', 'fail', 'enforce', `index has ${subs} sub-sitemaps (< 4)`);
     return;
   }
   record('sitemap-index', 'pass', 'enforce', `${subs} sub-sitemap entries`);
