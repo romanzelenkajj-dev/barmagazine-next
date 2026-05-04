@@ -311,6 +311,96 @@ async function checkRedirectDestinations() {
   }
 }
 
+/**
+ * For every static (non-dynamic, non-/bars/, non-external) redirect rule,
+ * fetch the SOURCE URL and assert that it 308s/301s once to the declared
+ * DESTINATION — no chains, no unexpected matchers.
+ *
+ * Catches the class of bug the redirect-cleanup PR uncovered: Next.js's
+ * routing manifest didn't honor array order for the /events/:slug catch-all,
+ * so explicit /events/X rules listed BEFORE it were silently being eaten.
+ * The static vitest test only checked the rules table — necessary but not
+ * sufficient. This is the runtime sufficient-condition check.
+ *
+ * Capped at 50 sources to keep the live check fast.
+ */
+async function checkRedirectSources() {
+  let nextConfig;
+  try {
+    const { fileURLToPath } = await import('node:url');
+    const { dirname, join } = await import('node:path');
+    const here = dirname(fileURLToPath(import.meta.url));
+    const cfgUrl = new URL(`file://${join(here, '..', 'next.config.mjs')}`);
+    nextConfig = (await import(cfgUrl.href)).default;
+  } catch (err) {
+    record(
+      'redirect-sources',
+      'warn',
+      'pending',
+      `cannot import next.config.mjs (${err.message}); source probe skipped`,
+    );
+    return;
+  }
+
+  const redirects = await nextConfig.redirects();
+  const probes = [];
+  for (const r of redirects) {
+    if (typeof r.source !== 'string' || typeof r.destination !== 'string') continue;
+    if (r.source.includes(':')) continue; // dynamic patterns
+    if (r.destination.includes(':')) continue;
+    if (/^https?:\/\//.test(r.destination)) continue;
+    if (r.source.startsWith('/bars/')) continue;
+    if (r.destination.startsWith('/bars/')) continue;
+    // Skip trailing-slash sources. Next.js's built-in trailing-slash
+    // normalization 308's `/foo/` → `/foo` BEFORE our redirect fires, so
+    // these inherently chain (308 → 308 → final). The non-slash variant of
+    // each rule is the canonical case to probe; we accept the +1 hop on
+    // slashed variants as Next.js framework behavior.
+    if (r.source.length > 1 && r.source.endsWith('/')) continue;
+    probes.push({ source: r.source, expected: r.destination });
+    if (probes.length >= 50) break;
+  }
+
+  const wrong = [];
+  await Promise.all(
+    probes.map(async ({ source, expected }) => {
+      try {
+        const res = await fetch(`${baseUrl}${source}`, { redirect: 'manual' });
+        // Accept 301/302/307/308 — any redirect status. The Location header
+        // must match the expected destination exactly (no chain).
+        if (res.status < 300 || res.status >= 400) {
+          wrong.push(`${source} → HTTP ${res.status} (expected redirect to ${expected})`);
+          return;
+        }
+        const loc = res.headers.get('location') ?? '';
+        // Strip query string from response Location (Vercel preserves caller's query).
+        const locPath = loc.split('?')[0];
+        if (locPath !== expected) {
+          wrong.push(`${source} → ${loc} (expected ${expected})`);
+        }
+      } catch (err) {
+        wrong.push(`${source} → network error (${err.message})`);
+      }
+    }),
+  );
+
+  if (wrong.length > 0) {
+    record(
+      'redirect-sources',
+      'fail',
+      'enforce',
+      `${wrong.length}/${probes.length} mis-route: ${wrong.slice(0, 5).join(' | ')}${wrong.length > 5 ? ' …' : ''}`,
+    );
+  } else {
+    record(
+      'redirect-sources',
+      'pass',
+      'enforce',
+      `all ${probes.length} sources single-hop to declared destination`,
+    );
+  }
+}
+
 async function checkHomepageWeight() {
   // Pending: A10 (reduce homepage payload < 300 KB compressed).
   let bytes = 0;
@@ -349,6 +439,7 @@ async function run() {
       checkWwwRedirect(),
       checkHomepageWeight(),
       checkRedirectDestinations(),
+      checkRedirectSources(),
     ]);
   } else {
     console.error(`Unknown --mode=${mode}; use --mode=build or --mode=live`);
