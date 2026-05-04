@@ -182,8 +182,14 @@ const nextConfig = {
       { source: '/events/athens-bar-show-2025', destination: '/category/events', permanent: true },
       { source: '/events/athens-bar-show-2025/', destination: '/category/events', permanent: true },
 
-      // Old event sub-pages → article slugs (catch-all; runs only when no specific rule above matched)
-      { source: '/events/:slug', destination: '/:slug', permanent: true },
+      // NOTE: the previous `/events/:slug` catch-all has been REMOVED.
+      // Next.js's routing manifest didn't honor array order for that rule's
+      // precedence — the catch-all silently ate every explicit /events/X
+      // redirect (including /events/the-worlds-50-best-bars-... above, which
+      // was effectively a no-op since it was added). Removing the catch-all
+      // means an unlisted /events/X URL now 404s, which is the correct
+      // signal for crawlers to drop the URL — preferable to a chained 308.
+      // Add explicit rules for any /events/X URL that needs redirecting.
 
       // Article URL fixes — truncated slugs shared in the wild
       // BCA 2026: people shared /bartenders-choice-awards-2026 (truncated from the full slug)

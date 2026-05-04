@@ -52,10 +52,7 @@ describe('next.config.mjs redirects()', () => {
     }
   });
 
-  it('the four /events/X de-chained rules resolve directly to /category/events', async () => {
-    // Specifically verify the de-chain we shipped didn't accidentally
-    // regress. If someone re-orders the rules and the catch-all
-    // /events/:slug ends up before these explicit rules, this test fails.
+  it('the four /events/X de-chained rules go directly to /category/events', async () => {
     const redirects: Redirect[] = await nextConfig.redirects();
     const targets = [
       '/events/2025-shake-it-up-national-finals',
@@ -64,15 +61,25 @@ describe('next.config.mjs redirects()', () => {
       '/events/athens-bar-show-2025',
     ];
 
-    const catchAllIdx = redirects.findIndex((r) => r.source === '/events/:slug');
-    expect(catchAllIdx, '/events/:slug catch-all not found').toBeGreaterThan(-1);
-
     for (const t of targets) {
       const idx = redirects.findIndex((r) => r.source === t);
       expect(idx, `${t} explicit rule missing`).toBeGreaterThan(-1);
-      expect(idx, `${t} must come BEFORE /events/:slug catch-all`).toBeLessThan(catchAllIdx);
       expect(redirects[idx].destination).toBe('/category/events');
     }
+  });
+
+  it('the /events/:slug catch-all has been removed', async () => {
+    // Next.js's routing manifest does NOT honor array order for the
+    // /events/:slug param-pattern vs literal /events/X siblings — the
+    // catch-all was silently winning every match, even for explicit rules
+    // listed before it. Including the /events/the-worlds-50-best-bars-...
+    // rule that pre-dated this PR, which was a no-op for weeks.
+    // Fix: remove the catch-all entirely. Explicit rules now match
+    // unambiguously; unlisted /events/X URLs return 404 (correct signal
+    // for crawlers to drop them, preferable to a chained 308).
+    const redirects: Redirect[] = await nextConfig.redirects();
+    const catchAll = redirects.find((r) => r.source === '/events/:slug');
+    expect(catchAll, 'catch-all /events/:slug must not exist').toBeUndefined();
   });
 
   it('/the-bars-of-barcelona points at the real article, not /category/places', async () => {
