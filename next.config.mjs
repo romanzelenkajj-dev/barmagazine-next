@@ -1,3 +1,36 @@
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// A4: load the build-time-generated /{slug} → /bars/{slug} redirects from
+// scripts/generate-bar-redirects.mjs (auto-runs in `prebuild`). The file is
+// gitignored — Supabase is the source of truth, regenerated on every deploy.
+function loadBarRedirects() {
+  try {
+    const txt = readFileSync(
+      join(__dirname, 'src/lib/bar-redirects.generated.json'),
+      'utf8',
+    );
+    const data = JSON.parse(txt);
+    return Array.isArray(data?.redirects) ? data.redirects : [];
+  } catch {
+    console.warn(
+      '[next.config] src/lib/bar-redirects.generated.json missing — ' +
+        '/{slug} → /bars/{slug} redirects disabled. Run ' +
+        '`node scripts/generate-bar-redirects.mjs` (auto-runs in prebuild / Vercel CI).',
+    );
+    return [];
+  }
+}
+
+const barRedirects = loadBarRedirects().map((r) => ({
+  source: r.from,
+  destination: r.to,
+  permanent: true,
+}));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -188,6 +221,14 @@ const nextConfig = {
       { source: '/the-bars-of-barcelona', destination: '/category/places', permanent: true },
       { source: '/the-art-of-wine-production', destination: '/category/brands', permanent: true },
       { source: '/drinky-juznej-ameriky', destination: '/category/cocktails', permanent: true },
+
+      // ---------------------------------------------------------------
+      // A4: /{bar-slug} → /bars/{bar-slug} (301, permanent).
+      // Generated at build time from Supabase (active bars) cross-checked
+      // against WP post/page slugs to avoid clobbering real editorial URLs.
+      // See scripts/generate-bar-redirects.mjs.
+      // ---------------------------------------------------------------
+      ...barRedirects,
     ];
   },
   // Prevent browsers from caching stale favicons
