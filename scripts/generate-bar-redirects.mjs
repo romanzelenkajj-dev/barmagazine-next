@@ -150,6 +150,22 @@ async function main() {
     if (seen.has(s)) continue; // belt-and-suspenders against accidental dupes
     seen.add(s);
 
+    // Defense-in-depth against non-ASCII slugs (e.g., the historical 'kwãnt'
+    // case fixed in PR #18). The Supabase CHECK constraint
+    // bars_slug_ascii_only should already prevent these, but if a row sneaks
+    // through (race / manual SQL / pre-constraint legacy), skip it: a
+    // redirect like /kwãnt → /bars/kwãnt would be rewritten by Vercel
+    // normalization to /bars/kwant, which 404s if the data isn't ASCII-clean.
+    if (!/^[a-z0-9-]+$/.test(s)) {
+      skipped.push({
+        slug: s,
+        reason:
+          'non-ASCII slug; expected ^[a-z0-9-]+$. ' +
+          'Supabase CHECK constraint bars_slug_ascii_only should prevent this — investigate the data row',
+      });
+      continue;
+    }
+
     if (RESERVED_ROUTES.has(s)) {
       skipped.push({ slug: s, reason: 'collides with a reserved Next.js route' });
       continue;

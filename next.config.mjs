@@ -116,6 +116,9 @@ const nextConfig = {
       { source: '/bars/caf-pacifico', destination: '/bars/cafe-pacifico', permanent: true },
       { source: '/bars/barmnster', destination: '/bars/barmunster', permanent: true },
       { source: '/bars/florera-atlntico', destination: '/bars/floreria-atlantico', permanent: true },
+      // TODO: redundant since PR #18 renamed the Supabase slug to 'kwant' —
+      // the source URL no longer maps to anything. Harmless to keep; sweep
+      // up next time we materially edit this redirect list.
       { source: '/bars/kw%C3%A3nt', destination: '/bars/kwant', permanent: true },
 
       // Old WordPress pages
