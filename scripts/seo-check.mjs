@@ -233,6 +233,84 @@ async function checkWwwRedirect() {
   record('www-redirect', status, severity, `www returned ${r.status} (target: 30x, B5)`);
 }
 
+/**
+ * For every static, hand-curated, non-/bars/, non-dynamic redirect rule in
+ * next.config.mjs, hit the destination URL and verify HTTP 200. Catches the
+ * class of bug found in the redirect-cleanup PR — historical
+ * /the-bars-of-barcelona → /category/places, where the destination 404'd.
+ *
+ * Skips:
+ *   - /bars/* destinations (985 dynamic bar redirects; A4 verification curls
+ *     cover those)
+ *   - destinations with ':' (Next dynamic patterns; resolved at request time)
+ *   - absolute URLs (off-site)
+ *   - duplicates (one HEAD per unique destination)
+ */
+async function checkRedirectDestinations() {
+  let nextConfig;
+  try {
+    const { fileURLToPath } = await import('node:url');
+    const { dirname, join } = await import('node:path');
+    const here = dirname(fileURLToPath(import.meta.url));
+    const cfgUrl = new URL(`file://${join(here, '..', 'next.config.mjs')}`);
+    nextConfig = (await import(cfgUrl.href)).default;
+  } catch (err) {
+    record(
+      'redirect-destinations',
+      'warn',
+      'pending',
+      `cannot import next.config.mjs (${err.message}); destination probe skipped`,
+    );
+    return;
+  }
+
+  const redirects = await nextConfig.redirects();
+  const probe = new Set();
+  for (const r of redirects) {
+    const d = r.destination;
+    if (typeof d !== 'string') continue;
+    if (d.includes(':')) continue;
+    if (/^https?:\/\//.test(d)) continue;
+    if (d.startsWith('/bars/')) continue;
+    if (!d.startsWith('/')) continue;
+    probe.add(d);
+  }
+
+  const broken = [];
+  // Cap at 80 to keep this fast; well above the static rule count today.
+  const targets = [...probe].slice(0, 80);
+  await Promise.all(
+    targets.map(async (dest) => {
+      const r = await safeFetchHead(`${baseUrl}${dest}`);
+      if (!r.ok) {
+        broken.push(`${dest} → network error (${r.error.message})`);
+        return;
+      }
+      // 200 = good. 30x = chained (caught by static test, double-check live).
+      // 4xx/5xx = broken final destination.
+      if (r.status !== 200) {
+        broken.push(`${dest} → HTTP ${r.status}`);
+      }
+    }),
+  );
+
+  if (broken.length > 0) {
+    record(
+      'redirect-destinations',
+      'fail',
+      'enforce',
+      `${broken.length}/${targets.length} broken: ${broken.slice(0, 5).join(' | ')}${broken.length > 5 ? ' …' : ''}`,
+    );
+  } else {
+    record(
+      'redirect-destinations',
+      'pass',
+      'enforce',
+      `all ${targets.length} static destinations resolve 200`,
+    );
+  }
+}
+
 async function checkHomepageWeight() {
   // Pending: A10 (reduce homepage payload < 300 KB compressed).
   let bytes = 0;
@@ -270,6 +348,7 @@ async function run() {
       checkCategoryPagination(),
       checkWwwRedirect(),
       checkHomepageWeight(),
+      checkRedirectDestinations(),
     ]);
   } else {
     console.error(`Unknown --mode=${mode}; use --mode=build or --mode=live`);
