@@ -8,8 +8,12 @@ create extension if not exists "uuid-ossp";
 create table bars (
   id uuid default uuid_generate_v4() primary key,
   name text not null,
-  slug text not null unique,
-  
+  -- slug must be ASCII (lowercase letters, digits, hyphens). Vercel
+  -- normalizes accented URLs to ASCII before our routing runs, so a
+  -- non-ASCII slug here would 404. See scripts/bars-ascii-slug-migration.sql
+  -- for the migration that introduced this constraint to existing installs.
+  slug text not null unique constraint bars_slug_ascii_only check (slug ~ '^[a-z0-9-]+$'),
+
   -- Location
   city text not null,
   country text not null,
