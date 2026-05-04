@@ -26,6 +26,28 @@ import { NextResponse, type NextRequest } from 'next/server';
 
 const CANONICAL_HOST = 'barmagazine.com';
 
+/**
+ * Return HTTP 410 Gone for legacy URL classes that should never be revived.
+ *
+ * Currently used by /tag/* (this PR — 393 inactive WordPress tag URLs flagged
+ * in Search Console "Page with redirect"). Designed so B1 (Slovak legacy
+ * slugs) and B2 (/author/*) plug into the same helper when they ship.
+ *
+ * Plain-text body is intentional for now. A branded 410 page is part of B1
+ * scope and can wrap this when designed.
+ */
+function serveGone(): NextResponse {
+  return new NextResponse('Gone — this page is no longer available.', {
+    status: 410,
+    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+  });
+}
+
+// Match every variant of /tag, /tag/, /tag/foo, /tag/foo/, /tag/foo/feed/.
+// Both trailing-slash and non-trailing-slash forms; works regardless of
+// next.config.mjs `trailingSlash` setting.
+const TAG_PATH_RE = /^\/tag(\/.*)?$/;
+
 // EU member state ISO codes — used by the /claim-your-bar currency cookie.
 const EU_COUNTRIES = new Set([
   'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
@@ -45,6 +67,13 @@ export function middleware(request: NextRequest) {
   if (!isCanonical && !isLocal) {
     const url = new URL(request.nextUrl.pathname + request.nextUrl.search, `https://${CANONICAL_HOST}`);
     return NextResponse.redirect(url, 301);
+  }
+
+  // /tag/* — legacy WordPress taxonomy. Never to be revived. 410 Gone so
+  // Google drops the URLs from the index instead of keeping them as redirects.
+  // 393 such URLs were flagged in Search Console.
+  if (TAG_PATH_RE.test(request.nextUrl.pathname)) {
+    return serveGone();
   }
 
   // Preserve existing geo-currency cookie on /claim-your-bar.

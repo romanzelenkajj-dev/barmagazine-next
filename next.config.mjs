@@ -154,16 +154,35 @@ const nextConfig = {
       { source: '/:slug/5', destination: '/:slug', permanent: true },
 
       // Author pages (no equivalent in new site)
+      // NOTE: still 301 to homepage. B2 will switch this to a 410 via
+      // middleware (same handler /tag/* now uses).
       { source: '/author/:slug', destination: '/', permanent: true },
 
-      // Tag pages (no equivalent in new site)
-      { source: '/tag/:slug', destination: '/', permanent: true },
+      // /tag/* legacy WordPress taxonomy URLs are now handled by
+      // src/middleware.ts (returns 410 Gone). 393 such URLs were flagged in
+      // GSC "Page with redirect"; switching from a soft 301-to-home to 410
+      // tells Google to drop them from the index entirely.
 
-      // Specific /events/* redirects — MUST come before the /events/:slug catch-all below
+      // Specific /events/* redirects — MUST come before the /events/:slug catch-all below.
       { source: '/events/the-worlds-50-best-bars-2025-live-from-hong-kong', destination: '/worlds-50-best-bars-2025-bar-leone-tops-the-list', permanent: true },
       { source: '/events/the-worlds-50-best-bars-2025-live-from-hong-kong/', destination: '/worlds-50-best-bars-2025-bar-leone-tops-the-list', permanent: true },
 
-      // Old event sub-pages → article slugs
+      // De-chain: these slugs already redirect at root /{slug} → /category/events
+      // (see lines below). The /events/{slug} catch-all would 308 to /{slug}
+      // which then 308s again to /category/events — 2 hops, wasted crawl
+      // budget. Single-hop direct to the final destination instead. Both
+      // trailing-slash and bare forms because Next runs redirects() before
+      // its trailing-slash normalization.
+      { source: '/events/2025-shake-it-up-national-finals', destination: '/category/events', permanent: true },
+      { source: '/events/2025-shake-it-up-national-finals/', destination: '/category/events', permanent: true },
+      { source: '/events/tales-of-the-cocktail-2025', destination: '/category/events', permanent: true },
+      { source: '/events/tales-of-the-cocktail-2025/', destination: '/category/events', permanent: true },
+      { source: '/events/india-bar-show-2025', destination: '/category/events', permanent: true },
+      { source: '/events/india-bar-show-2025/', destination: '/category/events', permanent: true },
+      { source: '/events/athens-bar-show-2025', destination: '/category/events', permanent: true },
+      { source: '/events/athens-bar-show-2025/', destination: '/category/events', permanent: true },
+
+      // Old event sub-pages → article slugs (catch-all; runs only when no specific rule above matched)
       { source: '/events/:slug', destination: '/:slug', permanent: true },
 
       // Article URL fixes — truncated slugs shared in the wild
@@ -221,7 +240,11 @@ const nextConfig = {
       { source: '/tales-of-the-cocktail-2025', destination: '/category/events', permanent: true },
       { source: '/athens-bar-show-2025', destination: '/category/events', permanent: true },
       { source: '/india-bar-show-2025', destination: '/category/events', permanent: true },
-      { source: '/the-bars-of-barcelona', destination: '/category/places', permanent: true },
+      // Was '/category/places' (404 — no such category). The real article
+      // is 'Bars in Barcelona' at /bars-in-barcelona (WP post id 741);
+      // /the-bars-of-barcelona is a slug-variant inbound link that should
+      // resolve to the actual article, not a category page.
+      { source: '/the-bars-of-barcelona', destination: '/bars-in-barcelona', permanent: true },
       { source: '/the-art-of-wine-production', destination: '/category/brands', permanent: true },
       { source: '/drinky-juznej-ameriky', destination: '/category/cocktails', permanent: true },
 
