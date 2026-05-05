@@ -20,7 +20,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-// @ts-expect-error — next.config.mjs has no types but is a valid ESM module
+// next.config.mjs is a valid ESM module; resolves at runtime in vitest.
 import nextConfig from '../../next.config.mjs';
 
 type Redirect = { source: string; destination: string; permanent?: boolean };
