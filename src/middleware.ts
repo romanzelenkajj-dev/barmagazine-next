@@ -1,12 +1,18 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import {
+  CANONICAL_HOST,
+  isCanonicalHost,
+  isLocalHost,
+} from '@/lib/host-check';
 
 /**
  * Host canonicalization.
  *
  * Any request that arrives on a non-canonical host (every .vercel.app alias,
- * including `barmagazine-next.vercel.app`, PR branch URLs, and the
- * `*-romanzelenkajj-7135s-projects.vercel.app` surface) gets a permanent 301
- * to the same path on https://barmagazine.com.
+ * including `barmagazine-next.vercel.app`, PR branch URLs, the
+ * `*-romanzelenkajj-7135s-projects.vercel.app` surface, AND the www
+ * subdomain if it ever resolves) gets a permanent 301 to the same path
+ * on https://barmagazine.com.
  *
  * Why this exists:
  *  - Stops Google from ever indexing a preview/alias hostname (canonical tags
@@ -23,8 +29,6 @@ import { NextResponse, type NextRequest } from 'next/server';
  * After the canonical-host check, the existing /claim-your-bar geo-currency
  * cookie logic runs so EU visitors still get EUR pricing.
  */
-
-const CANONICAL_HOST = 'barmagazine.com';
 
 /**
  * Return HTTP 410 Gone for legacy URL classes that should never be revived.
@@ -68,11 +72,11 @@ export function middleware(request: NextRequest) {
   const host = request.headers.get('host') ?? '';
   const hostname = host.split(':')[0].toLowerCase();
 
-  const isCanonical = hostname === CANONICAL_HOST || hostname === `www.${CANONICAL_HOST}`;
-  const isLocal = hostname === 'localhost' || hostname.endsWith('.local');
+  const isCanonical = isCanonicalHost(hostname);
+  const isLocal = isLocalHost(hostname);
 
-  // Off-canonical host (vercel.app aliases, branch deploys, unknown domains) —
-  // 301 to production on the same path + query.
+  // Off-canonical host (vercel.app aliases, branch deploys, unknown domains,
+  // www subdomain) — 301 to production on the same path + query.
   if (!isCanonical && !isLocal) {
     const url = new URL(request.nextUrl.pathname + request.nextUrl.search, `https://${CANONICAL_HOST}`);
     return NextResponse.redirect(url, 301);
