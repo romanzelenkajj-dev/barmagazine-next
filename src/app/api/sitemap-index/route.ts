@@ -1,14 +1,15 @@
 /**
  * Sitemap Index — served at /sitemap.xml via next.config.mjs rewrite
  *
- * Returns a <sitemapindex> referencing three sub-sitemaps:
- *   /sitemap-articles.xml  — WordPress articles, category pages, static pages
- *   /sitemap-bars.xml      — Bar directory (individual bars, cities, countries)
- *   /sitemap-news.xml      — Google News sitemap (last 7 days)
+ * Returns a <sitemapindex> referencing four sub-sitemaps:
+ *   /sitemap-articles.xml    — WordPress articles + static pages
+ *   /sitemap-bars.xml        — Bar directory (individual bars, cities, countries)
+ *   /sitemap-news.xml        — Google News sitemap (last 7 days)
+ *   /sitemap-categories.xml  — WordPress category hub pages (A6)
  *
  * This is the Google-recommended structure for sites with multiple content
  * types. Submit https://barmagazine.com/sitemap.xml to Search Console and
- * Google will automatically discover and crawl all three sub-sitemaps.
+ * Google will automatically discover and crawl all sub-sitemaps.
  */
 
 import { NextResponse } from 'next/server';
@@ -32,6 +33,10 @@ export async function GET() {
   </sitemap>
   <sitemap>
     <loc>${SITE_URL}/sitemap-news.xml</loc>
+    <lastmod>${now}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${SITE_URL}/sitemap-categories.xml</loc>
     <lastmod>${now}</lastmod>
   </sitemap>
 </sitemapindex>`;

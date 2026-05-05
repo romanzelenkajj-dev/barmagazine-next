@@ -74,6 +74,11 @@ const nextConfig = {
       { source: '/category/features', destination: '/', permanent: true },
       // /category/latest — users click "Latest" nav link expecting this path
       { source: '/category/latest', destination: '/', permanent: true },
+      // A6: /category/awards-events was the OLD WP slug before WP renamed
+      // the category to 'awards'. Both URLs were serving the same content
+      // (canonical drift). Consolidate to /category/awards.
+      { source: '/category/awards-events', destination: '/category/awards', permanent: true },
+      { source: '/category/awards-events/', destination: '/category/awards', permanent: true },
 
       // ---------------------------------------------------------------
       // Broken city slugs — toUrlSlug used to drop accented chars (ã → '')
@@ -307,6 +312,11 @@ const nextConfig = {
       {
         source: '/sitemap-bars.xml',
         destination: '/api/sitemap-bars',
+      },
+      // A6: WP category hub pages.
+      {
+        source: '/sitemap-categories.xml',
+        destination: '/api/sitemap-categories',
       },
       {
         source: '/partner',
