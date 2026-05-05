@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getCategoryBySlug, getPostsByCategory } from '@/lib/wordpress';
 import { LoadMoreGrid } from '@/components/LoadMoreGrid';
+import { CATEGORY_DESCRIPTIONS } from '@/lib/article-schema';
 import type { Metadata } from 'next';
 
 export const revalidate = 300;
@@ -8,9 +9,15 @@ export const revalidate = 300;
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const category = await getCategoryBySlug(params.slug);
   if (!category) return {};
+  // A8: prefer the curated per-category description (lifted from the deleted
+  // brands/cocktails/people static pages and extended to all 6 live categories).
+  // Fallback covers any future category before its curated copy lands.
+  const description =
+    CATEGORY_DESCRIPTIONS[params.slug.toLowerCase()] ??
+    `Browse ${category.name} articles on BarMagazine — the latest in cocktail culture, bar news, and spirits.`;
   return {
     title: category.name,
-    description: `Browse ${category.name} articles on BarMagazine — the latest in cocktail culture, bar news, and spirits.`,
+    description,
     alternates: {
       canonical: `https://barmagazine.com/category/${params.slug}`,
     },
@@ -56,14 +63,17 @@ export default async function CategoryPage({
     name: `${category.name} — BarMagazine`,
     url: `https://barmagazine.com/category/${params.slug}`,
     numberOfItems: result.data.length,
-    itemListElement: (result.data as Array<{ slug: string; title?: { rendered?: string } }>).map(
-      (post, i) => ({
-        '@type': 'ListItem',
-        position: i + 1,
-        url: `https://barmagazine.com/${post.slug}`,
-        name: decodeHtmlEntities(post.title?.rendered ?? ''),
-      }),
-    ),
+    itemListElement: (
+      result.data as Array<{ slug: string; title?: { rendered?: string }; date?: string }>
+    ).map((post, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `https://barmagazine.com/${post.slug}`,
+      name: decodeHtmlEntities(post.title?.rendered ?? ''),
+      // A8: include datePublished so Google can sort/cluster the list by recency
+      // for SERP carousel surfaces. Fallback to undefined if WP didn't return it.
+      ...(post.date && { datePublished: post.date }),
+    })),
   };
 
   return (

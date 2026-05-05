@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, getPostTags, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls, extractFaqPairs } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
 import { upgradeGalleryImages, formatCardTitle } from '@/lib/utils';
+import { isNewsArticleCategory, truncateHeadline } from '@/lib/article-schema';
 import type { Metadata } from 'next';
 
 const SITE_URL = 'https://barmagazine.com';
@@ -65,12 +66,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   const authorName = author?.name && author.name !== 'BarMagazine' ? author.name : null;
   // Build a rich author object for schema — includes profile URL, bio, and avatar
   // Google uses these signals to verify real human authorship (E-E-A-T)
+  // A8: dropped `url: ${SITE_URL}/author/${author.slug}` — those URLs will
+  // 410 once B2 ships, and they don't render meaningful pages today either.
+  // Keeping name/description/avatar is enough for E-E-A-T author signals.
   const authorSchema = authorName && author
     ? {
         '@type': 'Person',
         name: authorName,
-        // Use the barmagazine.com author URL (not the staging WP URL)
-        url: `${SITE_URL}/author/${author.slug}`,
         ...(author.description && { description: author.description }),
         ...(author.avatar_urls?.['96'] && {
           image: {
@@ -89,11 +91,17 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     relatedPosts = recentResult.data.filter(p => p.id !== post.id).slice(0, 4);
   }
 
-  // JSON-LD structured data
+  // JSON-LD structured data.
+  // A8: posts in events/awards categories use NewsArticle (more specific
+  // schema.org type — Google prefers it for time-sensitive editorial).
+  // Multi-category: NewsArticle wins. See src/lib/article-schema.ts.
+  const articleType = isNewsArticleCategory(categories) ? 'NewsArticle' : 'Article';
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: stripHtml(post.title.rendered).replace(/\|/g, '').trim(),
+    '@type': articleType,
+    // A8: cap headline at 110 chars (Google NewsArticle requirement). The
+    // titles in WP can run long; truncate at last word boundary.
+    headline: truncateHeadline(stripHtml(post.title.rendered).replace(/\|/g, '').trim()),
     description: truncateAtWord(stripHtml(post.excerpt.rendered), 160),
     image: heroImage || undefined,
     datePublished: post.date,
