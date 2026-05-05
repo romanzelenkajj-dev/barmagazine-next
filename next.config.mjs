@@ -318,6 +318,15 @@ const nextConfig = {
         source: '/sitemap-categories.xml',
         destination: '/api/sitemap-categories',
       },
+      // A7: IndexNow ownership-verification key file. The path includes the
+      // key from process.env.INDEXNOW_KEY at build time. Search engines GET
+      // /<key>.txt and expect the body to equal <key>. If the env is not
+      // set, the source becomes a placeholder that won't conflict with
+      // anything real and the handler returns an empty body.
+      {
+        source: `/${process.env.INDEXNOW_KEY ?? 'indexnow-not-configured'}.txt`,
+        destination: '/api/indexnow-key',
+      },
       {
         source: '/partner',
         destination: '/partner.html',

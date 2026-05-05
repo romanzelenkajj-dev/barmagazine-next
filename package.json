@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "seo:check:build": "node scripts/seo-check.mjs --mode=build",
     "seo:check:live": "node scripts/seo-check.mjs --mode=live",
-    "seo:gen-redirects": "node scripts/generate-bar-redirects.mjs"
+    "seo:gen-redirects": "node scripts/generate-bar-redirects.mjs",
+    "indexnow:backfill": "node scripts/indexnow-backfill.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.99.2",
