@@ -289,6 +289,20 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=86400, must-revalidate' },
         ],
       },
+      // Tell crawlers not to index Next.js build assets. /_next/static/* is
+      // already in robots.txt's Disallow list, but Google fetches CSS bundles
+      // anyway as a render dependency, then classifies them as "Indexed,
+      // though blocked by robots.txt" in Search Console (9 URLs flagged in
+      // the May 2026 GSC report — all /_next/static/css/*.css?dpl=...
+      // bundles). X-Robots-Tag: noindex is the actually-followed signal here;
+      // robots.txt is advisory while X-Robots-Tag is normative.
+      // Cache-Control stays as Next.js's default (immutable, max-age=31536000).
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex' },
+        ],
+      },
     ];
   },
   // Proxy /wp-content/uploads/* to WordPress.com CDN so old image URLs still work
