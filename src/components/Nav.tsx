@@ -19,6 +19,11 @@ export function Nav() {
     setMenuOpen(false);
   }, [pathname]);
 
+  // Standalone pages (e.g. /links link-in-bio) hide the main nav. Must come
+  // AFTER all hooks (Rules of Hooks) — conditional return before hooks would
+  // change hook count when navigating in/out of these routes.
+  if (pathname === '/links') return null;
+
   const links: { href: string; label: string; badge?: string }[] = [
     { href: '/', label: 'Latest' },
     { href: '/category/bars', label: 'Bars' },
