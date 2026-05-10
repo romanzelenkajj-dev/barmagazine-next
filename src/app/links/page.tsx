@@ -154,18 +154,13 @@ export default function LinksPage() {
 
             <div className="bm-links-section-label">Top 10 Series</div>
 
-            <a className="bm-link" href="https://barmagazine.com/top-10-bars-in-hong-kong-2025">
+            <a className="bm-link" href="https://barmagazine.com/top-10-bars-in-hong-kong-for-2026">
               Top 10 Bars in Hong Kong 2025
               <span className="bm-link-arrow">→</span>
             </a>
 
             <a className="bm-link" href="https://barmagazine.com/top-10-bars-in-dubai-2025">
               Top 10 Bars in Dubai 2025
-              <span className="bm-link-arrow">→</span>
-            </a>
-
-            <a className="bm-link" href="https://barmagazine.com/category/awards-events">
-              All Top 10 Lists
               <span className="bm-link-arrow">→</span>
             </a>
 
@@ -178,11 +173,6 @@ export default function LinksPage() {
 
             <a className="bm-link" href="https://barmagazine.com/claim-your-bar">
               List Your Bar
-              <span className="bm-link-arrow">→</span>
-            </a>
-
-            <a className="bm-link" href="https://barmagazine.com/newsletter">
-              Subscribe to our Newsletter
               <span className="bm-link-arrow">→</span>
             </a>
 
