@@ -155,7 +155,7 @@ export default function LinksPage() {
             <div className="bm-links-section-label">Top 10 Series</div>
 
             <a className="bm-link" href="https://barmagazine.com/top-10-bars-in-hong-kong-for-2026">
-              Top 10 Bars in Hong Kong 2025
+              Top 10 Bars in Hong Kong 2026
               <span className="bm-link-arrow">→</span>
             </a>
 
