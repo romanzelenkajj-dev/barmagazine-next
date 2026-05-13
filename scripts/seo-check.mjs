@@ -216,21 +216,171 @@ async function checkCategoryPagination() {
   );
 }
 
-async function checkWwwRedirect() {
-  // Pending: B5 (configure www subdomain in Vercel).
-  const r = await safeFetchHead('https://www.barmagazine.com/');
+// ---------- ORIGIN SMOKE TESTS ----------
+//
+// Post-redirect-loop-incident regression guards (audit follow-up to PR #35).
+// These five checks always target PRODUCTION origins, not --url=<base>, because
+// they verify the apex/www/HTTP host bindings at the Vercel + DNS layer — those
+// only exist on the production domain, never on preview deploys.
+//
+// All are enforce-severity: any failure exits non-zero so the live check can be
+// wired into a cron / GitHub Action and page on regression.
+//
+// How to run manually:
+//   node scripts/seo-check.mjs --mode=live
+// The --url flag is ignored by this block on purpose.
+//
+// Asserts:
+//   1. GET https://barmagazine.com/                → 200, no Location
+//   2. GET https://www.barmagazine.com/            → 30x with Location =
+//                                                    https://barmagazine.com/
+//   3. GET http://barmagazine.com/                 → 30x upgrading to https://
+//   4. GET https://barmagazine.com/sitemap.xml     → 200 + content-type xml
+//   5. GET https://barmagazine.com/robots.txt      → 200
+
+const ORIGIN_APEX = 'https://barmagazine.com';
+const ORIGIN_WWW = 'https://www.barmagazine.com';
+const ORIGIN_APEX_HTTP = 'http://barmagazine.com';
+
+async function checkApexDirect() {
+  const r = await safeFetchHead(`${ORIGIN_APEX}/`);
   if (!r.ok) {
+    record('origin-apex-direct', 'fail', 'enforce', `network error: ${r.error.message}`);
+    return;
+  }
+  if (r.status !== 200) {
+    record('origin-apex-direct', 'fail', 'enforce', `expected 200, got ${r.status}`);
+    return;
+  }
+  const loc = r.headers.get('location');
+  if (loc) {
     record(
-      'www-redirect',
-      'warn',
-      'pending',
-      `DNS or fetch error: ${r.error.message} (B5 not shipped)`,
+      'origin-apex-direct',
+      'fail',
+      'enforce',
+      `apex returned 200 but with unexpected Location: ${loc}`,
     );
     return;
   }
-  const status = r.status >= 300 && r.status < 400 ? 'pass' : 'warn';
-  const severity = r.status >= 300 && r.status < 400 ? 'enforce' : 'pending';
-  record('www-redirect', status, severity, `www returned ${r.status} (target: 30x, B5)`);
+  record('origin-apex-direct', 'pass', 'enforce', '200, no Location');
+}
+
+async function checkWwwToApex() {
+  const r = await safeFetchHead(`${ORIGIN_WWW}/`);
+  if (!r.ok) {
+    record(
+      'origin-www-to-apex',
+      'fail',
+      'enforce',
+      `network error: ${r.error.message} (www must redirect to apex)`,
+    );
+    return;
+  }
+  if (r.status < 300 || r.status >= 400) {
+    record(
+      'origin-www-to-apex',
+      'fail',
+      'enforce',
+      `expected 301/308, got ${r.status}`,
+    );
+    return;
+  }
+  if (r.status !== 301 && r.status !== 308) {
+    record(
+      'origin-www-to-apex',
+      'fail',
+      'enforce',
+      `expected 301 or 308 (permanent), got ${r.status}`,
+    );
+    return;
+  }
+  const loc = r.headers.get('location') ?? '';
+  // Accept https://barmagazine.com/ or https://barmagazine.com (Vercel sometimes
+  // strips the trailing slash on root). Reject anything else (www-self-loop,
+  // http://, vercel.app, etc).
+  const expected = `${ORIGIN_APEX}/`;
+  const normalized = loc.endsWith('/') ? loc : `${loc}/`;
+  if (normalized !== expected) {
+    record(
+      'origin-www-to-apex',
+      'fail',
+      'enforce',
+      `Location=${loc} (expected ${expected})`,
+    );
+    return;
+  }
+  record('origin-www-to-apex', 'pass', 'enforce', `${r.status} → ${loc}`);
+}
+
+async function checkHttpToHttps() {
+  const r = await safeFetchHead(`${ORIGIN_APEX_HTTP}/`);
+  if (!r.ok) {
+    record(
+      'origin-http-to-https',
+      'fail',
+      'enforce',
+      `network error: ${r.error.message}`,
+    );
+    return;
+  }
+  if (r.status !== 301 && r.status !== 308) {
+    record(
+      'origin-http-to-https',
+      'fail',
+      'enforce',
+      `expected 301 or 308, got ${r.status}`,
+    );
+    return;
+  }
+  const loc = r.headers.get('location') ?? '';
+  if (!loc.startsWith('https://')) {
+    record(
+      'origin-http-to-https',
+      'fail',
+      'enforce',
+      `Location=${loc} (expected to start with https://)`,
+    );
+    return;
+  }
+  record('origin-http-to-https', 'pass', 'enforce', `${r.status} → ${loc}`);
+}
+
+async function checkSitemapXmlOk() {
+  const r = await safeFetchHead(`${ORIGIN_APEX}/sitemap.xml`);
+  if (!r.ok) {
+    record('origin-sitemap-xml', 'fail', 'enforce', `network error: ${r.error.message}`);
+    return;
+  }
+  if (r.status !== 200) {
+    record('origin-sitemap-xml', 'fail', 'enforce', `expected 200, got ${r.status}`);
+    return;
+  }
+  const ct = (r.headers.get('content-type') ?? '').toLowerCase();
+  // Accept application/xml, text/xml, or any *xml* variant. Reject text/html
+  // (would mean Next.js's not-found page is being served).
+  if (!ct.includes('xml')) {
+    record(
+      'origin-sitemap-xml',
+      'fail',
+      'enforce',
+      `content-type=${ct || '(missing)'} (expected to contain "xml")`,
+    );
+    return;
+  }
+  record('origin-sitemap-xml', 'pass', 'enforce', `200, content-type=${ct}`);
+}
+
+async function checkRobotsTxtOk() {
+  const r = await safeFetchHead(`${ORIGIN_APEX}/robots.txt`);
+  if (!r.ok) {
+    record('origin-robots-txt', 'fail', 'enforce', `network error: ${r.error.message}`);
+    return;
+  }
+  if (r.status !== 200) {
+    record('origin-robots-txt', 'fail', 'enforce', `expected 200, got ${r.status}`);
+    return;
+  }
+  record('origin-robots-txt', 'pass', 'enforce', '200');
 }
 
 /**
@@ -436,10 +586,15 @@ async function run() {
       checkHomepageH1(),
       checkArticlesArchive(),
       checkCategoryPagination(),
-      checkWwwRedirect(),
       checkHomepageWeight(),
       checkRedirectDestinations(),
       checkRedirectSources(),
+      // Origin smoke tests (audit follow-up; always hit production)
+      checkApexDirect(),
+      checkWwwToApex(),
+      checkHttpToHttps(),
+      checkSitemapXmlOk(),
+      checkRobotsTxtOk(),
     ]);
   } else {
     console.error(`Unknown --mode=${mode}; use --mode=build or --mode=live`);
