@@ -4,9 +4,12 @@ import { Suspense, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { getConsentStatus } from './CookieConsent';
+// Single source of truth — middleware, host-check tests, and this component
+// must all agree on what "canonical" means. Importing avoids drift if the
+// canonical host ever changes (e.g., moving to a different apex).
+import { CANONICAL_HOST } from '@/lib/host-check';
 
 const GA_ID = 'G-JBGVJDXD9E';
-const CANONICAL_HOST = 'barmagazine.com';
 
 /**
  * Only emit the GA snippet on production traffic to barmagazine.com.
