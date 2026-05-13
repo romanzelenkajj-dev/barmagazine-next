@@ -33,9 +33,15 @@ import {
 /**
  * Return HTTP 410 Gone for legacy URL classes that should never be revived.
  *
- * Currently used by /tag/* (this PR — 393 inactive WordPress tag URLs flagged
- * in Search Console "Page with redirect"). Designed so B1 (Slovak legacy
- * slugs) and B2 (/author/*) plug into the same helper when they ship.
+ * Used by:
+ *   /tag/*     — 393 inactive WordPress tag URLs flagged in Search Console
+ *                "Page with redirect".
+ *   /author/*  — WordPress author archives. No equivalent route exists on
+ *                the Next.js site. Previously a 301 to /; switched to 410
+ *                per the B2 plan so Google drops the URLs from the index
+ *                instead of keeping them as redirect-to-home stubs.
+ *   /events/X  — unlisted legacy WordPress event taxonomy remnants (the
+ *                listed ones have explicit redirects in next.config.mjs).
  *
  * Plain-text body is intentional for now. A branded 410 page is part of B1
  * scope and can wrap this when designed.
@@ -51,6 +57,16 @@ function serveGone(): NextResponse {
 // Both trailing-slash and non-trailing-slash forms; works regardless of
 // next.config.mjs `trailingSlash` setting.
 const TAG_PATH_RE = /^\/tag(\/.*)?$/;
+
+// Match /author, /author/, /author/foo, /author/foo/, /author/foo/feed/.
+// WordPress author archive URLs. The previous behavior was a permanent 301
+// to the homepage (via next.config.mjs redirects() catch-all `/author/:slug`),
+// which kept the URLs in Google's index as soft redirects. Switching to 410
+// per the B2 plan tells Google to drop them — stronger crawler signal, same
+// handler shape as /tag/*. Confirmed before flipping: there are no real
+// /author/* pages in the app (no src/app/author/ directory; no /author/*
+// emissions in sitemaps or canonical tags).
+const AUTHOR_PATH_RE = /^\/author(\/.*)?$/;
 
 // Match /events/{slug} or deeper — but NOT bare /events (the events index
 // page at src/app/events/page.tsx). The 5 known /events/X URLs that should
@@ -86,6 +102,13 @@ export function middleware(request: NextRequest) {
   // Google drops the URLs from the index instead of keeping them as redirects.
   // 393 such URLs were flagged in Search Console.
   if (TAG_PATH_RE.test(request.nextUrl.pathname)) {
+    return serveGone();
+  }
+
+  // /author/* — legacy WordPress author archives. Was previously a 301-to-home
+  // via next.config.mjs redirects(); switched to 410 per the B2 plan so Google
+  // drops them from the index instead of keeping them as redirect stubs.
+  if (AUTHOR_PATH_RE.test(request.nextUrl.pathname)) {
     return serveGone();
   }
 

@@ -158,10 +158,11 @@ const nextConfig = {
       { source: '/:slug/4', destination: '/:slug', permanent: true },
       { source: '/:slug/5', destination: '/:slug', permanent: true },
 
-      // Author pages (no equivalent in new site)
-      // NOTE: still 301 to homepage. B2 will switch this to a 410 via
-      // middleware (same handler /tag/* now uses).
-      { source: '/author/:slug', destination: '/', permanent: true },
+      // /author/* legacy WordPress author archives — handled by middleware
+      // (410 Gone). Was previously `{ source: '/author/:slug', destination:
+      // '/', permanent: true }`; switched per the B2 plan so Google drops
+      // the URLs from the index instead of keeping redirect stubs. Same
+      // shape as /tag/*. See src/middleware.ts AUTHOR_PATH_RE.
 
       // /tag/* legacy WordPress taxonomy URLs are now handled by
       // src/middleware.ts (returns 410 Gone). 393 such URLs were flagged in

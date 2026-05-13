@@ -68,6 +68,17 @@ describe('next.config.mjs redirects()', () => {
     }
   });
 
+  it('the /author/:slug rule has been removed (now 410 in middleware)', async () => {
+    // Was `{ source: '/author/:slug', destination: '/', permanent: true }`.
+    // Switched to a middleware 410 per the B2 plan: dropping the URLs from
+    // Google's index is a stronger signal than keeping redirect-to-home
+    // stubs. If a future PR re-adds the rule here, middleware never gets
+    // a chance to serve the 410 (next.config redirects() runs first).
+    const redirects: Redirect[] = await nextConfig.redirects();
+    const rule = redirects.find((r) => r.source === '/author/:slug');
+    expect(rule, '/author/:slug must not be a redirect rule — middleware serves 410').toBeUndefined();
+  });
+
   it('the /events/:slug catch-all has been removed', async () => {
     // Next.js's routing manifest does NOT honor array order for the
     // /events/:slug param-pattern vs literal /events/X siblings — the
