@@ -164,6 +164,13 @@ export default function LinksPage() {
               <span className="bm-link-arrow">→</span>
             </a>
 
+            <div className="bm-links-section-label">Guides</div>
+
+            <a className="bm-link" href="https://barmagazine.com/how-to-price-a-cocktail">
+              How to Price a Cocktail
+              <span className="bm-link-arrow">→</span>
+            </a>
+
             <div className="bm-links-section-label">Explore</div>
 
             <a className="bm-link" href="https://barmagazine.com/bars">
