@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { TOP10_SLUG_RE, rankTop10Series } from './wordpress';
+import { TOP10_SLUG_RE, rankTop10Series, stripTitleMarkers } from './wordpress';
 
 const post = (slug: string, date: string, rendered: string) => ({
   slug,
@@ -31,6 +31,33 @@ describe('TOP10_SLUG_RE', () => {
     ]) {
       expect(TOP10_SLUG_RE.test(s), s).toBe(false);
     }
+  });
+});
+
+describe('stripTitleMarkers', () => {
+  it('removes paired |word| WPBakery highlight markers', () => {
+    expect(stripTitleMarkers('Top 10 Bars in |London| 2026')).toBe(
+      'Top 10 Bars in London 2026',
+    );
+  });
+
+  it('removes stray single pipes', () => {
+    expect(stripTitleMarkers('Top 10 Bars in London| 2026')).toBe(
+      'Top 10 Bars in London 2026',
+    );
+  });
+
+  it('collapses double spaces left behind and trims', () => {
+    expect(stripTitleMarkers('|Top 10|  Bars  in  |Dubai| 2025')).toBe(
+      'Top 10 Bars in Dubai 2025',
+    );
+    expect(stripTitleMarkers('  | Hong Kong |  ')).toBe('Hong Kong');
+  });
+
+  it('is a no-op for titles without pipes', () => {
+    expect(stripTitleMarkers('Top 10 Bars in New York 2026')).toBe(
+      'Top 10 Bars in New York 2026',
+    );
   });
 });
 
@@ -72,6 +99,13 @@ describe('rankTop10Series', () => {
       post('top-10-bars-in-hong-kong-2026', '2026-01-01T00:00:00', 'Top 10 Bars in Hong Kong &amp; Macau 2026'),
     ]);
     expect(featured?.title).toBe('Top 10 Bars in Hong Kong & Macau 2026');
+  });
+
+  it('strips WPBakery pipe markers from rendered titles end-to-end', () => {
+    const { featured } = rankTop10Series([
+      post('top-10-bars-in-london-2026', '2026-05-15T00:00:00', 'Top 10 Bars in |London| 2026'),
+    ]);
+    expect(featured?.title).toBe('Top 10 Bars in London 2026');
   });
 
   it('returns empty result for no matching posts (WP-down resilience)', () => {
