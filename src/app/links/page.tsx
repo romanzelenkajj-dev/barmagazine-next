@@ -1,16 +1,26 @@
 import type { Metadata } from 'next';
+import { getTop10SeriesLinks } from '@/lib/wordpress';
 
 export const metadata: Metadata = {
   title: 'Links | BarMagazine',
   description: 'BarMagazine — Cocktails · Bars · Culture',
 };
 
+// ISR: regenerate at most once a minute so a newly published Top-10
+// article appears as the featured link without a manual edit/redeploy.
+export const revalidate = 60;
+
 /**
  * Link-in-bio page. Standalone layout (no main nav/footer) — the page is
  * a self-contained landing surface usable as a profile link from social
  * bios.
  *
- * Update the "Latest" featured link when a new flagship article ships.
+ * The "Latest" + "Top 10 Series" sections are DYNAMIC: they're built from
+ * WordPress posts whose slug matches /^top-10-bars-in-.+-\d{4}$/, newest
+ * first (newest → featured, the rest → series, capped). The "Guides" and
+ * "Explore" sections below remain hand-curated and are intentionally left
+ * exactly as they were. If WP is unreachable the dynamic sections degrade
+ * gracefully (the static "All Top 10 Lists" archive link still renders).
  */
 const ESCAPE_STYLES = `
   html, body {
@@ -115,7 +125,9 @@ const LINKS_STYLES = `
   .bm-links-footer a:hover { color: #FAF9F7; }
 `;
 
-export default function LinksPage() {
+export default async function LinksPage() {
+  const { featured, series } = await getTop10SeriesLinks(6);
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: ESCAPE_STYLES }} />
@@ -143,24 +155,28 @@ export default function LinksPage() {
             <img className="bm-links-logo" src="https://barmagazine.com/logo-white.png" alt="BarMagazine" />
             <p className="bm-links-tagline">Cocktails · Bars · Culture</p>
 
-            <div className="bm-links-section-label">Latest</div>
-
-            {/* TODO: update href when a new flagship article ships */}
-            <a className="bm-link bm-link-featured" href="https://barmagazine.com/top-10-bars-in-new-york-2026">
-              <span className="bm-link-eyebrow">New article</span>
-              Top 10 Bars in New York 2026
-              <span className="bm-link-arrow">→</span>
-            </a>
+            {featured && (
+              <>
+                <div className="bm-links-section-label">Latest</div>
+                <a className="bm-link bm-link-featured" href={featured.url}>
+                  <span className="bm-link-eyebrow">New article</span>
+                  {featured.title}
+                  <span className="bm-link-arrow">→</span>
+                </a>
+              </>
+            )}
 
             <div className="bm-links-section-label">Top 10 Series</div>
 
-            <a className="bm-link" href="https://barmagazine.com/top-10-bars-in-hong-kong-for-2026">
-              Top 10 Bars in Hong Kong 2026
-              <span className="bm-link-arrow">→</span>
-            </a>
+            {series.map((post) => (
+              <a className="bm-link" href={post.url} key={post.slug}>
+                {post.title}
+                <span className="bm-link-arrow">→</span>
+              </a>
+            ))}
 
-            <a className="bm-link" href="https://barmagazine.com/top-10-bars-in-dubai-2025">
-              Top 10 Bars in Dubai 2025
+            <a className="bm-link" href="https://barmagazine.com/category/awards">
+              All Top 10 Lists
               <span className="bm-link-arrow">→</span>
             </a>
 

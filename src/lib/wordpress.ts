@@ -198,6 +198,89 @@ export async function getPostsByCategory(categorySlug: string, page = 1, perPage
   return getPosts(page, perPage, cats[0].id);
 }
 
+// ---------- Top 10 series (link-in-bio /links page) ----------
+//
+// The /links page lists the "Top 10 Bars in {City} {Year}" series. Posts in
+// the series follow the slug shape `top-10-bars-in-<city>-<year>`, e.g.
+// `top-10-bars-in-new-york-2026`. WP REST can't filter by slug regex, so we
+// pull a generous, date-ordered page narrowed by a server-side search, then
+// apply the exact slug regex client-side for precision.
+
+export const TOP10_SLUG_RE = /^top-10-bars-in-.+-\d{4}$/;
+
+export interface Top10Link {
+  slug: string;
+  title: string;
+  url: string;
+  date: string;
+}
+
+// Minimal structural shape this helper needs — a subset of WPPost so it can
+// be unit-tested without constructing full posts or hitting the network.
+type Top10SourcePost = Pick<WPPost, 'slug' | 'date' | 'title'>;
+
+/**
+ * Pure: filter to true Top-10-series posts (exact slug regex), sort by
+ * published date DESC, split newest → featured and the rest → series
+ * (capped). No network, no side effects — covered by wordpress.test.ts.
+ */
+export function rankTop10Series(
+  posts: Top10SourcePost[],
+  seriesCap = 6,
+): { featured: Top10Link | null; series: Top10Link[] } {
+  const ranked = posts
+    .filter((p) => typeof p.slug === 'string' && TOP10_SLUG_RE.test(p.slug))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .map<Top10Link>((p) => ({
+      slug: p.slug,
+      title: stripHtml(p.title?.rendered ?? ''),
+      url: `https://${PROD_DOMAIN}/${p.slug}`,
+      date: p.date,
+    }));
+  if (ranked.length === 0) return { featured: null, series: [] };
+  return { featured: ranked[0], series: ranked.slice(1, 1 + seriesCap) };
+}
+
+/**
+ * Fetch + rank the Top-10 series for the /links page. Resilient: returns
+ * an empty result (never throws) if WP is unreachable, so /links still
+ * renders its static sections.
+ *
+ * NOTE: this does its own fetch with `next: { revalidate: 60 }` rather than
+ * going through wpFetch() (which hardcodes a 300s data-cache). The /links
+ * page sets `export const revalidate = 60`; if the underlying WP fetch were
+ * cached for 300s the page would still serve a 5-minute-stale list on
+ * regeneration. 60s here keeps page-revalidate and data-cache aligned so a
+ * newly published Top-10 article surfaces within ~a minute. The shared
+ * wpFetch() is intentionally left untouched (other routes depend on its
+ * 300s TTL).
+ */
+export async function getTop10SeriesLinks(
+  seriesCap = 6,
+): Promise<{ featured: Top10Link | null; series: Top10Link[] }> {
+  const url = new URL(`${WP_API}/posts`);
+  url.searchParams.set('search', 'top 10 bars in');
+  url.searchParams.set('per_page', '100');
+  url.searchParams.set('orderby', 'date');
+  url.searchParams.set('order', 'desc');
+  url.searchParams.set('_fields', 'slug,date,title');
+
+  try {
+    const res = await fetch(url.toString(), { next: { revalidate: 60 } });
+    if (!res.ok) {
+      console.warn(`WP API error: ${res.status} on /posts (top10 links)`);
+      return { featured: null, series: [] };
+    }
+    const posts = JSON.parse(
+      sanitizeResponse(await res.text()),
+    ) as Top10SourcePost[];
+    return rankTop10Series(posts, seriesCap);
+  } catch (e) {
+    console.warn('WP API fetch failed on /posts (top10 links):', e);
+    return { featured: null, series: [] };
+  }
+}
+
 // ---------- Categories ----------
 export async function getCategories() {
   return wpFetch<WPCategory[]>('/categories', { per_page: 50 }, []);
