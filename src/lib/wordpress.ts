@@ -220,6 +220,18 @@ export interface Top10Link {
 type Top10SourcePost = Pick<WPPost, 'slug' | 'date' | 'title'>;
 
 /**
+ * Strip WPBakery in-title styling markers. The site uses `|word|` pipe
+ * pairs (and occasional stray single pipes) inside post titles as a
+ * highlight marker that a WPBakery shortcode/theme filter renders
+ * elsewhere. On /links we render the raw title, so the pipes would show
+ * as literal text ("Top 10 Bars in |London| 2026"). Remove all pipes,
+ * then collapse the whitespace they leave behind.
+ */
+export function stripTitleMarkers(title: string): string {
+  return title.replace(/\|/g, '').replace(/\s+/g, ' ').trim();
+}
+
+/**
  * Pure: filter to true Top-10-series posts (exact slug regex), sort by
  * published date DESC, split newest → featured and the rest → series
  * (capped). No network, no side effects — covered by wordpress.test.ts.
@@ -233,7 +245,7 @@ export function rankTop10Series(
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .map<Top10Link>((p) => ({
       slug: p.slug,
-      title: stripHtml(p.title?.rendered ?? ''),
+      title: stripTitleMarkers(stripHtml(p.title?.rendered ?? '')),
       url: `https://${PROD_DOMAIN}/${p.slug}`,
       date: p.date,
     }));
