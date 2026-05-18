@@ -25,14 +25,22 @@ const GA_ID = 'G-JBGVJDXD9E';
  */
 function isProductionHost(): boolean {
   if (typeof window === 'undefined') {
-    // SSR path: trust VERCEL_ENV. During `next build` for production it's 'production'.
-    return process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
+    // SSR: trust that production builds are for production. We render the
+    // scripts; the hostname guard below stops them firing on the wrong host
+    // once the browser loads.
+    //
+    // Why this changed: the previous SSR path returned
+    // `process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'`. Vercel does NOT
+    // expose VERCEL_ENV with the NEXT_PUBLIC_ prefix by default, so that was
+    // `undefined === 'production'` → false on every production server
+    // render. The component returned null, so the GA <Script> tags
+    // (including the beforeInteractive consent default) never reached the
+    // server-rendered HTML. Bug shipped in PR #3; this restores GA4. The
+    // client-side hostname check below is what actually keeps previews/dev
+    // out of analytics.
+    return true;
   }
-  // Client path: require both the canonical host and production env.
-  return (
-    window.location.hostname === CANONICAL_HOST &&
-    (process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' || process.env.NEXT_PUBLIC_VERCEL_ENV === undefined)
-  );
+  return window.location.hostname === CANONICAL_HOST;
 }
 
 declare global {
