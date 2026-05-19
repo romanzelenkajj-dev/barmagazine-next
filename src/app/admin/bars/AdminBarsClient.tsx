@@ -26,19 +26,22 @@ interface Bar {
   featured_until: string | null;
   is_verified: boolean;
   is_active: boolean;
+  needs_geo_review: boolean;
   opening_hours: string | null;
   wp_article_slug: string | null;
   created_at: string;
   updated_at: string;
 }
 
-type EditableField = 'name' | 'slug' | 'city' | 'country' | 'type' | 'tier' | 'address' | 'website' | 'instagram' | 'phone' | 'email' | 'opening_hours' | 'description' | 'short_excerpt' | 'wp_article_slug' | 'is_active' | 'is_verified';
+type EditableField = 'name' | 'slug' | 'city' | 'country' | 'type' | 'tier' | 'address' | 'website' | 'instagram' | 'phone' | 'email' | 'opening_hours' | 'description' | 'short_excerpt' | 'wp_article_slug' | 'is_active' | 'is_verified' | 'needs_geo_review';
 
 const EDITABLE_FIELDS: EditableField[] = [
   'name', 'slug', 'city', 'country', 'type', 'tier', 'address',
   'website', 'instagram', 'phone', 'email', 'opening_hours', 'description', 'short_excerpt',
-  'wp_article_slug', 'is_active', 'is_verified',
+  'wp_article_slug', 'is_active', 'is_verified', 'needs_geo_review',
 ];
+
+const BOOLEAN_FIELDS: EditableField[] = ['is_active', 'is_verified', 'needs_geo_review'];
 
 const TYPE_OPTIONS = [
   'Cocktail Bar', 'Speakeasy', 'Hotel Bar', 'Rooftop Bar', 'Wine Bar',
@@ -74,6 +77,7 @@ export default function AdminBarsClient() {
   const [sortAsc, setSortAsc] = useState(true);
   const [countryFilter, setCountryFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
+  const [geoReviewOnly, setGeoReviewOnly] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
   const showToast = useCallback((message: string, type: 'success' | 'error') => {
@@ -227,7 +231,8 @@ export default function AdminBarsClient() {
         (bar.slug && bar.slug.toLowerCase().includes(q));
       const matchCountry = !countryFilter || bar.country === countryFilter;
       const matchType = !typeFilter || bar.type === typeFilter;
-      return matchSearch && matchCountry && matchType;
+      const matchGeoReview = !geoReviewOnly || bar.needs_geo_review;
+      return matchSearch && matchCountry && matchType && matchGeoReview;
     });
 
     result.sort((a, b) => {
@@ -241,7 +246,7 @@ export default function AdminBarsClient() {
     });
 
     return result;
-  }, [bars, search, countryFilter, typeFilter, sortKey, sortAsc]);
+  }, [bars, search, countryFilter, typeFilter, geoReviewOnly, sortKey, sortAsc]);
 
   const countries = useMemo(() => Array.from(new Set(bars.map(b => b.country))).sort(), [bars]);
   const types = useMemo(() => Array.from(new Set(bars.map(b => b.type))).sort(), [bars]);
@@ -325,6 +330,21 @@ export default function AdminBarsClient() {
           <option value="">All Types</option>
           {types.map(t => <option key={t} value={t}>{t}</option>)}
         </select>
+        <label
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer',
+            fontSize: 13, color: geoReviewOnly ? '#b45309' : '#6b6b6b', whiteSpace: 'nowrap',
+          }}
+          title="Show only bars whose coordinates are approximate or missing"
+        >
+          <input
+            type="checkbox"
+            checked={geoReviewOnly}
+            onChange={e => setGeoReviewOnly(e.target.checked)}
+            style={{ width: 16, height: 16 }}
+          />
+          ⚠ Needs geo review ({bars.filter(b => b.needs_geo_review).length})
+        </label>
       </div>
 
       {/* Table */}
@@ -354,6 +374,14 @@ export default function AdminBarsClient() {
               {filteredBars.map(bar => (
                 <tr key={bar.id} style={styles.tr}>
                   <td style={styles.td}>
+                    {bar.needs_geo_review && (
+                      <span
+                        title="Coordinates are approximate or missing — needs a precise location"
+                        style={{ marginRight: 6, cursor: 'help' }}
+                      >
+                        ⚠
+                      </span>
+                    )}
                     <a href={`/bars/${bar.slug}`} target="_blank" rel="noopener noreferrer" style={styles.nameLink}>
                       {bar.name}
                     </a>
@@ -415,7 +443,7 @@ export default function AdminBarsClient() {
             </div>
             <div style={styles.modalBody}>
               {EDITABLE_FIELDS.map(field => {
-                if (field === 'is_active' || field === 'is_verified') {
+                if (BOOLEAN_FIELDS.includes(field)) {
                   return (
                     <label key={field} style={styles.fieldRow}>
                       <span style={styles.fieldLabel}>{field}</span>

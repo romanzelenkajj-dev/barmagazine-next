@@ -94,14 +94,22 @@ export async function POST(request: NextRequest) {
           if (coords) {
             finalUpdates.lat = coords.lat;
             finalUpdates.lng = coords.lng;
-            if (coords.approximate) {
-              console.warn(
-                `GEOCODE_FALLBACK update "${merged.name}" (${merged.city}, ${merged.country}) → ${coords.level} center`,
-              );
-            }
+          }
+          // Re-flag based on the fresh result: clear when exact, raise when
+          // approximate or geocoding failed. A caller-set value still wins.
+          if (finalUpdates.needs_geo_review == null) {
+            finalUpdates.needs_geo_review = coords ? coords.approximate : true;
+          }
+          if (coords?.approximate) {
+            console.warn(
+              `GEOCODE_FALLBACK update "${merged.name}" (${merged.city}, ${merged.country}) → ${coords.level} center`,
+            );
           }
         }
       }
+    } else if (explicitCoords && finalUpdates.needs_geo_review == null) {
+      // Admin supplied coordinates by hand — that's a precise placement.
+      finalUpdates.needs_geo_review = false;
     }
 
     const query = barId
@@ -129,6 +137,11 @@ export async function POST(request: NextRequest) {
             `GEOCODE_FALLBACK create "${insertData.name}" (${insertData.city}, ${insertData.country}) → ${coords.level} center`,
           );
         }
+      }
+      // Flag for admin review when the placement is approximate or geocoding
+      // failed outright (no coords). An explicit caller-set value wins.
+      if (insertData.needs_geo_review == null) {
+        insertData.needs_geo_review = coords ? coords.approximate : true;
       }
     }
     const { data, error } = await supabase.from('bars').insert(insertData).select();

@@ -117,6 +117,7 @@ export async function POST(request: NextRequest) {
         photos: barPhotos,
         tier: 'free',
         is_active: true,
+        needs_geo_review: coords ? coords.approximate : true,
         ...(coords && { lat: coords.lat, lng: coords.lng }),
       })
       .select()
@@ -142,6 +143,7 @@ export async function POST(request: NextRequest) {
           photos: barPhotos,
           tier: 'free',
           is_active: true,
+          needs_geo_review: coords ? coords.approximate : true,
           ...(coords && { lat: coords.lat, lng: coords.lng }),
         })
         .select()

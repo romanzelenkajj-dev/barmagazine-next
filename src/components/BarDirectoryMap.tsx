@@ -549,6 +549,7 @@ export function BarDirectoryMapClient({
           phone: null, email: null, description: null, short_excerpt: null,
           photos: b.photo ? [b.photo] : [],
           featured_until: null, is_verified: false, is_active: true,
+          needs_geo_review: false,
           wp_article_slug: null, created_at: '', updated_at: '',
         }));
         // Apply geo sorting so closest bars appear first on the map too
