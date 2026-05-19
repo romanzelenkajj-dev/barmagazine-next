@@ -675,7 +675,7 @@ export function BarDirectoryMapClient({
 
     const tierRank = (b: Bar): number => {
       if (b.wp_article_slug) return 0;                                    // Featured with article
-      if (b.tier === 'top10' || b.tier === 'premium') return 1;          // TOP 10
+      if (b.tier === 'top10' || b.tier === 'premium' || b.tier === 'featured') return 1; // Priority tiers
       return 2;                                                           // Free
     };
 
@@ -962,6 +962,9 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;
   const isPremium = bar.tier === 'premium';
   const isTop10 = bar.tier === 'top10';
+  // Match the rest of the directory (city/country/profile pages): a bar is
+  // "Featured" when its tier is 'featured' OR it has a linked article.
+  const isFeatured = bar.tier === 'featured' || !!bar.wp_article_slug;
   return (
     <Link href={`/bars/${bar.slug}`} className="bar-dir-featured-card">
       <div className="bar-dir-featured-visual">
@@ -977,7 +980,7 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
       <div className="bar-dir-featured-body">
         <div className="bar-dir-featured-badges">
           {isTop10 && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
-          {(isPremium || bar.wp_article_slug) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+          {(isPremium || isFeatured) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
           {bar.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(bar.type)}</span>}
         </div>
         <h3 className="bar-dir-featured-name">{bar.name}</h3>
