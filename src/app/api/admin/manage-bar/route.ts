@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 import { geocodeBar } from '@/lib/geocode';
+import { normalizeBarFields } from '@/lib/normalize';
 
 function getServiceClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -62,10 +63,11 @@ export async function POST(request: NextRequest) {
   }
 
   if (action === 'update') {
+    const cleanUpdates = normalizeBarFields(updates);
     const query = barId
-      ? supabase.from('bars').update(updates).eq('id', barId).select()
+      ? supabase.from('bars').update(cleanUpdates).eq('id', barId).select()
       : barName
-        ? supabase.from('bars').update(updates).eq('name', barName).select()
+        ? supabase.from('bars').update(cleanUpdates).eq('name', barName).select()
         : null;
     if (!query) return NextResponse.json({ error: 'barId or barName required' }, { status: 400 });
     const { data, error } = await query;
@@ -75,7 +77,7 @@ export async function POST(request: NextRequest) {
 
   if (action === 'create') {
     // Auto-geocode if lat/lng not already provided
-    let insertData = { ...updates };
+    let insertData = normalizeBarFields({ ...updates });
     if (!insertData.lat && !insertData.lng && insertData.name && insertData.city && insertData.country) {
       const coords = await geocodeBar({
         name: insertData.name,

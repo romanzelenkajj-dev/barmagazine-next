@@ -87,6 +87,32 @@ create trigger bars_updated_at
   for each row
   execute function update_updated_at();
 
+-- Normalize identity/facet text so a stray space can't create a duplicate
+-- directory facet ("Chile " vs "Chile"). Collapses internal whitespace runs
+-- and trims ends on name/city/country/type; trims slug. Free-text fields
+-- (description, address) are left untouched. See
+-- scripts/normalize-bar-text-trigger.sql for the standalone migration.
+create or replace function normalize_bar_text()
+returns trigger as $$
+begin
+  new.name    := regexp_replace(btrim(new.name),    '\s+', ' ', 'g');
+  new.city    := regexp_replace(btrim(new.city),    '\s+', ' ', 'g');
+  new.country := regexp_replace(btrim(new.country), '\s+', ' ', 'g');
+  if new.type is not null then
+    new.type  := regexp_replace(btrim(new.type),    '\s+', ' ', 'g');
+  end if;
+  if new.slug is not null then
+    new.slug  := btrim(new.slug);
+  end if;
+  return new;
+end;
+$$ language plpgsql;
+
+create trigger bars_normalize_text
+  before insert or update on bars
+  for each row
+  execute function normalize_bar_text();
+
 -- Bar submissions table (for "Add Your Bar" form)
 create table bar_submissions (
   id uuid default uuid_generate_v4() primary key,

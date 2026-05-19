@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 import { geocodeBar } from '@/lib/geocode';
+import { normalizeBarFields } from '@/lib/normalize';
 
 function getServiceClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -72,6 +73,10 @@ export async function POST(request: NextRequest) {
     if (fetchError || !submission) {
       return NextResponse.json({ error: 'Submission not found' }, { status: 404 });
     }
+
+    // Normalize once so the generated slug, geocoding inputs, and both insert
+    // paths below all use trimmed/collapsed values (prevents "Chile " dupes).
+    Object.assign(submission, normalizeBarFields(submission));
 
     // Create slug from name
     const slug = submission.name
