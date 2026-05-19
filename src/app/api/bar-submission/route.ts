@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { geocodeBar } from '@/lib/geocode';
+import { normalizeBarFields } from '@/lib/normalize';
 
 // Server-side Supabase client with service role key (bypasses RLS)
 // Lazy init to avoid build-time errors when env vars aren't available
@@ -130,9 +131,10 @@ async function sendNotificationEmail(data: Record<string, string | undefined>, p
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
+    const data = normalizeBarFields(await request.json());
 
-    // Validate required fields
+    // Validate required fields (after normalization, so a whitespace-only
+    // value like "   " is correctly treated as missing)
     if (!data.name || !data.city || !data.country || !data.email) {
       return NextResponse.json(
         { success: false, error: 'Missing required fields' },
