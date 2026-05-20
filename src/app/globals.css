@@ -2371,9 +2371,23 @@ button {
      Related Articles, Top 10 Bars) past the viewport edge on mobile. Desktop is untouched. */
   .article-hero,
   .article-body {
-    margin-left: -8px;
-    margin-right: -8px;
-    width: calc(100% + 16px);
+    /* Full-bleed via viewport units rather than relative margins, because the previous approach
+       was breaking in two places:
+       1. .article-hero has `max-width: 100%` in the base rule (line 668), which silently clamped
+          `width: calc(100% + 16px)` back to the parent width — hero ended up 16px short of the
+          right edge (gap on right).
+       2. .article-body has padding 32px 24px and the default `box-sizing: content-box`, so the
+          `calc(100% + 16px)` content width became `parent + 64px` outer width — body and the text
+          inside it spilled past the right viewport edge.
+
+       `width: 100vw` plus `margin: calc(50% - 50vw)` puts the element exactly viewport-wide
+       regardless of parent flex/grid/padding/max-width. `box-sizing: border-box` includes the
+       body's inner padding in that 100vw. `max-width: none` defeats the inherited clamp. */
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    max-width: none;
+    box-sizing: border-box;
   }
 
   .article-body {
