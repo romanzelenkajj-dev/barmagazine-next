@@ -2121,8 +2121,12 @@ button {
   }
 
   body {
-    padding-left: 8px;
-    padding-right: 8px;
+    /* Mobile: trim the side gutter from 8px down to 4px so cards/banners/the article
+       box/the footer all sit closer to the screen edges. The page background still
+       shows as a thin sliver against the rounded corners of the nav, hero, body box,
+       sidebar cards, etc. — just narrower than before. */
+    padding-left: 4px;
+    padding-right: 4px;
   }
 
   .nav-spacer {
@@ -2359,28 +2363,14 @@ button {
     grid-template-columns: 1fr;
   }
 
-  /* Mobile-only posts.
-
-     The hero and the article box sit a little closer to the screen edges than the rest of the
-     page — pull them out with a 4px negative margin so the body element's 8px outer padding
-     becomes effectively ~4px for these two. Other elements on the page (breadcrumb above the
-     hero, sidebar below the article) keep the full 8px so the layout is consistent for them.
-     4px is enough breathing room for the 24px rounded corners to be visible against the page
-     background while making the box feel meaningfully wider than the rest of the page.
-
-     Photos / WP image blocks / galleries / the bottom Pampero ad banner break out of the
-     24px inner gutter to fill the article box width — so they're visibly larger than the
-     text column. */
-  .article-hero,
-  .article-body {
-    margin-left: -4px;
-    margin-right: -4px;
-  }
-
   .article-body {
     padding: 32px 24px;
   }
 
+  /* Photos / WP image blocks / galleries / the bottom Pampero ad banner break out of the
+     24px inner gutter to fill the article box width — so they're visibly larger than the
+     text column. The outer side gutter is handled globally by the body padding (4px on
+     mobile), which applies to every page (home, categories, bars, posts, footer). */
   .article-body > p > img,
   .article-body > p > a > img,
   .article-body img.alignnone,
