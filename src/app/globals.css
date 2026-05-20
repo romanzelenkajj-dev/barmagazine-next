@@ -2355,26 +2355,29 @@ button {
     font-size: 24px;
   }
 
-  /* Mobile-only edge-to-edge posts.
-     Body has 8px side padding on mobile (above) — we escape it on the article container so
-     the hero, the text box, photos, and the bottom ad banner all span the full viewport width.
-     This makes the readable column wider (was felt too thin on phones) and lets photos render
-     larger. The text inside the box keeps a 16px inner gutter for readability; photos/galleries/
-     the ad banner break out of that gutter back to the viewport edge. Desktop is untouched. */
   .article-outer-grid {
     grid-template-columns: 1fr;
-    margin-left: calc(var(--gap) * -1);
-    margin-right: calc(var(--gap) * -1);
-    width: calc(100% + (var(--gap) * 2));
   }
 
-  .article-hero {
-    border-radius: 0;
+  /* Mobile-only edge-to-edge posts.
+     The hero and the article box escape the body's 8px side padding so they touch the screen
+     edges (matching the header). Both keep their rounded corners. The text inside the box keeps
+     its 24px inner gutter so it isn't hugging the edge. Photos / WP image blocks / the bottom
+     Pampero ad banner break out of that 24px gutter back to the box edge — so they render at
+     the full box width — while keeping their own rounded corners.
+
+     IMPORTANT: the breakout is applied directly to .article-hero and .article-body, NOT to
+     .article-outer-grid. Targeting the grid would drag the sidebar (Flavour Blaster banner,
+     Related Articles, Top 10 Bars) past the viewport edge on mobile. Desktop is untouched. */
+  .article-hero,
+  .article-body {
+    margin-left: -8px;
+    margin-right: -8px;
+    width: calc(100% + 16px);
   }
 
   .article-body {
-    padding: 32px 16px;
-    border-radius: 0;
+    padding: 32px 24px;
   }
 
   .article-body > p > img,
@@ -2387,11 +2390,10 @@ button {
   .article-body .gallery-clean,
   .article-body .wp-block-gallery,
   .article-body .ad-banner {
-    margin-left: -16px;
-    margin-right: -16px;
-    width: calc(100% + 32px);
+    margin-left: -24px;
+    margin-right: -24px;
+    width: calc(100% + 48px);
     max-width: none;
-    border-radius: 0;
   }
 
   .article-body .gallery-clean-row {
