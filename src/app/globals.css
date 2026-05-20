@@ -2400,8 +2400,14 @@ button {
 
   /* Pampero banner inside the article: square corners on mobile so the bottle illustrations
      and the "EL AUTÉNTICO" wordmark don't get clipped by the 24px corner arc when the banner
-     sits flush with the article box edges. Sidebar ad banners keep their rounded corners. */
-  .article-body .ad-banner {
+     sits flush with the article box edges. Sidebar ad banners keep their rounded corners.
+
+     Both the <a class="ad-banner"> container AND the <img> inside it need border-radius: 0.
+     The img picks up 12px from the broader `.article-body img` rule (line 867); without an
+     img override the container becomes square but the image inside still renders with 12px
+     rounded corners visible. */
+  .article-body .ad-banner,
+  .article-body .ad-banner img {
     border-radius: 0;
   }
 
