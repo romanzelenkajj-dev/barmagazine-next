@@ -2359,15 +2359,19 @@ button {
     grid-template-columns: 1fr;
   }
 
-  /* Mobile-only posts: photos and the bottom ad banner break out of the 24px inner gutter to
-     fill the article box width, so they're visibly bigger than the text column. The hero and
-     the box itself are NOT broken out — they sit at the body's natural width with the page's
-     8px outer padding around them, so their 24px rounded corners curve *inside* the viewport
-     against the beige page background and are clearly visible (vs. earlier attempts which made
-     them full-bleed at 100vw, putting the corner arc right at the screen edge where it looked
-     cut off). The photos' own 12px corners now also have white body next to them on the left
-     and right, instead of butting against the viewport edge — so they read as rounded rather
-     than blending with the body.
+  /* Mobile-only posts: photos break out of the 24px inner gutter to fill the article box width
+     so they're visibly bigger than the text column. The hero and the box itself are NOT broken
+     out — they sit at the body's natural width with the page's 8px outer padding around them,
+     so their 24px rounded corners curve *inside* the viewport against the beige page background
+     and are clearly visible (vs. earlier attempts which made them full-bleed at 100vw, putting
+     the corner arc right at the screen edge where it looked cut off). The photos' own 12px
+     corners now also have white body next to them on the left and right.
+
+     The bottom Pampero ad banner is intentionally NOT in the breakout selector. When the banner
+     was extended to the body's outer edge, its 24px corner clip cut into the bottle illustrations
+     and the "EL AUTÉNTICO" wordmark — the user reported it as "cut off on the sides". Keeping
+     the banner inside the 24px inner gutter gives it 24px of white body on each side, so the
+     full image renders cleanly and the 24px corners are visible against that white margin.
 
      Sidebar is untouched. */
   .article-body {
@@ -2382,8 +2386,7 @@ button {
   .article-body .wp-caption,
   .article-body .wp-block-image,
   .article-body .gallery-clean,
-  .article-body .wp-block-gallery,
-  .article-body .ad-banner {
+  .article-body .wp-block-gallery {
     margin-left: -24px;
     margin-right: -24px;
     width: calc(100% + 48px);
