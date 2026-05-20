@@ -2394,8 +2394,13 @@ button {
   .article-body .ad-banner {
     margin-left: -24px;
     margin-right: -24px;
-    width: calc(100% + 48px);
-    max-width: none;
+    /* !important is required to defeat the base .wp-caption rule (line 898-900) which
+       uses !important on width/max-width to defend against WordPress's inline
+       style="width: 1000px" on captioned figures. Without it the figure shifts left
+       (margin wins) but doesn't widen (width clamped to 100% by base rule), so the
+       photo looks asymmetric — flush left, with a ~48px gap on the right. */
+    width: calc(100% + 48px) !important;
+    max-width: none !important;
   }
 
   /* Pampero banner inside the article: square corners on mobile so the bottle illustrations
