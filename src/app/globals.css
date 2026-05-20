@@ -2398,6 +2398,13 @@ button {
     max-width: none;
   }
 
+  /* Pampero banner inside the article: square corners on mobile so the bottle illustrations
+     and the "EL AUTÉNTICO" wordmark don't get clipped by the 24px corner arc when the banner
+     sits flush with the article box edges. Sidebar ad banners keep their rounded corners. */
+  .article-body .ad-banner {
+    border-radius: 0;
+  }
+
   .article-body .gallery-clean-row {
     flex-direction: column;
   }
