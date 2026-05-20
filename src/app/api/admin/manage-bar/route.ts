@@ -63,13 +63,58 @@ export async function POST(request: NextRequest) {
   }
 
   if (action === 'update') {
-    const cleanUpdates = normalizeBarFields(updates);
+    if (!barId && !barName) {
+      return NextResponse.json({ error: 'barId or barName required' }, { status: 400 });
+    }
+    const finalUpdates = normalizeBarFields({ ...updates });
+
+    // Re-geocode when the location changed (address/city/country edited) and
+    // the caller didn't supply explicit coordinates. Without this, editing a
+    // bar's address leaves its old map pin stale.
+    const locationChanged =
+      typeof finalUpdates.address === 'string' ||
+      typeof finalUpdates.city === 'string' ||
+      typeof finalUpdates.country === 'string';
+    const explicitCoords = finalUpdates.lat != null || finalUpdates.lng != null;
+
+    if (locationChanged && !explicitCoords) {
+      const sel = supabase.from('bars').select('name, address, city, country');
+      const { data: existing } = await (barId
+        ? sel.eq('id', barId).single()
+        : sel.eq('name', barName).single());
+      if (existing) {
+        const merged = {
+          name: (finalUpdates.name ?? existing.name) as string,
+          address: (finalUpdates.address ?? existing.address) as string | null,
+          city: (finalUpdates.city ?? existing.city) as string,
+          country: (finalUpdates.country ?? existing.country) as string,
+        };
+        if (merged.city && merged.country) {
+          const coords = await geocodeBar(merged);
+          if (coords) {
+            finalUpdates.lat = coords.lat;
+            finalUpdates.lng = coords.lng;
+          }
+          // Re-flag based on the fresh result: clear when exact, raise when
+          // approximate or geocoding failed. A caller-set value still wins.
+          if (finalUpdates.needs_geo_review == null) {
+            finalUpdates.needs_geo_review = coords ? coords.approximate : true;
+          }
+          if (coords?.approximate) {
+            console.warn(
+              `GEOCODE_FALLBACK update "${merged.name}" (${merged.city}, ${merged.country}) → ${coords.level} center`,
+            );
+          }
+        }
+      }
+    } else if (explicitCoords && finalUpdates.needs_geo_review == null) {
+      // Admin supplied coordinates by hand — that's a precise placement.
+      finalUpdates.needs_geo_review = false;
+    }
+
     const query = barId
-      ? supabase.from('bars').update(cleanUpdates).eq('id', barId).select()
-      : barName
-        ? supabase.from('bars').update(cleanUpdates).eq('name', barName).select()
-        : null;
-    if (!query) return NextResponse.json({ error: 'barId or barName required' }, { status: 400 });
+      ? supabase.from('bars').update(finalUpdates).eq('id', barId).select()
+      : supabase.from('bars').update(finalUpdates).eq('name', barName).select();
     const { data, error } = await query;
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     return NextResponse.json({ updated: data });
@@ -87,6 +132,16 @@ export async function POST(request: NextRequest) {
       });
       if (coords) {
         insertData = { ...insertData, lat: coords.lat, lng: coords.lng };
+        if (coords.approximate) {
+          console.warn(
+            `GEOCODE_FALLBACK create "${insertData.name}" (${insertData.city}, ${insertData.country}) → ${coords.level} center`,
+          );
+        }
+      }
+      // Flag for admin review when the placement is approximate or geocoding
+      // failed outright (no coords). An explicit caller-set value wins.
+      if (insertData.needs_geo_review == null) {
+        insertData.needs_geo_review = coords ? coords.approximate : true;
       }
     }
     const { data, error } = await supabase.from('bars').insert(insertData).select();
