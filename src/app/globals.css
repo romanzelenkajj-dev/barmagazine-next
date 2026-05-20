@@ -2121,17 +2121,20 @@ button {
   }
 
   body {
-    /* Mobile: trim the side gutter from 8px down to 4px so cards/banners/the article
-       box/the footer all sit closer to the screen edges across every page (home,
-       categories, bar directory, posts). The page background still shows as a thin
-       sliver against the rounded corners of the nav, hero, body box, sidebar cards,
-       etc. — just narrower than before. */
-    padding-left: 4px;
-    padding-right: 4px;
+    /* Mobile side gutter: trimmed from the desktop 16px down to 2px so cards, banners,
+       article box, footer, etc. sit nearly flush with the screen edges across every page
+       (home, categories, bar directory, posts). 2px is just enough for the rounded
+       corners of the nav, hero, body box, sidebar cards, etc. to read against the page
+       background sliver. */
+    padding-left: 2px;
+    padding-right: 2px;
   }
 
   .nav-spacer {
-    height: calc(var(--nav-h) + 16px);
+    /* 8px buffer below the fixed nav before content starts (was 16px). Combined with
+       the matching 8px tweaks on .hero, .article-breadcrumb, and .article-outer-grid
+       margin-top, the nav-to-first-content gap is halved across every page. */
+    height: calc(var(--nav-h) + 8px);
   }
 
   .nav-wrapper {
@@ -2200,7 +2203,7 @@ button {
     grid-auto-rows: auto;
     border-radius: 20px;
     overflow: hidden;
-    margin-top: 16px;
+    margin-top: 8px;
     background: #fff;
   }
 
@@ -2362,6 +2365,13 @@ button {
 
   .article-outer-grid {
     grid-template-columns: 1fr;
+    /* Halved from var(--gap)=16px so the gap below the breadcrumb is tighter on mobile. */
+    margin-top: 8px;
+  }
+
+  /* Mobile-only: halve the breadcrumb's top margin so nav → breadcrumb tightens to 8px. */
+  .article-breadcrumb {
+    margin-top: 8px;
   }
 
   .article-body {
