@@ -2121,8 +2121,13 @@ button {
   }
 
   body {
-    padding-left: 8px;
-    padding-right: 8px;
+    /* Mobile: trim the side gutter from 8px down to 4px so cards/banners/the article
+       box/the footer all sit closer to the screen edges across every page (home,
+       categories, bar directory, posts). The page background still shows as a thin
+       sliver against the rounded corners of the nav, hero, body box, sidebar cards,
+       etc. — just narrower than before. */
+    padding-left: 4px;
+    padding-right: 4px;
   }
 
   .nav-spacer {
@@ -2359,25 +2364,14 @@ button {
     grid-template-columns: 1fr;
   }
 
-  /* Mobile-only posts: photos break out of the 24px inner gutter to fill the article box width
-     so they're visibly bigger than the text column. The hero and the box itself are NOT broken
-     out — they sit at the body's natural width with the page's 8px outer padding around them,
-     so their 24px rounded corners curve *inside* the viewport against the beige page background
-     and are clearly visible (vs. earlier attempts which made them full-bleed at 100vw, putting
-     the corner arc right at the screen edge where it looked cut off). The photos' own 12px
-     corners now also have white body next to them on the left and right.
-
-     The bottom Pampero ad banner is intentionally NOT in the breakout selector. When the banner
-     was extended to the body's outer edge, its 24px corner clip cut into the bottle illustrations
-     and the "EL AUTÉNTICO" wordmark — the user reported it as "cut off on the sides". Keeping
-     the banner inside the 24px inner gutter gives it 24px of white body on each side, so the
-     full image renders cleanly and the 24px corners are visible against that white margin.
-
-     Sidebar is untouched. */
   .article-body {
     padding: 32px 24px;
   }
 
+  /* Photos / WP image blocks / galleries / the bottom Pampero ad banner break out of the
+     24px inner gutter to fill the article box width — so they're visibly larger than the
+     text column. The outer side gutter is handled globally by the body padding (4px on
+     mobile), which applies to every page (home, categories, bars, posts, footer). */
   .article-body > p > img,
   .article-body > p > a > img,
   .article-body img.alignnone,
@@ -2386,7 +2380,8 @@ button {
   .article-body .wp-caption,
   .article-body .wp-block-image,
   .article-body .gallery-clean,
-  .article-body .wp-block-gallery {
+  .article-body .wp-block-gallery,
+  .article-body .ad-banner {
     margin-left: -24px;
     margin-right: -24px;
     width: calc(100% + 48px);
