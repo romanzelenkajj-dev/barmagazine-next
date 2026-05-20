@@ -2359,21 +2359,24 @@ button {
     grid-template-columns: 1fr;
   }
 
-  /* Mobile-only posts: photos break out of the 24px inner gutter to fill the article box width
-     so they're visibly bigger than the text column. The hero and the box itself are NOT broken
-     out — they sit at the body's natural width with the page's 8px outer padding around them,
-     so their 24px rounded corners curve *inside* the viewport against the beige page background
-     and are clearly visible (vs. earlier attempts which made them full-bleed at 100vw, putting
-     the corner arc right at the screen edge where it looked cut off). The photos' own 12px
-     corners now also have white body next to them on the left and right.
+  /* Mobile-only posts.
 
-     The bottom Pampero ad banner is intentionally NOT in the breakout selector. When the banner
-     was extended to the body's outer edge, its 24px corner clip cut into the bottle illustrations
-     and the "EL AUTÉNTICO" wordmark — the user reported it as "cut off on the sides". Keeping
-     the banner inside the 24px inner gutter gives it 24px of white body on each side, so the
-     full image renders cleanly and the 24px corners are visible against that white margin.
+     The hero and the article box sit a little closer to the screen edges than the rest of the
+     page — pull them out with a 4px negative margin so the body element's 8px outer padding
+     becomes effectively ~4px for these two. Other elements on the page (breadcrumb above the
+     hero, sidebar below the article) keep the full 8px so the layout is consistent for them.
+     4px is enough breathing room for the 24px rounded corners to be visible against the page
+     background while making the box feel meaningfully wider than the rest of the page.
 
-     Sidebar is untouched. */
+     Photos / WP image blocks / galleries / the bottom Pampero ad banner break out of the
+     24px inner gutter to fill the article box width — so they're visibly larger than the
+     text column. */
+  .article-hero,
+  .article-body {
+    margin-left: -4px;
+    margin-right: -4px;
+  }
+
   .article-body {
     padding: 32px 24px;
   }
@@ -2386,7 +2389,8 @@ button {
   .article-body .wp-caption,
   .article-body .wp-block-image,
   .article-body .gallery-clean,
-  .article-body .wp-block-gallery {
+  .article-body .wp-block-gallery,
+  .article-body .ad-banner {
     margin-left: -24px;
     margin-right: -24px;
     width: calc(100% + 48px);
