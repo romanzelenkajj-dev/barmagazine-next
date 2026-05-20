@@ -2359,37 +2359,21 @@ button {
     grid-template-columns: 1fr;
   }
 
-  /* Mobile-only edge-to-edge posts.
-     The hero and the article box escape the body's 8px side padding so they touch the screen
-     edges (matching the header). Both keep their rounded corners. The text inside the box keeps
-     its 24px inner gutter so it isn't hugging the edge. Photos / WP image blocks / the bottom
-     Pampero ad banner break out of that 24px gutter back to the box edge — so they render at
-     the full box width — while keeping their own rounded corners.
+  /* Mobile-only posts: photos break out of the 24px inner gutter to fill the article box width
+     so they're visibly bigger than the text column. The hero and the box itself are NOT broken
+     out — they sit at the body's natural width with the page's 8px outer padding around them,
+     so their 24px rounded corners curve *inside* the viewport against the beige page background
+     and are clearly visible (vs. earlier attempts which made them full-bleed at 100vw, putting
+     the corner arc right at the screen edge where it looked cut off). The photos' own 12px
+     corners now also have white body next to them on the left and right.
 
-     IMPORTANT: the breakout is applied directly to .article-hero and .article-body, NOT to
-     .article-outer-grid. Targeting the grid would drag the sidebar (Flavour Blaster banner,
-     Related Articles, Top 10 Bars) past the viewport edge on mobile. Desktop is untouched. */
-  .article-hero,
-  .article-body {
-    /* Full-bleed via viewport units rather than relative margins, because the previous approach
-       was breaking in two places:
-       1. .article-hero has `max-width: 100%` in the base rule (line 668), which silently clamped
-          `width: calc(100% + 16px)` back to the parent width — hero ended up 16px short of the
-          right edge (gap on right).
-       2. .article-body has padding 32px 24px and the default `box-sizing: content-box`, so the
-          `calc(100% + 16px)` content width became `parent + 64px` outer width — body and the text
-          inside it spilled past the right viewport edge.
+     The bottom Pampero ad banner is intentionally NOT in the breakout selector. When the banner
+     was extended to the body's outer edge, its 24px corner clip cut into the bottle illustrations
+     and the "EL AUTÉNTICO" wordmark — the user reported it as "cut off on the sides". Keeping
+     the banner inside the 24px inner gutter gives it 24px of white body on each side, so the
+     full image renders cleanly and the 24px corners are visible against that white margin.
 
-       `width: 100vw` plus `margin: calc(50% - 50vw)` puts the element exactly viewport-wide
-       regardless of parent flex/grid/padding/max-width. `box-sizing: border-box` includes the
-       body's inner padding in that 100vw. `max-width: none` defeats the inherited clamp. */
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    max-width: none;
-    box-sizing: border-box;
-  }
-
+     Sidebar is untouched. */
   .article-body {
     padding: 32px 24px;
   }
@@ -2402,8 +2386,7 @@ button {
   .article-body .wp-caption,
   .article-body .wp-block-image,
   .article-body .gallery-clean,
-  .article-body .wp-block-gallery,
-  .article-body .ad-banner {
+  .article-body .wp-block-gallery {
     margin-left: -24px;
     margin-right: -24px;
     width: calc(100% + 48px);
