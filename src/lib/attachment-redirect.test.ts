@@ -20,11 +20,15 @@ describe('attachmentRedirectTarget', () => {
       expect(attachmentRedirectTarget('/article-slug/0i7a3499')).toBe('/article-slug');
     });
 
-    it('file extensions in slug shape (dash or dot before ext)', () => {
+    it('file extensions in slug shape (dash before ext, no dot)', () => {
+      // WP attachment URLs use the dash form: /article/photo-name-jpg.
+      // The dotted form (/article/photo.jpg) is excluded because it false-
+      // matched real image files in public/banners/, public/images/, etc. —
+      // see the public-asset negative tests below + the comment on the
+      // ATTACHMENT_TAIL_PATTERNS list in src/lib/attachment-redirect.ts.
       expect(attachmentRedirectTarget('/article-slug/photo-jpg')).toBe('/article-slug');
       expect(attachmentRedirectTarget('/article-slug/photo-name-png')).toBe('/article-slug');
-      expect(attachmentRedirectTarget('/article-slug/photo.jpg')).toBe('/article-slug');
-      expect(attachmentRedirectTarget('/article-slug/foo.gif')).toBe('/article-slug');
+      expect(attachmentRedirectTarget('/article-slug/some-shot-jpeg')).toBe('/article-slug');
     });
 
     it('attachment + attachment/N', () => {
@@ -68,6 +72,33 @@ describe('attachmentRedirectTarget', () => {
       // Synthetic case — verifies the reserved guard is load-bearing.
       expect(attachmentRedirectTarget('/bars/IMG_001')).toBeNull();
       expect(attachmentRedirectTarget('/category/01-foo')).toBeNull();
+    });
+
+    it('preserves public-asset directories (REGRESSION: PR #52 broke this)', () => {
+      // PR #52 shipped the attachment-redirect middleware without 'banners'
+      // or 'images' in the reserved-prefix list, AND had a dotted-extension
+      // regex that matched real image files. Net effect: every sponsor
+      // banner image at /banners/*.jpg got 301'd to /banners → 404,
+      // breaking the Flavour Blaster and Pampero Rum sponsor inventory on
+      // every article page until this hotfix landed.
+      //
+      // Both fixes are pinned by these assertions:
+      //   1. 'banners' and 'images' are in RESERVED_TOP_LEVEL_PATHS
+      //   2. The /\.(jpg|png|...)$/ dotted regex has been removed
+      // If either layer is removed, this test fails immediately.
+      expect(attachmentRedirectTarget('/banners/flavour-blaster.jpg')).toBeNull();
+      expect(attachmentRedirectTarget('/banners/pampero.jpg')).toBeNull();
+      expect(attachmentRedirectTarget('/images/some-photo.png')).toBeNull();
+      expect(attachmentRedirectTarget('/images/og-banner.jpeg')).toBeNull();
+    });
+
+    it('passes through dotted-extension files anywhere (defense-in-depth)', () => {
+      // Even if a public/ subdir got added without being put in the reserved
+      // list, the dotted-extension regex removal means real image files are
+      // not caught. This is the second layer that fires when the reserved
+      // list is incomplete (which it inevitably will be at some point).
+      expect(attachmentRedirectTarget('/some-future-asset-dir/photo.jpg')).toBeNull();
+      expect(attachmentRedirectTarget('/some-future-asset-dir/foo.png')).toBeNull();
     });
   });
 
