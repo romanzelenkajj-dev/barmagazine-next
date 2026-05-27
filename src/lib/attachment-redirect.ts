@@ -31,6 +31,14 @@ const RESERVED_TOP_LEVEL_PATHS: ReadonlySet<string> = new Set([
   'search', 'privacy', 'terms', 'work-with-us',
   // Infra
   'api', '_next', 'cdn-cgi',
+  // Static-asset directories under public/ that produce /:dir/:file URLs
+  // and must NEVER be classified as WP attachment URLs. Sponsor banners,
+  // og images, hero photos, etc. live here. Add every public/ subdir that
+  // emits two-segment paths; missing one will cause a sponsor 404 (as
+  // happened in PR #52 — /banners/flavour-blaster.jpg got matched and
+  // 301'd to /banners → 404, breaking the Flavour Blaster + Pampero Rum
+  // banners on every article page).
+  'banners', 'images',
   // Static files (matcher in middleware.ts already excludes most, but
   // belt-and-suspenders against future matcher changes)
   'sitemap.xml', 'sitemap-articles.xml', 'sitemap-bars.xml',
@@ -51,8 +59,17 @@ const ATTACHMENT_TAIL_PATTERNS: ReadonlyArray<RegExp> = [
   /^img_/i,                      // IMG_xxxx, img_xxxx
   /^dsc/i,                       // dsc09381, DSC...
   /^0i7a/i,                      // 0i7a3499 (Canon EOS filename prefix)
-  /-(?:jpg|jpeg|png|gif)$/i,     // ...-jpg, ...-png (dash before extension)
-  /\.(?:jpg|jpeg|png|gif)$/i,    // foo.jpg
+  /-(?:jpg|jpeg|png|gif)$/i,     // ...-jpg, ...-png (dash-prefix only; WP
+                                 // attachment slugs use this shape, no dot).
+                                 // Hot-removed in the post-#52 banner-asset
+                                 // hotfix: the dotted form `/\.(jpg|png|…)$/`
+                                 // was over-broad — it caught real image
+                                 // files in public/banners/, public/images/,
+                                 // public/og-*.jpg etc., 301'ing them to a
+                                 // dead parent path. Real WP attachment URLs
+                                 // empirically use the dash form; if a dotted
+                                 // case appears in GSC, add an explicit
+                                 // narrower regex (e.g. `/\d+\.jpg$/`).
   /^attachment(?:\/\d+)?$/,      // attachment, attachment/8
   /^untitled/i,
   /^screen-?shot/i,              // screen-shot, screenshot
