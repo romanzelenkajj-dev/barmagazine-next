@@ -260,6 +260,66 @@ const nextConfig = {
       { source: '/drinky-juznej-ameriky', destination: '/category/cocktails', permanent: true },
 
       // ---------------------------------------------------------------
+      // 2026-05 404-cleanup batch — 175 URLs from a Search Console export
+      // surfaced as legacy-WordPress 404 patterns. Adding the redirects
+      // in-place; the WP image-attachment class is handled in middleware.ts
+      // (can't be done with static rules without shadowing /bars/[slug] etc.).
+      // ---------------------------------------------------------------
+
+      // WP custom taxonomies (catch-all)
+      { source: '/event-location/:slug*', destination: '/category/events', permanent: true },
+      { source: '/event-organizer/:slug*', destination: '/category/events', permanent: true },
+
+      // Orphan category redirects
+      { source: '/category/whats-up', destination: '/', permanent: true },
+      { source: '/category/whats-up/', destination: '/', permanent: true },
+      { source: '/category/opening', destination: '/', permanent: true },
+      { source: '/category/opening/', destination: '/', permanent: true },
+      { source: '/category/bar-books', destination: '/category/people', permanent: true },
+      { source: '/category/bar-books/', destination: '/category/people', permanent: true },
+      { source: '/category/flavours', destination: '/category/cocktails', permanent: true },
+      { source: '/category/flavours/', destination: '/category/cocktails', permanent: true },
+
+      // Bar accent slugs (URL-encoded — Vercel normalizes these to ASCII at the
+      // edge, so these literal rules catch the encoded form before it gets
+      // normalized and 404s against the active Supabase slug)
+      { source: '/bars/licorer%C3%ADa-limantour', destination: '/bars/licoreria-limantour', permanent: true },
+      { source: '/bars/tlec%C4%81n', destination: '/bars/tlecan', permanent: true },
+      { source: '/bars/tay%C4%93r-elementary', destination: '/bars/tayer-elementary', permanent: true },
+      { source: '/bars/colette-boston', destination: '/bars', permanent: true },
+
+      // WP infrastructure catch-all — these paths never existed on the Next.js
+      // frontend but legacy crawlers / link tables still probe them. Sending
+      // them home is the soft-404 trap the audit warned against, but it
+      // preserves any crawl equity from cached references. Switch to 410 via
+      // middleware later if the soft-404 signal proves problematic.
+      { source: '/wp-content/themes/:path*', destination: '/', permanent: true },
+      { source: '/wp-content/plugins/:path*', destination: '/', permanent: true },
+      { source: '/wp-json/:path*', destination: '/', permanent: true },
+      { source: '/cdn-cgi/:path*', destination: '/', permanent: true },
+      // /wp-:slug.php (302) — pre-existing /wp-login.php and /wp-admin rules
+      // upstream of this block are more specific and win for those URLs;
+      // this generalizes the rest (wp-config.php, wp-cron.php, etc.).
+      { source: '/wp-:slug.php', destination: '/', permanent: false },
+
+      // /NEWS uppercase — old WP permalink quirk
+      { source: '/NEWS/:slug*', destination: '/', permanent: true },
+
+      // Misc one-offs
+      { source: '/contact/', destination: '/work-with-us', permanent: true },
+      // /spirits/baijiu/ must come BEFORE the /spirits/:slug* catch-all below
+      { source: '/spirits/baijiu/', destination: '/category/brands', permanent: true },
+      { source: '/spirits/:slug*', destination: '/category/brands', permanent: true },
+      { source: '/hospitality-bar-events-calendar-2025/', destination: '/category/events', permanent: true },
+
+      // Article pagination trailing-slash variants (the no-slash forms already
+      // exist near the top of this redirects() array — pre-existing)
+      { source: '/:slug/2/', destination: '/:slug', permanent: true },
+      { source: '/:slug/3/', destination: '/:slug', permanent: true },
+      { source: '/:slug/4/', destination: '/:slug', permanent: true },
+      { source: '/:slug/5/', destination: '/:slug', permanent: true },
+
+      // ---------------------------------------------------------------
       // A4: /{bar-slug} → /bars/{bar-slug} (301, permanent).
       // Generated at build time from Supabase (active bars) cross-checked
       // against WP post/page slugs to avoid clobbering real editorial URLs.

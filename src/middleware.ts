@@ -4,6 +4,7 @@ import {
   isCanonicalHost,
   isLocalHost,
 } from '@/lib/host-check';
+import { attachmentRedirectTarget } from '@/lib/attachment-redirect';
 
 /**
  * Host canonicalization.
@@ -89,12 +90,35 @@ export function middleware(request: NextRequest) {
     return serveGone();
   }
 
-  // /events/{unlisted-slug} — 410. Reaches here only if no explicit redirect
-  // in next.config.mjs matched (redirects() runs before middleware), so this
-  // is by definition an unlisted legacy /events/X URL. Cleaner signal than
-  // letting Next.js fall through to a 404 page.
+  // /events/{unlisted-slug} — 301 to /category/events. Reaches here only if
+  // no explicit redirect in next.config.mjs matched (redirects() runs before
+  // middleware). The 2026-05 404-cleanup batch flipped this from 410 to 301
+  // because the long-tail GSC report showed enough legitimate inbound links
+  // to events that crawl-equity preservation outweighs the "drop from index"
+  // signal of 410.
+  //
+  // We deliberately do NOT re-add a `/events/:slug → /category/events` rule
+  // in next.config.mjs. Next.js's routing manifest does not honor array
+  // order for the catch-all-vs-literal case (the bug fixed in PR #22 —
+  // catch-all silently ate every explicit /events/X rule, including the
+  // worlds-50-best one that points at a real article). Doing the redirect
+  // in middleware lets the explicit literal rules in next.config keep
+  // winning unambiguously while we still catch the long tail here.
   if (STALE_EVENTS_RE.test(request.nextUrl.pathname)) {
-    return serveGone();
+    return NextResponse.redirect(
+      new URL('/category/events', request.url),
+      301,
+    );
+  }
+
+  // WP image-attachment URLs (/article-slug/IMG_001/, .../attachment/8/,
+  // .../01-photo-jpg/, etc.) — biggest 404 class in the GSC report. Detect
+  // via pattern match on the second segment; redirect to the parent article.
+  // Reserved top-level prefixes (bars, category, events, …) are passed
+  // through unchanged so real 2-segment routes aren't shadowed.
+  const attachmentTarget = attachmentRedirectTarget(request.nextUrl.pathname);
+  if (attachmentTarget) {
+    return NextResponse.redirect(new URL(attachmentTarget, request.url), 301);
   }
 
   // Preserve existing geo-currency cookie on /claim-your-bar.
