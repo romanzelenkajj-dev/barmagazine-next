@@ -194,7 +194,7 @@ export default async function LinksPage() {
               <span className="bm-link-arrow">→</span>
             </a>
 
-            <a className="bm-link" href="https://barmagazine.com/claim-your-bar">
+            <a className="bm-link" href="https://barmagazine.com/feature-your-bar">
               List Your Bar
               <span className="bm-link-arrow">→</span>
             </a>

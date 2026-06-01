@@ -5,6 +5,7 @@ import {
   isLocalHost,
 } from '@/lib/host-check';
 import { attachmentRedirectTarget } from '@/lib/attachment-redirect';
+import { CURRENCY_COOKIE, currencyFromCountry } from '@/lib/geo-currency';
 
 /**
  * Host canonicalization.
@@ -62,11 +63,16 @@ const TAG_PATH_RE = /^\/tag(\/.*)?$/;
 // drop from index now) and matches the /tag/* / /author/* convention.
 const STALE_EVENTS_RE = /^\/events\/.+$/;
 
-// EU member state ISO codes — used by the /claim-your-bar currency cookie.
-const EU_COUNTRIES = new Set([
-  'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
-  'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL',
-  'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
+// EU detection + currency resolution moved to src/lib/geo-currency.ts so
+// SSR server components (e.g. /feature-your-bar) can share the same logic.
+
+// Pages that need the geo→currency cookie set on first visit.
+// Read by the corresponding page's server component so it can render the
+// right currency in initial HTML (matches the SSR requirement for the
+// /feature-your-bar landing page).
+const GEO_CURRENCY_PATHS: ReadonlySet<string> = new Set([
+  '/claim-your-bar',
+  '/feature-your-bar',
 ]);
 
 export function middleware(request: NextRequest) {
@@ -121,12 +127,14 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(attachmentTarget, request.url), 301);
   }
 
-  // Preserve existing geo-currency cookie on /claim-your-bar.
-  if (request.nextUrl.pathname === '/claim-your-bar') {
+  // Set the geo→currency cookie on pages that price in EUR/USD.
+  // /claim-your-bar reads it client-side; /feature-your-bar reads it
+  // server-side (SSR) for first-paint correctness.
+  if (GEO_CURRENCY_PATHS.has(request.nextUrl.pathname)) {
     const country = request.geo?.country || request.headers.get('x-vercel-ip-country') || '';
-    const isEU = EU_COUNTRIES.has(country.toUpperCase());
+    const currency = currencyFromCountry(country);
     const response = NextResponse.next();
-    response.cookies.set('geo_currency', isEU ? 'EUR' : 'USD', {
+    response.cookies.set(CURRENCY_COOKIE, currency, {
       path: '/',
       maxAge: 3600,
       sameSite: 'lax',

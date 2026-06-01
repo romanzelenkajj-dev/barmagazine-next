@@ -65,7 +65,7 @@ export function Nav() {
                 </li>
               ))}
             </ul>
-            <Link href="/claim-your-bar" className="nav-cta">
+            <Link href="/feature-your-bar" className="nav-cta">
               List Your Bar
             </Link>
             <Link href="/search" className="nav-search">
@@ -104,7 +104,7 @@ export function Nav() {
             {link.label}
           </Link>
         ))}
-        <Link href="/claim-your-bar" className="mobile-menu-cta" onClick={() => setMenuOpen(false)}>
+        <Link href="/feature-your-bar" className="mobile-menu-cta" onClick={() => setMenuOpen(false)}>
           List Your Bar
         </Link>
       </div>

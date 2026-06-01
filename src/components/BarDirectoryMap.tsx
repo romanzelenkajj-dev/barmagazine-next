@@ -319,7 +319,7 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
           const badgeHtml = isTop10
             ? '<span style="display:inline-block;background:linear-gradient(135deg,#B8973A,#D4B84A);color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:700;margin-bottom:4px;letter-spacing:0.5px;">★ TOP 10</span><br/>'
             : isFeatured ? '<span style="display:inline-block;background:#7B1E1E;color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;margin-bottom:4px;letter-spacing:0.5px;">FEATURED</span><br/>' : '';
-          const upgradeHtml = (!isFeatured && !isTop10) ? '<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.1);font-size:10px;color:#7B1E1E;"><a href="/claim-your-bar" style="color:#7B1E1E;text-decoration:none;">★ Upgrade to stand out →</a></div>' : '';
+          const upgradeHtml = (!isFeatured && !isTop10) ? '<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.1);font-size:10px;color:#7B1E1E;"><a href="/feature-your-bar" style="color:#7B1E1E;text-decoration:none;">★ Upgrade to stand out →</a></div>' : '';
           new mapboxgl.Popup({ closeButton: true, closeOnClick: true, maxWidth: '220px', className: 'bar-map-popup' })
             .setLngLat(coords)
             .setHTML(`<div style="cursor:pointer;" onclick="window.location.href='/bars/${props.slug}'">${photoHtml}${badgeHtml}<strong style="font-size:14px;color:#f5f0eb;">${props.name}</strong><br/><span style="font-size:12px;color:#a09888;">${props.city}, ${props.country}</span><br/><span style="font-size:11px;color:#7a7060;text-transform:uppercase;letter-spacing:0.5px;">${props.type || 'Bar'}</span>${upgradeHtml}</div>`)
@@ -906,7 +906,7 @@ export function BarDirectoryMapClient({
                       <h3>Get featured in BarMagazine</h3>
                       <p>From a free listing to a full feature article — get your bar in front of the world&apos;s bar professionals.</p>
                     </div>
-                    <Link href="/claim-your-bar" className="directory-inline-cta-btn">
+                    <Link href="/feature-your-bar" className="directory-inline-cta-btn">
                       List Your Bar
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                     </Link>

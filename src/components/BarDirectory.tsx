@@ -255,7 +255,7 @@ export function BarDirectoryClient({
               <h3>Get your bar on the map</h3>
               <p>Free listing or upgrade for a BarMagazine feature article and priority placement.</p>
             </div>
-            <Link href="/claim-your-bar" className="directory-inline-cta-btn">
+            <Link href="/feature-your-bar" className="directory-inline-cta-btn">
               List Your Bar
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </Link>
