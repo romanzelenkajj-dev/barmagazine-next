@@ -7143,27 +7143,35 @@ textarea.form-input {
    that shares this stylesheet.
    ------------------------------------------------------------------------- */
 
-/* (1) Inset rounded panels — the three full-bleed colored bands now match
-   the site's 24px card radius and read as cards on the cream page bg
-   (same treatment as .claim-* / .bar-v2-* card system). overflow:hidden
-   so the inner radial gradient on .feature-hero stays clipped to the
-   rounded corners. Width formula: cap at 1200px on wide screens, hold
-   16px of horizontal breathing room on smaller viewports. */
+/* (1) Inset rounded panels — every full-bleed colored band on this page
+   gets the site's 24px card radius and reads as a card on the cream page
+   bg, same treatment as .claim-* / .bar-v2-* card system.
+
+   WIDTH: deliberately no max-width here. These panels fill their parent
+   (the layout-level .container at max-width: var(--container) = 1536px),
+   so they end up the SAME width as the nav and footer. An earlier version
+   of this rule capped them at 1200px which made them visibly narrower
+   than the surrounding chrome — fixed by removing that cap.
+
+   overflow:hidden so inner gradients/translated cards (the hero's radial
+   wash, the featured-tier translateY) stay clipped to the rounded
+   corners. */
 .feature-hero,
 .feature-section.feature-dark,
-.feature-section.feature-urgency {
-  max-width: min(1200px, 100% - 32px);
-  margin-left: auto;
-  margin-right: auto;
+.feature-prose-sec,
+.feature-section.feature-urgency,
+.feature-final {
   border-radius: var(--radius);
   overflow: hidden;
-}
-
-/* Hero needs a small top margin so all four rounded corners read against
-   the nav above. Other inset panels sit between transparent sections so
-   their cream gap is provided by the surrounding section padding. */
-.feature-hero {
+  /* var(--gap) (16px) of vertical breathing room so adjacent colored
+     panels don't visually merge — the dark "What you get" band sits
+     directly above the warm prose section with no transparent gap
+     between them; without this margin the two rounded panels would butt
+     up and the bottom corners of the dark band would be hidden against
+     the prose's top corners. Also separates the hero from the nav and
+     the final CTA from the footer. */
   margin-top: var(--gap);
+  margin-bottom: var(--gap);
 }
 
 /* (2) Pricing-tier CTA: explicit box-sizing so width:100% includes the
