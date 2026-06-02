@@ -59,8 +59,26 @@ button {
 
 /* ====== CONTAINER ====== */
 .container {
-  max-width: var(--container);
+  /* Side gutters that match the nav at every viewport.
+   *
+   * Before this rule had no horizontal padding, so on viewports narrower
+   * than 1536px the container (and therefore the footer + every page's
+   * content) touched the screen edges, while the nav had a 16px gutter
+   * from .nav-wrapper. Net effect site-wide: the nav was visibly
+   * narrower than the content beneath it on tablet + mobile.
+   *
+   * Fix: add `padding: 0 var(--gap)` (16px each side) and bump the
+   * max-width by 2×gap so the inner content area still caps at the same
+   * var(--container) = 1536px it did before. With box-sizing:border-box,
+   * the padding lives inside max-width, so on viewports >= 1568px the
+   * content area is unchanged from before this PR — zero visual delta
+   * on wide desktop. Below 1568px, the page gains the same 16px gutter
+   * the nav has always had. */
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gap));
   margin: 0 auto;
+  padding: 0 var(--gap);
+  box-sizing: border-box;
 }
 
 /* ====== NAV ====== */
