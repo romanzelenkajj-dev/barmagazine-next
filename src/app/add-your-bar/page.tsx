@@ -363,7 +363,7 @@ function AddYourBarForm() {
                     {isPaidPlan
                       ? 'You\u2019ll be redirected to Stripe to complete payment after submitting.'
                       : 'Not sure? Start with Free \u2014 you can upgrade anytime.'}
-                    {' '}<a href="/claim-your-bar" style={{textDecoration: 'underline'}}>Compare plans</a>
+                    {' '}<a href="/feature-your-bar" style={{textDecoration: 'underline'}}>Compare plans</a>
                   </span>
                 </div>
               </div>

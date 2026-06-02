@@ -246,7 +246,7 @@ export default async function CountryPage({
                 Free basic listing, or upgrade for premium visibility.
               </p>
               <div className="directory-cta-actions">
-                <Link href="/claim-your-bar" className="directory-cta-btn">List Your Bar</Link>
+                <Link href="/feature-your-bar" className="directory-cta-btn">List Your Bar</Link>
               </div>
             </div>
           </div>

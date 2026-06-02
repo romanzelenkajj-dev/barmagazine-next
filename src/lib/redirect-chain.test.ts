@@ -82,6 +82,33 @@ describe('next.config.mjs redirects()', () => {
     expect(catchAll, 'catch-all /events/:slug must not exist').toBeUndefined();
   });
 
+  it('/claim-your-bar → /feature-your-bar (single hop, both slash variants)', async () => {
+    // /claim-your-bar was the old landing slug; /feature-your-bar replaced
+    // it in the feature-page rebuild. Direct 301 (not chained) preserves
+    // the crawl equity from inbound links + sitemap entries.
+    const redirects: Redirect[] = await nextConfig.redirects();
+    const bare = redirects.find((r) => r.source === '/claim-your-bar');
+    const trailing = redirects.find((r) => r.source === '/claim-your-bar/');
+    expect(bare, '/claim-your-bar rule missing').toBeDefined();
+    expect(trailing, '/claim-your-bar/ trailing-slash rule missing').toBeDefined();
+    expect(bare!.destination).toBe('/feature-your-bar');
+    expect(trailing!.destination).toBe('/feature-your-bar');
+    expect(bare!.permanent).toBe(true);
+  });
+
+  it('/list-your-bar points DIRECTLY at /feature-your-bar (not via /claim-your-bar)', async () => {
+    // Regression guard: the previous setup was /list-your-bar → /claim-your-bar.
+    // Once /claim-your-bar started 301ing to /feature-your-bar, leaving the
+    // /list-your-bar rule unchanged would have produced /list-your-bar →
+    // /claim-your-bar → /feature-your-bar — a 2-hop chain. The generic
+    // chain-detection test above catches this too, but pinning the destination
+    // here makes the failure message read in plain English.
+    const redirects: Redirect[] = await nextConfig.redirects();
+    const rule = redirects.find((r) => r.source === '/list-your-bar');
+    expect(rule, '/list-your-bar rule missing').toBeDefined();
+    expect(rule!.destination).toBe('/feature-your-bar');
+  });
+
   it('/the-bars-of-barcelona points at the real article, not /category/places', async () => {
     // The real WP article is at /bars-in-barcelona (id 741, "Bars in
     // Barcelona"). The previous /category/places destination 404'd because

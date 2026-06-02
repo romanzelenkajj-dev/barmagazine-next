@@ -184,7 +184,25 @@ export async function GET() {
     })
     .join('\n');
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
+  // Static Next.js landing pages that aren't backed by WordPress and
+  // therefore aren't picked up by the WP fetch above. Hand-maintain. Today
+  // this is just the /feature-your-bar sales funnel — the SEO-critical
+  // surface for the "feature your bar" / "promote your bar" queries.
+  // Other static routes (/work-with-us, /privacy, /terms, /add-your-bar,
+  // /search) are intentionally excluded: low SEO value (legal/utility) and
+  // we don't want them competing for the indexing budget.
+  const STATIC_PAGES: Array<{ path: string; priority: string; changefreq: string }> = [
+    { path: '/feature-your-bar', priority: '0.9', changefreq: 'weekly' },
+  ];
+  const staticUrls = STATIC_PAGES.map(({ path, priority, changefreq }) => {
+    const loc = `${SITE_URL}${path}`;
+    const lastmod = new Date().toISOString();
+    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+  }).join('\n');
+
+  const allUrls = [staticUrls, urls].filter(Boolean).join('\n');
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${allUrls}\n</urlset>`;
 
   return new NextResponse(xml, {
     headers: {

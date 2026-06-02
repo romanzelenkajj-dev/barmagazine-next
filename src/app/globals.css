@@ -6457,3 +6457,680 @@ textarea.form-input {
 .bar-v2-map .mapboxgl-ctrl-attrib a {
   color: #555 !important;
 }
+
+/* =========================================================================
+   /feature-your-bar landing page
+   -------------------------------------------------------------------------
+   Owns the .feature-* namespace. Mirrors the conventions of .claim-*
+   above (CSS variables for tokens, 100px pill buttons, var(--radius)
+   24px corners, Inter font) so the page reads as part of the same
+   design system. The page itself is SSR'd from
+   src/app/feature-your-bar/page.tsx; classes here back every JSX
+   selector on that page.
+   ========================================================================= */
+
+.feature-page {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.feature-page h1,
+.feature-page h2,
+.feature-page h3 {
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.feature-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.feature-section {
+  padding: 88px 0;
+}
+
+.feature-sec-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+}
+
+.feature-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.feature-sec-title {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.feature-sec-intro {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Buttons -------------------------------------------------------------- */
+.feature-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1.5px solid transparent;
+  transition: background 0.2s var(--ease),
+              color 0.2s var(--ease),
+              border-color 0.2s var(--ease),
+              transform 0.2s var(--ease);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.feature-btn:hover { transform: translateY(-1px); }
+
+.feature-btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.feature-btn-primary:hover {
+  background: #5e1717;
+  border-color: #5e1717;
+  color: #fff;
+}
+
+.feature-btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+.feature-btn-outline:hover {
+  background: var(--text-primary);
+  color: #fff;
+}
+
+/* Outline variant used inside dark/green bands (white border + label) */
+.feature-dark .feature-btn-outline,
+.feature-final .feature-btn-outline {
+  color: #fff;
+  border-color: rgba(255,255,255,0.4);
+}
+.feature-dark .feature-btn-outline:hover,
+.feature-final .feature-btn-outline:hover {
+  background: #fff;
+  color: var(--text-primary);
+}
+
+/* On an accent (green urgency) band — light pill that pops */
+.feature-btn-onaccent {
+  background: #fff;
+  color: var(--text-primary);
+  border-color: #fff;
+}
+.feature-btn-onaccent:hover {
+  background: var(--bg-page);
+  border-color: var(--bg-page);
+  color: var(--text-primary);
+}
+
+/* Hero ----------------------------------------------------------------- */
+.feature-hero {
+  background: var(--bg-dark);
+  color: #fff;
+  padding: 96px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 50% at 50% 100%,
+    rgba(123,30,30,0.18),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.feature-hero .feature-wrap { position: relative; }
+
+.feature-pill {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.85);
+  padding: 8px 18px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+
+.feature-hero h1 {
+  font-size: clamp(36px, 5.5vw, 64px);
+  line-height: 1.05;
+  color: #fff;
+  margin: 0 auto 20px;
+  max-width: 900px;
+}
+
+.feature-accent { color: var(--accent); }
+
+.feature-hero-sub {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+  max-width: 680px;
+  margin: 0 auto 32px;
+}
+
+.feature-hero-cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.feature-hero-cta .feature-btn-outline {
+  color: #fff;
+  border-color: rgba(255,255,255,0.45);
+}
+.feature-hero-cta .feature-btn-outline:hover {
+  background: #fff;
+  color: var(--text-primary);
+}
+
+.feature-reassure {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+}
+
+/* Hero marquee --------------------------------------------------------- */
+.feature-marquee {
+  margin-top: 56px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 32px;
+  overflow: hidden;
+}
+
+.feature-marquee-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.45);
+  text-align: center;
+  margin: 0 0 18px;
+}
+
+.feature-marquee-track {
+  display: flex;
+  gap: 56px;
+  white-space: nowrap;
+  animation: feature-marquee-scroll 40s linear infinite;
+  width: max-content;
+}
+
+.feature-marquee-track span {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.02em;
+}
+
+.feature-marquee-track b {
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+}
+
+@keyframes feature-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-marquee-track { animation: none; }
+}
+
+/* Steps ---------------------------------------------------------------- */
+.feature-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
+.feature-step {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+}
+
+.feature-step-num {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.feature-step h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.feature-step p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Dark band (What you get) -------------------------------------------- */
+.feature-dark {
+  background: var(--bg-dark);
+  color: #fff;
+}
+
+.feature-dark .feature-sec-title,
+.feature-dark h2,
+.feature-dark h3 { color: #fff; }
+
+.feature-dark .feature-eyebrow { color: rgba(255,255,255,0.65); }
+.feature-dark .feature-sec-intro { color: rgba(255,255,255,0.7); }
+
+.feature-feat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
+.feature-feat {
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.02);
+}
+
+.feature-feat h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.feature-feat p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.65);
+  margin: 0;
+}
+
+/* SEO prose ------------------------------------------------------------ */
+.feature-prose-sec {
+  background: var(--bg-card-warm);
+}
+
+.feature-prose {
+  max-width: 760px;
+}
+
+.feature-prose h2 {
+  font-size: clamp(26px, 3.5vw, 36px);
+  margin-bottom: 20px;
+}
+
+.feature-prose h3 {
+  font-size: 22px;
+  margin: 36px 0 12px;
+}
+
+.feature-prose p,
+.feature-prose ul {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.feature-prose ul {
+  padding-left: 22px;
+  list-style: disc;
+}
+
+.feature-prose li { margin-bottom: 10px; }
+
+.feature-prose strong { color: var(--text-primary); font-weight: 700; }
+
+/* Stats ---------------------------------------------------------------- */
+.feature-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+  background: var(--bg-dark);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 48px 32px;
+}
+
+.feature-stat {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.feature-stat b {
+  font-size: clamp(32px, 4.5vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.feature-stat span {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Pricing -------------------------------------------------------------- */
+.feature-promo-wrap {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.feature-promo-banner {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent) 0%, #5e1717 100%);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.feature-tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-top: 40px;
+  align-items: start;
+}
+
+.feature-tier {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1.5px solid var(--border);
+}
+
+.feature-tier h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.feature-tier-featured {
+  border-color: var(--accent);
+  box-shadow: 0 12px 40px rgba(123,30,30,0.12);
+  transform: translateY(-8px);
+}
+
+.feature-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  border-radius: 100px;
+}
+
+.feature-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.feature-was {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-decoration: line-through;
+}
+
+.feature-now {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.feature-per {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.feature-billed {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  min-height: 18px;
+}
+
+.feature-save {
+  display: inline-block;
+  background: #E7F5E8;
+  color: #2D7A32;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.feature-tag {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+
+.feature-tier ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.feature-tier ul li {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  padding-left: 22px;
+  position: relative;
+}
+
+.feature-tier ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.feature-tier .feature-btn {
+  width: 100%;
+}
+
+.feature-fineprint {
+  margin-top: 32px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Urgency green band --------------------------------------------------- */
+.feature-urgency {
+  background: var(--bg-accent);
+  color: #fff;
+  text-align: center;
+}
+
+.feature-urgency .feature-wrap { max-width: 800px; }
+
+.feature-urgency .feature-eyebrow { color: rgba(255,255,255,0.7); }
+
+.feature-urgency h2 {
+  color: #fff;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.feature-urgency p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* FAQ ------------------------------------------------------------------ */
+.feature-faq {
+  max-width: 760px;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature-faq details {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  transition: border-color 0.2s var(--ease);
+}
+
+.feature-faq details[open] { border-color: var(--accent); }
+
+.feature-faq summary {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-right: 32px;
+}
+
+.feature-faq summary::-webkit-details-marker { display: none; }
+
+.feature-faq summary::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--accent);
+  transition: transform 0.2s var(--ease);
+}
+
+.feature-faq details[open] summary::after {
+  content: '−';
+}
+
+.feature-faq p {
+  margin: 14px 0 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* Final CTA band ------------------------------------------------------- */
+.feature-final {
+  background: var(--bg-dark);
+  color: #fff;
+  text-align: center;
+}
+
+.feature-final h2 {
+  color: #fff;
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 16px;
+}
+
+.feature-final p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  margin: 0 auto 28px;
+  max-width: 560px;
+}
+
+/* Responsive ----------------------------------------------------------- */
+@media (max-width: 960px) {
+  .feature-section { padding: 64px 0; }
+  .feature-steps,
+  .feature-feat-grid,
+  .feature-tiers {
+    grid-template-columns: 1fr;
+  }
+  .feature-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    padding: 32px 24px;
+  }
+  .feature-tier-featured {
+    transform: none;
+  }
+  .feature-hero { padding: 72px 0 64px; }
+}
+
+@media (max-width: 560px) {
+  .feature-hero-cta { flex-direction: column; align-items: stretch; }
+  .feature-hero-cta .feature-btn { width: 100%; }
+  .feature-stats { grid-template-columns: 1fr; }
+}

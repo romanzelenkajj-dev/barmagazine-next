@@ -18,7 +18,7 @@ export function BarDirectorySidebarPromo() {
           Put your bar in front of thousands of cocktail enthusiasts and industry professionals — starting at just €19.50/month.
         </p>
       </div>
-      <Link href="/claim-your-bar" className="bars-sidebar-promo-btn">
+      <Link href="/feature-your-bar" className="bars-sidebar-promo-btn">
         List Your Bar →
       </Link>
     </div>

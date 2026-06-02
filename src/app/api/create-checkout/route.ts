@@ -40,7 +40,11 @@ export async function POST(req: NextRequest) {
       mode: 'subscription',
       line_items: [{ price: priceId, quantity: 1 }],
       discounts: [{ coupon: COUPON_ID }],
-      success_url: `${req.nextUrl.origin}/claim-your-bar?success=true`,
+      // Post-checkout return lands on the new /feature-your-bar landing
+      // (the old /claim-your-bar 301s here via next.config.mjs, but we set
+      // the canonical target directly so Stripe's return doesn't burn a
+      // redirect hop or expose the legacy slug in browser history).
+      success_url: `${req.nextUrl.origin}/feature-your-bar?success=true`,
       cancel_url: `${req.nextUrl.origin}/add-your-bar?plan=${plan}`,
       subscription_data: {
         metadata: {

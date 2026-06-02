@@ -31,7 +31,7 @@ export default function TermsPage() {
         <p>BarMagazine offers paid subscription plans (&quot;Featured&quot; and &quot;Featured + Social&quot;) for bar owners and managers who wish to enhance their listing on the Website. By purchasing a subscription, you agree to the following terms:</p>
 
         <h3>Plans and Pricing</h3>
-        <p>Subscription plans and their current pricing are displayed on our <a href="/claim-your-bar">Claim Your Bar</a> page. Prices are listed in euros (€) for visitors within the European Union and in US dollars ($) for visitors outside the EU. The exact price you will be charged is confirmed at checkout before payment.</p>
+        <p>Subscription plans and their current pricing are displayed on our <a href="/feature-your-bar">Feature Your Bar</a> page. Prices are listed in euros (€) for visitors within the European Union and in US dollars ($) for visitors outside the EU. The exact price you will be charged is confirmed at checkout before payment.</p>
 
         <h3>Billing and Auto-Renewal</h3>
         <p>All paid subscriptions are billed annually. Your subscription will automatically renew at the end of each billing period at the then-current price unless you cancel before the renewal date. You will be notified by email before each renewal.</p>
