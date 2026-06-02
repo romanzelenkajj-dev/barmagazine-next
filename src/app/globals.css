@@ -5270,6 +5270,19 @@ textarea.form-input {
   gap: 12px;
 }
 
+/* Form inputs on /add-your-bar were overflowing the form card on the
+   right edge — `.form-input` has `width: 100%` + `padding: 12px 16px`
+   but no box-sizing, so the input rendered at parent-width + 32px.
+   Visible on every text input (bar name, city, country, address,
+   website, Instagram, contact name/email). The two <select> elements
+   (bar type, featured plan) didn't overflow because browsers size
+   selects differently — width includes their internal padding.
+   Scoped to .add-bar-form so other surfaces that use .form-input
+   (e.g. newsletter forms) aren't affected. */
+.add-bar-form .form-input {
+  box-sizing: border-box;
+}
+
 .form-required {
   color: #dc2626;
 }
@@ -6526,6 +6539,11 @@ textarea.form-input {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* border-box so width:100% (set on mobile in the column-stack rule
+     below + on tier CTAs) includes the 28px horizontal padding instead
+     of stacking on top of it — the buttons were overflowing the right
+     edge of the hero column on phones before this. */
+  box-sizing: border-box;
   padding: 14px 28px;
   border-radius: 100px;
   font-size: 15px;
@@ -6880,6 +6898,12 @@ textarea.form-input {
 }
 
 .feature-tier {
+  /* Anchor scroll-margin for #featured-tier so the final CTA scroll
+     lands the card just below the fixed nav (88px) plus a small visual
+     gap, instead of having the nav cover the "Most Popular" badge that
+     sits at top: -12px. Inherited by all tiers harmlessly — only the
+     Featured tier currently has an id and is targeted by scroll. */
+  scroll-margin-top: calc(var(--nav-h) + var(--gap));
   background: var(--bg-card);
   border-radius: var(--radius);
   padding: 32px 28px;

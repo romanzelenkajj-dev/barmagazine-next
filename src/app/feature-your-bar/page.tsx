@@ -229,7 +229,18 @@ export default function FeatureYourBarPage() {
         {/* ============= HERO ============= */}
         <section className="feature-hero">
           <div className="feature-wrap">
-            <span className="feature-pill">★ Launch Special · 50% off your first year</span>
+            {/* The "50% off your first year" half is wrapped in a
+                white-space:nowrap span so the natural wrap point on
+                narrow mobile widths is the · separator — without it the
+                line broke before the lone word "year", leaving an
+                awkward orphan. Now the second line reads "50% off your
+                first year" as a single unit. */}
+            <span className="feature-pill">
+              ★ Launch Special ·{' '}
+              <span style={{ whiteSpace: 'nowrap' }}>
+                50% off your first year
+              </span>
+            </span>
             <h1>
               Feature your bar on{' '}
               <span className="feature-accent">BarMagazine.</span>
@@ -493,7 +504,17 @@ export default function FeatureYourBarPage() {
               </div>
 
               {/* Featured */}
-              <div className="feature-tier feature-tier-featured">
+              {/* id="featured-tier" is the scroll target for the final
+                  "Feature my bar now" CTA at the bottom of the page —
+                  before this anchor it landed on #pricing which scrolled
+                  to the section title, putting the Free Listed tier
+                  first on screen. Jumping straight to Featured surfaces
+                  the Most Popular tier (the intent of the CTA copy) to
+                  the visitor immediately. The hero "Get my bar featured"
+                  + the urgency band "Feature my bar" intentionally still
+                  use #pricing so first-time visitors see the section
+                  header context. */}
+              <div id="featured-tier" className="feature-tier feature-tier-featured">
                 <span className="feature-badge">Most Popular</span>
                 <h3>Featured</h3>
                 <div className="feature-price">
@@ -658,7 +679,7 @@ export default function FeatureYourBarPage() {
               Lock in 50% off your first year and go live in days. Less than
               the price of a cocktail a month.
             </p>
-            <a className="feature-btn feature-btn-primary" href="#pricing">
+            <a className="feature-btn feature-btn-primary" href="#featured-tier">
               Feature my bar now
             </a>
           </div>
