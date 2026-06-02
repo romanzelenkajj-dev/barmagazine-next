@@ -7134,3 +7134,55 @@ textarea.form-input {
   .feature-hero-cta .feature-btn { width: 100%; }
   .feature-stats { grid-template-columns: 1fr; }
 }
+
+/* -------------------------------------------------------------------------
+   /feature-your-bar — post-review surgical fixes
+   -------------------------------------------------------------------------
+   Each rule below is intentionally scoped under a .feature-* class so it
+   cannot affect /claim-your-bar, bar profile cards, or any other surface
+   that shares this stylesheet.
+   ------------------------------------------------------------------------- */
+
+/* (1) Inset rounded panels — the three full-bleed colored bands now match
+   the site's 24px card radius and read as cards on the cream page bg
+   (same treatment as .claim-* / .bar-v2-* card system). overflow:hidden
+   so the inner radial gradient on .feature-hero stays clipped to the
+   rounded corners. Width formula: cap at 1200px on wide screens, hold
+   16px of horizontal breathing room on smaller viewports. */
+.feature-hero,
+.feature-section.feature-dark,
+.feature-section.feature-urgency {
+  max-width: min(1200px, 100% - 32px);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Hero needs a small top margin so all four rounded corners read against
+   the nav above. Other inset panels sit between transparent sections so
+   their cream gap is provided by the surrounding section padding. */
+.feature-hero {
+  margin-top: var(--gap);
+}
+
+/* (2) Pricing-tier CTA: explicit box-sizing so width:100% includes the
+   button's own horizontal padding (was overflowing the card edge with the
+   "Get Featured · 50% Off" label). Reduced horizontal padding gives the
+   label more room; white-space:normal lets it wrap rather than overflow
+   if a future label is even longer. */
+.feature-tier .feature-btn {
+  box-sizing: border-box;
+  padding-left: 16px;
+  padding-right: 16px;
+  white-space: normal;
+}
+
+/* (3) Avoid orphan single-word last line in section intros (the visible
+   case: "…and we do the rest." was breaking "rest." onto its own line).
+   text-wrap:balance distributes the line lengths evenly. Browsers without
+   support ignore the property and fall back to default wrapping — no
+   layout regression. */
+.feature-sec-intro {
+  text-wrap: balance;
+}

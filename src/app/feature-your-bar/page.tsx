@@ -299,7 +299,7 @@ export default function FeatureYourBarPage() {
               </div>
               <div className="feature-step">
                 <div className="feature-step-num">Step 03</div>
-                <h3>Go live &amp; get found</h3>
+                <h3>Go live &amp; get noticed</h3>
                 <p>
                   We publish your feature within a few days. New guests discover
                   you through Google, our directory and our social channels.
@@ -447,7 +447,7 @@ export default function FeatureYourBarPage() {
           <div className="feature-wrap">
             <div className="feature-sec-head">
               <span className="feature-eyebrow">The audience</span>
-              <h2 className="feature-sec-title">Reach a global cocktail community</h2>
+              <h2 className="feature-sec-title">Reach a global bar community</h2>
             </div>
             <div className="feature-stats">
               <div className="feature-stat"><b>88K+</b><span>Instagram followers</span></div>
