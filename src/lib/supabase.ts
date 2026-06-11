@@ -29,6 +29,7 @@ export interface Bar {
   featured_until: string | null;
   is_verified: boolean;
   is_active: boolean;
+  needs_geo_review: boolean;
   wp_article_slug: string | null;
   created_at: string;
   updated_at: string;

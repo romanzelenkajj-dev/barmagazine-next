@@ -92,6 +92,11 @@ export async function POST(request: NextRequest) {
       city: submission.city,
       country: submission.country,
     });
+    if (coords?.approximate) {
+      console.warn(
+        `GEOCODE_FALLBACK approve "${submission.name}" (${submission.city}, ${submission.country}) → ${coords.level} center`,
+      );
+    }
 
     // Insert into bars table
     const barPhotos = submission.photo_url ? [submission.photo_url] : [];
@@ -112,6 +117,7 @@ export async function POST(request: NextRequest) {
         photos: barPhotos,
         tier: 'free',
         is_active: true,
+        needs_geo_review: coords ? coords.approximate : true,
         ...(coords && { lat: coords.lat, lng: coords.lng }),
       })
       .select()
@@ -137,6 +143,7 @@ export async function POST(request: NextRequest) {
           photos: barPhotos,
           tier: 'free',
           is_active: true,
+          needs_geo_review: coords ? coords.approximate : true,
           ...(coords && { lat: coords.lat, lng: coords.lng }),
         })
         .select()

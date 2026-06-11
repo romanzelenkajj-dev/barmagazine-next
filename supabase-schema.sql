@@ -43,6 +43,10 @@ create table bars (
   -- Status
   is_verified boolean default false,
   is_active boolean default true,
+  -- True when lat/lng is an approximate (city/country center) fallback or
+  -- missing — surfaces in the admin review queue. See
+  -- scripts/needs-geo-review-column.sql.
+  needs_geo_review boolean not null default false,
   
   -- Link to editorial content
   wp_article_slug text,
