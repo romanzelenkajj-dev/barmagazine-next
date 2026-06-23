@@ -68,7 +68,7 @@ export default async function HomePage() {
                   heroImgLarge && `${heroImgLarge.url} ${heroImgLarge.width}w`,
                   `${heroImgFull.url} ${heroImgFull.width}w`,
                 ].filter(Boolean).join(', ')}
-                sizes="66vw"
+                sizes="40vw"
                 alt={cleanTitle(hero.title.rendered)}
                 width={heroImgFull.width}
                 height={heroImgFull.height}
