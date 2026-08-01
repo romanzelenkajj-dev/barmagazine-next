@@ -121,7 +121,16 @@ export default function RootLayout({
             }),
           }}
         />
-        <GoogleAnalytics />
+        {/*
+          Gate analytics to PRODUCTION deployments only. VERCEL_ENV is
+          'production' | 'preview' | 'development'; on preview deploys and local
+          `next dev` this is not 'production', so no GA scripts reach the HTML at
+          all. The component itself adds the second half of the rule — it only
+          fires on the canonical host (barmagazine.com) — so a production build
+          served on a *.vercel.app alias still stays out of analytics (and is
+          308-redirected to the apex by middleware regardless).
+        */}
+        {process.env.VERCEL_ENV === 'production' && <GoogleAnalytics />}
         <Nav />
         <div className="nav-spacer" />
         <div className="container">

@@ -13,8 +13,8 @@ import { CURRENCY_COOKIE, currencyFromCountry } from '@/lib/geo-currency';
  * Any request that arrives on a non-canonical host (every .vercel.app alias,
  * including `barmagazine-next.vercel.app`, PR branch URLs, the
  * `*-romanzelenkajj-7135s-projects.vercel.app` surface, AND the www
- * subdomain if it ever resolves) gets a permanent 301 to the same path
- * on https://barmagazine.com.
+ * subdomain if it ever resolves) gets a permanent 308 to the same path
+ * on https://barmagazine.com, with an X-Robots-Tag: noindex on the redirect.
  *
  * Why this exists:
  *  - Stops Google from ever indexing a preview/alias hostname (canonical tags
@@ -83,10 +83,17 @@ export function middleware(request: NextRequest) {
   const isLocal = isLocalHost(hostname);
 
   // Off-canonical host (vercel.app aliases, branch deploys, unknown domains,
-  // www subdomain) — 301 to production on the same path + query.
+  // www subdomain) — 308 to production on the same path + query. 308 (not 301)
+  // preserves the request method and matches the next.config redirects(), which
+  // emit 308 for `permanent: true`, so the whole site speaks one dialect.
   if (!isCanonical && !isLocal) {
     const url = new URL(request.nextUrl.pathname + request.nextUrl.search, `https://${CANONICAL_HOST}`);
-    return NextResponse.redirect(url, 301);
+    const response = NextResponse.redirect(url, 308);
+    // Belt-and-suspenders: the redirect alone stops indexing of the alias, but
+    // tag the response noindex too so any crawler that logs the non-canonical
+    // URL (preview / *.vercel.app / branch deploy) is told not to index it.
+    response.headers.set('X-Robots-Tag', 'noindex');
+    return response;
   }
 
   // /tag/* — legacy WordPress taxonomy. Never to be revived. 410 Gone so
