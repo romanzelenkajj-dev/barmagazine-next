@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const ADMIN_SECRET = 'HAfig2WlTy5p1UlgmaBmqo60';
-
 interface Submission {
   id: string;
   name: string;
@@ -25,43 +23,108 @@ interface Submission {
 }
 
 export default function AdminSubmissionsPage() {
+  // Auth: the admin secret is typed once and kept in sessionStorage (shared
+  // with the Bar Directory Admin at /admin/bars) — never hardcoded in the
+  // client bundle.
+  const [adminSecret, setAdminSecret] = useState<string | null>(null);
+  const [authChecking, setAuthChecking] = useState(true);
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<'pending' | 'approved' | 'rejected'>('pending');
   const [actionLoading, setActionLoading] = useState<string | null>(null);
 
-  const fetchSubmissions = async (status: string) => {
+  const fetchSubmissions = async (status: string, secret: string) => {
     setLoading(true);
     try {
       const res = await fetch(`/api/admin/submissions?status=${status}`, {
-        headers: { 'x-admin-secret': ADMIN_SECRET },
+        headers: { 'x-admin-secret': secret },
+        cache: 'no-store',
       });
+      if (res.status === 401) {
+        // Secret no longer valid (e.g. rotated) — force re-login
+        sessionStorage.removeItem('admin_secret');
+        setAdminSecret(null);
+        setSubmissions([]);
+        return;
+      }
       const data = await res.json();
       setSubmissions(data.submissions || []);
     } catch {
       setSubmissions([]);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
-    fetchSubmissions(tab);
-  }, [tab]);
+    const saved = sessionStorage.getItem('admin_secret');
+    if (saved) setAdminSecret(saved);
+    setAuthChecking(false);
+  }, []);
+
+  useEffect(() => {
+    if (adminSecret) fetchSubmissions(tab, adminSecret);
+  }, [tab, adminSecret]);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError('');
+    try {
+      const res = await fetch('/api/admin/submissions?status=pending', {
+        headers: { 'x-admin-secret': password },
+        cache: 'no-store',
+      });
+      if (!res.ok) throw new Error('Unauthorized');
+      sessionStorage.setItem('admin_secret', password);
+      setAdminSecret(password);
+      setPassword('');
+    } catch {
+      setLoginError('Incorrect password');
+    }
+  };
 
   const handleAction = async (action: string, id: string) => {
+    if (!adminSecret) return;
     setActionLoading(id);
     try {
       await fetch('/api/admin/submissions', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-secret': ADMIN_SECRET },
+        headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret },
         body: JSON.stringify({ action, submissionId: id }),
       });
-      fetchSubmissions(tab);
+      fetchSubmissions(tab, adminSecret);
     } catch (_e) {
       alert('Action failed');
     }
     setActionLoading(null);
   };
+
+  if (authChecking) return null;
+
+  if (!adminSecret) {
+    return (
+      <div style={{ maxWidth: 380, margin: '15vh auto', textAlign: 'center' }}>
+        <h1 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 8 }}>Admin: Submissions</h1>
+        <p style={{ color: '#888', fontSize: 14, marginBottom: 20 }}>Enter admin password to continue</p>
+        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <input
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder="Password"
+            autoFocus
+            style={{ fontSize: 15, padding: '12px 16px', border: '1.5px solid #e0d8d0', borderRadius: 10, outline: 'none', textAlign: 'center', fontFamily: 'inherit' }}
+          />
+          <button type="submit" style={{ fontSize: 15, fontWeight: 600, padding: '12px 20px', borderRadius: 10, border: 'none', background: '#1a1a1a', color: '#fff', cursor: 'pointer' }}>
+            Sign In
+          </button>
+          {loginError && <p style={{ color: '#dc2626', fontSize: 13, margin: 0 }}>{loginError}</p>}
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: '2rem 0' }}>
