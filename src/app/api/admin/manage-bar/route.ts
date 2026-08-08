@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
 import { geocodeBar } from '@/lib/geocode';
 import { normalizeBarFields } from '@/lib/normalize';
+import { revalidateBarPages } from '@/lib/revalidate-bars';
 
 function getServiceClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -59,6 +60,7 @@ export async function POST(request: NextRequest) {
       : supabase.from('bars').delete().eq('id', barId).select();
     const { data, error } = await query;
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    revalidateBarPages((data || []).map((b: Record<string, unknown>) => String(b.slug || '')));
     return NextResponse.json({ deleted: data });
   }
 
@@ -72,6 +74,7 @@ export async function POST(request: NextRequest) {
     if (!query) return NextResponse.json({ error: 'barId or barName required' }, { status: 400 });
     const { data, error } = await query;
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    revalidateBarPages((data || []).map((b: Record<string, unknown>) => String(b.slug || '')));
     return NextResponse.json({ updated: data });
   }
 
@@ -91,6 +94,7 @@ export async function POST(request: NextRequest) {
     }
     const { data, error } = await supabase.from('bars').insert(insertData).select();
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    revalidateBarPages((data || []).map((b: Record<string, unknown>) => String(b.slug || '')));
     return NextResponse.json({ created: data });
   }
 

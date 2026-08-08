@@ -86,6 +86,7 @@ export default function AdminBarsClient() {
     try {
       const res = await fetch('/api/admin/manage-bar', {
         headers: { 'x-admin-secret': secret },
+        cache: 'no-store',
       });
       if (!res.ok) throw new Error('Unauthorized');
       const data = await res.json();
@@ -126,6 +127,15 @@ export default function AdminBarsClient() {
       fetchBars(saved);
     }
   }, [fetchBars]);
+
+  // Refetch whenever the tab regains focus, so a long-open admin tab never
+  // shows stale data.
+  useEffect(() => {
+    if (!authed || !adminSecret) return;
+    const onFocus = () => fetchBars(adminSecret);
+    window.addEventListener('focus', onFocus);
+    return () => window.removeEventListener('focus', onFocus);
+  }, [authed, adminSecret, fetchBars]);
 
   const openEditor = (bar: Bar) => {
     setEditingBar(bar);
@@ -290,6 +300,14 @@ export default function AdminBarsClient() {
           <h1 style={styles.title}>Bar Directory Admin</h1>
           <span style={styles.badge}>{filteredBars.length} / {bars.length} bars</span>
             <Link href="/admin/submissions" style={styles.submissionsLink}>Submissions</Link>
+          <button
+            style={styles.refreshBtn}
+            onClick={() => fetchBars(adminSecret)}
+            disabled={loading}
+            title="Reload the bar list from the database"
+          >
+            {loading ? 'Refreshing…' : '↻ Refresh'}
+          </button>
         </div>
         <button
           style={styles.logoutBtn}
@@ -561,6 +579,16 @@ const styles: Record<string, React.CSSProperties> = {
     background: '#f0ebe5',
     padding: '4px 10px',
     borderRadius: 100,
+  },
+  refreshBtn: {
+    fontSize: 13,
+    fontWeight: 600,
+    color: '#6b6b6b',
+    background: 'transparent',
+    border: '1px solid #e0d8d0',
+    borderRadius: 100,
+    padding: '4px 14px',
+    cursor: 'pointer',
   },
   logoutBtn: {
     fontSize: 13,
