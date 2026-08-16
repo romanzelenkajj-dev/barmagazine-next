@@ -4,6 +4,7 @@ import './globals.css';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
+import { NearMeBar } from '@/components/NearMeBar';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 
 
@@ -138,6 +139,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <CookieConsent />
+        <NearMeBar />
       </body>
     </html>
   );

@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { verifyOwnerToken } from '@/lib/supabase-auth';
 
+// Owner data is always per-request (Authorization header) — never prerender.
+// Also keeps builds green in environments without SUPABASE_SERVICE_ROLE_KEY.
+export const dynamic = 'force-dynamic';
+
 // GET - fetch owner's bars and submissions
 export async function GET(request: NextRequest) {
   const supabase = createClient(

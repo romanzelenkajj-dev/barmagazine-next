@@ -1,5 +1,6 @@
 'use client';
 
+import { BarPlaceholder } from '@/components/BarPlaceholder';
 import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
@@ -483,8 +484,8 @@ function GeoLabel({ geoCity, geoCountryCode }: { geoCity: string; geoCountryCode
 export function BarDirectoryMapClient({
   initialBars,
   totalBars,
-  totalCountries: _totalCountries,
-  totalCities: _totalCities,
+  totalCountries,
+  totalCities,
   countries,
   cities,
   types,
@@ -775,7 +776,21 @@ export function BarDirectoryMapClient({
         <div className="directory-hero-inner">
           <div className="directory-hero-badge">Global Bar Directory</div>
           <h1>Discover the World&apos;s Best Bars</h1>
-          <p>986+ handpicked cocktail bars, speakeasies, and world-renowned destinations across 58 countries and 140 cities.</p>
+          <p>Handpicked cocktail bars, speakeasies, and world-renowned destinations.</p>
+          <div className="directory-hero-stats">
+            <div className="directory-hero-stat">
+              <strong>{totalBars ? `${totalBars.toLocaleString()}+` : '1,000+'}</strong>
+              <span>bars</span>
+            </div>
+            <div className="directory-hero-stat">
+              <strong>{totalCountries || 58}</strong>
+              <span>countries</span>
+            </div>
+            <div className="directory-hero-stat">
+              <strong>{totalCities || 140}</strong>
+              <span>cities</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -833,6 +848,25 @@ export function BarDirectoryMapClient({
             </button>
           </div>
         </div>
+        {/* Quick type chips — one-tap filtering, Fun Radio-style pills */}
+        <div className="directory-type-chips" role="tablist" aria-label="Filter by bar type">
+          <button
+            className={`directory-type-chip${!typeFilter ? ' active' : ''}`}
+            onClick={() => { setTypeFilter(''); resetPagination(); }}
+          >
+            All types
+          </button>
+          {types.map(t => (
+            <button
+              key={t}
+              className={`directory-type-chip${typeFilter === t ? ' active' : ''}`}
+              onClick={() => { setTypeFilter(typeFilter === t ? '' : t); resetPagination(); }}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+
         {activeFilters.length > 0 && (
           <div className="directory-active-filters">
             {activeFilters.map((f, i) => (
@@ -942,21 +976,6 @@ export function BarDirectoryMapClient({
 
 /* ─── Card Components ─── */
 
-const PLACEHOLDER_COLOURS_MAP = [
-  'linear-gradient(135deg, #0a0f1e 0%, #0d1530 100%)',
-  'linear-gradient(135deg, #0a1a0e 0%, #0d2412 100%)',
-  'linear-gradient(135deg, #1a0a0e 0%, #240d12 100%)',
-  'linear-gradient(135deg, #0e0a1a 0%, #140d24 100%)',
-  'linear-gradient(135deg, #1a100a 0%, #24160d 100%)',
-  'linear-gradient(135deg, #0a1a1a 0%, #0d2424 100%)',
-  'linear-gradient(135deg, #151515 0%, #1e1e1e 100%)',
-  'linear-gradient(135deg, #0f0a1a 0%, #160d24 100%)',
-];
-function barColour(name: string): string {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
-  return PLACEHOLDER_COLOURS_MAP[hash % PLACEHOLDER_COLOURS_MAP.length];
-}
 
 function FeaturedBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;
@@ -971,9 +990,7 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
         {imageUrl
           ? <img src={imageUrl} alt={bar.name} loading="lazy" />
           : (
-            <div className="bar-dir-featured-placeholder" style={{ background: barColour(bar.name) }}>
-              <span>{bar.name.replace(/([a-z])([A-Z])/g, '$1 $2').split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
-            </div>
+            <BarPlaceholder name={bar.name} type={bar.type} />
           )
         }
       </div>
@@ -1005,9 +1022,7 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
         {imageUrl
           ? <img src={imageUrl} alt={bar.name} loading="lazy" />
           : (
-            <div className="bar-dir-card-placeholder" style={{ background: barColour(bar.name) }}>
-              <span className="bar-dir-card-initials">{bar.name.replace(/([a-z])([A-Z])/g, '$1 $2').split(/\s+/).filter(Boolean).map((w: string) => w[0]).join('').toUpperCase().slice(0, 4)}</span>
-            </div>
+            <BarPlaceholder name={bar.name} type={bar.type} />
           )
         }
         {is50Best && <span className="bar-dir-50best-badge">50 Best</span>}

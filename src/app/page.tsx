@@ -4,6 +4,7 @@ import { formatCardTitle, cleanTitle } from '@/lib/utils';
 import { NewsletterForm } from '@/components/NewsletterForm';
 import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
+import { FeaturedBarsDeck } from '@/components/FeaturedBarsDeck';
 import { getBarArticleSlugs } from '@/lib/supabase';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 export const revalidate = 300;
@@ -104,30 +105,28 @@ export default async function HomePage() {
 
       {/* Browse by City section removed — city links live in the Bar Directory sidebar */}
 
-      {/* F) FEATURED BARS (from WP bars category) */}
+      {/* F) FEATURED BARS (from WP bars category) — Fun Radio-style swipe deck */}
       {barsPosts.length > 0 && (
         <div className="bars-wrapper">
           <div className="section-bar">
             <h2>Featured Bars</h2>
             <Link href="/category/bars" className="section-link">View All &rarr;</Link>
           </div>
-          <div className="bars-grid-scroll">
-            {barsPosts.filter(hasSlug).map(post => {
-              const imgUrl = getFeaturedImageUrl(post, 'medium_large') || getFeaturedImageUrl(post, 'large');
-              return (
-                <Link key={post.id} href={safeHref('/', post.slug)} className="bar-card">
-                  <div className="bar-img">
-                    {imgUrl && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={imgUrl} alt={cleanTitle(post.title.rendered)} />
-                    )}
-                  </div>
-                  <h4 dangerouslySetInnerHTML={{ __html: formatCardTitle(post.title.rendered, post.meta?.bold_title) }} />
-
-                </Link>
-              );
-            })}
-          </div>
+          <p className="deck-hint">Swipe the top card aside to discover the next bar — tap to read the story.</p>
+          <FeaturedBarsDeck
+            cards={barsPosts
+              .filter(hasSlug)
+              .slice(0, 8)
+              .map(post => ({
+                href: safeHref('/', post.slug),
+                title: cleanTitle(post.title.rendered),
+                img:
+                  getFeaturedImageUrl(post, 'medium_large') ||
+                  getFeaturedImageUrl(post, 'large') ||
+                  null,
+                tag: 'Featured bar',
+              }))}
+          />
         </div>
       )}
 
