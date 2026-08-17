@@ -7794,7 +7794,8 @@ textarea.form-input {
 @media (max-width: 768px) {
   .article-hero,
   .bar-v2-hero,
-  .directory-hero {
+  .directory-hero,
+  .hero {
     border-radius: 0;
     /* edge-to-edge: cancel the body's 2px mobile gutter */
     /* true edge-to-edge: cancels the 2px body gutter + the browser's default
