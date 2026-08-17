@@ -7,9 +7,48 @@ import { FeaturedBarsDeck } from '@/components/FeaturedBarsDeck';
 import { getBarArticleSlugs, getBars } from '@/lib/supabase';
 import { Top10Ticker } from '@/components/Top10Ticker';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
+import type { Metadata } from 'next';
 export const revalidate = 300;
 
 const CATEGORY_SLUGS = ['bars', 'people', 'cocktails', 'awards', 'brands', 'events'] as const;
+
+const SITE_URL = 'https://barmagazine.com';
+const OG_DESCRIPTION = 'Global bar news, cocktail culture, and spirits industry trends.';
+
+/**
+ * Share previews for the homepage use the current hero article's photo instead
+ * of the static logo card. Article pages already do this; the homepage had no
+ * metadata of its own, so it inherited the branded fallback from the layout.
+ *
+ * The getPosts() call below deliberately uses the SAME arguments as the page
+ * body's own fetch, so Next dedupes both into a single WP request per render.
+ * If the hero has no featured image we return {} and the layout's og-image.png
+ * takes over, so a share preview is never left without an image.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const result = await getPosts(1, 16);
+  const hero = result.data.filter(hasSlug)[0];
+  const heroImage = hero ? getFeaturedImageUrl(hero, 'full') : null;
+  if (!heroImage) return {};
+
+  return {
+    openGraph: {
+      title: 'BarMagazine',
+      description: OG_DESCRIPTION,
+      type: 'website',
+      locale: 'en_US',
+      siteName: 'BarMagazine',
+      url: SITE_URL,
+      images: [{ url: heroImage, width: 1200, height: 630, alt: cleanTitle(hero.title.rendered) }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'BarMagazine',
+      description: OG_DESCRIPTION,
+      images: [heroImage],
+    },
+  };
+}
 
 export default async function HomePage() {
   // Fetch all data in parallel: latest posts, bars for Featured Bars, all 6 category sets.
