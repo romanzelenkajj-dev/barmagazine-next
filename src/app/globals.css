@@ -7846,3 +7846,75 @@ textarea.form-input {
     font-size: 18px;
   }
 }
+
+/* ====== HOMEPAGE SPLIT SECTION (deck right, CTA + newsletter left) ====== */
+.home-split {
+  display: grid;
+  grid-template-columns: 1fr 620px;
+  gap: var(--gap);
+  margin-top: var(--gap);
+  align-items: start;
+}
+
+.home-split-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+/* compact versions of the CTA + newsletter cards inside the split */
+.home-split .cta-banner {
+  padding: 48px 36px;
+}
+
+.home-newsletter {
+  padding: 48px 36px;
+  text-align: center;
+  background: var(--bg-accent);
+  border-radius: var(--radius);
+  color: var(--text-inverse);
+}
+
+.home-newsletter h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.home-newsletter p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 20px;
+}
+
+.home-split-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.home-split-main .deck-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+.home-split-main .cta-ad {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .home-split {
+    grid-template-columns: 1fr;
+  }
+
+  /* mobile order: deck first (right under the ticker), then CTA,
+     newsletter and ad below */
+  .home-split-main {
+    order: -1;
+  }
+
+  .home-split .cta-banner,
+  .home-newsletter {
+    padding: 40px 24px;
+  }
+}
