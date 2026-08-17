@@ -7786,3 +7786,61 @@ textarea.form-input {
     animation: none;
   }
 }
+
+/* ====== FULL-BLEED HEROES ON MOBILE (article + bar profile) ======
+   Mobile heroes run edge-to-edge with square corners, flowing straight
+   down from the flat mobile header. Desktop keeps the rounded card hero
+   to match the inset rounded header and card layout. */
+@media (max-width: 768px) {
+  .article-hero,
+  .bar-v2-hero,
+  .directory-hero {
+    border-radius: 0;
+    /* edge-to-edge: cancel the body's 2px mobile gutter */
+    /* true edge-to-edge: cancels the 2px body gutter + the browser's default
+       8px body margin (never reset in this codebase) */
+    margin-left: -10px;
+    margin-right: -10px;
+    width: auto;
+    max-width: none;
+    /* flush under the flat mobile header: cancels the 8px nav-spacer buffer
+       + the 8px default body margin-top */
+    margin-top: -16px;
+  }
+
+  .article-outer-grid {
+    margin-top: 0;
+  }
+
+  /* directory pages: cancel the wrapper's own top margin so the hero is
+     flush under the header like article/bar heroes */
+  .directory-outer-with-sidebar {
+    margin-top: 0;
+  }
+
+  /* breadcrumbs are hidden on mobile — the hero flows straight from the
+     header. Desktop keeps them; BreadcrumbList JSON-LD stays on both. */
+  .article-breadcrumb,
+  .bar-breadcrumb {
+    display: none;
+  }
+}
+
+/* Override legacy 480px rule (from the old hidden-stats design): keep the
+   three hero stat cards in a row on phones too. */
+@media (max-width: 480px) {
+  .directory-hero-stats {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .directory-hero-stat {
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 12px;
+  }
+
+  .directory-hero-stat strong {
+    font-size: 18px;
+  }
+}
