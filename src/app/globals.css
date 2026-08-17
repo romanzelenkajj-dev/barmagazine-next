@@ -1855,7 +1855,7 @@ button {
   margin-top: var(--gap);
   background: var(--bg-card);
   border-radius: var(--radius);
-  padding: 48px 24px;
+  padding: 28px 24px 24px;
   position: relative;
 }
 
@@ -2333,7 +2333,7 @@ button {
   }
 
   .bars-wrapper {
-    padding: 20px 0 20px 20px;
+    padding: 16px 14px 16px;
     overflow: hidden;
   }
 
@@ -7241,7 +7241,7 @@ textarea.form-input {
 
 /* ====== FEATURED BARS SWIPE DECK (Fun Radio-style) ====== */
 .deck-wrapper {
-  margin-top: 8px;
+  margin-top: 0;
   max-width: 520px;
   margin-left: auto;
   margin-right: auto;
@@ -7251,7 +7251,7 @@ textarea.form-input {
   position: relative;
   aspect-ratio: 3 / 3.85;
   /* headroom for the back cards peeking above the top card */
-  margin-top: 56px;
+  margin-top: 46px;
 }
 
 .deck-card {
@@ -7361,7 +7361,7 @@ textarea.form-input {
   align-items: center;
   justify-content: center;
   gap: 18px;
-  margin-top: 22px;
+  margin-top: 14px;
 }
 
 .deck-arrow {

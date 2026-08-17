@@ -90,39 +90,35 @@ export default async function HomePage() {
         </section>
       )}
 
+      {/* B) TOP 10 BARS RUNNING TICKER — right under the hero: bar discovery is the core product */}
+      <Top10Ticker bars={top10Bars} />
+
+      {/* C) FEATURED BARS swipe deck — directly on the page background,
+          Fun Radio-style: no box, no heading (each card carries its own
+          "Featured bar" chip) */}
+      {barsPosts.length > 0 && (
+        <FeaturedBarsDeck
+          cards={barsPosts
+            .filter(hasSlug)
+            .slice(0, 8)
+            .map(post => ({
+              href: safeHref('/', post.slug),
+              title: cleanTitle(post.title.rendered),
+              img:
+                getFeaturedImageUrl(post, 'medium_large') ||
+                getFeaturedImageUrl(post, 'large') ||
+                null,
+              tag: 'Featured bar',
+            }))}
+        />
+      )}
+
       {/* B) SECTION BAR + C) MIXED CARD GRID \u2014 instant category switching */}
       <HomeCategoryGrid
         initialPosts={JSON.stringify(cardPosts)}
         categoryData={JSON.stringify(categoryData)}
         heroId={hero?.id}
       />
-
-      {/* D) TOP 10 BARS RUNNING TICKER (Fun Radio-style marquee) — right
-          under the latest articles so it's high on the page */}
-      <Top10Ticker bars={top10Bars} />
-
-      {/* E) FEATURED BARS swipe deck — directly after the ticker */}
-      {barsPosts.length > 0 && (
-        <div className="bars-wrapper">
-          <div className="section-bar">
-            <h2>Featured Bars</h2>
-          </div>
-          <FeaturedBarsDeck
-            cards={barsPosts
-              .filter(hasSlug)
-              .slice(0, 8)
-              .map(post => ({
-                href: safeHref('/', post.slug),
-                title: cleanTitle(post.title.rendered),
-                img:
-                  getFeaturedImageUrl(post, 'medium_large') ||
-                  getFeaturedImageUrl(post, 'large') ||
-                  null,
-                tag: 'Featured bar',
-              }))}
-          />
-        </div>
-      )}
 
       {/* F) CTA BANNER + AD — moved below the ticker + deck */}
       <div className="cta-row">
