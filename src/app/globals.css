@@ -8002,14 +8002,35 @@ textarea.form-input {
 }
 
 @media (max-width: 768px) {
+  /* Mobile: dissolve the band so its three columns become siblings of the
+     article grid inside .home-flow — order: deck, articles, then the
+     CTA / newsletter / ad / directory promo. */
   .home-split {
-    grid-template-columns: 1fr;
+    display: contents;
   }
 
-  /* mobile order: deck first (right under the ticker), then CTA,
-     newsletter, ad and directory promo below */
   .home-split-main {
-    order: -1;
+    order: 1;
+    margin-top: 0;
+  }
+
+  /* tighter gap between the ticker and the deck: less headroom, and the
+     peeking back cards slightly more visible so the space reads as stack */
+  .deck-stack {
+    margin-top: 28px;
+  }
+
+  .home-flow .home-grid-slot {
+    order: 2;
+  }
+
+  .home-split-side {
+    order: 3;
+    margin-top: var(--gap);
+  }
+
+  .home-split-right {
+    order: 4;
   }
 
   .home-split .cta-banner,
