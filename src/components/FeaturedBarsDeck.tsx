@@ -17,10 +17,10 @@ const SWIPE_VELOCITY = 0.45;
 // Card tones rotate like Fun Radio's deck — solid colored cards make the
 // stacked edges behind the top card clearly readable as "more cards".
 const TONES = [
-  { bg: '#EDBBBB', fg: '#1A1A1A' }, // brand blush
-  { bg: '#F3E9DC', fg: '#1A1A1A' }, // butter
-  { bg: '#FFFFFF', fg: '#1A1A1A' }, // white
+  { bg: '#F3E9DC', fg: '#1A1A1A' }, // butter — leads, so the deck doesn't double the blush CTA
   { bg: '#DCE5DD', fg: '#1A1A1A' }, // sage
+  { bg: '#FFFFFF', fg: '#1A1A1A' }, // white
+  { bg: '#EDBBBB', fg: '#1A1A1A' }, // brand blush
   { bg: '#E8DED2', fg: '#1A1A1A' }, // sand
 ];
 

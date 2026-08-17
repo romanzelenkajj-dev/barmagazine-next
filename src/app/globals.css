@@ -30,6 +30,12 @@ html {
 }
 
 body {
+  /* Explicit reset: the browser default 8px body margin was previously
+     un-reset (Tailwind preflight is off) and every layout compensated for
+     it implicitly. Resetting it makes gutters deterministic across
+     browsers; the gutter the design wants comes from padding alone. */
+  margin: 8px;
+  margin-top: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--bg-page);
   color: var(--text-primary);
@@ -8089,25 +8095,31 @@ textarea.form-input {
 }
 
 .home-split .home-newsletter {
-  background: #DCE5DD; /* deck sage */
-  color: #1A1A1A;
+  /* black card in the style of the Explore-the-Bar-Directory promo,
+     with the blush pink as the accent */
+  background: #000;
+  color: #fff;
 }
 
 .home-split .home-newsletter h2 {
-  color: #1A1A1A;
+  color: #fff;
 }
 
 .home-split .home-newsletter p {
-  color: rgba(26, 26, 26, 0.7);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .home-split .home-newsletter .newsletter-form input {
-  border-color: rgba(26, 26, 26, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .home-split .home-newsletter .newsletter-form button {
-  background: #1A1A1A;
-  color: #fff;
+  background: #DCE5DD; /* sage accent — the green counterpart to the promo card's pink */
+  color: #1A1A1A;
+}
+
+.home-split .home-newsletter .newsletter-form button:hover {
+  background: #cdd9cf;
 }
 
 /* mobile: restore the gap between the newsletter column and the ad column
