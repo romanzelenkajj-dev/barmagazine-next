@@ -7240,14 +7240,15 @@ textarea.form-input {
 /* ====== FEATURED BARS SWIPE DECK (Fun Radio-style) ====== */
 .deck-wrapper {
   margin-top: 16px;
-  max-width: 560px;
+  max-width: 860px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 }
 
 .deck-stack {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   margin-top: 8px;
 }
 
@@ -7269,18 +7270,20 @@ textarea.form-input {
   -webkit-user-drag: none;
 }
 
-.deck-card-back {
-  transition: transform 0.32s var(--ease), opacity 0.32s var(--ease);
-}
-
 .deck-card-top {
   cursor: grab;
   touch-action: pan-y;
   display: block;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .deck-card-top:active {
   cursor: grabbing;
+}
+
+.deck-card-overlay-back {
+  opacity: 0.9;
 }
 
 .deck-card-overlay {
@@ -7370,6 +7373,41 @@ textarea.form-input {
 .deck-dot.active {
   background: var(--accent);
   transform: scale(1.25);
+}
+
+@media (min-width: 769px) {
+  .deck-card-title {
+    font-size: 26px;
+    max-width: 75%;
+  }
+
+  .deck-card-overlay {
+    padding: 64px 28px 24px;
+  }
+
+  .deck-arrow {
+    position: absolute;
+    top: calc(50% - 42px);
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    backdrop-filter: blur(6px);
+  }
+
+  .deck-arrow:hover {
+    background: rgba(0, 0, 0, 0.65);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .deck-arrow:first-child {
+    left: 16px;
+  }
+
+  .deck-arrow:last-child {
+    right: 16px;
+  }
 }
 
 @media (max-width: 768px) {
