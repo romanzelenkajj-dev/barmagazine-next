@@ -7418,9 +7418,11 @@ textarea.form-input {
   }
 }
 
-/* ====== PERSISTENT "BARS NEAR ME" BOTTOM BAR (homepage only) ======
+/* ====== PERSISTENT "BARS NEAR ME" BOTTOM BAR ======
    Mobile: full-width pill pinned at the bottom. Desktop: compact centered
-   floating pill. The component itself renders only on the homepage. */
+   floating pill. The component decides where it appears (homepage + the
+   city/country directory listings) and renders .nearme-spacer alongside
+   itself, so the clearance below follows the pill automatically. */
 .nearme-bar {
   position: fixed;
   bottom: 16px;
@@ -7497,16 +7499,15 @@ textarea.form-input {
     transform: translateY(-2px);
   }
 
-  /* Keep the page clear of the pinned pill. The clearance has to sit at the
-     very END of the page, below the footer — putting it on .home-flow itself
-     opened a 76px hole between the homepage content and the footer while
-     leaving the pill overlapping the footer. .home-flow only exists on the
-     homepage and is the footer's preceding sibling inside .container, so this
-     reserves the space on the homepage alone. Margin, not padding, so the
-     footer's black background doesn't stretch into the gap. */
-  .home-flow ~ .footer {
-    margin-bottom: 76px;
-  }
+}
+
+/* Clearance so the fixed pill never covers the end of the page. NearMeBar
+   renders this next to the pill, and the layout puts NearMeBar after the
+   footer — so the space lands at the true bottom of the page, on exactly the
+   routes where the pill appears, with no route-specific selectors to keep in
+   sync. Applies at every width because the pill is fixed at every width. */
+.nearme-spacer {
+  height: 76px;
 }
 
 /* ====== BAR NO-PHOTO PLACEHOLDER (shared) ====== */
