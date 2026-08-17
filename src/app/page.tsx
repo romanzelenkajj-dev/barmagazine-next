@@ -61,7 +61,7 @@ export default async function HomePage() {
   });
 
   return (
-    <>
+    <div className="home-flow">
       {/* A) TWO-COLUMN HERO */}
       {hero && (
         <section className="hero">
@@ -103,12 +103,10 @@ export default async function HomePage() {
       {/* B) TOP 10 BARS RUNNING TICKER — right under the hero: bar discovery is the core product */}
       <Top10Ticker bars={top10Bars} />
 
-      {/* C) FEATURED BARS SPLIT SECTION.
-          Desktop: two columns - left stacks the "Want to add your bar?" CTA
-          and the "Stay in the Mix" newsletter; right stacks the swipe deck
-          and the Flavour Blaster ad (no dead space around the deck).
-          Mobile: single column - the deck comes first on the bare background,
-          CTA / newsletter / ad follow below it. */}
+      {/* C) FEATURED BARS BAND - three columns on desktop:
+          [CTA + newsletter] | [deck, the interactive centerpiece] | [ad + directory promo].
+          Every card keeps natural proportions; the columns share one height.
+          Mobile: deck first, then the cards stack. */}
       {barsPosts.length > 0 && (
         <div className="home-split">
           <div className="home-split-side">
@@ -137,21 +135,35 @@ export default async function HomePage() {
                   tag: 'Featured bar',
                 }))}
             />
+          </div>
+          <div className="home-split-right">
             <a href="https://flavourblaster.com/BARMAGAZINE" target="_blank" rel="noopener noreferrer sponsored" className="cta-ad">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster" width={1026} height={1026} loading="lazy" />
             </a>
+            <Link href="/bars" className="home-dir-promo">
+              <span className="home-dir-promo-title">Explore the Bar Directory</span>
+              <span className="home-dir-promo-stats">1,000+ bars &middot; 59 countries &middot; 142 cities</span>
+              <span className="home-dir-promo-go">
+                Find bars near you
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </Link>
           </div>
         </div>
       )}
 
-      {/* D) SECTION BAR + MIXED CARD GRID - instant category switching */}
-      <HomeCategoryGrid
-        initialPosts={JSON.stringify(cardPosts)}
-        categoryData={JSON.stringify(categoryData)}
-        heroId={hero?.id}
-      />
-    </>
+      {/* D) SECTION BAR + MIXED CARD GRID - instant category switching.
+          Desktop: shown ABOVE the featured band (CSS order swap in .home-flow);
+          mobile: below the band. */}
+      <div className="home-grid-slot">
+        <HomeCategoryGrid
+          initialPosts={JSON.stringify(cardPosts)}
+          categoryData={JSON.stringify(categoryData)}
+          heroId={hero?.id}
+        />
+      </div>
+    </div>
   );
 }
 

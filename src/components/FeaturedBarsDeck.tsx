@@ -27,9 +27,9 @@ const TONES = [
 // Deck geometry (matches funradio: back cards peek ABOVE the top card)
 const ROLES = [
   { y: 0, s: 1, o: 1 }, // top
-  { y: -22, s: 0.955, o: 0.9 }, // behind 1
-  { y: -42, s: 0.91, o: 0.6 }, // behind 2
-  { y: -58, s: 0.87, o: 0 }, // hidden
+  { y: -18, s: 0.96, o: 0.95 }, // behind 1
+  { y: -32, s: 0.925, o: 0.7 }, // behind 2
+  { y: -46, s: 0.89, o: 0 }, // hidden
 ];
 
 const SPRING = 'cubic-bezier(0.34, 1.56, 0.64, 1)';
