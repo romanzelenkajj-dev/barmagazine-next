@@ -7497,10 +7497,15 @@ textarea.form-input {
     transform: translateY(-2px);
   }
 
-  /* keep homepage content from hiding behind the pinned bar —
-     scoped to .home-flow because the pill renders on the homepage only */
-  .home-flow {
-    padding-bottom: 76px;
+  /* Keep the page clear of the pinned pill. The clearance has to sit at the
+     very END of the page, below the footer — putting it on .home-flow itself
+     opened a 76px hole between the homepage content and the footer while
+     leaving the pill overlapping the footer. .home-flow only exists on the
+     homepage and is the footer's preceding sibling inside .container, so this
+     reserves the space on the homepage alone. Margin, not padding, so the
+     footer's black background doesn't stretch into the gap. */
+  .home-flow ~ .footer {
+    margin-bottom: 76px;
   }
 }
 
