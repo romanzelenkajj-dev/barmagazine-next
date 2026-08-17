@@ -11,12 +11,8 @@ import { usePathname } from 'next/navigation';
 export function NearMeBar() {
   const pathname = usePathname();
 
-  if (
-    pathname.startsWith('/bars') ||
-    pathname.startsWith('/admin') ||
-    pathname.startsWith('/owner-dashboard') ||
-    pathname === '/links'
-  ) {
+  // Homepage only — articles and every other page stay clean.
+  if (pathname !== '/') {
     return null;
   }
 
