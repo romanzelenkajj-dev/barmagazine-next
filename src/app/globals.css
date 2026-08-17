@@ -8065,3 +8065,55 @@ textarea.form-input {
     order: 3;
   }
 }
+
+/* ====== FEATURED BAND RECOLOR (deck card tones) ======
+   The CTA and newsletter boxes pick up the deck's card palette so the band
+   reads as one family: blush CTA, sage newsletter, dark text, black buttons.
+   Scoped to the homepage band (.home-split) so other pages keep the brand
+   red/green versions. */
+.home-split .cta-banner {
+  background: #EDBBBB; /* deck blush */
+}
+
+.home-split .cta-banner h2 {
+  color: #1A1A1A;
+}
+
+.home-split .cta-banner p {
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.home-split .cta-banner .cta-submit {
+  background: #1A1A1A;
+  color: #fff;
+}
+
+.home-split .home-newsletter {
+  background: #DCE5DD; /* deck sage */
+  color: #1A1A1A;
+}
+
+.home-split .home-newsletter h2 {
+  color: #1A1A1A;
+}
+
+.home-split .home-newsletter p {
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.home-split .home-newsletter .newsletter-form input {
+  border-color: rgba(26, 26, 26, 0.15);
+}
+
+.home-split .home-newsletter .newsletter-form button {
+  background: #1A1A1A;
+  color: #fff;
+}
+
+/* mobile: restore the gap between the newsletter column and the ad column
+   (they became siblings when the band dissolves via display: contents) */
+@media (max-width: 768px) {
+  .home-split-right {
+    margin-top: var(--gap);
+  }
+}
