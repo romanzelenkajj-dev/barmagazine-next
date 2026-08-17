@@ -86,13 +86,27 @@ export function middleware(request: NextRequest) {
   // www subdomain) — 308 to production on the same path + query. 308 (not 301)
   // preserves the request method and matches the next.config redirects(), which
   // emit 308 for `permanent: true`, so the whole site speaks one dialect.
-  if (!isCanonical && !isLocal) {
+  // Staging = any Vercel PREVIEW deployment (branch deploys), or an explicit
+  // STAGING=1 env (separate staging project). Disables the canonical-host
+  // redirect so the clone is browsable on its *.vercel.app URL. Staging
+  // responses are always tagged noindex below so the clone can never leak
+  // into search engines. Production deployments are unaffected: VERCEL_ENV
+  // is 'production' there and STAGING is never set.
+  const isStaging = process.env.VERCEL_ENV === 'preview' || process.env.STAGING === '1';
+
+  if (!isCanonical && !isLocal && !isStaging) {
     const url = new URL(request.nextUrl.pathname + request.nextUrl.search, `https://${CANONICAL_HOST}`);
     const response = NextResponse.redirect(url, 308);
     // Belt-and-suspenders: the redirect alone stops indexing of the alias, but
     // tag the response noindex too so any crawler that logs the non-canonical
     // URL (preview / *.vercel.app / branch deploy) is told not to index it.
     response.headers.set('X-Robots-Tag', 'noindex');
+    return response;
+  }
+
+  if (isStaging) {
+    const response = NextResponse.next();
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow');
     return response;
   }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { TOP10_CITIES } from '@/lib/top10-cities';
+import { TOP10_CITIES, top10Href } from '@/lib/top10-cities';
 
 export { TOP10_CITIES };
 
@@ -16,7 +16,7 @@ export function Top10CityPicker() {
         {TOP10_CITIES.map(c => (
           <Link
             key={c.dirSlug}
-            href={`/bars/city/${c.dirSlug}?view=top10`}
+            href={top10Href(c)}
             className="top10-picker-city"
           >
             {c.label}

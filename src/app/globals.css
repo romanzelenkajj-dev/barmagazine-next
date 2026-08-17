@@ -30,6 +30,12 @@ html {
 }
 
 body {
+  /* Explicit reset: the browser default 8px body margin was previously
+     un-reset (Tailwind preflight is off) and every layout compensated for
+     it implicitly. Resetting it makes gutters deterministic across
+     browsers; the gutter the design wants comes from padding alone. */
+  margin: 8px;
+  margin-top: 0;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--bg-page);
   color: var(--text-primary);
@@ -37,7 +43,11 @@ body {
   -webkit-font-smoothing: antialiased;
   padding: var(--gap);
   padding-top: 0;
-  overflow-x: clip;
+  /* No overflow-x here: `overflow: clip` clips painting to the PADDING box,
+     which starts at this element's 8px margin. That clipped the full-bleed
+     heroes back to an 8px sliver no matter how large their negative margin
+     was. html keeps overflow-x: clip, so the viewport still never scrolls
+     sideways — the heroes just paint all the way to the edge. */
 }
 
 img {
@@ -80,11 +90,13 @@ button {
   pointer-events: none;
 }
 
+/* Desktop: inset rounded bar (as before) but pure black.
+   Mobile (see media query below): full-bleed flat bar with a straight edge. */
 .nav {
   max-width: var(--container);
   width: 100%;
   height: var(--nav-h);
-  background: var(--bg-dark);
+  background: #000;
   border-radius: 0 0 24px 24px;
   pointer-events: all;
   transition: box-shadow 0.4s var(--ease);
@@ -97,6 +109,8 @@ button {
 .nav-inner {
   padding: 0 28px;
   height: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -193,7 +207,7 @@ button {
   right: 0;
   bottom: 0;
   z-index: 999;
-  background: var(--bg-dark);
+  background: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1249,7 +1263,8 @@ button {
 /* ====== FOOTER ====== */
 .footer {
   margin-top: var(--gap);
-  background: var(--bg-dark);
+  /* Match the header's pure black so the frame reads as one shade */
+  background: #000;
   border-radius: var(--radius);
   padding: 56px 40px 32px;
   color: var(--text-inverse);
@@ -1850,7 +1865,7 @@ button {
   margin-top: var(--gap);
   background: var(--bg-card);
   border-radius: var(--radius);
-  padding: 48px 24px;
+  padding: 28px 24px 24px;
   position: relative;
 }
 
@@ -2158,7 +2173,7 @@ button {
 
   .nav {
     max-width: 100%;
-    border-radius: 0 0 var(--radius) var(--radius);
+    border-radius: 0;
   }
 
   .nav-links {
@@ -2328,7 +2343,7 @@ button {
   }
 
   .bars-wrapper {
-    padding: 20px 0 20px 20px;
+    padding: 16px 14px 16px;
     overflow: hidden;
   }
 
@@ -7232,4 +7247,907 @@ textarea.form-input {
    layout regression. */
 .feature-sec-intro {
   text-wrap: balance;
+}
+
+/* ====== FEATURED BARS SWIPE DECK (Fun Radio-style) ====== */
+.deck-wrapper {
+  margin-top: 0;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.deck-stack {
+  position: relative;
+  aspect-ratio: 3 / 3.85;
+  /* headroom for the back cards peeking above the top card */
+  margin-top: 46px;
+}
+
+.deck-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 54px rgba(27, 14, 21, 0.15);
+  will-change: transform;
+  overflow: hidden;
+}
+
+.deck-card-top {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.deck-card-top:active {
+  cursor: grabbing;
+}
+
+.deck-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.deck-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid rgba(26, 26, 26, 0.18);
+  background: rgba(255, 255, 255, 0.5);
+  color: #1A1A1A;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.deck-counter {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(26, 26, 26, 0.45);
+  letter-spacing: 0.04em;
+}
+
+.deck-card-media {
+  flex: 1;
+  min-height: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(26, 26, 26, 0.08);
+}
+
+.deck-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+}
+
+.deck-card-name {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 12px 4px 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.deck-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.deck-chip--cat {
+  background: transparent;
+}
+
+.deck-read-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #1A1A1A;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 100px;
+}
+
+.deck-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 14px;
+}
+
+.deck-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.deck-arrow:hover {
+  background: var(--bg-card);
+  border-color: var(--text-tertiary);
+}
+
+.deck-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.deck-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.deck-dot.active {
+  background: var(--accent);
+  transform: scale(1.25);
+}
+
+@media (max-width: 768px) {
+  .deck-stack {
+    aspect-ratio: 3 / 3.7;
+  }
+}
+
+/* ====== PERSISTENT "BARS NEAR ME" BOTTOM BAR (homepage only) ======
+   Mobile: full-width pill pinned at the bottom. Desktop: compact centered
+   floating pill. The component itself renders only on the homepage. */
+.nearme-bar {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(420px, calc(100vw - 32px));
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #000;
+  color: #fff;
+  border-radius: 100px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nearme-bar:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+}
+
+.nearme-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nearme-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
+  flex: 1;
+}
+
+.nearme-text strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.nearme-text small {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.nearme-go {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .nearme-bar {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    transform: none;
+    width: auto;
+  }
+
+  .nearme-bar:hover {
+    transform: translateY(-2px);
+  }
+
+  /* keep page content from hiding behind the pinned bar */
+  body {
+    padding-bottom: 76px;
+  }
+}
+
+/* ====== BAR NO-PHOTO PLACEHOLDER (shared) ====== */
+.bar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px 16px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.bar-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 42%, rgba(201, 169, 106, 0.10) 0%, transparent 62%);
+  pointer-events: none;
+}
+
+.bar-placeholder-ring {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 169, 106, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.bar-placeholder-ring svg {
+  width: 40px;
+  height: 40px;
+}
+
+.bar-placeholder-name {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  max-width: 90%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bar-placeholder--hero .bar-placeholder-ring {
+  width: 116px;
+  height: 116px;
+}
+
+.bar-placeholder--hero .bar-placeholder-ring svg {
+  width: 56px;
+  height: 56px;
+}
+
+.bar-placeholder--hero .bar-placeholder-name {
+  font-size: 19px;
+  letter-spacing: 0.18em;
+}
+
+/* ====== DIRECTORY HERO STATS ====== */
+.directory-hero-stats {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.directory-hero-stats .directory-hero-stat {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.directory-hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  padding: 10px 18px;
+  color: #fff;
+}
+
+.directory-hero-stat strong {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.directory-hero-stat span {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ====== DIRECTORY TYPE QUICK CHIPS ====== */
+.directory-type-chips {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.directory-type-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.directory-type-chip {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 100px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.directory-type-chip:hover {
+  border-color: var(--text-tertiary);
+  color: var(--text-primary);
+}
+
+.directory-type-chip.active {
+  background: var(--bg-dark);
+  border-color: var(--bg-dark);
+  color: #fff;
+}
+
+/* ====== READING PROGRESS (article pages) ====== */
+.reading-progress {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1001;
+  background: transparent;
+  pointer-events: none;
+}
+
+.reading-progress-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+.share-copied {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-left: 4px;
+}
+
+/* ====== ARTICLE BODY POLISH ====== */
+.article-body > div > p:first-of-type {
+  font-size: 1.15em;
+  color: var(--text-primary);
+  font-weight: 450;
+}
+
+.article-body h2 {
+  position: relative;
+  padding-top: 18px;
+}
+
+.article-body h2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.article-body img {
+  border-radius: var(--radius);
+}
+
+/* ====== TOP 10 BARS RUNNING TICKER (Fun Radio-style marquee) ====== */
+.ticker-strip {
+  display: flex;
+  align-items: center;
+  background: #000;
+  border-radius: var(--radius);
+  margin-top: var(--gap);
+  overflow: hidden;
+  height: 56px;
+}
+
+.ticker-label {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+.ticker-viewport {
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+  /* soft fade at both ends */
+  mask-image: linear-gradient(to right, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: ticker-ltr 60s linear infinite;
+}
+
+.ticker-strip:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+/* two identical rows; track moves 0 → -50% → items flow right → left,
+   the standard news-ticker direction (new names enter from the right) */
+@keyframes ticker-ltr {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker-row {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0 22px;
+  transition: color 0.2s;
+}
+
+.ticker-item:hover {
+  color: var(--bg-accent-pink);
+}
+
+.ticker-star {
+  color: #C9A96A;
+  font-size: 11px;
+}
+
+.ticker-city {
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .ticker-strip {
+    height: 48px;
+    border-radius: 16px;
+  }
+
+  .ticker-label {
+    padding: 0 14px;
+    font-size: 10.5px;
+  }
+
+  .ticker-item {
+    font-size: 13px;
+    padding: 0 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
+
+/* ====== FULL-BLEED HEROES ON MOBILE (article + bar profile) ======
+   Mobile heroes run edge-to-edge with square corners, flowing straight
+   down from the flat mobile header. Desktop keeps the rounded card hero
+   to match the inset rounded header and card layout. */
+@media (max-width: 768px) {
+  .article-hero,
+  .bar-v2-hero,
+  .directory-hero,
+  .hero {
+    border-radius: 0;
+    /* true edge-to-edge: cancels the 2px body gutter + the body's 8px side
+       margin. Body no longer sets overflow-x, so this actually paints to the
+       viewport edge instead of being clipped back to the 8px margin. */
+    margin-left: -10px;
+    margin-right: -10px;
+    width: auto;
+    max-width: none;
+    /* flush under the flat mobile header: cancels the 8px nav-spacer buffer.
+       Body's margin-top is now an explicit 0, so only the spacer's 8px needs
+       cancelling here: 0 + (88 + 8) - 8 = 88px = --nav-h. */
+    margin-top: -8px;
+  }
+
+  .article-outer-grid {
+    margin-top: 0;
+  }
+
+  /* directory pages: cancel the wrapper's own top margin so the hero is
+     flush under the header like article/bar heroes */
+  .directory-outer-with-sidebar {
+    margin-top: 0;
+  }
+
+  /* breadcrumbs are hidden on mobile — the hero flows straight from the
+     header. Desktop keeps them; BreadcrumbList JSON-LD stays on both. */
+  .article-breadcrumb,
+  .bar-breadcrumb {
+    display: none;
+  }
+}
+
+/* Override legacy 480px rule (from the old hidden-stats design): keep the
+   three hero stat cards in a row on phones too. */
+@media (max-width: 480px) {
+  .directory-hero-stats {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .directory-hero-stat {
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 12px;
+  }
+
+  .directory-hero-stat strong {
+    font-size: 18px;
+  }
+}
+
+/* ====== HOMEPAGE FEATURED BAND (3 columns on desktop) ======
+   [CTA + newsletter] | [deck centerpiece] | [ad + directory promo].
+   All three columns stretch to one shared height; every card keeps
+   natural proportions (nothing is inflated to fill space). */
+.home-split {
+  display: grid;
+  grid-template-columns: 1fr 440px 440px;
+  gap: var(--gap);
+  margin-top: var(--gap);
+  align-items: stretch;
+}
+
+.home-split-side,
+.home-split-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  min-width: 0;
+}
+
+/* CTA + newsletter split the left column height between them */
+.home-split .cta-banner,
+.home-split .home-newsletter {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-split .cta-banner {
+  padding: 28px 28px;
+}
+
+.home-split .cta-banner h2 {
+  font-size: 24px;
+}
+
+.home-split .cta-banner p {
+  font-size: 14px;
+}
+
+.home-newsletter {
+  padding: 28px 28px;
+  text-align: center;
+  background: var(--bg-accent);
+  border-radius: var(--radius);
+  color: var(--text-inverse);
+}
+
+.home-newsletter h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.home-newsletter p {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 20px;
+}
+
+.home-split-main {
+  min-width: 0;
+}
+
+/* Desktop: the deck sits in a plain white card so the band's top edge is
+   continuous across all three columns (the peek headroom lives inside it).
+   Mobile keeps the boxless Fun Radio look. */
+@media (min-width: 769px) {
+  .home-split-main {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 16px 20px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.home-split-main .deck-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* right column: square ad keeps its ratio, promo card fills the rest */
+.home-split-right .cta-ad {
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+.home-dir-promo {
+  flex: 1 1 auto;
+  background: #000;
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  color: #fff;
+  transition: background 0.2s;
+}
+
+.home-dir-promo:hover {
+  background: #1a1a1a;
+}
+
+.home-dir-promo-title {
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.home-dir-promo-stats {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.03em;
+}
+
+.home-dir-promo-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--bg-accent-pink);
+}
+
+@media (max-width: 1180px) {
+  .home-split {
+    grid-template-columns: 1fr 380px 380px;
+  }
+
+  .home-split .cta-banner h2 {
+    font-size: 24px;
+  }
+
+  .home-newsletter h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 980px) and (min-width: 769px) {
+  /* narrow desktop/tablet: two columns — deck left, cards right */
+  .home-split {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .home-split-main {
+    grid-row: 1 / 3;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile: dissolve the band so its three columns become siblings of the
+     article grid inside .home-flow — order: deck, articles, then the
+     CTA / newsletter / ad / directory promo. */
+  .home-split {
+    display: contents;
+  }
+
+  .home-split-main {
+    order: 1;
+    margin-top: 0;
+  }
+
+  /* tighter gap between the ticker and the deck: less headroom, and the
+     peeking back cards slightly more visible so the space reads as stack */
+  .deck-stack {
+    margin-top: 28px;
+  }
+
+  .home-flow .home-grid-slot {
+    order: 2;
+  }
+
+  .home-split-side {
+    order: 3;
+    margin-top: var(--gap);
+  }
+
+  .home-split-right {
+    order: 4;
+  }
+
+  .home-split .cta-banner,
+  .home-newsletter {
+    padding: 40px 24px;
+  }
+
+  .home-dir-promo {
+    padding: 22px 24px;
+  }
+}
+
+/* ====== HOMEPAGE FLOW ORDER ======
+   DOM order = mobile order (hero, ticker, featured band, article grid).
+   Desktop swaps the last two: articles first, featured band at the bottom. */
+.home-flow {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 769px) {
+  .home-flow .home-grid-slot {
+    order: 1;
+  }
+
+  /* the Top 10 ticker sits between the articles and the featured band */
+  .home-flow .ticker-strip {
+    order: 2;
+  }
+
+  .home-flow .home-split {
+    order: 3;
+  }
+}
+
+/* ====== FEATURED BAND RECOLOR (deck card tones) ======
+   The CTA and newsletter boxes pick up the deck's card palette so the band
+   reads as one family: blush CTA, sage newsletter, dark text, black buttons.
+   Scoped to the homepage band (.home-split) so other pages keep the brand
+   red/green versions. */
+.home-split .cta-banner {
+  background: #EDBBBB; /* deck blush */
+}
+
+.home-split .cta-banner h2 {
+  color: #1A1A1A;
+}
+
+.home-split .cta-banner p {
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.home-split .cta-banner .cta-submit {
+  background: #1A1A1A;
+  color: #fff;
+}
+
+.home-split .home-newsletter {
+  /* black card in the style of the Explore-the-Bar-Directory promo,
+     with the blush pink as the accent */
+  background: #000;
+  color: #fff;
+}
+
+.home-split .home-newsletter h2 {
+  color: #fff;
+}
+
+.home-split .home-newsletter p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.home-split .home-newsletter .newsletter-form input {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.home-split .home-newsletter .newsletter-form button {
+  background: #DCE5DD; /* sage accent — the green counterpart to the promo card's pink */
+  color: #1A1A1A;
+}
+
+.home-split .home-newsletter .newsletter-form button:hover {
+  background: #cdd9cf;
+}
+
+/* mobile: restore the gap between the newsletter column and the ad column
+   (they became siblings when the band dissolves via display: contents) */
+@media (max-width: 768px) {
+  .home-split-right {
+    margin-top: var(--gap);
+  }
 }
