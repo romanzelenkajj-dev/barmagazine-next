@@ -7726,10 +7726,11 @@ textarea.form-input {
   animation-play-state: paused;
 }
 
-/* two identical rows; track starts at -50% and moves to 0 → items flow left → right */
+/* two identical rows; track moves 0 → -50% → items flow right → left,
+   the standard news-ticker direction (new names enter from the right) */
 @keyframes ticker-ltr {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .ticker-row {
