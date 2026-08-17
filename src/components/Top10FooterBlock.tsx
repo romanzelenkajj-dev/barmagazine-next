@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { TOP10_CITIES } from '@/lib/top10-cities';
+import { TOP10_CITIES, top10Href } from '@/lib/top10-cities';
 
 export function Top10FooterBlock() {
   return (
@@ -9,7 +9,7 @@ export function Top10FooterBlock() {
       <ul className="top10-footer-cities">
         {TOP10_CITIES.map(c => (
           <li key={c.dirSlug}>
-            <Link href={`/bars/city/${c.dirSlug}?view=top10`}>
+            <Link href={top10Href(c)}>
               {c.label}
             </Link>
           </li>

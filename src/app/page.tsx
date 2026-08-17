@@ -5,7 +5,8 @@ import { NewsletterForm } from '@/components/NewsletterForm';
 import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import { HomeCategoryGrid } from '@/components/HomeCategoryGrid';
 import { FeaturedBarsDeck } from '@/components/FeaturedBarsDeck';
-import { getBarArticleSlugs } from '@/lib/supabase';
+import { getBarArticleSlugs, getBars } from '@/lib/supabase';
+import { Top10Ticker } from '@/components/Top10Ticker';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 export const revalidate = 300;
 
@@ -15,12 +16,18 @@ export default async function HomePage() {
   // Fetch all data in parallel: latest posts, bars for Featured Bars, all 6 category sets.
   // We fetch 1 extra per set so the grid can filter out the hero article client-side
   // and still render the full 6-card count.
-  const [result, barsResult, barArticleSlugs, ...categoryResults] = await Promise.all([
+  const [result, barsResult, barArticleSlugs, top10Result, ...categoryResults] = await Promise.all([
     getPosts(1, 8),
     getPostsByCategory('bars', 1, 30), // fetch more so we have enough after filtering
     getBarArticleSlugs(),
+    getBars({ tier: 'top10', perPage: 40 }).catch(() => ({ bars: [] })),
     ...CATEGORY_SLUGS.map(slug => getPostsByCategory(slug, 1, 7)),
   ]);
+  const top10Bars = (top10Result.bars || []).map((b: { name: string; city: string; slug: string }) => ({
+    name: b.name,
+    city: b.city,
+    slug: b.slug,
+  }));
 
   const posts = result.data.filter(hasSlug);
   // Only show bar articles that have a matching listing in the Bar Directory
@@ -105,14 +112,15 @@ export default async function HomePage() {
 
       {/* Browse by City section removed — city links live in the Bar Directory sidebar */}
 
+      {/* E2) TOP 10 BARS RUNNING TICKER (Fun Radio-style marquee) */}
+      <Top10Ticker bars={top10Bars} />
+
       {/* F) FEATURED BARS (from WP bars category) — Fun Radio-style swipe deck */}
       {barsPosts.length > 0 && (
         <div className="bars-wrapper">
           <div className="section-bar">
             <h2>Featured Bars</h2>
-            <Link href="/category/bars" className="section-link">View All &rarr;</Link>
           </div>
-          <p className="deck-hint">Swipe the top card aside to discover the next bar — tap to read the story.</p>
           <FeaturedBarsDeck
             cards={barsPosts
               .filter(hasSlug)

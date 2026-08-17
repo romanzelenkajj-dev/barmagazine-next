@@ -121,7 +121,6 @@ export function BarPlaceholder({
         <GlassIcon kind={glassForType(type, name)} />
       </div>
       <span className="bar-placeholder-name">{name}</span>
-      <span className="bar-placeholder-rule" aria-hidden="true" />
     </div>
   );
 }

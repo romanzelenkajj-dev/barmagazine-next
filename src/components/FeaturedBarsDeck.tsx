@@ -10,27 +10,37 @@ export interface DeckCard {
   tag?: string;
 }
 
-const FLY_MS = 380;
-const SWIPE_DISTANCE = 70; // px past which release commits the swipe
-const SWIPE_VELOCITY = 0.45; // px/ms flick threshold
+const FLY_MS = 500;
+const SWIPE_DISTANCE = 70;
+const SWIPE_VELOCITY = 0.45;
 
-/**
- * Fun Radio-style swipeable card deck.
- * - The top card tracks the pointer 1:1 while dragging (with rotation).
- * - The cards behind grow toward the front IN SYNC with the drag progress.
- * - On release past the threshold (or a quick flick) the card flies off and
- *   the next card finishes its promotion; otherwise everything springs back.
- * - Cards are keyed by href so promotion animates the SAME element between
- *   deck positions instead of snapping.
- * - Tap (no movement) opens the card; arrows and dots also advance the deck.
- */
+// Card tones rotate like Fun Radio's deck — solid colored cards make the
+// stacked edges behind the top card clearly readable as "more cards".
+const TONES = [
+  { bg: '#EDBBBB', fg: '#1A1A1A' }, // brand blush
+  { bg: '#F3E9DC', fg: '#1A1A1A' }, // butter
+  { bg: '#FFFFFF', fg: '#1A1A1A' }, // white
+  { bg: '#DCE5DD', fg: '#1A1A1A' }, // sage
+  { bg: '#E8DED2', fg: '#1A1A1A' }, // sand
+];
+
+// Deck geometry (matches funradio: back cards peek ABOVE the top card)
+const ROLES = [
+  { y: 0, s: 1, o: 1 }, // top
+  { y: -22, s: 0.955, o: 0.9 }, // behind 1
+  { y: -42, s: 0.91, o: 0.6 }, // behind 2
+  { y: -58, s: 0.87, o: 0 }, // hidden
+];
+
+const SPRING = 'cubic-bezier(0.34, 1.56, 0.64, 1)';
+
 export function FeaturedBarsDeck({ cards }: { cards: DeckCard[] }) {
   const router = useRouter();
   const [index, setIndex] = useState(0);
   const [drag, setDrag] = useState<{ dx: number; active: boolean }>({ dx: 0, active: false });
   const [leaving, setLeaving] = useState<{ dir: 1 | -1 } | null>(null);
 
-  const pointer = useRef<{ id: number; startX: number; startT: number; lastX: number; lastT: number } | null>(null);
+  const pointer = useRef<{ id: number; startX: number; startT: number } | null>(null);
   const moved = useRef(false);
 
   const count = cards.length;
@@ -51,10 +61,11 @@ export function FeaturedBarsDeck({ cards }: { cards: DeckCard[] }) {
   if (count === 0) return null;
 
   const cardAt = (offset: number) => cards[(index + offset + count) % count];
+  const toneAt = (offset: number) => TONES[((index + offset) % count) % TONES.length];
 
   const onPointerDown = (e: React.PointerEvent) => {
     if (leaving) return;
-    pointer.current = { id: e.pointerId, startX: e.clientX, startT: e.timeStamp, lastX: e.clientX, lastT: e.timeStamp };
+    pointer.current = { id: e.pointerId, startX: e.clientX, startT: e.timeStamp };
     moved.current = false;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     setDrag({ dx: 0, active: true });
@@ -65,8 +76,6 @@ export function FeaturedBarsDeck({ cards }: { cards: DeckCard[] }) {
     if (!p || p.id !== e.pointerId || leaving) return;
     const dx = e.clientX - p.startX;
     if (Math.abs(dx) > 6) moved.current = true;
-    p.lastX = e.clientX;
-    p.lastT = e.timeStamp;
     setDrag({ dx, active: true });
   };
 
@@ -78,7 +87,6 @@ export function FeaturedBarsDeck({ cards }: { cards: DeckCard[] }) {
     const dt = Math.max(1, e.timeStamp - p.startT);
     const velocity = Math.abs(dx) / dt;
     if (Math.abs(dx) > SWIPE_DISTANCE || (Math.abs(dx) > 24 && velocity > SWIPE_VELOCITY)) {
-      // keep current dx while the fly-out transition takes over
       setDrag({ dx, active: false });
       commit(dx < 0 ? 1 : -1);
     } else {
@@ -86,57 +94,75 @@ export function FeaturedBarsDeck({ cards }: { cards: DeckCard[] }) {
     }
   };
 
-  // 0 → 1: how far the current gesture has progressed toward a swipe
   const progress = leaving ? 1 : Math.min(1, Math.abs(drag.dx) / 160);
 
-  // Visual parameters for a deck position, blended toward the position in
-  // front of it by `progress` so back cards rise WHILE you drag.
-  const backStyle = (offset: 1 | 2): React.CSSProperties => {
-    const from = { y: offset * 14, s: 1 - offset * 0.05, o: offset === 2 ? 0.55 : 0.85 };
-    const to = { y: (offset - 1) * 14, s: 1 - (offset - 1) * 0.05, o: offset === 2 ? 0.85 : 1 };
+  const roleStyle = (role: 1 | 2 | 3): React.CSSProperties => {
+    const from = ROLES[role];
+    const to = ROLES[role - 1];
     const y = from.y + (to.y - from.y) * progress;
     const s = from.s + (to.s - from.s) * progress;
     const o = from.o + (to.o - from.o) * progress;
     return {
-      zIndex: 3 - offset,
+      zIndex: 6 - role,
       opacity: o,
       transform: `translateY(${y}px) scale(${s})`,
-      transition: drag.active ? 'none' : `transform ${FLY_MS}ms cubic-bezier(0.16, 1, 0.3, 1), opacity ${FLY_MS}ms ease`,
+      transition: drag.active ? 'none' : `transform ${FLY_MS}ms ${SPRING}, opacity ${FLY_MS * 0.8}ms ease`,
     };
   };
 
   const topStyle: React.CSSProperties = leaving
     ? {
-        zIndex: 4,
-        transform: `translateX(${leaving.dir * -115}%) rotate(${leaving.dir * -14}deg)`,
-        opacity: 0.4,
+        zIndex: 6,
+        transform: `translateX(${leaving.dir * -115}%) rotate(${leaving.dir * -12}deg)`,
+        opacity: 0.3,
         transition: `transform ${FLY_MS}ms cubic-bezier(0.3, 0.7, 0.4, 1), opacity ${FLY_MS}ms ease`,
       }
     : {
-        zIndex: 4,
+        zIndex: 6,
         transform: `translateX(${drag.dx}px) rotate(${drag.dx / 22}deg)`,
         opacity: 1,
-        transition: drag.active ? 'none' : `transform ${FLY_MS}ms cubic-bezier(0.16, 1, 0.3, 1)`,
+        transition: drag.active ? 'none' : `transform ${FLY_MS}ms ${SPRING}`,
       };
 
-  // Render the 3 visible deck slots, keyed by card href so React keeps the
-  // same DOM node as a card moves from slot to slot (making CSS transitions
-  // carry the promotion animation).
-  const slots: { card: DeckCard; role: 0 | 1 | 2 }[] = [
-    { card: cardAt(2), role: 2 },
-    { card: cardAt(1), role: 1 },
-    { card: cardAt(0), role: 0 },
-  ];
+  // Every slot renders the IDENTICAL card markup — only transforms differ —
+  // so promotion never reflows text or reveals extra elements mid-swipe.
+  const renderCard = (card: DeckCard, tone: { bg: string; fg: string }, pos: number) => (
+    <>
+      <header className="deck-card-head">
+        <span className="deck-chip">{card.tag || 'Featured bar'}</span>
+        <span className="deck-counter">{pos + 1}/{count}</span>
+      </header>
+      <div className="deck-card-media">
+        {card.img && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={card.img} alt={card.title} draggable={false} loading="lazy" />
+        )}
+      </div>
+      <h3 className="deck-card-name" style={{ color: tone.fg }}>{card.title}</h3>
+      <footer className="deck-card-foot">
+        <span className="deck-chip deck-chip--cat">Bars</span>
+        <span className="deck-read-pill">
+          Read more
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </footer>
+    </>
+  );
+
+  const slots = [3, 2, 1, 0] as const;
 
   return (
     <div className="deck-wrapper">
       <div className="deck-stack">
-        {slots.map(({ card, role }) =>
-          role === 0 ? (
-            <div
+        {slots.map(role => {
+          const card = cardAt(role);
+          const tone = toneAt(role);
+          const pos = (index + role) % count;
+          return role === 0 ? (
+            <article
               key={card.href}
               className="deck-card deck-card-top"
-              style={topStyle}
+              style={{ ...topStyle, background: tone.bg }}
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
               onPointerUp={endDrag}
@@ -151,32 +177,14 @@ export function FeaturedBarsDeck({ cards }: { cards: DeckCard[] }) {
                 if (e.key === 'Enter') router.push(card.href);
               }}
             >
-              {card.img && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={card.img} alt={card.title} draggable={false} />
-              )}
-              <div className="deck-card-overlay">
-                {card.tag && <span className="deck-card-tag">{card.tag}</span>}
-                <h3 className="deck-card-title">{card.title}</h3>
-                <span className="deck-card-cta">
-                  Read more
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </span>
-              </div>
-            </div>
+              {renderCard(card, tone, pos)}
+            </article>
           ) : (
-            <div key={card.href} className="deck-card deck-card-back" style={backStyle(role as 1 | 2)} aria-hidden="true">
-              {card.img && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={card.img} alt="" loading="lazy" draggable={false} />
-              )}
-              <div className="deck-card-overlay deck-card-overlay-back">
-                {card.tag && <span className="deck-card-tag">{card.tag}</span>}
-                <h3 className="deck-card-title">{card.title}</h3>
-              </div>
-            </div>
-          ),
-        )}
+            <article key={card.href} className="deck-card" style={{ ...roleStyle(role), background: tone.bg }} aria-hidden="true">
+              {renderCard(card, tone, pos)}
+            </article>
+          );
+        })}
       </div>
 
       <div className="deck-controls">
