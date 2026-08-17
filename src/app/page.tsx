@@ -97,25 +97,11 @@ export default async function HomePage() {
         heroId={hero?.id}
       />
 
-      {/* D) CTA BANNER + AD */}
-      <div className="cta-row">
-        <div className="cta-banner">
-          <h2>Want to add your bar?</h2>
-          <p>Join the BarMagazine directory and reach thousands of cocktail enthusiasts and industry professionals.</p>
-          <Link href="/feature-your-bar" className="cta-submit" style={{ display: 'inline-block', textDecoration: 'none' }}>Get Listed</Link>
-        </div>
-        <a href="https://flavourblaster.com/BARMAGAZINE" target="_blank" rel="noopener noreferrer sponsored" className="cta-ad">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster" width={1026} height={1026} />
-        </a>
-      </div>
-
-      {/* Browse by City section removed — city links live in the Bar Directory sidebar */}
-
-      {/* E2) TOP 10 BARS RUNNING TICKER (Fun Radio-style marquee) */}
+      {/* D) TOP 10 BARS RUNNING TICKER (Fun Radio-style marquee) — right
+          under the latest articles so it's high on the page */}
       <Top10Ticker bars={top10Bars} />
 
-      {/* F) FEATURED BARS (from WP bars category) — Fun Radio-style swipe deck */}
+      {/* E) FEATURED BARS swipe deck — directly after the ticker */}
       {barsPosts.length > 0 && (
         <div className="bars-wrapper">
           <div className="section-bar">
@@ -137,6 +123,19 @@ export default async function HomePage() {
           />
         </div>
       )}
+
+      {/* F) CTA BANNER + AD — moved below the ticker + deck */}
+      <div className="cta-row">
+        <div className="cta-banner">
+          <h2>Want to add your bar?</h2>
+          <p>Join the BarMagazine directory and reach thousands of cocktail enthusiasts and industry professionals.</p>
+          <Link href="/feature-your-bar" className="cta-submit" style={{ display: 'inline-block', textDecoration: 'none' }}>Get Listed</Link>
+        </div>
+        <a href="https://flavourblaster.com/BARMAGAZINE" target="_blank" rel="noopener noreferrer sponsored" className="cta-ad">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster" width={1026} height={1026} />
+        </a>
+      </div>
 
       {/* F) NEWSLETTER + TOP 10 BANNER */}
       <div className="newsletter-top10-strip">
