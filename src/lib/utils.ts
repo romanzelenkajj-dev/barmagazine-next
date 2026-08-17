@@ -266,6 +266,19 @@ export function cleanTitle(htmlTitle: string): string {
   const decoded = htmlTitle
     .replace(/&amp;/g, '&').replace(/&#8217;/g, "'").replace(/&rsquo;/g, "'")
     .replace(/&lsquo;/g, "'").replace(/&rdquo;/g, '"').replace(/&ldquo;/g, '"')
-    .replace(/&#8211;/g, '\u2013').replace(/&#8212;/g, '\u2014').replace(/&nbsp;/g, ' ');
+    .replace(/&#8211;/g, '\u2013').replace(/&#8212;/g, '\u2014').replace(/&nbsp;/g, ' ')
+    // WordPress also emits numeric entities the named list above never covered \u2014
+    // notably &#038; for "&". Callers that render the result as text (the deck
+    // card, the news-sitemap title) print whatever is left over verbatim, so
+    // decode any remaining numeric entity instead of leaking it to the page.
+    // Out-of-range code points are left as-is rather than throwing.
+    .replace(/&#(\d+);/g, (match, code) => {
+      const n = Number(code);
+      return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : match;
+    })
+    .replace(/&#x([0-9a-f]+);/gi, (match, hex) => {
+      const n = parseInt(hex, 16);
+      return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : match;
+    });
   return decoded.replace(/<[^>]*>/g, '').replace(/\|/g, '').replace(/\s+/g, ' ').trim();
 }

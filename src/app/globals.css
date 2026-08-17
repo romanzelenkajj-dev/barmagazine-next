@@ -7497,8 +7497,9 @@ textarea.form-input {
     transform: translateY(-2px);
   }
 
-  /* keep page content from hiding behind the pinned bar */
-  body {
+  /* keep homepage content from hiding behind the pinned bar —
+     scoped to .home-flow because the pill renders on the homepage only */
+  .home-flow {
     padding-bottom: 76px;
   }
 }
