@@ -43,7 +43,11 @@ body {
   -webkit-font-smoothing: antialiased;
   padding: var(--gap);
   padding-top: 0;
-  overflow-x: clip;
+  /* No overflow-x here: `overflow: clip` clips painting to the PADDING box,
+     which starts at this element's 8px margin. That clipped the full-bleed
+     heroes back to an 8px sliver no matter how large their negative margin
+     was. html keeps overflow-x: clip, so the viewport still never scrolls
+     sideways — the heroes just paint all the way to the edge. */
 }
 
 img {
@@ -7804,16 +7808,17 @@ textarea.form-input {
   .directory-hero,
   .hero {
     border-radius: 0;
-    /* edge-to-edge: cancel the body's 2px mobile gutter */
-    /* true edge-to-edge: cancels the 2px body gutter + the browser's default
-       8px body margin (never reset in this codebase) */
+    /* true edge-to-edge: cancels the 2px body gutter + the body's 8px side
+       margin. Body no longer sets overflow-x, so this actually paints to the
+       viewport edge instead of being clipped back to the 8px margin. */
     margin-left: -10px;
     margin-right: -10px;
     width: auto;
     max-width: none;
-    /* flush under the flat mobile header: cancels the 8px nav-spacer buffer
-       + the 8px default body margin-top */
-    margin-top: -16px;
+    /* flush under the flat mobile header: cancels the 8px nav-spacer buffer.
+       Body's margin-top is now an explicit 0, so only the spacer's 8px needs
+       cancelling here: 0 + (88 + 8) - 8 = 88px = --nav-h. */
+    margin-top: -8px;
   }
 
   .article-outer-grid {
