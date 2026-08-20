@@ -108,6 +108,25 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
     ...((bar as Bar & { opening_hours?: string[] }).opening_hours?.length && {
       openingHours: (bar as Bar & { opening_hours?: string[] }).opening_hours,
     }),
+    // Menu structured data: link to the bar's own menu, plus signature serves
+    // as MenuItems so Google can surface them in rich results.
+    ...((bar.menu_url || (isPaid && bar.menu_highlights?.length)) && {
+      hasMenu: {
+        '@type': 'Menu',
+        ...(bar.menu_url && { url: bar.menu_url }),
+        ...(isPaid && bar.menu_highlights?.length && {
+          hasMenuSection: {
+            '@type': 'MenuSection',
+            name: 'Signature serves',
+            hasMenuItem: bar.menu_highlights.map(h => ({
+              '@type': 'MenuItem',
+              name: h.name,
+              ...(h.ingredients && { description: h.ingredients }),
+            })),
+          },
+        }),
+      },
+    }),
     isPartOf: { '@type': 'WebSite', name: 'BarMagazine Bar Directory', url: `${SITE_URL}/bars` },
   };
 
@@ -219,6 +238,12 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" /></svg>
               </a>
             )}
+            {bar.menu_url && (
+              <a href={bar.menu_url} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--secondary">
+                View Menu
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 006.5 22H20V2H6.5A2.5 2.5 0 004 4.5v15z" /></svg>
+              </a>
+            )}
             {(bar.tier === 'free') && !bar.wp_article_slug && !bar.is_verified && !bar.email && (
               <Link href="/feature-your-bar" className="bar-v2-btn bar-v2-btn--claim">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
@@ -227,6 +252,30 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             )}
           </div>
         </div>
+
+        {/* Signature Serves — featured/premium/top10 tiers only */}
+        {isPaid && bar.menu_highlights && bar.menu_highlights.length > 0 && (
+          <div className="bar-v2-serves">
+            <h2>Signature Serves</h2>
+            <ul className="bar-v2-serves-list">
+              {bar.menu_highlights.map((h, i) => (
+                <li key={i} className="bar-v2-serve">
+                  <div className="bar-v2-serve-head">
+                    <span className="bar-v2-serve-name">{h.name}</span>
+                    {h.price && <span className="bar-v2-serve-price">{h.price}</span>}
+                  </div>
+                  {h.ingredients && <p className="bar-v2-serve-ingredients">{h.ingredients}</p>}
+                </li>
+              ))}
+            </ul>
+            {bar.menu_url && (
+              <a href={bar.menu_url} target="_blank" rel="noopener noreferrer" className="bar-v2-serves-menu-link">
+                View the full menu on {bar.name}&rsquo;s site
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </a>
+            )}
+          </div>
+        )}
 
         {/* Gallery */}
         {hasGallery && (

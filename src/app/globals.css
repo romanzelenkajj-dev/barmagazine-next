@@ -7418,11 +7418,9 @@ textarea.form-input {
   }
 }
 
-/* ====== PERSISTENT "BARS NEAR ME" BOTTOM BAR ======
+/* ====== PERSISTENT "BARS NEAR ME" BOTTOM BAR (homepage only) ======
    Mobile: full-width pill pinned at the bottom. Desktop: compact centered
-   floating pill. The component decides where it appears (homepage + the
-   city/country directory listings) and renders .nearme-spacer alongside
-   itself, so the clearance below follows the pill automatically. */
+   floating pill. The component itself renders only on the homepage. */
 .nearme-bar {
   position: fixed;
   bottom: 16px;
@@ -7499,15 +7497,11 @@ textarea.form-input {
     transform: translateY(-2px);
   }
 
-}
-
-/* Clearance so the fixed pill never covers the end of the page. NearMeBar
-   renders this next to the pill, and the layout puts NearMeBar after the
-   footer — so the space lands at the true bottom of the page, on exactly the
-   routes where the pill appears, with no route-specific selectors to keep in
-   sync. Applies at every width because the pill is fixed at every width. */
-.nearme-spacer {
-  height: 76px;
+  /* keep homepage content from hiding behind the pinned bar —
+     scoped to .home-flow because the pill renders on the homepage only */
+  .home-flow {
+    padding-bottom: 76px;
+  }
 }
 
 /* ====== BAR NO-PHOTO PLACEHOLDER (shared) ====== */
@@ -8157,4 +8151,249 @@ textarea.form-input {
   .home-split-right {
     margin-top: var(--gap);
   }
+}
+
+/* ═══════════════ Signature Serves (bar profile, paid tiers) ═══════════════ */
+.bar-v2-serves {
+  margin: 32px 0;
+  padding: 26px 28px;
+  background: #faf7f2;
+  border: 1px solid #ece5d8;
+  border-radius: 14px;
+}
+.bar-v2-serves h2 {
+  font-size: 1.15rem;
+  margin: 0 0 16px;
+  letter-spacing: 0.02em;
+}
+.bar-v2-serves-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 28px;
+}
+.bar-v2-serve {
+  padding: 12px 0;
+  border-bottom: 1px solid #ece5d8;
+}
+.bar-v2-serve-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.bar-v2-serve-name {
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+.bar-v2-serve-price {
+  color: #a8894f;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.bar-v2-serve-ingredients {
+  margin: 5px 0 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #6b6459;
+}
+.bar-v2-serves-menu-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+  border-bottom: 1.5px solid #C9A96A;
+  padding-bottom: 2px;
+}
+.bar-v2-serves-menu-link:hover { color: #a8894f; }
+@media (max-width: 640px) {
+  .bar-v2-serves { padding: 20px 18px; }
+  .bar-v2-serves-list { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* ═══════════════ Best Bars in [City] landing pages ═══════════════ */
+.best-bars-page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 16px 64px;
+}
+.best-bars-hero { text-align: center; padding: 24px 0 36px; }
+.best-bars-kicker {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a8894f;
+  margin-bottom: 12px;
+}
+.best-bars-hero h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  line-height: 1.12;
+  margin: 0 0 16px;
+}
+.best-bars-intro {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: #555;
+}
+.best-bars-hero-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+.best-bars-hero-link {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 100px;
+  border: 1.5px solid #1a1a1a;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+.best-bars-hero-link--primary { background: #1a1a1a; color: #fff; }
+.best-bars-hero-link:hover { border-color: #a8894f; color: #a8894f; }
+.best-bars-hero-link--primary:hover { background: #333; color: #fff; border-color: #333; }
+
+.best-bars-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.best-bars-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 0;
+  background: #fff;
+  border: 1px solid #e8e2d6;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.best-bars-card:hover {
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+.best-bars-rank {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  color: #C9A96A;
+  font-weight: 800;
+  font-size: 1.05rem;
+  border-radius: 50%;
+}
+.best-bars-visual { position: relative; min-height: 220px; }
+.best-bars-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.best-bars-visual .bar-placeholder { position: absolute; inset: 0; }
+.best-bars-body { padding: 22px 26px; display: flex; flex-direction: column; }
+.best-bars-badges { display: flex; gap: 8px; margin-bottom: 8px; }
+.best-bars-name { font-size: 1.35rem; margin: 0 0 8px; }
+.best-bars-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.best-bars-serve {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #7a6a4d;
+  background: #faf7f2;
+  border-left: 3px solid #C9A96A;
+  padding: 8px 12px;
+  border-radius: 0 8px 8px 0;
+  margin: 0 0 10px;
+}
+.best-bars-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.8rem;
+  color: #8a8478;
+  margin-bottom: 10px;
+}
+.best-bars-more {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.best-bars-card:hover .best-bars-more { color: #a8894f; }
+
+.best-bars-outro {
+  text-align: center;
+  margin: 48px 0;
+  padding: 36px 24px;
+  background: #1a1a1a;
+  border-radius: 16px;
+  color: #fff;
+}
+.best-bars-outro h2 { margin: 0 0 10px; font-size: 1.35rem; }
+.best-bars-outro p {
+  max-width: 520px;
+  margin: 0 auto 20px;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: #cfc9bd;
+}
+
+.best-bars-cities { margin-top: 40px; }
+.best-bars-cities h2 { font-size: 1.15rem; margin: 0 0 14px; }
+.best-bars-cities-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.best-bars-city-link {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid #e0d9cb;
+  border-radius: 100px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+  background: #fff;
+}
+.best-bars-city-link:hover { border-color: #C9A96A; color: #a8894f; }
+
+@media (max-width: 720px) {
+  .best-bars-card { grid-template-columns: 1fr; }
+  .best-bars-visual { min-height: 190px; }
+  .best-bars-body { padding: 18px 18px 20px; }
 }

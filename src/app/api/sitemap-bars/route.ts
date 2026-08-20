@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getBars, getCountriesWithCounts, getCitiesWithCounts } from '@/lib/supabase';
+import { getBars, getCountriesWithCounts, getCitiesWithCounts, getTop10Cities } from '@/lib/supabase';
 import { toUrlSlug } from '@/lib/utils';
 
 const SITE_URL = 'https://barmagazine.com';
@@ -7,10 +7,11 @@ const SITE_URL = 'https://barmagazine.com';
 export const revalidate = 3600; // 1 hour
 
 export async function GET() {
-  const [{ bars }, countries, cities] = await Promise.all([
+  const [{ bars }, countries, cities, top10Cities] = await Promise.all([
     getBars({ perPage: 2000 }),
     getCountriesWithCounts(),
     getCitiesWithCounts(),
+    getTop10Cities(),
   ]);
 
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -41,6 +42,17 @@ export async function GET() {
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+`;
+  }
+
+  // "Best bars in <city>" SEO landing pages
+  for (const c of top10Cities) {
+    xml += `  <url>
+    <loc>${SITE_URL}/best-bars/${toUrlSlug(c.city)}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 `;
   }

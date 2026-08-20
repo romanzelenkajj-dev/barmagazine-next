@@ -6,6 +6,12 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // ---------- Types ----------
+export interface MenuHighlight {
+  name: string;
+  ingredients?: string;
+  price?: string;
+}
+
 export interface Bar {
   id: string;
   name: string;
@@ -26,6 +32,8 @@ export interface Bar {
   photos: string[];
   tier: 'free' | 'featured' | 'premium' | 'top10';
   opening_hours: string | null;
+  menu_url: string | null;
+  menu_highlights: MenuHighlight[] | null;
   featured_until: string | null;
   is_verified: boolean;
   is_active: boolean;
@@ -240,6 +248,37 @@ export async function getBarArticleSlugs(): Promise<Set<string>> {
     .not('wp_article_slug', 'is', null);
   if (error || !data) return new Set();
   return new Set(data.map(b => b.wp_article_slug as string).filter(Boolean));
+}
+
+/** Cities that have at least one active top10-tier bar (for /best-bars pages) */
+export async function getTop10Cities(): Promise<{ city: string; country: string; count: number }[]> {
+  const { data, error } = await supabase
+    .from('bars')
+    .select('city, country')
+    .eq('is_active', true)
+    .eq('tier', 'top10');
+  if (error || !data) return [];
+  const map: Record<string, { country: string; count: number }> = {};
+  data.forEach(b => {
+    if (!map[b.city]) map[b.city] = { country: b.country, count: 0 };
+    map[b.city].count++;
+  });
+  return Object.entries(map)
+    .map(([city, info]) => ({ city, country: info.country, count: info.count }))
+    .sort((a, b) => a.city.localeCompare(b.city));
+}
+
+/** The active top10-tier bars for one city, alphabetical */
+export async function getTop10BarsByCity(city: string): Promise<Bar[]> {
+  const { data, error } = await supabase
+    .from('bars')
+    .select('*')
+    .eq('is_active', true)
+    .eq('tier', 'top10')
+    .eq('city', city)
+    .order('name', { ascending: true });
+  if (error || !data) return [];
+  return data as Bar[];
 }
 
 /** Get bar count stats */
