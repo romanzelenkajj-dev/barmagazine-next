@@ -36,7 +36,9 @@ export async function generateMetadata({ params }: { params: { city: string } })
   const match = await resolveCity(params.city);
   if (!match) return {};
   const year = new Date().getFullYear();
-  const title = `The ${match.count} Best Bars in ${match.city} (${year}) | BarMagazine`;
+  // NOTE: no "| BarMagazine" suffix here — the root layout's title template
+  // (`%s | BarMagazine`) appends it; including it here doubles the suffix.
+  const title = `The ${match.count} Best Bars in ${match.city} (${year})`;
   const description = `The ${match.count} best cocktail bars in ${match.city} right now — hand-picked by BarMagazine, with signature drinks, addresses and opening hours for every bar.`;
   return {
     title,
@@ -44,7 +46,9 @@ export async function generateMetadata({ params }: { params: { city: string } })
     alternates: { canonical: `${SITE_URL}/best-bars/${params.city}` },
     robots: { index: true, follow: true },
     openGraph: {
-      title, description, type: 'website',
+      // OG titles don't get the layout template — brand it explicitly.
+      title: `${title} | BarMagazine`,
+      description, type: 'website',
       url: `${SITE_URL}/best-bars/${params.city}`,
       siteName: 'BarMagazine',
     },
