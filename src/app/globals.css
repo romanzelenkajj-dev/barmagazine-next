@@ -7672,6 +7672,25 @@ textarea.form-input {
   transform: scaleX(0);
 }
 
+/* Desktop: the header is an inset card — max var(--container) wide, var(--gap)
+   side gutters, bottom corners rounded 24px (see .nav). A full-viewport line
+   overshoots it and cuts across exactly where those corners curve away, so
+   pull the line into the header's box and in by the corner radius, leaving it
+   spanning only the flat part of the header's bottom edge.
+   The 24px below must stay in step with .nav's border-radius.
+   left/right + max-width + margin-inline:auto centers it without touching
+   100vw, which would include the scrollbar and push the line off-centre. */
+@media (min-width: 769px) {
+  .reading-progress {
+    left: calc(var(--gap) + 24px);
+    right: calc(var(--gap) + 24px);
+    max-width: calc(var(--container) - 2 * 24px);
+    margin-inline: auto;
+    border-radius: 0 0 2px 2px;
+    overflow: hidden;
+  }
+}
+
 .share-copied {
   font-size: 12px;
   font-weight: 600;
