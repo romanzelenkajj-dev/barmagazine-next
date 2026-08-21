@@ -127,7 +127,7 @@ function jsonLdBlocks(currency: Currency) {
         priceCurrency: currency,
         url: `${SITE_URL}/add-your-bar?plan=featured`,
         description:
-          'Billed annually. Includes a BarMagazine feature article, SEO-optimized profile, priority placement and Featured badge.',
+          'Billed annually. Includes a BarMagazine feature article, SEO-optimized profile with full menu, photo gallery and Plan Your Visit card (reserve, WhatsApp, directions), priority placement and Featured badge.',
       },
       {
         '@type': 'Offer',
@@ -179,6 +179,14 @@ function jsonLdBlocks(currency: Currency) {
       },
       {
         '@type': 'Question',
+        name: "What if my bar doesn't have a website?",
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "Your Featured page can be your website. It carries everything a bar site needs — your full menu with prices, a photo gallery, your story, opening hours, a reserve button, one-tap WhatsApp and Google Maps directions — on one reliable link for your Instagram bio and Google Business Profile. Menu changes? Send us a photo of the new list and we update it the same week.",
+        },
+      },
+      {
+        '@type': 'Question',
         name: 'Can I cancel my subscription?',
         acceptedAnswer: {
           '@type': 'Answer',
@@ -197,7 +205,7 @@ function jsonLdBlocks(currency: Currency) {
 const MARQUEE_BARS: Array<{ name: string; city: string }> = [
   { name: 'The Loft', city: 'Santiago' },
   { name: 'FlipDog', city: 'London' },
-  { name: 'The Grey Room', city: 'Tokyo' },
+  { name: 'Dangerous Water', city: 'Palma' },
   { name: 'Bar Sathorn', city: 'Bangkok' },
   { name: 'Jin Bo Law', city: 'Hong Kong' },
   { name: 'Himkok', city: 'Oslo' },
@@ -246,10 +254,11 @@ export default function FeatureYourBarPage() {
               <span className="feature-accent">BarMagazine.</span>
             </h1>
             <p className="feature-hero-sub">
-              Get your bar in front of cocktail lovers and industry professionals
-              around the world, with a professionally written feature article, an
-              SEO-optimized profile that ranks on Google, and coverage across our
-              channels. Go live in days, all self-serve.
+              A feature article, an SEO-optimized profile that ranks on Google,
+              and coverage across our channels — plus a profile page complete
+              enough to <strong>be your bar&apos;s website</strong>: full menu,
+              photo gallery, reservations and one-tap directions. Go live in
+              days, all self-serve.
             </p>
             <div className="feature-hero-cta">
               <a className="feature-btn feature-btn-primary" href="#pricing">
@@ -347,33 +356,62 @@ export default function FeatureYourBarPage() {
                 </p>
               </div>
               <div className="feature-feat">
-                <h3>Priority directory placement</h3>
+                <h3>Your full menu, online</h3>
                 <p>
-                  Stand out in our global directory used by travellers and
-                  locals across 138 cities.
+                  We publish your complete drinks menu on your profile — typeset
+                  beautifully, indexed by Google. Send a photo of a new list and
+                  we update it the same week.
                 </p>
               </div>
               <div className="feature-feat">
-                <h3>A Featured badge</h3>
+                <h3>Bookings made easy</h3>
                 <p>
-                  Third-party credibility you can link to from your own site,
-                  menu and reservations page.
+                  A &quot;Plan Your Visit&quot; card with your hours, one-tap
+                  WhatsApp, click-to-call, a reserve button and Google Maps
+                  directions.
+                </p>
+              </div>
+              <div className="feature-feat">
+                <h3>Photo gallery &amp; priority placement</h3>
+                <p>
+                  A gallery of your space and serves, a Featured badge, and
+                  priority placement in a directory spanning 140+ cities.
                 </p>
               </div>
               <div className="feature-feat">
                 <h3>Social reach</h3>
                 <p>
-                  Add Instagram coverage to put your bar in front of our full
+                  Add Instagram promotion to put your bar in front of our full
                   88,000+ follower audience.
                 </p>
               </div>
-              <div className="feature-feat">
-                <h3>Unlimited updates</h3>
-                <p>
-                  New menu, new photos, new story? Update your profile any time
-                  at no extra cost.
-                </p>
-              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============= YOUR BAR'S WEBSITE ============= */}
+        <section className="feature-section">
+          <div className="feature-wrap">
+            <div className="feature-sec-head">
+              <span className="feature-eyebrow">No website? No problem</span>
+              <h2 className="feature-sec-title">
+                Your Featured page can <em>be</em> your website
+              </h2>
+              <p className="feature-sec-intro">
+                Many great bars run on Instagram alone — or on a site nobody
+                updates. A Featured profile gives you everything a bar website
+                should have, maintained for you: your story, your full menu
+                with prices, a photo gallery, opening hours, WhatsApp and
+                reservation buttons, and directions. One reliable link for your
+                Instagram bio and Google Business profile — and when your menu
+                changes, we update the page, no web designer required.
+              </p>
+              <a
+                className="feature-btn feature-btn-outline"
+                href="/bars/dangerous-water-palma-de-mallorca"
+              >
+                See a live example
+              </a>
             </div>
           </div>
         </section>
@@ -533,9 +571,10 @@ export default function FeatureYourBarPage() {
                   <li>Everything in Listed</li>
                   <li>BarMagazine feature article</li>
                   <li>SEO-optimized profile page</li>
-                  <li>Priority placement in directory</li>
-                  <li>Multiple photos &amp; menu</li>
-                  <li>Featured badge</li>
+                  <li>Full menu published on your page</li>
+                  <li>Photo gallery</li>
+                  <li>Plan Your Visit card — reserve, WhatsApp &amp; directions</li>
+                  <li>Priority placement &amp; Featured badge</li>
                   <li>Unlimited profile updates</li>
                 </ul>
                 <a
@@ -585,24 +624,6 @@ export default function FeatureYourBarPage() {
           </div>
         </section>
 
-        {/* ============= URGENCY (green band) ============= */}
-        <section className="feature-section feature-urgency">
-          <div className="feature-wrap">
-            <span className="feature-eyebrow">Don&apos;t get left off the list</span>
-            <h2>
-              The bars getting discovered are the ones getting written about.
-            </h2>
-            <p>
-              Every week your bar isn&apos;t featured, your future guests are
-              finding someone else. Lock in 50% off your first year and go live
-              in days.
-            </p>
-            <a className="feature-btn feature-btn-onaccent" href="#pricing">
-              Feature my bar
-            </a>
-          </div>
-        </section>
-
         {/* ============= FAQ ============= */}
         <section className="feature-section">
           <div className="feature-wrap">
@@ -648,6 +669,18 @@ export default function FeatureYourBarPage() {
                   {sym}234/year), and Featured + Social, which adds Instagram
                   coverage, starts at {sym}39.50/month (billed annually,{' '}
                   {sym}474/year).
+                </p>
+              </details>
+              <details>
+                <summary>What if my bar doesn&apos;t have a website?</summary>
+                <p>
+                  Your Featured page can be your website. It carries everything
+                  a bar site needs — your full menu with prices, a photo
+                  gallery, your story, opening hours, a reserve button, one-tap
+                  WhatsApp and Google Maps directions — on one reliable link
+                  for your Instagram bio and Google Business Profile. Menu
+                  changes? Send us a photo of the new list and we update it the
+                  same week.
                 </p>
               </details>
               <details>
