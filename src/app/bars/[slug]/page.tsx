@@ -9,6 +9,7 @@ import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
 import { BarDirectorySidebarPromo, BarDirectorySidebar } from '@/components/BarDirectorySidebar';
 import { Top10FooterBlock } from '@/components/Top10FooterBlock';
+import BarGallery from '@/components/BarGallery';
 
 export const revalidate = 300;
 // Allow slugs not pre-built at deploy time to be rendered on-demand (ISR)
@@ -387,14 +388,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         {hasGallery && (
           <div className="bar-v2-gallery">
             <h2>Photos</h2>
-            <div className="bar-v2-gallery-grid">
-              {bar.photos.slice(1).map((photo, i) => (
-                <div key={i} className="bar-v2-gallery-item">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={photo} alt={`${bar.name} photo ${i + 2}`} loading="lazy" />
-                </div>
-              ))}
-            </div>
+            <BarGallery photos={bar.photos.slice(1)} barName={bar.name} />
           </div>
         )}
 
