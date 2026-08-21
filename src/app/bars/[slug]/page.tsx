@@ -76,7 +76,16 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const isTop10 = bar.tier === 'top10';
   const isPaid = isPremium || isFeatured || isTop10;
   const hasImage = bar.photos && bar.photos.length > 0;
-  const hasGallery = bar.photos && bar.photos.length > 2;
+  const hasGallery = bar.photos && bar.photos.length > 1;
+  const hasFullMenu = isPaid && bar.menu_sections && bar.menu_sections.length > 0;
+  // WhatsApp link: strip everything but digits for wa.me
+  const waDigits = bar.whatsapp ? bar.whatsapp.replace(/[^0-9]/g, '') : null;
+  const reserveHref = bar.reservation_url || (waDigits ? `https://wa.me/${waDigits}` : null);
+  const directionsHref = bar.lat && bar.lng
+    ? `https://www.google.com/maps/dir/?api=1&destination=${bar.lat},${bar.lng}`
+    : bar.address
+      ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${bar.name} ${bar.address} ${bar.city}`)}`
+      : null;
 
   // JSON-LD structured data
   const jsonLd: Record<string, unknown> = {
@@ -110,21 +119,39 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
     }),
     // Menu structured data: link to the bar's own menu, plus signature serves
     // as MenuItems so Google can surface them in rich results.
-    ...((bar.menu_url || (isPaid && bar.menu_highlights?.length)) && {
+    ...((bar.menu_url || (isPaid && (bar.menu_highlights?.length || bar.menu_sections?.length))) && {
       hasMenu: {
         '@type': 'Menu',
         ...(bar.menu_url && { url: bar.menu_url }),
-        ...(isPaid && bar.menu_highlights?.length && {
-          hasMenuSection: {
-            '@type': 'MenuSection',
-            name: 'Signature serves',
-            hasMenuItem: bar.menu_highlights.map(h => ({
-              '@type': 'MenuItem',
-              name: h.name,
-              ...(h.ingredients && { description: h.ingredients }),
-            })),
-          },
-        }),
+        // Full menu (paid tiers with menu_sections) takes precedence over the
+        // signature-serves-only section so Google sees the complete card.
+        ...(hasFullMenu
+          ? {
+              hasMenuSection: bar.menu_sections!.map(section => ({
+                '@type': 'MenuSection',
+                name: section.title,
+                ...(section.note && { description: section.note }),
+                hasMenuItem: section.items.map(h => ({
+                  '@type': 'MenuItem',
+                  name: h.name,
+                  ...(h.ingredients && { description: h.ingredients }),
+                  ...(h.price && { offers: { '@type': 'Offer', price: h.price.replace(/[^0-9.,]/g, ''), priceCurrency: h.price.includes('€') ? 'EUR' : h.price.includes('$') ? 'USD' : undefined } }),
+                })),
+              })),
+            }
+          : isPaid && bar.menu_highlights?.length
+            ? {
+                hasMenuSection: {
+                  '@type': 'MenuSection',
+                  name: 'Signature serves',
+                  hasMenuItem: bar.menu_highlights.map(h => ({
+                    '@type': 'MenuItem',
+                    name: h.name,
+                    ...(h.ingredients && { description: h.ingredients }),
+                  })),
+                },
+              }
+            : {}),
       },
     }),
     isPartOf: { '@type': 'WebSite', name: 'BarMagazine Bar Directory', url: `${SITE_URL}/bars` },
@@ -226,6 +253,12 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           </div>
 
           <div className="bar-v2-actions">
+            {isPaid && reserveHref && (
+              <a href={reserveHref} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--reserve">
+                Reserve a Table
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </a>
+            )}
             {bar.wp_article_slug && (
               <Link href={`/${bar.wp_article_slug}`} className="bar-v2-btn bar-v2-btn--primary">
                 Read the BarMagazine Feature
@@ -274,6 +307,79 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
               </a>
             )}
+          </div>
+        )}
+
+        {/* Full Menu — paid tiers with menu_sections: BarMagazine as the bar's website */}
+        {hasFullMenu && (
+          <div className="bar-v2-menu">
+            <h2>The Menu</h2>
+            <div className="bar-v2-menu-sections">
+              {bar.menu_sections!.map((section, si) => (
+                <div key={si} className="bar-v2-menu-section">
+                  <h3 className="bar-v2-menu-section-title">{section.title}</h3>
+                  {section.note && <p className="bar-v2-menu-section-note">{section.note}</p>}
+                  <ul className="bar-v2-menu-items">
+                    {section.items.map((item, ii) => (
+                      <li key={ii} className="bar-v2-menu-item">
+                        <div className="bar-v2-menu-item-head">
+                          <span className="bar-v2-menu-item-name">{item.name}</span>
+                          <span className="bar-v2-menu-item-dots" aria-hidden="true" />
+                          {item.price && <span className="bar-v2-menu-item-price">{item.price}</span>}
+                        </div>
+                        {item.ingredients && <p className="bar-v2-menu-item-ingredients">{item.ingredients}</p>}
+                        {item.ingredients_alt && <p className="bar-v2-menu-item-ingredients bar-v2-menu-item-ingredients--alt">{item.ingredients_alt}</p>}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <p className="bar-v2-menu-disclaimer">Menu and prices are provided by the bar and may change seasonally.</p>
+          </div>
+        )}
+
+        {/* Plan Your Visit — paid tiers: hours, directions, call, WhatsApp, reserve */}
+        {isPaid && (bar.opening_hours || bar.address || bar.phone || waDigits || reserveHref) && (
+          <div className="bar-v2-visit">
+            <h2>Plan Your Visit</h2>
+            <div className="bar-v2-visit-grid">
+              {bar.opening_hours && (
+                <div className="bar-v2-visit-block">
+                  <span className="bar-v2-visit-label">Opening hours</span>
+                  <span className="bar-v2-visit-value">{bar.opening_hours}</span>
+                </div>
+              )}
+              {bar.address && (
+                <div className="bar-v2-visit-block">
+                  <span className="bar-v2-visit-label">Find us</span>
+                  <span className="bar-v2-visit-value">{bar.address}</span>
+                </div>
+              )}
+            </div>
+            <div className="bar-v2-visit-actions">
+              {reserveHref && (
+                <a href={reserveHref} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--reserve">
+                  Reserve a Table
+                </a>
+              )}
+              {waDigits && (
+                <a href={`https://wa.me/${waDigits}`} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--secondary">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  WhatsApp
+                </a>
+              )}
+              {bar.phone && (
+                <a href={`tel:${bar.phone}`} className="bar-v2-btn bar-v2-btn--secondary">
+                  Call {bar.phone}
+                </a>
+              )}
+              {directionsHref && (
+                <a href={directionsHref} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--secondary">
+                  Get Directions
+                </a>
+              )}
+            </div>
           </div>
         )}
 

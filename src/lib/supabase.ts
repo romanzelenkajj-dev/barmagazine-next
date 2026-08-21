@@ -9,7 +9,16 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 export interface MenuHighlight {
   name: string;
   ingredients?: string;
+  /** Second-language ingredient line (e.g. the bar's original Spanish), shown beneath */
+  ingredients_alt?: string;
   price?: string;
+}
+
+/** A full menu section for paid-tier profiles ("the bar's website" feature) */
+export interface MenuSection {
+  title: string;
+  note?: string;
+  items: MenuHighlight[];
 }
 
 export interface Bar {
@@ -34,6 +43,9 @@ export interface Bar {
   opening_hours: string | null;
   menu_url: string | null;
   menu_highlights: MenuHighlight[] | null;
+  menu_sections: MenuSection[] | null;
+  reservation_url: string | null;
+  whatsapp: string | null;
   featured_until: string | null;
   is_verified: boolean;
   is_active: boolean;
