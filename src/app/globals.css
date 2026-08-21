@@ -7705,22 +7705,6 @@ textarea.form-input {
   font-weight: 450;
 }
 
-.article-body h2 {
-  position: relative;
-  padding-top: 18px;
-}
-
-.article-body h2::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 34px;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 2px;
-}
-
 .article-body img {
   border-radius: var(--radius);
 }
