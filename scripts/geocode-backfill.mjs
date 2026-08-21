@@ -132,12 +132,20 @@ for (let i = 0; i < targets.length; i++) {
     }
   }
 
-  if (!hit || hit.relevance < 0.75) { skipped.push({ id: b.id, name: b.name, city: b.city, reason: 'no confident match' }); continue; }
-  if (center && km(center[0], center[1], hit.lat, hit.lng) > 35) {
-    flagged.push({ id: b.id, name: b.name, city: b.city, got: [hit.lat, hit.lng], reason: '>35km from city center — NOT applied' });
+  if (!hit) { skipped.push({ id: b.id, name: b.name, city: b.city, reason: 'no match' }); continue; }
+  const dist = center ? km(center[0], center[1], hit.lat, hit.lng) : null;
+  const strict = hit.relevance >= 0.75;
+  // Relaxed tier: Mapbox scores many valid South/Southeast Asian addresses
+  // below 0.75. Accept >=0.5 ONLY when the bar has a verified street address
+  // and the result lands within 25km of the city center.
+  const relaxed = !strict && !!b.address && source === 'address' && hit.relevance >= 0.5;
+  if (!strict && !relaxed) { skipped.push({ id: b.id, name: b.name, city: b.city, reason: `low confidence (${hit.relevance})` }); continue; }
+  const maxKm = strict ? 35 : 25;
+  if (dist != null && dist > maxKm) {
+    flagged.push({ id: b.id, name: b.name, city: b.city, got: [hit.lat, hit.lng], reason: `>${maxKm}km from city center — NOT applied` });
     continue;
   }
-  updates.push({ id: b.id, name: b.name, city: b.city, lat: hit.lat, lng: hit.lng, source, relevance: hit.relevance });
+  updates.push({ id: b.id, name: b.name, city: b.city, lat: hit.lat, lng: hit.lng, source: strict ? source : `${source}-relaxed`, relevance: hit.relevance });
   if ((i + 1) % 25 === 0) console.log(`${i + 1}/${targets.length} processed, ${updates.length} resolved`);
 }
 
@@ -148,7 +156,8 @@ writeFileSync(resolve(ROOT, 'scripts/geocode-updates.sql'), sql.join('\n'));
 writeFileSync(resolve(ROOT, 'scripts/geocode-report.json'), JSON.stringify({
   generated: new Date().toISOString(),
   targets: targets.length, resolved: updates.length, skipped: skipped.length, flagged: flagged.length,
-  bySource: { address: updates.filter(u => u.source === 'address').length, poi: updates.filter(u => u.source === 'poi').length },
+  bySource: { address: updates.filter(u => u.source === 'address').length, poi: updates.filter(u => u.source === 'poi').length, relaxed: updates.filter(u => u.source.endsWith('-relaxed')).length },
+  relaxedDetail: updates.filter(u => u.source.endsWith('-relaxed')),
   flaggedDetail: flagged, skippedDetail: skipped,
 }, null, 2));
 console.log(`DONE: ${updates.length} coordinate fixes written to scripts/geocode-updates.sql`);
