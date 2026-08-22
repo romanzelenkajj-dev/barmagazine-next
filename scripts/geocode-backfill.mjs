@@ -138,7 +138,9 @@ for (let i = 0; i < targets.length; i++) {
   // Relaxed tier: Mapbox scores many valid South/Southeast Asian addresses
   // below 0.75. Accept >=0.5 ONLY when the bar has a verified street address
   // and the result lands within 25km of the city center.
-  const relaxed = !strict && !!b.address && source === 'address' && hit.relevance >= 0.5;
+  // Relaxed matches REQUIRE a resolvable city center — the distance guard is
+  // what makes the lower threshold safe (per Claude Code's review).
+  const relaxed = !strict && !!b.address && source === 'address' && hit.relevance >= 0.5 && dist != null;
   if (!strict && !relaxed) { skipped.push({ id: b.id, name: b.name, city: b.city, reason: `low confidence (${hit.relevance})` }); continue; }
   const maxKm = strict ? 35 : 25;
   if (dist != null && dist > maxKm) {

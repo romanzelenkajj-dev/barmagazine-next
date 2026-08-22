@@ -1,57 +1,30 @@
 {
-  "generated": "2026-08-21T22:10:54.957Z",
-  "targets": 288,
-  "resolved": 11,
-  "skipped": 276,
+  "generated": "2026-08-22T19:07:34.268Z",
+  "targets": 277,
+  "resolved": 47,
+  "skipped": 229,
   "flagged": 1,
   "bySource": {
-    "address": 3,
+    "address": 37,
     "poi": 0,
-    "relaxed": 8
+    "relaxed": 10
   },
   "relaxedDetail": [
     {
-      "id": "0733ba4d-478e-4a2f-8eec-12ed70d6f0a0",
-      "name": "Talking To Strangers",
-      "city": "Cape Town",
-      "lat": -33.921032,
-      "lng": 18.419828,
-      "source": "address-relaxed",
-      "relevance": 0.574074
-    },
-    {
-      "id": "187a9828-a307-45c1-a79a-07c8d1ac12dd",
-      "name": "Baltra Bar",
-      "city": "Mexico City",
-      "lat": 19.409449,
-      "lng": -99.168901,
-      "source": "address-relaxed",
-      "relevance": 0.555556
-    },
-    {
-      "id": "410e37a6-0177-41aa-a08e-93c3fd38df7c",
-      "name": "Kaito del Valle",
-      "city": "Mexico City",
-      "lat": 19.427067,
-      "lng": -99.162438,
-      "source": "address-relaxed",
-      "relevance": 0.5709534593631987
-    },
-    {
-      "id": "63935205-ac58-4a15-80e6-5039ab487c0a",
-      "name": "Monkey Bar",
-      "city": "New Delhi",
-      "lat": 28.538209,
-      "lng": 77.142916,
-      "source": "address-relaxed",
-      "relevance": 0.675926
-    },
-    {
-      "id": "891d29d7-5696-47d6-958e-52db458c521c",
-      "name": "Noble Roots",
+      "id": "5f1ec5d7-40c3-4490-9284-9be3a2a4c0c1",
+      "name": "Old Pal",
       "city": "Belgrade",
-      "lat": 44.817486,
-      "lng": 20.461013,
+      "lat": 44.819956,
+      "lng": 20.459835,
+      "source": "address-relaxed",
+      "relevance": 0.738095
+    },
+    {
+      "id": "6706ce4a-b652-4b24-b01b-e9f1393d2c30",
+      "name": "Ananasa Tri",
+      "city": "Belgrade",
+      "lat": 44.812818,
+      "lng": 20.465824,
       "source": "address-relaxed",
       "relevance": 0.722222
     },
@@ -59,28 +32,73 @@
       "id": "95be4682-9856-43cc-b215-6ed4f4f4253d",
       "name": "Saikindō",
       "city": "Abu Dhabi",
-      "lat": 24.401565,
-      "lng": 54.558812,
+      "lat": 24.497723,
+      "lng": 54.380817,
       "source": "address-relaxed",
-      "relevance": 0.669465
+      "relevance": 0.716239
     },
     {
-      "id": "be166aa9-6c61-426f-87c8-bc9581dedf6c",
-      "name": "ANTHM Cocktail bar",
-      "city": "Cape Town",
-      "lat": -33.92102,
-      "lng": 18.419698,
+      "id": "a00eb0ba-baf6-4c76-bc1f-481a62079660",
+      "name": "Isabel Speakeasy",
+      "city": "Belgrade",
+      "lat": 44.804875,
+      "lng": 20.466568,
       "source": "address-relaxed",
-      "relevance": 0.574074
+      "relevance": 0.722222
     },
     {
-      "id": "e0491154-339a-4586-8e6a-a1437ca44b54",
-      "name": "Bar Mauro",
-      "city": "Mexico City",
-      "lat": 19.419468,
-      "lng": -99.159337,
+      "id": "ab5650d4-70bb-4726-ba5c-20cbb37cf7c7",
+      "name": "Kultura Bar",
+      "city": "Belgrade",
+      "lat": 44.806041,
+      "lng": 20.468385,
       "source": "address-relaxed",
-      "relevance": 0.706349
+      "relevance": 0.738095
+    },
+    {
+      "id": "b621ec2b-13ea-4a3d-802f-14fc8e6d0e6e",
+      "name": "Q Bar",
+      "city": "Belgrade",
+      "lat": 44.814627,
+      "lng": 20.469161,
+      "source": "address-relaxed",
+      "relevance": 0.738095
+    },
+    {
+      "id": "b7587595-460f-450e-8259-59887fe2fe97",
+      "name": "Cahoots",
+      "city": "London",
+      "lat": 51.51269,
+      "lng": -0.13871,
+      "source": "address-relaxed",
+      "relevance": 0.699383
+    },
+    {
+      "id": "d9d339d7-68cf-42fb-bb0b-a136643eaedf",
+      "name": "Druid Bar",
+      "city": "Belgrade",
+      "lat": 44.821545,
+      "lng": 20.455022,
+      "source": "address-relaxed",
+      "relevance": 0.738095
+    },
+    {
+      "id": "f30d09f5-5d89-4462-bc20-d72af15ab12f",
+      "name": "Law & Order",
+      "city": "Amsterdam",
+      "lat": 52.368338,
+      "lng": 4.890574,
+      "source": "address-relaxed",
+      "relevance": 0.722222
+    },
+    {
+      "id": "f92dbc35-2579-41fd-83e6-47a7c1d3f0a4",
+      "name": "Branie",
+      "city": "Amsterdam",
+      "lat": 52.366724,
+      "lng": 4.866848,
+      "source": "address-relaxed",
+      "relevance": 0.738095
     }
   ],
   "flaggedDetail": [
@@ -96,12 +114,6 @@
     }
   ],
   "skippedDetail": [
-    {
-      "id": "00809456-4259-4bcd-abd1-e8754af0f3cf",
-      "name": "Paloma Nera",
-      "city": "Split",
-      "reason": "no match"
-    },
     {
       "id": "01d5b849-fe38-4d49-993a-375de2d24ab9",
       "name": "Bar Bellamy",
@@ -121,21 +133,9 @@
       "reason": "no match"
     },
     {
-      "id": "04d24c40-bca7-43a4-91c7-ca6858078861",
-      "name": "Little Branch",
-      "city": "New York",
-      "reason": "no match"
-    },
-    {
       "id": "04e7b010-4cf7-4a06-88d2-2830b800059b",
       "name": "The Elysian Whisky Bar",
       "city": "Melbourne",
-      "reason": "no match"
-    },
-    {
-      "id": "05c0fd2a-f9b9-4a7a-954a-424c23059896",
-      "name": "Kumandra",
-      "city": "Kragujevac",
       "reason": "no match"
     },
     {
@@ -160,12 +160,6 @@
       "id": "0c8c27f7-3288-4319-a72f-222913a6dcc4",
       "name": "Mori Bar",
       "city": "Tokyo",
-      "reason": "no match"
-    },
-    {
-      "id": "0e876c23-86fd-44e9-8140-b84d1e10372b",
-      "name": "Kwānt Mayfair",
-      "city": "London",
       "reason": "no match"
     },
     {
@@ -205,27 +199,9 @@
       "reason": "no match"
     },
     {
-      "id": "1413607e-0732-4d33-9585-295cbeeb4526",
-      "name": "Homeboy Bar",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
       "id": "18d52c05-7513-467e-ae6d-a54784c34e03",
       "name": "The Drawing Room",
       "city": "Seoul",
-      "reason": "no match"
-    },
-    {
-      "id": "19848dd8-2988-493b-8dc5-fb50b9fbea0c",
-      "name": "Hacha Bar",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
-      "id": "1af7ac7b-34ed-4c02-a361-7fcb7fe23c1f",
-      "name": "The Bar With No Name",
-      "city": "London",
       "reason": "no match"
     },
     {
@@ -277,12 +253,6 @@
       "reason": "no match"
     },
     {
-      "id": "29a58200-f1bd-4c64-8ad6-7d1a963938d2",
-      "name": "Amor y Amargo",
-      "city": "New York",
-      "reason": "no match"
-    },
-    {
       "id": "29c117fd-8b41-47c9-908e-a3ef9da46b04",
       "name": "1Q1",
       "city": "Bengaluru",
@@ -292,12 +262,6 @@
       "id": "2a0d4e48-8e1a-4e15-a77a-8284e988d692",
       "name": "Miss T",
       "city": "Mumbai",
-      "reason": "no match"
-    },
-    {
-      "id": "2a6028a1-d70c-49c1-b3b4-ef11a3d9edfb",
-      "name": "Murder Inc",
-      "city": "London",
       "reason": "no match"
     },
     {
@@ -475,12 +439,6 @@
       "reason": "no match"
     },
     {
-      "id": "4ce09446-5b9b-4d00-adb7-62347026be34",
-      "name": "Punch Room",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
       "id": "4d099a70-56b8-41bc-9735-1b0d0db9d525",
       "name": "Legacy Club",
       "city": "Las Vegas",
@@ -571,12 +529,6 @@
       "reason": "no match"
     },
     {
-      "id": "5829fcaa-17ab-45c5-90d3-ad46b6362c87",
-      "name": "Clover Club",
-      "city": "New York",
-      "reason": "no match"
-    },
-    {
       "id": "5a20595f-bde5-486c-8552-8efdaa17de09",
       "name": "Liquid Factory",
       "city": "Tokyo",
@@ -595,12 +547,6 @@
       "reason": "no match"
     },
     {
-      "id": "5cdc37bf-2c6c-4a59-b08e-9a8e97d72a24",
-      "name": "Nightmoves",
-      "city": "New York",
-      "reason": "no match"
-    },
-    {
       "id": "5d729537-4765-4fd1-9c0e-8cfaf895819c",
       "name": "Bar Orchard Ginza",
       "city": "Tokyo",
@@ -610,18 +556,6 @@
       "id": "5d8fecb4-1cda-488e-91dc-175c3b7d7043",
       "name": "Father Forgive Me",
       "city": "Detroit",
-      "reason": "no match"
-    },
-    {
-      "id": "5e7b6702-b0d8-4608-9a8d-fa9cd2a6db53",
-      "name": "Lupo",
-      "city": "Zurich",
-      "reason": "no match"
-    },
-    {
-      "id": "5f1ec5d7-40c3-4490-9284-9be3a2a4c0c1",
-      "name": "Old Pal",
-      "city": "Belgrade",
       "reason": "no match"
     },
     {
@@ -664,12 +598,6 @@
       "id": "6656dbec-5ff1-480d-bf4b-29f0e38eb048",
       "name": "Lab",
       "city": "Taipei",
-      "reason": "no match"
-    },
-    {
-      "id": "6706ce4a-b652-4b24-b01b-e9f1393d2c30",
-      "name": "Ananasa Tri",
-      "city": "Belgrade",
       "reason": "no match"
     },
     {
@@ -733,12 +661,6 @@
       "reason": "no match"
     },
     {
-      "id": "6e6ace33-221e-435f-b18b-afa48c03b329",
-      "name": "Little Mercies",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
       "id": "6f6c40c0-6ffb-4819-b5b5-2d07b5467add",
       "name": "Bob's Bar",
       "city": "Bengaluru",
@@ -775,12 +697,6 @@
       "reason": "no match"
     },
     {
-      "id": "7445e4db-9348-4d50-92f9-75260da9ef08",
-      "name": "Bar Belly",
-      "city": "New York",
-      "reason": "no match"
-    },
-    {
       "id": "74a8127f-0f52-45fb-bb5d-85f248466091",
       "name": "Bar High Five",
       "city": "Tokyo",
@@ -814,12 +730,6 @@
       "id": "7917f22d-fecf-4cde-93de-f797ee58fd22",
       "name": "Nineteen80",
       "city": "Singapore",
-      "reason": "no match"
-    },
-    {
-      "id": "7bc29345-e758-438d-8d3c-120bea566ecd",
-      "name": "Lounge Bohemia",
-      "city": "London",
       "reason": "no match"
     },
     {
@@ -871,21 +781,9 @@
       "reason": "no match"
     },
     {
-      "id": "8469e4e9-4bc6-4786-8c2a-a3e575de33d0",
-      "name": "Fresh Kills Bar",
-      "city": "New York",
-      "reason": "no match"
-    },
-    {
       "id": "84c396d1-956a-44cd-85e3-f252c2c6c977",
       "name": "Bar Les Ambassadeurs",
       "city": "Paris",
-      "reason": "no match"
-    },
-    {
-      "id": "84c60f9c-f666-4af9-8131-aa60cdad27ab",
-      "name": "The Long Island Bar",
-      "city": "New York",
       "reason": "no match"
     },
     {
@@ -907,21 +805,9 @@
       "reason": "no match"
     },
     {
-      "id": "88e99c39-d440-4566-847c-ceea930fe41f",
-      "name": "Laki Kane",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
       "id": "8a017d58-49a4-47c0-8862-67f7801b8d93",
       "name": "Paradiso",
       "city": "Stockholm",
-      "reason": "no match"
-    },
-    {
-      "id": "8a5d330d-ac85-481b-9ed7-5359c0412558",
-      "name": "Scout",
-      "city": "London",
       "reason": "no match"
     },
     {
@@ -940,12 +826,6 @@
       "id": "8c10467c-2fd7-4138-8a88-d222eb36c495",
       "name": "No Vacancy",
       "city": "Toronto",
-      "reason": "no match"
-    },
-    {
-      "id": "8c817f8e-aa65-4a56-9e1b-4f11f46818e8",
-      "name": "Waltz",
-      "city": "London",
       "reason": "no match"
     },
     {
@@ -994,12 +874,6 @@
       "id": "922e9994-fc71-4f74-86f9-62c7cb75312a",
       "name": "Peychaud's",
       "city": "New Orleans",
-      "reason": "no match"
-    },
-    {
-      "id": "94dc678f-598d-4471-9c43-a07860586e5c",
-      "name": "Dear Irving",
-      "city": "New York",
       "reason": "no match"
     },
     {
@@ -1060,12 +934,6 @@
       "id": "9d907aa3-d8f7-4c73-b055-6242034ab0da",
       "name": "Workshop14",
       "city": "Hanoi",
-      "reason": "no match"
-    },
-    {
-      "id": "a00eb0ba-baf6-4c76-bc1f-481a62079660",
-      "name": "Isabel Speakeasy",
-      "city": "Belgrade",
       "reason": "no match"
     },
     {
@@ -1159,12 +1027,6 @@
       "reason": "no match"
     },
     {
-      "id": "ab5650d4-70bb-4726-ba5c-20cbb37cf7c7",
-      "name": "Kultura Bar",
-      "city": "Belgrade",
-      "reason": "no match"
-    },
-    {
       "id": "ab98e7f3-0095-408d-9749-464d75b3927b",
       "name": "Between the Sips",
       "city": "Jakarta",
@@ -1183,12 +1045,6 @@
       "reason": "no match"
     },
     {
-      "id": "ad65acf6-ab03-469f-b39c-8318c33ed5d3",
-      "name": "Bar Madonna",
-      "city": "New York",
-      "reason": "no match"
-    },
-    {
       "id": "ae287a54-fcd7-466b-b294-56551035cd9e",
       "name": "Pantja",
       "city": "Jakarta",
@@ -1198,18 +1054,6 @@
       "id": "ae623adc-ecb7-4476-ba56-58ceeea6ff5b",
       "name": "Underdog",
       "city": "Austin",
-      "reason": "no match"
-    },
-    {
-      "id": "b01a0af3-51dd-4ba1-a565-78d099863b1e",
-      "name": "Café Bar Pilotů",
-      "city": "Prague",
-      "reason": "no match"
-    },
-    {
-      "id": "b042adbf-25ec-456a-80eb-f094a25105c2",
-      "name": "Viajante87",
-      "city": "London",
       "reason": "no match"
     },
     {
@@ -1261,33 +1105,9 @@
       "reason": "no match"
     },
     {
-      "id": "b621ec2b-13ea-4a3d-802f-14fc8e6d0e6e",
-      "name": "Q Bar",
-      "city": "Belgrade",
-      "reason": "no match"
-    },
-    {
-      "id": "b6c6b2e7-23db-4ddd-b67a-fd229ad4527b",
-      "name": "Velvet by Salvatore Calabrese",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
-      "id": "b7587595-460f-450e-8259-59887fe2fe97",
-      "name": "Cahoots",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
       "id": "b7e6a060-505c-4b8b-ade2-a1194cfa4b11",
       "name": "The St. Regis Bar Jakarta",
       "city": "Jakarta",
-      "reason": "no match"
-    },
-    {
-      "id": "b8b64ed6-42f9-47c8-a476-8745d9b30f0d",
-      "name": "The Portrait Bar",
-      "city": "New York",
       "reason": "no match"
     },
     {
@@ -1300,12 +1120,6 @@
       "id": "bc4380da-73d8-4568-89ca-737c4dca76b9",
       "name": "Kissk",
       "city": "Seoul",
-      "reason": "no match"
-    },
-    {
-      "id": "bc4fdee2-3c77-4611-bcd3-150b63329d59",
-      "name": "The London Edition Lobby Bar",
-      "city": "London",
       "reason": "no match"
     },
     {
@@ -1351,12 +1165,6 @@
       "reason": "no match"
     },
     {
-      "id": "c068c03c-ee32-4206-ac92-c80810bb64d8",
-      "name": "Sager & Wilde",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
       "id": "c175ed4f-ae36-40f4-b379-1e9a52858cc8",
       "name": "M+MS Bar",
       "city": "Seoul",
@@ -1393,21 +1201,9 @@
       "reason": "no match"
     },
     {
-      "id": "c45b016d-c8d8-4394-83d0-4c2524399f2b",
-      "name": "Thyme Bar",
-      "city": "New York",
-      "reason": "no match"
-    },
-    {
       "id": "c5644c9f-548b-417a-834c-cc1a1a1f5bae",
       "name": "Southside Parlor",
       "city": "Seoul",
-      "reason": "no match"
-    },
-    {
-      "id": "c59a176e-c3ed-4359-bf0e-f1155d87cb04",
-      "name": "The Cocktail Trading Company",
-      "city": "London",
       "reason": "no match"
     },
     {
@@ -1453,12 +1249,6 @@
       "reason": "no match"
     },
     {
-      "id": "cd1709ad-164e-441c-86a0-f7029b9d2185",
-      "name": "The Sun Tavern",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
       "id": "cd79207b-f5b1-4dcc-96ec-a5d10ca97183",
       "name": "Officina Milano",
       "city": "Milan",
@@ -1489,18 +1279,6 @@
       "reason": "no match"
     },
     {
-      "id": "d23df4f8-2f61-4970-9a09-659027086ed0",
-      "name": "Sunken Harbor Club",
-      "city": "New York",
-      "reason": "no match"
-    },
-    {
-      "id": "d3755664-31a8-43dc-9f89-ea64c5c3c245",
-      "name": "Cloak Bar",
-      "city": "Cape Town",
-      "reason": "no match"
-    },
-    {
       "id": "d6eade37-3aee-4f7d-97ce-6dbca49027fc",
       "name": "Estereo",
       "city": "Chicago",
@@ -1528,12 +1306,6 @@
       "id": "d95b38ee-2e44-4040-b1a7-4163c7d56b67",
       "name": "Pussyfoot Saloon",
       "city": "Seoul",
-      "reason": "no match"
-    },
-    {
-      "id": "d9d339d7-68cf-42fb-bb0b-a136643eaedf",
-      "name": "Druid Bar",
-      "city": "Belgrade",
       "reason": "no match"
     },
     {
@@ -1591,12 +1363,6 @@
       "reason": "no match"
     },
     {
-      "id": "ea6240c8-dfca-4bae-916d-cde6e5bbfe43",
-      "name": "The Trust",
-      "city": "Kraków",
-      "reason": "no match"
-    },
-    {
       "id": "eaed9f63-2766-402f-9e7b-bce5c935df35",
       "name": "The Spirits Library",
       "city": "Makati",
@@ -1630,12 +1396,6 @@
       "id": "f25fef71-487e-49b1-90b5-5bad13b9c85e",
       "name": "Caribbean Club",
       "city": "Barcelona",
-      "reason": "no match"
-    },
-    {
-      "id": "f30d09f5-5d89-4462-bc20-d72af15ab12f",
-      "name": "Law & Order",
-      "city": "Amsterdam",
       "reason": "no match"
     },
     {
@@ -1681,12 +1441,6 @@
       "reason": "no match"
     },
     {
-      "id": "f71ed589-af75-4eda-8e4e-cc1c25779451",
-      "name": "Seed Library",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
       "id": "f7481085-eb01-42ab-a456-a21602a5e126",
       "name": "Bruder",
       "city": "Vienna",
@@ -1705,18 +1459,6 @@
       "reason": "no match"
     },
     {
-      "id": "f92dbc35-2579-41fd-83e6-47a7c1d3f0a4",
-      "name": "Branie",
-      "city": "Amsterdam",
-      "reason": "no match"
-    },
-    {
-      "id": "fbff07fe-225d-4c9f-aefe-63b632297b8e",
-      "name": "Mint Gun Club",
-      "city": "London",
-      "reason": "no match"
-    },
-    {
       "id": "fcf7ad14-eccb-4271-bf29-01a70e596148",
       "name": "Alonetogether",
       "city": "Bangkok",
@@ -1726,12 +1468,6 @@
       "id": "fd5d42fe-e91c-4e77-a4f4-a320a1dbd3d5",
       "name": "Cabinet 8",
       "city": "Kuala Lumpur",
-      "reason": "no match"
-    },
-    {
-      "id": "fda56173-9e2a-4000-9834-5a91bb9437eb",
-      "name": "Kronenhalle",
-      "city": "Zurich",
       "reason": "no match"
     },
     {
