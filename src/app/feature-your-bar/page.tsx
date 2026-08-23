@@ -136,7 +136,7 @@ function jsonLdBlocks(currency: Currency) {
         priceCurrency: currency,
         url: `${SITE_URL}/add-your-bar?plan=featured_social`,
         description:
-          'Billed annually. Everything in Featured plus a quarterly Instagram post or Reel (4 per year), 3 Stories with every post and a cross-promotion collab.',
+          'Billed annually. Everything in Featured plus two Instagram posts or Reels a year, 3 Stories with every post and a cross-promotion collab.',
       },
     ],
   };
@@ -603,7 +603,7 @@ export default function FeatureYourBarPage() {
                 </p>
                 <ul>
                   <li>Everything in Featured</li>
-                  <li>Instagram post or Reel every 3 months (4×/year)</li>
+                  <li>2 Instagram posts or Reels a year</li>
                   <li>3 Instagram Stories with every post</li>
                   <li>Cross-promotion collab</li>
                 </ul>
