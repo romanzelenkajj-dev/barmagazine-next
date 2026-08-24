@@ -124,3 +124,72 @@ export async function notifyOwnerSubmission(notice: OwnerSubmissionNotice): Prom
     `,
   });
 }
+
+export interface ClaimNotice {
+  barName: string;
+  barSlug?: string | null;
+  claimantEmail: string;
+  claimantName?: string | null;
+  claimantRole?: string | null;
+  method: 'domain_match' | 'contact_on_file' | 'manual';
+  isTransfer: boolean;
+  /** True when nothing happens until Roman acts. */
+  needsReview: boolean;
+  proofCount?: number;
+}
+
+const METHOD_LABEL: Record<ClaimNotice['method'], string> = {
+  domain_match: 'A · domain match (auto)',
+  contact_on_file: 'B · contact on file (auto)',
+  manual: 'C · manual review',
+};
+
+/**
+ * Email the admin about a claim. Sent for every claim, not just manual ones:
+ * an auto-approved claim hands someone edit rights over a listing, which is
+ * worth seeing even when no action is required.
+ */
+export async function notifyClaim(notice: ClaimNotice): Promise<boolean> {
+  const {
+    barName, barSlug, claimantEmail, claimantName, claimantRole,
+    method, isTransfer, needsReview, proofCount,
+  } = notice;
+
+  const barLink = barSlug
+    ? `<a href="${SITE_URL}/bars/${escapeHtml(barSlug)}">${escapeHtml(barName)}</a>`
+    : escapeHtml(barName);
+
+  const banner = isTransfer
+    ? `<p style="padding:10px 12px;background:#f8d7da;color:#721c24;font-size:14px;font-weight:600;">
+         TRANSFER — this bar already has an owner. Always needs review.
+       </p>`
+    : needsReview
+      ? `<p style="padding:10px 12px;background:#fff3cd;color:#856404;font-size:14px;">
+           Waiting on your review — nothing has been granted.
+         </p>`
+      : `<p style="padding:10px 12px;background:#d4edda;color:#155724;font-size:14px;">
+           Auto-verifiable: a sign-in link was sent. Ownership transfers when they click it.
+         </p>`;
+
+  return send({
+    subject: `${isTransfer ? 'Bar TRANSFER' : 'Bar claim'}: ${barName}${needsReview ? ' (needs review)' : ''}`,
+    html: `
+      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+        <h2 style="color:#1A1A1A;">${isTransfer ? 'Ownership transfer requested' : 'New bar claim'}</h2>
+        ${banner}
+        <table style="width:100%;border-collapse:collapse;font-size:15px;">
+          ${fieldRows({
+            Bar: barName,
+            Route: METHOD_LABEL[method],
+            Claimant: claimantEmail,
+            Name: claimantName || '—',
+            Role: claimantRole || '—',
+            ...(proofCount != null ? { Proof: `${proofCount} file${proofCount === 1 ? '' : 's'}` } : {}),
+          })}
+        </table>
+        <p style="margin-top:16px;font-size:15px;">${barLink}</p>
+        <p style="margin-top:24px;font-size:13px;color:#999;">Review at ${SITE_URL}/admin/submissions</p>
+      </div>
+    `,
+  });
+}

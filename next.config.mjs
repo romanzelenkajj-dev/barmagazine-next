@@ -139,13 +139,13 @@ const nextConfig = {
       // landing-page rebuild — we point /list-your-bar at the new canonical
       // directly so this isn't a redirect chain through /claim-your-bar.
       { source: '/list-your-bar', destination: '/feature-your-bar', permanent: true },
-      // /claim-your-bar → /feature-your-bar. Legacy landing slug, replaced
-      // by the SEO-focused /feature-your-bar in this PR. 301 preserves the
-      // crawl equity from any inbound links (sitemap entries, /list-your-bar
-      // redirect, prior shares). Both trailing-slash and bare forms because
-      // Next runs redirects() before its trailing-slash normalization.
-      { source: '/claim-your-bar', destination: '/feature-your-bar', permanent: true },
-      { source: '/claim-your-bar/', destination: '/feature-your-bar', permanent: true },
+      // /claim-your-bar is a real page again — the free search-and-claim flow.
+      // It redirected to /feature-your-bar only while the slug held nothing but
+      // stale pricing content; claiming is free, so a pricing page is now the
+      // wrong destination. Both redirects removed with the rebuilt page, in the
+      // same commit, so the slug is never briefly serving the old pricing copy.
+      // NOTE: these were permanent redirects and cache hard — verify in a fresh
+      // browser profile, not one that already followed them.
       { source: '/cocktails', destination: '/category/cocktails', permanent: true },
       { source: '/privacy-policy', destination: '/privacy', permanent: true },
       { source: '/advertise', destination: '/work-with-us', permanent: true },

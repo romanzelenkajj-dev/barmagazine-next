@@ -82,18 +82,16 @@ describe('next.config.mjs redirects()', () => {
     expect(catchAll, 'catch-all /events/:slug must not exist').toBeUndefined();
   });
 
-  it('/claim-your-bar → /feature-your-bar (single hop, both slash variants)', async () => {
-    // /claim-your-bar was the old landing slug; /feature-your-bar replaced
-    // it in the feature-page rebuild. Direct 301 (not chained) preserves
-    // the crawl equity from inbound links + sitemap entries.
+  it('/claim-your-bar does NOT redirect — it is the free claim page', async () => {
+    // Inverted deliberately. /claim-your-bar redirected to /feature-your-bar
+    // only while the slug held stale pricing content. It is now the free
+    // search-and-claim flow, and claiming must never route to pricing, so a
+    // redirect reappearing here is a regression rather than the intent.
     const redirects: Redirect[] = await nextConfig.redirects();
     const bare = redirects.find((r) => r.source === '/claim-your-bar');
     const trailing = redirects.find((r) => r.source === '/claim-your-bar/');
-    expect(bare, '/claim-your-bar rule missing').toBeDefined();
-    expect(trailing, '/claim-your-bar/ trailing-slash rule missing').toBeDefined();
-    expect(bare!.destination).toBe('/feature-your-bar');
-    expect(trailing!.destination).toBe('/feature-your-bar');
-    expect(bare!.permanent).toBe(true);
+    expect(bare, '/claim-your-bar must not redirect — it is a real page').toBeUndefined();
+    expect(trailing, '/claim-your-bar/ must not redirect — it is a real page').toBeUndefined();
   });
 
   it('/list-your-bar points DIRECTLY at /feature-your-bar (not via /claim-your-bar)', async () => {

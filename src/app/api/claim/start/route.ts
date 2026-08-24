@@ -1,0 +1,191 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { createAdminClient } from '@/lib/supabase-auth';
+import {
+  decideRoute,
+  CLAIM_RATE_LIMIT_PER_EMAIL,
+  CLAIM_RATE_LIMIT_PER_IP,
+} from '@/lib/claim-routes';
+import { notifyClaim } from '@/lib/notify';
+
+export const dynamic = 'force-dynamic';
+
+const SITE_URL = 'https://barmagazine.com';
+
+/**
+ * The one response this endpoint ever gives on a well-formed request.
+ *
+ * It is identical for a domain match, an on-file address, a manual claim, a
+ * bar that does not exist, a rate-limited caller and an internal failure. The
+ * endpoint is unauthenticated, so any variation would let someone map which
+ * bars have an email on file — exactly the enumeration the spec forbids.
+ */
+function generic(extra: Record<string, unknown> = {}) {
+  return NextResponse.json({
+    success: true,
+    message: 'If this bar is yours, check your inbox.',
+    ...extra,
+  });
+}
+
+function clientIp(request: NextRequest): string {
+  const forwarded = request.headers.get('x-forwarded-for');
+  if (forwarded) return forwarded.split(',')[0].trim();
+  return request.headers.get('x-real-ip') || 'unknown';
+}
+
+/**
+ * Rate limits are counted from `bar_claims` itself rather than a side table,
+ * so nothing new has to be migrated. The IP is recorded in `evidence` at
+ * creation for exactly this purpose.
+ *
+ * Consequence worth knowing: only requests that created a row count, so probes
+ * against nonexistent bars are not limited. The generic response above is what
+ * protects against enumeration; this limits volume.
+ */
+async function isRateLimited(
+  supabase: ReturnType<typeof createAdminClient>,
+  email: string,
+  ip: string
+): Promise<boolean> {
+  const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+
+  const { count: byEmail } = await supabase
+    .from('bar_claims')
+    .select('id', { count: 'exact', head: true })
+    .ilike('claimant_email', email)
+    .gte('created_at', since);
+
+  if ((byEmail ?? 0) >= CLAIM_RATE_LIMIT_PER_EMAIL) return true;
+
+  if (ip !== 'unknown') {
+    const { count: byIp } = await supabase
+      .from('bar_claims')
+      .select('id', { count: 'exact', head: true })
+      .eq('evidence->>ip', ip)
+      .gte('created_at', since);
+    if ((byIp ?? 0) >= CLAIM_RATE_LIMIT_PER_IP) return true;
+  }
+
+  return false;
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const slug = typeof body.slug === 'string' ? body.slug.trim() : '';
+    const rawEmail = typeof body.email === 'string' ? body.email.trim() : '';
+    const email = rawEmail.toLowerCase();
+    const name = typeof body.name === 'string' ? body.name.trim().slice(0, 120) : null;
+    const role = typeof body.role === 'string' ? body.role.trim().slice(0, 120) : null;
+
+    // Shape errors are the one thing worth reporting — they reveal nothing
+    // about which bars exist.
+    if (!slug || !email.includes('@') || email.length > 320) {
+      return NextResponse.json({ error: 'A bar and a valid email are required' }, { status: 400 });
+    }
+
+    const supabase = createAdminClient();
+    const ip = clientIp(request);
+
+    if (await isRateLimited(supabase, email, ip)) {
+      return generic();
+    }
+
+    const { data: bar } = await supabase
+      .from('bars')
+      .select('id, name, slug, website, email, owner_id')
+      .eq('slug', slug)
+      .eq('is_active', true)
+      .maybeSingle();
+
+    // Unknown bar: same answer as a successful claim.
+    if (!bar) return generic();
+
+    const decision = decideRoute(bar, email);
+
+    // One open claim per (bar, lower(email)) is enforced by a partial unique
+    // index; a repeat is not an error worth surfacing.
+    const { data: claim, error: insertError } = await supabase
+      .from('bar_claims')
+      .insert({
+        bar_id: bar.id,
+        claimant_email: email,
+        claimant_name: name,
+        claimant_role: role,
+        method: decision.method,
+        status: decision.autoVerifiable ? 'awaiting_verification' : 'pending_review',
+        is_transfer: decision.isTransfer,
+        evidence: { ip, requested_at: new Date().toISOString() },
+      })
+      .select('id')
+      .single();
+
+    if (insertError) {
+      console.warn('[claim/start] insert failed:', insertError.message);
+      return generic();
+    }
+
+    if (decision.autoVerifiable && decision.destination) {
+      // Routes A and B only. The destination is already established as
+      // legitimate — the bar's own domain, or the address we hold on file — so
+      // creating the auth user here cannot be pointed at an arbitrary address.
+      // Manual claims deliberately create nothing until Roman approves.
+      await sendClaimLink(supabase, decision.destination, bar.slug, claim.id);
+    }
+
+    await notifyClaim({
+      barName: String(bar.name ?? bar.slug),
+      barSlug: String(bar.slug),
+      claimantEmail: email,
+      claimantName: name,
+      claimantRole: role,
+      method: decision.method,
+      isTransfer: decision.isTransfer,
+      needsReview: !decision.autoVerifiable,
+    });
+
+    // `requiresProof` tells the UI to show the upload step. It is derived from
+    // the bar having neither a matching domain nor an address on file, which
+    // the claimant can already work out from the public listing, so it leaks
+    // nothing the directory does not already show.
+    return generic({ requiresProof: decision.method === 'manual', claimId: claim.id });
+  } catch {
+    return generic();
+  }
+}
+
+/**
+ * Create the owner account if needed and mail a sign-in link that lands on the
+ * claim verifier. `/api/auth/magic-link` uses shouldCreateUser:false, so the
+ * account has to be created here — this is the only place where a claim is
+ * already proven enough to justify it.
+ */
+async function sendClaimLink(
+  supabase: ReturnType<typeof createAdminClient>,
+  destination: string,
+  barSlug: string,
+  claimId: string
+): Promise<void> {
+  const redirectTo = `${SITE_URL}/claim-your-bar/verify?claim=${encodeURIComponent(claimId)}`;
+
+  try {
+    const { error: createError } = await supabase.auth.admin.createUser({
+      email: destination,
+      email_confirm: true,
+      user_metadata: { role: 'owner', claimed_bar: barSlug },
+    });
+    // Already registered is the normal case for a second claim; anything else
+    // is logged but must not change the response.
+    if (createError && !/already/i.test(createError.message)) {
+      console.warn('[claim/start] createUser:', createError.message);
+    }
+
+    const { error: linkError } = await supabase.auth.signInWithOtp({
+      email: destination,
+      options: { emailRedirectTo: redirectTo, shouldCreateUser: false },
+    });
+    if (linkError) console.warn('[claim/start] link send failed:', linkError.message);
+  } catch (e) {
+    console.warn('[claim/start] link step threw:', e);
+  }
+}
