@@ -4,6 +4,7 @@ import {
   decideRoute,
   CLAIM_RATE_LIMIT_PER_EMAIL,
   CLAIM_RATE_LIMIT_PER_IP,
+  CLAIM_VERIFICATION_WINDOW_HOURS,
 } from '@/lib/claim-routes';
 import { notifyClaim } from '@/lib/notify';
 
@@ -102,6 +103,25 @@ export async function POST(request: NextRequest) {
     if (!bar) return generic();
 
     const decision = decideRoute(bar, email);
+
+    // Expire this requester's own abandoned claims for this bar first.
+    // The partial unique index covers (bar_id, lower(claimant_email)) while a
+    // claim is awaiting_verification or pending_review, so a link that was
+    // never followed would block the same person from ever retrying — there is
+    // no cron to sweep it. Scoped to this pair, so it can't touch anyone else's
+    // claim, and only awaiting_verification rows are swept: pending_review is
+    // waiting on a human, not on the claimant.
+    const staleBefore = new Date(
+      Date.now() - CLAIM_VERIFICATION_WINDOW_HOURS * 60 * 60 * 1000
+    ).toISOString();
+
+    await supabase
+      .from('bar_claims')
+      .update({ status: 'expired' })
+      .eq('bar_id', bar.id)
+      .ilike('claimant_email', email)
+      .eq('status', 'awaiting_verification')
+      .lt('created_at', staleBefore);
 
     // One open claim per (bar, lower(email)) is enforced by a partial unique
     // index; a repeat is not an error worth surfacing.

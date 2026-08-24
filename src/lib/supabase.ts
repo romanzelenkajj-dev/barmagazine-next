@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { searchOrFilter } from './ascii-fold';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -104,9 +105,10 @@ export async function getBars(filters?: {
     query = query.eq('type', filters.type);
   }
   if (filters?.search) {
-    query = query.or(
-      `name.ilike.%${filters.search}%,city.ilike.%${filters.search}%,country.ilike.%${filters.search}%`
-    );
+    // Accent-insensitive: match the folded query against the generated
+    // name_ascii/city_ascii columns so "muzsa" finds "Múzsa". searchOrFilter
+    // also keeps a raw clause for names the generated columns fold wrongly.
+    query = query.or(searchOrFilter(filters.search, ['country']));
   }
   if (filters?.tier) {
     query = query.eq('tier', filters.tier);

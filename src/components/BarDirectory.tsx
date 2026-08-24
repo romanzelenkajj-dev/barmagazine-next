@@ -1,5 +1,6 @@
 'use client';
 
+import { asciiFold } from '@/lib/ascii-fold';
 import { useState, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
@@ -102,11 +103,11 @@ export function BarDirectoryClient({
   // Filter bars
   const filtered = useMemo(() => {
     const result = initialBars.filter(bar => {
-      const q = search.toLowerCase();
+      const q = asciiFold(search);
       const matchSearch = !search ||
-        bar.name.toLowerCase().includes(q) ||
-        bar.city.toLowerCase().includes(q) ||
-        bar.country.toLowerCase().includes(q);
+        asciiFold(bar.name).includes(q) ||
+        asciiFold(bar.city).includes(q) ||
+        asciiFold(bar.country).includes(q);
       const matchCountry = !countryFilter || bar.country === countryFilter;
       const matchCity = !cityFilter || bar.city === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter;

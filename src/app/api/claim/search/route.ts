@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase-auth';
+import { searchOrFilter } from '@/lib/ascii-fold';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,14 +20,13 @@ export async function GET(request: NextRequest) {
 
     const supabase = createAdminClient();
 
-    // Escape the LIKE wildcards so a query of "%" doesn't match everything.
-    const safe = q.replace(/[%_,]/g, ch => `\\${ch}`).slice(0, 80);
-
     const { data, error } = await supabase
       .from('bars')
       .select('slug, name, city, country, owner_id')
       .eq('is_active', true)
-      .or(`name.ilike.%${safe}%,city.ilike.%${safe}%`)
+      // Accent-insensitive via the generated *_ascii columns, so an owner
+      // searching "muzsa" finds "Múzsa". Wildcards are escaped inside.
+      .or(searchOrFilter(q))
       .order('name')
       .limit(20);
 

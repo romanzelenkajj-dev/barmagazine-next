@@ -1,5 +1,6 @@
 'use client';
 
+import { asciiFold } from '@/lib/ascii-fold';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
@@ -633,8 +634,8 @@ export function BarDirectoryMapClient({
   // Filter bars first
   const filtered = useMemo(() => {
     return allBars.filter(bar => {
-      const q = search.toLowerCase();
-      const matchSearch = !search || bar.name.toLowerCase().includes(q) || bar.city.toLowerCase().includes(q) || bar.country.toLowerCase().includes(q);
+      const q = asciiFold(search);
+      const matchSearch = !search || asciiFold(bar.name).includes(q) || asciiFold(bar.city).includes(q) || asciiFold(bar.country).includes(q);
       const matchCountry = !countryFilter || bar.country === countryFilter;
       const matchCity = !cityFilter || bar.city === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter;
@@ -647,8 +648,8 @@ export function BarDirectoryMapClient({
   // and can zoom to their bounds.
   const filteredMapBars = useMemo(() => {
     return mapBars.filter(bar => {
-      const q = search.toLowerCase();
-      const matchSearch = !search || bar.name.toLowerCase().includes(q) || bar.city.toLowerCase().includes(q) || bar.country.toLowerCase().includes(q);
+      const q = asciiFold(search);
+      const matchSearch = !search || asciiFold(bar.name).includes(q) || asciiFold(bar.city).includes(q) || asciiFold(bar.country).includes(q);
       const matchCountry = !countryFilter || bar.country === countryFilter;
       const matchCity = !cityFilter || bar.city === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter;
