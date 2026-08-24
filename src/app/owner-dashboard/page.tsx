@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { authHeader, signOut } from '@/lib/owner-session';
 import Link from 'next/link';
 
 interface Bar {
@@ -32,21 +33,21 @@ export default function OwnerDashboardPage() {
   const [ownerEmail, setOwnerEmail] = useState('');
 
   useEffect(() => {
-    const token = localStorage.getItem('owner_token');
-    if (!token) {
-      router.push('/owner-dashboard/login');
-      return;
-    }
-    fetchDashboardData(token);
+    (async () => {
+      const headers = await authHeader();
+      if (!headers) {
+        router.push('/owner-dashboard/login');
+        return;
+      }
+      fetchDashboardData(headers);
+    })();
   }, [router]);
 
-  async function fetchDashboardData(token: string) {
+  async function fetchDashboardData(headers: { Authorization: string }) {
     try {
-      const res = await fetch('/api/owner/bars', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch('/api/owner/bars', { headers });
       if (res.status === 401) {
-        localStorage.removeItem('owner_token');
+        await signOut();
         router.push('/owner-dashboard/login');
         return;
       }
@@ -61,8 +62,8 @@ export default function OwnerDashboardPage() {
     }
   }
 
-  function handleLogout() {
-    localStorage.removeItem('owner_token');
+  async function handleLogout() {
+    await signOut();
     router.push('/owner-dashboard/login');
   }
 

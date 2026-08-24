@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { escapeHtml } from '@/lib/notify';
 import { geocodeBar } from '@/lib/geocode';
 import { normalizeBarFields } from '@/lib/normalize';
 
@@ -81,7 +82,7 @@ async function sendNotificationEmail(data: Record<string, string | undefined>, p
 
   try {
     const photoRow = photoUrl
-      ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Photo</td><td style="padding: 8px 12px;"><a href="${photoUrl}">View uploaded photo</a></td></tr>`
+      ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Photo</td><td style="padding: 8px 12px;"><a href="${escapeHtml(photoUrl)}">View uploaded photo</a></td></tr>`
       : '';
 
     const res = await fetch('https://api.resend.com/emails', {
@@ -98,18 +99,18 @@ async function sendNotificationEmail(data: Record<string, string | undefined>, p
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #1A1A1A;">New Bar Submission</h2>
             <table style="width: 100%; border-collapse: collapse; font-size: 15px;">
-              <tr><td style="padding: 8px 12px; font-weight: 600; color: #666; width: 140px;">Bar Name</td><td style="padding: 8px 12px;">${data.name}</td></tr>
-              <tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">City</td><td style="padding: 8px 12px;">${data.city}</td></tr>
-              <tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Country</td><td style="padding: 8px 12px;">${data.country}</td></tr>
-              ${data.address ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Address</td><td style="padding: 8px 12px;">${data.address}</td></tr>` : ''}
-              <tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Type</td><td style="padding: 8px 12px;">${data.type || 'Cocktail Bar'}</td></tr>
-              ${data.website ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Website</td><td style="padding: 8px 12px;"><a href="${data.website}">${data.website}</a></td></tr>` : ''}
-              ${data.instagram ? `<tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Instagram</td><td style="padding: 8px 12px;">${data.instagram}</td></tr>` : ''}
-              <tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Contact Name</td><td style="padding: 8px 12px;">${data.contact_name || '—'}</td></tr>
-              <tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Contact Email</td><td style="padding: 8px 12px;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
-              ${data.phone ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Phone</td><td style="padding: 8px 12px;">${data.phone}</td></tr>` : ''}
-              ${data.preferred_plan && data.preferred_plan !== 'free' ? `<tr style="background: #fff3cd;"><td style="padding: 8px 12px; font-weight: 600; color: #856404;">💰 Preferred Plan</td><td style="padding: 8px 12px; font-weight: 600; color: #856404;">${data.preferred_plan === 'featured_social' ? 'Featured + Social ($79/mo)' : data.preferred_plan === 'featured' ? 'Featured ($39/mo)' : data.preferred_plan}</td></tr>` : `<tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Preferred Plan</td><td style="padding: 8px 12px;">Free (Listed)</td></tr>`}
-              ${data.description ? `<tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Description</td><td style="padding: 8px 12px;">${data.description}</td></tr>` : ''}
+              <tr><td style="padding: 8px 12px; font-weight: 600; color: #666; width: 140px;">Bar Name</td><td style="padding: 8px 12px;">${escapeHtml(data.name)}</td></tr>
+              <tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">City</td><td style="padding: 8px 12px;">${escapeHtml(data.city)}</td></tr>
+              <tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Country</td><td style="padding: 8px 12px;">${escapeHtml(data.country)}</td></tr>
+              ${data.address ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Address</td><td style="padding: 8px 12px;">${escapeHtml(data.address)}</td></tr>` : ''}
+              <tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Type</td><td style="padding: 8px 12px;">${escapeHtml(data.type || 'Cocktail Bar')}</td></tr>
+              ${data.website ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Website</td><td style="padding: 8px 12px;"><a href="${escapeHtml(data.website)}">${escapeHtml(data.website)}</a></td></tr>` : ''}
+              ${data.instagram ? `<tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Instagram</td><td style="padding: 8px 12px;">${escapeHtml(data.instagram)}</td></tr>` : ''}
+              <tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Contact Name</td><td style="padding: 8px 12px;">${escapeHtml(data.contact_name || '—')}</td></tr>
+              <tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Contact Email</td><td style="padding: 8px 12px;"><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td></tr>
+              ${data.phone ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Phone</td><td style="padding: 8px 12px;">${escapeHtml(data.phone)}</td></tr>` : ''}
+              ${data.preferred_plan && data.preferred_plan !== 'free' ? `<tr style="background: #fff3cd;"><td style="padding: 8px 12px; font-weight: 600; color: #856404;">💰 Preferred Plan</td><td style="padding: 8px 12px; font-weight: 600; color: #856404;">${data.preferred_plan === 'featured_social' ? 'Featured + Social ($79/mo)' : data.preferred_plan === 'featured' ? 'Featured ($39/mo)' : escapeHtml(data.preferred_plan)}</td></tr>` : `<tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Preferred Plan</td><td style="padding: 8px 12px;">Free (Listed)</td></tr>`}
+              ${data.description ? `<tr><td style="padding: 8px 12px; font-weight: 600; color: #666;">Description</td><td style="padding: 8px 12px;">${escapeHtml(data.description)}</td></tr>` : ''}
               ${photoRow}
             </table>
             <p style="margin-top: 24px; font-size: 13px; color: #999;">This notification was sent from barmagazine.com</p>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import { authHeader, signOut } from '@/lib/owner-session';
 import Link from 'next/link';
 
 interface BarData {
@@ -36,13 +37,11 @@ export default function EditBarPage() {
   });
 
   const fetchBar = useCallback(async () => {
-    const token = localStorage.getItem('owner_token');
-    if (!token) { router.push('/owner-dashboard/login'); return; }
+    const headers = await authHeader();
+    if (!headers) { router.push('/owner-dashboard/login'); return; }
     try {
-      const res = await fetch('/api/owner/bars', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.status === 401) { router.push('/owner-dashboard/login'); return; }
+      const res = await fetch('/api/owner/bars', { headers });
+      if (res.status === 401) { await signOut(); router.push('/owner-dashboard/login'); return; }
       const data = await res.json();
       const found = data.bars?.find((b: BarData) => b.slug === slug);
       if (!found) { setError('Bar not found or not owned by you'); setLoading(false); return; }
@@ -62,16 +61,23 @@ export default function EditBarPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true); setError(''); setSuccess('');
-    const token = localStorage.getItem('owner_token');
+    const headers = await authHeader();
+    if (!headers) { router.push('/owner-dashboard/login'); return; }
     try {
       const res = await fetch('/api/owner/bars', {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        headers: { 'Content-Type': 'application/json', ...headers },
         body: JSON.stringify({ bar_id: bar?.id, updates: formData }),
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error || 'Failed to submit'); return; }
-      setSuccess('Changes submitted for admin review!');
+      // The API drops anything outside the owner allowlist; say so rather than
+      // reporting a clean success for an edit that was partly discarded.
+      setSuccess(
+        data.rejected?.length
+          ? `Submitted for review. Not included (editorial fields): ${data.rejected.join(', ')}`
+          : 'Changes submitted for admin review!'
+      );
     } catch { setError('Network error'); }
     finally { setSaving(false); }
   }
@@ -80,14 +86,15 @@ export default function EditBarPage() {
     const files = e.target.files;
     if (!files || files.length === 0) return;
     setUploading(true); setError('');
-    const token = localStorage.getItem('owner_token');
+    const headers = await authHeader();
+    if (!headers) { router.push('/owner-dashboard/login'); return; }
     const fd = new FormData();
     fd.append('bar_id', bar?.id || '');
     Array.from(files).forEach((f) => fd.append('photos', f));
     try {
       const res = await fetch('/api/owner/photos', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
+        headers,
         body: fd,
       });
       if (!res.ok) { setError('Photo upload failed'); return; }
