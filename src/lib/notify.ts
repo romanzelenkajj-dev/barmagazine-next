@@ -1,3 +1,4 @@
+import { sendMail } from './mail';
 /**
  * Admin notifications for things that land in a review queue.
  *
@@ -7,8 +8,6 @@
  * fail the owner's request, since their submission is already stored.
  */
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
-const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || '';
 const SITE_URL = 'https://barmagazine.com';
 
 /**
@@ -43,41 +42,14 @@ export function fieldRows(fields: Record<string, unknown>): string {
     .join('');
 }
 
-interface SendArgs {
-  subject: string;
-  html: string;
-}
-
-async function send({ subject, html }: SendArgs): Promise<boolean> {
-  if (!RESEND_API_KEY || !NOTIFICATION_EMAIL) {
-    // Local dev and preview builds routinely lack these; not an error.
-    console.log('[notify] skipped, RESEND_API_KEY or NOTIFICATION_EMAIL unset');
+/** Admin notifications go to the notification mailbox, sent as BarMagazine. */
+async function send({ subject, html }: { subject: string; html: string }): Promise<boolean> {
+  const to = process.env.NOTIFICATION_EMAIL || '';
+  if (!to) {
+    console.error('[notify] NOT SENT — NOTIFICATION_EMAIL unset');
     return false;
   }
-
-  try {
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: 'BarMagazine <onboarding@resend.dev>',
-        to: [NOTIFICATION_EMAIL],
-        subject,
-        html,
-      }),
-    });
-    if (!res.ok) {
-      console.error('[notify] resend error:', await res.text());
-      return false;
-    }
-    return true;
-  } catch (e) {
-    console.error('[notify] send failed:', e);
-    return false;
-  }
+  return sendMail({ to, subject, html, context: 'notify' });
 }
 
 export interface OwnerSubmissionNotice {
@@ -159,16 +131,20 @@ export async function notifyClaim(notice: ClaimNotice): Promise<boolean> {
     ? `<a href="${SITE_URL}/bars/${escapeHtml(barSlug)}">${escapeHtml(barName)}</a>`
     : escapeHtml(barName);
 
+  // A transfer is the one that can take a listing away from an existing owner,
+  // so it must not look like the routine case at a glance.
   const banner = isTransfer
-    ? `<p style="padding:10px 12px;background:#f8d7da;color:#721c24;font-size:14px;font-weight:600;">
-         TRANSFER — this bar already has an owner. Always needs review.
+    ? `<p style="padding:14px 16px;background:#721c24;color:#fff;font-size:15px;font-weight:700;border-radius:6px;">
+         ⚠ TRANSFER — ${escapeHtml(barName)} already has an owner.<br>
+         <span style="font-weight:400;">Nothing happens until you approve it. Approving moves the listing to the new claimant.</span>
        </p>`
     : needsReview
-      ? `<p style="padding:10px 12px;background:#fff3cd;color:#856404;font-size:14px;">
-           Waiting on your review — nothing has been granted.
+      ? `<p style="padding:10px 12px;background:#fff3cd;color:#856404;font-size:14px;border-radius:6px;">
+           Waiting on your review — no access has been granted.
          </p>`
-      : `<p style="padding:10px 12px;background:#d4edda;color:#155724;font-size:14px;">
-           Auto-verifiable: a sign-in link was sent. Ownership transfers when they click it.
+      : `<p style="padding:10px 12px;background:#d4edda;color:#155724;font-size:14px;border-radius:6px;">
+           Auto-verifiable: a confirmation link was sent to the address on file.
+           The claimant becomes the owner when they follow it.
          </p>`;
 
   return send({
@@ -176,10 +152,10 @@ export async function notifyClaim(notice: ClaimNotice): Promise<boolean> {
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
         <h2 style="color:#1A1A1A;">${isTransfer ? 'Ownership transfer requested' : 'New bar claim'}</h2>
+        <p style="font-size:16px;margin:0 0 14px;">${barLink}</p>
         ${banner}
         <table style="width:100%;border-collapse:collapse;font-size:15px;">
           ${fieldRows({
-            Bar: barName,
             Route: METHOD_LABEL[method],
             Claimant: claimantEmail,
             Name: claimantName || '—',
@@ -187,7 +163,6 @@ export async function notifyClaim(notice: ClaimNotice): Promise<boolean> {
             ...(proofCount != null ? { Proof: `${proofCount} file${proofCount === 1 ? '' : 's'}` } : {}),
           })}
         </table>
-        <p style="margin-top:16px;font-size:15px;">${barLink}</p>
         <p style="margin-top:24px;font-size:13px;color:#999;">Review at ${SITE_URL}/admin/submissions</p>
       </div>
     `,

@@ -7,6 +7,7 @@ import {
   CLAIM_VERIFICATION_WINDOW_HOURS,
 } from '@/lib/claim-routes';
 import { notifyClaim } from '@/lib/notify';
+import { sendClaimLinkEmail } from '@/lib/claim-email';
 
 export const dynamic = 'force-dynamic';
 
@@ -158,7 +159,13 @@ export async function POST(request: NextRequest) {
       // legitimate — the bar's own domain, or the address we hold on file — so
       // creating the auth user here cannot be pointed at an arbitrary address.
       // Manual claims deliberately create nothing until Roman approves.
-      await sendClaimLink(supabase, decision.destination, bar.slug, claim.id);
+      await sendClaimLink(
+        supabase,
+        decision.destination,
+        String(bar.name ?? bar.slug),
+        bar.slug,
+        claim.id
+      );
     }
 
     await notifyClaim({
@@ -191,6 +198,7 @@ export async function POST(request: NextRequest) {
 async function sendClaimLink(
   supabase: ReturnType<typeof createAdminClient>,
   destination: string,
+  barName: string,
   barSlug: string,
   claimId: string
 ): Promise<void> {
@@ -208,11 +216,10 @@ async function sendClaimLink(
       console.warn('[claim/start] createUser:', createError.message);
     }
 
-    const { error: linkError } = await supabase.auth.signInWithOtp({
-      email: destination,
-      options: { emailRedirectTo: redirectTo, shouldCreateUser: false },
-    });
-    if (linkError) console.warn('[claim/start] link send failed:', linkError.message);
+    // We mint the link and send it ourselves rather than letting Supabase mail
+    // its stock template, which is unbranded and reads as phishing to a bar
+    // owner. Expiry is unchanged — the token still honours the project setting.
+    await sendClaimLinkEmail(supabase, { destination, barName, redirectTo });
   } catch (e) {
     console.warn('[claim/start] link step threw:', e);
   }

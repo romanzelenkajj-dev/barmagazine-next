@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { escapeHtml } from '@/lib/notify';
+import { MAIL_FROM, MAIL_REPLY_TO } from '@/lib/mail';
 import { geocodeBar } from '@/lib/geocode';
 import { normalizeBarFields } from '@/lib/normalize';
 
@@ -92,7 +93,8 @@ async function sendNotificationEmail(data: Record<string, string | undefined>, p
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'BarMagazine <onboarding@resend.dev>',
+        from: MAIL_FROM,
+        reply_to: MAIL_REPLY_TO,
         to: [NOTIFICATION_EMAIL],
         subject: `New Bar Submission: ${data.name} — ${data.city}, ${data.country}`,
         html: `
@@ -120,8 +122,10 @@ async function sendNotificationEmail(data: Record<string, string | undefined>, p
     });
 
     if (!res.ok) {
-      const err = await res.text();
-      console.error('Resend email error:', err);
+      const err = await res.text().catch(() => '<unreadable>');
+      console.error(
+        `[bar-submission] SEND FAILED to ${NOTIFICATION_EMAIL} — status ${res.status} ${res.statusText}: ${err}`
+      );
     } else {
       console.log('Notification email sent to', NOTIFICATION_EMAIL);
     }
