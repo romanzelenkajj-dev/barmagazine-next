@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { verifyOwnerToken } from '@/lib/supabase-auth';
+import { filterOwnerFields } from '@/lib/owner-fields';
 
 // Owner data is always per-request (Authorization header) — never prerender.
 // Also keeps builds green in environments without SUPABASE_SERVICE_ROLE_KEY.
@@ -65,18 +66,33 @@ export async function PUT(request: NextRequest) {
 
     if (!bar) return NextResponse.json({ error: 'Bar not found or not owned' }, { status: 403 });
 
+    // Only ever store fields an owner is allowed to change. Editorial and
+    // identity fields (description, tier, name, city, coordinates, …) are
+    // dropped here so they can never reach the approve path, which spreads
+    // submitted_data into bars.update(). Enforced again at approval.
+    const { allowed, rejected } = filterOwnerFields(updates);
+
+    if (Object.keys(allowed).length === 0) {
+      return NextResponse.json(
+        { error: 'No editable fields in submission', rejected },
+        { status: 400 }
+      );
+    }
+
     // Create submission for admin review
     const { error } = await supabase.from('owner_submissions').insert({
       bar_id,
       owner_id: owner.id,
       status: 'pending',
-      submitted_data: updates,
+      submitted_data: allowed,
       submission_type: 'info_update',
     });
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-    return NextResponse.json({ success: true });
+    // Report what was ignored so the dashboard can say so plainly rather than
+    // letting an owner believe an edit is pending review when it was dropped.
+    return NextResponse.json({ success: true, rejected });
   } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
