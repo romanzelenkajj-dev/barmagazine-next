@@ -135,7 +135,15 @@ export async function POST(request: NextRequest) {
         method: decision.method,
         status: decision.autoVerifiable ? 'awaiting_verification' : 'pending_review',
         is_transfer: decision.isTransfer,
-        evidence: { ip, requested_at: new Date().toISOString() },
+        evidence: {
+          ip,
+          requested_at: new Date().toISOString(),
+          // The address the link is actually sent to. For route B that is the
+          // bar's on-file contact, NOT what the claimant typed — the callback
+          // must check the signed-in user against this, or a route B claim
+          // could never complete. Stored, never returned to a caller.
+          ...(decision.destination ? { destination: decision.destination } : {}),
+        },
       })
       .select('id')
       .single();

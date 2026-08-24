@@ -27,17 +27,27 @@ export async function POST(request: NextRequest) {
 
     const { data: claim } = await supabase
       .from('bar_claims')
-      .select('id, bar_id, claimant_email, status, is_transfer, created_at')
+      .select('id, bar_id, claimant_email, status, is_transfer, created_at, method, evidence')
       .eq('id', claimId)
       .maybeSingle();
 
     if (!claim) return NextResponse.json({ error: 'Claim not found' }, { status: 404 });
 
-    // The link was mailed to the claim's destination; only that mailbox can
-    // finish it. For route B that address is the bar's on-file contact, so a
-    // stranger who started the claim never receives the link and their session
-    // will not match here.
-    if (claim.claimant_email.toLowerCase() !== owner.email.toLowerCase()) {
+    // Only the mailbox the link was sent to can finish the claim.
+    //
+    // That is NOT always the address the claimant typed: on route B the link
+    // goes to the bar's on-file contact precisely so a stranger cannot claim a
+    // bar by typing their own address. Comparing against claimant_email would
+    // therefore reject the legitimate owner and make route B impossible, so we
+    // compare against the recorded destination and fall back to claimant_email
+    // (route A, where they are the same).
+    const evidence =
+      claim.evidence && typeof claim.evidence === 'object' && !Array.isArray(claim.evidence)
+        ? (claim.evidence as Record<string, unknown>)
+        : {};
+    const expected = String(evidence.destination || claim.claimant_email).toLowerCase();
+
+    if (expected !== owner.email.toLowerCase()) {
       return NextResponse.json({ error: 'This link is not for your account' }, { status: 403 });
     }
 
