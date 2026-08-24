@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { verifyOwnerToken } from '@/lib/supabase-auth';
+import { notifyOwnerSubmission } from '@/lib/notify';
 
 export async function POST(request: NextRequest) {
   const supabase = createClient(
@@ -25,7 +26,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { data: bar } = await supabase
-      .from('bars').select('id, owner_id')
+      .from('bars').select('id, owner_id, name, slug')
       .eq('id', barId).eq('owner_id', owner.id).single();
 
     if (!bar) return NextResponse.json({ error: 'Not authorized' }, { status: 403 });
@@ -47,6 +48,15 @@ export async function POST(request: NextRequest) {
       bar_id: barId, owner_id: owner.id, status: 'pending',
       submitted_data: { gallery_images: uploadedUrls },
       submission_type: 'photo_upload',
+    });
+
+    // Surface it — the photo queue is as invisible as the edit queue.
+    await notifyOwnerSubmission({
+      barName: String(bar.name ?? 'Unknown bar'),
+      barSlug: bar.slug ? String(bar.slug) : null,
+      ownerEmail: owner.email,
+      submissionType: 'photo_upload',
+      fields: { gallery_images: uploadedUrls },
     });
 
     return NextResponse.json({ success: true, urls: uploadedUrls });

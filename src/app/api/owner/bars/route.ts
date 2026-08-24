@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { verifyOwnerToken } from '@/lib/supabase-auth';
 import { filterOwnerFields } from '@/lib/owner-fields';
+import { notifyOwnerSubmission } from '@/lib/notify';
 
 // Owner data is always per-request (Authorization header) — never prerender.
 // Also keeps builds green in environments without SUPABASE_SERVICE_ROLE_KEY.
@@ -59,7 +60,7 @@ export async function PUT(request: NextRequest) {
     // Verify ownership
     const { data: bar } = await supabase
       .from('bars')
-      .select('id, owner_id')
+      .select('id, owner_id, name, slug')
       .eq('id', bar_id)
       .eq('owner_id', owner.id)
       .single();
@@ -89,6 +90,18 @@ export async function PUT(request: NextRequest) {
     });
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+    // Tell the admin it's waiting — nothing else surfaces this queue. Awaited
+    // so the serverless function doesn't exit before the request goes out, but
+    // it never throws, so a mail failure can't fail a stored submission.
+    await notifyOwnerSubmission({
+      barName: String(bar.name ?? 'Unknown bar'),
+      barSlug: bar.slug ? String(bar.slug) : null,
+      ownerEmail: owner.email,
+      submissionType: 'info_update',
+      fields: allowed,
+      rejected,
+    });
 
     // Report what was ignored so the dashboard can say so plainly rather than
     // letting an owner believe an edit is pending review when it was dropped.
