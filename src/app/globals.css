@@ -8834,10 +8834,12 @@ textarea.form-input {
     font-size: 24px;
   }
 
-  /* Full-width tap targets — this is used one-handed behind a bar. */
-  .owner-dash-card-actions .feature-btn,
-  .add-bar-submit {
-    flex: 1 1 100%;
+  /* Full-width tap targets — this is used one-handed behind a bar.
+     width, not flex-basis: .add-bar-form is a COLUMN flex, so flex-basis
+     would size the button's height and leave it 223px wide in a 315px form. */
+  .owner-dash .owner-dash-card-actions .feature-btn,
+  .owner-dash .add-bar-submit {
+    width: 100%;
     justify-content: center;
   }
 }
