@@ -3492,10 +3492,14 @@ textarea.form-input {
   color: #fff;
 }
 
+/* The only remaining use sits on a white card, beside the TOP 10 pill. It was
+   styled white-on-transparent for a photo overlay it no longer has, which made
+   it invisible on white — the text was there and read by screen readers, but
+   nobody could see it. Outlined ink instead, subordinate to TOP 10. */
 .bar-dir-badge-pill--type {
   background: transparent;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #6b6b6b;
+  border: 1px solid #dcd6cc;
 }
 
 .bar-dir-featured-name {
