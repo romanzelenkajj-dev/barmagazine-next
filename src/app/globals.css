@@ -172,6 +172,28 @@ button {
   opacity: 0.88;
 }
 
+.nav-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Ghost variant: same radius and height as the filled pill (padding is 1px
+   tighter to absorb the border). List Your Bar wears this now — the directory
+   is the primary action, the sales pitch steps back a rank but stays present. */
+.nav-cta--ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  padding: 6px 15px;
+}
+
+.nav-cta--ghost:hover {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+}
+
 
 .nav-search {
   display: flex;
@@ -2144,6 +2166,28 @@ button {
   }
 }
 
+/* Tablet band: the pill pair is ~130px wider than the single pill it replaced,
+   which tipped the full nav row into horizontal overflow below ~1150px. Tighter
+   link spacing and an icon-only search absorb it down to the 768px cutover. */
+@media (max-width: 1150px) {
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .nav-search {
+    padding: 7px;
+    border-radius: 50%;
+  }
+
+  .nav-search-text {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --nav-h: 88px;
@@ -2180,7 +2224,17 @@ button {
     display: none;
   }
 
+  /* The Bar Directory pill stays visible in the header bar itself on mobile;
+     only the ghost List Your Bar pill retreats into the hamburger menu. The
+     old centred-logo layout had no room for a pill (even a 26px logo is
+     ~150px wide), so the bar becomes a plain flex row: logo left, then
+     pill + search + hamburger on the right. */
   .nav-cta {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .nav-cta--ghost {
     display: none;
   }
 
@@ -2189,35 +2243,26 @@ button {
   }
 
   .nav-inner {
-    justify-content: center;
-    position: relative;
+    padding: 0 12px;
+    gap: 6px;
   }
 
-  .nav-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+  .nav-pills {
+    margin-left: auto;
   }
 
   .nav-logo img {
-    height: 40px;
+    height: 26px;
     width: auto;
   }
 
   .nav-search {
-    position: absolute;
-    left: 16px;
     padding: 7px;
     border-radius: 50%;
   }
 
   .nav-search-text {
     display: none;
-  }
-
-  .nav-mobile {
-    position: absolute;
-    right: 16px;
   }
 
   /* Mobile hero: stacked photo-on-top + text-below, like secondary cards but

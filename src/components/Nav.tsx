@@ -32,7 +32,8 @@ export function Nav() {
     { href: '/category/awards-events', label: 'Awards' },
     { href: '/category/brands', label: 'Brands' },
     { href: '/events', label: 'Events' },
-    { href: '/bars', label: 'Bar Directory' },
+    // "Bar Directory" is deliberately absent: it is the primary pill on the
+    // right, on desktop and mobile alike, so a list entry would duplicate it.
   ];
 
   return (
@@ -65,9 +66,14 @@ export function Nav() {
                 </li>
               ))}
             </ul>
-            <Link href="/feature-your-bar" className="nav-cta">
-              List Your Bar
-            </Link>
+            <div className="nav-pills">
+              <Link href="/bars" className="nav-cta">
+                Bar Directory
+              </Link>
+              <Link href="/feature-your-bar" className="nav-cta nav-cta--ghost">
+                List Your Bar
+              </Link>
+            </div>
             <Link href="/search" className="nav-search">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <circle cx="11" cy="11" r="8" />
