@@ -99,7 +99,8 @@ async function sendNotificationEmail(data: Record<string, string | undefined>, p
         subject: `New Bar Submission: ${data.name} — ${data.city}, ${data.country}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #1A1A1A;">New Bar Submission</h2>
+            <h2 style="color: #1A1A1A;">${data.upgrade_slug ? 'Listing UPGRADE request' : 'New Bar Submission'}</h2>
+            ${data.upgrade_slug ? `<p style="padding: 10px 12px; background: #d4edda; color: #155724; font-size: 14px; border-radius: 6px;">Existing listing: <a href="https://barmagazine.com/bars/${escapeHtml(data.upgrade_slug)}">barmagazine.com/bars/${escapeHtml(data.upgrade_slug)}</a> — do NOT create a new bar row.</p>` : ''}
             <table style="width: 100%; border-collapse: collapse; font-size: 15px;">
               <tr><td style="padding: 8px 12px; font-weight: 600; color: #666; width: 140px;">Bar Name</td><td style="padding: 8px 12px;">${escapeHtml(data.name)}</td></tr>
               <tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">City</td><td style="padding: 8px 12px;">${escapeHtml(data.city)}</td></tr>
@@ -147,6 +148,19 @@ export async function POST(request: Request) {
       );
     }
 
+    // Upgrade of an existing listing: the slug is recorded on the submission
+    // (bar_submissions has no dedicated column, so it rides in `notes`) so
+    // review can attach the plan to the existing row instead of creating a
+    // duplicate. Strict shape — this is client input headed for a DB row.
+    const upgradeSlug =
+      typeof data.upgrade_slug === 'string' && /^[a-z0-9-]{1,100}$/.test(data.upgrade_slug)
+        ? data.upgrade_slug
+        : null;
+    // The email template reads data.upgrade_slug — make sure it can only ever
+    // see the validated value, not whatever shape the client sent.
+    if (upgradeSlug) (data as Record<string, unknown>).upgrade_slug = upgradeSlug;
+    else delete (data as Record<string, unknown>).upgrade_slug;
+
     // Upload photo if provided
     let photoUrl: string | null = null;
     if (data.photo) {
@@ -162,13 +176,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true, note: 'Submission logged, database save pending env setup' });
     }
 
-    // Geocode the bar location
-    const coords = await geocodeBar({
-      name: data.name,
-      address: data.address,
-      city: data.city,
-      country: data.country,
-    });
+    // Geocode the bar location. Upgrades skip it — the existing listing
+    // already has coordinates, and `notes` is needed for the slug instead.
+    const coords = upgradeSlug
+      ? null
+      : await geocodeBar({
+          name: data.name,
+          address: data.address,
+          city: data.city,
+          country: data.country,
+        });
 
     const insertData: Record<string, unknown> = {
       name: data.name,
@@ -186,6 +203,7 @@ export async function POST(request: Request) {
       preferred_plan: data.preferred_plan || 'free',
       // Note: lat/lng stored in notes for future use — bar_submissions table doesn't have geo columns
       ...(coords && { notes: `geo:${coords.lat},${coords.lng}` }),
+      ...(upgradeSlug && { notes: `upgrade:${upgradeSlug}` }),
     };
 
     // Send notification email FIRST — even if DB insert fails, we want the email

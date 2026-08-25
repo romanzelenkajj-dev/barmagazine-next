@@ -216,8 +216,19 @@ const MARQUEE_BARS: Array<{ name: string; city: string }> = [
   { name: 'Scarfes Bar', city: 'London' },
 ];
 
-export default async function FeatureYourBarPage() {
+export default async function FeatureYourBarPage({
+  searchParams,
+}: {
+  searchParams?: { bar?: string };
+}) {
   const { barsRounded, cities, countries } = await getDirectoryStats();
+  // Existing-bar upgrade path: outreach emails and the owner dashboard link
+  // here with ?bar=<slug>, and the pricing CTAs carry it into /add-your-bar
+  // so the form opens in upgrade mode instead of creating a duplicate
+  // listing. Strict slug shape — this goes straight into hrefs.
+  const rawBar = searchParams?.bar || '';
+  const barSlug = /^[a-z0-9-]{1,100}$/.test(rawBar) ? rawBar : '';
+  const barSuffix = barSlug ? `&bar=${barSlug}` : '';
   const currency = resolveCurrencySSR();
   const sym = symbolFor(currency);
   const ldBlocks = jsonLdBlocks(currency);
@@ -539,7 +550,7 @@ export default async function FeatureYourBarPage() {
                   <li>1 interior photo</li>
                   <li>Website &amp; Instagram link</li>
                 </ul>
-                <a className="feature-btn feature-btn-outline" href="/add-your-bar">
+                <a className="feature-btn feature-btn-outline" href={barSlug ? `/add-your-bar?bar=${barSlug}` : '/add-your-bar'}>
                   Get Listed
                 </a>
               </div>
@@ -582,7 +593,7 @@ export default async function FeatureYourBarPage() {
                 </ul>
                 <a
                   className="feature-btn feature-btn-primary"
-                  href="/add-your-bar?plan=featured"
+                  href={`/add-your-bar?plan=featured${barSuffix}`}
                 >
                   Get Featured · 50% Off
                 </a>
@@ -611,7 +622,7 @@ export default async function FeatureYourBarPage() {
                 </ul>
                 <a
                   className="feature-btn feature-btn-outline"
-                  href="/add-your-bar?plan=featured_social"
+                  href={`/add-your-bar?plan=featured_social${barSuffix}`}
                 >
                   Get Started · 50% Off
                 </a>

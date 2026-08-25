@@ -9461,3 +9461,35 @@ textarea.form-input {
   font-size: 13px;
   color: var(--text-secondary);
 }
+
+/* ── /add-your-bar: upgrade-mode identity + "already listed?" finder ────── */
+
+/* The locked bar identity shown instead of name/city/address inputs when the
+   form runs in upgrade mode — the listing exists, so identity is displayed,
+   never asked for (asking again is how duplicate rows get created). */
+.add-bar-upgrade-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--bg-page);
+  border: 1px solid #E0D8D0;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.add-bar-upgrade-identity strong { font-size: 17px; }
+.add-bar-upgrade-identity span { color: var(--text-secondary); font-size: 14px; }
+.add-bar-upgrade-identity .feature-link { font-size: 13px; }
+
+.add-bar-existing-note {
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #E0D8D0;
+}
+
+.add-bar-existing-note p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}

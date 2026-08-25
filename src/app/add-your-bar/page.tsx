@@ -1,8 +1,9 @@
 'use client';
 
 import { Suspense, useState, FormEvent, useRef, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { BarSearchTypeahead } from '@/components/BarSearchTypeahead';
 
 // Stripe payment links by currency
 const STRIPE_LINKS: Record<string, Record<string, string>> = {
@@ -36,12 +37,52 @@ export default function AddYourBarPage() {
   );
 }
 
+interface UpgradeBar {
+  slug: string;
+  name: string;
+  city: string;
+  country: string;
+}
+
 function AddYourBarForm() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const planFromUrl = searchParams.get('plan') || 'free';
   const initialPlan = ['free', 'featured', 'featured_social'].includes(planFromUrl)
     ? planFromUrl
     : 'free';
+
+  /**
+   * Upgrade mode: ?bar=<slug> means the bar is already in the directory
+   * (1,200 listed bars receive outreach linking here). The form then locks
+   * the bar identity — re-typing name/city would only produce a duplicate
+   * row — and keeps just the plan choice and contact fields. Resolved via
+   * the same public lookup /claim-your-bar uses; an invalid or inactive
+   * slug quietly falls back to the normal new-bar form.
+   */
+  const barParam = searchParams.get('bar') || '';
+  const [upgradeBar, setUpgradeBar] = useState<UpgradeBar | null>(null);
+  const [upgradeResolving, setUpgradeResolving] = useState(!!barParam);
+  // The "Already listed?" finder above the new-bar form.
+  const [findQuery, setFindQuery] = useState('');
+
+  useEffect(() => {
+    if (!barParam) { setUpgradeBar(null); setUpgradeResolving(false); return; }
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`/api/claim/search?slug=${encodeURIComponent(barParam)}`);
+        const data = await res.json();
+        const hit = (data.bars || [])[0];
+        if (!cancelled) setUpgradeBar(hit ? { slug: hit.slug, name: hit.name, city: hit.city, country: hit.country } : null);
+      } catch {
+        if (!cancelled) setUpgradeBar(null);
+      } finally {
+        if (!cancelled) setUpgradeResolving(false);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [barParam]);
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -49,6 +90,13 @@ function AddYourBarForm() {
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [selectedPlan, setSelectedPlan] = useState(initialPlan);
+
+  // An "upgrade to Free" is a no-op — the bar is already listed free. When
+  // upgrade mode resolves with no paid plan chosen, default to Featured.
+  useEffect(() => {
+    if (upgradeBar && selectedPlan === 'free') setSelectedPlan('featured');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [upgradeBar]);
   const [currency, setCurrency] = useState<string>('EUR');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -115,21 +163,34 @@ function AddYourBarForm() {
 
     const plan = data.get('preferredPlan') as string || 'free';
 
-    const submission = {
-      name: data.get('barName') as string,
-      city: data.get('city') as string,
-      country: data.get('country') as string,
-      address: (data.get('address') as string) || undefined,
-      type: (data.get('barType') as string) || 'Cocktail Bar',
-      website: (data.get('website') as string) || undefined,
-      instagram: (data.get('instagram') as string) || undefined,
-      email: data.get('contactEmail') as string,
-      phone: (data.get('phone') as string) || undefined,
-      description: (data.get('description') as string) || undefined,
-      contact_name: (data.get('contactName') as string) || undefined,
-      preferred_plan: plan,
-      photo: photoBase64,
-    };
+    // Upgrade mode: identity comes from the existing listing, never the form
+    // — there are no identity fields to type, so no duplicate can be created.
+    const submission = upgradeBar
+      ? {
+          name: upgradeBar.name,
+          city: upgradeBar.city,
+          country: upgradeBar.country,
+          email: data.get('contactEmail') as string,
+          phone: (data.get('phone') as string) || undefined,
+          contact_name: (data.get('contactName') as string) || undefined,
+          preferred_plan: plan,
+          upgrade_slug: upgradeBar.slug,
+        }
+      : {
+          name: data.get('barName') as string,
+          city: data.get('city') as string,
+          country: data.get('country') as string,
+          address: (data.get('address') as string) || undefined,
+          type: (data.get('barType') as string) || 'Cocktail Bar',
+          website: (data.get('website') as string) || undefined,
+          instagram: (data.get('instagram') as string) || undefined,
+          email: data.get('contactEmail') as string,
+          phone: (data.get('phone') as string) || undefined,
+          description: (data.get('description') as string) || undefined,
+          contact_name: (data.get('contactName') as string) || undefined,
+          preferred_plan: plan,
+          photo: photoBase64,
+        };
 
     try {
       const response = await fetch('/api/bar-submission', {
@@ -148,7 +209,7 @@ function AddYourBarForm() {
               body: JSON.stringify({
                 plan,
                 currency,
-                barName: data.get('barName') as string || '',
+                barName: upgradeBar ? upgradeBar.name : (data.get('barName') as string || ''),
                 email: data.get('contactEmail') as string || '',
               }),
             });
@@ -188,11 +249,13 @@ function AddYourBarForm() {
       <div className="add-bar-hero">
         <div className="add-bar-hero-inner">
           <div className="add-bar-hero-badge">{PLAN_LABELS[selectedPlan] || 'Free Listing'}</div>
-          <h1>Add Your Bar</h1>
+          <h1>{upgradeBar ? `Upgrade ${upgradeBar.name}` : 'Add Your Bar'}</h1>
           <p>
-            {isPaidPlan
-              ? 'Fill out your bar details below. After submitting, you\u2019ll be redirected to complete payment.'
-              : 'Submit your bar to the BarMagazine directory. We\u2019ll review your submission and get back to you.'}
+            {upgradeBar
+              ? `${upgradeBar.name} is already listed in our directory \u2014 pick a plan and we\u2019ll take it from there.`
+              : isPaidPlan
+                ? 'Fill out your bar details below. After submitting, you\u2019ll be redirected to complete payment.'
+                : 'Submit your bar to the BarMagazine directory. We\u2019ll review your submission and get back to you.'}
           </p>
         </div>
       </div>
@@ -317,9 +380,38 @@ function AddYourBarForm() {
         <div className="add-bar-layout">
           {/* Form */}
           <div className="add-bar-form-card">
+            {!upgradeBar && !upgradeResolving && (
+              <div className="add-bar-existing-note">
+                <p>
+                  Already listed in our directory? Find your bar and upgrade it
+                  instead of creating a new listing:
+                </p>
+                <BarSearchTypeahead
+                  value={findQuery}
+                  onChange={setFindQuery}
+                  onClear={() => setFindQuery('')}
+                  placeholder="Search your bar by name…"
+                  onSelect={slug => {
+                    const plan = ['featured', 'featured_social'].includes(planFromUrl) ? `&plan=${planFromUrl}` : '';
+                    router.push(`/add-your-bar?bar=${slug}${plan}`);
+                  }}
+                />
+              </div>
+            )}
+            {upgradeResolving ? (
+              <p>Looking up your bar…</p>
+            ) : (
             <form onSubmit={handleSubmit} className="add-bar-form">
               <div className="add-bar-form-section">
-                <h2>Bar Details</h2>
+                <h2>{upgradeBar ? 'Your Bar' : 'Bar Details'}</h2>
+                {upgradeBar ? (
+                  // The listing exists — identity is shown, not asked for.
+                  <div className="add-bar-upgrade-identity">
+                    <strong>{upgradeBar.name}</strong>
+                    <span>{upgradeBar.city}, {upgradeBar.country}</span>
+                    <Link href={`/bars/${upgradeBar.slug}`} className="feature-link">View listing</Link>
+                  </div>
+                ) : (<>
                 <div className="form-group">
                   <label className="form-label">Bar Name <span className="form-required">*</span></label>
                   <input name="barName" required className="form-input" placeholder="e.g. The Artisan Bar" />
@@ -354,6 +446,7 @@ function AddYourBarForm() {
                     <option value="Whiskey Bar">Whiskey Bar</option>
                   </select>
                 </div>
+                </>)}
 
                 <div className="form-group">
                   <label className="form-label">Preferred Plan</label>
@@ -363,7 +456,7 @@ function AddYourBarForm() {
                     value={selectedPlan}
                     onChange={(e) => setSelectedPlan(e.target.value)}
                   >
-                    <option value="free">Listed (Free)</option>
+                    {!upgradeBar && <option value="free">Listed (Free)</option>}
                     <option value="featured">Featured ({currency === 'EUR' ? '€19.50' : '$19.50'}/mo &mdash; 50% off first year)</option>
                     <option value="featured_social">Featured + Social ({currency === 'EUR' ? '€39.50' : '$39.50'}/mo &mdash; 50% off first year)</option>
                   </select>
@@ -376,7 +469,8 @@ function AddYourBarForm() {
                 </div>
               </div>
 
-              {/* Photo Upload */}
+              {/* Photo Upload — the existing listing already has photos */}
+              {!upgradeBar && (
               <div className="add-bar-form-section">
                 <h2>Interior Photo</h2>
                 <p className="add-bar-photo-hint">Upload one photo of your bar&apos;s interior. JPG, PNG, or WebP, max 5MB.</p>
@@ -412,7 +506,9 @@ function AddYourBarForm() {
                   )}
                 </div>
               </div>
+              )}
 
+              {!upgradeBar && (
               <div className="add-bar-form-section">
                 <h2>Online Presence</h2>
                 <div className="add-bar-form-row">
@@ -426,6 +522,7 @@ function AddYourBarForm() {
                   </div>
                 </div>
               </div>
+              )}
 
               <div className="add-bar-form-section">
                 <h2>Contact Information</h2>
@@ -446,6 +543,7 @@ function AddYourBarForm() {
                 </div>
               </div>
 
+              {!upgradeBar && (
               <div className="add-bar-form-section">
                 <h2>About Your Bar</h2>
                 <div className="form-group">
@@ -454,6 +552,7 @@ function AddYourBarForm() {
                   <span className="form-hint">A good description helps us feature your bar effectively.</span>
                 </div>
               </div>
+              )}
 
               {error && (
                 <div className="add-bar-error">
@@ -472,9 +571,11 @@ function AddYourBarForm() {
               >
                 {submitting
                   ? (isPaidPlan ? 'Submitting & redirecting to payment...' : 'Submitting...')
+                  : upgradeBar ? 'Request upgrade'
                   : (isPaidPlan ? 'Submit & Continue to Payment' : 'Submit Your Bar')}
               </button>
             </form>
+            )}
           </div>
 
           {/* Sidebar */}

@@ -34,12 +34,16 @@ export function BarSearchTypeahead({
   onClear,
   inputRef,
   placeholder = 'Search bars, cities, countries...',
+  onSelect,
 }: {
   value: string;
   onChange: (value: string) => void;
   onClear: () => void;
   inputRef?: React.RefObject<HTMLInputElement>;
   placeholder?: string;
+  /** Overrides the default navigate-to-profile: hosts that want the slug
+      itself (e.g. the upgrade form) handle the selection instead. */
+  onSelect?: (slug: string) => void;
 }) {
   const router = useRouter();
   const [hits, setHits] = useState<Hit[]>([]);
@@ -117,7 +121,8 @@ export function BarSearchTypeahead({
 
   const go = (slug: string) => {
     setOpen(false);
-    router.push(`/bars/${slug}`);
+    if (onSelect) onSelect(slug);
+    else router.push(`/bars/${slug}`);
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
