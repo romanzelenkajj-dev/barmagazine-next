@@ -91,7 +91,7 @@ export async function notifyOwnerSubmission(notice: OwnerSubmissionNotice): Prom
         ${rejectedBlock}
         <p style="margin-top:24px;font-size:13px;color:#999;">
           Nothing is live until you approve it.
-          <a href="${SITE_URL}/admin/owner-edits">Review this edit</a>
+          <a href="${SITE_URL}/admin/review?tab=edits">Review this edit</a>
         </p>
       </div>
     `,
@@ -164,7 +164,7 @@ export async function notifyClaim(notice: ClaimNotice): Promise<boolean> {
             ...(proofCount != null ? { Proof: `${proofCount} file${proofCount === 1 ? '' : 's'}` } : {}),
           })}
         </table>
-        <p style="margin-top:24px;font-size:13px;color:#999;">Review at ${SITE_URL}/admin/submissions</p>
+        <p style="margin-top:24px;font-size:13px;color:#999;">Review at ${SITE_URL}/admin/review?tab=claims</p>
       </div>
     `,
   });

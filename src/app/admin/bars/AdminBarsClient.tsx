@@ -379,7 +379,7 @@ export default function AdminBarsClient() {
                     </a>
                     {!!bar.pending_owner_edits && (
                       <a
-                        href="/admin/owner-edits"
+                        href="/admin/review?tab=edits"
                         title="The owner has proposed changes to this bar"
                         style={{
                           marginLeft: 8,

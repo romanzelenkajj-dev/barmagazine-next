@@ -9045,3 +9045,61 @@ textarea.form-input {
 .admin-diff-to {
   font-weight: 600;
 }
+
+/* ====== ADMIN REVIEW INBOX ====== */
+.admin-review-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px var(--gap) 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.admin-review-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.admin-review-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 4px;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.admin-review-tab.is-active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent);
+}
+
+.admin-review-count {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 100px;
+  min-width: 20px;
+  padding: 1px 7px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.admin-review-editor-link {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.admin-review-editor-link:hover {
+  color: var(--accent);
+}
