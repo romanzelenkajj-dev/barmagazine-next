@@ -77,6 +77,36 @@ function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): nu
 }
 
 /**
+ * Bounds containing the visitor and their nearest bars, for the map's GPS
+ * view. A fixed zoom 9 (~40km across) showed an empty map to anyone whose
+ * nearest bars sit farther out — Roman: grid right, map blank. Bars within
+ * the near-me radius when there are enough of them, otherwise the closest
+ * five wherever they are: the map's first job here is to show SOME bars.
+ */
+function nearestBarsBounds(
+  lat: number,
+  lng: number,
+  bars: Bar[]
+): [[number, number], [number, number]] | null {
+  const withCoords = bars
+    .filter(b => b.lat != null && b.lng != null)
+    .map(b => ({ lat: b.lat!, lng: b.lng!, d: haversineKm(lat, lng, b.lat!, b.lng!) }))
+    .sort((a, b) => a.d - b.d);
+  if (withCoords.length === 0) return null;
+  // The nearest three guarantee visible pins; everything inside the near-me
+  // radius rides along. Never "nearest N" alone — in a sparse region that
+  // can stretch the bounds across an ocean just to reach pin number five.
+  const within = withCoords.filter(p => p.d <= 80);
+  const chosen = Array.from(new Set([...withCoords.slice(0, 3), ...within]));
+  const lats = [lat, ...chosen.map(p => p.lat)];
+  const lngs = [lng, ...chosen.map(p => p.lng)];
+  return [
+    [Math.min(...lngs), Math.min(...lats)],
+    [Math.max(...lngs), Math.max(...lats)],
+  ];
+}
+
+/**
  * Hybrid sort: when GPS coords are available, bars WITH lat/lng are sorted by
  * true haversine distance (closest first). Bars WITHOUT lat/lng are sorted by
  * IP-based geo score and appended after. This prevents bars in far-away countries
@@ -246,6 +276,13 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
       });
 
       map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
+
+      // GPS known before the map was created: swap the fixed metro zoom for a
+      // view that provably contains the nearest bars (filters keep priority).
+      if (userLat != null && userLng != null && !activeCityCoords && !activeCountryCenter) {
+        const nearBounds = nearestBarsBounds(userLat, userLng, bars);
+        if (nearBounds) map.fitBounds(nearBounds, { padding: 70, maxZoom: 12, duration: 0 });
+      }
 
       map.on('load', () => {
         const geojson: GeoJSON.FeatureCollection = {
@@ -421,7 +458,15 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
     if (userLat == null || userLng == null) return;
     if (cityFilter || countryFilter) return;
     didFlyToGPS.current = true;
-    mapRef.current.flyTo({ center: [userLng, userLat], zoom: 9, duration: 1200, essential: true });
+    const nearBounds = nearestBarsBounds(userLat, userLng, bars);
+    if (nearBounds) {
+      mapRef.current.fitBounds(nearBounds, { padding: 70, maxZoom: 12, duration: 1200, essential: true });
+    } else {
+      mapRef.current.flyTo({ center: [userLng, userLat], zoom: 9, duration: 1200, essential: true });
+    }
+    // didFlyToGPS makes this a one-shot, so `bars` staying out of the deps
+    // only affects which snapshot the single fit uses.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userLat, userLng, mapLoaded, cityFilter, countryFilter]);
 
   const toggleExpand = () => { setIsExpanded(!isExpanded); setTimeout(() => mapRef.current?.resize(), 100); };
