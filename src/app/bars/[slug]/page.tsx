@@ -416,11 +416,15 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                         <BarPlaceholder name={nb.name} type={nb.type} />
                       )
                     }
+                    {(nb.tier === 'top10' || nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug) && (
+                      <div className="bar-dir-visual-pills">
+                        {nb.tier === 'top10' && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
+                        {(nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">Featured</span>}
+                      </div>
+                    )}
                   </div>
                   <div className="bar-dir-featured-body">
                     <div className="bar-dir-featured-badges">
-                      {nb.tier === 'top10' && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
-                      {(nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">Featured</span>}
                       {nb.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(nb.type)}</span>}
                     </div>
                     <h3 className="bar-dir-featured-name">{nb.name}</h3>

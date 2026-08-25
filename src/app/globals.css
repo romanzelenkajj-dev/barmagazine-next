@@ -2988,26 +2988,6 @@ textarea.form-input {
   box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.3);
 }
 
-.bar-dir-featured-badge-corner--premium {
-  background: #1a1a1a !important;
-}
-
-/* TOP 10 badge — top-right corner, gold gradient */
-.bar-dir-top10-badge-corner {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  font-size: 9px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 100px;
-  background: linear-gradient(135deg, #B8973A, #D4B84A);
-  box-shadow: 0 2px 8px rgba(180,150,50,0.45);
-  z-index: 2;
-}
 
 /* TOP 10 card — same visual as featured but with gold border accent */
 .bar-dir-top10-card {
@@ -3465,12 +3445,6 @@ textarea.form-input {
   display: none;
 }
 
-/* Hide old badge corners that were on the photo */
-.bar-dir-featured-badge-corner,
-.bar-dir-featured-badge-corner--premium,
-.bar-dir-top10-badge-corner {
-  display: none;
-}
 
 .bar-dir-featured-type {
   display: none;
@@ -3789,23 +3763,6 @@ textarea.form-input {
   flex-shrink: 0;
 }
 
-/* 50 Best badge on photo cards */
-.bar-dir-50best-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 9px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #d4a843;
-  z-index: 2;
-}
 
 /* 50 Best inline badge in list */
 .directory-list-50best {
@@ -9198,4 +9155,56 @@ textarea.form-input {
   color: var(--text-secondary);
   font-size: 15px;
   margin-top: 6px;
+}
+
+/* ====== CARD STATUS PILLS ON THE PHOTO ======
+   Top 10 / Featured moved out of the card body and onto the image, matching
+   the bar profile hero. The body keeps identity and credentials — name,
+   location, accolade tiles — so the two badge systems no longer stack.
+
+   The 50 Best corner badge that used to sit here is gone: the accolade tile
+   below says the same thing, with a year and a citation behind it. */
+.bar-dir-visual-pills {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  /* Leave room so a long pill can't run under the card's right edge. */
+  max-width: calc(100% - 20px);
+}
+
+/* A scrim, not a flat tint: pills must stay legible over a bright photo
+   without dulling the image above them. Ignores pointer events so the whole
+   card stays one click target. */
+.bar-dir-featured-visual::after,
+.bar-dir-card-visual::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 78px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Only draw the scrim when there is something to make legible. */
+.bar-dir-featured-visual:has(.bar-dir-visual-pills)::after,
+.bar-dir-card-visual:has(.bar-dir-visual-pills)::after {
+  opacity: 1;
+}
+
+.bar-dir-visual-pills .bar-dir-badge-pill {
+  /* Slightly stronger than the in-body pills — these sit on a photograph. */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+/* The body badge row now holds the type pill alone; drop its spacing to
+   nothing when the bar has no type rather than leaving a gap. */
+.bar-dir-featured-badges:empty {
+  display: none;
 }

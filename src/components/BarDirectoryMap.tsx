@@ -995,11 +995,15 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
             <BarPlaceholder name={bar.name} type={bar.type} />
           )
         }
+        {(isTop10 || isPremium || isFeatured) && (
+          <div className="bar-dir-visual-pills">
+            {isTop10 && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
+            {(isPremium || isFeatured) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+          </div>
+        )}
       </div>
       <div className="bar-dir-featured-body">
         <div className="bar-dir-featured-badges">
-          {isTop10 && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
-          {(isPremium || isFeatured) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
           {bar.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(bar.type)}</span>}
         </div>
         <h3 className="bar-dir-featured-name">{bar.name}</h3>
@@ -1018,7 +1022,6 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function PhotoBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;
-  const is50Best = FIFTY_BEST_2025.has(bar.name);
   return (
     <Link href={`/bars/${bar.slug}`} className="bar-dir-card">
       <div className="bar-dir-card-visual">
@@ -1028,7 +1031,6 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
             <BarPlaceholder name={bar.name} type={bar.type} />
           )
         }
-        {is50Best && <span className="bar-dir-50best-badge">50 Best</span>}
       </div>
       <div className="bar-dir-card-body">
         <h3>{bar.name}</h3>

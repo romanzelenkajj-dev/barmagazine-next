@@ -357,7 +357,9 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
           <img src={imageUrl} alt={bar.name} loading="lazy" />
         )}
         <div className="bar-dir-featured-overlay" />
-        <div className="bar-dir-featured-badge-corner">Featured</div>
+        <div className="bar-dir-visual-pills">
+          <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">Featured</span>
+        </div>
         <div className="bar-dir-featured-content">
           <h3>{bar.name}</h3>
           <span className="bar-dir-featured-location">
