@@ -9277,3 +9277,96 @@ textarea.form-input {
   color: #fff;
   border: 1px solid #B08D3F;
 }
+
+/* ====== BAR PROFILE JUMP CHIPS ====== */
+
+/* Slim sticky row under the fixed site header. Quiet outline chips in the
+   type-pill ink tones — wayfinding, not competing with the gold 50 Best
+   marker. Background matches the page so content scrolling beneath it
+   doesn't ghost through. */
+.bar-v2-chips {
+  position: sticky;
+  /* Desktop nav is the floating rounded bar: it ends 16px above --nav-h. */
+  top: calc(var(--nav-h) - 16px);
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+  padding: 10px 2px;
+  margin: 0 -2px;
+  background: var(--bg-page);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.bar-v2-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.bar-v2-chip {
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid #dcd6cc;
+  border-radius: 100px;
+  padding: 6px 14px;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.bar-v2-chip:hover {
+  color: var(--text-primary);
+  border-color: var(--text-tertiary);
+}
+
+/* Mobile nav is full-bleed and ends exactly at --nav-h, so the chips stick
+   flush beneath it there (measured: 72px would tuck 16px under the bar). */
+@media (max-width: 768px) {
+  .bar-v2-chips {
+    top: var(--nav-h);
+  }
+}
+
+/* Landing offset: fixed header plus the sticky chip row, so a jumped-to
+   section title isn't buried under either. */
+#menu,
+#visit,
+#photos {
+  scroll-margin-top: calc(var(--nav-h) + 44px);
+}
+
+/* ====== MENU COLLAPSE ====== */
+
+/* The tail of a long menu. Collapsed is max-height, not display:none — the
+   content stays in the DOM (and therefore in the HTML search engines read);
+   9999px is an effectively-unbounded ceiling that keeps the reveal a plain
+   CSS transition. */
+.bar-v2-menu-more {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.bar-v2-menu-more--open {
+  max-height: 9999px;
+}
+
+.bar-v2-menu-expand {
+  display: block;
+  margin: 20px auto 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid #dcd6cc;
+  border-radius: 100px;
+  padding: 9px 22px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.bar-v2-menu-expand:hover {
+  color: var(--text-primary);
+  border-color: var(--text-tertiary);
+}

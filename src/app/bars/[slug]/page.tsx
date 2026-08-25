@@ -2,11 +2,13 @@ import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBarBySlug, getBarsByCity, getBars } from '@/lib/supabase';
-import type { Bar } from '@/lib/supabase';
+import type { Bar, MenuSection } from '@/lib/supabase';
 import { formatBarType, toUrlSlug } from '@/lib/utils';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
+import { BarSectionChips } from '@/components/BarSectionChips';
+import { MenuCollapse } from '@/components/MenuCollapse';
 import { BarDirectorySidebarPromo, BarDirectorySidebar } from '@/components/BarDirectorySidebar';
 import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import BarGallery from '@/components/BarGallery';
@@ -84,6 +86,31 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   // WhatsApp link: strip everything but digits for wa.me
   const waDigits = bar.whatsapp ? bar.whatsapp.replace(/[^0-9]/g, '') : null;
   const reserveHref = bar.reservation_url || (waDigits ? `https://wa.me/${waDigits}` : null);
+  // Mirrors the Plan Your Visit render condition exactly, so the jump chip
+  // can never point at a section that did not render.
+  const hasVisit = isPaid && !!(bar.opening_hours || bar.address || bar.phone || waDigits || reserveHref);
+
+  // One renderer for both halves of the menu (open head, collapsed tail), so
+  // they cannot drift apart in markup.
+  const renderMenuSection = (section: MenuSection, si: number) => (
+    <div key={si} className="bar-v2-menu-section">
+      <h3 className="bar-v2-menu-section-title">{section.title}</h3>
+      {section.note && <p className="bar-v2-menu-section-note">{section.note}</p>}
+      <ul className="bar-v2-menu-items">
+        {section.items.map((item, ii) => (
+          <li key={ii} className="bar-v2-menu-item">
+            <div className="bar-v2-menu-item-head">
+              <span className="bar-v2-menu-item-name">{item.name}</span>
+              <span className="bar-v2-menu-item-dots" aria-hidden="true" />
+              {item.price && <span className="bar-v2-menu-item-price">{item.price}</span>}
+            </div>
+            {item.ingredients && <p className="bar-v2-menu-item-ingredients">{item.ingredients}</p>}
+            {item.ingredients_alt && <p className="bar-v2-menu-item-ingredients bar-v2-menu-item-ingredients--alt">{item.ingredients_alt}</p>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
   const directionsHref = bar.lat && bar.lng
     ? `https://www.google.com/maps/dir/?api=1&destination=${bar.lat},${bar.lng}`
     : bar.address
@@ -218,6 +245,9 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           )}
         </div>
 
+        {/* Jump chips — only when the page is long enough to need them */}
+        <BarSectionChips hasMenu={!!hasFullMenu} hasPhotos={!!hasGallery} hasVisit={hasVisit} />
+
         {/* Bar Info */}
         <div className="bar-v2-info">
           <div className="bar-v2-info-main">
@@ -333,36 +363,29 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
 
         {/* Full Menu — paid tiers with menu_sections: BarMagazine as the bar's website */}
         {hasFullMenu && (
-          <div className="bar-v2-menu">
+          <div className="bar-v2-menu" id="menu">
             <h2>The Menu</h2>
             <div className="bar-v2-menu-sections">
-              {bar.menu_sections!.map((section, si) => (
-                <div key={si} className="bar-v2-menu-section">
-                  <h3 className="bar-v2-menu-section-title">{section.title}</h3>
-                  {section.note && <p className="bar-v2-menu-section-note">{section.note}</p>}
-                  <ul className="bar-v2-menu-items">
-                    {section.items.map((item, ii) => (
-                      <li key={ii} className="bar-v2-menu-item">
-                        <div className="bar-v2-menu-item-head">
-                          <span className="bar-v2-menu-item-name">{item.name}</span>
-                          <span className="bar-v2-menu-item-dots" aria-hidden="true" />
-                          {item.price && <span className="bar-v2-menu-item-price">{item.price}</span>}
-                        </div>
-                        {item.ingredients && <p className="bar-v2-menu-item-ingredients">{item.ingredients}</p>}
-                        {item.ingredients_alt && <p className="bar-v2-menu-item-ingredients bar-v2-menu-item-ingredients--alt">{item.ingredients_alt}</p>}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+              {bar.menu_sections!.slice(0, 2).map(renderMenuSection)}
             </div>
+            {bar.menu_sections!.length > 2 && (
+              /* Sections beyond the second collapse. They are server-rendered
+                 children of a client wrapper, so the full menu stays in the
+                 HTML for search engines and the schema.org markup built from
+                 it stays truthful — hidden, not removed. */
+              <MenuCollapse>
+                <div className="bar-v2-menu-sections">
+                  {bar.menu_sections!.slice(2).map((section, si) => renderMenuSection(section, si + 2))}
+                </div>
+              </MenuCollapse>
+            )}
             <p className="bar-v2-menu-disclaimer">Menu and prices are provided by the bar and may change seasonally.</p>
           </div>
         )}
 
         {/* Plan Your Visit — paid tiers: hours, directions, call, WhatsApp, reserve */}
-        {isPaid && (bar.opening_hours || bar.address || bar.phone || waDigits || reserveHref) && (
-          <div className="bar-v2-visit">
+        {hasVisit && (
+          <div className="bar-v2-visit" id="visit">
             <h2>Plan Your Visit</h2>
             <div className="bar-v2-visit-grid">
               {bar.opening_hours && (
@@ -406,7 +429,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
 
         {/* Gallery */}
         {hasGallery && (
-          <div className="bar-v2-gallery">
+          <div className="bar-v2-gallery" id="photos">
             <h2>Photos</h2>
             <BarGallery photos={bar.photos.slice(1)} barName={bar.name} />
           </div>
