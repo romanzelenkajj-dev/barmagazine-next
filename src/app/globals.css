@@ -9013,3 +9013,35 @@ textarea.form-input {
   font-size: 14px;
   word-break: break-word;
 }
+
+/* Before/after table in the owner-edit review queue. */
+.admin-diff {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: fixed;
+}
+
+.admin-diff th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-diff td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.admin-diff-from {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+}
+
+.admin-diff-to {
+  font-weight: 600;
+}

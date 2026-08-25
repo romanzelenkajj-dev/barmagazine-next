@@ -90,7 +90,8 @@ export async function notifyOwnerSubmission(notice: OwnerSubmissionNotice): Prom
         </table>
         ${rejectedBlock}
         <p style="margin-top:24px;font-size:13px;color:#999;">
-          Nothing is live until you approve it. Review at ${SITE_URL}/admin/submissions
+          Nothing is live until you approve it.
+          <a href="${SITE_URL}/admin/owner-edits">Review this edit</a>
         </p>
       </div>
     `,
