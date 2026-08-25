@@ -1,20 +1,38 @@
-import { supabase } from './supabase';
+import { getBarStats } from './supabase';
 
 /**
- * Live count of active bars, rounded DOWN to the nearest hundred — marketing
- * copy reads "1,200+ bars", and rounding down is what keeps the "+" honest.
+ * Directory stats for marketing copy, from the same getBarStats() the /bars
+ * hero already renders — one definition of "how many cities", not two that
+ * disagree (the hardcoded copy claimed 140 cities while the hero showed the
+ * live count beside it).
  *
- * Callers are ISR pages, so the number refreshes on their own revalidate
- * schedule as bars are added; nothing here caches beyond that. On a query
- * error it falls back to 1,000 — the old hardcoded floor — because a
- * transient hiccup must never render "0+ bars".
+ * Bars are rounded DOWN to the nearest hundred because the copy appends "+",
+ * and rounding down is what keeps the "+" honest. Cities and countries are
+ * exact. Callers are ISR pages, so the numbers refresh on their own
+ * revalidate schedule.
+ *
+ * Fallbacks are the last hardcoded values — a transient query failure must
+ * never render "0+ bars in 0 cities".
  */
-export async function getBarCountRounded(): Promise<number> {
-  const { count, error } = await supabase
-    .from('bars')
-    .select('id', { head: true, count: 'exact' })
-    .eq('is_active', true);
+export interface DirectoryStats {
+  barsRounded: number;
+  cities: number;
+  countries: number;
+}
 
-  if (error || !count) return 1000;
-  return Math.floor(count / 100) * 100;
+export async function getDirectoryStats(): Promise<DirectoryStats> {
+  try {
+    const { totalBars, totalCities, totalCountries } = await getBarStats();
+    return {
+      barsRounded: totalBars ? Math.floor(totalBars / 100) * 100 : 1000,
+      cities: totalCities || 140,
+      countries: totalCountries || 58,
+    };
+  } catch {
+    return { barsRounded: 1000, cities: 140, countries: 58 };
+  }
+}
+
+export async function getBarCountRounded(): Promise<number> {
+  return (await getDirectoryStats()).barsRounded;
 }

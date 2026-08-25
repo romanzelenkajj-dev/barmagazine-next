@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { cookies, headers } from 'next/headers';
-import { getBarCountRounded } from '@/lib/bar-count';
+import { getDirectoryStats } from '@/lib/bar-count';
 import {
   CURRENCY_COOKIE,
   resolveCurrencyForRequest,
@@ -217,7 +217,7 @@ const MARQUEE_BARS: Array<{ name: string; city: string }> = [
 ];
 
 export default async function FeatureYourBarPage() {
-  const barCount = await getBarCountRounded();
+  const { barsRounded, cities, countries } = await getDirectoryStats();
   const currency = resolveCurrencySSR();
   const sym = symbolFor(currency);
   const ldBlocks = jsonLdBlocks(currency);
@@ -502,9 +502,9 @@ export default async function FeatureYourBarPage() {
             </div>
             <div className="feature-stats">
               <div className="feature-stat"><b>88K+</b><span>Instagram followers</span></div>
-              <div className="feature-stat"><b>{barCount.toLocaleString('en-US')}+</b><span>Bars in directory</span></div>
-              <div className="feature-stat"><b>138</b><span>Cities covered</span></div>
-              <div className="feature-stat"><b>58</b><span>Countries</span></div>
+              <div className="feature-stat"><b>{barsRounded.toLocaleString('en-US')}+</b><span>Bars in directory</span></div>
+              <div className="feature-stat"><b>{cities}</b><span>Cities covered</span></div>
+              <div className="feature-stat"><b>{countries}</b><span>Countries</span></div>
             </div>
           </div>
         </section>

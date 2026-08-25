@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
 import { NearMeBar } from '@/components/NearMeBar';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
-import { getBarCountRounded } from '@/lib/bar-count';
+import { getDirectoryStats } from '@/lib/bar-count';
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -69,7 +69,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const barCount = await getBarCountRounded();
+  const { barsRounded, cities } = await getDirectoryStats();
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
@@ -141,7 +141,7 @@ export default async function RootLayout({
           <Footer />
         </div>
         <CookieConsent />
-        <NearMeBar barCount={barCount} />
+        <NearMeBar barCount={barsRounded} cityCount={cities} />
       </body>
     </html>
   );
