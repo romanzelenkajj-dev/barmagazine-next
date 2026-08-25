@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { getGeoScore } from '@/lib/geo';
 import { formatBarType } from '@/lib/utils';
+import { BarSearchTypeahead } from './BarSearchTypeahead';
 
 interface Props {
   initialBars: Bar[];
@@ -167,26 +168,12 @@ export function BarDirectoryClient({
 
       {/* Search & Filters */}
       <div className="directory-filters">
-        <div className="directory-search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-          <input
-            ref={searchInputRef}
-            type="text"
-            placeholder="Search bars, cities, countries..."
-            value={search}
-            onChange={e => { setSearch(e.target.value); setVisibleCount(ITEMS_PER_PAGE); setListVisibleCount(LIST_PER_PAGE); }}
-          />
-          {search && (
-            <button className="directory-search-clear" onClick={() => setSearch('')} aria-label="Clear search">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            </button>
-          )}
-        </div>
+        <BarSearchTypeahead
+          value={search}
+          onChange={v => { setSearch(v); setVisibleCount(ITEMS_PER_PAGE); setListVisibleCount(LIST_PER_PAGE); }}
+          onClear={() => setSearch('')}
+          inputRef={searchInputRef}
+        />
         <div className="directory-filter-row">
           <select value={countryFilter} onChange={e => { setCountryFilter(e.target.value); setCityFilter(''); setVisibleCount(ITEMS_PER_PAGE); setListVisibleCount(LIST_PER_PAGE); }}>
             <option value="">All Countries</option>

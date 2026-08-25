@@ -9370,3 +9370,62 @@ textarea.form-input {
   color: var(--text-primary);
   border-color: var(--text-tertiary);
 }
+
+/* ====== DIRECTORY SEARCH TYPEAHEAD ====== */
+
+/* Anchor for the dropdown. */
+.directory-search--typeahead {
+  position: relative;
+}
+
+.dir-typeahead {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 200;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(26, 26, 26, 0.12);
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.dir-typeahead-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.dir-typeahead-item strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dir-typeahead-item span {
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Keyboard and hover share one highlight, driven by aria-selected state. */
+.dir-typeahead-item--active {
+  background: var(--bg-card-warm);
+}
+
+.dir-typeahead-empty {
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
