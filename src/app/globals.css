@@ -8843,3 +8843,131 @@ textarea.form-input {
     justify-content: center;
   }
 }
+
+/* ====== ADMIN CLAIM QUEUE ====== */
+.admin-claim-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.admin-claim-tab {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-family: inherit;
+  font-size: 14px;
+  text-transform: capitalize;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.admin-claim-tab.is-active {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: #fff;
+}
+
+.admin-claim {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* A transfer can take a listing off its current owner, so it must not read as
+   a routine row at a glance. */
+.admin-claim--transfer {
+  border: 2px solid var(--accent);
+}
+
+.admin-claim-transfer-flag {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.admin-claim-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.admin-claim-status {
+  background: var(--bg-page);
+  color: var(--text-secondary);
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.admin-claim-fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.admin-claim-fields > div {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-claim-fields dt {
+  color: var(--text-secondary);
+  min-width: 92px;
+}
+
+.admin-claim-fields dd {
+  word-break: break-word;
+}
+
+.admin-claim-note {
+  background: var(--bg-page);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.admin-claim-proof ul {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.admin-claim-revoke {
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 100px;
+  padding: 10px 22px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-claim-revoke:hover:not(:disabled) {
+  background: var(--accent);
+  color: #fff;
+}
+
+@media (min-width: 700px) {
+  .admin-claim-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+}
