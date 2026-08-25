@@ -255,6 +255,13 @@ export default function AdminBarsClient() {
     return result;
   }, [bars, search, countryFilter, typeFilter, sortKey, sortAsc]);
 
+  // Owner edits only — claims and new bars aren't loaded here, so the inbox
+  // itself shows the per-queue counts. This is a nudge, not a total.
+  const pendingEditCount = useMemo(
+    () => bars.reduce((n, b) => n + (b.pending_owner_edits || 0), 0),
+    [bars]
+  );
+
   const countries = useMemo(() => Array.from(new Set(bars.map(b => b.country))).sort(), [bars]);
   const types = useMemo(() => Array.from(new Set(bars.map(b => b.type))).sort(), [bars]);
 
@@ -301,7 +308,12 @@ export default function AdminBarsClient() {
         <div style={styles.headerLeft}>
           <h1 style={styles.title}>Bar Directory Admin</h1>
           <span style={styles.badge}>{filteredBars.length} / {bars.length} bars</span>
-            <Link href="/admin/submissions" style={styles.submissionsLink}>Submissions</Link>
+            {/* One way across to everything awaiting a decision. Previously
+                this pointed at /admin/submissions, which is only the new-bar
+                queue — claims and owner edits had no route from here at all. */}
+            <Link href="/admin/review" style={styles.submissionsLink}>
+              Review inbox{pendingEditCount > 0 ? ` (${pendingEditCount})` : ''}
+            </Link>
           <button
             style={styles.refreshBtn}
             onClick={() => fetchBars(adminSecret)}
