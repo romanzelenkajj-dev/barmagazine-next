@@ -318,17 +318,13 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 006.5 22H20V2H6.5A2.5 2.5 0 004 4.5v15z" /></svg>
               </a>
             )}
-            {/* Claiming is free, so this must not lead to pricing — it pointed at
-                /feature-your-bar, which predates the claim flow existing.
-
-                The visibility rule was disconnected from claiming too: it keyed
-                off `is_verified` (an editorial flag the claim flow never sets)
-                and hid the button whenever the bar had an email on file — which
-                is exactly route B, the auto-verifiable claim. That silently
-                withheld the button from 275 of the 1,054 free bars, the ones
-                that could have claimed themselves in one click. `owner_id` is
-                the real "already spoken for" signal. */}
-            {bar.tier === 'free' && !bar.wp_article_slug && !bar.owner_id && (
+            {/* Every unclaimed bar is claimable — tier does not matter.
+                Nothing is claimed yet, and even the paid tiers (only two bars
+                actually pay) have no owner account, so hiding the button on
+                them just blocked the very owners most likely to want in.
+                `owner_id` is the one real "already spoken for" signal; the
+                pill disappears the moment a claim completes. */}
+            {!bar.owner_id && (
               <Link href={`/claim-your-bar?bar=${encodeURIComponent(bar.slug)}`} className="bar-v2-btn bar-v2-btn--claim">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                 Is this your bar? Claim it
