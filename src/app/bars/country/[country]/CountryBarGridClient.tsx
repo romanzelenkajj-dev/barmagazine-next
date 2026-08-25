@@ -1,6 +1,7 @@
 'use client';
 
 import { BarPlaceholder } from '@/components/BarPlaceholder';
+import { AccoladeBadges } from '@/components/AccoladeBadges';
 import { useState } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
@@ -44,6 +45,7 @@ function CountryBarCard({ bar }: { bar: Bar }) {
           )}
         </div>
         <h3 className="bar-dir-featured-name">{bar.name}</h3>
+        <AccoladeBadges accolades={bar.accolades} limit={2} short className="acc-row--card" />
         <span className="bar-dir-featured-location">
           <svg
             width="11"
