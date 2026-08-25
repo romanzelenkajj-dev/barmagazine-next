@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
-import { searchOrFilter } from '@/lib/ascii-fold';
+import { asciiFold, searchOrFilter } from '@/lib/ascii-fold';
 
 interface Hit {
   slug: string;
@@ -22,8 +22,11 @@ interface Hit {
  * raw query against the originals — one fold implementation, not a second
  * one that could drift).
  *
- * Enter without a highlighted row does nothing beyond what the host already
- * does with the typed text; ↑↓ + Enter or a click navigates to the bar.
+ * It also completes inline: typing "jig" fills the field with "Jigger &
+ * Pony", the un-typed tail selected so the next keystroke replaces it —
+ * Enter mid-word opens that bar. Completion only fires on a NAME prefix
+ * match (never a city or mid-string hit, which would look like the field
+ * fighting the user) and never after a deletion, the classic combobox rule.
  */
 export function BarSearchTypeahead({
   value,
@@ -44,6 +47,15 @@ export function BarSearchTypeahead({
   const [active, setActive] = useState(-1);
   // Monotonic ticket so a slow early response can never overwrite a newer one.
   const ticket = useRef(0);
+  // The last inline completion applied: Enter navigates here while the field
+  // still holds that exact name.
+  const completion = useRef<Hit | null>(null);
+  // True right after a deletion — completing then would fight the user.
+  const deleting = useRef(false);
+  // Prefix length of a completion whose tail still needs selecting once React
+  // commits the completed value (an rAF can fire before the commit lands).
+  const pendingSelect = useRef<number | null>(null);
+  const innerRef = useRef<HTMLInputElement | null>(null);
 
   const q = value.trim();
 
@@ -64,12 +76,44 @@ export function BarSearchTypeahead({
         .order('name')
         .limit(7);
       if (ticket.current !== mine) return; // a newer query superseded this one
-      setHits(error ? [] : ((data as Hit[]) || []));
+      const found = error ? [] : ((data as Hit[]) || []);
+      setHits(found);
       setOpen(true);
       setActive(-1);
+
+      // Inline completion. asciiFold maps characters 1:1, so folded prefix
+      // length equals raw prefix length and slicing by q.length is safe.
+      const node = innerRef.current;
+      const hit = found.find(h => asciiFold(h.name).startsWith(asciiFold(q)) && h.name.length > q.length);
+      if (
+        hit &&
+        !deleting.current &&
+        node &&
+        document.activeElement === node &&
+        node.value.trim() === q // the user hasn't typed past this query
+      ) {
+        completion.current = hit;
+        pendingSelect.current = q.length;
+        onChange(hit.name);
+      }
+      // No else-clear: completing rewrites the value, which refires this
+      // effect for the full name — that pass finds no longer hit and must not
+      // wipe the completion Enter relies on. User edits and Escape clear it.
     }, 150);
     return () => clearTimeout(t);
   }, [q]);
+
+  // Select the completed tail once React has committed the completed value,
+  // so the next keystroke replaces it — the caret behaviour that makes inline
+  // completion feel like a suggestion instead of a hijack.
+  useEffect(() => {
+    const c = completion.current;
+    const node = innerRef.current;
+    if (c && node && pendingSelect.current != null && value === c.name) {
+      node.setSelectionRange(pendingSelect.current, c.name.length);
+      pendingSelect.current = null;
+    }
+  }, [value]);
 
   const go = (slug: string) => {
     setOpen(false);
@@ -88,10 +132,15 @@ export function BarSearchTypeahead({
       if (active >= 0 && hits[active]) {
         e.preventDefault();
         go(hits[active].slug);
+      } else if (completion.current && value === completion.current.name) {
+        // Enter mid-completion: the field already names one bar — open it.
+        e.preventDefault();
+        go(completion.current.slug);
       }
     } else if (e.key === 'Escape') {
       setOpen(false);
       setActive(-1);
+      completion.current = null;
     }
   };
 
@@ -102,11 +151,21 @@ export function BarSearchTypeahead({
         <path d="m21 21-4.35-4.35" />
       </svg>
       <input
-        ref={inputRef}
+        ref={node => {
+          innerRef.current = node;
+          if (inputRef) (inputRef as React.MutableRefObject<HTMLInputElement | null>).current = node;
+        }}
         type="text"
         placeholder={placeholder}
         value={value}
-        onChange={e => onChange(e.target.value)}
+        onChange={e => {
+          // inputType, not length: typing over the selected completion tail
+          // shrinks the value but is still forward typing.
+          const it = (e.nativeEvent as InputEvent).inputType || '';
+          deleting.current = it.startsWith('delete');
+          completion.current = null;
+          onChange(e.target.value);
+        }}
         onKeyDown={onKeyDown}
         onFocus={() => { if (q.length >= 2 && hits.length >= 0) setOpen(true); }}
         onBlur={() => setOpen(false)}
