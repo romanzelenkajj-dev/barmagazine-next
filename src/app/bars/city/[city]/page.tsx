@@ -1,4 +1,5 @@
 import { BarPlaceholder } from '@/components/BarPlaceholder';
+import { hasFiftyBest } from '@/lib/accolades';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -353,10 +354,13 @@ function CityBarCard({ bar }: { bar: Bar }) {
         }
         {/* Status sits on the photo, matching the profile hero. The body is
             left for identity and credentials: name, location, accolades. */}
-        {(isTop10 || isFeatured) && (
+        {(isTop10 || isFeatured || hasFiftyBest(bar.accolades)) && (
           <div className="bar-dir-visual-pills">
             {isTop10 && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
             {isFeatured && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">Featured</span>}
+            {hasFiftyBest(bar.accolades) && (
+              <span className="bar-dir-badge-pill bar-dir-badge-pill--50best">50 Best</span>
+            )}
           </div>
         )}
       </div>
@@ -369,9 +373,6 @@ function CityBarCard({ bar }: { bar: Bar }) {
           </svg>
           {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
         </span>
-        <div className="bar-dir-featured-badges bar-dir-featured-badges--meta">
-          {bar.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(bar.type)}</span>}
-        </div>
       </div>
     </Link>
   );

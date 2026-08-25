@@ -133,3 +133,21 @@ export function awardStrings(accolades: unknown): string[] {
       : `${entry.org} ${entry.year}`
   );
 }
+
+/** The 50 Best family — world plus the regional lists. */
+const FIFTY_BEST_KEYS = new Set(['w50b', 'a50b', 'e50b', 'na50b']);
+
+/**
+ * Does this bar hold any 50 Best accolade?
+ *
+ * For the card marker: a single pill that says "this bar is on a 50 Best list"
+ * without the year, rank or which list — those live on the profile tiles. It
+ * reads the same renderable entries as the tiles, so a bar whose only entry is
+ * missing a year or a source does not get a marker either.
+ *
+ * This replaces the old hardcoded FIFTY_BEST_2025 name list for badging: that
+ * list froze one year's results and matched on bar name.
+ */
+export function hasFiftyBest(accolades: unknown): boolean {
+  return renderableAccolades(accolades).some(e => FIFTY_BEST_KEYS.has(e.org_key));
+}

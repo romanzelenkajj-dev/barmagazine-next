@@ -9218,11 +9218,13 @@ textarea.form-input {
   display: none;
 }
 
-/* Type pill moved below the name and location.
-   It used to sit above the name, where it held a full pill row's height even
-   after Top 10 / Featured moved onto the photo — 56px of space above the name
-   for one small pill. The name now leads the card. */
-.bar-dir-featured-badges--meta {
-  margin-top: 6px;
-  margin-bottom: 0;
+
+/* 50 Best marker on card photos.
+   A single pill saying the bar is on a 50 Best list — no year, no rank, no
+   which list. Those live on the profile tiles, where there is room to read
+   them. Driven by the accolades data, not the old frozen 2025 name list. */
+.bar-dir-badge-pill--50best {
+  background: #B08D3F;
+  color: #fff;
+  border: 1px solid #B08D3F;
 }

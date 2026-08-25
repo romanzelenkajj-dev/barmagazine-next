@@ -11,7 +11,7 @@ import { BarDirectorySidebarPromo, BarDirectorySidebar } from '@/components/BarD
 import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import BarGallery from '@/components/BarGallery';
 import { AccoladeBadges } from '@/components/AccoladeBadges';
-import { awardStrings } from '@/lib/accolades';
+import { awardStrings, hasFiftyBest } from '@/lib/accolades';
 
 export const revalidate = 300;
 // Allow slugs not pre-built at deploy time to be rendered on-demand (ISR)
@@ -416,10 +416,13 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                         <BarPlaceholder name={nb.name} type={nb.type} />
                       )
                     }
-                    {(nb.tier === 'top10' || nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug) && (
+                    {(nb.tier === 'top10' || nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug || hasFiftyBest(nb.accolades)) && (
                       <div className="bar-dir-visual-pills">
                         {nb.tier === 'top10' && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
                         {(nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">Featured</span>}
+                        {hasFiftyBest(nb.accolades) && (
+                          <span className="bar-dir-badge-pill bar-dir-badge-pill--50best">50 Best</span>
+                        )}
                       </div>
                     )}
                   </div>
@@ -432,9 +435,6 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                       </svg>
                       {nb.city}{nb.city !== nb.country ? `, ${nb.country}` : ''}
                     </span>
-                    <div className="bar-dir-featured-badges bar-dir-featured-badges--meta">
-                      {nb.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(nb.type)}</span>}
-                    </div>
                   </div>
                 </Link>
               ))}

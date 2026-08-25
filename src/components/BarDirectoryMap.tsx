@@ -1,6 +1,7 @@
 'use client';
 
 import { asciiFold } from '@/lib/ascii-fold';
+import { hasFiftyBest } from '@/lib/accolades';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
@@ -994,10 +995,13 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
             <BarPlaceholder name={bar.name} type={bar.type} />
           )
         }
-        {(isTop10 || isPremium || isFeatured) && (
+        {(isTop10 || isPremium || isFeatured || hasFiftyBest(bar.accolades)) && (
           <div className="bar-dir-visual-pills">
             {isTop10 && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
             {(isPremium || isFeatured) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+            {hasFiftyBest(bar.accolades) && (
+              <span className="bar-dir-badge-pill bar-dir-badge-pill--50best">50 Best</span>
+            )}
           </div>
         )}
       </div>
@@ -1010,9 +1014,6 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
           </svg>
           {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
         </span>
-        <div className="bar-dir-featured-badges bar-dir-featured-badges--meta">
-          {bar.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(bar.type)}</span>}
-        </div>
       </div>
     </Link>
   );
