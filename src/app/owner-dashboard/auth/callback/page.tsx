@@ -57,20 +57,19 @@ export default function OwnerAuthCallbackPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
-      <div className="w-full max-w-md text-center">
+    <div className="add-bar-page owner-dash owner-dash--narrow">
+      <div className="add-bar-form-card" style={{ textAlign: 'center' }}>
         {error ? (
           <>
-            <p className="text-red-500 text-sm bg-red-900/20 p-4 rounded">{error}</p>
-            <Link
-              href="/owner-dashboard/login"
-              className="inline-block mt-6 text-amber-500 hover:underline"
-            >
-              Request a new link
-            </Link>
+            <p className="add-bar-error">{error}</p>
+            <p style={{ marginTop: 20 }}>
+              <Link href="/owner-dashboard/login" className="feature-link">
+                Request a new link
+              </Link>
+            </p>
           </>
         ) : (
-          <p className="text-gray-400">Signing you in…</p>
+          <p>Signing you in…</p>
         )}
       </div>
     </div>

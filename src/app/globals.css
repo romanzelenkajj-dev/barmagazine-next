@@ -8628,3 +8628,216 @@ textarea.form-input {
   font-size: 0.78rem;
   margin-top: 0;
 }
+
+/* ====== OWNER AREA ======
+   Dashboard, edit form, sign-in and the auth callback. Built on the same
+   variables and the .add-bar-* family as /add-your-bar — these pages were
+   previously raw Tailwind (black page, 4px corners) inside a cream site.
+   Bar owners open this on a phone behind the bar, so every layout here is
+   single-column first and only splits on wider screens. */
+
+.owner-dash {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.owner-dash--narrow {
+  max-width: 520px;
+}
+
+.owner-dash-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.owner-dash-title {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.owner-dash-sub {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.owner-dash-back {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.owner-dash-back:hover {
+  color: var(--text-primary);
+}
+
+.owner-dash-head-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.owner-dash-signout {
+  background: none;
+  border: 0;
+  padding: 0 4px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.owner-dash-signout:hover {
+  color: var(--accent);
+}
+
+.owner-dash-section {
+  margin-top: 32px;
+}
+
+.owner-dash-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+/* Bars */
+.owner-dash-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+}
+
+.owner-dash-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.owner-dash-card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.owner-dash-card-body {
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.owner-dash-card-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.owner-dash-card-meta {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.owner-dash-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Pending submissions */
+.owner-dash-subs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.owner-dash-sub {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.owner-dash-sub-title {
+  font-weight: 600;
+}
+
+.owner-dash-status {
+  border-radius: 100px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Photos */
+.owner-dash-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.owner-dash-photo {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.owner-dash-note {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+.owner-dash-sent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+@media (min-width: 700px) {
+  .owner-dash-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .owner-dash-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .owner-dash-title {
+    font-size: 24px;
+  }
+
+  /* Full-width tap targets — this is used one-handed behind a bar. */
+  .owner-dash-card-actions .feature-btn,
+  .add-bar-submit {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}

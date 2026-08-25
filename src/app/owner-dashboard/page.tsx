@@ -5,6 +5,14 @@ import { useRouter } from 'next/navigation';
 import { authHeader, signOut } from '@/lib/owner-session';
 import Link from 'next/link';
 
+/**
+ * Owner dashboard.
+ *
+ * Styled with the site's own system (--bg-page, --bg-card, --radius, --accent)
+ * and the .add-bar-* family, rather than raw Tailwind utilities. It used to be
+ * a black page with 4px corners inside a warm cream site.
+ */
+
 interface Bar {
   id: string;
   name: string;
@@ -23,6 +31,12 @@ interface Submission {
   submitted_data: Record<string, unknown>;
   created_at: string;
 }
+
+const STATUS_TONE: Record<string, { bg: string; fg: string }> = {
+  approved: { bg: '#d4edda', fg: '#155724' },
+  rejected: { bg: '#f8d7da', fg: '#721c24' },
+  pending: { bg: '#fff3cd', fg: '#856404' },
+};
 
 export default function OwnerDashboardPage() {
   const router = useRouter();
@@ -67,94 +81,101 @@ export default function OwnerDashboardPage() {
     router.push('/owner-dashboard/login');
   }
 
+  const barName = (id: string) => bars.find(b => b.id === id)?.name || 'your bar';
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <p>Loading dashboard...</p>
+      <div className="add-bar-page">
+        <div className="add-bar-form-card">
+          <p>Loading your bars…</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <header className="border-b border-gray-800 px-6 py-4 flex items-center justify-between">
+    <div className="add-bar-page owner-dash">
+      <header className="owner-dash-head">
         <div>
-          <h1 className="text-2xl font-bold">Owner Dashboard</h1>
-          <p className="text-gray-400 text-sm">{ownerEmail}</p>
+          <h1 className="owner-dash-title">Your bars</h1>
+          {ownerEmail && <p className="owner-dash-sub">Signed in as {ownerEmail}</p>}
         </div>
-        <div className="flex gap-4 items-center">
-          <Link href="/" className="text-gray-400 hover:text-white text-sm">Back to Site</Link>
-          <button onClick={handleLogout} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-sm">Logout</button>
+        <div className="owner-dash-head-actions">
+          <Link href="/" className="feature-btn feature-btn-outline">Back to site</Link>
+          <button onClick={handleLogout} className="owner-dash-signout">Sign out</button>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-8">
-        {error && <p className="text-red-500 mb-4">{error}</p>}
+      {error && <p className="add-bar-error">{error}</p>}
 
-        <section className="mb-12">
-          <h2 className="text-xl font-semibold mb-4">Your Bars</h2>
-          {bars.length === 0 ? (
-            <p className="text-gray-400">No bars linked to your account yet.</p>
-          ) : (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {bars.map((bar) => (
-                <div key={bar.id} className="border border-gray-800 rounded-lg p-4">
-                  {bar.featured_image && (
-                    <img src={bar.featured_image} alt={bar.name} className="w-full h-40 object-cover rounded mb-3" />
-                  )}
-                  <h3 className="font-semibold text-lg">{bar.name}</h3>
-                  <p className="text-gray-400 text-sm">{bar.address}</p>
-                  <p className="text-gray-500 text-xs mt-1">{bar.neighborhood}</p>
-                  <div className="mt-3 flex gap-2">
-                    <Link
-                      href={`/owner-dashboard/edit/${bar.slug}`}
-                      className="bg-amber-600 hover:bg-amber-700 px-3 py-1 rounded text-sm"
-                    >
-                      Edit Bar
+      <section className="owner-dash-section">
+        {bars.length === 0 ? (
+          <div className="add-bar-form-card">
+            <h2 className="owner-dash-section-title">No bars yet</h2>
+            <p>
+              Once you&apos;ve claimed a bar it appears here.{' '}
+              <Link href="/claim-your-bar" className="feature-link">Claim your bar</Link> — it&apos;s free.
+            </p>
+          </div>
+        ) : (
+          <div className="owner-dash-grid">
+            {bars.map(bar => (
+              <article key={bar.id} className="owner-dash-card">
+                {bar.featured_image && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={bar.featured_image} alt="" className="owner-dash-card-img" />
+                )}
+                <div className="owner-dash-card-body">
+                  <h2 className="owner-dash-card-name">{bar.name}</h2>
+                  {bar.address && <p className="owner-dash-card-meta">{bar.address}</p>}
+                  <div className="owner-dash-card-actions">
+                    <Link href={`/owner-dashboard/edit/${bar.slug}`} className="feature-btn">
+                      Edit details
                     </Link>
-                    <Link
-                      href={`/bars/${bar.slug}`}
-                      className="border border-gray-600 hover:border-gray-400 px-3 py-1 rounded text-sm"
-                    >
-                      View Page
+                    <Link href={`/bars/${bar.slug}`} className="feature-btn feature-btn-outline">
+                      View listing
                     </Link>
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
-        </section>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
 
-        <section className="mb-12">
-          <h2 className="text-xl font-semibold mb-4">Your Submissions</h2>
-          {submissions.length === 0 ? (
-            <p className="text-gray-400">No pending submissions.</p>
-          ) : (
-            <div className="space-y-3">
-              {submissions.map((sub) => (
-                <div key={sub.id} className="border border-gray-800 rounded-lg p-4 flex items-center justify-between">
+      <section className="owner-dash-section">
+        <h2 className="owner-dash-section-title">Pending changes</h2>
+        {submissions.length === 0 ? (
+          <div className="add-bar-form-card">
+            <p>
+              Nothing waiting. Edits you submit are reviewed before they go live,
+              and show up here until then.
+            </p>
+          </div>
+        ) : (
+          <div className="owner-dash-subs">
+            {submissions.map(sub => {
+              const tone = STATUS_TONE[sub.status] || STATUS_TONE.pending;
+              return (
+                <div key={sub.id} className="owner-dash-sub">
                   <div>
-                    <p className="font-medium">Submission for bar: {sub.bar_id}</p>
-                    <p className="text-gray-500 text-xs">Submitted: {new Date(sub.created_at).toLocaleDateString()}</p>
+                    <p className="owner-dash-sub-title">{barName(sub.bar_id)}</p>
+                    <p className="owner-dash-card-meta">
+                      Submitted {new Date(sub.created_at).toLocaleDateString()}
+                    </p>
                   </div>
-                  <span className={`px-3 py-1 rounded text-xs font-medium ${
-                    sub.status === 'approved' ? 'bg-green-900 text-green-300' :
-                    sub.status === 'rejected' ? 'bg-red-900 text-red-300' :
-                    'bg-yellow-900 text-yellow-300'
-                  }`}>
+                  <span
+                    className="owner-dash-status"
+                    style={{ background: tone.bg, color: tone.fg }}
+                  >
                     {sub.status}
                   </span>
                 </div>
-              ))}
-            </div>
-          )}
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold mb-4">Submit Changes</h2>
-          <p className="text-gray-400 mb-4">Want to update your bar info or upload new photos? Select a bar above and click Edit.</p>
-        </section>
-      </main>
+              );
+            })}
+          </div>
+        )}
+      </section>
     </div>
   );
 }

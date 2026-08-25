@@ -4,21 +4,58 @@ import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { authHeader, signOut } from '@/lib/owner-session';
 import Link from 'next/link';
+import { OWNER_EDITABLE_FIELDS } from '@/lib/owner-fields';
+
+/**
+ * Owner edit form.
+ *
+ * Two things kept in step here:
+ *
+ *  1. Styling uses the site's own system and the .add-bar-* family, the same
+ *     classes /add-your-bar uses, instead of raw Tailwind.
+ *  2. The fields match the server allowlist. It previously offered name,
+ *     description, neighborhood and hours — the first two the server drops as
+ *     editorial, and the last two are not columns on `bars` at all. An owner
+ *     could carefully rewrite their description, get "submitted for review",
+ *     and have it silently discarded.
+ */
 
 interface BarData {
   id: string;
   name: string;
   slug: string;
   address: string;
-  neighborhood: string;
   phone: string;
   website: string;
   instagram: string;
-  description: string;
-  hours: string;
+  email: string;
+  opening_hours: string;
+  reservation_url: string;
+  whatsapp: string;
+  menu_url: string;
   featured_image: string;
   gallery_images: string[];
+  photos?: string[];
 }
+
+/** Text fields an owner may edit, in the order they appear on the form. */
+const TEXT_FIELDS = [
+  { key: 'address', label: 'Address', placeholder: 'Street, number, postcode' },
+  { key: 'phone', label: 'Phone', placeholder: '+34 900 000 000' },
+  { key: 'email', label: 'Contact email', placeholder: 'hello@yourbar.com' },
+  { key: 'website', label: 'Website', placeholder: 'https://yourbar.com' },
+  { key: 'instagram', label: 'Instagram', placeholder: 'yourbar' },
+  { key: 'whatsapp', label: 'WhatsApp', placeholder: '+34 900 000 000' },
+  { key: 'reservation_url', label: 'Reservations link', placeholder: 'https://…' },
+  { key: 'menu_url', label: 'Menu link', placeholder: 'https://…' },
+] as const;
+
+type FormState = Record<string, string>;
+
+const EMPTY: FormState = {
+  address: '', phone: '', email: '', website: '', instagram: '',
+  whatsapp: '', reservation_url: '', menu_url: '', opening_hours: '',
+};
 
 export default function EditBarPage() {
   const router = useRouter();
@@ -31,10 +68,7 @@ export default function EditBarPage() {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [formData, setFormData] = useState({
-    name: '', address: '', neighborhood: '', phone: '',
-    website: '', instagram: '', description: '', hours: '',
-  });
+  const [formData, setFormData] = useState<FormState>(EMPTY);
 
   const fetchBar = useCallback(async () => {
     const headers = await authHeader();
@@ -46,12 +80,9 @@ export default function EditBarPage() {
       const found = data.bars?.find((b: BarData) => b.slug === slug);
       if (!found) { setError('Bar not found or not owned by you'); setLoading(false); return; }
       setBar(found);
-      setFormData({
-        name: found.name || '', address: found.address || '',
-        neighborhood: found.neighborhood || '', phone: found.phone || '',
-        website: found.website || '', instagram: found.instagram || '',
-        description: found.description || '', hours: found.hours || '',
-      });
+      const next: FormState = { ...EMPTY };
+      for (const key of Object.keys(EMPTY)) next[key] = found[key as keyof BarData]?.toString() || '';
+      setFormData(next);
     } catch { setError('Failed to load bar data'); }
     finally { setLoading(false); }
   }, [slug, router]);
@@ -64,19 +95,23 @@ export default function EditBarPage() {
     const headers = await authHeader();
     if (!headers) { router.push('/owner-dashboard/login'); return; }
     try {
+      // Only send what the server accepts. Belt and braces — the server
+      // filters too — but it keeps the request honest about its intent.
+      const updates: FormState = {};
+      for (const key of Object.keys(EMPTY)) {
+        if ((OWNER_EDITABLE_FIELDS as readonly string[]).includes(key)) updates[key] = formData[key];
+      }
       const res = await fetch('/api/owner/bars', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', ...headers },
-        body: JSON.stringify({ bar_id: bar?.id, updates: formData }),
+        body: JSON.stringify({ bar_id: bar?.id, updates }),
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error || 'Failed to submit'); return; }
-      // The API drops anything outside the owner allowlist; say so rather than
-      // reporting a clean success for an edit that was partly discarded.
       setSuccess(
         data.rejected?.length
           ? `Submitted for review. Not included (editorial fields): ${data.rejected.join(', ')}`
-          : 'Changes submitted for admin review!'
+          : 'Sent for review — we’ll publish it once it’s checked.'
       );
     } catch { setError('Network error'); }
     finally { setSaving(false); }
@@ -92,74 +127,122 @@ export default function EditBarPage() {
     fd.append('bar_id', bar?.id || '');
     Array.from(files).forEach((f) => fd.append('photos', f));
     try {
-      const res = await fetch('/api/owner/photos', {
-        method: 'POST',
-        headers,
-        body: fd,
-      });
+      const res = await fetch('/api/owner/photos', { method: 'POST', headers, body: fd });
       if (!res.ok) { setError('Photo upload failed'); return; }
-      setSuccess('Photos uploaded and submitted for review!');
+      setSuccess('Photos uploaded and sent for review.');
       fetchBar();
     } catch { setError('Upload failed'); }
     finally { setUploading(false); }
   }
 
-  if (loading) return <div className="min-h-screen bg-black text-white flex items-center justify-center"><p>Loading...</p></div>;
-  if (!bar) return <div className="min-h-screen bg-black text-white flex items-center justify-center"><p className="text-red-500">{error || 'Bar not found'}</p></div>;
+  if (loading) {
+    return (
+      <div className="add-bar-page">
+        <div className="add-bar-form-card"><p>Loading…</p></div>
+      </div>
+    );
+  }
+
+  if (!bar) {
+    return (
+      <div className="add-bar-page">
+        <div className="add-bar-form-card">
+          <p className="add-bar-error">{error || 'Bar not found'}</p>
+          <p style={{ marginTop: 16 }}>
+            <Link href="/owner-dashboard" className="feature-link">Back to your bars</Link>
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const gallery = bar.photos?.length ? bar.photos : bar.gallery_images || [];
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <header className="border-b border-gray-800 px-6 py-4 flex items-center justify-between">
+    <div className="add-bar-page owner-dash">
+      <header className="owner-dash-head">
         <div>
-          <Link href="/owner-dashboard" className="text-gray-400 hover:text-white text-sm">← Back to Dashboard</Link>
-          <h1 className="text-2xl font-bold mt-1">Edit: {bar.name}</h1>
+          <Link href="/owner-dashboard" className="owner-dash-back">← Your bars</Link>
+          <h1 className="owner-dash-title">{bar.name}</h1>
+          <p className="owner-dash-sub">
+            Changes are reviewed before they go live. Nothing here publishes straight away.
+          </p>
         </div>
       </header>
-      <main className="max-w-3xl mx-auto px-6 py-8">
-        {error && <p className="text-red-500 bg-red-900/20 p-3 rounded mb-4">{error}</p>}
-        {success && <p className="text-green-500 bg-green-900/20 p-3 rounded mb-4">{success}</p>}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {(['name','address','neighborhood','phone','website','instagram','hours'] as const).map((field) => (
-            <div key={field}>
-              <label className="block text-sm text-gray-400 mb-1 capitalize">{field}</label>
-              <input
-                value={formData[field]}
-                onChange={(e) => setFormData({...formData, [field]: e.target.value})}
-                className="w-full bg-gray-900 border border-gray-700 rounded px-4 py-2 text-white"
-              />
-            </div>
-          ))}
-          <div>
-            <label className="block text-sm text-gray-400 mb-1">Description</label>
+      {error && <p className="add-bar-error">{error}</p>}
+      {success && <p className="add-bar-success">{success}</p>}
+
+      <div className="add-bar-form-card">
+        <form onSubmit={handleSubmit} className="add-bar-form">
+          <div className="add-bar-form-section">
+            <h2 className="owner-dash-section-title">Contact &amp; location</h2>
+            {TEXT_FIELDS.map(({ key, label, placeholder }) => (
+              <div key={key}>
+                <label className="form-label" htmlFor={`f-${key}`}>{label}</label>
+                <input
+                  id={`f-${key}`}
+                  className="form-input"
+                  value={formData[key]}
+                  placeholder={placeholder}
+                  onChange={e => setFormData({ ...formData, [key]: e.target.value })}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="add-bar-form-section">
+            <h2 className="owner-dash-section-title">Opening hours</h2>
+            <label className="form-label" htmlFor="f-opening_hours">Hours</label>
             <textarea
-              value={formData.description}
-              onChange={(e) => setFormData({...formData, description: e.target.value})}
+              id="f-opening_hours"
+              className="form-input"
               rows={4}
-              className="w-full bg-gray-900 border border-gray-700 rounded px-4 py-2 text-white"
+              placeholder={'Mon–Thu 18:00–01:00\nFri–Sat 18:00–03:00\nSun closed'}
+              value={formData.opening_hours}
+              onChange={e => setFormData({ ...formData, opening_hours: e.target.value })}
             />
           </div>
-          <button type="submit" disabled={saving} className="bg-amber-600 hover:bg-amber-700 disabled:opacity-50 px-6 py-2 rounded font-medium">
-            {saving ? 'Submitting...' : 'Submit Changes for Review'}
-          </button>
-        </form>
 
-        <section className="mt-12">
-          <h2 className="text-xl font-semibold mb-4">Photos</h2>
-          {bar.featured_image && <img src={bar.featured_image} alt="Featured" className="w-full h-48 object-cover rounded mb-4" />}
-          {bar.gallery_images && bar.gallery_images.length > 0 && (
-            <div className="grid grid-cols-3 gap-2 mb-4">
-              {bar.gallery_images.map((img, i) => <img key={i} src={img} alt="" className="h-32 w-full object-cover rounded" />)}
+          <button type="submit" className="add-bar-submit" disabled={saving}>
+            {saving ? 'Sending…' : 'Send changes for review'}
+          </button>
+
+          <p className="owner-dash-note">
+            Your bar&apos;s name, description and awards are written by our editors, so
+            they aren&apos;t editable here. Spotted something wrong?{' '}
+            <a href="mailto:office@barmagazine.com" className="feature-link">Tell us</a>.
+          </p>
+        </form>
+      </div>
+
+      <section className="owner-dash-section">
+        <h2 className="owner-dash-section-title">Photos</h2>
+        <div className="add-bar-form-card">
+          {gallery.length > 0 && (
+            <div className="owner-dash-photos">
+              {gallery.map((img, i) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={i} src={img} alt="" className="owner-dash-photo" />
+              ))}
             </div>
           )}
-          <label className="block">
-            <span className="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded cursor-pointer inline-block">
-              {uploading ? 'Uploading...' : 'Upload New Photos'}
+          <label className="add-bar-photo-dropzone" style={{ cursor: 'pointer' }}>
+            <strong>{uploading ? 'Uploading…' : 'Add photos'}</strong>
+            <span className="add-bar-photo-dropzone-sub">
+              JPG, PNG or WebP. New photos are reviewed before they appear.
             </span>
-            <input type="file" multiple accept="image/*" onChange={handlePhotoUpload} className="hidden" disabled={uploading} />
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handlePhotoUpload}
+              disabled={uploading}
+              style={{ display: 'none' }}
+            />
           </label>
-        </section>
-      </main>
+        </div>
+      </section>
     </div>
   );
 }

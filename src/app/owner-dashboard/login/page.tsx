@@ -41,58 +41,57 @@ export default function OwnerLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <Link href="/" className="text-2xl font-bold">Bar Magazine</Link>
-          <h1 className="text-xl mt-4">Owner Sign In</h1>
-        </div>
+    <div className="add-bar-page owner-dash owner-dash--narrow">
+      <div className="add-bar-form-card">
+        <h1 className="owner-dash-title">Owner sign in</h1>
+        <p className="owner-dash-sub">Manage the bar you’ve claimed.</p>
 
         {sent ? (
-          <div className="space-y-4 text-center">
-            <p className="text-green-500 text-sm bg-green-900/20 p-4 rounded">
+          <div className="owner-dash-sent">
+            <p className="add-bar-success">
               If that address can access a bar, a sign-in link is on its way.
             </p>
-            <p className="text-gray-400 text-sm">
+            <p className="owner-dash-note">
               The link opens your dashboard directly — no password needed. It expires
               shortly, so request a new one if it stops working.
             </p>
             <button
               onClick={() => { setSent(false); setEmail(''); }}
-              className="text-amber-500 hover:underline text-sm"
+              className="feature-link"
             >
               Use a different address
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {error && <p className="text-red-500 text-sm bg-red-900/20 p-3 rounded">{error}</p>}
+          <form onSubmit={handleSubmit} className="add-bar-form">
+            {error && <p className="add-bar-error">{error}</p>}
 
             <div>
-              <label className="block text-sm text-gray-400 mb-1">Email</label>
+              <label className="form-label" htmlFor="owner-email">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 autoComplete="email"
-                className="w-full bg-gray-900 border border-gray-700 rounded px-4 py-2 text-white focus:border-amber-500 focus:outline-none"
+                className="form-input"
+                id="owner-email"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-amber-600 hover:bg-amber-700 disabled:opacity-50 py-2 rounded font-medium"
+              className="add-bar-submit"
             >
               {loading ? 'Sending...' : 'Email me a sign-in link'}
             </button>
           </form>
         )}
 
-        <p className="text-center text-gray-400 text-sm mt-6">
+        <p className="owner-dash-note">
           Don&apos;t have access yet?{' '}
-          <Link href="/feature-your-bar" className="text-amber-500 hover:underline">
+          <Link href="/feature-your-bar" className="feature-link">
             Get your bar listed
           </Link>
         </p>
