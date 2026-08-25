@@ -222,9 +222,10 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         <div className="bar-v2-info">
           <div className="bar-v2-info-main">
             <h1>{bar.name}</h1>
-            {/* Directly under the name, above the copy. Renders nothing at all
-                when the bar has no accolades. Identical on free listings. */}
-            <AccoladeBadges accolades={bar.accolades} limit={3} className="bar-v2-accolades" />
+            <p className="bar-v2-place">{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</p>
+            {/* Placement "A": name → location → tiles. Renders nothing when the
+                bar has no accolades. Identical on free and paid listings. */}
+            <AccoladeBadges accolades={bar.accolades} />
             <p className="bar-v2-description">
               {bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`}
             </p>

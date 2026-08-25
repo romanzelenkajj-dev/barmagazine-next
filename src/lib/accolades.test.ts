@@ -2,11 +2,9 @@ import { describe, it, expect } from 'vitest';
 import {
   isRenderable,
   renderableAccolades,
-  tierFor,
-  valueLabel,
-  orgLabel,
-  badgesFor,
+  tilesFor,
   awardStrings,
+  MAX_TILES,
   type Accolade,
 } from './accolades';
 
@@ -25,7 +23,7 @@ const make = (over: Partial<Accolade> = {}): Accolade => ({ ...base, ...over });
 
 describe('accolades', () => {
   describe('isRenderable — the accuracy guarantee', () => {
-    it('accepts a complete entry', () => {
+    it('accepts a complete entry with a known org', () => {
       expect(isRenderable(make())).toBe(true);
     });
 
@@ -35,16 +33,20 @@ describe('accolades', () => {
 
     it('rejects an entry with no source', () => {
       expect(isRenderable(make({ source: null }))).toBe(false);
-      expect(isRenderable(make({ source: '   ' }))).toBe(false);
+      expect(isRenderable(make({ source: '  ' }))).toBe(false);
+    });
+
+    it('rejects an unknown org_key — there is no approved wording to show', () => {
+      expect(isRenderable(make({ org_key: 'some_new_award' }))).toBe(false);
+    });
+
+    it('rejects 50 Best Discovery — a listing, not a jury ranking', () => {
+      expect(isRenderable(make({ org: "World's 50 Best Bars Discovery" }))).toBe(false);
+      expect(isRenderable(make({ org_key: 'w50b_discovery' }))).toBe(false);
     });
 
     it('rejects junk', () => {
       for (const bad of [null, undefined, 'x', 42, []]) expect(isRenderable(bad)).toBe(false);
-    });
-
-    it('filters a mixed array down to what can be shown', () => {
-      const list = [make(), make({ year: null }), make({ source: '' }), make({ rank: 5 })];
-      expect(renderableAccolades(list)).toHaveLength(2);
     });
 
     it('returns empty for a non-array', () => {
@@ -53,107 +55,89 @@ describe('accolades', () => {
     });
   });
 
-  describe('tierFor — data driven, never hand-tagged', () => {
-    it('gold at score >= 900 regardless of kind', () => {
-      expect(tierFor(make({ score: 900 }))).toBe('acc--top');
-      expect(tierFor(make({ score: 1128 }))).toBe('acc--top');
-      expect(tierFor(make({ score: 950, kind: 'nominee' }))).toBe('acc--top');
+  describe('tilesFor — wording', () => {
+    it('keeps the bold line constant across the whole 50 Best family', () => {
+      const mains = ['w50b', 'a50b', 'e50b', 'na50b'].map(
+        org_key => tilesFor([make({ org_key })])[0].main
+      );
+      expect(mains).toEqual(['50 BEST', '50 BEST', '50 BEST', '50 BEST']);
     });
 
-    it('just below gold falls back to kind', () => {
-      expect(tierFor(make({ score: 899, kind: 'ranked' }))).toBe('acc--rank');
-      expect(tierFor(make({ score: 899, kind: 'winner' }))).toBe('acc--win');
-      expect(tierFor(make({ score: 899, kind: 'nominee' }))).toBe('acc--soft');
-      expect(tierFor(make({ score: 899, kind: 'listed' }))).toBe('acc--soft');
-    });
-  });
-
-  describe('valueLabel', () => {
-    it('ranked shows number and year', () => {
-      expect(valueLabel(make({ rank: 8, year: 2025 }))).toBe('No. 8 · 2025');
+    it('carries the possessive on the region line', () => {
+      const region = (org_key: string) => tilesFor([make({ org_key })])[0].region;
+      expect(region('w50b')).toBe("WORLD'S");
+      expect(region('a50b')).toBe("ASIA'S");
+      expect(region('e50b')).toBe("EUROPE'S");
+      expect(region('na50b')).toBe("N. AMERICA'S");
     });
 
-    it('ranked without a rank falls back to the year alone', () => {
-      expect(valueLabel(make({ rank: null }))).toBe('2025');
+    it('has a bca tile ready before its data lands', () => {
+      const [tile] = tilesFor([make({ org_key: 'bca', org: "Bartender's Choice Awards" })]);
+      expect(tile.region).toBe("BARTENDER'S");
+      expect(tile.main).toBe('CHOICE');
+      expect(tile.tier).toBe('outline');
     });
 
-    it('winner uses the title when there is one', () => {
-      expect(valueLabel(make({ kind: 'winner', title: 'Best Bar', year: 2026 })))
-        .toBe('Best Bar · 2026');
-      expect(valueLabel(make({ kind: 'winner', title: null, year: 2026 })))
-        .toBe('Winner · 2026');
+    it('shows the year as the third line', () => {
+      expect(tilesFor([make({ year: 2024 })])[0].year).toBe('2024');
     });
 
-    it('nominee', () => {
-      expect(valueLabel(make({ kind: 'nominee', year: 2024 }))).toBe('Nominee · 2024');
-    });
-
-    it('listed omits the year even though the entry carries one', () => {
-      expect(valueLabel(make({ kind: 'listed', title: 'Discovery' }))).toBe('Discovery');
-      expect(valueLabel(make({ kind: 'listed', title: null }))).toBe('Listed');
+    it('never exposes a rank — being on the list is the badge', () => {
+      const tile = tilesFor([make({ rank: 1 })])[0];
+      expect(JSON.stringify(tile)).not.toContain('No.');
+      expect(JSON.stringify(tile)).not.toMatch(/"1"/);
     });
   });
 
-  describe('orgLabel', () => {
-    it('is full length by default — the profile has room', () => {
-      expect(orgLabel(make())).toBe("World's 50 Best Bars");
+  describe('tilesFor — colour tiers', () => {
+    it('reserves gold for the world list only', () => {
+      expect(tilesFor([make({ org_key: 'w50b' })])[0].tier).toBe('gold');
+      for (const org_key of ['a50b', 'e50b', 'na50b']) {
+        expect(tilesFor([make({ org_key })])[0].tier).toBe('dark');
+      }
     });
 
-    it('shortens known orgs for cards', () => {
-      expect(orgLabel(make(), { short: true })).toBe("World's 50 Best");
-      expect(orgLabel(make({ org: "North America's 50 Best Bars" }), { short: true }))
-        .toBe('NA 50 Best');
-    });
-
-    it('leaves an unknown org alone rather than truncating blindly', () => {
-      expect(orgLabel(make({ org: 'Some Local Guide' }), { short: true })).toBe('Some Local Guide');
+    it('tier comes from the org, not the score', () => {
+      // A regional list with a huge score is still dark.
+      expect(tilesFor([make({ org_key: 'a50b', score: 5000 })])[0].tier).toBe('dark');
+      // The world list with a low score is still gold.
+      expect(tilesFor([make({ org_key: 'w50b', score: 1 })])[0].tier).toBe('gold');
     });
   });
 
-  describe('badgesFor', () => {
-    const many = [
-      make({ org_key: 'w50b', score: 1000 }),
-      make({ org_key: 'a50b', score: 800 }),
+  describe('tilesFor — limits', () => {
+    const four = [
+      make({ org_key: 'w50b', score: 500 }),
+      make({ org_key: 'a50b', score: 900 }),
       make({ org_key: 'e50b', score: 700 }),
-      make({ org_key: 'na50b', score: 600 }),
+      make({ org_key: 'na50b', score: 800 }),
     ];
 
-    it('caps at the limit and reports the overflow', () => {
-      const { badges, overflow } = badgesFor(many, { limit: 3 });
-      expect(badges).toHaveLength(3);
-      expect(overflow).toBe(1);
+    it('caps at three', () => {
+      expect(tilesFor(four)).toHaveLength(MAX_TILES);
+      expect(MAX_TILES).toBe(3);
     });
 
-    it('keeps the given order — the array arrives sorted by score', () => {
-      const { badges } = badgesFor(many, { limit: 4 });
-      expect(badges[0].tier).toBe('acc--top');
-      expect(badges[1].tier).toBe('acc--rank');
+    it('keeps the top three by score, dropping the lowest', () => {
+      const keys = tilesFor(four).map(t => t.key.split('-')[0]);
+      expect(keys).toEqual(['a50b', 'na50b', 'e50b']);
+      expect(keys).not.toContain('w50b');
     });
 
-    it('counts overflow from renderable entries only', () => {
-      // The dropped entry must not be promised by a "+1 more" chip.
-      const { badges, overflow } = badgesFor([...many.slice(0, 3), make({ year: null })], {
-        limit: 3,
-      });
-      expect(badges).toHaveLength(3);
-      expect(overflow).toBe(0);
-    });
-
-    it('returns nothing for a bar with no accolades — no empty state', () => {
-      expect(badgesFor(null, { limit: 3 })).toEqual({ badges: [], overflow: 0 });
-      expect(badgesFor([], { limit: 3 })).toEqual({ badges: [], overflow: 0 });
+    it('renders nothing for a bar with no accolades', () => {
+      expect(tilesFor(null)).toEqual([]);
+      expect(tilesFor([])).toEqual([]);
     });
 
     it('keeps the source for auditability', () => {
-      const { badges } = badgesFor([make()], { limit: 1 });
-      expect(badges[0].source).toBe(base.source);
+      expect(tilesFor([make()])[0].source).toBe(base.source);
     });
   });
 
   describe('awardStrings', () => {
-    it('renders award text for schema.org/award', () => {
+    it('includes rank for machines even though the tile hides it', () => {
       expect(awardStrings([make({ rank: 8 })])).toEqual([
-        "World's 50 Best Bars — No. 8, 2025",
+        "World's 50 Best Bars 2025 — No. 8",
       ]);
     });
 

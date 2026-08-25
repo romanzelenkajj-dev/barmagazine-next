@@ -9104,141 +9104,91 @@ textarea.form-input {
   color: var(--accent);
 }
 
-/* ====== ACCOLADE BADGES ======
-   Class names and treatment from the approved mockup
-   (claude/accolade-badges-mockup.html). Four tiers, chosen from the data:
-   acc--top (score >= 900), acc--rank, acc--win, acc--soft.
+/* ====== ACCOLADE TILES ======
+   Fixed 74x44 tile, three centred lines: region / constant bold main / year.
+   The bold line is identical on every 50 Best tile — that is what makes them
+   read as one family — so the possessive rides on the region line above it.
 
-   The mockup's --ink/--muted/--line map onto the site's existing tokens; only
-   the two gold values are new, since nothing else here uses them. */
-:root {
-  --acc-gold: #B08D3F;
-  --acc-goldbg: #F3EAD6;
-}
-
-.acc-row {
+   Gold is reserved for the world list. If everything is gold, nothing is. */
+.acc-tiles {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  align-items: center;
+  /* Placement "A": under the location, never beside the name. */
+  margin-top: 14px;
 }
 
-.acc {
-  display: inline-flex;
-  align-items: stretch;
-  border-radius: 3px;
-  overflow: hidden;
-  font-size: 10.5px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  font-weight: 600;
-  white-space: nowrap;
-  text-decoration: none;
+.acc-tile {
+  /* Fixed size is the point: equal tiles line up card to card however long
+     the bar name above them happens to be. */
+  width: 74px;
+  height: 44px;
+  flex: 0 0 74px;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   line-height: 1;
-  /* Long org names must not stretch a card; the label truncates, the value
-     never does — a rank with no number is worse than a clipped org. */
+  overflow: hidden;
+  /* The 6px region line is at the edge of comfortable and the real reading
+     environment is a dark bar. */
+  -webkit-font-smoothing: antialiased;
+}
+
+.acc-tile-region {
+  font-size: 6px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.72;
+  white-space: nowrap;
   max-width: 100%;
 }
 
-.acc .org {
-  padding: 6px 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.acc .val {
-  padding: 6px 8px;
-  font-weight: 700;
-  flex: 0 0 auto;
-}
-
-/* ranked */
-.acc--rank {
-  border: 1px solid var(--text-primary);
-}
-.acc--rank .org {
-  color: var(--text-primary);
-}
-.acc--rank .val {
-  background: var(--text-primary);
-  color: #fff;
-}
-
-/* gold — score >= 900 */
-.acc--top {
-  border: 1px solid var(--acc-gold);
-  background: var(--acc-goldbg);
-}
-.acc--top .org {
-  color: #7a5f22;
-}
-.acc--top .val {
-  background: var(--acc-gold);
-  color: #fff;
-}
-
-/* winner */
-.acc--win {
-  border: 1px solid var(--text-primary);
-  background: var(--text-primary);
-}
-.acc--win .org {
-  color: #fff;
-}
-.acc--win .val {
-  background: var(--acc-gold);
-  color: #fff;
-}
-
-/* nominee / listed */
-.acc--soft {
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-}
-.acc--soft .org {
-  color: var(--text-secondary);
-}
-.acc--soft .val {
-  color: var(--text-primary);
-  border-left: 1px solid var(--border);
-}
-
-.acc--more {
-  border: 1px dashed var(--border);
-  color: var(--text-secondary);
-  padding: 6px 8px;
+.acc-tile-main {
   font-size: 10.5px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  border-radius: 3px;
+  letter-spacing: 0.04em;
+  font-weight: 800;
+  margin: 3px 0 2.5px;
   white-space: nowrap;
 }
 
-/* Spacing in the two places badges appear. */
-.bar-v2-accolades {
-  margin: 10px 0 2px;
+.acc-tile-year {
+  font-size: 6.5px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  opacity: 0.72;
+  white-space: nowrap;
 }
 
-.acc-row--card {
-  margin-top: 8px;
+/* Gold — w50b only */
+.acc-tile--gold {
+  border-color: #B08D3F;
+  background: #F7F0E0;
+  color: #6d5420;
 }
 
-@media (max-width: 768px) {
-  /* A row of chips under a long bar name is where this breaks first: on a
-     phone the org half of a wide chip is what gives, not the layout. */
-  .acc {
-    font-size: 10px;
-    letter-spacing: 0.07em;
-  }
+/* Dark — the regional 50 Best lists */
+.acc-tile--dark {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
 
-  .acc .org,
-  .acc .val {
-    padding: 5px 7px;
-  }
+/* Outline — bca, style shipped ahead of its data */
+.acc-tile--outline {
+  border-color: #111;
+  background: #fff;
+  color: #111;
+}
 
-  .acc-row--card .acc {
-    /* Cards are the tightest case — one chip must never force a card wider
-       than its grid column. */
-    max-width: 100%;
-  }
+/* Location line on the bar profile — the tiles sit under this, per placement A. */
+.bar-v2-place {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-top: 6px;
 }

@@ -383,7 +383,6 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
       </div>
       <div className="bar-dir-card-body">
         <h3>{bar.name}</h3>
-        <AccoladeBadges accolades={bar.accolades} limit={2} short className="acc-row--card" />
         <div className="bar-dir-card-meta">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
@@ -391,6 +390,7 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
           </svg>
           <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
         </div>
+        <AccoladeBadges accolades={bar.accolades} />
         <span className="bar-dir-type">{formatBarType(bar.type)}</span>
       </div>
     </Link>

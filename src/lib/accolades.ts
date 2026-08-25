@@ -1,9 +1,13 @@
 /**
- * Accolade badge logic.
+ * Accolade tiles.
+ *
+ * A fixed 74×44 tile with three centred lines: region, a constant bold main
+ * line, year. The main line is identical on every 50 Best tile — that is what
+ * makes them read as one family, so the possessive rides on the small region
+ * line above it and the bold line never varies.
  *
  * Display-only. `score` is rewritten monthly by a scheduled task with a
- * recency decay, so nothing here recomputes it, caches a derived ranking, or
- * assumes today's numbers hold tomorrow. Tier is read off the data every time.
+ * recency decay, so nothing here recomputes it or caches a derived ranking.
  */
 
 export type AccoladeKind = 'ranked' | 'winner' | 'nominee' | 'listed';
@@ -19,119 +23,99 @@ export interface Accolade {
   source: string | null;
 }
 
-/** Tier classes from the approved mockup. */
-export type AccoladeTier = 'acc--top' | 'acc--rank' | 'acc--win' | 'acc--soft';
+export type AccoladeTier = 'gold' | 'dark' | 'outline';
 
-/** Score at or above which an entry is gold, whatever its kind. */
-export const GOLD_SCORE = 900;
+interface TileDef {
+  /** Small line above the bold one — carries the possessive. */
+  region: string;
+  /** Bold line. Constant across the 50 Best family; never vary it. */
+  main: string;
+  tier: AccoladeTier;
+}
 
 /**
- * An entry without a year or a source is not renderable.
+ * Wording per organisation, possessive exactly as the awarding bodies name
+ * themselves. Getting another organisation's name right is part of the
+ * credibility, the same principle as showing the year.
  *
- * This is the accuracy guarantee for the whole system: every badge on the site
- * can be traced to a dated, cited award. A badge we cannot substantiate is
- * worse than no badge, so these are dropped rather than shown partially.
+ * Gold is reserved for the world list. If everything is gold, nothing is.
+ */
+const TILES: Record<string, TileDef> = {
+  w50b: { region: "WORLD'S", main: '50 BEST', tier: 'gold' },
+  a50b: { region: "ASIA'S", main: '50 BEST', tier: 'dark' },
+  e50b: { region: "EUROPE'S", main: '50 BEST', tier: 'dark' },
+  na50b: { region: "N. AMERICA'S", main: '50 BEST', tier: 'dark' },
+  // Not imported yet; the style ships ahead of the data.
+  bca: { region: "BARTENDER'S", main: 'CHOICE', tier: 'outline' },
+};
+
+/** Most tiles shown anywhere. Beyond this the description carries the rest. */
+export const MAX_TILES = 3;
+
+/**
+ * 50 Best Discovery is a curated listing, not a jury ranking, so it does not
+ * belong beside badges that all mean "a panel voted for this bar". It stays in
+ * the description text only.
+ */
+function isDiscovery(entry: Accolade): boolean {
+  return /discovery/i.test(entry.org || '') || /discovery/i.test(entry.org_key || '');
+}
+
+/**
+ * An entry without a year or a source is not renderable. This is the accuracy
+ * guarantee for the whole system: every tile traces to a dated, cited award.
+ *
+ * An unknown `org_key` is also dropped — there is no approved wording for it,
+ * and inventing one would break the exact-naming rule above.
  */
 export function isRenderable(entry: unknown): entry is Accolade {
   if (!entry || typeof entry !== 'object') return false;
   const a = entry as Record<string, unknown>;
   const hasYear = typeof a.year === 'number' && Number.isFinite(a.year);
   const hasSource = typeof a.source === 'string' && a.source.trim().length > 0;
-  const hasOrg = typeof a.org === 'string' && a.org.trim().length > 0;
-  return hasYear && hasSource && hasOrg;
+  const known = typeof a.org_key === 'string' && Object.prototype.hasOwnProperty.call(TILES, a.org_key);
+  if (!hasYear || !hasSource || !known) return false;
+  return !isDiscovery(a as unknown as Accolade);
 }
 
-/** Renderable entries only, order preserved (the array arrives sorted by score). */
 export function renderableAccolades(accolades: unknown): Accolade[] {
   if (!Array.isArray(accolades)) return [];
   return accolades.filter(isRenderable);
 }
 
-/**
- * Visual tier, driven entirely by the data.
- *
- * Gold wins over kind: a high enough score is the headline whether it came
- * from a ranking or a win. Never hand-tag a tier.
- */
-export function tierFor(entry: Accolade): AccoladeTier {
-  const score = typeof entry.score === 'number' ? entry.score : 0;
-  if (score >= GOLD_SCORE) return 'acc--top';
-  if (entry.kind === 'winner') return 'acc--win';
-  if (entry.kind === 'ranked') return 'acc--rank';
-  return 'acc--soft';
-}
-
-/**
- * Shortened org names — cards only, where horizontal space is scarce. The
- * profile shows the full name, because that is where the credential is being
- * read rather than glanced at.
- */
-const SHORT_ORG: Record<string, string> = {
-  "World's 50 Best Bars": "World's 50 Best",
-  "North America's 50 Best Bars": 'NA 50 Best',
-  "Asia's 50 Best Bars": "Asia's 50 Best",
-  "Europe's 50 Best Bars": "Europe's 50 Best",
-};
-
-export function orgLabel(entry: Accolade, opts: { short?: boolean } = {}): string {
-  if (!opts.short) return entry.org;
-  return SHORT_ORG[entry.org] ?? entry.org;
-}
-
-/**
- * The value half of the chip.
- *
- * `listed` deliberately omits the year — those come from undated discovery
- * lists — but the entry still had to carry one to be renderable at all.
- */
-export function valueLabel(entry: Accolade): string {
-  switch (entry.kind) {
-    case 'ranked':
-      return entry.rank != null ? `No. ${entry.rank} · ${entry.year}` : `${entry.year}`;
-    case 'winner':
-      return `${entry.title || 'Winner'} · ${entry.year}`;
-    case 'nominee':
-      return `Nominee · ${entry.year}`;
-    case 'listed':
-      return entry.title || 'Listed';
-    default:
-      return `${entry.year}`;
-  }
-}
-
-export interface BadgeView {
+export interface TileView {
   key: string;
   tier: AccoladeTier;
-  org: string;
-  value: string;
+  region: string;
+  main: string;
+  year: string;
   /** Kept for auditability — surfaced as a title attribute, not shown. */
   source: string | null;
 }
 
 /**
- * Build the badges to render.
+ * The tiles to render: at most three, highest score first.
  *
- * `limit` caps what is shown; `overflow` is how many renderable entries were
- * left out, for the `+N more` chip. Counting overflow from renderable entries
- * only means the chip never promises badges that would be dropped for missing
- * data.
+ * The array arrives sorted, but sorting a copy costs nothing and makes the
+ * "top 3 by score" rule hold even if an unsorted array ever reaches us. This
+ * reads `score`; it never recomputes it.
  */
-export function badgesFor(
-  accolades: unknown,
-  opts: { limit: number; short?: boolean } = { limit: 3 }
-): { badges: BadgeView[]; overflow: number } {
-  const usable = renderableAccolades(accolades);
-  const shown = usable.slice(0, opts.limit);
-  return {
-    badges: shown.map(entry => ({
-      key: `${entry.org_key || entry.org}-${entry.year}`,
-      tier: tierFor(entry),
-      org: orgLabel(entry, { short: opts.short }),
-      value: valueLabel(entry),
-      source: entry.source,
-    })),
-    overflow: Math.max(0, usable.length - shown.length),
-  };
+export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileView[] {
+  return renderableAccolades(accolades)
+    .slice()
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+    .slice(0, limit)
+    .map(entry => {
+      const def = TILES[entry.org_key];
+      return {
+        key: `${entry.org_key}-${entry.year}`,
+        tier: def.tier,
+        region: def.region,
+        main: def.main,
+        year: String(entry.year),
+        source: entry.source,
+      };
+    });
 }
 
 /**
@@ -139,11 +123,13 @@ export function badgesFor(
  *
  * Deliberately NOT aggregateRating or Review: Google's review-snippet
  * guidelines forbid marking up ratings aggregated from other sites, and an
- * award is not a rating.
+ * award is not a rating. Rank is included here because structured data is for
+ * machines — the visual deliberately omits it.
  */
 export function awardStrings(accolades: unknown): string[] {
-  return renderableAccolades(accolades).map(entry => {
-    const value = valueLabel(entry).replace(' · ', ', ');
-    return `${entry.org} — ${value}`;
-  });
+  return renderableAccolades(accolades).map(entry =>
+    entry.rank != null
+      ? `${entry.org} ${entry.year} — No. ${entry.rank}`
+      : `${entry.org} ${entry.year}`
+  );
 }
