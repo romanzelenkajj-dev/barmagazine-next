@@ -41,7 +41,31 @@ export async function GET(request: NextRequest) {
     if (data.length < PAGE_SIZE) break;
     from += PAGE_SIZE;
   }
-  return NextResponse.json({ bars: allBars });
+  // Which bars have an owner edit waiting. /admin/bars writes to `bars`
+  // directly, while owner edits are proposals in owner_submissions — without
+  // this the two are invisible to each other and a pending edit can sit
+  // unnoticed while someone edits the same bar by hand.
+  const pendingByBar: Record<string, number> = {};
+  const { data: pending, error: pendingError } = await supabase
+    .from('owner_submissions')
+    .select('bar_id')
+    .eq('status', 'pending');
+
+  if (pendingError) {
+    console.error('[manage-bar] pending lookup failed:', pendingError.message);
+  } else {
+    for (const row of pending || []) {
+      const id = String(row.bar_id);
+      pendingByBar[id] = (pendingByBar[id] || 0) + 1;
+    }
+  }
+
+  return NextResponse.json({
+    bars: allBars.map(b => ({
+      ...b,
+      pending_owner_edits: pendingByBar[String(b.id)] || 0,
+    })),
+  });
 }
 
 // POST — update or delete a bar

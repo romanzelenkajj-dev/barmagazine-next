@@ -5,6 +5,8 @@ import Link from 'next/link';
 import PhotoManager from './PhotoManager';
 
 interface Bar {
+  /** Owner edits waiting in /admin/owner-edits for this bar. */
+  pending_owner_edits?: number;
   id: string;
   name: string;
   slug: string;
@@ -375,6 +377,26 @@ export default function AdminBarsClient() {
                     <a href={`/bars/${bar.slug}`} target="_blank" rel="noopener noreferrer" style={styles.nameLink}>
                       {bar.name}
                     </a>
+                    {!!bar.pending_owner_edits && (
+                      <a
+                        href="/admin/owner-edits"
+                        title="The owner has proposed changes to this bar"
+                        style={{
+                          marginLeft: 8,
+                          background: '#fff3cd',
+                          color: '#856404',
+                          borderRadius: 100,
+                          padding: '2px 8px',
+                          fontSize: 11,
+                          fontWeight: 700,
+                          textDecoration: 'none',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {bar.pending_owner_edits} owner edit
+                        {bar.pending_owner_edits > 1 ? 's' : ''} pending
+                      </a>
+                    )}
                   </td>
                   <td style={styles.td}>{bar.city}</td>
                   <td style={styles.td}>{bar.country}</td>
