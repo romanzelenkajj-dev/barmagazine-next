@@ -704,14 +704,35 @@ export function BarDirectoryMapClient({
       return Math.max(0, (1000 - score) * 20);
     };
 
-    // MODE D: "Find bars near me" — literally the closest bars, nothing else.
-    // The button promises proximity, so photos and tiers do not outrank
-    // distance here: before this, a photo bar 10,000km away sorted above a
-    // photo-less bar around the corner. GPS when granted; IP-geo otherwise.
+    // MODE D: "Find bars near me" — proximity is the hard boundary, quality
+    // ranks inside it. Everything within ~50 miles comes first (best bars
+    // leading: tier, then photo, then distance); only then the rest of the
+    // world, by plain distance. A top-10 bar 3,000 miles away never outranks
+    // a photo-less bar in the visitor's own city. GPS when granted; the
+    // IP-geo score converts to real-ish km when the visitor's city is known,
+    // and to "far" buckets when only country/continent match — which lands
+    // those bars outside the radius, exactly where they belong.
     if (nearMode) {
+      const NEAR_RADIUS_KM = 80; // ~50 miles
       return [...filtered].sort((a, b) => {
-        const d = getDistKm(a) - getDistKm(b);
-        if (d !== 0) return d;
+        const dA = getDistKm(a);
+        const dB = getDistKm(b);
+        const nearA = dA <= NEAR_RADIUS_KM ? 0 : 1;
+        const nearB = dB <= NEAR_RADIUS_KM ? 0 : 1;
+        if (nearA !== nearB) return nearA - nearB;
+        if (nearA === 0) {
+          // Inside the radius: the directory's quality order, distance last.
+          const tA = tierRank(a);
+          const tB = tierRank(b);
+          if (tA !== tB) return tA - tB;
+          const pA = hasPhoto(a) ? 0 : 1;
+          const pB = hasPhoto(b) ? 0 : 1;
+          if (pA !== pB) return pA - pB;
+          if (dA !== dB) return dA - dB;
+          return a.name.localeCompare(b.name);
+        }
+        // Beyond the radius: nothing beats being closer.
+        if (dA !== dB) return dA - dB;
         return a.name.localeCompare(b.name);
       });
     }
@@ -937,6 +958,14 @@ export function BarDirectoryMapClient({
             </div>
           ) : (
             <div className="dir-section">
+              {/* Near mode is otherwise invisible — without this strip the
+                  distance sort and the default sort are indistinguishable,
+                  and nobody can tell whether the button worked. */}
+              {nearMode && (
+                <p className="dir-near-note">
+                  Sorted by distance — bars within ~50 miles first{userLat === null ? ' (enable location for exact distances)' : ''}.
+                </p>
+              )}
               {/* ══ UNIFIED GRID: all bars, same card design, sorted by tier then proximity ══ */}
               <div className="directory-featured-grid">
                 {allFiltered.slice(0, gridVisible).map(bar => (

@@ -2204,12 +2204,18 @@ button {
      under 16px — and the zoom STAYS after navigating, which is the "profile
      opens shifted right, no left padding until you pinch out" bug. The
      directory search was 15px and its filter selects 13px, so tapping either
-     zoomed every subsequent page. 16px on every control ends the whole class
-     of bug; mobile-only, desktop keeps its sizes. */
+     zoomed every subsequent page.
+
+     !important is deliberate: .directory-search input { font-size: 15px },
+     .directory-filter-row select { 13px }, .form-input { 15px } all outrank
+     a bare element selector (media queries add no specificity), which made
+     the first version of this rule inert — the zoom survived it. This is a
+     device constraint, not a style preference: no mobile control may ever
+     sit below 16px, including ones added later. */
   input,
   select,
   textarea {
-    font-size: 16px;
+    font-size: 16px !important;
   }
 
   body {
@@ -9445,5 +9451,13 @@ textarea.form-input {
 .dir-typeahead-empty {
   padding: 12px 14px;
   font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Near-mode indicator above the directory grid — proof the distance sort is
+   active, since the grid itself looks identical under any ordering. */
+.dir-near-note {
+  margin: 0 0 14px;
+  font-size: 13px;
   color: var(--text-secondary);
 }
