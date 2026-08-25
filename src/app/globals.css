@@ -3452,7 +3452,10 @@ textarea.form-input {
 
 /* Body below the photo */
 .bar-dir-featured-body {
-  padding: 18px 20px 22px;
+  /* Tightened top and bottom: with the status pills on the photo and the
+     accolade tiles gone, the body holds three short lines and the old
+     18/22 padding left the text floating in the card. */
+  padding: 14px 20px 16px;
 }
 
 /* Badges row */
@@ -9220,6 +9223,6 @@ textarea.form-input {
    after Top 10 / Featured moved onto the photo — 56px of space above the name
    for one small pill. The name now leads the card. */
 .bar-dir-featured-badges--meta {
-  margin-top: 8px;
+  margin-top: 6px;
   margin-bottom: 0;
 }
