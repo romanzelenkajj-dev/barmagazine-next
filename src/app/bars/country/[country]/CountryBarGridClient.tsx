@@ -40,13 +40,6 @@ function CountryBarCard({ bar }: { bar: Bar }) {
         )}
       </div>
       <div className="bar-dir-featured-body">
-        <div className="bar-dir-featured-badges">
-          {bar.type && (
-            <span className="bar-dir-badge-pill bar-dir-badge-pill--type">
-              {formatBarType(bar.type)}
-            </span>
-          )}
-        </div>
         <h3 className="bar-dir-featured-name">{bar.name}</h3>
         <span className="bar-dir-featured-location">
           <svg
@@ -63,6 +56,13 @@ function CountryBarCard({ bar }: { bar: Bar }) {
           {bar.city}
           {bar.city !== bar.country ? `, ${bar.country}` : ''}
         </span>
+        <div className="bar-dir-featured-badges bar-dir-featured-badges--meta">
+          {bar.type && (
+            <span className="bar-dir-badge-pill bar-dir-badge-pill--type">
+              {formatBarType(bar.type)}
+            </span>
+          )}
+        </div>
       </div>
     </Link>
   );

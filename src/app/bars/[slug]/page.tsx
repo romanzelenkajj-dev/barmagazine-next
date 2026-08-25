@@ -424,9 +424,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                     )}
                   </div>
                   <div className="bar-dir-featured-body">
-                    <div className="bar-dir-featured-badges">
-                      {nb.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(nb.type)}</span>}
-                    </div>
+
                     <h3 className="bar-dir-featured-name">{nb.name}</h3>
                     <span className="bar-dir-featured-location">
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -434,6 +432,9 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                       </svg>
                       {nb.city}{nb.city !== nb.country ? `, ${nb.country}` : ''}
                     </span>
+                    <div className="bar-dir-featured-badges bar-dir-featured-badges--meta">
+                      {nb.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(nb.type)}</span>}
+                    </div>
                   </div>
                 </Link>
               ))}
