@@ -3499,6 +3499,10 @@ textarea.form-input {
   /* Bigger since the accolade tiles left the card: the name now carries the
      card, and 18px in a ~250px content box left the block looking thin. */
   font-size: 21px;
+  /* Tailwind preflight is disabled, so the browser's default h3 margin of 1em
+     applies — which scales WITH font-size. Raising the name to 21px silently
+     raised the gap above it to 21px too. */
+  margin-top: 0;
   font-weight: 600;
   line-height: 1.22;
   color: #1a1a1a;
