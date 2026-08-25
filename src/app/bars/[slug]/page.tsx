@@ -10,6 +10,8 @@ import { BarProfileClient } from '@/components/BarProfileClient';
 import { BarDirectorySidebarPromo, BarDirectorySidebar } from '@/components/BarDirectorySidebar';
 import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import BarGallery from '@/components/BarGallery';
+import { AccoladeBadges } from '@/components/AccoladeBadges';
+import { awardStrings } from '@/lib/accolades';
 
 export const revalidate = 300;
 // Allow slugs not pre-built at deploy time to be rendered on-demand (ISR)
@@ -108,6 +110,10 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
     ...(bar.phone && { telephone: bar.phone }),
     ...(bar.email && { email: bar.email }),
     ...(bar.instagram && { sameAs: [`https://instagram.com/${bar.instagram.replace('@', '')}`] }),
+    // Awards as schema.org/award strings. Deliberately NOT aggregateRating or
+    // Review: Google's review-snippet guidelines forbid marking up ratings
+    // aggregated from other sites, and an award is not a rating.
+    ...(awardStrings(bar.accolades).length && { award: awardStrings(bar.accolades) }),
     ...(bar.tier === 'premium' && { priceRange: '$$$' }),
     ...(bar.tier === 'featured' && { priceRange: '$$' }),
     ...(bar.tier === 'top10' && { priceRange: '$$' }),
@@ -216,6 +222,9 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         <div className="bar-v2-info">
           <div className="bar-v2-info-main">
             <h1>{bar.name}</h1>
+            {/* Directly under the name, above the copy. Renders nothing at all
+                when the bar has no accolades. Identical on free listings. */}
+            <AccoladeBadges accolades={bar.accolades} limit={3} className="bar-v2-accolades" />
             <p className="bar-v2-description">
               {bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`}
             </p>

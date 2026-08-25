@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { searchOrFilter } from './ascii-fold';
+import type { Accolade } from './accolades';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -51,6 +52,12 @@ export interface Bar {
   is_verified: boolean;
   is_active: boolean;
   wp_article_slug: string | null;
+  /**
+   * Editorial award entries, pre-sorted by score descending, one per org_key.
+   * Read-only display data: a scheduled task rewrites `score` monthly with a
+   * recency decay, so never recompute or cache a derived ranking from it.
+   */
+  accolades: Accolade[] | null;
   created_at: string;
   updated_at: string;
 }

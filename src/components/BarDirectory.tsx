@@ -1,5 +1,6 @@
 'use client';
 
+import { AccoladeBadges } from '@/components/AccoladeBadges';
 import { asciiFold } from '@/lib/ascii-fold';
 import { useState, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
@@ -382,6 +383,7 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
       </div>
       <div className="bar-dir-card-body">
         <h3>{bar.name}</h3>
+        <AccoladeBadges accolades={bar.accolades} limit={2} short className="acc-row--card" />
         <div className="bar-dir-card-meta">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />

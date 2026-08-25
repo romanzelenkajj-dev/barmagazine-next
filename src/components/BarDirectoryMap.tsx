@@ -2,6 +2,7 @@
 
 import { asciiFold } from '@/lib/ascii-fold';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
+import { AccoladeBadges } from '@/components/AccoladeBadges';
 import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
@@ -1002,6 +1003,8 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
           {bar.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(bar.type)}</span>}
         </div>
         <h3 className="bar-dir-featured-name">{bar.name}</h3>
+        {/* 2 max on a card — it sells the bar, not the trophy cabinet. */}
+        <AccoladeBadges accolades={bar.accolades} limit={2} short className="acc-row--card" />
         <span className="bar-dir-featured-location">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
@@ -1030,6 +1033,7 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
       </div>
       <div className="bar-dir-card-body">
         <h3>{bar.name}</h3>
+        <AccoladeBadges accolades={bar.accolades} limit={2} short className="acc-row--card" />
         <div className="bar-dir-card-meta">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
