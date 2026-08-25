@@ -28,11 +28,17 @@ export async function GET(request: NextRequest) {
       .select('*')
       .eq('owner_id', owner.id);
 
-    const { data: submissions } = await supabase
+    const { data: submissions, error: subsError } = await supabase
       .from('owner_submissions')
       .select('*')
       .eq('owner_id', owner.id)
       .order('created_at', { ascending: false });
+
+    // Was silent: a failure here returned an empty list, so an owner with
+    // pending edits saw "nothing waiting" and no error anywhere.
+    if (subsError) {
+      console.error('[owner/bars] submissions query failed for', owner.id, subsError.message);
+    }
 
     return NextResponse.json({ bars: bars || [], submissions: submissions || [], email: owner.email });
   } catch {

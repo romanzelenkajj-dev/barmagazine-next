@@ -52,6 +52,15 @@ const TEXT_FIELDS = [
 
 type FormState = Record<string, string>;
 
+interface PendingSubmission {
+  id: string;
+  bar_id: string;
+  status: string;
+  submission_type: string;
+  submitted_data: Record<string, unknown>;
+  created_at: string;
+}
+
 const EMPTY: FormState = {
   address: '', phone: '', email: '', website: '', instagram: '',
   whatsapp: '', reservation_url: '', menu_url: '', opening_hours: '',
@@ -69,6 +78,7 @@ export default function EditBarPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [formData, setFormData] = useState<FormState>(EMPTY);
+  const [pending, setPending] = useState<PendingSubmission[]>([]);
 
   const fetchBar = useCallback(async () => {
     const headers = await authHeader();
@@ -80,6 +90,11 @@ export default function EditBarPage() {
       const found = data.bars?.find((b: BarData) => b.slug === slug);
       if (!found) { setError('Bar not found or not owned by you'); setLoading(false); return; }
       setBar(found);
+      setPending(
+        (data.submissions || []).filter(
+          (s: PendingSubmission) => s.bar_id === found.id && s.status === 'pending'
+        )
+      );
       const next: FormState = { ...EMPTY };
       for (const key of Object.keys(EMPTY)) next[key] = found[key as keyof BarData]?.toString() || '';
       setFormData(next);
@@ -113,6 +128,10 @@ export default function EditBarPage() {
           ? `Submitted for review. Not included (editorial fields): ${data.rejected.join(', ')}`
           : 'Sent for review — we’ll publish it once it’s checked.'
       );
+      // Re-read so the pending banner below reflects what was just queued.
+      // The form itself still shows live values, which is why that banner
+      // exists: without it a pending edit looks like it never happened.
+      fetchBar();
     } catch { setError('Network error'); }
     finally { setSaving(false); }
   }
@@ -158,6 +177,21 @@ export default function EditBarPage() {
 
   const gallery = bar.photos?.length ? bar.photos : bar.gallery_images || [];
 
+  // Only show fields that actually differ from what's live — a submission
+  // carries the whole form, so listing every key would imply changes the owner
+  // never made.
+  const changedIn = (sub: PendingSubmission) =>
+    Object.entries(sub.submitted_data || {})
+      .filter(([key, value]) => {
+        const live = (bar[key as keyof BarData] ?? '').toString();
+        return (value ?? '').toString() !== live;
+      })
+      .map(([key, value]) => ({
+        key,
+        label: TEXT_FIELDS.find(f => f.key === key)?.label || key.replace(/_/g, ' '),
+        value: (value ?? '').toString(),
+      }));
+
   return (
     <div className="add-bar-page owner-dash">
       <header className="owner-dash-head">
@@ -172,6 +206,43 @@ export default function EditBarPage() {
 
       {error && <p className="add-bar-error">{error}</p>}
       {success && <p className="add-bar-success">{success}</p>}
+
+      {pending.length > 0 && (
+        <div className="owner-pending">
+          <h2 className="owner-pending-title">
+            {pending.length === 1 ? 'One change is waiting for review' : `${pending.length} changes are waiting for review`}
+          </h2>
+          <p className="owner-pending-lead">
+            The form below still shows what&apos;s currently live on your listing —
+            that&apos;s expected. Your edits publish once we&apos;ve checked them.
+          </p>
+          {pending.map(sub => {
+            const changes = changedIn(sub);
+            return (
+              <div key={sub.id} className="owner-pending-item">
+                <p className="owner-dash-card-meta">
+                  {sub.submission_type === 'photo_upload' ? 'Photos' : 'Details'} · sent{' '}
+                  {new Date(sub.created_at).toLocaleString()}
+                </p>
+                {sub.submission_type === 'photo_upload' ? (
+                  <p>New photos awaiting review.</p>
+                ) : changes.length > 0 ? (
+                  <ul className="owner-pending-list">
+                    {changes.map(c => (
+                      <li key={c.key}>
+                        <strong>{c.label}:</strong>{' '}
+                        {c.value ? c.value : <em>cleared</em>}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No differences from what&apos;s already live.</p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       <div className="add-bar-form-card">
         <form onSubmit={handleSubmit} className="add-bar-form">

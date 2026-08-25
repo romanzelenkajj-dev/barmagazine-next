@@ -8971,3 +8971,45 @@ textarea.form-input {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* Pending-edit banner on the owner edit form.
+   The form shows live values, because that is what the bar currently says —
+   so without this an owner sees their submitted change apparently revert and
+   assumes it failed. */
+.owner-pending {
+  background: #fff3cd;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: var(--gap);
+  color: #856404;
+}
+
+.owner-pending-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.owner-pending-lead {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.owner-pending-item {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-top: 8px;
+}
+
+.owner-pending-list {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  word-break: break-word;
+}
