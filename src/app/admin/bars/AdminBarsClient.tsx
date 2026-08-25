@@ -66,6 +66,10 @@ export default function AdminBarsClient() {
   const [password, setPassword] = useState('');
   const [adminSecret, setAdminSecret] = useState('');
   const [bars, setBars] = useState<Bar[]>([]);
+  // Counts for the "something is waiting" banner. Owner edits come from the
+  // bar list itself; claims need their own call, because /admin/bars does not
+  // load them — and a banner that only counted half would be worse than none.
+  const [pendingClaims, setPendingClaims] = useState(0);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
   const [editingBar, setEditingBar] = useState<Bar | null>(null);
@@ -93,6 +97,19 @@ export default function AdminBarsClient() {
       if (!res.ok) throw new Error('Unauthorized');
       const data = await res.json();
       setBars(data.bars || []);
+
+      try {
+        const claimsRes = await fetch('/api/admin/claims?status=open', {
+          headers: { 'x-admin-secret': secret },
+          cache: 'no-store',
+        });
+        if (claimsRes.ok) {
+          const claimsData = await claimsRes.json();
+          setPendingClaims((claimsData.claims || []).length);
+        }
+      } catch {
+        // Advisory only — the banner just omits claims if this fails.
+      }
     } catch {
       showToast('Failed to load bars', 'error');
     } finally {
@@ -332,6 +349,31 @@ export default function AdminBarsClient() {
       </div>
 
       {/* Toolbar */}
+      {(pendingEditCount > 0 || pendingClaims > 0) && (
+        <Link href="/admin/review" style={styles.pendingBanner}>
+          <span style={styles.pendingBannerDot} />
+          <span>
+            <strong>
+              {[
+                pendingEditCount > 0
+                  ? `${pendingEditCount} owner edit${pendingEditCount > 1 ? 's' : ''}`
+                  : null,
+                pendingClaims > 0
+                  ? `${pendingClaims} claim${pendingClaims > 1 ? 's' : ''}`
+                  : null,
+              ]
+                .filter(Boolean)
+                .join(' and ')}{' '}
+              waiting for review
+            </strong>
+            <span style={styles.pendingBannerSub}>
+              Nothing publishes until you approve it — open the review inbox
+            </span>
+          </span>
+          <span style={styles.pendingBannerGo}>Review →</span>
+        </Link>
+      )}
+
       <div style={styles.toolbar}>
         <div style={styles.searchWrap}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ flexShrink: 0, opacity: 0.4 }}>
@@ -633,6 +675,37 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: 8,
     padding: '8px 16px',
     cursor: 'pointer',
+  },
+  pendingBanner: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 14,
+    background: '#fff3cd',
+    color: '#856404',
+    border: '1px solid #f0d68a',
+    borderRadius: 12,
+    padding: '14px 18px',
+    marginBottom: 20,
+    textDecoration: 'none',
+    fontSize: 15,
+  },
+  pendingBannerDot: {
+    width: 10,
+    height: 10,
+    borderRadius: '50%',
+    background: '#856404',
+    flexShrink: 0,
+  },
+  pendingBannerSub: {
+    display: 'block',
+    fontSize: 13,
+    opacity: 0.85,
+    marginTop: 2,
+  },
+  pendingBannerGo: {
+    marginLeft: 'auto',
+    fontWeight: 700,
+    whiteSpace: 'nowrap',
   },
   toolbar: {
     display: 'flex',
