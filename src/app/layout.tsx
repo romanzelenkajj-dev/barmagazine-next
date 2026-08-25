@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
 import { NearMeBar } from '@/components/NearMeBar';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
+import { getBarCountRounded } from '@/lib/bar-count';
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -63,11 +64,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const barCount = await getBarCountRounded();
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
@@ -139,7 +141,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <CookieConsent />
-        <NearMeBar />
+        <NearMeBar barCount={barCount} />
       </body>
     </html>
   );

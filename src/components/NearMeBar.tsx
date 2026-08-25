@@ -20,7 +20,7 @@ function showsNearMeBar(pathname: string): boolean {
   );
 }
 
-export function NearMeBar() {
+export function NearMeBar({ barCount }: { barCount: number }) {
   const pathname = usePathname();
 
   if (!pathname || !showsNearMeBar(pathname)) {
@@ -38,7 +38,7 @@ export function NearMeBar() {
         </span>
         <span className="nearme-text">
           <strong>Find bars near me</strong>
-          <small>1,000+ bars &middot; 140 cities worldwide</small>
+          <small>{barCount.toLocaleString('en-US')}+ bars &middot; 140 cities worldwide</small>
         </span>
         <span className="nearme-go">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>

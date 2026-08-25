@@ -8,6 +8,7 @@ import { getBarArticleSlugs, getBars } from '@/lib/supabase';
 import { Top10Ticker } from '@/components/Top10Ticker';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import type { Metadata } from 'next';
+import { getBarCountRounded } from '@/lib/bar-count';
 export const revalidate = 300;
 
 const CATEGORY_SLUGS = ['bars', 'people', 'cocktails', 'awards', 'brands', 'events'] as const;
@@ -51,6 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
+  const barCount = await getBarCountRounded();
   // Fetch all data in parallel: latest posts, bars for Featured Bars, all 6 category sets.
   // We fetch 1 extra per set so the grid can filter out the hero article client-side
   // and still render the full 6-card count.
@@ -182,7 +184,7 @@ export default async function HomePage() {
             </a>
             <Link href="/bars" className="home-dir-promo">
               <span className="home-dir-promo-title">Explore the Bar Directory</span>
-              <span className="home-dir-promo-stats">1,000+ bars &middot; 59 countries &middot; 142 cities</span>
+              <span className="home-dir-promo-stats">{barCount.toLocaleString('en-US')}+ bars &middot; 59 countries &middot; 142 cities</span>
               <span className="home-dir-promo-go">
                 Find bars near you
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
