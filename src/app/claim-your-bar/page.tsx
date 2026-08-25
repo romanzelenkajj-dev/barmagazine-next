@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
 
 /**
  * Search-and-claim page.
@@ -20,6 +21,16 @@ interface BarHit {
 }
 
 export default function ClaimYourBarPage() {
+  // useSearchParams needs a Suspense boundary; without one Next bails the whole
+  // route out of static rendering at build time.
+  return (
+    <Suspense fallback={null}>
+      <ClaimYourBar />
+    </Suspense>
+  );
+}
+
+function ClaimYourBar() {
   const [query, setQuery] = useState('');
   const [hits, setHits] = useState<BarHit[]>([]);
   const [searched, setSearched] = useState(false);
@@ -39,6 +50,32 @@ export default function ClaimYourBarPage() {
   const [proofNote, setProofNote] = useState('');
   const [proofSent, setProofSent] = useState(false);
   const [uploading, setUploading] = useState(false);
+
+  /**
+   * Prefill from ?bar=<slug>, set by the "Is this your bar?" button on a bar
+   * profile. The owner is already looking at their bar; making them search for
+   * it again on arrival is the step most likely to lose them.
+   *
+   * A bad or inactive slug resolves to nothing and simply leaves the search
+   * form as it was — no error, since the visitor did not type it.
+   */
+  const prefillSlug = useSearchParams().get('bar');
+
+  useEffect(() => {
+    if (!prefillSlug) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`/api/claim/search?slug=${encodeURIComponent(prefillSlug)}`);
+        const data = await res.json();
+        const hit = (data.bars || [])[0];
+        if (hit && !cancelled) setSelected(hit);
+      } catch {
+        // Leave the search form alone; the visitor can still find the bar.
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [prefillSlug]);
 
   async function runSearch(e: React.FormEvent) {
     e.preventDefault();

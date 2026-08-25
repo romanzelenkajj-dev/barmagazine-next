@@ -50,6 +50,13 @@ export interface Bar {
   whatsapp: string | null;
   featured_until: string | null;
   is_verified: boolean;
+  /**
+   * Set when a claim completes. This — not `is_verified` — is what "someone
+   * owns this listing" means; `is_verified` is an editorial flag and the claim
+   * flow never touches it.
+   */
+  owner_id: string | null;
+  claimed_at: string | null;
   is_active: boolean;
   wp_article_slug: string | null;
   /**

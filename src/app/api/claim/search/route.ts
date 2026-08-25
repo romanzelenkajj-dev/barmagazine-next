@@ -15,20 +15,31 @@ export const dynamic = 'force-dynamic';
  */
 export async function GET(request: NextRequest) {
   try {
-    const q = (new URL(request.url).searchParams.get('q') || '').trim();
-    if (q.length < 2) return NextResponse.json({ bars: [] });
+    const params = new URL(request.url).searchParams;
+    const q = (params.get('q') || '').trim();
+    // Exact-slug lookup so the "Is this your bar?" button on a profile can hand
+    // the claim page the bar the owner was already looking at, instead of making
+    // them search for it again. Returns the same public shape as a search, so it
+    // exposes nothing the directory does not already show.
+    const slug = (params.get('slug') || '').trim();
+
+    if (!slug && q.length < 2) return NextResponse.json({ bars: [] });
 
     const supabase = createAdminClient();
 
-    const { data, error } = await supabase
+    const base = supabase
       .from('bars')
       .select('slug, name, city, country, owner_id')
-      .eq('is_active', true)
-      // Accent-insensitive via the generated *_ascii columns, so an owner
-      // searching "muzsa" finds "Múzsa". Wildcards are escaped inside.
-      .or(searchOrFilter(q))
-      .order('name')
-      .limit(20);
+      .eq('is_active', true);
+
+    const { data, error } = slug
+      ? await base.eq('slug', slug).limit(1)
+      : await base
+          // Accent-insensitive via the generated *_ascii columns, so an owner
+          // searching "muzsa" finds "Múzsa". Wildcards are escaped inside.
+          .or(searchOrFilter(q))
+          .order('name')
+          .limit(20);
 
     if (error) {
       console.error('[claim/search]', error.message);
