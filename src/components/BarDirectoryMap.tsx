@@ -508,6 +508,14 @@ export function BarDirectoryMapClient({
     return () => clearTimeout(t);
   }, [search]);
 
+  // Arrived via "Find bars near me" (?near=me): sort by nothing but
+  // distance. Read from location.search in an effect rather than
+  // useSearchParams() so the page's prerender is untouched.
+  const [nearMode, setNearMode] = useState(false);
+  useEffect(() => {
+    setNearMode(new URLSearchParams(window.location.search).has('near'));
+  }, []);
+
   // GPS-based sorting state
   const [userLat, setUserLat] = useState<number | null>(null);
   const [userLng, setUserLng] = useState<number | null>(null);
@@ -686,6 +694,28 @@ export function BarDirectoryMapClient({
     const hasGeoSignal = !!(geoCity || geoCountryCode);
     const hasLocationFilter = !!(cityFilter || countryFilter);
 
+    const getDistKm = (b: Bar): number => {
+      if (userLat !== null && userLng !== null) {
+        return (b.lat != null && b.lng != null)
+          ? haversineKm(userLat, userLng, b.lat, b.lng)
+          : 99999;
+      }
+      const score = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
+      return Math.max(0, (1000 - score) * 20);
+    };
+
+    // MODE D: "Find bars near me" — literally the closest bars, nothing else.
+    // The button promises proximity, so photos and tiers do not outrank
+    // distance here: before this, a photo bar 10,000km away sorted above a
+    // photo-less bar around the corner. GPS when granted; IP-geo otherwise.
+    if (nearMode) {
+      return [...filtered].sort((a, b) => {
+        const d = getDistKm(a) - getDistKm(b);
+        if (d !== 0) return d;
+        return a.name.localeCompare(b.name);
+      });
+    }
+
     // MODE A: city or country filter active — tier first, then photo, then alpha
     if (hasLocationFilter) {
       return [...filtered].sort((a, b) => {
@@ -720,16 +750,6 @@ export function BarDirectoryMapClient({
     }
 
     // MODE B: geo active, no filter — photo first, then proximity band, then tier
-    const getDistKm = (b: Bar): number => {
-      if (userLat !== null && userLng !== null) {
-        return (b.lat != null && b.lng != null)
-          ? haversineKm(userLat, userLng, b.lat, b.lng)
-          : 99999;
-      }
-      const score = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
-      return Math.max(0, (1000 - score) * 20);
-    };
-
     const BAND_KM = 100;
     return [...filtered].sort((a, b) => {
       // 1. Photo (has photo = first — always)
@@ -751,7 +771,7 @@ export function BarDirectoryMapClient({
       // 5. Alphabetical
       return a.name.localeCompare(b.name);
     });
-  }, [filtered, cityFilter, countryFilter, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
+  }, [filtered, cityFilter, countryFilter, geoCity, geoCountryCode, geoContinent, userLat, userLng, nearMode]);
 
   const activeFilters: { label: string; clear: () => void }[] = [];
   if (countryFilter) activeFilters.push({ label: countryFilter, clear: () => { setCountryFilter(''); setCityFilter(''); } });
