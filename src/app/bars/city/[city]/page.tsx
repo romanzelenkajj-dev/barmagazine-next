@@ -1,5 +1,4 @@
 import { BarPlaceholder } from '@/components/BarPlaceholder';
-import { AccoladeBadges } from '@/components/AccoladeBadges';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -372,7 +371,6 @@ function CityBarCard({ bar }: { bar: Bar }) {
           </svg>
           {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
         </span>
-        <AccoladeBadges accolades={bar.accolades} />
       </div>
     </Link>
   );

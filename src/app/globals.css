@@ -3496,16 +3496,18 @@ textarea.form-input {
 }
 
 .bar-dir-featured-name {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.25;
+  /* Bigger since the accolade tiles left the card: the name now carries the
+     card, and 18px in a ~250px content box left the block looking thin. */
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.22;
   color: #1a1a1a;
-  margin-bottom: 5px;
-  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  letter-spacing: -0.015em;
 }
 
 .bar-dir-featured-location {
-  font-size: 12px;
+  font-size: 13.5px;
   color: #6B6B6B;
   display: flex;
   align-items: center;

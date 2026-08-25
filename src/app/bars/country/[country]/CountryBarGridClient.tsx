@@ -1,7 +1,6 @@
 'use client';
 
 import { BarPlaceholder } from '@/components/BarPlaceholder';
-import { AccoladeBadges } from '@/components/AccoladeBadges';
 import { useState } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
@@ -64,7 +63,6 @@ function CountryBarCard({ bar }: { bar: Bar }) {
           {bar.city}
           {bar.city !== bar.country ? `, ${bar.country}` : ''}
         </span>
-        <AccoladeBadges accolades={bar.accolades} />
       </div>
     </Link>
   );

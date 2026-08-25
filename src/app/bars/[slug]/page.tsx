@@ -434,7 +434,6 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                       </svg>
                       {nb.city}{nb.city !== nb.country ? `, ${nb.country}` : ''}
                     </span>
-                    <AccoladeBadges accolades={nb.accolades} />
                   </div>
                 </Link>
               ))}

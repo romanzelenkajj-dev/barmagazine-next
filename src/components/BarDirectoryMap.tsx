@@ -2,7 +2,6 @@
 
 import { asciiFold } from '@/lib/ascii-fold';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
-import { AccoladeBadges } from '@/components/AccoladeBadges';
 import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
@@ -1013,7 +1012,6 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
           </svg>
           {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
         </span>
-        <AccoladeBadges accolades={bar.accolades} />
       </div>
     </Link>
   );
@@ -1040,7 +1038,6 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
           </svg>
           <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
         </div>
-        <AccoladeBadges accolades={bar.accolades} />
         <span className="bar-dir-type">{formatBarType(bar.type)}</span>
       </div>
     </Link>

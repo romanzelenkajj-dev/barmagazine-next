@@ -1,6 +1,5 @@
 'use client';
 
-import { AccoladeBadges } from '@/components/AccoladeBadges';
 import { asciiFold } from '@/lib/ascii-fold';
 import { useState, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
@@ -392,7 +391,6 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
           </svg>
           <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
         </div>
-        <AccoladeBadges accolades={bar.accolades} />
         <span className="bar-dir-type">{formatBarType(bar.type)}</span>
       </div>
     </Link>
