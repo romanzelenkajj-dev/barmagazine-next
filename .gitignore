@@ -28,6 +28,8 @@ yarn-error.log*
 # env files
 .env
 .env*.local
+# pulled production env (vercel env pull) — carries live API keys
+.env.vercel
 
 # vercel
 .vercel
