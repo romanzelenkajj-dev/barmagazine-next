@@ -9118,6 +9118,13 @@ textarea.form-input {
   margin-top: 14px;
 }
 
+/* On the profile the description follows immediately and was touching the
+   tiles at 0px. Only applied when something follows, so tiles that end a
+   directory card don't push the card's bottom padding out. */
+.acc-tiles:not(:last-child) {
+  margin-bottom: 18px;
+}
+
 .acc-tile {
   /* Fixed size is the point: equal tiles line up card to card however long
      the bar name above them happens to be. */
