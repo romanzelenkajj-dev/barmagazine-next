@@ -24,6 +24,7 @@ interface BarData {
   id: string;
   name: string;
   slug: string;
+  tier: string | null;
   address: string;
   phone: string;
   website: string;
@@ -284,6 +285,13 @@ export default function EditBarPage() {
             they aren&apos;t editable here. Spotted something wrong?{' '}
             <a href="mailto:office@barmagazine.com" className="feature-link">Tell us</a>.
           </p>
+
+          {(bar.tier === 'free' || bar.tier === 'top10') && (
+            <p className="owner-dash-note">
+              Menu, gallery and reservations are part of Featured —{' '}
+              <Link href={`/feature-your-bar?bar=${bar.slug}#pricing`} className="feature-link">see plans</Link>.
+            </p>
+          )}
         </form>
       </div>
 

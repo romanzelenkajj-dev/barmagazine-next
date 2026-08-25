@@ -18,6 +18,7 @@ interface Bar {
   name: string;
   slug: string;
   status: string;
+  tier: string | null;
   address: string;
   neighborhood: string;
   featured_image: string;
@@ -83,6 +84,10 @@ export default function OwnerDashboardPage() {
 
   const barName = (id: string) => bars.find(b => b.id === id)?.name || 'your bar';
 
+  // The upsell shows only while there is something to upsell: free and top10
+  // are unpaid tiers; featured/social owners already bought it.
+  const upgradable = bars.find(b => b.tier === 'free' || b.tier === 'top10');
+
   if (loading) {
     return (
       <div className="add-bar-page">
@@ -142,6 +147,25 @@ export default function OwnerDashboardPage() {
           </div>
         )}
       </section>
+
+      {upgradable && (
+        <section className="owner-dash-section">
+          <div className="owner-dash-upsell">
+            <h2 className="owner-dash-upsell-title">Make this page your bar&apos;s website</h2>
+            <ul className="owner-dash-upsell-list">
+              <li>Full drinks menu, photo gallery and a Plan Your Visit card — reserve, WhatsApp &amp; directions on one link</li>
+              <li>A feature article about your bar in the magazine</li>
+              <li>Featured + Social adds promotion to our 88,000+ Instagram audience</li>
+            </ul>
+            <Link
+              href={`/feature-your-bar?bar=${upgradable.slug}#pricing`}
+              className="feature-btn"
+            >
+              See Featured plans
+            </Link>
+          </div>
+        </section>
+      )}
 
       <section className="owner-dash-section">
         <h2 className="owner-dash-section-title">Pending changes</h2>

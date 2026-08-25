@@ -616,6 +616,7 @@ export default async function FeatureYourBarPage({
                 </p>
                 <ul>
                   <li>Everything in Featured</li>
+                  <li>Promotion to 88,000+ organic followers from the bar industry and cocktail scene</li>
                   <li>2 Instagram posts or Reels a year</li>
                   <li>3 Instagram Stories with every post</li>
                   <li>Cross-promotion collab</li>

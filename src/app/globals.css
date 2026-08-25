@@ -9493,3 +9493,32 @@ textarea.form-input {
   font-size: 14px;
   color: var(--text-secondary);
 }
+
+/* ── Owner dashboard: Featured upsell card ──────────────────────────────── */
+
+/* Quiet and premium, not a nag banner: same card language as the rest of the
+   dashboard, one accent detail (the left rule), no dismiss logic. Rendered
+   only while the owner's bar is on an unpaid tier. */
+.owner-dash-upsell {
+  background: var(--bg-card);
+  border: 1px solid #E0D8D0;
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+}
+
+.owner-dash-upsell-title {
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.owner-dash-upsell-list {
+  margin: 0 0 18px;
+  padding-left: 18px;
+  color: var(--text-secondary);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.owner-dash-upsell-list li { margin-bottom: 6px; }
