@@ -169,11 +169,10 @@ function ClaimYourBar() {
               <>
                 <h2 style={{ fontSize: 22, marginBottom: 8 }}>One more step</h2>
                 <p style={{ marginBottom: 16 }}>
-                  We couldn&apos;t match your email to {selected?.name}&apos;s website or
-                  contact details, so a person needs to check this one. Upload something
-                  that shows you run the bar — a business registration, an email
-                  signature on the bar&apos;s domain, or a dated photo from inside the
-                  venue.
+                  {selected?.name} already has an owner on BarMagazine, so a person
+                  reviews every takeover request. Upload something that shows you now
+                  run the bar — a business registration, an email signature on the
+                  bar&apos;s domain, or a dated photo from inside the venue.
                 </p>
                 <form onSubmit={uploadProof} className="space-y-4">
                   <input
@@ -208,12 +207,9 @@ function ClaimYourBar() {
               <>
                 <h2 style={{ fontSize: 22, marginBottom: 8 }}>Check your inbox</h2>
                 <p>
-                  If this bar is yours, a sign-in link is on its way. Following it
-                  confirms the claim and opens your dashboard.
-                </p>
-                <p style={{ marginTop: 12, color: '#6B6B6B', fontSize: 14 }}>
-                  For some bars we send the link to the contact address already on the
-                  listing rather than the one you typed, so check that mailbox too.
+                  A confirmation email is on its way to the address you gave. Open it
+                  and press the button inside — that verifies your email and makes the
+                  listing yours.
                 </p>
               </>
             )}
@@ -243,7 +239,8 @@ function ClaimYourBar() {
                   style={{ width: '100%' }}
                 />
                 <p style={{ fontSize: 13, color: '#6B6B6B', marginTop: 4 }}>
-                  An address on the bar&apos;s own domain verifies fastest.
+                  Any address works. One on the bar&apos;s own domain also marks the
+                  listing verified immediately.
                 </p>
               </div>
               <div>

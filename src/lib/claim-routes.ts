@@ -1,5 +1,5 @@
 /**
- * Route selection and address handling for bar claims.
+ * Claim classification and address handling for bar claims.
  *
  * Pure functions only — the API routes own the database and mail. Keeping the
  * decision logic here means the rules in the spec are testable without a
@@ -73,7 +73,8 @@ export interface BarForClaim {
 
 export interface RouteDecision {
   method: ClaimMethod;
-  /** Where the magic link must go. Null for manual — nothing is sent. */
+  /** Where the magic link must go: ALWAYS the claimant's own address, never
+      the bar's on-file contact. Null only for transfers — nothing is sent. */
   destination: string | null;
   /** Masked form of the destination, safe to return to the caller. */
   maskedDestination: string | null;
@@ -81,13 +82,34 @@ export interface RouteDecision {
   isTransfer: boolean;
   /** Whether this route may create the auth user and send a link now. */
   autoVerifiable: boolean;
+  /** Risk signal for the admin notification and the public trust flag:
+      true when the claimant's address is connected to the bar (their email
+      domain matches the bar's website, or they ARE the on-file contact). A
+      MATCH sets bars.is_verified automatically on completion; NO MATCH
+      leaves it for Roman to confirm in admin. */
+  match: boolean;
 }
 
 /**
- * Choose the claim route. Precedence is A, then B, then C — if both apply,
- * prefer A, because control of the bar's own domain is the stronger proof.
+ * Classify a claim under the open-claiming model.
  *
- * A transfer never auto-approves regardless of route: the claim is recorded
+ * Any claimant may claim any UNCLAIMED bar with any address; the magic link
+ * always goes to the address they typed, and proving control of that mailbox
+ * makes them owner. There is no admin gate before ownership — oversight is
+ * the completion notification (with a MATCH / NO MATCH label) plus a revoke
+ * action in admin.
+ *
+ * The old route B — mailing the bar's ON-FILE address — is gone: a live test
+ * showed such links being auto-followed by the recipient's mail scanner,
+ * silently completing a claim nobody asked for, and ~920 bars have no
+ * address on file anyway.
+ *
+ * `method` doubles as the match record (the DB CHECK allows exactly these):
+ *   domain_match     — claimant's email domain matches the bar's website (MATCH)
+ *   contact_on_file  — claimant IS the bar's on-file contact address (MATCH)
+ *   manual           — no connection between address and bar (NO MATCH)
+ *
+ * A transfer never auto-approves regardless of match: the claim is recorded
  * for review and no link goes out, so an existing owner can't be displaced by
  * someone who merely controls a matching mailbox.
  */
@@ -96,27 +118,24 @@ export function decideRoute(bar: BarForClaim, claimantEmail: string): RouteDecis
 
   const domainMatch = isDomainMatch(claimantEmail, bar.website);
   const onFile = typeof bar.email === 'string' && bar.email.trim() ? bar.email.trim() : null;
+  const isOnFileContact = !!onFile && onFile.toLowerCase() === claimantEmail.toLowerCase();
 
-  let method: ClaimMethod = 'manual';
-  let destination: string | null = null;
+  const method: ClaimMethod = domainMatch
+    ? 'domain_match'
+    : isOnFileContact
+      ? 'contact_on_file'
+      : 'manual';
 
-  if (domainMatch) {
-    method = 'domain_match';
-    destination = claimantEmail;
-  } else if (onFile) {
-    method = 'contact_on_file';
-    // Deliberately the stored address, never the one typed into the form.
-    destination = onFile;
-  }
-
-  const autoVerifiable = method !== 'manual' && !isTransfer;
+  const autoVerifiable = !isTransfer;
+  const destination = autoVerifiable ? claimantEmail : null;
 
   return {
     method,
-    destination: autoVerifiable ? destination : null,
+    destination,
     maskedDestination: destination ? maskEmail(destination) : null,
     isTransfer,
     autoVerifiable,
+    match: method !== 'manual',
   };
 }
 

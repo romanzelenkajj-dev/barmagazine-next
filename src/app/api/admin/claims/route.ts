@@ -117,9 +117,12 @@ export async function POST(request: NextRequest) {
 
       const previousOwner = bar.owner_id;
 
+      // is_verified goes too: the trust signal was earned by (or granted to)
+      // the ownership being revoked, so it must not outlive it. The bar
+      // becomes claimable again by someone else.
       const { error: clearError } = await supabase
         .from('bars')
-        .update({ owner_id: null, claimed_at: null })
+        .update({ owner_id: null, claimed_at: null, is_verified: false })
         .eq('id', barId);
 
       if (clearError) {

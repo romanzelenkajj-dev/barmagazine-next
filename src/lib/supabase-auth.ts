@@ -4,16 +4,18 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 /**
- * Browser client. `detectSessionInUrl` is what completes a magic-link sign-in:
- * the callback page loads with the tokens in the URL and supabase-js turns
- * them into a persisted session.
+ * Browser client. `detectSessionInUrl` is OFF on purpose: it would turn
+ * fragment tokens into a session during page load, and the scanner-safe rule
+ * is that NOTHING creates a session on load — every emailed link carries a
+ * `token_hash` that the landing pages exchange via verifyOtp in a click
+ * handler instead.
  */
 export function createBrowserClient() {
   return createClient(supabaseUrl, supabaseAnonKey, {
     auth: {
       persistSession: true,
       autoRefreshToken: true,
-      detectSessionInUrl: true,
+      detectSessionInUrl: false,
     },
   });
 }

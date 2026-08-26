@@ -6,34 +6,71 @@ import Link from 'next/link';
 import { createBrowserClient } from '@/lib/supabase-auth';
 
 /**
- * Where the claim magic link lands.
+ * Where the claim email's button lands. SCANNER-SAFE BY DESIGN:
  *
- * The link carries the Supabase session; this page turns it into a signed-in
- * client and then asks the server to finish the claim. Ownership is granted
- * server-side in /api/claim/callback — nothing here can grant it.
+ * This page does NOTHING on load — no token exchange, no session creation, no
+ * writes. A live test showed a corporate mail scanner following the emailed
+ * link and (in the old auto-exchanging version) completing a claim nobody
+ * clicked. Scanners follow GETs; they do not press buttons. So the token
+ * (`token_hash` in the URL) is exchanged via `verifyOtp` only inside the
+ * click handler, and ownership is granted server-side in /api/claim/callback
+ * after that.
+ *
+ * The only load-time request is a read-only lookup of the bar's public name,
+ * so the button can say what it confirms.
  */
 function VerifyInner() {
   const router = useRouter();
   const params = useSearchParams();
   const [error, setError] = useState('');
-  const [status, setStatus] = useState('Confirming your claim…');
+  const [working, setWorking] = useState(false);
+  const [barName, setBarName] = useState('');
 
+  const claimId = params.get('claim');
+  const tokenHash = params.get('token_hash');
+  const legacyCode = params.get('code');
+  const barSlug = params.get('bar');
+
+  // Display only: the bar's public name for the button label.
   useEffect(() => {
+    if (!barSlug) return;
     let cancelled = false;
-
     (async () => {
-      const claimId = params.get('claim');
-      if (!claimId) {
-        if (!cancelled) setError('This link is missing its claim reference.');
-        return;
+      try {
+        const res = await fetch(`/api/claim/search?slug=${encodeURIComponent(barSlug)}`);
+        const data = await res.json();
+        if (!cancelled && data.bars?.[0]?.name) setBarName(data.bars[0].name);
+      } catch {
+        // The button falls back to generic wording.
       }
+    })();
+    return () => { cancelled = true; };
+  }, [barSlug]);
 
+  async function confirm() {
+    if (!claimId) {
+      setError('This link is missing its claim reference.');
+      return;
+    }
+    setWorking(true);
+    setError('');
+
+    try {
       const supabase = createBrowserClient();
 
-      const code = params.get('code');
-      if (code) {
-        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
-        if (exchangeError && !cancelled) {
+      if (tokenHash) {
+        const { error: otpError } = await supabase.auth.verifyOtp({
+          type: 'magiclink',
+          token_hash: tokenHash,
+        });
+        if (otpError) {
+          setError('That link has expired or was already used. Start the claim again to get a fresh one.');
+          return;
+        }
+      } else if (legacyCode) {
+        // Links mailed before the token_hash flow shipped.
+        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(legacyCode);
+        if (exchangeError) {
           setError('That link has expired or was already used.');
           return;
         }
@@ -42,7 +79,7 @@ function VerifyInner() {
       const { data } = await supabase.auth.getSession();
       const token = data.session?.access_token;
       if (!token) {
-        if (!cancelled) setError('That link has expired or was already used.');
+        setError('That link has expired or was already used.');
         return;
       }
 
@@ -52,19 +89,19 @@ function VerifyInner() {
         body: JSON.stringify({ claimId }),
       });
       const body = await res.json();
-      if (cancelled) return;
 
       if (!res.ok) {
         setError(body.error || 'We could not complete this claim.');
         return;
       }
 
-      setStatus('Claim confirmed — opening your dashboard…');
       router.replace('/owner-dashboard');
-    })();
-
-    return () => { cancelled = true; };
-  }, [params, router]);
+    } catch {
+      setError('Something went wrong. Please try the link again.');
+    } finally {
+      setWorking(false);
+    }
+  }
 
   return (
     <section className="feature-section">
@@ -78,7 +115,23 @@ function VerifyInner() {
             </p>
           </>
         ) : (
-          <p>{status}</p>
+          <>
+            <h1 className="feature-sec-title">One click to finish</h1>
+            <p style={{ marginTop: 12 }}>
+              {barName
+                ? <>Confirming makes you the manager of <strong>{barName}</strong> on BarMagazine.</>
+                : 'Confirming completes your bar claim on BarMagazine.'}
+            </p>
+            <p style={{ marginTop: 20 }}>
+              <button className="feature-btn" onClick={confirm} disabled={working}>
+                {working
+                  ? 'Confirming…'
+                  : barName
+                    ? `Confirm: I manage ${barName}`
+                    : 'Confirm my claim'}
+              </button>
+            </p>
+          </>
         )}
       </div>
     </section>

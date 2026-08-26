@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createAdminClient } from '@/lib/supabase-auth';
+import { sendLoginLinkEmail } from '@/lib/claim-email';
 
 // Sends mail per request — never prerender or cache.
 export const dynamic = 'force-dynamic';
@@ -7,15 +8,18 @@ export const dynamic = 'force-dynamic';
 const SITE_URL = 'https://barmagazine.com';
 
 /**
- * Request a magic link for the owner dashboard.
+ * Request a sign-in link for the owner dashboard.
  *
- * Replaces the password login/signup pair. Link expiry is a Supabase project
- * setting, not a value we pass here.
+ * Minted with admin.generateLink and mailed by us (branded sender, not
+ * Supabase's stock template) as a SCANNER-SAFE link: the URL carries only
+ * `token_hash`, and the landing page exchanges it via verifyOtp in a click
+ * handler — a mail scanner following the link consumes nothing.
  *
- * The response is deliberately identical whether or not the address has an
- * account: this endpoint is unauthenticated, so distinguishing them would turn
- * it into an account-enumeration oracle. Same reasoning as the claim-start
- * rate limit in the spec.
+ * No self-registration: generateLink fails for an address with no account
+ * (accounts exist only because a bar was claimed) and nothing is sent. The
+ * response is deliberately identical whether or not the address has an
+ * account: this endpoint is unauthenticated, so distinguishing them would
+ * turn it into an account-enumeration oracle.
  */
 export async function POST(request: NextRequest) {
   const generic = NextResponse.json({
@@ -30,28 +34,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'A valid email address is required' }, { status: 400 });
     }
 
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    if (!supabaseUrl || !supabaseAnonKey) {
-      console.error('[magic-link] Supabase env not configured');
-      return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
-    }
+    const supabase = createAdminClient();
 
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-    const { error } = await supabase.auth.signInWithOtp({
-      email: email.trim().toLowerCase(),
-      options: {
-        emailRedirectTo: `${SITE_URL}/owner-dashboard/auth/callback`,
-        // Owners reach the dashboard by claiming a bar, not by self-registering
-        // here. Supabase would otherwise create an account for any address typed
-        // into this box.
-        shouldCreateUser: false,
-      },
+    // Failure (unknown address, mint error, send error) is logged inside and
+    // never surfaced — the caller always sees the same response.
+    await sendLoginLinkEmail(supabase, {
+      destination: email.trim().toLowerCase(),
+      redirectTo: `${SITE_URL}/owner-dashboard/auth/callback`,
     });
-
-    // Logged, not surfaced — the caller always sees the same response.
-    if (error) console.warn('[magic-link] send failed:', error.message);
 
     return generic;
   } catch {

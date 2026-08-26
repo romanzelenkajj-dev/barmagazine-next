@@ -3,18 +3,23 @@ import { escapeHtml } from './notify';
 import { sendMail } from './mail';
 
 /**
- * The claim sign-in email.
+ * The claim and sign-in emails.
  *
  * Supabase's stock template sends from `noreply@mail.app.supabase.io` with no
- * BarMagazine branding, no bar name, and a line about signing up for "an
- * application powered by Supabase" — which reads as phishing to a bar owner who
- * only ever dealt with BarMagazine. So we mint the action link with
- * `admin.generateLink` and post it ourselves through Resend, on the same
- * verified sender as the rest of our mail.
+ * BarMagazine branding — which reads as phishing to a bar owner who only ever
+ * dealt with BarMagazine. So we mint the token with `admin.generateLink` and
+ * post it ourselves through Resend, on the same verified sender as the rest
+ * of our mail.
+ *
+ * SCANNER-SAFE: we deliberately do NOT send Supabase's `action_link` — that
+ * URL redeems the token server-side on GET, so a corporate mail scanner that
+ * prefetches links consumes the token and (in the old flow) completed the
+ * sign-in without a human. We send our own landing-page URL carrying only
+ * `token_hash`; the page does nothing on load, and the token is exchanged via
+ * `verifyOtp` in a click handler.
  *
  * Link lifetime is unchanged: generateLink issues the same token
  * signInWithOtp would have, honouring the project's OTP expiry setting.
- * Sending it ourselves also takes the flow off Supabase's mail rate limits.
  */
 
 export interface ClaimLinkEmail {
@@ -37,12 +42,12 @@ export function claimEmailHtml({ barName, actionLink }: Omit<ClaimLinkEmail, 'de
   return `
     <div style="font-family:Inter,system-ui,sans-serif;max-width:560px;margin:0 auto;color:#1A1A1A;font-size:15px;line-height:1.6;">
       <p>
-        Someone asked to claim <strong>${bar}</strong> on BarMagazine, the global
+        You asked to claim <strong>${bar}</strong> on BarMagazine, the global
         cocktail bar directory.
       </p>
       <p>
-        We sent this to the contact address listed on the bar&rsquo;s profile — so if
-        that was you, confirm below and the listing is yours.
+        Confirm below to verify your email address and take over the listing.
+        The button opens a page where you confirm with one click.
       </p>
       <p style="margin:28px 0;">
         <a href="${href}"
@@ -81,16 +86,20 @@ export async function sendClaimLinkEmail(
     const { data, error } = await supabase.auth.admin.generateLink({
       type: 'magiclink',
       email: destination,
-      options: { redirectTo },
     });
 
-    const actionLink = data?.properties?.action_link;
-    if (error || !actionLink) {
+    // hashed_token, NOT action_link: the action link redeems on GET at
+    // Supabase's /verify endpoint, which is what a mail scanner follows.
+    const tokenHash = data?.properties?.hashed_token;
+    if (error || !tokenHash) {
       console.error(
-        `[claim-link] LINK NOT MINTED for ${destination} — ${error?.message || 'no action_link returned'}`
+        `[claim-link] LINK NOT MINTED for ${destination} — ${error?.message || 'no hashed_token returned'}`
       );
       return false;
     }
+
+    const joiner = redirectTo.includes('?') ? '&' : '?';
+    const actionLink = `${redirectTo}${joiner}token_hash=${encodeURIComponent(tokenHash)}`;
 
     return sendMail({
       to: destination,
@@ -100,6 +109,63 @@ export async function sendClaimLinkEmail(
     });
   } catch (e) {
     console.error('[claim-email] SEND THREW for', destination, e);
+    return false;
+  }
+}
+
+/**
+ * The owner-dashboard sign-in email — same scanner-safe token_hash pattern,
+ * same branded sender. Returns false when the address has no account
+ * (generateLink errors), which the caller must not surface: the login
+ * endpoint answers identically either way to stay enumeration-proof.
+ */
+export async function sendLoginLinkEmail(
+  supabase: ReturnType<typeof createAdminClient>,
+  opts: { destination: string; redirectTo: string }
+): Promise<boolean> {
+  const { destination, redirectTo } = opts;
+
+  try {
+    const { data, error } = await supabase.auth.admin.generateLink({
+      type: 'magiclink',
+      email: destination,
+    });
+
+    const tokenHash = data?.properties?.hashed_token;
+    if (error || !tokenHash) {
+      // Unknown address is the expected failure — do not log the address.
+      if (error && !/not.?found|does not exist/i.test(error.message)) {
+        console.warn('[login-link] mint failed:', error.message);
+      }
+      return false;
+    }
+
+    const joiner = redirectTo.includes('?') ? '&' : '?';
+    const link = `${redirectTo}${joiner}token_hash=${encodeURIComponent(tokenHash)}`;
+
+    return sendMail({
+      to: destination,
+      subject: 'Your BarMagazine owner dashboard sign-in link',
+      html: `
+        <div style="font-family:Inter,system-ui,sans-serif;max-width:560px;margin:0 auto;color:#1A1A1A;font-size:15px;line-height:1.6;">
+          <p>You asked to sign in to your BarMagazine owner dashboard.</p>
+          <p style="margin:28px 0;">
+            <a href="${escapeHtml(link)}"
+               style="background:#1A1A1A;color:#fff;padding:12px 22px;border-radius:100px;text-decoration:none;font-weight:600;display:inline-block;">
+              Open my dashboard
+            </a>
+          </p>
+          <p>The button opens a page where you confirm the sign-in with one click.</p>
+          <p style="color:#6B6B6B;">
+            If you didn&rsquo;t request this, ignore it — nothing happens without the click.
+          </p>
+          <p style="color:#9A9A9A;margin-top:28px;">&mdash; BarMagazine &middot; barmagazine.com</p>
+        </div>
+      `,
+      context: 'login-link',
+    });
+  } catch (e) {
+    console.error('[login-link] SEND THREW', e);
     return false;
   }
 }

@@ -108,63 +108,83 @@ export interface ClaimNotice {
   isTransfer: boolean;
   /** True when nothing happens until Roman acts. */
   needsReview: boolean;
+  /** True when the claim has COMPLETED — the claimant is now the owner. */
+  completed?: boolean;
+  /** Risk label: claimant's address is connected to the bar (domain or
+      on-file contact) vs a complete stranger. */
+  match?: boolean;
+  ip?: string | null;
   proofCount?: number;
 }
 
 const METHOD_LABEL: Record<ClaimNotice['method'], string> = {
-  domain_match: 'A · domain match (auto)',
-  contact_on_file: 'B · contact on file (auto)',
-  manual: 'C · manual review',
+  domain_match: 'domain match — email domain matches the bar website',
+  contact_on_file: 'claimant IS the on-file contact address',
+  manual: 'open claim — no connection to the bar',
 };
 
 /**
- * Email the admin about a claim. Sent for every claim, not just manual ones:
- * an auto-approved claim hands someone edit rights over a listing, which is
- * worth seeing even when no action is required.
+ * Email the admin about a claim. Under open claiming this is the oversight:
+ * ownership is granted on mailbox verification alone, so the completion
+ * notice — with its MATCH / NO MATCH label — is what surfaces a hostile
+ * claim while it can still be revoked in /admin/review?tab=claims.
  */
 export async function notifyClaim(notice: ClaimNotice): Promise<boolean> {
   const {
     barName, barSlug, claimantEmail, claimantName, claimantRole,
-    method, isTransfer, needsReview, proofCount,
+    method, isTransfer, needsReview, completed = false, match, ip, proofCount,
   } = notice;
 
   const barLink = barSlug
     ? `<a href="${SITE_URL}/bars/${escapeHtml(barSlug)}">${escapeHtml(barName)}</a>`
     : escapeHtml(barName);
 
-  // A transfer is the one that can take a listing away from an existing owner,
-  // so it must not look like the routine case at a glance.
-  const banner = isTransfer
-    ? `<p style="padding:14px 16px;background:#721c24;color:#fff;font-size:15px;font-weight:700;border-radius:6px;">
-         ⚠ TRANSFER — ${escapeHtml(barName)} already has an owner.<br>
-         <span style="font-weight:400;">Nothing happens until you approve it. Approving moves the listing to the new claimant.</span>
-       </p>`
-    : needsReview
-      ? `<p style="padding:10px 12px;background:#fff3cd;color:#856404;font-size:14px;border-radius:6px;">
-           Waiting on your review — no access has been granted.
+  // The risk label leads. MATCH is routine; NO MATCH is the one worth a
+  // minute of scrutiny, because anyone can verify their own mailbox.
+  const riskBanner = completed
+    ? match
+      ? `<p style="padding:14px 16px;background:#155724;color:#fff;font-size:15px;font-weight:700;border-radius:6px;">
+           ✓ MATCH — claimant's email is connected to this bar.<br>
+           <span style="font-weight:400;">They are now the owner and the listing is marked verified.</span>
          </p>`
-      : `<p style="padding:10px 12px;background:#d4edda;color:#155724;font-size:14px;border-radius:6px;">
-           Auto-verifiable: a confirmation link was sent to the address on file.
-           The claimant becomes the owner when they follow it.
+      : `<p style="padding:14px 16px;background:#721c24;color:#fff;font-size:15px;font-weight:700;border-radius:6px;">
+           ⚠ NO MATCH — nothing connects this address to the bar.<br>
+           <span style="font-weight:400;">They are now the owner (mailbox verified only). The listing is NOT marked
+           verified. If this looks wrong, revoke it: ${SITE_URL}/admin/review?tab=claims</span>
+         </p>`
+    : isTransfer
+      ? `<p style="padding:14px 16px;background:#721c24;color:#fff;font-size:15px;font-weight:700;border-radius:6px;">
+           ⚠ TRANSFER — ${escapeHtml(barName)} already has an owner.<br>
+           <span style="font-weight:400;">Nothing happens until you approve it. Approving moves the listing to the new claimant.</span>
+         </p>`
+      : `<p style="padding:10px 12px;background:#fff3cd;color:#856404;font-size:14px;border-radius:6px;">
+           Waiting on your review — no access has been granted.
          </p>`;
 
+  const subjectLabel = completed
+    ? `Claim completed (${match ? 'MATCH' : 'NO MATCH'})`
+    : isTransfer
+      ? 'Bar TRANSFER'
+      : 'Bar claim';
+
   return send({
-    subject: `${isTransfer ? 'Bar TRANSFER' : 'Bar claim'}: ${barName}${needsReview ? ' (needs review)' : ''}`,
+    subject: `${subjectLabel}: ${barName}${needsReview ? ' (needs review)' : ''}`,
     html: `
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
-        <h2 style="color:#1A1A1A;">${isTransfer ? 'Ownership transfer requested' : 'New bar claim'}</h2>
+        <h2 style="color:#1A1A1A;">${completed ? 'Bar claim completed' : isTransfer ? 'Ownership transfer requested' : 'New bar claim'}</h2>
         <p style="font-size:16px;margin:0 0 14px;">${barLink}</p>
-        ${banner}
+        ${riskBanner}
         <table style="width:100%;border-collapse:collapse;font-size:15px;">
           ${fieldRows({
-            Route: METHOD_LABEL[method],
+            Basis: METHOD_LABEL[method],
             Claimant: claimantEmail,
             Name: claimantName || '—',
             Role: claimantRole || '—',
+            ...(ip ? { IP: ip } : {}),
             ...(proofCount != null ? { Proof: `${proofCount} file${proofCount === 1 ? '' : 's'}` } : {}),
           })}
         </table>
-        <p style="margin-top:24px;font-size:13px;color:#999;">Review at ${SITE_URL}/admin/review?tab=claims</p>
+        <p style="margin-top:24px;font-size:13px;color:#999;">Claims admin: ${SITE_URL}/admin/review?tab=claims</p>
       </div>
     `,
   });

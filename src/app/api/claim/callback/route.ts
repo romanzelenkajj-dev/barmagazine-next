@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient, verifyOwnerToken } from '@/lib/supabase-auth';
 import { isClaimExpired } from '@/lib/claim-routes';
+import { notifyClaim } from '@/lib/notify';
+import { revalidateBarPages } from '@/lib/revalidate-bars';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,20 +29,16 @@ export async function POST(request: NextRequest) {
 
     const { data: claim } = await supabase
       .from('bar_claims')
-      .select('id, bar_id, claimant_email, status, is_transfer, created_at, method, evidence')
+      .select('id, bar_id, claimant_email, claimant_name, claimant_role, status, is_transfer, created_at, method, evidence')
       .eq('id', claimId)
       .maybeSingle();
 
     if (!claim) return NextResponse.json({ error: 'Claim not found' }, { status: 404 });
 
-    // Only the mailbox the link was sent to can finish the claim.
-    //
-    // That is NOT always the address the claimant typed: on route B the link
-    // goes to the bar's on-file contact precisely so a stranger cannot claim a
-    // bar by typing their own address. Comparing against claimant_email would
-    // therefore reject the legitimate owner and make route B impossible, so we
-    // compare against the recorded destination and fall back to claimant_email
-    // (route A, where they are the same).
+    // Only the mailbox the link was sent to can finish the claim. Under open
+    // claiming that is always the claimant's own address; the recorded
+    // destination is still preferred so claims created under the old route B
+    // (link to the on-file contact) can complete for whoever it was sent to.
     const evidence =
       claim.evidence && typeof claim.evidence === 'object' && !Array.isArray(claim.evidence)
         ? (claim.evidence as Record<string, unknown>)
@@ -106,6 +104,40 @@ export async function POST(request: NextRequest) {
       .from('bar_claims')
       .update({ status: 'approved', owner_id: owner.id, verified_at: now, reviewed_at: now })
       .eq('id', claim.id);
+
+    // The public trust signal. A MATCH claim (email connected to the bar via
+    // its website domain or on-file contact) sets it automatically; a
+    // NO-MATCH claim leaves it unset until Roman confirms in /admin/bars.
+    const match = evidence.match === true;
+    if (match) {
+      await supabase.from('bars').update({ is_verified: true }).eq('id', claim.bar_id);
+    }
+
+    // Oversight happens here, after the grant: every completed claim tells
+    // the admin who now owns what, labelled MATCH / NO MATCH so the risky
+    // ones stand out. Best-effort — a mail failure must not fail the claim.
+    const barName = await supabase
+      .from('bars')
+      .select('name')
+      .eq('id', claim.bar_id)
+      .maybeSingle()
+      .then(r => String(r.data?.name ?? bar?.slug ?? 'Unknown bar'));
+
+    await notifyClaim({
+      barName,
+      barSlug: bar?.slug ?? null,
+      claimantEmail: owner.email,
+      claimantName: (claim.claimant_name as string | null) ?? null,
+      claimantRole: (claim.claimant_role as string | null) ?? null,
+      method: claim.method as 'domain_match' | 'contact_on_file' | 'manual',
+      isTransfer: false,
+      needsReview: false,
+      completed: true,
+      match,
+      ip: typeof evidence.ip === 'string' ? evidence.ip : null,
+    });
+
+    if (bar?.slug) revalidateBarPages([bar.slug]);
 
     return NextResponse.json({ success: true, slug: bar?.slug ?? null });
   } catch {

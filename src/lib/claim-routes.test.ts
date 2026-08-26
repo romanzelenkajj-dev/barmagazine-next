@@ -78,8 +78,8 @@ describe('claim-routes', () => {
     });
   });
 
-  describe('decideRoute', () => {
-    it('A: domain match wins and sends to the typed address', () => {
+  describe('decideRoute — open claiming', () => {
+    it('domain match: MATCH, link to the typed address', () => {
       const d = decideRoute(
         { website: 'https://saikindo.com', email: 'info@saikindo.com' },
         'sam@saikindo.com'
@@ -87,32 +87,38 @@ describe('claim-routes', () => {
       expect(d.method).toBe('domain_match');
       expect(d.destination).toBe('sam@saikindo.com');
       expect(d.autoVerifiable).toBe(true);
+      expect(d.match).toBe(true);
     });
 
-    it('A beats B when both apply', () => {
+    it('claimant IS the on-file contact: MATCH, link still to the typed address', () => {
       const d = decideRoute(
-        { website: 'https://bar.com', email: 'onfile@bar.com' },
-        'owner@bar.com'
+        { website: 'https://other.com', email: 'onfile@bar.com' },
+        'ONFILE@bar.com'
       );
-      expect(d.method).toBe('domain_match');
+      expect(d.method).toBe('contact_on_file');
+      expect(d.destination).toBe('ONFILE@bar.com');
+      expect(d.match).toBe(true);
+      expect(d.autoVerifiable).toBe(true);
     });
 
-    it('B: sends to the STORED address, never the typed one', () => {
+    it('NEVER mails the on-file address for a stranger — route B is dead', () => {
       const d = decideRoute(
         { website: 'https://bar.com', email: 'onfile@bar.com' },
         'stranger@gmail.com'
       );
-      expect(d.method).toBe('contact_on_file');
-      expect(d.destination).toBe('onfile@bar.com');
-      expect(d.destination).not.toBe('stranger@gmail.com');
-      expect(d.maskedDestination).toBe('o•••••@bar.com');
+      expect(d.method).toBe('manual');
+      expect(d.match).toBe(false);
+      // The link goes to the stranger's OWN address, proving only their mailbox.
+      expect(d.destination).toBe('stranger@gmail.com');
+      expect(d.destination).not.toBe('onfile@bar.com');
     });
 
-    it('C: manual when neither applies, and nothing is sent', () => {
+    it('no match still auto-verifies — open claiming has no admin gate', () => {
       const d = decideRoute({ website: null, email: null }, 'stranger@gmail.com');
       expect(d.method).toBe('manual');
-      expect(d.destination).toBeNull();
-      expect(d.autoVerifiable).toBe(false);
+      expect(d.match).toBe(false);
+      expect(d.autoVerifiable).toBe(true);
+      expect(d.destination).toBe('stranger@gmail.com');
     });
 
     it('a transfer never auto-verifies, even on a domain match', () => {
@@ -124,6 +130,7 @@ describe('claim-routes', () => {
       expect(d.isTransfer).toBe(true);
       expect(d.autoVerifiable).toBe(false);
       expect(d.destination).toBeNull();
+      expect(d.match).toBe(true);
     });
   });
 

@@ -139,11 +139,14 @@ export async function POST(request: NextRequest) {
         evidence: {
           ip,
           requested_at: new Date().toISOString(),
-          // The address the link is actually sent to. For route B that is the
-          // bar's on-file contact, NOT what the claimant typed — the callback
-          // must check the signed-in user against this, or a route B claim
-          // could never complete. Stored, never returned to a caller.
+          // Always the claimant's own address now — route B (mailing the
+          // bar's on-file contact) is dead: a mail scanner auto-followed one
+          // of those links in a live test. The callback compares the
+          // signed-in user against this. Stored, never returned to a caller.
           ...(decision.destination ? { destination: decision.destination } : {}),
+          // MATCH / NO MATCH — read back by the callback to decide whether
+          // completion may set bars.is_verified, and by the admin email.
+          match: decision.match,
         },
       })
       .select('id')
@@ -155,10 +158,10 @@ export async function POST(request: NextRequest) {
     }
 
     if (decision.autoVerifiable && decision.destination) {
-      // Routes A and B only. The destination is already established as
-      // legitimate — the bar's own domain, or the address we hold on file — so
-      // creating the auth user here cannot be pointed at an arbitrary address.
-      // Manual claims deliberately create nothing until Roman approves.
+      // Open claiming: every claim of an unclaimed bar gets a link, to the
+      // claimant's OWN address. Verifying that mailbox is the whole gate —
+      // ownership lands on completion, and oversight happens after the fact
+      // via the completion notification and the admin revoke.
       await sendClaimLink(
         supabase,
         decision.destination,
@@ -166,24 +169,27 @@ export async function POST(request: NextRequest) {
         bar.slug,
         claim.id
       );
+    } else {
+      // Transfers are the one path still gated on a human: notify now, since
+      // nothing else will move until Roman acts. Completed claims notify from
+      // the callback instead, where MATCH/NO MATCH is worth acting on.
+      await notifyClaim({
+        barName: String(bar.name ?? bar.slug),
+        barSlug: String(bar.slug),
+        claimantEmail: email,
+        claimantName: name,
+        claimantRole: role,
+        method: decision.method,
+        isTransfer: decision.isTransfer,
+        needsReview: true,
+        match: decision.match,
+        ip,
+      });
     }
 
-    await notifyClaim({
-      barName: String(bar.name ?? bar.slug),
-      barSlug: String(bar.slug),
-      claimantEmail: email,
-      claimantName: name,
-      claimantRole: role,
-      method: decision.method,
-      isTransfer: decision.isTransfer,
-      needsReview: !decision.autoVerifiable,
-    });
-
-    // `requiresProof` tells the UI to show the upload step. It is derived from
-    // the bar having neither a matching domain nor an address on file, which
-    // the claimant can already work out from the public listing, so it leaks
-    // nothing the directory does not already show.
-    return generic({ requiresProof: decision.method === 'manual', claimId: claim.id });
+    // Proof upload remains only for transfers — the single still-reviewed
+    // path. An unclaimed bar needs no proof: mailbox verification is the gate.
+    return generic({ requiresProof: decision.isTransfer, claimId: claim.id });
   } catch {
     return generic();
   }
@@ -191,9 +197,9 @@ export async function POST(request: NextRequest) {
 
 /**
  * Create the owner account if needed and mail a sign-in link that lands on the
- * claim verifier. `/api/auth/magic-link` uses shouldCreateUser:false, so the
- * account has to be created here — this is the only place where a claim is
- * already proven enough to justify it.
+ * claim verifier. The account is created for the address the claimant typed —
+ * open claiming makes that legitimate by definition: the account is worthless
+ * until they prove control of the mailbox, and it owns nothing until then.
  */
 async function sendClaimLink(
   supabase: ReturnType<typeof createAdminClient>,
@@ -202,7 +208,9 @@ async function sendClaimLink(
   barSlug: string,
   claimId: string
 ): Promise<void> {
-  const redirectTo = `${SITE_URL}/claim-your-bar/verify?claim=${encodeURIComponent(claimId)}`;
+  // barSlug rides along so the landing page can show which bar the button
+  // confirms — it fetches the display name via the public claim search.
+  const redirectTo = `${SITE_URL}/claim-your-bar/verify?claim=${encodeURIComponent(claimId)}&bar=${encodeURIComponent(barSlug)}`;
 
   try {
     const { error: createError } = await supabase.auth.admin.createUser({
