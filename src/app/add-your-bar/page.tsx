@@ -334,10 +334,6 @@ function AddYourBarForm() {
                   </li>
                   <li>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
-                    Plan Your Visit card — reserve, WhatsApp &amp; directions
-                  </li>
-                  <li>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
                     Unlimited profile updates
                   </li>
                 </ul>
@@ -622,10 +618,6 @@ function AddYourBarForm() {
                   <li>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
                     Photo gallery
-                  </li>
-                  <li>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
-                    Plan Your Visit card — reserve, WhatsApp &amp; directions
                   </li>
                   <li>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>

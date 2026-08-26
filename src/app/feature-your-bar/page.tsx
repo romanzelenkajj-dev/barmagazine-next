@@ -128,7 +128,7 @@ function jsonLdBlocks(currency: Currency) {
         priceCurrency: currency,
         url: `${SITE_URL}/add-your-bar?plan=featured`,
         description:
-          'Billed annually. Includes a BarMagazine feature article, SEO-optimized profile with full menu, photo gallery and Plan Your Visit card (reserve, WhatsApp, directions), priority placement and Featured badge.',
+          'Billed annually. Includes a BarMagazine feature article, SEO-optimized profile with full menu and photo gallery, priority placement and Featured badge.',
       },
       {
         '@type': 'Offer',
@@ -376,12 +376,14 @@ export default async function FeatureYourBarPage({
                   we update it the same week.
                 </p>
               </div>
+              {/* Plan Your Visit went free-tier — selling it as a Featured
+                  differentiator here would contradict the profile pages. */}
               <div className="feature-feat">
-                <h3>Bookings made easy</h3>
+                <h3>One link for everything</h3>
                 <p>
-                  A &quot;Plan Your Visit&quot; card with your hours, one-tap
-                  WhatsApp, click-to-call, a reserve button and Google Maps
-                  directions.
+                  Your menu, gallery, story and booking details on one fast
+                  page — the link for your Instagram bio and Google Business
+                  Profile.
                 </p>
               </div>
               <div className="feature-feat">
@@ -587,7 +589,6 @@ export default async function FeatureYourBarPage({
                   <li>SEO-optimized profile page</li>
                   <li>Full menu published on your page</li>
                   <li>Photo gallery</li>
-                  <li>Plan Your Visit card — reserve, WhatsApp &amp; directions</li>
                   <li>Priority placement &amp; Featured badge</li>
                   <li>Unlimited profile updates</li>
                 </ul>

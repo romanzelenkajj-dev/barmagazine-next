@@ -288,7 +288,7 @@ export default function EditBarPage() {
 
           {(bar.tier === 'free' || bar.tier === 'top10') && (
             <p className="owner-dash-note">
-              Menu, gallery and reservations are part of Featured —{' '}
+              Menu and gallery are part of Featured —{' '}
               <Link href={`/feature-your-bar?bar=${bar.slug}#pricing`} className="feature-link">see plans</Link>.
             </p>
           )}

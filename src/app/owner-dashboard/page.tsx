@@ -153,7 +153,7 @@ export default function OwnerDashboardPage() {
           <div className="owner-dash-upsell">
             <h2 className="owner-dash-upsell-title">Make this page your bar&apos;s website</h2>
             <ul className="owner-dash-upsell-list">
-              <li>Full drinks menu, photo gallery and a Plan Your Visit card — reserve, WhatsApp &amp; directions on one link</li>
+              <li>Your complete drinks menu and a photo gallery, published on your page</li>
               <li>A feature article about your bar in the magazine</li>
               <li>Featured + Social adds promotion to our 88,000+ Instagram audience</li>
             </ul>

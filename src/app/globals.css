@@ -8534,7 +8534,9 @@ textarea.form-input {
   margin-top: 2.5rem;
   background: #faf7f2;
   border: 1px solid #eee5d8;
-  border-radius: 12px;
+  /* House radius, same reasoning as .bar-v2-visit directly below it — the
+     two stack on the profile, so their corners must agree. */
+  border-radius: var(--radius);
   padding: 2rem;
 }
 .bar-v2-menu h2 {
@@ -8608,7 +8610,9 @@ textarea.form-input {
 .bar-v2-visit {
   margin-top: 2.5rem;
   background: #1a1a1a;
-  border-radius: 12px;
+  /* House radius — this card sat at 12px, half the 24px everything else
+     rounds to, and read as an import from another design. */
+  border-radius: var(--radius);
   padding: 2rem;
   color: #f5f0e8;
 }

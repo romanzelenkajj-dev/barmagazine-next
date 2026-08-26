@@ -88,7 +88,10 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const reserveHref = bar.reservation_url || (waDigits ? `https://wa.me/${waDigits}` : null);
   // Mirrors the Plan Your Visit render condition exactly, so the jump chip
   // can never point at a section that did not render.
-  const hasVisit = isPaid && !!(bar.opening_hours || bar.address || bar.phone || waDigits || reserveHref);
+  // Free-tier since Aug 2026: practical visit info (hours, address, phone,
+  // WhatsApp, reserve) renders for every bar that has the data. Menu and
+  // gallery remain the paid differentiators.
+  const hasVisit = !!(bar.opening_hours || bar.address || bar.phone || waDigits || reserveHref);
 
   // One renderer for both halves of the menu (open head, collapsed tail), so
   // they cannot drift apart in markup.
