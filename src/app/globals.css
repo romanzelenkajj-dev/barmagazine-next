@@ -3471,7 +3471,7 @@ textarea.form-input {
 /* Featured bar card */
 .bar-dir-featured-card {
   background: #fff;
-  border-radius: 24px;
+  border-radius: var(--radius);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -5950,7 +5950,7 @@ textarea.form-input {
 /* ═══ Directory Map ═══ */
 .directory-map-wrapper {
   position: relative;
-  border-radius: 12px;
+  border-radius: var(--radius);
   overflow: hidden;
   margin-bottom: 2rem;
   border: 1px solid rgba(0,0,0,0.08);
@@ -6464,7 +6464,7 @@ textarea.form-input {
 }
 .bar-v2-nearby-card {
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: var(--radius);
   overflow: hidden;
   background: #fff;
   border: 1px solid rgba(0,0,0,0.06);
@@ -6534,7 +6534,7 @@ textarea.form-input {
 /* CTA Banner */
 .bar-v2-cta {
   margin: 2rem 0;
-  border-radius: 12px;
+  border-radius: var(--radius);
   background: linear-gradient(135deg, #2a2520 0%, #1a1a1a 100%);
   padding: 2rem;
 }
@@ -8273,7 +8273,7 @@ textarea.form-input {
   padding: 26px 28px;
   background: #faf7f2;
   border: 1px solid #ece5d8;
-  border-radius: 14px;
+  border-radius: var(--radius);
 }
 .bar-v2-serves h2 {
   font-size: 1.15rem;
@@ -8396,7 +8396,7 @@ textarea.form-input {
   gap: 0;
   background: #fff;
   border: 1px solid #e8e2d6;
-  border-radius: 16px;
+  border-radius: var(--radius);
   overflow: hidden;
   text-decoration: none;
   color: inherit;
