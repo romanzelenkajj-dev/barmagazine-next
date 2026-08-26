@@ -1,3 +1,4 @@
+import { HighlightedText } from '@/components/HighlightedText';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -145,7 +146,7 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
                   </div>
                   <h2 className="best-bars-name">{bar.name}</h2>
                   {(bar.description || bar.short_excerpt) && (
-                    <p className="best-bars-desc">{bar.description || bar.short_excerpt}</p>
+                    <p className="best-bars-desc"><HighlightedText text={bar.description || bar.short_excerpt || ''} /></p>
                   )}
                   {bar.menu_highlights && bar.menu_highlights.length > 0 && (
                     <p className="best-bars-serve">

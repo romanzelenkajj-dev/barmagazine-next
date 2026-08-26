@@ -13,6 +13,7 @@ import { BarDirectorySidebarPromo, BarDirectorySidebar } from '@/components/BarD
 import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import BarGallery from '@/components/BarGallery';
 import { AccoladeBadges } from '@/components/AccoladeBadges';
+import { HighlightedText } from '@/components/HighlightedText';
 import { awardStrings, hasFiftyBest } from '@/lib/accolades';
 
 export const revalidate = 300;
@@ -260,7 +261,11 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 bar has no accolades. Identical on free and paid listings. */}
             <AccoladeBadges accolades={bar.accolades} />
             <p className="bar-v2-description">
-              {bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`}
+              {/* Bolding is computed at render time; the stored text stays
+                  plain. The fallback keeps the no-em-dash copy rule. */}
+              <HighlightedText
+                text={bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on BarMagazine, the global bar directory.`}
+              />
             </p>
             <div className="bar-v2-details">
               {bar.address && (

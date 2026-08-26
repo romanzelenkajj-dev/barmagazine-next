@@ -4,6 +4,7 @@ import { getBarBySlug, getBarsByCity } from '@/lib/supabase';
 import { formatBarType } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
+import { HighlightedText } from '@/components/HighlightedText';
 
 export const revalidate = 300;
 
@@ -125,7 +126,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           <div className="bar-v2-info-main">
             <h1>{bar.name}</h1>
             <p className="bar-v2-description">
-              {bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`}
+              <HighlightedText text={bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on BarMagazine, the global bar directory.`} />
             </p>
             <div className="bar-v2-details">
               {bar.address && (
