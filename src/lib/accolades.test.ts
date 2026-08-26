@@ -3,7 +3,6 @@ import {
   isRenderable,
   renderableAccolades,
   tilesFor,
-  awardLines,
   awardStrings,
   MAX_TILES,
   type Accolade,
@@ -98,8 +97,8 @@ describe('accolades', () => {
       expect(tile.org).toBe('Tales of the Cocktail Spirited Awards');
     });
 
-    it('awardLines: one visible line per winner/nominee, none for ranked', () => {
-      const lines = awardLines([
+    it('captions: ranked shows org+year, winner/nominee adds the category', () => {
+      const tiles = tilesFor([
         make({ org_key: 'w50b', kind: 'ranked', rank: 3, score: 900 }),
         make({
           org_key: 'totc',
@@ -120,10 +119,31 @@ describe('accolades', () => {
           score: 400,
         }),
       ]);
-      expect(lines).toEqual([
-        "Tales of the Cocktail Spirited Awards 2026 — World's Best Bar",
-        "Bartenders' Choice Awards 2026 — Best Cocktail Bar (Slovakia)",
+      expect(tiles.map(t => t.caption)).toEqual([
+        "World's 50 Best Bars 2025",
+        // Short org in the caption; aria/schema keep the full name.
+        "Spirited Awards 2026: World's Best Bar",
+        "Bartenders' Choice Awards 2026: Best Cocktail Bar (Slovakia)",
       ]);
+    });
+
+    it('caption is a no-em-dash zone: data dashes soften to commas', () => {
+      const [tile] = tilesFor([
+        make({
+          org_key: 'totc',
+          kind: 'nominee',
+          rank: null,
+          title: 'Best U.S. Cocktail Bar \u2014 Top 4',
+          year: 2025,
+        }),
+      ]);
+      expect(tile.caption).toBe('Spirited Awards 2025: Best U.S. Cocktail Bar, Top 4');
+      expect(tile.caption).not.toContain('\u2014');
+    });
+
+    it('caption never contains the rank', () => {
+      const [tile] = tilesFor([make({ org_key: 'w50b', kind: 'ranked', rank: 1 })]);
+      expect(tile.caption).toBe("World's 50 Best Bars 2025");
     });
 
     it('shows the year as the third line', () => {

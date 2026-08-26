@@ -30,13 +30,19 @@ const PHRASES = [
   'James Beard',
 ];
 
-/** Longest-first so "executive bar manager" wins over "bar manager". */
+/** Longest-first so "executive bar manager" wins over "bar manager" and
+    "head mixologist" over "mixologist". */
 const ROLES = [
   'executive bar manager',
+  'creative director',
+  'head mixologist',
   'head bartender',
   'beverage director',
   'bar director',
+  'head of bars',
   'bar manager',
+  'mixologist',
+  'bar chef',
   'co-founder',
   'founder',
   'owner',

@@ -44,6 +44,10 @@ interface TileDef {
       erring loud for a win, quiet only when we know it was a nomination. */
   winnerTier?: AccoladeTier;
   nomineeTier?: AccoladeTier;
+  /** Short display name for the caption line under the tiles, where the
+      full "Tales of the Cocktail Spirited Awards" would swamp the row.
+      Aria and schema.org keep the full name from the data. */
+  shortName?: string;
 }
 
 /**
@@ -65,7 +69,7 @@ const TILES: Record<string, TileDef> = {
   // lines, never in the tile. Top line is the abbreviation: spelling out
   // "TALES OF THE / SPIRITED" read top-to-bottom as "Tales of the Spirited",
   // which is not the award's name.
-  totc: { region: 'TOTC', main: 'SPIRITED', winnerTier: 'orange', nomineeTier: 'orange-outline' },
+  totc: { region: 'TOTC', main: 'SPIRITED', winnerTier: 'orange', nomineeTier: 'orange-outline', shortName: 'Spirited Awards' },
   // Not imported yet; the style ships ahead of the data.
   bca: { region: "BARTENDERS'", main: 'CHOICE', winnerTier: 'grey', nomineeTier: 'grey-outline' },
 };
@@ -121,6 +125,10 @@ export interface TileView {
   /** The award category ("World's Best Bar") — hover/aria only, never drawn
       in the tile. Rank stays entirely unexposed, as ever. */
   title: string | null;
+  /** This tile's slice of the consolidated caption line: "<org> <year>" for
+      ranked entries, "<short org> <year>: <category>" for winner/nominee.
+      Colon, never an em dash, and never the rank. */
+  caption: string;
   /** Kept for auditability — surfaced as a title attribute, not shown. */
   source: string | null;
 }
@@ -139,6 +147,11 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
     .slice(0, limit)
     .map(entry => {
       const def = TILES[entry.org_key];
+      const isAwardKind = entry.kind === 'winner' || entry.kind === 'nominee';
+      const captionOrg = (isAwardKind && def.shortName) || entry.org;
+      // Data titles may carry em dashes ("Best U.S. Cocktail Bar — Top 4");
+      // the caption line is a no-em-dash zone, so they soften to commas.
+      const captionTitle = isAwardKind && entry.title ? entry.title.replace(/\s*\u2014\s*/g, ', ') : null;
       return {
         key: `${entry.org_key}-${entry.year}`,
         tier: tierFor(def, entry.kind),
@@ -147,26 +160,12 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
         year: String(entry.year),
         org: entry.org,
         title: entry.title ?? null,
+        caption: captionTitle
+          ? `${captionOrg} ${entry.year}: ${captionTitle}`
+          : `${captionOrg} ${entry.year}`,
         source: entry.source,
       };
     });
-}
-
-/**
- * Visible award lines for winner/nominee accolades — the tile says which
- * award, this says what it was FOR ("Tales of the Cocktail Spirited Awards
- * 2026 — World's Best Bar"). Ranked accolades (50 Best) get no line: the
- * tile already says it, and rank is never displayed. Not capped at
- * MAX_TILES — an award that lost the tile race still earns its sentence.
- */
-export function awardLines(accolades: unknown): string[] {
-  return renderableAccolades(accolades)
-    .filter(entry => entry.kind === 'winner' || entry.kind === 'nominee')
-    .slice()
-    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
-    .map(entry =>
-      entry.title ? `${entry.org} ${entry.year} — ${entry.title}` : `${entry.org} ${entry.year}`
-    );
 }
 
 /**

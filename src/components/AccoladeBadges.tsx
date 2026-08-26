@@ -1,4 +1,4 @@
-import { awardLines, tilesFor, MAX_TILES } from '@/lib/accolades';
+import { tilesFor, MAX_TILES } from '@/lib/accolades';
 
 /**
  * Accolade tiles — placement "A": name → location → tiles.
@@ -24,9 +24,11 @@ export function AccoladeBadges({
   // No accolades renders nothing at all: no empty state, no reserved space.
   if (tiles.length === 0) return null;
 
-  // What the winner/nominee awards were actually FOR, in visible text — the
-  // category must not live only behind a hover.
-  const lines = awardLines(accolades);
+  // One consolidated caption for the whole row, in tile order: the text
+  // version of the badges, plus what each winner/nominee award was FOR — a
+  // sentence per accolade looked orphaned next to ranked tiles that said
+  // nothing.
+  const caption = tiles.map(t => t.caption).join(' · ');
 
   return (
     <>
@@ -47,13 +49,7 @@ export function AccoladeBadges({
           </span>
         ))}
       </div>
-      {lines.length > 0 && (
-        <ul className="acc-award-lines">
-          {lines.map(line => (
-            <li key={line}>{line}</li>
-          ))}
-        </ul>
-      )}
+      <p className="acc-award-caption">{caption}</p>
     </>
   );
 }

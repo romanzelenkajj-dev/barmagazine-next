@@ -9168,14 +9168,12 @@ textarea.form-input {
   margin-bottom: 18px;
 }
 
-/* What a winner/nominee award was FOR, in visible text under the tiles —
-   the category must not live only behind a hover. Quiet by design: it
-   informs, the tiles decorate. When the lines follow the tiles they take
-   over the 18px breathing room before the description. */
-.acc-award-lines {
-  list-style: none;
+/* One consolidated caption under the tile row — the text version of the
+   badges, including what each winner/nominee award was for. Quiet by
+   design: it informs, the tiles decorate. It takes over the tiles' 18px
+   breathing room before the description. */
+.acc-award-caption {
   margin: -8px 0 18px;
-  padding: 0;
   font-size: 12.5px;
   line-height: 1.6;
   color: var(--text-secondary);
