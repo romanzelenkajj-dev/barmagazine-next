@@ -55,6 +55,10 @@ export default function OwnerLoginPage() {
               The link opens your dashboard directly — no password needed. It expires
               shortly, so request a new one if it stops working.
             </p>
+            <p className="owner-dash-note">
+              Not seeing it? Check your spam or junk folder — and mark it
+              &ldquo;not spam&rdquo; so the confirmation button works.
+            </p>
             <button
               onClick={() => { setSent(false); setEmail(''); }}
               className="feature-link"

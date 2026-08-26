@@ -211,6 +211,12 @@ function ClaimYourBar() {
                   and press the button inside — that verifies your email and makes the
                   listing yours.
                 </p>
+                {/* Yahoo and some others disable links on mail sitting in spam,
+                    so "check spam" alone is not enough — it must be moved out. */}
+                <p style={{ marginTop: 12, color: '#6B6B6B', fontSize: 13 }}>
+                  Not seeing it? Check your spam or junk folder — and mark it
+                  &ldquo;not spam&rdquo; so the confirmation button works.
+                </p>
               </>
             )}
           </div>
