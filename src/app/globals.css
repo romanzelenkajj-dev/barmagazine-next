@@ -9522,3 +9522,18 @@ textarea.form-input {
 }
 
 .owner-dash-upsell-list li { margin-bottom: 6px; }
+
+/* Claimed-bar note in the profile action row — the claim pill's replacement
+   once a bar has an owner. Deliberately quiet: it exists for the successor
+   who needs to know how to reach us, not to advertise ownership. */
+.bar-v2-owner-note {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  align-self: center;
+}
+
+.bar-v2-owner-note a {
+  color: inherit;
+  text-decoration: underline;
+}
