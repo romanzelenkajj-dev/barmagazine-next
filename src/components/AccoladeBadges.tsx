@@ -30,8 +30,13 @@ export function AccoladeBadges({
         <span
           key={tile.key}
           className={`acc-tile acc-tile--${tile.tier}`}
-          // Not shown, but keeps every tile traceable to its citation.
-          title={tile.source ? `${tile.region} ${tile.main} ${tile.year} — ${tile.source}` : undefined}
+          // The category ("World's Best Bar") lives on hover and for screen
+          // readers — the tile itself never grows a fourth line. The source
+          // keeps every tile traceable to its citation.
+          title={[`${tile.region} ${tile.main} ${tile.year}`, tile.title, tile.source]
+            .filter(Boolean)
+            .join(' — ')}
+          aria-label={[`${tile.region} ${tile.main} ${tile.year}`, tile.title].filter(Boolean).join(' — ')}
         >
           <span className="acc-tile-region">{tile.region}</span>
           <span className="acc-tile-main">{tile.main}</span>

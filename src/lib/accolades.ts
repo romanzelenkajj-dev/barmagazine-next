@@ -23,14 +23,27 @@ export interface Accolade {
   source: string | null;
 }
 
-export type AccoladeTier = 'gold' | 'dark' | 'outline';
+export type AccoladeTier =
+  | 'gold'
+  | 'dark'
+  | 'orange'
+  | 'orange-outline'
+  | 'grey'
+  | 'grey-outline';
 
 interface TileDef {
   /** Small line above the bold one — carries the possessive. */
   region: string;
-  /** Bold line. Constant across the 50 Best family; never vary it. */
+  /** Bold line. Constant within each award family; never vary it. */
   main: string;
-  tier: AccoladeTier;
+  /** Fixed colour, for orgs whose entries are all one kind (the 50 Best
+      lists are all `ranked`). */
+  tier?: AccoladeTier;
+  /** Kind-dependent colour: solid for a winner, outline for a nominee.
+      Anything that is not explicitly a nominee gets the solid treatment —
+      erring loud for a win, quiet only when we know it was a nomination. */
+  winnerTier?: AccoladeTier;
+  nomineeTier?: AccoladeTier;
 }
 
 /**
@@ -38,16 +51,26 @@ interface TileDef {
  * themselves. Getting another organisation's name right is part of the
  * credibility, the same principle as showing the year.
  *
- * Gold is reserved for the world list. If everything is gold, nothing is.
+ * Colours: gold is reserved for the world list — if everything is gold,
+ * nothing is. Orange is the Spirited Awards' own colour. Grey keeps bca
+ * clearly lighter than the near-black regional tiles.
  */
 const TILES: Record<string, TileDef> = {
   w50b: { region: "WORLD'S", main: '50 BEST', tier: 'gold' },
   a50b: { region: "ASIA'S", main: '50 BEST', tier: 'dark' },
   e50b: { region: "EUROPE'S", main: '50 BEST', tier: 'dark' },
   na50b: { region: "N. AMERICA'S", main: '50 BEST', tier: 'dark' },
+  // Tales of the Cocktail Spirited Awards — kind winner|nominee, rank null,
+  // `title` carries the category and surfaces on hover, never in the tile.
+  totc: { region: 'TALES OF THE', main: 'SPIRITED', winnerTier: 'orange', nomineeTier: 'orange-outline' },
   // Not imported yet; the style ships ahead of the data.
-  bca: { region: "BARTENDER'S", main: 'CHOICE', tier: 'outline' },
+  bca: { region: "BARTENDERS'", main: 'CHOICE', winnerTier: 'grey', nomineeTier: 'grey-outline' },
 };
+
+function tierFor(def: TileDef, kind: AccoladeKind): AccoladeTier {
+  if (def.tier) return def.tier;
+  return kind === 'nominee' ? def.nomineeTier! : def.winnerTier!;
+}
 
 /** Most tiles shown anywhere. Beyond this the description carries the rest. */
 export const MAX_TILES = 3;
@@ -89,6 +112,9 @@ export interface TileView {
   region: string;
   main: string;
   year: string;
+  /** The award category ("World's Best Bar") — hover/aria only, never drawn
+      in the tile. Rank stays entirely unexposed, as ever. */
+  title: string | null;
   /** Kept for auditability — surfaced as a title attribute, not shown. */
   source: string | null;
 }
@@ -109,10 +135,11 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
       const def = TILES[entry.org_key];
       return {
         key: `${entry.org_key}-${entry.year}`,
-        tier: def.tier,
+        tier: tierFor(def, entry.kind),
         region: def.region,
         main: def.main,
         year: String(entry.year),
+        title: entry.title ?? null,
         source: entry.source,
       };
     });
@@ -130,7 +157,9 @@ export function awardStrings(accolades: unknown): string[] {
   return renderableAccolades(accolades).map(entry =>
     entry.rank != null
       ? `${entry.org} ${entry.year} — No. ${entry.rank}`
-      : `${entry.org} ${entry.year}`
+      : entry.title
+        ? `${entry.org} ${entry.year} — ${entry.title}`
+        : `${entry.org} ${entry.year}`
   );
 }
 

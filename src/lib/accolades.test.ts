@@ -72,10 +72,27 @@ describe('accolades', () => {
     });
 
     it('has a bca tile ready before its data lands', () => {
-      const [tile] = tilesFor([make({ org_key: 'bca', org: "Bartender's Choice Awards" })]);
-      expect(tile.region).toBe("BARTENDER'S");
+      const [tile] = tilesFor([make({ org_key: 'bca', org: "Bartenders' Choice Awards", kind: 'winner' })]);
+      expect(tile.region).toBe("BARTENDERS'");
       expect(tile.main).toBe('CHOICE');
-      expect(tile.tier).toBe('outline');
+      expect(tile.tier).toBe('grey');
+    });
+
+    it('totc: three lines, category on hover only', () => {
+      const [tile] = tilesFor([
+        make({
+          org_key: 'totc',
+          org: 'Tales of the Cocktail Spirited Awards',
+          kind: 'winner',
+          rank: null,
+          title: "World's Best Bar",
+          year: 2026,
+        }),
+      ]);
+      expect(tile.region).toBe('TALES OF THE');
+      expect(tile.main).toBe('SPIRITED');
+      expect(tile.year).toBe('2026');
+      expect(tile.title).toBe("World's Best Bar");
     });
 
     it('shows the year as the third line', () => {
@@ -95,6 +112,30 @@ describe('accolades', () => {
       for (const org_key of ['a50b', 'e50b', 'na50b']) {
         expect(tilesFor([make({ org_key })])[0].tier).toBe('dark');
       }
+    });
+
+    it('totc: solid orange for winner, orange outline for nominee', () => {
+      expect(tilesFor([make({ org_key: 'totc', kind: 'winner', rank: null })])[0].tier).toBe('orange');
+      expect(tilesFor([make({ org_key: 'totc', kind: 'nominee', rank: null })])[0].tier).toBe('orange-outline');
+    });
+
+    it('bca: solid grey for winner, grey outline for nominee', () => {
+      expect(tilesFor([make({ org_key: 'bca', kind: 'winner', rank: null })])[0].tier).toBe('grey');
+      expect(tilesFor([make({ org_key: 'bca', kind: 'nominee', rank: null })])[0].tier).toBe('grey-outline');
+    });
+
+    it('winner/nominee with rank null render exactly like ranked entries', () => {
+      // Same renderability rules: year + source + known org is all it takes.
+      const winner = make({ org_key: 'totc', kind: 'winner', rank: null, title: 'Best Bar' });
+      expect(isRenderable(winner)).toBe(true);
+      // And they compete in the same top-3-by-score ordering.
+      const mixed = [
+        make({ org_key: 'w50b', kind: 'ranked', score: 500 }),
+        make({ org_key: 'totc', kind: 'winner', rank: null, score: 900 }),
+        make({ org_key: 'totc', kind: 'nominee', rank: null, score: 100, year: 2025 }),
+      ];
+      const keys = tilesFor(mixed).map(t => t.key.split('-')[0]);
+      expect(keys).toEqual(['totc', 'w50b', 'totc']);
     });
 
     it('tier comes from the org, not the score', () => {
@@ -139,6 +180,21 @@ describe('accolades', () => {
       expect(awardStrings([make({ rank: 8 })])).toEqual([
         "World's 50 Best Bars 2025 — No. 8",
       ]);
+    });
+
+    it('carries the category for rankless awards', () => {
+      expect(
+        awardStrings([
+          make({
+            org: 'Tales of the Cocktail Spirited Awards',
+            org_key: 'totc',
+            kind: 'winner',
+            rank: null,
+            title: "World's Best Bar",
+            year: 2026,
+          }),
+        ])
+      ).toEqual(["Tales of the Cocktail Spirited Awards 2026 — World's Best Bar"]);
     });
 
     it('excludes entries that could not be substantiated', () => {

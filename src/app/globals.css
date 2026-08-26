@@ -9229,11 +9229,32 @@ textarea.form-input {
   color: #fff;
 }
 
-/* Outline — bca, style shipped ahead of its data */
-.acc-tile--outline {
-  border-color: #111;
+/* Orange — Tales of the Cocktail Spirited Awards. Solid for a winner,
+   outline for a nominee: same information design as grey below. */
+.acc-tile--orange {
+  border-color: #E8590C;
+  background: #E8590C;
+  color: #fff;
+}
+
+.acc-tile--orange-outline {
+  border-color: #E8590C;
   background: #fff;
-  color: #111;
+  color: #E8590C;
+}
+
+/* Grey — Bartenders' Choice, style shipped ahead of its data. Deliberately
+   lighter than the near-black regional tiles so the families stay distinct. */
+.acc-tile--grey {
+  border-color: #6B7280;
+  background: #6B7280;
+  color: #fff;
+}
+
+.acc-tile--grey-outline {
+  border-color: #6B7280;
+  background: #fff;
+  color: #6B7280;
 }
 
 /* Location line on the bar profile — the tiles sit under this, per placement A. */
@@ -9540,4 +9561,27 @@ textarea.form-input {
 .bar-v2-owner-note a {
   color: inherit;
   text-decoration: underline;
+}
+
+/* ── Admin review: media thumbnails ─────────────────────────────────────── */
+
+/* A reviewer approving photos needs to see them, not read storage URLs.
+   ~120px, click opens full size in a new tab. */
+.admin-thumbs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-thumb {
+  display: inline-block;
+  line-height: 0;
+}
+
+.admin-thumb img {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #E0D8D0;
 }
