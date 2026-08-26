@@ -97,53 +97,9 @@ describe('accolades', () => {
       expect(tile.org).toBe('Tales of the Cocktail Spirited Awards');
     });
 
-    it('captions: ranked shows org+year, winner/nominee adds the category', () => {
-      const tiles = tilesFor([
-        make({ org_key: 'w50b', kind: 'ranked', rank: 3, score: 900 }),
-        make({
-          org_key: 'totc',
-          org: 'Tales of the Cocktail Spirited Awards',
-          kind: 'winner',
-          rank: null,
-          title: "World's Best Bar",
-          year: 2026,
-          score: 800,
-        }),
-        make({
-          org_key: 'bca',
-          org: "Bartenders' Choice Awards",
-          kind: 'nominee',
-          rank: null,
-          title: 'Best Cocktail Bar (Slovakia)',
-          year: 2026,
-          score: 400,
-        }),
-      ]);
-      expect(tiles.map(t => t.caption)).toEqual([
-        "World's 50 Best Bars 2025",
-        // Short org in the caption; aria/schema keep the full name.
-        "Spirited Awards 2026: World's Best Bar",
-        "Bartenders' Choice Awards 2026: Best Cocktail Bar (Slovakia)",
-      ]);
-    });
-
-    it('caption is a no-em-dash zone: data dashes soften to commas', () => {
-      const [tile] = tilesFor([
-        make({
-          org_key: 'totc',
-          kind: 'nominee',
-          rank: null,
-          title: 'Best U.S. Cocktail Bar \u2014 Top 4',
-          year: 2025,
-        }),
-      ]);
-      expect(tile.caption).toBe('Spirited Awards 2025: Best U.S. Cocktail Bar, Top 4');
-      expect(tile.caption).not.toContain('\u2014');
-    });
-
-    it('caption never contains the rank', () => {
+    it('tiles carry no caption — the award story lives in the description text', () => {
       const [tile] = tilesFor([make({ org_key: 'w50b', kind: 'ranked', rank: 1 })]);
-      expect(tile.caption).toBe("World's 50 Best Bars 2025");
+      expect('caption' in tile).toBe(false);
     });
 
     it('shows the year as the third line', () => {

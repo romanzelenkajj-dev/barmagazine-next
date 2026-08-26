@@ -9168,16 +9168,6 @@ textarea.form-input {
   margin-bottom: 18px;
 }
 
-/* One consolidated caption under the tile row — the text version of the
-   badges, including what each winner/nominee award was for. Quiet by
-   design: it informs, the tiles decorate. It takes over the tiles' 18px
-   breathing room before the description. */
-.acc-award-caption {
-  margin: -8px 0 18px;
-  font-size: 12.5px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-}
 
 .acc-tile {
   /* Fixed size is the point: equal tiles line up card to card however long
