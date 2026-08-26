@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { AdminValue } from '@/components/AdminMediaValue';
 
 /**
  * Owner edit review.
@@ -231,8 +232,8 @@ export default function AdminOwnerEditsPage() {
                     {sub.diff.map(d => (
                       <tr key={d.field}>
                         <td>{FIELD_LABEL[d.field] || d.field}</td>
-                        <td className="admin-diff-from">{d.from || <em>empty</em>}</td>
-                        <td className="admin-diff-to">{d.to || <em>cleared</em>}</td>
+                        <td className="admin-diff-from">{d.from ? <AdminValue value={d.from} /> : <em>empty</em>}</td>
+                        <td className="admin-diff-to">{d.to ? <AdminValue value={d.to} /> : <em>cleared</em>}</td>
                       </tr>
                     ))}
                   </tbody>

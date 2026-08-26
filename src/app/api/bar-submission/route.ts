@@ -83,7 +83,7 @@ async function sendNotificationEmail(data: Record<string, string | undefined>, p
 
   try {
     const photoRow = photoUrl
-      ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Photo</td><td style="padding: 8px 12px;"><a href="${escapeHtml(photoUrl)}">View uploaded photo</a></td></tr>`
+      ? `<tr style="background: #f9f9f9;"><td style="padding: 8px 12px; font-weight: 600; color: #666;">Photo</td><td style="padding: 8px 12px;"><a href="${escapeHtml(photoUrl)}"><img src="${escapeHtml(photoUrl)}" width="120" style="width:120px;height:90px;object-fit:cover;border-radius:6px;border:1px solid #e0d8d0;display:block;margin-bottom:4px;" alt="Submitted photo">View full size</a></td></tr>`
       : '';
 
     const res = await fetch('https://api.resend.com/emails', {

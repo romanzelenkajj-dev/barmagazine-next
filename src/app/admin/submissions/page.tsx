@@ -203,7 +203,9 @@ export default function AdminSubmissionsPage() {
 
               {s.photo_url && (
                 <div style={{ marginBottom: 12 }}>
-                  <img src={s.photo_url} alt="Submitted photo" style={{ maxWidth: '100%', maxHeight: 200, borderRadius: 8, objectFit: 'cover' }} />
+                  <a href={s.photo_url} target="_blank" rel="noopener noreferrer" className="admin-thumb">
+                    <img src={s.photo_url} alt="Submitted photo" loading="lazy" />
+                  </a>
                 </div>
               )}
 

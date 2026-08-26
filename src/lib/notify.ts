@@ -24,20 +24,51 @@ export function escapeHtml(value: unknown): string {
     .replace(/'/g, '&#39;');
 }
 
-/** Render a submitted-fields object as table rows, truncating long values. */
+const IMAGE_URL_RE = /^https?:\/\/\S+\.(jpe?g|png|webp|gif|heic|avif)([?#]\S*)?$/i;
+
+/** Clickable thumbnail for an image URL — mail clients show the preview and
+    the click opens full size. Escaped for use in an attribute. */
+function imageCell(urls: string[]): string {
+  const shown = urls.slice(0, 6);
+  const more = urls.length - shown.length;
+  const thumbs = shown
+    .map(u => {
+      const href = escapeHtml(u);
+      return `<a href="${href}" style="display:inline-block;margin:0 6px 6px 0;"><img src="${href}" width="120" style="width:120px;height:90px;object-fit:cover;border-radius:6px;border:1px solid #e0d8d0;" alt="Submitted photo"></a>`;
+    })
+    .join('');
+  return thumbs + (more > 0 ? `<div style="font-size:12px;color:#999;">+${more} more</div>` : '');
+}
+
+/** Render a submitted-fields object as table rows, truncating long values.
+    Image URLs (single or arrays, e.g. gallery_images) render as clickable
+    thumbnails instead of raw URL text. */
 export function fieldRows(fields: Record<string, unknown>): string {
   return Object.entries(fields)
     .map(([key, value], i) => {
+      const bg = i % 2 === 1 ? ' style="background:#f9f9f9;"' : '';
+      const keyCell = `<td style="padding:8px 12px;font-weight:600;color:#666;width:160px;">${escapeHtml(key)}</td>`;
+
+      const imageUrls = Array.isArray(value)
+        ? value.filter((v): v is string => typeof v === 'string' && IMAGE_URL_RE.test(v.trim()))
+        : typeof value === 'string' && IMAGE_URL_RE.test(value.trim())
+          ? [value.trim()]
+          : [];
+      const allImages =
+        imageUrls.length > 0 &&
+        (Array.isArray(value) ? imageUrls.length === value.length : true);
+
+      if (allImages) {
+        return `<tr${bg}>${keyCell}<td style="padding:8px 12px;">${imageCell(imageUrls)}</td></tr>`;
+      }
+
       const rendered = Array.isArray(value)
         ? `${value.length} item${value.length === 1 ? '' : 's'}`
         : typeof value === 'object' && value !== null
           ? JSON.stringify(value).slice(0, 200)
           : String(value ?? '');
       const shown = rendered.length > 200 ? `${rendered.slice(0, 200)}…` : rendered;
-      const bg = i % 2 === 1 ? ' style="background:#f9f9f9;"' : '';
-      return `<tr${bg}><td style="padding:8px 12px;font-weight:600;color:#666;width:160px;">${escapeHtml(
-        key
-      )}</td><td style="padding:8px 12px;">${escapeHtml(shown)}</td></tr>`;
+      return `<tr${bg}>${keyCell}<td style="padding:8px 12px;">${escapeHtml(shown)}</td></tr>`;
     })
     .join('');
 }

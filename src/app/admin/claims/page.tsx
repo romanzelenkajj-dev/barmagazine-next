@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { isImageUrl } from '@/components/AdminMediaValue';
 
 /**
  * Claim review queue.
@@ -241,9 +242,19 @@ export default function AdminClaimsPage() {
                     {claim.proof.map(p => (
                       <li key={p.path}>
                         {p.url ? (
-                          <a href={p.url} target="_blank" rel="noopener noreferrer">
-                            {p.path.split('/').pop()}
-                          </a>
+                          // The signed URL hides the extension behind a token,
+                          // so type comes from the stored path. Images render
+                          // as thumbnails; PDFs keep the filename link.
+                          isImageUrl(`https://x/${p.path}`) ? (
+                            <a href={p.url} target="_blank" rel="noopener noreferrer" className="admin-thumb">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={p.url} alt={p.path.split('/').pop() || 'proof'} loading="lazy" />
+                            </a>
+                          ) : (
+                            <a href={p.url} target="_blank" rel="noopener noreferrer">
+                              {p.path.split('/').pop()}
+                            </a>
+                          )
                         ) : (
                           <span>{p.path.split('/').pop()} — could not sign</span>
                         )}
