@@ -78,6 +78,28 @@ describe('highlightSegments', () => {
     expect(boldParts('find it at #7 Rue de la Paix')).toEqual([]);
   });
 
+  it('bolds the name in a competition apposition, particles included', () => {
+    expect(
+      boldParts('Eric van Beek, the 2018 Bacardi Legacy World Champion, operates a speakeasy')
+    ).toEqual(['Eric van Beek']);
+  });
+
+  it('bolds the name after a forward competition credit', () => {
+    expect(boldParts('World Class winner Kaitlyn Stewart runs the programme')).toEqual([
+      'Kaitlyn Stewart',
+    ]);
+  });
+
+  it('appositions without a known competition or win stay plain', () => {
+    expect(boldParts('Mexico City, the 2024 host of the ceremony')).toEqual([]);
+    expect(boldParts('Maria Lopez, the marathon winner, pours here')).toEqual([]);
+    expect(boldParts('Bar Alto, the World Class of neighbourhood bars')).toEqual([]);
+  });
+
+  it('role names capture lowercase particles', () => {
+    expect(boldParts('founder Ana de la Rosa opened the room')).toEqual(['Ana de la Rosa']);
+  });
+
   it('rank context does not leak across sentences', () => {
     const parts = boldParts(
       'Ranked highly on the 50 Best list. The bar sits at No. 4 Elm Street.'

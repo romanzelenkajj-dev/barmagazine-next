@@ -63,8 +63,39 @@ const ROLE_RE = new RegExp(`\\b(?:${ROLES.map(escapeRe).join('|')})s?\\s+`, 'gi'
 // Tokens joined by whitespace rather than each requiring trailing whitespace:
 // "co-founder David Barzelay, the team…" must capture BOTH names — a comma
 // (or dash, or sentence end) right after the surname is the normal case, and
-// the old form dropped every token that touched punctuation.
-const NAME_RE = /^[A-Z][\w.'-]*(?:\s+[A-Z][\w.'-]*){0,2}/;
+// the old form dropped every token that touched punctuation. Lowercase
+// particles (Eric VAN Beek, Ana DE LA Rosa) may sit between capitalized
+// tokens — a name never ends on one.
+const NAME_PATTERN = "[A-Z][\\w.'-]*(?:\\s+(?:(?:van|von|de|del|der|da|di|la|le)\\s+){0,2}[A-Z][\\w.'-]*){0,2}";
+const NAME_RE = new RegExp(`^${NAME_PATTERN}`);
+
+// Competition titles bold the adjacent name too — descriptions credit
+// people through wins as often as through job titles.
+const COMPETITIONS = [
+  'Bacardi Legacy',
+  'World Class',
+  "Bartenders' Bartender",
+  'Bartender of the Year',
+];
+
+// Forward order: "World Class winner Kaitlyn Stewart".
+const COMPETITION_ROLE_RE = new RegExp(
+  `\\b(?:${COMPETITIONS.map(escapeRe).join('|')})[\\w\\s]{0,20}?\\b(?:champion|winner)s?\\s+`,
+  'gi'
+);
+
+// Apposition order: "Eric van Beek, the 2018 Bacardi Legacy World Champion".
+// The clause after the comma must contain BOTH a known competition and
+// champion/winner before any clause break, so "Mexico City, the 2024 host"
+// and "Maria, the marathon winner" stay plain.
+const NAME_APPOSITION_RE = new RegExp(
+  `\\b(${NAME_PATTERN}),\\s+(?:the\\s+)?(?:\\d{4}\\s+)?([^,.;:]{0,60})`,
+  'g'
+);
+const APPOSITION_QUALIFIER_RE = new RegExp(
+  `\\b(?:${COMPETITIONS.map(escapeRe).join('|')})\\b`,
+  'i'
+);
 
 // Rank tokens ("No. 12", "No.12", "#93") — bold ONLY in a ranking context,
 // so street numbers and seat counts stay plain.
@@ -126,6 +157,26 @@ export function highlightSegments(text: string): Segment[] {
       // never the role title.
       const captured = name[0].replace(/[.,;:!?]+$/, '');
       spans.push({ start: nameStart, end: nameStart + captured.length });
+    }
+  }
+
+  // Forward competition credits: "World Class winner Kaitlyn Stewart".
+  for (const m of Array.from(text.matchAll(COMPETITION_ROLE_RE))) {
+    const nameStart = m.index! + m[0].length;
+    const name = NAME_RE.exec(text.slice(nameStart));
+    if (name) {
+      const captured = name[0].replace(/[.,;:!?]+$/, '');
+      spans.push({ start: nameStart, end: nameStart + captured.length });
+    }
+  }
+
+  // Apposition credits: "Eric van Beek, the 2018 Bacardi Legacy World
+  // Champion, operates…" — bold the name when its very next clause names a
+  // competition win.
+  for (const m of Array.from(text.matchAll(NAME_APPOSITION_RE))) {
+    const clause = m[2] || '';
+    if (APPOSITION_QUALIFIER_RE.test(clause) && /\b(?:champion|winner)s?\b/i.test(clause)) {
+      spans.push({ start: m.index!, end: m.index! + m[1].length });
     }
   }
 
