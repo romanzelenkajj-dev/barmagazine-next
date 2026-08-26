@@ -61,8 +61,11 @@ const TILES: Record<string, TileDef> = {
   e50b: { region: "EUROPE'S", main: '50 BEST', tier: 'dark' },
   na50b: { region: "N. AMERICA'S", main: '50 BEST', tier: 'dark' },
   // Tales of the Cocktail Spirited Awards — kind winner|nominee, rank null,
-  // `title` carries the category and surfaces on hover, never in the tile.
-  totc: { region: 'TALES OF THE', main: 'SPIRITED', winnerTier: 'orange', nomineeTier: 'orange-outline' },
+  // `title` carries the category and surfaces on hover and in the award
+  // lines, never in the tile. Top line is the abbreviation: spelling out
+  // "TALES OF THE / SPIRITED" read top-to-bottom as "Tales of the Spirited",
+  // which is not the award's name.
+  totc: { region: 'TOTC', main: 'SPIRITED', winnerTier: 'orange', nomineeTier: 'orange-outline' },
   // Not imported yet; the style ships ahead of the data.
   bca: { region: "BARTENDERS'", main: 'CHOICE', winnerTier: 'grey', nomineeTier: 'grey-outline' },
 };
@@ -112,6 +115,9 @@ export interface TileView {
   region: string;
   main: string;
   year: string;
+  /** The awarding body's full name, for title/aria — the tile lines are
+      abbreviations, and "TOTC SPIRITED 2026" is not a name to announce. */
+  org: string;
   /** The award category ("World's Best Bar") — hover/aria only, never drawn
       in the tile. Rank stays entirely unexposed, as ever. */
   title: string | null;
@@ -139,10 +145,28 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
         region: def.region,
         main: def.main,
         year: String(entry.year),
+        org: entry.org,
         title: entry.title ?? null,
         source: entry.source,
       };
     });
+}
+
+/**
+ * Visible award lines for winner/nominee accolades — the tile says which
+ * award, this says what it was FOR ("Tales of the Cocktail Spirited Awards
+ * 2026 — World's Best Bar"). Ranked accolades (50 Best) get no line: the
+ * tile already says it, and rank is never displayed. Not capped at
+ * MAX_TILES — an award that lost the tile race still earns its sentence.
+ */
+export function awardLines(accolades: unknown): string[] {
+  return renderableAccolades(accolades)
+    .filter(entry => entry.kind === 'winner' || entry.kind === 'nominee')
+    .slice()
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+    .map(entry =>
+      entry.title ? `${entry.org} ${entry.year} — ${entry.title}` : `${entry.org} ${entry.year}`
+    );
 }
 
 /**

@@ -3,6 +3,7 @@ import {
   isRenderable,
   renderableAccolades,
   tilesFor,
+  awardLines,
   awardStrings,
   MAX_TILES,
   type Accolade,
@@ -78,7 +79,7 @@ describe('accolades', () => {
       expect(tile.tier).toBe('grey');
     });
 
-    it('totc: three lines, category on hover only', () => {
+    it('totc: TOTC / SPIRITED / year — never "Tales of the Spirited"', () => {
       const [tile] = tilesFor([
         make({
           org_key: 'totc',
@@ -89,10 +90,40 @@ describe('accolades', () => {
           year: 2026,
         }),
       ]);
-      expect(tile.region).toBe('TALES OF THE');
+      expect(tile.region).toBe('TOTC');
       expect(tile.main).toBe('SPIRITED');
       expect(tile.year).toBe('2026');
       expect(tile.title).toBe("World's Best Bar");
+      // The full name for title/aria comes from org, not the tile lines.
+      expect(tile.org).toBe('Tales of the Cocktail Spirited Awards');
+    });
+
+    it('awardLines: one visible line per winner/nominee, none for ranked', () => {
+      const lines = awardLines([
+        make({ org_key: 'w50b', kind: 'ranked', rank: 3, score: 900 }),
+        make({
+          org_key: 'totc',
+          org: 'Tales of the Cocktail Spirited Awards',
+          kind: 'winner',
+          rank: null,
+          title: "World's Best Bar",
+          year: 2026,
+          score: 800,
+        }),
+        make({
+          org_key: 'bca',
+          org: "Bartenders' Choice Awards",
+          kind: 'nominee',
+          rank: null,
+          title: 'Best Cocktail Bar (Slovakia)',
+          year: 2026,
+          score: 400,
+        }),
+      ]);
+      expect(lines).toEqual([
+        "Tales of the Cocktail Spirited Awards 2026 — World's Best Bar",
+        "Bartenders' Choice Awards 2026 — Best Cocktail Bar (Slovakia)",
+      ]);
     });
 
     it('shows the year as the third line', () => {
