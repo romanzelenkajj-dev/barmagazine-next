@@ -50,12 +50,39 @@ describe('highlightSegments', () => {
 
   it('caps at MAX_BOLD_SPANS in reading order', () => {
     const t =
-      "Tales of the Cocktail winner, on World's 50 Best Bars and Asia's 50 Best Bars, " +
-      'a Michelin room with a James Beard pedigree.';
+      "Tales of the Cocktail winner, on World's 50 Best Bars at No. 3 and Asia's 50 Best Bars " +
+      'at No. 7, ranked No. 40 globally, a Michelin room with a James Beard pedigree.';
     const parts = boldParts(t);
     expect(parts).toHaveLength(MAX_BOLD_SPANS);
+    expect(MAX_BOLD_SPANS).toBe(6);
     expect(parts[0]).toBe('Tales of the Cocktail');
+    // Seventh candidate in reading order loses.
     expect(parts).not.toContain('James Beard');
+  });
+
+  it('bolds rank tokens only in a ranking sentence', () => {
+    const parts = boldParts(
+      "jumping thirty-four places to No. 12 on North America's 50 Best Bars, plus No. 93 globally."
+    );
+    expect(parts).toContain('No. 12');
+    expect(parts).toContain('No. 93');
+  });
+
+  it('supports the #N and No.N spellings', () => {
+    expect(boldParts('ranked #93 in the world')).toEqual(['#93']);
+    expect(boldParts('No.5 on the 50 Best list')).toEqual(['No.5']);
+  });
+
+  it('leaves bare numbers alone outside ranking context', () => {
+    expect(boldParts('seats 40 guests at No. 12 Main Street')).toEqual([]);
+    expect(boldParts('find it at #7 Rue de la Paix')).toEqual([]);
+  });
+
+  it('rank context does not leak across sentences', () => {
+    const parts = boldParts(
+      'Ranked highly on the 50 Best list. The bar sits at No. 4 Elm Street.'
+    );
+    expect(parts).toEqual([]);
   });
 
   it('drops overlapping spans instead of nesting them', () => {

@@ -48,7 +48,9 @@ const ROLES = [
   'owner',
 ];
 
-export const MAX_BOLD_SPANS = 4;
+// Award phrase + two ranks + a name is a normal sentence now that rank
+// tokens bold too — 4 forced good spans to fight for room.
+export const MAX_BOLD_SPANS = 6;
 
 const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -63,6 +65,36 @@ const ROLE_RE = new RegExp(`\\b(?:${ROLES.map(escapeRe).join('|')})s?\\s+`, 'gi'
 // (or dash, or sentence end) right after the surname is the normal case, and
 // the old form dropped every token that touched punctuation.
 const NAME_RE = /^[A-Z][\w.'-]*(?:\s+[A-Z][\w.'-]*){0,2}/;
+
+// Rank tokens ("No. 12", "No.12", "#93") — bold ONLY in a ranking context,
+// so street numbers and seat counts stay plain.
+const RANK_RE = /\bNo\.\s?\d+|#\d+/g;
+
+// A sentence is a ranking context when it names a list phrase or talks about
+// ranking. "50 Best" alone counts too — the full phrases don't cover
+// wordings like "on the 50 Best list".
+const RANK_CONTEXT_RE = new RegExp(
+  `\\b(?:globally|ranked|list|50\\s?Best|${PHRASES.map(escapeRe).join('|')})\\b`,
+  'i'
+);
+
+// Sentence ends: [.!?] then whitespace then a capital or quote. No
+// lookbehind (old Safari throws at parse time), and crucially "No. 12"
+// does NOT split — the period is followed by a digit.
+const SENTENCE_BOUNDARY_RE = /[.!?]+\s+(?=[A-Z"'\u201C])/g;
+
+/** [start, end) sentence windows over the text. */
+function sentenceSpans(text: string): Span[] {
+  const spans: Span[] = [];
+  let start = 0;
+  for (const m of Array.from(text.matchAll(SENTENCE_BOUNDARY_RE))) {
+    const end = m.index! + m[0].length;
+    spans.push({ start, end });
+    start = end;
+  }
+  spans.push({ start, end: text.length });
+  return spans;
+}
 
 export interface Segment {
   text: string;
@@ -94,6 +126,21 @@ export function highlightSegments(text: string): Segment[] {
       // never the role title.
       const captured = name[0].replace(/[.,;:!?]+$/, '');
       spans.push({ start: nameStart, end: nameStart + captured.length });
+    }
+  }
+
+  // Rank numbers, gated per sentence: "No. 12 on North America's 50 Best
+  // Bars, plus No. 93 globally" bolds both numbers; "seats 40 at #12 Main
+  // Street" bolds nothing.
+  const sentences = sentenceSpans(text);
+  for (const sentence of sentences) {
+    const body = text.slice(sentence.start, sentence.end);
+    if (!RANK_CONTEXT_RE.test(body)) continue;
+    for (const m of Array.from(body.matchAll(RANK_RE))) {
+      spans.push({
+        start: sentence.start + m.index!,
+        end: sentence.start + m.index! + m[0].length,
+      });
     }
   }
 
