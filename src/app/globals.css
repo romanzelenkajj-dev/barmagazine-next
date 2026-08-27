@@ -6462,6 +6462,24 @@ textarea.form-input {
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
+
+/* The 4-across nearby cards are ~25% narrower than the 3-across directory
+   cards, but the badge pills rendered at the one global size and read
+   oversized there. ~80% scale — smaller type, tighter padding, same pill
+   shape and colours. Scoped to widths where the grid actually runs
+   4-across: below 768px it collapses to one full-width column and the
+   base size is right again. The 10px corner offset is untouched — smaller
+   pills clear the card radius with more room, not less. */
+@media (min-width: 769px) {
+  .bar-v2-nearby-grid .bar-dir-badge-pill {
+    font-size: 8px;
+    padding: 3px 8px;
+    gap: 3px;
+  }
+  .bar-v2-nearby-grid .bar-dir-visual-pills {
+    gap: 5px;
+  }
+}
 .bar-v2-nearby-card {
   text-decoration: none;
   border-radius: var(--radius);
