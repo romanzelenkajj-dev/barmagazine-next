@@ -69,13 +69,23 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   if (!bar) notFound();
 
 
-  // Fetch nearby bars (same city, exclude current bar)
-  // Priority: top10 bars first (with or without photo), then other bars with photos
+  // Fetch nearby bars (same city, exclude current bar).
+  // Always fill up to 4 cards: photographed bars lead, photo-less bars top
+  // up the remainder — the old photo-only filter left a city with one
+  // photographed bar showing one lonely card in a four-card row. Photo-less
+  // cards fall back to the BarPlaceholder visual. Within each group the
+  // prior ordering holds: top10 first, then the query's name order.
   const cityBars = await getBarsByCity(bar.city);
   const otherCityBars = cityBars.filter(b => b.id !== bar.id);
-  const top10CityBars = otherCityBars.filter(b => b.tier === 'top10');
-  const otherCityBarsWithPhoto = otherCityBars.filter(b => b.tier !== 'top10' && b.photos && b.photos.length > 0);
-  const nearbyBars = [...top10CityBars, ...otherCityBarsWithPhoto].slice(0, 4);
+  const barHasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);
+  const tierFirst = (bars: Bar[]) => [
+    ...bars.filter(b => b.tier === 'top10'),
+    ...bars.filter(b => b.tier !== 'top10'),
+  ];
+  const nearbyBars = [
+    ...tierFirst(otherCityBars.filter(barHasPhoto)),
+    ...tierFirst(otherCityBars.filter(b => !barHasPhoto(b))),
+  ].slice(0, 4);
 
   const isPremium = bar.tier === 'premium';
   const isFeatured = bar.tier === 'featured';

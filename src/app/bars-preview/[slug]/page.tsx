@@ -4,6 +4,7 @@ import { getBarBySlug, getBarsByCity } from '@/lib/supabase';
 import { formatBarType } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
+import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { HighlightedText } from '@/components/HighlightedText';
 
 export const revalidate = 300;
@@ -43,11 +44,15 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const bar = await getBarBySlug(params.slug);
   if (!bar) notFound();
 
-  // Fetch nearby bars (same city, exclude current bar)
+  // Fetch nearby bars (same city, exclude current bar). Fill up to 4:
+  // photographed bars first, photo-less bars top up the rest — same rule as
+  // the live profile.
   const cityBars = await getBarsByCity(bar.city);
-  const nearbyBars = cityBars
-    .filter(b => b.id !== bar.id && b.photos && b.photos.length > 0)
-    .slice(0, 4);
+  const otherCityBars = cityBars.filter(b => b.id !== bar.id);
+  const nearbyBars = [
+    ...otherCityBars.filter(b => b.photos && b.photos.length > 0),
+    ...otherCityBars.filter(b => !(b.photos && b.photos.length > 0)),
+  ].slice(0, 4);
 
   const isPremium = bar.tier === 'premium';
   const isFeatured = bar.tier === 'featured';
@@ -206,8 +211,12 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               {nearbyBars.map(nb => (
                 <Link key={nb.id} href={`/bars-preview/${nb.slug}`} className="bar-v2-nearby-card">
                   <div className="bar-v2-nearby-img">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={nb.photos[0]} alt={nb.name} loading="lazy" />
+                    {nb.photos && nb.photos.length > 0 ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={nb.photos[0]} alt={nb.name} loading="lazy" />
+                    ) : (
+                      <BarPlaceholder name={nb.name} type={nb.type} />
+                    )}
                   </div>
                   <div className="bar-v2-nearby-body">
                     <h3>{nb.name}</h3>
