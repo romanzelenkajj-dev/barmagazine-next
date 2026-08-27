@@ -7687,6 +7687,25 @@ textarea.form-input {
   letter-spacing: 0.18em;
 }
 
+/* Overlay pills (Top 10 / 50 Best / Featured) sit bottom-left on card
+   visuals and were running over the placeholder's inscribed name ("BAR
+   BENFIDDICH" read as "...FIDDICH"). On cards the name appears in the card
+   body directly below the tile, so the inscription is pure duplication —
+   drop it and let the glyph center alone. Pills stay where they are, same
+   as on photo cards. */
+.bar-dir-featured-visual .bar-placeholder-name,
+.best-bars-visual .bar-placeholder-name,
+.bar-v2-nearby-img .bar-placeholder-name {
+  display: none;
+}
+
+/* The profile hero has no adjacent name inside the visual, so its
+   placeholder keeps the inscription — cleared above the hero badges
+   (absolute bottom 16px) instead. */
+.bar-v2-hero .bar-placeholder {
+  padding-bottom: 72px;
+}
+
 /* ====== DIRECTORY HERO STATS ====== */
 .directory-hero-stats {
   display: flex;
