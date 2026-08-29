@@ -259,6 +259,16 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           )}
         </div>
 
+        {/* Photo attribution. Under the image, never overlaid on it and clear
+            of .bar-v2-hero-badges, which are absolutely positioned INSIDE the
+            hero. Singular/plural follows the actual photo count, since the
+            credit covers the whole set on multi-photo bars. */}
+        {hasImage && bar.photo_credit && bar.photo_credit.trim() && (
+          <p className="bar-v2-photo-credit">
+            {bar.photos.length > 1 ? 'Photos' : 'Photo'}: {bar.photo_credit.trim()}
+          </p>
+        )}
+
         {/* Jump chips — only when the page is long enough to need them */}
         <BarSectionChips hasMenu={!!hasFullMenu} hasPhotos={!!hasGallery} hasVisit={hasVisit} />
 

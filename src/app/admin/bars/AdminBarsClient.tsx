@@ -24,6 +24,7 @@ interface Bar {
   description: string | null;
   short_excerpt: string | null;
   photos: string[];
+  photo_credit: string | null;
   tier: string;
   featured_until: string | null;
   is_verified: boolean;
@@ -34,11 +35,14 @@ interface Bar {
   updated_at: string;
 }
 
-type EditableField = 'name' | 'slug' | 'city' | 'country' | 'type' | 'tier' | 'address' | 'website' | 'instagram' | 'phone' | 'email' | 'opening_hours' | 'description' | 'short_excerpt' | 'wp_article_slug' | 'is_active' | 'is_verified';
+type EditableField = 'name' | 'slug' | 'city' | 'country' | 'type' | 'tier' | 'address' | 'website' | 'instagram' | 'phone' | 'email' | 'opening_hours' | 'description' | 'short_excerpt' | 'photo_credit' | 'wp_article_slug' | 'is_active' | 'is_verified';
 
 const EDITABLE_FIELDS: EditableField[] = [
   'name', 'slug', 'city', 'country', 'type', 'tier', 'address',
   'website', 'instagram', 'phone', 'email', 'opening_hours', 'description', 'short_excerpt',
+  // Attribution for the bar's photos — set here when images are added.
+  // Deliberately admin-only: it is editorial provenance, not owner content.
+  'photo_credit',
   'wp_article_slug', 'is_active', 'is_verified',
 ];
 

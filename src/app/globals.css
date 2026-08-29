@@ -9367,6 +9367,28 @@ textarea.form-input {
 
 /* ====== BAR PROFILE JUMP CHIPS ====== */
 
+/* Photo attribution under the hero. Deliberately quiet — provenance, not
+   content: it must not compete with the bar name a few lines below. Sits in
+   normal flow (never overlaid on the photo, never near the absolutely
+   positioned .bar-v2-hero-badges inside the hero) and takes the container's
+   own left edge, so it lines up with the hero above and the chips below.
+   Whatever follows — the sticky chips row or .bar-v2-info — carries its own
+   top spacing, so this only needs a small gap above. */
+.bar-v2-photo-credit {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  /* Mobile gutters are 2px, so the credit would otherwise sit flush against
+     the screen edge while the hero's rounded corner curves away from it. */
+  .bar-v2-photo-credit {
+    padding: 0 4px;
+  }
+}
+
 /* Slim sticky row under the fixed site header. Quiet outline chips in the
    type-pill ink tones — wayfinding, not competing with the gold 50 Best
    marker. Background matches the page so content scrolling beneath it

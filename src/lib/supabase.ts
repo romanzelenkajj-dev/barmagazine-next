@@ -41,6 +41,9 @@ export interface Bar {
   description: string | null;
   short_excerpt: string | null;
   photos: string[];
+  /** Attribution for the photos, shown under the hero. Editorial field —
+      set in admin when images are added, never owner-editable. */
+  photo_credit: string | null;
   tier: 'free' | 'featured' | 'premium' | 'top10';
   opening_hours: string | null;
   menu_url: string | null;
