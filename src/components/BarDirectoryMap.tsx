@@ -360,10 +360,17 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
           const badgeHtml = isTop10
             ? '<span style="display:inline-block;background:linear-gradient(135deg,#B8973A,#D4B84A);color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:700;margin-bottom:4px;letter-spacing:0.5px;">★ TOP 10</span><br/>'
             : isFeatured ? '<span style="display:inline-block;background:#7B1E1E;color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:600;margin-bottom:4px;letter-spacing:0.5px;">FEATURED</span><br/>' : '';
-          const upgradeHtml = (!isFeatured && !isTop10) ? '<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.1);font-size:10px;color:#7B1E1E;"><a href="/feature-your-bar" style="color:#7B1E1E;text-decoration:none;">★ Upgrade to stand out →</a></div>' : '';
+          // The paid-listing conversion link, shown to owners who find their
+          // own venue. It used --accent (#7B1E1E) as TEXT on this near-black
+          // card: 1.48:1, effectively invisible — the monetisation prompt was
+          // unreadable at the moment of highest intent. The accent stays
+          // correct as a FILL (markers, the FEATURED badge above), so this is
+          // scoped to the popup rather than changing the token. Brass reads
+          // as the site's accent-on-dark and clears AA at 6.77:1.
+          const upgradeHtml = (!isFeatured && !isTop10) ? '<div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.1);font-size:11px;"><a class="bar-map-popup-upgrade" href="/feature-your-bar">★ Upgrade to stand out →</a></div>' : '';
           new mapboxgl.Popup({ closeButton: true, closeOnClick: true, maxWidth: '220px', className: 'bar-map-popup' })
             .setLngLat(coords)
-            .setHTML(`<div style="cursor:pointer;" onclick="window.location.href='/bars/${props.slug}'">${photoHtml}${badgeHtml}<strong style="font-size:14px;color:#f5f0eb;">${props.name}</strong><br/><span style="font-size:12px;color:#a09888;">${props.city}, ${props.country}</span><br/><span style="font-size:11px;color:#7a7060;text-transform:uppercase;letter-spacing:0.5px;">${props.type || 'Bar'}</span>${upgradeHtml}</div>`)
+            .setHTML(`<div style="cursor:pointer;" onclick="window.location.href='/bars/${props.slug}'">${photoHtml}${badgeHtml}<strong style="font-size:14px;color:#f5f0eb;">${props.name}</strong><br/><span style="font-size:12px;color:#a09888;">${props.city}, ${props.country}</span><br/><span style="font-size:11px;color:#9a9182;text-transform:uppercase;letter-spacing:0.6px;">${props.type || 'Bar'}</span>${upgradeHtml}</div>`)
             .addTo(map);
         };
 

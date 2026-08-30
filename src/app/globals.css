@@ -6039,6 +6039,22 @@ textarea.form-input {
   background: transparent !important;
 }
 
+/* Upgrade link inside the marker popup — the paid-listing conversion CTA.
+   Brass on the #2a2520 card is 6.77:1 (AA needs 4.5 for small text); the
+   maroon --accent it replaced measured 1.48:1 and was invisible. Kept as a
+   class rather than an inline style so it can carry a hover state: the
+   popup HTML is injected via setHTML, where :hover is impossible inline. */
+.bar-map-popup-upgrade {
+  color: #C9A96A !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.bar-map-popup-upgrade:hover {
+  color: #E4CE9A !important;
+  text-decoration: underline;
+}
+
 /* Map attribution */
 .directory-map .mapboxgl-ctrl-attrib {
   background: rgba(26,26,26,0.7) !important;
