@@ -1,0 +1,84 @@
+# Upsell campaign — bars that have actually been CONTACTED.
+#
+# Source of truth for the duplicate guard in scripts/send-upsell.mjs, which
+# refuses to mail a slug listed here unless --resend is passed. Committed on
+# purpose: it holds no secrets and must survive a machine change, because
+# losing it means re-mailing bars that already heard from us.
+#
+# Format, one record per line, TAB separated:
+#   slug <TAB> ISO-date <TAB> batch-label
+#
+# Appended to (never rewritten) as sends succeed, one line per SENT bar, so an
+# interrupted run keeps every record already written. FAILed sends are NOT
+# recorded, leaving them eligible for a retry.
+#
+# Batch 1-3 dates are reconstructed from the commits made in those sessions
+# (the script itself landed Tue 2026-08-25 with a test send to Roman only,
+# which is not a bar contact and so is not recorded here).
+
+
+# batch-1 — 2026-08-26
+backdoor-43	2026-08-26	batch-1
+good-spirits-bar	2026-08-26	batch-1
+iron-cocktail-bar	2026-08-26	batch-1
+the-old-house	2026-08-26	batch-1
+14-de-la-rosa	2026-08-26	batch-1
+aldea	2026-08-26	batch-1
+angel-s-share	2026-08-26	batch-1
+aqua-bar	2026-08-26	batch-1
+bar-bon-funk	2026-08-26	batch-1
+bar-leather-apron	2026-08-26	batch-1
+bar-mood	2026-08-26	batch-1
+bar-outrigger	2026-08-26	batch-1
+bon-vivants	2026-08-26	batch-1
+bop	2026-08-26	batch-1
+camparino-in-galleria	2026-08-26	batch-1
+citrus-cane	2026-08-26	batch-1
+dante	2026-08-26	batch-1
+bar-de-vie	2026-08-26	batch-1
+door-no-4	2026-08-26	batch-1
+form-matter	2026-08-26	batch-1
+
+# batch-2 — 2026-08-27
+baba-au-rum	2026-08-27	batch-2
+bar-us	2026-08-27	batch-2
+caretaker-s-cottage	2026-08-27	batch-2
+double-chicken-please	2026-08-27	batch-2
+drink-kong	2026-08-27	batch-2
+dunlin	2026-08-27	batch-2
+floreria-atlantico	2026-08-27	batch-2
+harrys-new-york-bar	2026-08-27	batch-2
+jerry-thomas-project	2026-08-27	batch-2
+kaito-del-valle	2026-08-27	batch-2
+katana-kitten	2026-08-27	batch-2
+lair	2026-08-27	batch-2
+maison-premiere	2026-08-27	batch-2
+mius	2026-08-27	batch-2
+montana	2026-08-27	batch-2
+opium	2026-08-27	batch-2
+proof	2026-08-27	batch-2
+r-da-huset	2026-08-27	batch-2
+ropewalk	2026-08-27	batch-2
+salmon-guru	2026-08-27	batch-2
+
+# batch-3 — 2026-08-28
+scotch-lodge	2026-08-28	batch-3
+shelter	2026-08-28	batch-3
+silver-lyan-dc	2026-08-28	batch-3
+stay-gold-flamingo	2026-08-28	batch-3
+tell-camellia	2026-08-28	batch-3
+the-clumsies	2026-08-28	batch-3
+the-elephant-room	2026-08-28	batch-3
+the-opposites	2026-08-28	batch-3
+three-x-co	2026-08-28	batch-3
+tjoget	2026-08-28	batch-3
+vesper	2026-08-28	batch-3
+008-bar	2026-08-28	batch-3
+100-gramm-bar	2026-08-28	batch-3
+146-bar	2026-08-28	batch-3
+1868-cocktail-boutique	2026-08-28	batch-3
+20hundra5	2026-08-28	batch-3
+28-hong-kong-street	2026-08-28	batch-3
+878-bar	2026-08-28	batch-3
+above-board	2026-08-28	batch-3
+amaro	2026-08-28	batch-3

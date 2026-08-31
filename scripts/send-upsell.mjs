@@ -6,12 +6,21 @@
  *   node scripts/send-upsell.mjs --to you@x.com <slug> [...]   # TEST: all emails go to --to
  *   node scripts/send-upsell.mjs <slug> [...]                   # DRY RUN: prints, sends nothing
  *   node scripts/send-upsell.mjs --send <slug> [...]            # LIVE: emails the bars' real addresses
+ *   node scripts/send-upsell.mjs --send --resend <slug> [...]   # LIVE, ignoring the duplicate guard
+ *
+ * DUPLICATE GUARD: outreach/sent-log.txt lists every bar already contacted.
+ * Any slug found there is dropped before the dry run and reported under
+ * "already contacted", so a handed-over batch never needs a manual
+ * cross-check. --resend bypasses it for deliberate follow-ups and says so
+ * loudly. Successful live sends append to the log immediately, one line each,
+ * so an interrupted run keeps what it already sent; failures are not recorded
+ * and stay eligible for a retry.
  *
  * Reads RESEND_API_KEY and NEXT_PUBLIC_SUPABASE_URL/ANON_KEY from .env.vercel,
  * .env.local or .env (first match wins per var). Never commits anything.
  * Sends sequentially, 1.2s apart. From/Reply-To: zelenka@barmagazine.com.
  */
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, appendFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -31,14 +40,95 @@ if (!RESEND) { console.error('Missing RESEND_API_KEY (run: vercel env pull .env.
 if (!SUPA_URL || !SUPA_KEY) { console.error('Missing Supabase env'); process.exit(1); }
 
 const args = process.argv.slice(2);
-let overrideTo = null, live = false;
-const slugs = [];
+let overrideTo = null, live = false, resend = false, batchLabel = null;
+const requested = [];
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--to') { overrideTo = args[++i]; }
   else if (args[i] === '--send') { live = true; }
-  else slugs.push(args[i]);
+  else if (args[i] === '--resend') { resend = true; }
+  else if (args[i] === '--batch') { batchLabel = args[++i]; }
+  else requested.push(args[i]);
 }
-if (!slugs.length) { console.error('No bar slugs given.'); process.exit(1); }
+if (!requested.length) { console.error('No bar slugs given.'); process.exit(1); }
+
+// ---------------------------------------------------------------- sent log
+const SENT_LOG = resolve(ROOT, 'outreach/sent-log.txt');
+
+/** slug -> { date, batch } for every bar already contacted. */
+function loadSentLog() {
+  const seen = new Map();
+  if (!existsSync(SENT_LOG)) return seen;
+  for (const line of readFileSync(SENT_LOG, 'utf8').split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    // Tolerate a torn final line from an interrupted write: a record without
+    // its date/batch is still proof the bar was contacted, so keep the slug.
+    const [slug, date, batch] = trimmed.split('\t');
+    if (slug) seen.set(slug, { date: date || 'unknown date', batch: batch || 'unknown batch' });
+  }
+  return seen;
+}
+
+const sentLog = loadSentLog();
+
+/** Next batch label, so a normal run needs no --batch argument. */
+function nextBatchLabel() {
+  if (batchLabel) return batchLabel;
+  let max = 0;
+  for (const { batch } of sentLog.values()) {
+    const m = /^batch-(\d+)$/.exec(batch || '');
+    if (m) max = Math.max(max, Number(m[1]));
+  }
+  return `batch-${max + 1}`;
+}
+
+const BATCH = nextBatchLabel();
+const TODAY = new Date().toISOString().slice(0, 10);
+
+// Append one complete line per successful send, immediately. appendFileSync
+// opens with O_APPEND and never truncates, so existing records cannot be lost
+// and a kill mid-run leaves every prior record intact.
+function recordSent(slug) {
+  appendFileSync(SENT_LOG, `${slug}\t${TODAY}\t${BATCH}\n`, 'utf8');
+}
+
+// ------------------------------------------------------- duplicate guard
+const alreadySent = requested.filter(s => sentLog.has(s));
+const slugs = resend ? requested : requested.filter(s => !sentLog.has(s));
+
+if (resend) {
+  console.log('!!'.repeat(34));
+  console.log('!! --resend ACTIVE: the duplicate guard is OFF.');
+  if (alreadySent.length) {
+    console.log(`!! ${alreadySent.length} of these ${requested.length} slug(s) were already contacted and WILL be mailed again:`);
+    for (const slug of alreadySent) {
+      const { date, batch } = sentLog.get(slug);
+      console.log(`!!   ${slug} (sent ${date}, ${batch})`);
+    }
+  } else {
+    console.log('!! (none of these slugs had been contacted before, so nothing is being re-mailed.)');
+  }
+  console.log('!!'.repeat(34));
+  console.log('');
+}
+
+if (!resend && alreadySent.length) {
+  console.log(`ALREADY CONTACTED — skipped (${alreadySent.length}):`);
+  for (const slug of alreadySent) {
+    const { date, batch } = sentLog.get(slug);
+    console.log(`  ${slug} — sent ${date} (${batch})`);
+  }
+  console.log('  Pass --resend to mail these anyway.');
+  console.log('');
+}
+
+if (!slugs.length) {
+  console.log('Nothing left to send: every requested slug has already been contacted.');
+  process.exit(0);
+}
+
+console.log(`${slugs.length} to send${live && !overrideTo ? ` — will be logged as ${BATCH} (${TODAY})` : ''}`);
+console.log('');
 
 const FROM = 'Roman Zelenka <zelenka@barmagazine.com>';
 const SUBJ = (name) => `${name} is listed on BarMagazine`;
@@ -93,6 +183,15 @@ for (const slug of slugs) {
     }),
   });
   const out = await r.json();
-  console.log(r.ok ? `SENT ${bar.name} -> ${to} (id ${out.id})` : `FAIL ${bar.name} -> ${to}: ${JSON.stringify(out)}`);
+  if (r.ok) {
+    console.log(`SENT ${bar.name} -> ${to} (id ${out.id})`);
+    // Only a real send to the bar's own address counts as contact: a --to
+    // test send goes to us, so it must not mark the bar as done. Recorded
+    // per-send, before the next request, so an interruption loses nothing.
+    if (!overrideTo) recordSent(slug);
+  } else {
+    // Deliberately NOT recorded — a failed send stays eligible for a retry.
+    console.log(`FAIL ${bar.name} -> ${to}: ${JSON.stringify(out)}`);
+  }
   await sleep(1200);
 }
