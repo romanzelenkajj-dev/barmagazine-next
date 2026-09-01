@@ -7651,6 +7651,11 @@ textarea.form-input {
 
 /* ====== BAR NO-PHOTO PLACEHOLDER (shared) ====== */
 .bar-placeholder {
+  /* Preflight is disabled, so the default is content-box: width 100% plus
+     the side padding made this 32px wider than its container, and inside
+     .best-bars-visual (absolute, in a 280px grid column) it painted over
+     the card body's first characters. Border-box keeps 100% meaning 100%. */
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   display: flex;
@@ -8458,22 +8463,6 @@ textarea.form-input {
 .best-bars-card:hover {
   box-shadow: 0 10px 32px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
-}
-.best-bars-rank {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 2;
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #1a1a1a;
-  color: #C9A96A;
-  font-weight: 800;
-  font-size: 1.05rem;
-  border-radius: 50%;
 }
 .best-bars-visual { position: relative; min-height: 220px; }
 .best-bars-visual img {

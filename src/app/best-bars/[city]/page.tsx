@@ -139,7 +139,6 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
           {bars.filter(hasSlug).map((bar, i) => (
             <li key={bar.id} className="best-bars-item">
               <Link href={safeHref('/bars', bar.slug)} className="best-bars-card">
-                <span className="best-bars-rank">{i + 1}</span>
                 <div className="best-bars-visual">
                   {bar.photos && bar.photos.length > 0 ? (
                     // eslint-disable-next-line @next/next/no-img-element
