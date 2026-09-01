@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { authHeader, signOut } from '@/lib/owner-session';
 import Link from 'next/link';
+import { BarBadgeEmbed } from '@/components/BarBadgeEmbed';
 
 /**
  * Owner dashboard.
@@ -147,6 +148,14 @@ export default function OwnerDashboardPage() {
           </div>
         )}
       </section>
+
+      {bars.length > 0 && (
+        <section className="owner-dash-section">
+          {bars.map(bar => (
+            <BarBadgeEmbed key={bar.id} slug={bar.slug} name={bar.name} />
+          ))}
+        </section>
+      )}
 
       {upgradable && (
         <section className="owner-dash-section">

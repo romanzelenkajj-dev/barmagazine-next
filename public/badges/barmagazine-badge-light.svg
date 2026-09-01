@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="44" viewBox="0 0 200 44" role="img" aria-label="Find us on BarMagazine">
+  <rect width="200" height="44" rx="8" fill="#F5F0EB"/>
+  <rect x="0.5" y="0.5" width="199" height="43" rx="7.5" fill="none" stroke="#B08D3F" stroke-opacity="0.7"/>
+  <g fill="none" stroke="#8A6A24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 12h16L22 22z"/>
+    <path d="M22 22v8M17.5 30h9"/>
+  </g>
+  <text x="40" y="19" font-family="Georgia, 'Times New Roman', serif" font-size="10" fill="#8A6A24" letter-spacing="1.4">FIND US ON</text>
+  <text x="40" y="34" font-family="Georgia, 'Times New Roman', serif" font-size="15" font-weight="bold" fill="#0A0A0A">BarMagazine</text>
+</svg>
