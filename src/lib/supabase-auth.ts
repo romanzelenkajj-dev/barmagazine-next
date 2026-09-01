@@ -66,7 +66,14 @@ export async function verifyOwnerToken(token: string): Promise<OwnerProfile | nu
 
     const { data: userData, error: userError } = await supabase.auth.getUser(token);
     const user = userData?.user;
-    if (userError || !user?.id || !user.email) return null;
+    if (userError || !user?.id || !user.email) {
+      // 401s from this path were untraceable in production; name the reason.
+      console.warn(
+        '[verifyOwnerToken] getUser failed:',
+        userError ? `${userError.status ?? '?'} ${userError.message}` : 'no user/email in response'
+      );
+      return null;
+    }
 
     const { data: existing } = await supabase
       .from('bar_owners')
@@ -99,11 +106,15 @@ export async function verifyOwnerToken(token: string): Promise<OwnerProfile | nu
         .select('*')
         .eq('id', user.id)
         .maybeSingle();
+      if (!raced) {
+        console.warn('[verifyOwnerToken] profile insert failed and re-read empty:', insertError.message);
+      }
       return (raced as OwnerProfile) ?? null;
     }
 
     return created as OwnerProfile;
-  } catch {
+  } catch (e) {
+    console.warn('[verifyOwnerToken] threw:', e instanceof Error ? e.message : e);
     return null;
   }
 }
