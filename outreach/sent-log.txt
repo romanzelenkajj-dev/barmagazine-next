@@ -113,3 +113,64 @@ solara-bar	2026-08-31	batch-4
 sobrio-by-mezcal-speakeasy	2026-08-31	batch-4
 viajero-oaxaca-rooftop-bar	2026-08-31	batch-4
 furtivo-speakeasy	2026-08-31	batch-4
+
+# hotel-partner — 2026-08-31
+# Contacted by hand from Roman's own inbox as group-level partner approaches
+# (Rosewood, Mandarin Oriental, Marriott/EDITION, Shangri-La, Hilton/Conrad,
+# Four Seasons), NOT via this script. Recorded so no future blast can touch
+# them: these conversations are with the groups, not the individual bars.
+lennon-s	2026-08-31	hotel-partner
+bamboo-bar	2026-08-31	hotel-partner
+punch-room-tokyo	2026-08-31	hotel-partner
+origin-bar	2026-08-31	hotel-partner
+manhattan	2026-08-31	hotel-partner
+east-47	2026-08-31	hotel-partner
+argo	2026-08-31	hotel-partner
+apollo-inn	2026-09-01	batch-5
+bar-bellamy	2026-09-01	batch-5
+bar-liberty	2026-09-01	batch-5
+beneath-driver-lane	2026-09-01	batch-5
+black-pearl	2026-09-01	batch-5
+bouvardia	2026-09-01	batch-5
+gimlet	2026-09-01	batch-5
+one-or-two	2026-09-01	batch-5
+the-elysian-whisky-bar	2026-09-01	batch-5
+union-electric-bar-rooftop	2026-09-01	batch-5
+ante	2026-09-01	batch-5
+burrow-bar	2026-09-01	batch-5
+continental-deli-bar-bistro	2026-09-01	batch-5
+old-mate-s-place	2026-09-01	batch-5
+papa-gedes-bar-cocktail-bar-sydney	2026-09-01	batch-5
+ps40	2026-09-01	batch-5
+the-caterpillar-club	2026-09-01	batch-5
+artifact	2026-09-01	batch-5
+honky-tonks-tavern	2026-09-01	batch-5
+kinsman	2026-09-01	batch-5
+lockdown	2026-09-01	batch-5
+mizunara-the-library	2026-09-01	batch-5
+terrible-baby	2026-09-01	batch-5
+bar-composition	2026-09-01	batch-5
+mizunara-in-tokyo	2026-09-01	batch-5
+the-society	2026-09-01	batch-5
+franks-bar-kuala-lumpur	2026-09-01	batch-5
+jungle-bird	2026-09-01	batch-5
+ps150	2026-09-01	batch-5
+suzie-wong-dinner-party-experience	2026-09-01	batch-5
+bar-somma	2026-09-01	batch-5
+d-bespoke-singapore	2026-09-01	batch-5
+gibson	2026-09-01	batch-5
+last-word	2026-09-01	batch-5
+neon-pigeon	2026-09-01	batch-5
+pop-city-x-pony	2026-09-01	batch-5
+tess-bar-kitchen-singapore	2026-09-01	batch-5
+the-cocktail-office	2026-09-01	batch-5
+the-store	2026-09-01	batch-5
+draft-land	2026-09-01	batch-5
+under-lab	2026-09-01	batch-5
+f-nkytown	2026-09-01	batch-5
+pickwick-s-chronicles	2026-09-01	batch-5
+pco	2026-09-01	batch-5
+the-bombay-canteen	2026-09-01	batch-5
+therapy-cocktail-bar-khar	2026-09-01	batch-5
+bar-des-pres	2026-09-01	batch-5
+monkey-bar-dubai	2026-09-01	batch-5
