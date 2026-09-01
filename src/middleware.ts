@@ -87,6 +87,8 @@ export function middleware(request: NextRequest) {
       co: h.get('x-vercel-ip-country'),
       ci: h.get('x-vercel-ip-city'),
       ua: (h.get('user-agent') || '').slice(0, 140),
+      asn: h.get('x-vercel-ip-as-number'),
+      ja4: h.get('x-vercel-ja4-digest'),
       xv: (() => { const ks: string[] = []; h.forEach((_, k) => { if (k.startsWith('x-vercel-')) ks.push(k); }); return ks.join(','); })(),
       p: request.nextUrl.pathname.slice(0, 60),
     }));
