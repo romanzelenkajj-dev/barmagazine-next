@@ -16,7 +16,7 @@ const SITE_URL = 'https://barmagazine.com';
 function snippetFor(slug: string, name: string, variant: 'light' | 'dark'): string {
   const profile = `${SITE_URL}/bars/${slug}?utm_source=bar_badge`;
   const img = `${SITE_URL}/badges/barmagazine-badge-${variant}.svg`;
-  return `<a href="${profile}" title="${name} on BarMagazine"><img src="${img}" alt="Find ${name} on BarMagazine" width="200" height="44" style="border:0"/></a>`;
+  return `<a href="${profile}" title="${name} on BarMagazine"><img src="${img}" alt="Find ${name} on BarMagazine" width="220" height="56" style="border:0"/></a>`;
 }
 
 export function BarBadgeEmbed({ slug, name }: { slug: string; name: string }) {
@@ -48,8 +48,8 @@ export function BarBadgeEmbed({ slug, name }: { slug: string; name: string }) {
             <img
               src={`/badges/barmagazine-badge-${variant}.svg`}
               alt={`Find us on BarMagazine (${variant} badge)`}
-              width={200}
-              height={44}
+              width={220}
+              height={56}
             />
             <button type="button" className="feature-btn feature-btn-outline badge-embed-copy" onClick={() => copy(variant)}>
               {copied === variant ? 'Copied' : `Copy ${variant} badge HTML`}

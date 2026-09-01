@@ -9,15 +9,27 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
  * is that NOTHING creates a session on load — every emailed link carries a
  * `token_hash` that the landing pages exchange via verifyOtp in a click
  * handler instead.
+ *
+ * SINGLETON, not per-call: every call site (auth callback, authHeader on each
+ * API request, signOut) used to get its own GoTrueClient, all sharing one
+ * storage key. The instances race — GoTrue's own console warning — and a
+ * stale one could hand out an outdated token or clobber a fresh session,
+ * which is how finishing a claim sometimes bounced a signed-in owner back to
+ * the login page.
  */
+let browserClient: ReturnType<typeof createClient> | null = null;
+
 export function createBrowserClient() {
-  return createClient(supabaseUrl, supabaseAnonKey, {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-      detectSessionInUrl: false,
-    },
-  });
+  if (!browserClient) {
+    browserClient = createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: false,
+      },
+    });
+  }
+  return browserClient;
 }
 
 /** Server-side admin client (service role key, bypasses RLS). */
