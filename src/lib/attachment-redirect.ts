@@ -38,7 +38,9 @@ const RESERVED_TOP_LEVEL_PATHS: ReadonlySet<string> = new Set([
   // happened in PR #52 — /banners/flavour-blaster.jpg got matched and
   // 301'd to /banners → 404, breaking the Flavour Blaster + Pampero Rum
   // banners on every article page).
-  'banners', 'images',
+  'banners', 'images', 'badges',
+  // Award hub pages (/awards/worlds-50-best etc.)
+  'awards',
   // Static files (matcher in middleware.ts already excludes most, but
   // belt-and-suspenders against future matcher changes)
   'sitemap.xml', 'sitemap-articles.xml', 'sitemap-bars.xml',

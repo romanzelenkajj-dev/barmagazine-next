@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getBars, getCountriesWithCounts, getCitiesWithCounts } from '@/lib/supabase';
 import { getSeoCities } from '@/lib/seo-cities';
+import { getLiveAwardPrograms } from '@/lib/award-hubs';
 import { toUrlSlug } from '@/lib/utils';
 
 const SITE_URL = 'https://barmagazine.com';
@@ -14,6 +15,7 @@ export async function GET() {
     getCitiesWithCounts(),
     getSeoCities(),
   ]);
+  const awardPrograms = await getLiveAwardPrograms();
 
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -66,6 +68,24 @@ export async function GET() {
   </url>
 `;
     }
+  }
+
+  // Award hub pages
+  xml += `  <url>
+    <loc>${SITE_URL}/awards</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
+  for (const { program } of awardPrograms) {
+    xml += `  <url>
+    <loc>${SITE_URL}/awards/${program.slug}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
   }
 
   // Individual bar profile pages
