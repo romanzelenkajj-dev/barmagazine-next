@@ -1,6 +1,7 @@
 'use client';
 
 import { asciiFold } from '@/lib/ascii-fold';
+import { displayType } from '@/lib/bar-type';
 import { hasFiftyBest } from '@/lib/accolades';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
@@ -294,7 +295,7 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
               geometry: { type: 'Point' as const, coordinates: [bar.lng!, bar.lat!] },
               properties: {
                 id: bar.id, name: bar.name, slug: bar.slug,
-                city: bar.city, country: bar.country, type: bar.type,
+                city: bar.city, country: bar.country, type: displayType(bar),
                 tier: bar.tier, hasPhoto: bar.photos && bar.photos.length > 0 ? 1 : 0,
                 photo: bar.photos?.[0] || '', hasArticle: bar.wp_article_slug ? 1 : 0,
               },
@@ -406,7 +407,7 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
       features: validBars.map(bar => ({
         type: 'Feature' as const,
         geometry: { type: 'Point' as const, coordinates: [bar.lng!, bar.lat!] },
-        properties: { id: bar.id, name: bar.name, slug: bar.slug, city: bar.city, country: bar.country, type: bar.type, tier: bar.tier, hasPhoto: bar.photos && bar.photos.length > 0 ? 1 : 0, photo: bar.photos?.[0] || '', hasArticle: bar.wp_article_slug ? 1 : 0 },
+        properties: { id: bar.id, name: bar.name, slug: bar.slug, city: bar.city, country: bar.country, type: displayType(bar), tier: bar.tier, hasPhoto: bar.photos && bar.photos.length > 0 ? 1 : 0, photo: bar.photos?.[0] || '', hasArticle: bar.wp_article_slug ? 1 : 0 },
       })),
     };
     source.setData(geojson);

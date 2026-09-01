@@ -3,7 +3,7 @@ import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { formatBarType } from '@/lib/utils';
+import { displayType } from '@/lib/bar-type';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import {
   getSeoCities,
@@ -154,7 +154,7 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
                 <div className="best-bars-body">
                   <div className="best-bars-badges">
                     {bar.tier === 'top10' && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">&#9733; TOP 10</span>}
-                    {bar.type && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{formatBarType(bar.type)}</span>}
+                    {displayType(bar) && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{displayType(bar)}</span>}
                   </div>
                   <h2 className="best-bars-name">{bar.name}</h2>
                   {(bar.description || bar.short_excerpt) && (

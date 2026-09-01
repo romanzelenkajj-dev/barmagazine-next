@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBarBySlug, getBarsByCity, getBars } from '@/lib/supabase';
 import { getSeoCities, typePageForType, TYPE_PAGES } from '@/lib/seo-cities';
+import { displayType, barTypeUnion } from '@/lib/bar-type';
 import type { Bar, MenuSection } from '@/lib/supabase';
 import { formatBarType, toUrlSlug } from '@/lib/utils';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
@@ -96,13 +97,15 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const seoTypeDef = typePageForType(bar.type);
   const seoType = seoCity && seoTypeDef ? seoCity.typeSlugs.find(t => t.slug === seoTypeDef.slug) ?? null : null;
 
-  // Secondary style tags: the curated subtypes, minus the primary type
-  // (already shown as the main badge). Each links to its type-city guide
-  // when the union threshold makes one exist, which wires the new pages
-  // into internal linking from every tagged profile. Cards and nearby rows
-  // deliberately keep showing only the primary type.
-  const subtypeTags = (bar.subtypes ?? [])
-    .filter(st => st !== bar.type)
+  // The lead badge shows the most SPECIFIC style from the type union, not
+  // the raw type column: nearly everything is a cocktail bar, so a
+  // Speakeasy-tagged bar leads with Speakeasy. The remaining union members
+  // render as secondary tags, each linking to its type-city guide when the
+  // union threshold makes one exist, which wires the new pages into
+  // internal linking from every tagged profile.
+  const leadType = displayType(bar);
+  const subtypeTags = barTypeUnion(bar)
+    .filter(st => st !== leadType)
     .map(st => {
       const def = TYPE_PAGES.find(t => t.type === st);
       const cityEntry = def && seoCity ? seoCity.typeSlugs.find(t => t.slug === def.slug) ?? null : null;
@@ -276,7 +279,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             <div className="bar-v2-hero-badges">
               {isTop10 && <span className="bar-v2-badge bar-v2-badge--top10">★ TOP 10</span>}
               {(isFeatured || isPremium || bar.wp_article_slug) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
-              {bar.type && <span className="bar-v2-badge bar-v2-badge--type">{formatBarType(bar.type)}</span>}
+              {leadType && <span className="bar-v2-badge bar-v2-badge--type">{leadType}</span>}
               {subtypeTags.map(tag =>
                 tag.href ? (
                   <Link key={tag.label} href={tag.href} className="bar-v2-badge bar-v2-badge--subtype">
