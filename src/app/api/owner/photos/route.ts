@@ -26,13 +26,18 @@ export async function POST(request: NextRequest) {
     }
 
     const { data: bar } = await supabase
-      .from('bars').select('id, owner_id, name, slug')
+      .from('bars').select('id, owner_id, name, slug, tier')
       .eq('id', barId).eq('owner_id', owner.id).single();
 
     if (!bar) return NextResponse.json({ error: 'Not authorized' }, { status: 403 });
 
+    // Unpaid tiers get one profile photo; the gallery is a Featured feature.
+    // The UI enforces this too, but the cap has to live where the upload does.
+    const isPaid = bar.tier === 'featured' || bar.tier === 'premium';
+    const accepted = isPaid ? photos : photos.slice(0, 1);
+
     const uploadedUrls: string[] = [];
-    for (const photo of photos) {
+    for (const photo of accepted) {
       const ext = photo.name.split('.').pop();
       const fileName = `${barId}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
       const buffer = Buffer.from(await photo.arrayBuffer());

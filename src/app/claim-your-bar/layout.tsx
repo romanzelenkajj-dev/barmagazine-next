@@ -5,10 +5,13 @@ const SITE_URL = 'https://barmagazine.com';
 export const metadata: Metadata = {
   title: 'Claim & Upgrade Your Bar | BarMagazine',
   description: 'Claim your bar listing on BarMagazine. Choose from Listed (Free), Featured, or Featured + Social tiers to boost your visibility.',
-  // FIX: was pointing to homepage (https://barmagazine.com) — Google was not indexing this page
   alternates: { canonical: `${SITE_URL}/claim-your-bar` },
-  // FIX: was { index: false, follow: false } — page was blocked from Google
-  robots: { index: true, follow: true },
+  // Deliberately OUT of the index: this is a conversion flow linked from every
+  // profile, so crawlers hammer it (a JS-executing sweep put it at the top of
+  // GA Realtime). It should never rank; keeping it noindex + disallowed in
+  // robots.txt conserves crawl budget for the directory. The indexable sales
+  // page is /feature-your-bar.
+  robots: { index: false, follow: true },
   openGraph: {
     title: 'List Your Bar on BarMagazine',
     description: 'Get featured in the global bar directory. Free listing or premium plans available.',

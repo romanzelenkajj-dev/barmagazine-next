@@ -19,6 +19,10 @@ export const BLOCKED_PATHS = [
   '/_next/',
   '/cdn-cgi/',
   '/search',
+  // Claim/upgrade conversion flow: linked from every profile, so crawlers
+  // sweep it constantly, and it should never rank. /feature-your-bar (the
+  // pricing page) deliberately stays indexable.
+  '/claim-your-bar',
   '/?s=',
   '/?p=',
   '/?page_id=',

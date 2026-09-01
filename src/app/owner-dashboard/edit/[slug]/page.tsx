@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation';
 import { authHeader, signOut } from '@/lib/owner-session';
 import Link from 'next/link';
 import { OWNER_EDITABLE_FIELDS } from '@/lib/owner-fields';
+import { isSearchOrMapsUrl, menuDomainDiffers, SEARCH_URL_MESSAGE } from '@/lib/menu-url';
 
 /**
  * Owner edit form.
@@ -107,6 +108,12 @@ export default function EditBarPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    // A search or maps results page is never a menu; catch it before the
+    // round-trip (the server rejects it too).
+    if (isSearchOrMapsUrl(formData.menu_url)) {
+      setError(SEARCH_URL_MESSAGE);
+      return;
+    }
     setSaving(true); setError(''); setSuccess('');
     const headers = await authHeader();
     if (!headers) { router.push('/owner-dashboard/login'); return; }
@@ -145,7 +152,9 @@ export default function EditBarPage() {
     if (!headers) { router.push('/owner-dashboard/login'); return; }
     const fd = new FormData();
     fd.append('bar_id', bar?.id || '');
-    Array.from(files).forEach((f) => fd.append('photos', f));
+    const isPaidTier = bar?.tier === 'featured' || bar?.tier === 'premium';
+    const selected = isPaidTier ? Array.from(files) : Array.from(files).slice(0, 1);
+    selected.forEach((f) => fd.append('photos', f));
     try {
       const res = await fetch('/api/owner/photos', { method: 'POST', headers, body: fd });
       if (!res.ok) { setError('Photo upload failed'); return; }
@@ -177,6 +186,9 @@ export default function EditBarPage() {
   }
 
   const gallery = bar.photos?.length ? bar.photos : bar.gallery_images || [];
+  // Unpaid tiers (free and the editorial top10 pick) get one profile photo;
+  // featured/premium keep unlimited gallery uploads.
+  const isPaid = bar.tier === 'featured' || bar.tier === 'premium';
 
   // Only show fields that actually differ from what's live — a submission
   // carries the whole form, so listing every key would imply changes the owner
@@ -259,6 +271,18 @@ export default function EditBarPage() {
                   placeholder={placeholder}
                   onChange={e => setFormData({ ...formData, [key]: e.target.value })}
                 />
+                {key === 'menu_url' && isSearchOrMapsUrl(formData.menu_url) && (
+                  <p className="add-bar-error" style={{ marginTop: 6 }}>{SEARCH_URL_MESSAGE}</p>
+                )}
+                {key === 'menu_url' &&
+                  !isSearchOrMapsUrl(formData.menu_url) &&
+                  menuDomainDiffers(formData.menu_url, formData.website || bar.website || '') && (
+                    <p className="owner-dash-note" style={{ marginTop: 6 }}>
+                      Heads up: this menu link points to a different domain than your website.
+                      That&apos;s fine if it&apos;s intentional (Linktree, a PDF host) — just double-check
+                      it&apos;s the right link.
+                    </p>
+                  )}
               </div>
             ))}
           </div>
@@ -306,20 +330,42 @@ export default function EditBarPage() {
               ))}
             </div>
           )}
+          {/* Free-tier bars get ONE profile photo; the gallery is a Featured
+              feature. Without the cap a free bar could upload six photos into
+              a moderation request that could only be rejected wholesale
+              (Apothéke LA's first session did exactly that). */}
           <label className="add-bar-photo-dropzone" style={{ cursor: 'pointer' }}>
-            <strong>{uploading ? 'Uploading…' : 'Add photos'}</strong>
+            <strong>
+              {uploading
+                ? 'Uploading…'
+                : isPaid
+                  ? 'Add photos'
+                  : gallery.length > 0
+                    ? 'Replace your profile photo'
+                    : 'Add your profile photo'}
+            </strong>
             <span className="add-bar-photo-dropzone-sub">
-              JPG, PNG or WebP. New photos are reviewed before they appear.
+              {isPaid
+                ? 'JPG, PNG or WebP. New photos are reviewed before they appear.'
+                : 'JPG, PNG or WebP — one profile photo on the free plan. It’s reviewed before it appears.'}
             </span>
             <input
               type="file"
-              multiple
+              multiple={isPaid}
               accept="image/*"
               onChange={handlePhotoUpload}
               disabled={uploading}
               style={{ display: 'none' }}
             />
           </label>
+          {!isPaid && (
+            <p className="owner-dash-note" style={{ marginTop: 12 }}>
+              Want a full photo gallery on your page?{' '}
+              <Link href={`/feature-your-bar?bar=${bar.slug}#pricing`} className="feature-link">
+                Upgrade to Featured to add a gallery
+              </Link>.
+            </p>
+          )}
         </div>
       </section>
     </div>

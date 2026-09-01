@@ -41,6 +41,8 @@ const RESERVED_TOP_LEVEL_PATHS: ReadonlySet<string> = new Set([
   'banners', 'images', 'badges',
   // Award hub pages (/awards/worlds-50-best etc.)
   'awards',
+  // Partner collection pages (/collections/conrad-hotels etc.)
+  'collections',
   // Static files (matcher in middleware.ts already excludes most, but
   // belt-and-suspenders against future matcher changes)
   'sitemap.xml', 'sitemap-articles.xml', 'sitemap-bars.xml',

@@ -220,3 +220,45 @@ export async function notifyClaim(notice: ClaimNotice): Promise<boolean> {
     `,
   });
 }
+
+/**
+ * A claim has sat at awaiting_verification for over an hour: someone real is
+ * probably struggling (dead link, wrong inbox, gave up mid-flow). Surfaced by
+ * the hourly cron so a stuck claimant shows up in the admin inbox instead of
+ * only in the database. Sent once per claim — the cron stamps the claim's
+ * evidence before this fires again.
+ */
+export async function notifyStuckClaim(notice: {
+  barName: string;
+  barSlug: string | null;
+  claimantEmail: string;
+  claimantName: string | null;
+  method: string;
+  hoursStuck: number;
+}): Promise<boolean> {
+  const { barName, barSlug, claimantEmail, claimantName, method, hoursStuck } = notice;
+  const barLink = barSlug
+    ? `<a href="${SITE_URL}/bars/${escapeHtml(barSlug)}">${escapeHtml(barName)}</a>`
+    : escapeHtml(barName);
+  return send({
+    subject: `Stuck claim: ${barName} (${hoursStuck}h unverified)`,
+    html: `
+      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+        <h2 style="color:#1A1A1A;">Claim stuck at awaiting verification</h2>
+        <p style="font-size:16px;margin:0 0 14px;">${barLink}</p>
+        <p style="padding:10px 12px;background:#fff3cd;color:#856404;font-size:14px;border-radius:6px;">
+          This claim has been waiting ${hoursStuck}h without the confirmation link being completed.
+          The claimant may be struggling — a fresh-link nudge usually resolves it.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:15px;">
+          ${fieldRows({
+            Claimant: claimantEmail,
+            Name: claimantName || '—',
+            Basis: METHOD_LABEL[method as keyof typeof METHOD_LABEL] || method,
+          })}
+        </table>
+        <p style="margin-top:24px;font-size:13px;color:#999;">Claims admin: ${SITE_URL}/admin/review?tab=claims</p>
+      </div>
+    `,
+  });
+}

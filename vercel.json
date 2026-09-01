@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/stuck-claims",
+      "schedule": "0 * * * *"
+    }
+  ]
+}
