@@ -104,8 +104,14 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   // union threshold makes one exist, which wires the new pages into
   // internal linking from every tagged profile.
   const leadType = displayType(bar);
+  // 'Cocktail Bar' never renders as a secondary tag: with a more specific
+  // style leading, it goes without saying (Roman on Argo's Hotel Bar +
+  // Cocktail Bar pair: one pill, the most important one). It can still be
+  // the LEAD badge when nothing more specific exists. Other union members
+  // (a speakeasy that is also a hotel bar) stay as informative tags with
+  // their guide links.
   const subtypeTags = barTypeUnion(bar)
-    .filter(st => st !== leadType)
+    .filter(st => st !== leadType && st !== 'Cocktail Bar')
     .map(st => {
       const def = TYPE_PAGES.find(t => t.type === st);
       const cityEntry = def && seoCity ? seoCity.typeSlugs.find(t => t.slug === def.slug) ?? null : null;
