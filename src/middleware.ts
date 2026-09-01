@@ -87,7 +87,7 @@ export function middleware(request: NextRequest) {
       co: h.get('x-vercel-ip-country'),
       ci: h.get('x-vercel-ip-city'),
       ua: (h.get('user-agent') || '').slice(0, 140),
-      xv: [...h.keys()].filter(k => k.startsWith('x-vercel-')).join(','),
+      xv: (() => { const ks: string[] = []; h.forEach((_, k) => { if (k.startsWith('x-vercel-')) ks.push(k); }); return ks.join(','); })(),
       p: request.nextUrl.pathname.slice(0, 60),
     }));
   } catch { /* forensics must never break routing */ }
