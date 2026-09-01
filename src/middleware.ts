@@ -76,6 +76,22 @@ const GEO_CURRENCY_PATHS: ReadonlySet<string> = new Set([
 ]);
 
 export function middleware(request: NextRequest) {
+  // TEMPORARY bot forensics (2026-09-01): GA shows ~70% of traffic is a
+  // Singapore datacenter bot. The CLI's request logs carry no client
+  // IP/UA, so we log a compact fingerprint here to identify its signature
+  // for a firewall rule. Remove once the rule is verified.
+  try {
+    const h = request.headers;
+    console.log('BOTFP ' + JSON.stringify({
+      ip: h.get('x-real-ip') || h.get('x-forwarded-for'),
+      co: h.get('x-vercel-ip-country'),
+      ci: h.get('x-vercel-ip-city'),
+      ua: (h.get('user-agent') || '').slice(0, 140),
+      xv: [...h.keys()].filter(k => k.startsWith('x-vercel-')).join(','),
+      p: request.nextUrl.pathname.slice(0, 60),
+    }));
+  } catch { /* forensics must never break routing */ }
+
   const host = request.headers.get('host') ?? '';
   const hostname = host.split(':')[0].toLowerCase();
 
