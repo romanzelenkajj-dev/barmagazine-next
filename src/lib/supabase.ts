@@ -179,14 +179,22 @@ export async function getBarBySlug(slug: string): Promise<Bar | null> {
 export async function getBarFilterOptions() {
   const { data } = await supabase
     .from('bars')
-    .select('country, city, type')
+    .select('country, city, type, subtypes')
     .eq('is_active', true);
 
   if (!data) return { countries: [], cities: [], types: [] };
 
   const countries = Array.from(new Set(data.map(b => b.country).filter(Boolean))).sort();
   const cities = Array.from(new Set(data.map(b => b.city).filter(Boolean))).sort();
-  const types = Array.from(new Set(data.map(b => b.type).filter(Boolean))).sort();
+    // Union vocabulary: a style that exists only as a subtype (no bar has it
+  // as primary type) must still be offered, since the filter matches the
+  // union.
+  const typeSet = new Set<string>();
+  data.forEach(b => {
+    if (b.type) typeSet.add(b.type);
+    (b.subtypes || []).forEach((st: string) => typeSet.add(st));
+  });
+  const types = Array.from(typeSet).sort();
 
   return { countries, cities, types };
 }

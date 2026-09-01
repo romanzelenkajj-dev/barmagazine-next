@@ -13,9 +13,11 @@ import { formatBarType } from './utils';
  * fallback, not a contender.
  */
 const TYPE_PRIORITY = [
+  // Tiki outranks Speakeasy: for a bar carrying both (False Idol), tiki is
+  // the identity and the hidden entrance is just the doorway.
+  'Tiki Bar',
   'Speakeasy',
   'Rooftop Bar',
-  'Tiki Bar',
   'Whiskey Bar',
   'Wine Bar',
   'Beer Bar',

@@ -28,6 +28,9 @@ export const TYPE_PAGES = [
   { type: 'Rooftop Bar', slug: 'rooftop-bars', plural: 'rooftop bars' },
   { type: 'Hotel Bar', slug: 'hotel-bars', plural: 'hotel bars' },
   { type: 'Pub', slug: 'pubs', plural: 'pubs' },
+  // No city clears the threshold yet; pages appear automatically when one
+  // does, and profile tags render (unlinked) meanwhile.
+  { type: 'Tiki Bar', slug: 'tiki-bars', plural: 'tiki bars' },
 ] as const;
 
 export type TypePage = (typeof TYPE_PAGES)[number];
