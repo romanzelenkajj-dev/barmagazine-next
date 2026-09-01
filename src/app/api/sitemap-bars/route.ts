@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { getBars, getCountriesWithCounts, getCitiesWithCounts, getTop10Cities } from '@/lib/supabase';
+import { getBars, getCountriesWithCounts, getCitiesWithCounts } from '@/lib/supabase';
+import { getSeoCities } from '@/lib/seo-cities';
 import { toUrlSlug } from '@/lib/utils';
 
 const SITE_URL = 'https://barmagazine.com';
@@ -7,11 +8,11 @@ const SITE_URL = 'https://barmagazine.com';
 export const revalidate = 3600; // 1 hour
 
 export async function GET() {
-  const [{ bars }, countries, cities, top10Cities] = await Promise.all([
+  const [{ bars }, countries, cities, seoCities] = await Promise.all([
     getBars({ perPage: 2000 }),
     getCountriesWithCounts(),
     getCitiesWithCounts(),
-    getTop10Cities(),
+    getSeoCities(),
   ]);
 
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -46,15 +47,25 @@ export async function GET() {
 `;
   }
 
-  // "Best bars in <city>" SEO landing pages
-  for (const c of top10Cities) {
+  // "Best bars in <city>" SEO landing pages — every city clearing the
+  // thin-page threshold, plus its qualifying type-by-city sub-pages.
+  for (const c of seoCities) {
     xml += `  <url>
-    <loc>${SITE_URL}/best-bars/${toUrlSlug(c.city)}</loc>
+    <loc>${SITE_URL}/best-bars/${c.slug}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 `;
+    for (const t of c.typeSlugs) {
+      xml += `  <url>
+    <loc>${SITE_URL}/best-bars/${c.slug}/${t.slug}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
+    }
   }
 
   // Individual bar profile pages

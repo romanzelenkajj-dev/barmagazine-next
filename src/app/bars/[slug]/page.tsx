@@ -2,6 +2,7 @@ import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBarBySlug, getBarsByCity, getBars } from '@/lib/supabase';
+import { getSeoCities, typePageForType } from '@/lib/seo-cities';
 import type { Bar, MenuSection } from '@/lib/supabase';
 import { formatBarType, toUrlSlug } from '@/lib/utils';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
@@ -86,6 +87,14 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
     ...tierFirst(otherCityBars.filter(barHasPhoto)),
     ...tierFirst(otherCityBars.filter(b => !barHasPhoto(b))),
   ].slice(0, 4);
+
+  // SEO cross-links: the city guide and the type-by-city guide, where those
+  // pages exist. Keeps the programmatic pages from being orphans (every bar
+  // in a qualifying city links up to them).
+  const seoCities = await getSeoCities();
+  const seoCity = seoCities.find(c => c.city === bar.city) ?? null;
+  const seoTypeDef = typePageForType(bar.type);
+  const seoType = seoCity && seoTypeDef ? seoCity.typeSlugs.find(t => t.slug === seoTypeDef.slug) ?? null : null;
 
   const isPremium = bar.tier === 'premium';
   const isFeatured = bar.tier === 'featured';
@@ -467,6 +476,21 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         )}
 
         {/* Nearby Bars */}
+        {(seoCity || seoType) && (
+          <div className="bar-v2-guide-links">
+            {seoCity && (
+              <Link href={`/best-bars/${seoCity.slug}`} className="bar-v2-guide-link">
+                Best bars in {bar.city}
+              </Link>
+            )}
+            {seoCity && seoType && (
+              <Link href={`/best-bars/${seoCity.slug}/${seoType.slug}`} className="bar-v2-guide-link">
+                Best {seoType.plural} in {bar.city}
+              </Link>
+            )}
+          </div>
+        )}
+
         {nearbyBars.length > 0 && (
           <div className="bar-v2-nearby">
             <h2>More Bars in {bar.city}</h2>

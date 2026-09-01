@@ -9661,3 +9661,42 @@ textarea.form-input {
   border-radius: 8px;
   border: 1px solid #E0D8D0;
 }
+
+/* ── Programmatic SEO cross-links ───────────────────────────────────────── */
+
+/* City-guide link block under the directory app. */
+.dir-city-guides {
+  max-width: var(--container);
+  margin: 32px auto 8px;
+  padding: 0 16px;
+}
+
+.dir-city-guides h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+
+/* Guide links on a bar profile, above the nearby grid. */
+.bar-v2-guide-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2rem;
+}
+
+.bar-v2-guide-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border: 1px solid #DCD6CC;
+  border-radius: 100px;
+  font-size: 13px;
+  color: var(--text-primary);
+  text-decoration: none;
+  background: var(--bg-card);
+}
+
+.bar-v2-guide-link:hover {
+  border-color: var(--text-primary);
+}
