@@ -124,7 +124,11 @@ export async function getBars(filters?: {
     query = query.eq('city', filters.city);
   }
   if (filters?.type) {
-    query = query.eq('type', filters.type);
+    // Union with the curated subtypes array: a bar typed Cocktail Bar but
+    // tagged Speakeasy must match a Speakeasy filter. Values are from the
+    // fixed type list (no commas), so the or() syntax is safe; cs = array
+    // contains, and null subtypes simply never match.
+    query = query.or(`type.eq."${filters.type}",subtypes.cs.{"${filters.type}"}`);
   }
   if (filters?.search) {
     // Accent-insensitive: match the folded query against the generated

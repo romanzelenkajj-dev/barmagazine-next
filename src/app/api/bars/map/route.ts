@@ -26,7 +26,7 @@ export async function GET() {
   try {
     const { data, error } = await supabase
       .from('bars')
-      .select('id, name, slug, city, country, type, tier, lat, lng, photos, accolades')
+      .select('id, name, slug, city, country, type, subtypes, tier, lat, lng, photos, accolades')
       .eq('is_active', true)
       .not('lat', 'is', null)
       .not('lng', 'is', null)

@@ -607,10 +607,10 @@ export function BarDirectoryMapClient({
       if (res.ok) {
         const data = await res.json();
         // Convert MapBar shape to Bar shape (fill missing fields with defaults)
-        const bars: Bar[] = (data.bars || []).map((b: { id: string; name: string; slug: string; city: string; country: string; type: string; tier: string; lat: number | null; lng: number | null; photo: string | null }) => ({
+        const bars: Bar[] = (data.bars || []).map((b: { id: string; name: string; slug: string; city: string; country: string; type: string; tier: string; lat: number | null; lng: number | null; photo: string | null; subtypes?: string[] | null }) => ({
           ...b,
           region: null, address: null, website: null, instagram: null,
-          phone: null, email: null, description: null, short_excerpt: null,
+          phone: null, email: null, description: null, short_excerpt: null, subtypes: b.subtypes ?? null,
           photos: b.photo ? [b.photo] : [],
           featured_until: null, is_verified: false, is_active: true,
           wp_article_slug: null, created_at: '', updated_at: '',
@@ -700,7 +700,7 @@ export function BarDirectoryMapClient({
       const matchSearch = !search || asciiFold(bar.name).includes(q) || asciiFold(bar.city).includes(q) || asciiFold(bar.country).includes(q);
       const matchCountry = !countryFilter || bar.country === countryFilter;
       const matchCity = !cityFilter || bar.city === cityFilter;
-      const matchType = !typeFilter || bar.type === typeFilter;
+      const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);
       return matchSearch && matchCountry && matchCity && matchType;
     });
   }, [search, countryFilter, cityFilter, typeFilter, allBars]);
@@ -714,7 +714,7 @@ export function BarDirectoryMapClient({
       const matchSearch = !search || asciiFold(bar.name).includes(q) || asciiFold(bar.city).includes(q) || asciiFold(bar.country).includes(q);
       const matchCountry = !countryFilter || bar.country === countryFilter;
       const matchCity = !cityFilter || bar.city === cityFilter;
-      const matchType = !typeFilter || bar.type === typeFilter;
+      const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);
       return matchSearch && matchCountry && matchCity && matchType;
     });
   }, [search, countryFilter, cityFilter, typeFilter, mapBars]);
