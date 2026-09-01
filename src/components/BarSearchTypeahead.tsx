@@ -70,6 +70,12 @@ export function BarSearchTypeahead({
       setActive(-1);
       return;
     }
+    // This effect refires when the inline completion rewrites the value. That
+    // pass must NOT re-query: searching for the completed name collapses the
+    // dropdown to that one bar, hiding the sibling matches for what the user
+    // actually typed ("Apothéke" has three; completing to "Apothéke
+    // Chinatown" left only one visible). Keep the typed query's list.
+    if (completion.current && q === completion.current.name.trim()) return;
     const mine = ++ticket.current;
     const t = setTimeout(async () => {
       const { data, error } = await supabase
