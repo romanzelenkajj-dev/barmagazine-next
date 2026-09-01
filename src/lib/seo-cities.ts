@@ -40,6 +40,12 @@ export function typePageForType(type: string | null | undefined): TypePage | nul
   return TYPE_PAGES.find(t => t.type === type) ?? null;
 }
 
+/** Union type test: the primary column OR the curated subtypes array.
+    subtypes is nullable and empty for most bars, hence the coalesce. */
+export function barHasType(bar: { type: string | null; subtypes?: string[] | null }, type: string): boolean {
+  return bar.type === type || (bar.subtypes ?? []).includes(type);
+}
+
 export interface SeoCity {
   city: string;
   country: string;
@@ -87,7 +93,7 @@ function bestAccolade(bar: Pick<Bar, 'accolades' | 'name' | 'tier'>): { score: n
 export async function getSeoCities(): Promise<SeoCity[]> {
   const { data, error } = await supabase
     .from('bars')
-    .select('name, city, country, type, tier, accolades')
+    .select('name, city, country, type, subtypes, tier, accolades')
     .eq('is_active', true);
   if (error || !data) return [];
 
@@ -100,7 +106,14 @@ export async function getSeoCities(): Promise<SeoCity[]> {
     const a = acc[bar.city];
     a.count++;
     if (bar.tier === 'top10') a.top10Count++;
-    if (bar.type) a.types[bar.type] = (a.types[bar.type] || 0) + 1;
+    // Union counts: each bar counts once per page type it matches, via the
+    // primary column or the subtypes array (a Speakeasy-typed bar tagged
+    // Cocktail Bar counts for both pages, never twice for either).
+    for (const t of TYPE_PAGES) {
+      if (barHasType(bar as { type: string | null; subtypes: string[] | null }, t.type)) {
+        a.types[t.type] = (a.types[t.type] || 0) + 1;
+      }
+    }
     const b = bestAccolade(bar as Bar);
     if (renderableAccolades(bar.accolades).length > 0) a.awardedCount++;
     if (b.score > 0 && (!a.best || b.score > a.best.score)) {
@@ -142,14 +155,16 @@ export async function resolveSeoCity(citySlug: string): Promise<SeoCity | null> 
 export const CITY_PAGE_MAX_BARS = 12;
 
 export async function getSeoCityBars(city: string, type?: string): Promise<Bar[]> {
-  let query = supabase
+  const { data: rows, error } = await supabase
     .from('bars')
     .select('*')
     .eq('is_active', true)
     .eq('city', city);
-  if (type) query = query.eq('type', type);
-  const { data, error } = await query;
-  if (error || !data) return [];
+  if (error || !rows) return [];
+  // Union filter in JS rather than PostgREST or() syntax: type values carry
+  // spaces and the client-side test is the same barHasType used for counts,
+  // so pages and thresholds can never disagree.
+  const data = type ? (rows as Bar[]).filter(b => barHasType(b, type)) : (rows as Bar[]);
 
   const tierRank = (b: Bar) => (b.tier === 'top10' ? 0 : b.tier === 'featured' || b.tier === 'premium' ? 1 : 2);
   const hasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);

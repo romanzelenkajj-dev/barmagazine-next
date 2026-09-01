@@ -41,6 +41,11 @@ export interface Bar {
   description: string | null;
   short_excerpt: string | null;
   photos: string[];
+  /** Secondary style tags, curated per bar from its own description (a
+      speakeasy is usually also a cocktail bar). Nullable and empty for most
+      bars; always read through (subtypes || []). The primary `type` column
+      is unchanged and cards keep showing only it. */
+  subtypes: string[] | null;
   /** Attribution for the photos, shown under the hero. Editorial field —
       set in admin when images are added, never owner-editable. */
   photo_credit: string | null;
