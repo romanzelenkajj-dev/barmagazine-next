@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { verifyOwnerToken } from '@/lib/supabase-auth';
+import { verifyOwnerToken, noStoreFetch } from '@/lib/supabase-auth';
 import { filterOwnerFields } from '@/lib/owner-fields';
 import { notifyOwnerSubmission } from '@/lib/notify';
 
@@ -12,7 +12,10 @@ export const dynamic = 'force-dynamic';
 export async function GET(request: NextRequest) {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    // GET route handlers get their fetches cached by Next's Data Cache; a
+    // Supabase read must never be served stale (see noStoreFetch).
+    { global: { fetch: noStoreFetch } }
   );
 
   try {
@@ -77,7 +80,8 @@ export async function GET(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { global: { fetch: noStoreFetch } }
   );
 
   try {

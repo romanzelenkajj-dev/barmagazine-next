@@ -1,11 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
+import { noStoreFetch } from '@/lib/supabase-auth';
 import { NextRequest, NextResponse } from 'next/server';
 
 function getServiceClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   if (!serviceKey || !supabaseUrl) throw new Error('Supabase credentials missing');
-  return createClient(supabaseUrl, serviceKey);
+  // noStoreFetch: GET handlers' fetches land in Next's Data Cache; admin
+  // reads must never be served stale.
+  return createClient(supabaseUrl, serviceKey, { global: { fetch: noStoreFetch } });
 }
 
 function checkAuth(request: NextRequest): boolean {

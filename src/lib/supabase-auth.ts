@@ -32,13 +32,24 @@ export function createBrowserClient() {
   return browserClient;
 }
 
+/**
+ * Every supabase-js query is a fetch() under the hood, and Next.js caches
+ * fetches made inside GET route handlers in its Data Cache. That turned
+ * reads into time bombs: verifyOwnerToken's profile lookup in /api/owner/bars
+ * cached its first EMPTY result per user, so every later request replayed
+ * "no profile", hit the duplicate-key insert, and 401'd a valid session on
+ * every lambda, forever. no-store opts every Supabase request out.
+ */
+export const noStoreFetch: typeof fetch = (input, init) =>
+  fetch(input, { ...init, cache: 'no-store' });
+
 /** Server-side admin client (service role key, bypasses RLS). */
 export function createAdminClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!serviceKey || !supabaseUrl) {
     throw new Error('Supabase URL or service role key not configured');
   }
-  return createClient(supabaseUrl, serviceKey);
+  return createClient(supabaseUrl, serviceKey, { global: { fetch: noStoreFetch } });
 }
 
 /**

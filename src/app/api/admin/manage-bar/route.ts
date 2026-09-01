@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { noStoreFetch } from '@/lib/supabase-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { geocodeBar } from '@/lib/geocode';
 import { normalizeBarFields } from '@/lib/normalize';
@@ -10,7 +11,9 @@ function getServiceClient() {
   if (!serviceKey || !supabaseUrl) {
     throw new Error('Supabase URL or service role key not configured');
   }
-  return createClient(supabaseUrl, serviceKey);
+  // noStoreFetch: GET handlers' fetches land in Next's Data Cache; admin
+  // reads must never be served stale.
+  return createClient(supabaseUrl, serviceKey, { global: { fetch: noStoreFetch } });
 }
 
 function checkAuth(request: NextRequest): boolean {
