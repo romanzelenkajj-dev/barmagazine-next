@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { CookieConsent } from '@/components/CookieConsent';
 import { NearMeBar } from '@/components/NearMeBar';
 import { GoogleAnalytics } from '@/components/GoogleAnalytics';
+import { Analytics } from '@vercel/analytics/react';
 import { getDirectoryStats } from '@/lib/bar-count';
 
 
@@ -134,6 +135,10 @@ export default async function RootLayout({
           308-redirected to the apex by middleware regardless).
         */}
         {process.env.VERCEL_ENV === 'production' && <GoogleAnalytics />}
+        {/* Vercel Web Analytics: bot-filtered by design, our clean second
+            measurement source next to GA (which the Singapore bot inflates).
+            The component no-ops unless analytics is enabled on the project. */}
+        <Analytics />
         <Nav />
         <div className="nav-spacer" />
         <div className="container">
