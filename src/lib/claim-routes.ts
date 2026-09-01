@@ -152,3 +152,7 @@ export function isClaimExpired(createdAt: string | Date, now: Date = new Date())
 /** Rate limits from the spec, counted over the trailing hour. */
 export const CLAIM_RATE_LIMIT_PER_EMAIL = 3;
 export const CLAIM_RATE_LIMIT_PER_IP = 10;
+
+/** Starting the same claim again re-sends the link, but no more often than
+    this, so the endpoint cannot be used to hose someone's mailbox. */
+export const CLAIM_RESEND_COOLDOWN_MINUTES = 5;

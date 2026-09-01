@@ -40,7 +40,34 @@ export async function GET(request: NextRequest) {
       console.error('[owner/bars] submissions query failed for', owner.id, subsError.message);
     }
 
-    return NextResponse.json({ bars: bars || [], submissions: submissions || [], email: owner.email });
+    // Open claims for this mailbox. A signed-in session proves control of the
+    // address, which is the exact proof the email link's callback checks — so
+    // the dashboard can offer to finish these. This also rescues anyone whose
+    // claim link died because requesting this very sign-in link invalidated it
+    // (GoTrue keeps one outstanding magic-link token per user): instead of an
+    // empty "Your bars" dead end, they land on a finish button.
+    const { data: pendingClaimRows } = await supabase
+      .from('bar_claims')
+      .select('id, bar_id')
+      .eq('status', 'awaiting_verification')
+      .eq('is_transfer', false)
+      .ilike('claimant_email', owner.email);
+
+    let pendingClaims: { id: string; barName: string; barSlug: string | null }[] = [];
+    if (pendingClaimRows && pendingClaimRows.length > 0) {
+      const { data: claimBars } = await supabase
+        .from('bars')
+        .select('id, name, slug, owner_id')
+        .in('id', pendingClaimRows.map(c => c.bar_id));
+      pendingClaims = pendingClaimRows.flatMap(c => {
+        const b = (claimBars || []).find(x => x.id === c.bar_id);
+        // A bar someone else claimed first is not finishable; don't offer it.
+        if (!b || b.owner_id) return [];
+        return [{ id: c.id, barName: String(b.name ?? 'your bar'), barSlug: b.slug ? String(b.slug) : null }];
+      });
+    }
+
+    return NextResponse.json({ bars: bars || [], submissions: submissions || [], pendingClaims, email: owner.email });
   } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }

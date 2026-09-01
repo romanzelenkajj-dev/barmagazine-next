@@ -40,10 +40,19 @@ const STATUS_TONE: Record<string, { bg: string; fg: string }> = {
   pending: { bg: '#fff3cd', fg: '#856404' },
 };
 
+interface PendingClaim {
+  id: string;
+  barName: string;
+  barSlug: string | null;
+}
+
 export default function OwnerDashboardPage() {
   const router = useRouter();
   const [bars, setBars] = useState<Bar[]>([]);
   const [submissions, setSubmissions] = useState<Submission[]>([]);
+  const [pendingClaims, setPendingClaims] = useState<PendingClaim[]>([]);
+  const [finishing, setFinishing] = useState<string | null>(null);
+  const [claimErrors, setClaimErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [ownerEmail, setOwnerEmail] = useState('');
@@ -70,11 +79,49 @@ export default function OwnerDashboardPage() {
       const data = await res.json();
       setBars(data.bars || []);
       setSubmissions(data.submissions || []);
+      setPendingClaims(data.pendingClaims || []);
       setOwnerEmail(data.email || '');
     } catch {
       setError('Failed to load dashboard data');
     } finally {
       setLoading(false);
+    }
+  }
+
+  // Completing a claim from here reuses the email link's endpoint: being
+  // signed in as the claim's address is the same proof the link established,
+  // so someone whose emailed link died can still finish.
+  async function finishClaim(claimId: string) {
+    const headers = await authHeader();
+    if (!headers) {
+      router.push('/owner-dashboard/login');
+      return;
+    }
+    setFinishing(claimId);
+    setClaimErrors(prev => ({ ...prev, [claimId]: '' }));
+    try {
+      const res = await fetch('/api/claim/callback', {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ claimId }),
+      });
+      const body = await res.json();
+      if (!res.ok) {
+        const hint =
+          res.status === 410
+            ? ' Start the claim again from your bar’s page and we’ll send a fresh link.'
+            : '';
+        setClaimErrors(prev => ({
+          ...prev,
+          [claimId]: (body.error || 'We could not finish this claim.') + hint,
+        }));
+        return;
+      }
+      await fetchDashboardData(headers);
+    } catch {
+      setClaimErrors(prev => ({ ...prev, [claimId]: 'Something went wrong. Please try again.' }));
+    } finally {
+      setFinishing(null);
     }
   }
 
@@ -113,6 +160,31 @@ export default function OwnerDashboardPage() {
       </header>
 
       {error && <p className="add-bar-error">{error}</p>}
+
+      {pendingClaims.length > 0 && (
+        <section className="owner-dash-section">
+          <h2 className="owner-dash-section-title">Finish claiming</h2>
+          {pendingClaims.map(claim => (
+            <div key={claim.id} className="add-bar-form-card">
+              <p>
+                Your claim of <strong>{claim.barName}</strong> is one step from done.
+                You&apos;re signed in with the address the claim used, so you can finish it here —
+                no email link needed.
+              </p>
+              <p style={{ marginTop: 16 }}>
+                <button
+                  className="feature-btn"
+                  onClick={() => finishClaim(claim.id)}
+                  disabled={finishing === claim.id}
+                >
+                  {finishing === claim.id ? 'Finishing…' : `Finish claiming ${claim.barName}`}
+                </button>
+              </p>
+              {claimErrors[claim.id] && <p className="add-bar-error">{claimErrors[claim.id]}</p>}
+            </div>
+          ))}
+        </section>
+      )}
 
       <section className="owner-dash-section">
         {bars.length === 0 ? (

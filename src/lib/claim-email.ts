@@ -63,7 +63,10 @@ export function claimEmailHtml({ barName, actionLink }: Omit<ClaimLinkEmail, 'de
         If you weren&rsquo;t expecting this email, just ignore it. Nothing changes and
         nobody gets access to your listing.
       </p>
-      <p style="color:#6B6B6B;">This link expires in 30 minutes.</p>
+      <p style="color:#6B6B6B;">
+        This link expires in 24 hours. If it has expired, just start the claim
+        again from your bar&rsquo;s page and we&rsquo;ll send you a fresh one.
+      </p>
       <p style="color:#9A9A9A;margin-top:28px;">— BarMagazine · barmagazine.com</p>
     </div>
   `;

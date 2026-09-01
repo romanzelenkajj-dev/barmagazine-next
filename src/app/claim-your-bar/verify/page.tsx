@@ -25,26 +25,43 @@ function VerifyInner() {
   const [error, setError] = useState('');
   const [working, setWorking] = useState(false);
   const [barName, setBarName] = useState('');
+  const [nameSettled, setNameSettled] = useState(false);
 
   const claimId = params.get('claim');
   const tokenHash = params.get('token_hash');
   const legacyCode = params.get('code');
   const barSlug = params.get('bar');
 
-  // Display only: the bar's public name for the button label.
+  // Display only: the bar's public name for the button label. The button
+  // waits for this lookup to settle (capped at 4s) instead of rendering the
+  // generic wording and swapping the name in later — a cold serverless hit
+  // takes a second or two, and a claimant clicking in that gap confirmed a
+  // button that never told them which bar it was for.
   useEffect(() => {
-    if (!barSlug) return;
+    if (!barSlug) {
+      setNameSettled(true);
+      return;
+    }
     let cancelled = false;
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 4000);
     (async () => {
       try {
-        const res = await fetch(`/api/claim/search?slug=${encodeURIComponent(barSlug)}`);
+        const res = await fetch(`/api/claim/search?slug=${encodeURIComponent(barSlug)}`, { signal: ctl.signal });
         const data = await res.json();
         if (!cancelled && data.bars?.[0]?.name) setBarName(data.bars[0].name);
       } catch {
         // The button falls back to generic wording.
+      } finally {
+        clearTimeout(timer);
+        if (!cancelled) setNameSettled(true);
       }
     })();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      ctl.abort();
+      clearTimeout(timer);
+    };
   }, [barSlug]);
 
   async function confirm() {
@@ -123,12 +140,14 @@ function VerifyInner() {
                 : 'Confirming completes your bar claim on BarMagazine.'}
             </p>
             <p style={{ marginTop: 20 }}>
-              <button className="feature-btn" onClick={confirm} disabled={working}>
+              <button className="feature-btn" onClick={confirm} disabled={working || !nameSettled}>
                 {working
                   ? 'Confirming…'
-                  : barName
-                    ? `Confirm: I manage ${barName}`
-                    : 'Confirm my claim'}
+                  : !nameSettled
+                    ? 'One moment…'
+                    : barName
+                      ? `Confirm: I manage ${barName}`
+                      : 'Confirm my claim'}
               </button>
             </p>
           </>

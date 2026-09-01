@@ -5,6 +5,7 @@ import {
   CLAIM_RATE_LIMIT_PER_EMAIL,
   CLAIM_RATE_LIMIT_PER_IP,
   CLAIM_VERIFICATION_WINDOW_HOURS,
+  CLAIM_RESEND_COOLDOWN_MINUTES,
 } from '@/lib/claim-routes';
 import { notifyClaim } from '@/lib/notify';
 import { sendClaimLinkEmail } from '@/lib/claim-email';
@@ -153,6 +154,17 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (insertError) {
+      // The partial unique index fired: this claimant already has an open
+      // claim for this bar inside the 24h window. This used to be a silent
+      // dead end — "check your inbox" with nothing sent — which stranded
+      // anyone whose link had died (expired, or invalidated by a later
+      // sign-in link: GoTrue keeps one outstanding magic-link token per
+      // user). Treat it as a resend request: refresh the claim's clock and
+      // mail a fresh link for the SAME claim id, behind a per-claim cooldown.
+      if (insertError.code === '23505' && decision.autoVerifiable && decision.destination) {
+        await resendExistingClaim(supabase, bar, email, decision, ip);
+        return generic();
+      }
       console.warn('[claim/start] insert failed:', insertError.message);
       return generic();
     }
@@ -192,6 +204,60 @@ export async function POST(request: NextRequest) {
     return generic({ requiresProof: decision.isTransfer, claimId: claim.id });
   } catch {
     return generic();
+  }
+}
+
+/**
+ * Re-send the link for an already-open claim. The row keeps its id (the
+ * emailed URL carries it), but `created_at` restarts so the completion window
+ * matches the fresh token's lifetime, and `evidence.requested_at` restarts
+ * the resend cooldown. Only awaiting_verification rows qualify: pending_review
+ * means a transfer waiting on a human, and mailing a link would imply otherwise.
+ */
+async function resendExistingClaim(
+  supabase: ReturnType<typeof createAdminClient>,
+  bar: { id: string; name: string | null; slug: string },
+  email: string,
+  decision: ReturnType<typeof decideRoute>,
+  ip: string
+): Promise<void> {
+  try {
+    const { data: existing } = await supabase
+      .from('bar_claims')
+      .select('id, evidence')
+      .eq('bar_id', bar.id)
+      .ilike('claimant_email', email)
+      .eq('status', 'awaiting_verification')
+      .maybeSingle();
+    if (!existing) return;
+
+    const ev =
+      existing.evidence && typeof existing.evidence === 'object' && !Array.isArray(existing.evidence)
+        ? (existing.evidence as Record<string, unknown>)
+        : {};
+    const lastRequested = typeof ev.requested_at === 'string' ? Date.parse(ev.requested_at) : 0;
+    if (lastRequested && Date.now() - lastRequested < CLAIM_RESEND_COOLDOWN_MINUTES * 60 * 1000) {
+      return;
+    }
+
+    const now = new Date().toISOString();
+    await supabase
+      .from('bar_claims')
+      .update({
+        created_at: now,
+        evidence: {
+          ...ev,
+          ip,
+          requested_at: now,
+          match: decision.match,
+          ...(decision.destination ? { destination: decision.destination } : {}),
+        },
+      })
+      .eq('id', existing.id);
+
+    await sendClaimLink(supabase, decision.destination!, String(bar.name ?? bar.slug), bar.slug, existing.id);
+  } catch (e) {
+    console.warn('[claim/start] resend threw:', e);
   }
 }
 
