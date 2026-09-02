@@ -131,6 +131,18 @@ describe('accolades', () => {
       expect(tilesFor([make({ org_key: 'bca', kind: 'nominee', rank: null })])[0].tier).toBe('grey-outline');
     });
 
+    it('jbf: solid burgundy for winner, burgundy outline for nominee', () => {
+      expect(tilesFor([make({ org_key: 'jbf', kind: 'winner', rank: null })])[0].tier).toBe('burgundy');
+      expect(tilesFor([make({ org_key: 'jbf', kind: 'nominee', rank: null })])[0].tier).toBe('burgundy-outline');
+    });
+
+    it('jbf: JAMES BEARD / OUTSTANDING BAR / year', () => {
+      const tile = tilesFor([make({ org_key: 'jbf', kind: 'winner', rank: null, year: 2026 })])[0];
+      expect(tile.region).toBe('JAMES BEARD');
+      expect(tile.main).toBe('OUTSTANDING BAR');
+      expect(tile.year).toBe('2026');
+    });
+
     it('winner/nominee with rank null render exactly like ranked entries', () => {
       // Same renderability rules: year + source + known org is all it takes.
       const winner = make({ org_key: 'totc', kind: 'winner', rank: null, title: 'Best Bar' });

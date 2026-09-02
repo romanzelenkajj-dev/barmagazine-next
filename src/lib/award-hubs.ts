@@ -40,6 +40,13 @@ export const AWARD_PROGRAMS: AwardProgram[] = [
     orgKeys: ['bca'],
     tagline: "The Bartenders' Choice Awards, voted by working bartenders.",
   },
+  {
+    slug: 'james-beard',
+    name: 'James Beard Awards: Outstanding Bar',
+    orgKeys: ['jbf'],
+    tagline:
+      "The James Beard Foundation's Outstanding Bar award, the highest US honor for a bar program, judged by the Foundation's independent voting body.",
+  },
 ];
 
 export function programBySlug(slug: string): AwardProgram | null {

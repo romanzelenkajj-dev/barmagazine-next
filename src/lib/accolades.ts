@@ -29,7 +29,9 @@ export type AccoladeTier =
   | 'orange'
   | 'orange-outline'
   | 'grey'
-  | 'grey-outline';
+  | 'grey-outline'
+  | 'burgundy'
+  | 'burgundy-outline';
 
 interface TileDef {
   /** Small line above the bold one — carries the possessive. */
@@ -66,8 +68,11 @@ const TILES: Record<string, TileDef> = {
   // "TALES OF THE / SPIRITED" read top-to-bottom as "Tales of the Spirited",
   // which is not the award's name.
   totc: { region: 'TOTC', main: 'SPIRITED', winnerTier: 'orange', nomineeTier: 'orange-outline' },
-  // Not imported yet; the style ships ahead of the data.
   bca: { region: "BARTENDERS'", main: 'CHOICE', winnerTier: 'grey', nomineeTier: 'grey-outline' },
+  // James Beard Awards, Outstanding Bar category. Deep burgundy keeps it
+  // distinct from the Spirited orange and heavier than the bca grey; the
+  // long main line gets a smaller face in CSS, scoped to these tiers.
+  jbf: { region: 'JAMES BEARD', main: 'OUTSTANDING BAR', winnerTier: 'burgundy', nomineeTier: 'burgundy-outline' },
 };
 
 function tierFor(def: TileDef, kind: AccoladeKind): AccoladeTier {
