@@ -23,7 +23,7 @@ export const COLLECTIONS: BarCollection[] = [
     slug: 'conrad-hotels',
     name: 'Conrad Hotels & Resorts',
     intro:
-      "Conrad Singapore Orchard is home to one of Asia's most decorated " +
+      'Conrad Singapore Orchard is home to one of Asia’s most decorated ' +
       'hotel bar programs. Manhattan, twice named Asia’s Best Bar, channels ' +
       'the Golden Age of cocktails with the world’s first in-hotel rickhouse ' +
       'and a Whiskey Glasshouse of more than 220 rare American whiskeys, while ' +
