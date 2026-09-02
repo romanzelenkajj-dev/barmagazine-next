@@ -8412,16 +8412,19 @@ textarea.form-input {
     padding-left: 0;
     padding-right: 0;
   }
-  /* Cards carry their own internal padding, so the 10px container gutter is
-     right for them - but the hero's bare text (kicker, H1, intro) needs its
-     own inset: 14px here + the container's 10px = a 24px comfortable margin,
-     shared by city guides and collections alike. */
+}
+.best-bars-hero { text-align: center; padding: 24px 0 36px; }
+/* Mobile: cards carry their own internal padding, so the 10px container
+   gutter is right for them - but the hero's bare text (kicker, H1, intro)
+   needs its own inset: 14px + the container's 10px = a 24px margin, shared
+   by city guides and collections alike. Must sit AFTER the base rule above:
+   its padding shorthand would otherwise win on source order. */
+@media (max-width: 768px) {
   .best-bars-hero {
     padding-left: 14px;
     padding-right: 14px;
   }
 }
-.best-bars-hero { text-align: center; padding: 24px 0 36px; }
 .best-bars-kicker {
   display: inline-block;
   font-size: 0.78rem;
