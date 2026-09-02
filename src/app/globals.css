@@ -9334,6 +9334,14 @@ textarea.form-input {
   background: #fff;
   color: #6E1423;
 }
+/* "JAMES BEARD" at the standard 10.5px bold measures 80px, 8px wider than
+   the tile's 72px content box (the J was clipping). 9.5px with tighter
+   tracking renders at ~69px. Scoped to the jbf tiers only. */
+.acc-tile--burgundy .acc-tile-main,
+.acc-tile--burgundy-outline .acc-tile-main {
+  font-size: 9.5px;
+  letter-spacing: 0.01em;
+}
 .acc-tile--orange-outline {
   border-color: #E8590C;
   background: #fff;
