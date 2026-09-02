@@ -9334,15 +9334,6 @@ textarea.form-input {
   background: #fff;
   color: #6E1423;
 }
-/* "OUTSTANDING BAR" is twice the length of any sibling bold line; a smaller
-   face keeps it inside the fixed 74px tile. Scoped to the jbf tiers so the
-   other tiles' bold line never changes. */
-.acc-tile--burgundy .acc-tile-main,
-.acc-tile--burgundy-outline .acc-tile-main {
-  font-size: 7px;
-  letter-spacing: 0.02em;
-}
-
 .acc-tile--orange-outline {
   border-color: #E8590C;
   background: #fff;

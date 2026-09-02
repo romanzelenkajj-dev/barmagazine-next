@@ -36,7 +36,9 @@ export function AccoladeBadges({
           title={[`${tile.org} ${tile.year}`, tile.title, tile.source].filter(Boolean).join(' — ')}
           aria-label={[`${tile.org} ${tile.year}`, tile.title].filter(Boolean).join(' — ')}
         >
-          <span className="acc-tile-region">{tile.region}</span>
+          {/* jbf is a two-line tile (empty region); the flex centering
+              keeps its lines vertically balanced. */}
+          {tile.region && <span className="acc-tile-region">{tile.region}</span>}
           <span className="acc-tile-main">{tile.main}</span>
           <span className="acc-tile-year">{tile.year}</span>
         </span>

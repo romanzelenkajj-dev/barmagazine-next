@@ -70,9 +70,12 @@ const TILES: Record<string, TileDef> = {
   totc: { region: 'TOTC', main: 'SPIRITED', winnerTier: 'orange', nomineeTier: 'orange-outline' },
   bca: { region: "BARTENDERS'", main: 'CHOICE', winnerTier: 'grey', nomineeTier: 'grey-outline' },
   // James Beard Awards, Outstanding Bar category. Deep burgundy keeps it
-  // distinct from the Spirited orange and heavier than the bca grey; the
-  // long main line gets a smaller face in CSS, scoped to these tiers.
-  jbf: { region: 'JAMES BEARD', main: 'OUTSTANDING BAR', winnerTier: 'burgundy', nomineeTier: 'burgundy-outline' },
+  // distinct from the Spirited orange and heavier than the bca grey. TWO
+  // lines by design (empty region): the name IS the award here, and the
+  // category rides hover/aria like every winner/nominee org. The tile
+  // centers its lines, so this reads as a deliberate two-line tile rather
+  // than a missing third line.
+  jbf: { region: '', main: 'JAMES BEARD', winnerTier: 'burgundy', nomineeTier: 'burgundy-outline' },
 };
 
 function tierFor(def: TileDef, kind: AccoladeKind): AccoladeTier {
