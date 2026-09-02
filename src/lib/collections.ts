@@ -20,15 +20,16 @@ export interface BarCollection {
 
 export const COLLECTIONS: BarCollection[] = [
   {
-    // Working mock for the Conrad conversation — placeholder intro, roster of
-    // the two hotel-partner bars already on the outreach track.
     slug: 'conrad-hotels',
     name: 'Conrad Hotels & Resorts',
     intro:
-      'Placeholder: the bars of Conrad Hotels & Resorts on BarMagazine, from ' +
-      'flagship lobby bars to rooftop destinations. Each one is independently ' +
-      'listed and editorially verified in our global directory. Real ' +
-      'partner copy replaces this paragraph when the page goes live.',
+      "Conrad Singapore Orchard is home to one of Asia's most decorated " +
+      'hotel bar programs. Manhattan, twice named Asia’s Best Bar, channels ' +
+      'the Golden Age of cocktails with the world’s first in-hotel rickhouse ' +
+      'and a Whiskey Glasshouse of more than 220 rare American whiskeys, while ' +
+      'East47, its bar-in-a-bar cocktail studio, pours a progressive menu in ' +
+      'the spirit of the 1960s avant-garde. This collection gathers the ' +
+      'group’s bars on BarMagazine.',
     barSlugs: ['manhattan', 'east-47'],
   },
 ];
