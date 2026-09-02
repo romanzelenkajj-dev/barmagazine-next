@@ -8520,6 +8520,8 @@ textarea.form-input {
   margin: 48px 0;
   padding: 36px 24px;
   background: #1a1a1a;
+  border-radius: 16px;
+  color: #fff;
 }
 /* When the outro is the page's final section (collections; type-city pages
    with no sibling-styles grid), its 48px bottom margin stacked on the page's
@@ -8527,8 +8529,15 @@ textarea.form-input {
    is the intended bottom spacing. */
 .best-bars-outro:last-child {
   margin-bottom: 0;
-  border-radius: 16px;
-  color: #fff;
+}
+/* Inside the dark outro box the primary button's #1a1a1a background
+   disappears into the #1a1a1a box; invert it so the CTA reads as a button. */
+.best-bars-outro .bar-v2-btn--primary {
+  background: #fff;
+  color: #1a1a1a;
+}
+.best-bars-outro .bar-v2-btn--primary:hover {
+  background: #ece6dc;
 }
 .best-bars-outro h2 { margin: 0 0 10px; font-size: 1.35rem; }
 .best-bars-outro p {
