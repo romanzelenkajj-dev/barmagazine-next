@@ -8520,6 +8520,13 @@ textarea.form-input {
   margin: 48px 0;
   padding: 36px 24px;
   background: #1a1a1a;
+}
+/* When the outro is the page's final section (collections; type-city pages
+   with no sibling-styles grid), its 48px bottom margin stacked on the page's
+   64px padding read as a phantom gap above the footer. The page padding alone
+   is the intended bottom spacing. */
+.best-bars-outro:last-child {
+  margin-bottom: 0;
   border-radius: 16px;
   color: #fff;
 }
