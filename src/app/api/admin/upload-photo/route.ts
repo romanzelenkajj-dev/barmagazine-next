@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidateBarPages } from '@/lib/revalidate-bars';
 
 function getServiceClient() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -58,7 +59,7 @@ export async function POST(request: NextRequest) {
   // Append to bar's photos array
   const { data: bar } = await supabase
     .from('bars')
-    .select('photos')
+    .select('photos, slug')
     .eq('id', barId)
     .single();
 
@@ -74,6 +75,10 @@ export async function POST(request: NextRequest) {
   if (updateError) {
     return NextResponse.json({ error: updateError.message }, { status: 500 });
   }
+
+  // The hero image just changed; the public profile must not serve the old
+  // one for the rest of an ISR window.
+  if (bar?.slug) revalidateBarPages([String(bar.slug)]);
 
   return NextResponse.json({ bar: updated?.[0], url: publicUrl });
 }
@@ -100,7 +105,7 @@ export async function DELETE(request: NextRequest) {
   // Remove from bar's photos array
   const { data: bar } = await supabase
     .from('bars')
-    .select('photos')
+    .select('photos, slug')
     .eq('id', barId)
     .single();
 
@@ -116,6 +121,10 @@ export async function DELETE(request: NextRequest) {
   if (updateError) {
     return NextResponse.json({ error: updateError.message }, { status: 500 });
   }
+
+  // A deleted photo may have been the hero; the public page must drop it now,
+  // not at the end of the ISR window.
+  if (bar?.slug) revalidateBarPages([String(bar.slug)]);
 
   return NextResponse.json({ bar: updated?.[0] });
 }

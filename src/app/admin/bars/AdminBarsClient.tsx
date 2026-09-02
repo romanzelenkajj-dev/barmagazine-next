@@ -30,16 +30,23 @@ interface Bar {
   is_verified: boolean;
   is_active: boolean;
   opening_hours: string | null;
+  menu_url: string | null;
+  reservation_url: string | null;
+  whatsapp: string | null;
   wp_article_slug: string | null;
   created_at: string;
   updated_at: string;
 }
 
-type EditableField = 'name' | 'slug' | 'city' | 'country' | 'type' | 'tier' | 'address' | 'website' | 'instagram' | 'phone' | 'email' | 'opening_hours' | 'description' | 'short_excerpt' | 'photo_credit' | 'wp_article_slug' | 'is_active' | 'is_verified';
+type EditableField = 'name' | 'slug' | 'city' | 'country' | 'type' | 'tier' | 'address' | 'website' | 'instagram' | 'phone' | 'email' | 'opening_hours' | 'menu_url' | 'reservation_url' | 'whatsapp' | 'description' | 'short_excerpt' | 'photo_credit' | 'wp_article_slug' | 'is_active' | 'is_verified';
 
 const EDITABLE_FIELDS: EditableField[] = [
   'name', 'slug', 'city', 'country', 'type', 'tier', 'address',
-  'website', 'instagram', 'phone', 'email', 'opening_hours', 'description', 'short_excerpt',
+  'website', 'instagram', 'phone', 'email', 'opening_hours',
+  // Owner-facing link fields, editable here too so support requests
+  // ("please remove that menu link") don't need the owner's login.
+  'menu_url', 'reservation_url', 'whatsapp',
+  'description', 'short_excerpt',
   // Attribution for the bar's photos — set here when images are added.
   // Deliberately admin-only: it is editorial provenance, not owner content.
   'photo_credit',
@@ -171,12 +178,18 @@ export default function AdminBarsClient() {
     if (!editingBar) return;
     setSaving(true);
 
-    // Build only changed fields
+    // Build only changed fields. Null and '' compare as equal so an
+    // untouched empty field is never written, but a CLEARED field is a real
+    // change and persists as NULL - emptying a value must delete it.
     const updates: Record<string, unknown> = {};
     EDITABLE_FIELDS.forEach(f => {
       const original = editingBar[f];
       const edited = editValues[f];
-      if (edited !== original) {
+      const changed =
+        typeof edited === 'boolean' || typeof original === 'boolean'
+          ? edited !== original
+          : String(edited ?? '') !== String(original ?? '');
+      if (changed) {
         updates[f] = edited === '' ? null : edited;
       }
     });

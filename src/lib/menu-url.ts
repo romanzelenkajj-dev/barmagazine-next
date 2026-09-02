@@ -56,5 +56,34 @@ export function menuDomainDiffers(menuUrl: string, websiteUrl: string): boolean 
   return m !== s && !m.endsWith(`.${s}`) && !s.endsWith(`.${m}`);
 }
 
+/** Social profiles: already linked from the profile, never a menu page. */
+export function isSocialMediaUrl(raw: string): boolean {
+  const u = parsed(raw);
+  if (!u) return false;
+  const host = u.hostname.toLowerCase().replace(/^www\./, '');
+  return (
+    host === 'instagram.com' ||
+    host === 'facebook.com' ||
+    host === 'fb.com' ||
+    host === 'm.facebook.com' ||
+    host === 'tiktok.com' ||
+    host.endsWith('.tiktok.com')
+  );
+}
+
 export const SEARCH_URL_MESSAGE =
   'That link is a search or maps results page. Please link your menu page directly — the page that shows your drinks.';
+
+export const SOCIAL_URL_MESSAGE =
+  'Please link your menu page — your Instagram is already on your profile.';
+
+/**
+ * One verdict for a proposed menu link: the message to show, or null when the
+ * link is acceptable. The soft domain-mismatch warning is separate — it never
+ * blocks.
+ */
+export function menuUrlProblem(raw: string): string | null {
+  if (isSearchOrMapsUrl(raw)) return SEARCH_URL_MESSAGE;
+  if (isSocialMediaUrl(raw)) return SOCIAL_URL_MESSAGE;
+  return null;
+}

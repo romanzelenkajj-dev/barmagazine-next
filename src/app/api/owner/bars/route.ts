@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { verifyOwnerToken, noStoreFetch } from '@/lib/supabase-auth';
 import { filterOwnerFields } from '@/lib/owner-fields';
-import { isSearchOrMapsUrl, SEARCH_URL_MESSAGE } from '@/lib/menu-url';
+import { menuUrlProblem } from '@/lib/menu-url';
 import { notifyOwnerSubmission } from '@/lib/notify';
 
 // Owner data is always per-request (Authorization header) — never prerender.
@@ -111,10 +111,12 @@ export async function PUT(request: NextRequest) {
     // submitted_data into bars.update(). Enforced again at approval.
     const { allowed, rejected } = filterOwnerFields(updates);
 
-    // A search or maps results page is never a menu. The form blocks this
-    // with the same check; rejecting here keeps the rule for direct callers.
-    if (typeof allowed.menu_url === 'string' && isSearchOrMapsUrl(allowed.menu_url)) {
-      return NextResponse.json({ error: SEARCH_URL_MESSAGE }, { status: 400 });
+    // A search results page or a social profile is never a menu. The form
+    // blocks these with the same check; rejecting here keeps the rule for
+    // direct callers.
+    if (typeof allowed.menu_url === 'string') {
+      const problem = menuUrlProblem(allowed.menu_url);
+      if (problem) return NextResponse.json({ error: problem }, { status: 400 });
     }
 
     if (Object.keys(allowed).length === 0) {

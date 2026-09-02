@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { isSearchOrMapsUrl, menuDomainDiffers } from './menu-url';
+import { isSearchOrMapsUrl, isSocialMediaUrl, menuUrlProblem, menuDomainDiffers, SEARCH_URL_MESSAGE, SOCIAL_URL_MESSAGE } from './menu-url';
 
 describe('isSearchOrMapsUrl', () => {
   it('rejects the URL Apothéke actually pasted (google search results)', () => {
@@ -37,5 +37,23 @@ describe('menuDomainDiffers', () => {
   it('never fires on empty or unparseable values', () => {
     expect(menuDomainDiffers('https://linktr.ee/apotheke', '')).toBe(false);
     expect(menuDomainDiffers('', 'https://apothekela.com')).toBe(false);
+  });
+});
+
+describe('isSocialMediaUrl / menuUrlProblem', () => {
+  it('rejects the social profiles owners actually paste', () => {
+    expect(isSocialMediaUrl('https://www.instagram.com/mybar/')).toBe(true);
+    expect(isSocialMediaUrl('https://facebook.com/mybar')).toBe(true);
+    expect(isSocialMediaUrl('https://www.tiktok.com/@mybar')).toBe(true);
+  });
+  it('does not flag a bar site that merely mentions a network', () => {
+    expect(isSocialMediaUrl('https://instagrambar.com/menu')).toBe(false);
+    expect(isSocialMediaUrl('https://mybar.com/instagram-wall')).toBe(false);
+  });
+  it('menuUrlProblem picks the right message per failure', () => {
+    expect(menuUrlProblem('https://www.google.com/search?q=menu')).toBe(SEARCH_URL_MESSAGE);
+    expect(menuUrlProblem('https://instagram.com/mybar')).toBe(SOCIAL_URL_MESSAGE);
+    expect(menuUrlProblem('https://mybar.com/menu')).toBeNull();
+    expect(menuUrlProblem('')).toBeNull();
   });
 });

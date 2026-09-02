@@ -5,7 +5,7 @@ import { useRouter, useParams } from 'next/navigation';
 import { authHeader, signOut } from '@/lib/owner-session';
 import Link from 'next/link';
 import { OWNER_EDITABLE_FIELDS } from '@/lib/owner-fields';
-import { isSearchOrMapsUrl, menuDomainDiffers, SEARCH_URL_MESSAGE } from '@/lib/menu-url';
+import { menuUrlProblem, menuDomainDiffers } from '@/lib/menu-url';
 
 /**
  * Owner edit form.
@@ -108,10 +108,11 @@ export default function EditBarPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // A search or maps results page is never a menu; catch it before the
-    // round-trip (the server rejects it too).
-    if (isSearchOrMapsUrl(formData.menu_url)) {
-      setError(SEARCH_URL_MESSAGE);
+    // A search results page or a social profile is never a menu; catch it
+    // before the round-trip (the server rejects it too).
+    const menuProblem = menuUrlProblem(formData.menu_url);
+    if (menuProblem) {
+      setError(menuProblem);
       return;
     }
     setSaving(true); setError(''); setSuccess('');
@@ -271,11 +272,11 @@ export default function EditBarPage() {
                   placeholder={placeholder}
                   onChange={e => setFormData({ ...formData, [key]: e.target.value })}
                 />
-                {key === 'menu_url' && isSearchOrMapsUrl(formData.menu_url) && (
-                  <p className="add-bar-error" style={{ marginTop: 6 }}>{SEARCH_URL_MESSAGE}</p>
+                {key === 'menu_url' && menuUrlProblem(formData.menu_url) && (
+                  <p className="add-bar-error" style={{ marginTop: 6 }}>{menuUrlProblem(formData.menu_url)}</p>
                 )}
                 {key === 'menu_url' &&
-                  !isSearchOrMapsUrl(formData.menu_url) &&
+                  !menuUrlProblem(formData.menu_url) &&
                   menuDomainDiffers(formData.menu_url, formData.website || bar.website || '') && (
                     <p className="owner-dash-note" style={{ marginTop: 6 }}>
                       Heads up: this menu link points to a different domain than your website.
