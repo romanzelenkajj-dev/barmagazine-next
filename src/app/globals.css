@@ -7618,6 +7618,13 @@ textarea.form-input {
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* In-flow clearance rendered by NearMeBar after the footer, only on routes
+   where the pill shows. The fixed pill lands on this empty band at full
+   scroll instead of covering the footer's copyright line. */
+.nearme-spacer {
+  height: 80px;
+}
+
 .nearme-go {
   width: 36px;
   height: 36px;
@@ -7642,10 +7649,11 @@ textarea.form-input {
     transform: translateY(-2px);
   }
 
-  /* keep homepage content from hiding behind the pinned bar —
-     scoped to .home-flow because the pill renders on the homepage only */
-  .home-flow {
-    padding-bottom: 76px;
+  /* The taller full-width mobile pill needs a touch more clearance. The
+     old fix here padded .home-flow instead, which put a 76px void ABOVE
+     the footer while the pill still covered the footer itself. */
+  .nearme-spacer {
+    height: 88px;
   }
 }
 
