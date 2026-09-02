@@ -148,6 +148,11 @@ const CORPORATE_DOMAINS = [
   'gucci', 'ralphlauren', 'anantara', 'minor',
   // Added after the Europe wave 1 screen exposed them:
   'roccofortehotels', 'bulgarihotels', 'ihg', 'morgansoriginals',
+  // Group inboxes handled as relationship conversations, never blasted
+  // (batch 8 screen): CH Projects (five San Diego bars, one shared inbox),
+  // Alt Strategies (Mark Rogoff's agency, several San Diego venues),
+  // Jose Andres group concierge (barmini).
+  'ch-projects', 'altstrategies', 'joseandres',
 ];
 
 function corporateMatch(email) {
