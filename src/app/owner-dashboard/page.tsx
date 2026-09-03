@@ -190,7 +190,7 @@ export default function OwnerDashboardPage() {
             Make this page your bar&apos;s website: full menu, gallery, and a feature
             article with <strong>Featured</strong>.
           </p>
-          <Link href={`/feature-your-bar?bar=${upgradable.slug}#pricing`} className="feature-btn">
+          <Link href={`/feature-your-bar?bar=${upgradable.slug}#pricing`} className="feature-btn feature-btn-primary">
             See plans
           </Link>
         </div>
@@ -224,7 +224,7 @@ export default function OwnerDashboardPage() {
                 <li>A feature article about your bar in the magazine</li>
                 <li>Featured + Social adds promotion to our 88,000+ Instagram audience</li>
               </ul>
-              <Link href={`/feature-your-bar?bar=${claimedBar.slug}#pricing`} className="feature-btn">
+              <Link href={`/feature-your-bar?bar=${claimedBar.slug}#pricing`} className="feature-btn feature-btn-primary">
                 See Featured plans
               </Link>
               <p className="claim-offer-fineprint">Your free profile stays free either way.</p>
