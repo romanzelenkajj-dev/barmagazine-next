@@ -41,7 +41,10 @@ export const EVENTS: PromotedEvent[] = [
  * on the next ISR pass.
  */
 export function upcomingEvents(now: Date = new Date()): PromotedEvent[] {
-  return EVENTS.filter(e => now.getTime() <= new Date(`${e.endDate}T23:59:59+14:00`).getTime()).sort(
+  // UTC-12 is the LAST timezone to finish a calendar day, so this keeps the
+  // event live until its end date is over everywhere. (+14:00 would be the
+  // first, dropping events a day early - caught by the test.)
+  return EVENTS.filter(e => now.getTime() <= new Date(`${e.endDate}T23:59:59-12:00`).getTime()).sort(
     (a, b) => a.endDate.localeCompare(b.endDate)
   );
 }
