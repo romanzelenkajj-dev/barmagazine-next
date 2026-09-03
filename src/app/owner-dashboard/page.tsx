@@ -51,6 +51,10 @@ export default function OwnerDashboardPage() {
   const [bars, setBars] = useState<Bar[]>([]);
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [pendingClaims, setPendingClaims] = useState<PendingClaim[]>([]);
+  // Set right after a claim completes: via ?claimed=<slug> from the email
+  // flow's redirect, or directly by finishClaim below. Drives the one-time
+  // success card + Featured offer at the top of the page.
+  const [claimedSlug, setClaimedSlug] = useState<string | null>(null);
   const [finishing, setFinishing] = useState<string | null>(null);
   const [claimErrors, setClaimErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
@@ -58,6 +62,14 @@ export default function OwnerDashboardPage() {
   const [ownerEmail, setOwnerEmail] = useState('');
 
   useEffect(() => {
+    // window.location, not useSearchParams: a one-time read needs no
+    // Suspense boundary around the whole page.
+    try {
+      const p = new URLSearchParams(window.location.search).get('claimed');
+      if (p) setClaimedSlug(p);
+    } catch {
+      /* no search params */
+    }
     (async () => {
       const headers = await authHeader();
       if (!headers) {
@@ -67,6 +79,15 @@ export default function OwnerDashboardPage() {
       fetchDashboardData(headers);
     })();
   }, [router]);
+
+  function dismissClaimed() {
+    setClaimedSlug(null);
+    try {
+      window.history.replaceState(null, '', '/owner-dashboard');
+    } catch {
+      /* history unavailable */
+    }
+  }
 
   async function fetchDashboardData(headers: { Authorization: string }) {
     try {
@@ -117,6 +138,7 @@ export default function OwnerDashboardPage() {
         }));
         return;
       }
+      if (body.slug) setClaimedSlug(body.slug);
       await fetchDashboardData(headers);
     } catch {
       setClaimErrors(prev => ({ ...prev, [claimId]: 'Something went wrong. Please try again.' }));
@@ -135,6 +157,7 @@ export default function OwnerDashboardPage() {
   // The upsell shows only while there is something to upsell: free and top10
   // are unpaid tiers; featured/social owners already bought it.
   const upgradable = bars.find(b => b.tier === 'free' || b.tier === 'top10');
+  const claimedBar = claimedSlug ? bars.find(b => b.slug === claimedSlug) ?? null : null;
 
   if (loading) {
     return (
@@ -160,6 +183,55 @@ export default function OwnerDashboardPage() {
       </header>
 
       {error && <p className="add-bar-error">{error}</p>}
+
+      {upgradable && !claimedBar && (
+        <div className="owner-dash-upsell owner-upsell-strip">
+          <p className="owner-upsell-strip-text">
+            Make this page your bar&apos;s website: full menu, gallery, and a feature
+            article with <strong>Featured</strong>.
+          </p>
+          <Link href={`/feature-your-bar?bar=${upgradable.slug}#pricing`} className="feature-btn">
+            See plans
+          </Link>
+        </div>
+      )}
+
+      {claimedBar && (
+        <section className="owner-dash-section">
+          <div className="claim-success-card">
+            <span className="claim-success-check" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+            </span>
+            <h2 className="claim-success-title">{claimedBar.name} is yours.</h2>
+            <p className="claim-success-copy">
+              You now manage this profile. Hours, photos, links, and details are yours
+              to edit anytime, free, forever.
+            </p>
+            <button className="feature-btn feature-btn-outline" onClick={dismissClaimed}>
+              Go to your dashboard
+            </button>
+          </div>
+          {(claimedBar.tier === 'free' || claimedBar.tier === 'top10') && (
+            <div className="owner-dash-upsell" style={{ marginTop: 16 }}>
+              <p className="claim-offer-kicker">WHILE YOU&apos;RE HERE</p>
+              <h2 className="owner-dash-upsell-title">Make this page your bar&apos;s website</h2>
+              <p className="claim-offer-intro">
+                Most owners never need more than the free profile. Featured is for the
+                ones who want the page working for them:
+              </p>
+              <ul className="owner-dash-upsell-list">
+                <li>Your full drinks menu and a photo gallery, published on your page</li>
+                <li>A feature article about your bar in the magazine</li>
+                <li>Featured + Social adds promotion to our 88,000+ Instagram audience</li>
+              </ul>
+              <Link href={`/feature-your-bar?bar=${claimedBar.slug}#pricing`} className="feature-btn">
+                See Featured plans
+              </Link>
+              <p className="claim-offer-fineprint">Your free profile stays free either way.</p>
+            </div>
+          )}
+        </section>
+      )}
 
       {pendingClaims.length > 0 && (
         <section className="owner-dash-section">
@@ -226,25 +298,6 @@ export default function OwnerDashboardPage() {
           {bars.map(bar => (
             <BarBadgeEmbed key={bar.id} slug={bar.slug} name={bar.name} />
           ))}
-        </section>
-      )}
-
-      {upgradable && (
-        <section className="owner-dash-section">
-          <div className="owner-dash-upsell">
-            <h2 className="owner-dash-upsell-title">Make this page your bar&apos;s website</h2>
-            <ul className="owner-dash-upsell-list">
-              <li>Your complete drinks menu and a photo gallery, published on your page</li>
-              <li>A feature article about your bar in the magazine</li>
-              <li>Featured + Social adds promotion to our 88,000+ Instagram audience</li>
-            </ul>
-            <Link
-              href={`/feature-your-bar?bar=${upgradable.slug}#pricing`}
-              className="feature-btn"
-            >
-              See Featured plans
-            </Link>
-          </div>
         </section>
       )}
 

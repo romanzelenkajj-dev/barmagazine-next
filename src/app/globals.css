@@ -9659,6 +9659,77 @@ textarea.form-input {
   padding: 24px 28px;
 }
 
+/* Compact upsell strip under the dashboard header - one sentence and a
+   button, same border-left card language as the full offer card. */
+.owner-upsell-strip {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.owner-upsell-strip-text {
+  margin: 0;
+  flex: 1;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.owner-upsell-strip .feature-btn { flex-shrink: 0; }
+@media (max-width: 560px) {
+  .owner-upsell-strip { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+/* One-time card after a claim completes. */
+.claim-success-card {
+  background: var(--bg-card);
+  border: 1px solid #E0D8D0;
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+}
+.claim-success-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #1E7B34;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.claim-success-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+.claim-success-copy {
+  max-width: 460px;
+  margin: 0 auto 18px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.claim-offer-kicker {
+  margin: 0 0 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+.claim-offer-intro {
+  margin: 0 0 12px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.claim-offer-fineprint {
+  margin: 12px 0 0;
+  font-size: 12.5px;
+  color: var(--text-tertiary);
+}
+
 .owner-dash-upsell-title {
   font-size: 19px;
   font-weight: 600;

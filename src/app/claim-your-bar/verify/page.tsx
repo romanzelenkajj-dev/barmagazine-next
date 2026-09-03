@@ -112,7 +112,9 @@ function VerifyInner() {
         return;
       }
 
-      router.replace('/owner-dashboard');
+      // The dashboard greets a fresh owner with a one-time success card and
+      // the Featured offer; the param says which bar just landed.
+      router.replace(body.slug ? `/owner-dashboard?claimed=${encodeURIComponent(body.slug)}` : '/owner-dashboard');
     } catch {
       setError('Something went wrong. Please try the link again.');
     } finally {
