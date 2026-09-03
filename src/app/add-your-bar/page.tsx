@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, useState, FormEvent, useRef, useEffect } from 'react';
+import { downscaleImage, blobToDataUrl, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAGE } from '@/lib/image-downscale';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { BarSearchTypeahead } from '@/components/BarSearchTypeahead';
@@ -154,11 +155,15 @@ function AddYourBarForm() {
 
     let photoBase64: string | undefined;
     if (photoFile) {
-      photoBase64 = await new Promise<string>((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
-        reader.readAsDataURL(photoFile);
-      });
+      // Downscale in the browser: base64-in-JSON inflates the body by a
+      // third and Vercel 413s anything over ~4.5MB before our code runs.
+      const compressed = await downscaleImage(photoFile);
+      if (compressed.size > MAX_UPLOAD_BYTES) {
+        setError(PHOTO_TOO_LARGE_MESSAGE);
+        setSubmitting(false);
+        return;
+      }
+      photoBase64 = await blobToDataUrl(compressed);
     }
 
     const plan = data.get('preferredPlan') as string || 'free';

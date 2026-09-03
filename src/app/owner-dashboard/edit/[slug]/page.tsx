@@ -6,6 +6,7 @@ import { authHeader, signOut } from '@/lib/owner-session';
 import Link from 'next/link';
 import { OWNER_EDITABLE_FIELDS } from '@/lib/owner-fields';
 import { menuUrlProblem, menuDomainDiffers } from '@/lib/menu-url';
+import { downscaleImage, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAGE } from '@/lib/image-downscale';
 
 /**
  * Owner edit form.
@@ -155,7 +156,19 @@ export default function EditBarPage() {
     fd.append('bar_id', bar?.id || '');
     const isPaidTier = bar?.tier === 'featured' || bar?.tier === 'premium';
     const selected = isPaidTier ? Array.from(files) : Array.from(files).slice(0, 1);
-    selected.forEach((f) => fd.append('photos', f));
+    // Multipart bodies hit the same ~4.5MB platform cap that 413'd the
+    // listing form; downscale each photo in the browser first.
+    const compressed = await Promise.all(selected.map(f => downscaleImage(f)));
+    const totalBytes = compressed.reduce((sum, b) => sum + b.size, 0);
+    if (totalBytes > MAX_UPLOAD_BYTES) {
+      setError(PHOTO_TOO_LARGE_MESSAGE);
+      setUploading(false);
+      return;
+    }
+    compressed.forEach((blob, i) => {
+      const name = selected[i].name.replace(/\.[^.]+$/, '') + '.jpg';
+      fd.append('photos', new File([blob], name, { type: blob.type || 'image/jpeg' }));
+    });
     try {
       const res = await fetch('/api/owner/photos', { method: 'POST', headers, body: fd });
       if (!res.ok) { setError('Photo upload failed'); return; }
