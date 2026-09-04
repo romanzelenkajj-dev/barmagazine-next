@@ -40,6 +40,8 @@ function ClaimYourBar() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
+  // Never pre-ticked - consent is opt-in by law and by our own privacy policy.
+  const [newsletterOptIn, setNewsletterOptIn] = useState(false);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -103,7 +105,7 @@ function ClaimYourBar() {
       const res = await fetch('/api/claim/start', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug: selected.slug, email, name, role }),
+        body: JSON.stringify({ slug: selected.slug, email, name, role, newsletter_opt_in: newsletterOptIn }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -260,6 +262,20 @@ function ClaimYourBar() {
                   placeholder="Owner, GM, bar manager…" style={{ width: '100%' }}
                 />
               </div>
+              <p style={{ fontSize: 13, color: 'var(--text-tertiary)', margin: '16px 0 10px' }}>
+                By claiming this listing you agree to our{' '}
+                <a href="/terms" className="feature-link">Terms of Service</a> and{' '}
+                <a href="/privacy" className="feature-link">Privacy Policy</a>
+              </p>
+              <label style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13.5, margin: '0 0 18px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={newsletterOptIn}
+                  onChange={e => setNewsletterOptIn(e.target.checked)}
+                  style={{ marginTop: 2 }}
+                />
+                <span>Email me the BarMagazine newsletter (occasional, unsubscribe anytime)</span>
+              </label>
               <button className="feature-btn" type="submit" disabled={submitting}>
                 {submitting ? 'Sending…' : 'Claim this bar'}
               </button>

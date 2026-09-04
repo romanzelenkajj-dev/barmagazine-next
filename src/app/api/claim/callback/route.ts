@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
     const { data: claim } = await supabase
       .from('bar_claims')
-      .select('id, bar_id, claimant_email, claimant_name, claimant_role, status, is_transfer, created_at, method, evidence')
+      .select('id, bar_id, claimant_email, claimant_name, claimant_role, status, is_transfer, created_at, method, evidence, newsletter_opt_in')
       .eq('id', claimId)
       .maybeSingle();
 
@@ -104,6 +104,13 @@ export async function POST(request: NextRequest) {
       .from('bar_claims')
       .update({ status: 'approved', owner_id: owner.id, verified_at: now, reviewed_at: now })
       .eq('id', claim.id);
+
+    // Carry the claim-time newsletter consent to the owner's record. Only
+    // ever sets true: a later claim without the tick must not revoke a
+    // consent given earlier.
+    if (claim.newsletter_opt_in === true) {
+      await supabase.from('bar_owners').update({ newsletter_opt_in: true }).eq('id', owner.id);
+    }
 
     // The public trust signal. A MATCH claim (email connected to the bar via
     // its website domain or on-file contact) sets it automatically; a

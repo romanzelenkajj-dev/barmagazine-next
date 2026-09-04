@@ -80,6 +80,8 @@ export async function POST(request: NextRequest) {
     const email = rawEmail.toLowerCase();
     const name = typeof body.name === 'string' ? body.name.trim().slice(0, 120) : null;
     const role = typeof body.role === 'string' ? body.role.trim().slice(0, 120) : null;
+    // Strictly boolean true - anything else (missing, string, 1) stays false.
+    const newsletterOptIn = body.newsletter_opt_in === true;
 
     // Shape errors are the one thing worth reporting — they reveal nothing
     // about which bars exist.
@@ -137,6 +139,7 @@ export async function POST(request: NextRequest) {
         method: decision.method,
         status: decision.autoVerifiable ? 'awaiting_verification' : 'pending_review',
         is_transfer: decision.isTransfer,
+        newsletter_opt_in: newsletterOptIn,
         evidence: {
           ip,
           requested_at: new Date().toISOString(),

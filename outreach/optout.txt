@@ -1,0 +1,3 @@
+# Addresses that asked not to receive listing emails again.
+# One address per line; matched case-insensitively by the send script.
+# NEVER remove an address from this list without their renewed consent.
