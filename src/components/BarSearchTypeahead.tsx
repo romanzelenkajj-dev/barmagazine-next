@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { asciiFold, searchOrFilter } from '@/lib/ascii-fold';
+import { rankSearchHits } from '@/lib/search-rank';
 
 interface Hit {
   slug: string;
@@ -78,15 +79,19 @@ export function BarSearchTypeahead({
     if (completion.current && q === completion.current.name.trim()) return;
     const mine = ++ticket.current;
     const t = setTimeout(async () => {
+      // Over-fetch, then rank: the DB can only substring-match and sort
+      // alphabetically, which buried name-prefix hits ("Ori" filled all 7
+      // slots with Balmori/Gorilla/Mori before Origin Bar). rankSearchHits
+      // puts name-starts first, then word-starts, contains, city matches.
       const { data, error } = await supabase
         .from('bars')
         .select('slug, name, city')
         .eq('is_active', true)
         .or(searchOrFilter(q))
         .order('name')
-        .limit(7);
+        .limit(40);
       if (ticket.current !== mine) return; // a newer query superseded this one
-      const found = error ? [] : ((data as Hit[]) || []);
+      const found = error ? [] : rankSearchHits(q, (data as Hit[]) || []).slice(0, 7);
       setHits(found);
       setOpen(true);
       setActive(-1);
