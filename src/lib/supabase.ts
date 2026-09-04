@@ -5,7 +5,18 @@ import type { Accolade } from './accolades';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// no-store fetch: supabase-js queries are fetch() GETs, and Next's Data
+// Cache snapshots them per URL - across ISR regenerations AND builds. That
+// let getSeoCities serve week-old counts next to a fresh per-city list on
+// the same render (DC: headline 11, intro 10, city total 11 vs a real 12).
+// ISR's page-level revalidate is the caching layer here; the underlying
+// reads must always be live at regeneration time.
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  global: {
+    fetch: (input: RequestInfo | URL, init?: RequestInit) =>
+      fetch(input, { ...init, cache: 'no-store' }),
+  },
+});
 
 // ---------- Types ----------
 export interface MenuHighlight {
