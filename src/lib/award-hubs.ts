@@ -70,12 +70,24 @@ export interface YearGroup {
 
 /** All honored bars for a program, grouped year desc then list/category. */
 export async function getProgramYears(program: AwardProgram): Promise<YearGroup[]> {
-  const { data, error } = await supabase
-    .from('bars')
-    .select('name, slug, city, country, accolades')
-    .eq('is_active', true)
-    .not('accolades', 'is', null);
-  if (error || !data) return [];
+  // Paginated for the same reason as getSeoCities: the 1000-row response
+  // cap would silently drop the newest accolade-holding bars as the
+  // directory grows.
+  const PAGE = 1000;
+  const data: { name: string; slug: string; city: string; country: string; accolades: unknown }[] = [];
+  for (let from = 0; ; from += PAGE) {
+    const { data: page, error } = await supabase
+      .from('bars')
+      .select('name, slug, city, country, accolades')
+      .eq('is_active', true)
+      .not('accolades', 'is', null)
+      .range(from, from + PAGE - 1);
+    if (error) return [];
+    if (!page || page.length === 0) break;
+    data.push(...page);
+    if (page.length < PAGE) break;
+  }
+  if (data.length === 0) return [];
 
   const rows: HonoredBar[] = [];
   for (const bar of data) {

@@ -106,11 +106,24 @@ function bestAccolade(bar: Pick<Bar, 'accolades' | 'name' | 'tier'>): { score: n
 
 /** All cities clearing MIN_CITY_BARS, with the stats the composers need. */
 export async function getSeoCities(): Promise<SeoCity[]> {
-  const { data, error } = await supabase
-    .from('bars')
-    .select('name, city, country, type, subtypes, tier, accolades')
-    .eq('is_active', true);
-  if (error || !data) return [];
+  // Paginate past Supabase's 1000-row response cap. The directory crossed
+  // 1,200 bars, and an unpaginated read silently dropped the newest ~200 -
+  // every count on the SEO pages lagged reality (DC showed 11 actives and
+  // 10 cocktail bars against a real 12 and 11).
+  const PAGE = 1000;
+  const data: Pick<Bar, 'name' | 'city' | 'country' | 'type' | 'subtypes' | 'tier' | 'accolades'>[] = [];
+  for (let from = 0; ; from += PAGE) {
+    const { data: page, error } = await supabase
+      .from('bars')
+      .select('name, city, country, type, subtypes, tier, accolades')
+      .eq('is_active', true)
+      .range(from, from + PAGE - 1);
+    if (error) return [];
+    if (!page || page.length === 0) break;
+    data.push(...(page as typeof data));
+    if (page.length < PAGE) break;
+  }
+  if (data.length === 0) return [];
 
   const acc: Record<string, CityAccumulator> = {};
   for (const bar of data) {
