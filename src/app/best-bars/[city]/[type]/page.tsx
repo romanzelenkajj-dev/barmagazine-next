@@ -13,6 +13,7 @@ import {
   composeTypeIntro,
   composeTypeDescription,
   MIN_TYPE_BARS,
+  photosFirst,
 } from '@/lib/seo-cities';
 
 /**
@@ -75,7 +76,7 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
   if (!combo) notFound();
 
   const { city, t } = combo;
-  const bars = await getSeoCityBars(city.city, t.type);
+  const bars = photosFirst(await getSeoCityBars(city.city, t.type));
   if (bars.length < MIN_TYPE_BARS) notFound();
 
   const year = new Date().getFullYear();

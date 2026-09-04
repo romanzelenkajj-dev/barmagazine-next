@@ -43,6 +43,18 @@ export function typePageForType(type: string | null | undefined): TypePage | nul
   return TYPE_PAGES.find(t => t.type === type) ?? null;
 }
 
+/**
+ * Photos first, stable: bars with a card image lead, everything else keeps
+ * its existing relative order behind them. Applied by the best-bars pages to
+ * both the curated top10 sets and the ranked fallback, so a photo-less card
+ * never sits above a photographed one.
+ */
+export function photosFirst<T extends { photos?: string[] | null }>(bars: T[]): T[] {
+  const withPhoto = bars.filter(b => b.photos && b.photos.length > 0);
+  const without = bars.filter(b => !(b.photos && b.photos.length > 0));
+  return [...withPhoto, ...without];
+}
+
 /** Union type test: the primary column OR the curated subtypes array.
     subtypes is nullable and empty for most bars, hence the coalesce. */
 export function barHasType(bar: { type: string | null; subtypes?: string[] | null }, type: string): boolean {
@@ -199,12 +211,16 @@ export function composeCityIntro(c: SeoCity, listed: number): string {
   if (c.topBar && c.topBarAward) {
     parts.push(
       `${c.city} drinking starts with ${c.topBar}, ${c.topBarAward}, and the bench behind it runs deep: ` +
-        `we list ${c.count} active bars across the city.`
+        `we list ${c.count} active bars across the city.` +
+        // The headline counts the LIST, this sentence counts the CITY; when
+        // they differ, say so explicitly or the two numbers read as a drift.
+        (listed < c.count ? ` The ${listed} below are our pick of them.` : '')
     );
   } else if (c.top10Count > 0) {
     parts.push(
       `${c.city} holds ${c.top10Count === 1 ? 'one of our curated Top 10 picks' : `${c.top10Count} of our curated Top 10 picks`}, ` +
-        `drawn from the ${c.count} bars we list across the city.`
+        `drawn from the ${c.count} bars we list across the city.` +
+        (listed < c.count ? ` The ${listed} below are our pick of them.` : '')
     );
   } else {
     parts.push(

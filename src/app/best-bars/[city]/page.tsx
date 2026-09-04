@@ -13,6 +13,7 @@ import {
   getSeoCityBars,
   composeCityIntro,
   composeCityDescription,
+  photosFirst,
 } from '@/lib/seo-cities';
 
 /**
@@ -68,7 +69,9 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
   // pages are unchanged in substance); everywhere else lists the ranked
   // best, capped, with the full dump one click away at /bars/city.
   const curated = match.top10Count > 0 ? await getTop10BarsByCity(match.city) : [];
-  const bars = curated.length > 0 ? curated : await getSeoCityBars(match.city);
+  // Photos first, stable within each group: the page leads with its best
+  // visuals whichever path produced the list.
+  const bars = photosFirst(curated.length > 0 ? curated : await getSeoCityBars(match.city));
   if (bars.length === 0) notFound();
 
   const year = new Date().getFullYear();
