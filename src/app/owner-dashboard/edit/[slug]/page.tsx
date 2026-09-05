@@ -133,6 +133,10 @@ export default function EditBarPage() {
       });
       const data = await res.json();
       if (!res.ok) { setError(data.error || 'Failed to submit'); return; }
+      if (data.noop) {
+        setSuccess('Nothing to publish — your live listing already matches what you entered.');
+        return;
+      }
       setSuccess(
         data.rejected?.length
           ? `Submitted for review. Not included (editorial fields): ${data.rejected.join(', ')}`
@@ -200,6 +204,11 @@ export default function EditBarPage() {
   }
 
   const gallery = bar.photos?.length ? bar.photos : bar.gallery_images || [];
+  // Nothing typed differs from what's live: submitting would only create a
+  // no-op moderation item, so the button waits for a real change.
+  const hasChanges = Object.keys(EMPTY).some(
+    key => (formData[key] ?? '') !== ((bar[key as keyof BarData] ?? '') as string).toString()
+  );
   // Unpaid tiers (free and the editorial top10 pick) get one profile photo;
   // featured/premium keep unlimited gallery uploads.
   const isPaid = bar.tier === 'featured' || bar.tier === 'premium';
@@ -314,9 +323,14 @@ export default function EditBarPage() {
             />
           </div>
 
-          <button type="submit" className="add-bar-submit" disabled={saving}>
+          <button type="submit" className="add-bar-submit" disabled={saving || !hasChanges}>
             {saving ? 'Sending…' : 'Send changes for review'}
           </button>
+          {!hasChanges && (
+            <p className="owner-dash-note" style={{ marginTop: 8 }}>
+              No changes to submit — the form matches your live listing.
+            </p>
+          )}
 
           <p className="owner-dash-note">
             Your bar&apos;s name, description and awards are written by our editors, so

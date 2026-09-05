@@ -95,10 +95,11 @@ export async function PUT(request: NextRequest) {
 
     const { bar_id, updates } = await request.json();
 
-    // Verify ownership
+    // Verify ownership. The editable columns ride along so the no-op check
+    // below can compare against live data.
     const { data: bar } = await supabase
       .from('bars')
-      .select('id, owner_id, name, slug')
+      .select('id, owner_id, name, slug, address, phone, website, instagram, email, opening_hours, reservation_url, whatsapp, menu_url, menu_sections, photos')
       .eq('id', bar_id)
       .eq('owner_id', owner.id)
       .single();
@@ -124,6 +125,23 @@ export async function PUT(request: NextRequest) {
         { error: 'No editable fields in submission', rejected },
         { status: 400 }
       );
+    }
+
+    // Drop fields that already match live data (null and '' compare equal;
+    // arrays by JSON). A submission whose whole diff is empty used to sit in
+    // the moderation queue as an unapprovable "nothing differs" item that
+    // only Reject could clear - it never gets queued now.
+    const liveRecord = bar as Record<string, unknown>;
+    for (const key of Object.keys(allowed)) {
+      const next = allowed[key];
+      const live = liveRecord[key];
+      const same = Array.isArray(next) || Array.isArray(live)
+        ? JSON.stringify(next ?? null) === JSON.stringify(live ?? null)
+        : String(next ?? '') === String(live ?? '');
+      if (same) delete allowed[key];
+    }
+    if (Object.keys(allowed).length === 0) {
+      return NextResponse.json({ success: true, noop: true, rejected });
     }
 
     // Create submission for admin review
