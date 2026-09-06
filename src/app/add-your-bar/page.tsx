@@ -474,7 +474,7 @@ function AddYourBarForm() {
               {!upgradeBar && (
               <div className="add-bar-form-section">
                 <h2>Interior Photo</h2>
-                <p className="add-bar-photo-hint">Interior shots work best &mdash; show readers the room. Drink and detail photos are welcome too. Logos and graphics can&apos;t be used as profile photos. JPG, PNG, or WebP, max 5MB.</p>
+                <p className="add-bar-photo-hint">Your profile photo should show the room &mdash; an interior shot is what makes readers want to visit. Drink and detail photos belong in the photo gallery, part of Featured. Logos and graphics can&apos;t be used. JPG, PNG, or WebP, max 5MB.</p>
                 <div className="add-bar-photo-upload">
                   {photoPreview ? (
                     <div className="add-bar-photo-preview">

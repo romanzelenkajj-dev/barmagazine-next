@@ -388,8 +388,9 @@ export default function EditBarPage() {
           </label>
           {/* Expectation-setting only - moderation remains the gate. */}
           <p className="owner-dash-note" style={{ marginTop: 12 }}>
-            Interior shots work best &mdash; show readers the room. Drink and detail
-            photos are welcome too. Logos and graphics can&apos;t be used as profile photos.
+            Your profile photo should show the room &mdash; an interior shot is what
+            makes readers want to visit. Drink and detail photos belong in the photo
+            gallery, part of Featured. Logos and graphics can&apos;t be used.
           </p>
           {!isPaid && (
             <p className="owner-dash-note" style={{ marginTop: 12 }}>
