@@ -128,10 +128,11 @@ const nextConfig = {
 
       // Old WordPress pages
       { source: '/trending', destination: '/', permanent: true },
+      // NOTE: a '/about/' one-hop rule is impossible here - Next's
+      // trailing-slash normalization 308s '/about/' to '/about' BEFORE
+      // redirects() rules run, so slash forms always chain through the bare
+      // path. Both hops are permanent 308s; GSC processes the chain fine.
       { source: '/about', destination: '/work-with-us', permanent: true },
-      // Trailing-slash form goes straight there - one hop, not a 308 chain
-      // through /about.
-      { source: '/about/', destination: '/work-with-us', permanent: true },
       { source: '/contact', destination: '/work-with-us', permanent: true },
       { source: '/homepage', destination: '/', permanent: true },
 
