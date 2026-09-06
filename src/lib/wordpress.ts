@@ -117,17 +117,38 @@ export interface WPTag {
 }
 
 // ---------- Fetch helpers ----------
-async function fetchWithRetry(url: string, retries = 5, delay = 2000): Promise<Response> {
+/**
+ * One bounded attempt + one bounded retry, never a hang.
+ *
+ * The old shape (5 retries, escalating delays, no per-attempt timeout) let a
+ * slow WP origin pin a render for the whole function limit - the GSC audit
+ * crawl saw ~15% of bare article paths time out while their trailing-slash
+ * redirect twins answered instantly from the edge. Now each attempt aborts
+ * at ATTEMPT_TIMEOUT_MS; on total failure we THROW, which is the correct
+ * stale-if-error behavior: a failed background ISR regeneration keeps the
+ * previously rendered page, and callers with a fallback (wpFetch) degrade
+ * gracefully on first renders.
+ */
+const ATTEMPT_TIMEOUT_MS = 6000;
+const RETRY_DELAY_MS = 500;
+
+async function fetchWithRetry(url: string, retries = 2): Promise<Response> {
+  let lastError: unknown = new Error('WP fetch failed');
   for (let i = 0; i < retries; i++) {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), ATTEMPT_TIMEOUT_MS);
     try {
-      const res = await fetch(url, { next: { revalidate: 300 } });
+      const res = await fetch(url, { next: { revalidate: 300 }, signal: ctl.signal });
+      clearTimeout(timer);
       if (res.ok || res.status < 500) return res;
+      lastError = new Error(`WP ${res.status}`);
     } catch (e) {
-      if (i >= retries - 1) throw e;
+      clearTimeout(timer);
+      lastError = e;
     }
-    if (i < retries - 1) await new Promise(r => setTimeout(r, delay * (i + 1)));
+    if (i < retries - 1) await new Promise(r => setTimeout(r, RETRY_DELAY_MS));
   }
-  return fetch(url, { next: { revalidate: 300 } });
+  throw lastError;
 }
 
 async function wpFetch<T>(endpoint: string, params: Record<string, string | number> = {}, fallback?: T): Promise<T> {

@@ -11,7 +11,11 @@ import type { Metadata } from 'next';
 
 const SITE_URL = 'https://barmagazine.com';
 
-export const revalidate = 300;
+// Articles are published content that rarely changes after going live; a
+// 6-hour window instead of 5 minutes means a full-site crawl finds warm
+// pages instead of stampeding cold renders into the WP origin. Edits still
+// land within hours, and a failed regeneration keeps serving the stale page.
+export const revalidate = 21600;
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getPostBySlug(params.slug);
