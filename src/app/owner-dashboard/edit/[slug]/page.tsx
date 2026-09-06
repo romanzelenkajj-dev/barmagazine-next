@@ -386,6 +386,11 @@ export default function EditBarPage() {
               style={{ display: 'none' }}
             />
           </label>
+          {/* Expectation-setting only - moderation remains the gate. */}
+          <p className="owner-dash-note" style={{ marginTop: 12 }}>
+            Interior shots work best &mdash; show readers the room. Drink and detail
+            photos are welcome too. Logos and graphics can&apos;t be used as profile photos.
+          </p>
           {!isPaid && (
             <p className="owner-dash-note" style={{ marginTop: 12 }}>
               Want a full photo gallery on your page?{' '}
