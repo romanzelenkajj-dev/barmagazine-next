@@ -129,6 +129,9 @@ const nextConfig = {
       // Old WordPress pages
       { source: '/trending', destination: '/', permanent: true },
       { source: '/about', destination: '/work-with-us', permanent: true },
+      // Trailing-slash form goes straight there - one hop, not a 308 chain
+      // through /about.
+      { source: '/about/', destination: '/work-with-us', permanent: true },
       { source: '/contact', destination: '/work-with-us', permanent: true },
       { source: '/homepage', destination: '/', permanent: true },
 
@@ -151,7 +154,7 @@ const nextConfig = {
       { source: '/advertise', destination: '/work-with-us', permanent: true },
 
       // Specific bar pages that 404 — redirect to bar directory
-      { source: '/bars/the-dead-rabbit', destination: '/bars', permanent: true },
+      { source: '/bars/the-dead-rabbit', destination: '/bars/dead-rabbit', permanent: true },
 
       // /home and /home/ → homepage
       { source: '/home', destination: '/', permanent: true },
@@ -195,8 +198,8 @@ const nextConfig = {
       { source: '/events/tales-of-the-cocktail-2025/', destination: '/category/events', permanent: true },
       { source: '/events/india-bar-show-2025', destination: '/category/events', permanent: true },
       { source: '/events/india-bar-show-2025/', destination: '/category/events', permanent: true },
-      { source: '/events/athens-bar-show-2025', destination: '/category/events', permanent: true },
-      { source: '/events/athens-bar-show-2025/', destination: '/category/events', permanent: true },
+      { source: '/events/athens-bar-show-2025', destination: '/athens-bar-show-2025-celebrates-15-years-of-innovation', permanent: true },
+      { source: '/events/athens-bar-show-2025/', destination: '/athens-bar-show-2025-celebrates-15-years-of-innovation', permanent: true },
 
       // NOTE: the previous `/events/:slug` catch-all has been REMOVED.
       // Next.js's routing manifest didn't honor array order for that rule's
@@ -245,7 +248,6 @@ const nextConfig = {
       // rename, an accent-strip, or a bar we haven't migrated yet —
       // send to /bars so the user lands on something useful.
       // ---------------------------------------------------------------
-      { source: '/bars/seed-library', destination: '/bars', permanent: true },
       { source: '/bars/satan-s-whiskers', destination: '/bars/satans-whiskers', permanent: true },
       { source: '/bars/virt', destination: '/bars/virtu', permanent: true },
       { source: '/bars/eau-de-vie-bar-melbourne', destination: '/bars/eau-de-vie-melbourne', permanent: true },
@@ -260,7 +262,7 @@ const nextConfig = {
       // ---------------------------------------------------------------
       { source: '/2025-shake-it-up-national-finals', destination: '/category/events', permanent: true },
       { source: '/tales-of-the-cocktail-2025', destination: '/category/events', permanent: true },
-      { source: '/athens-bar-show-2025', destination: '/category/events', permanent: true },
+      { source: '/athens-bar-show-2025', destination: '/athens-bar-show-2025-celebrates-15-years-of-innovation', permanent: true },
       { source: '/india-bar-show-2025', destination: '/category/events', permanent: true },
       // Was '/category/places' (404 — no such category). The real article
       // is 'Bars in Barcelona' at /bars-in-barcelona (WP post id 741);
@@ -321,6 +323,7 @@ const nextConfig = {
       // /spirits/baijiu/ must come BEFORE the /spirits/:slug* catch-all below
       { source: '/spirits/baijiu/', destination: '/category/brands', permanent: true },
       { source: '/spirits/:slug*', destination: '/category/brands', permanent: true },
+      { source: '/hospitality-bar-events-calendar-2025', destination: '/category/events', permanent: true },
       { source: '/hospitality-bar-events-calendar-2025/', destination: '/category/events', permanent: true },
 
       // Article pagination trailing-slash variants (the no-slash forms already

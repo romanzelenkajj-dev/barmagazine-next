@@ -60,6 +60,9 @@ const WP_SYSTEM_SLUGS: ReadonlySet<string> = new Set([
   'checkout',
   'my-account',
   'event-directory',
+  // WP page id 3371 - redirected to /category/events and cannot render via
+  // [slug], so it must never enter the sitemap (GSC 'page with redirect').
+  'hospitality-bar-events-calendar-2025',
 ]);
 
 // A1.2: pages that exist as WP stubs but are pending rebuild. Re-add to the

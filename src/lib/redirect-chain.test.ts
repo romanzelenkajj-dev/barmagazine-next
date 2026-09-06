@@ -52,19 +52,21 @@ describe('next.config.mjs redirects()', () => {
     }
   });
 
-  it('the four /events/X de-chained rules go directly to /category/events', async () => {
+  it('the /events/X de-chained rules each point at their final destination', async () => {
     const redirects: Redirect[] = await nextConfig.redirects();
-    const targets = [
-      '/events/2025-shake-it-up-national-finals',
-      '/events/tales-of-the-cocktail-2025',
-      '/events/india-bar-show-2025',
-      '/events/athens-bar-show-2025',
-    ];
+    // Athens Bar Show goes to its own article (GSC audit); the rest have no
+    // dedicated coverage and land on the events category.
+    const targets: Record<string, string> = {
+      '/events/2025-shake-it-up-national-finals': '/category/events',
+      '/events/tales-of-the-cocktail-2025': '/category/events',
+      '/events/india-bar-show-2025': '/category/events',
+      '/events/athens-bar-show-2025': '/athens-bar-show-2025-celebrates-15-years-of-innovation',
+    };
 
-    for (const t of targets) {
+    for (const [t, dest] of Object.entries(targets)) {
       const idx = redirects.findIndex((r) => r.source === t);
       expect(idx, `${t} explicit rule missing`).toBeGreaterThan(-1);
-      expect(redirects[idx].destination).toBe('/category/events');
+      expect(redirects[idx].destination).toBe(dest);
     }
   });
 
