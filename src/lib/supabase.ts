@@ -5,17 +5,17 @@ import type { Accolade } from './accolades';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-// no-store fetch: supabase-js queries are fetch() GETs, and Next's Data
-// Cache snapshots them per URL - across ISR regenerations AND builds. That
-// let getSeoCities serve week-old counts next to a fresh per-city list on
-// the same render (DC: headline 11, intro 10, city total 11 vs a real 12).
-// ISR's page-level revalidate is the caching layer here; the underlying
-// reads must always be live at regeneration time.
+import { boundedPublicFetch } from './bounded-fetch';
+
+// PUBLIC reads: bounded (5s + one retry, then throw - the Sept 4 incident
+// was unbounded fetches hanging 300s on Supabase 522s) and shared through a
+// 300s Data-Cache entry so concurrent page regenerations and API calls stop
+// issuing identical queries against a struggling DB. The week-stale counts
+// that once justified no-store here were really the unpaginated 1000-row cap
+// (fixed); a 5-minute read cache cannot reintroduce them. Claim/owner/admin
+// paths keep their own no-store clients - correctness there is untouched.
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  global: {
-    fetch: (input: RequestInfo | URL, init?: RequestInit) =>
-      fetch(input, { ...init, cache: 'no-store' }),
-  },
+  global: { fetch: boundedPublicFetch },
 });
 
 // ---------- Types ----------
@@ -157,8 +157,11 @@ export async function getBars(filters?: {
 
   const { data, count, error } = await query;
   if (error) {
+    // Throw, never return empty: an ISR regeneration that "succeeds" with
+    // zero bars replaces a good page with an empty one; a throw keeps the
+    // stale page (and API callers 500 fast instead of caching nothing).
     console.error('Error fetching bars:', error);
-    return { bars: [], total: 0 };
+    throw new Error(`getBars failed: ${error.message}`);
   }
 
   // Sort: top10 first, then premium, then featured, then free
@@ -182,7 +185,13 @@ export async function getBarBySlug(slug: string): Promise<Bar | null> {
     .eq('is_active', true)
     .single();
 
-  if (error || !data) return null;
+  // PGRST116 = zero rows for .single(): a true 404. Any OTHER error is the
+  // DB failing - throwing keeps ISR's stale page instead of replacing a
+  // live profile with a 404 (a Supabase 522 during regen did exactly that).
+  if (error && error.code !== 'PGRST116') {
+    throw new Error(`getBarBySlug failed: ${error.message}`);
+  }
+  if (!data) return null;
   return data as Bar;
 }
 
@@ -248,7 +257,7 @@ export async function getBarsByCountry(country: string) {
 
   if (error) {
     console.error('Error fetching bars by country:', error);
-    return [];
+    throw new Error('getBarsByCountry failed');
   }
   return data as Bar[];
 }
@@ -264,7 +273,7 @@ export async function getBarsByCity(city: string) {
 
   if (error) {
     console.error('Error fetching bars by city:', error);
-    return [];
+    throw new Error('getBarsByCity failed');
   }
   return data as Bar[];
 }
@@ -305,7 +314,8 @@ export async function getBarArticleSlugs(): Promise<Set<string>> {
     .select('wp_article_slug')
     .eq('is_active', true)
     .not('wp_article_slug', 'is', null);
-  if (error || !data) return new Set();
+  if (error) throw new Error(`getBarArticleSlugs failed: ${error.message}`);
+  if (!data) return new Set();
   return new Set(data.map(b => b.wp_article_slug as string).filter(Boolean));
 }
 
@@ -316,7 +326,8 @@ export async function getTop10Cities(): Promise<{ city: string; country: string;
     .select('city, country')
     .eq('is_active', true)
     .eq('tier', 'top10');
-  if (error || !data) return [];
+  if (error) throw new Error(`getTop10Cities failed: ${error.message}`);
+  if (!data) return [];
   const map: Record<string, { country: string; count: number }> = {};
   data.forEach(b => {
     if (!map[b.city]) map[b.city] = { country: b.country, count: 0 };
@@ -336,7 +347,8 @@ export async function getTop10BarsByCity(city: string): Promise<Bar[]> {
     .eq('tier', 'top10')
     .eq('city', city)
     .order('name', { ascending: true });
-  if (error || !data) return [];
+  if (error) throw new Error(`getTop10BarsByCity failed: ${error.message}`);
+  if (!data) return [];
   return data as Bar[];
 }
 

@@ -82,7 +82,7 @@ export async function getProgramYears(program: AwardProgram): Promise<YearGroup[
       .eq('is_active', true)
       .not('accolades', 'is', null)
       .range(from, from + PAGE - 1);
-    if (error) return [];
+    if (error) throw new Error(`getProgramYears failed: ${error.message}`);
     if (!page || page.length === 0) break;
     data.push(...page);
     if (page.length < PAGE) break;

@@ -118,7 +118,7 @@ export async function getSeoCities(): Promise<SeoCity[]> {
       .select('name, city, country, type, subtypes, tier, accolades')
       .eq('is_active', true)
       .range(from, from + PAGE - 1);
-    if (error) return [];
+    if (error) throw new Error(`getSeoCities failed: ${error.message}`);
     if (!page || page.length === 0) break;
     data.push(...(page as typeof data));
     if (page.length < PAGE) break;
@@ -188,7 +188,8 @@ export async function getSeoCityBars(city: string, type?: string): Promise<Bar[]
     .select('*')
     .eq('is_active', true)
     .eq('city', city);
-  if (error || !rows) return [];
+  if (error) throw new Error(`getSeoCityBars failed: ${error.message}`);
+  if (!rows) return [];
   // Union filter in JS rather than PostgREST or() syntax: type values carry
   // spaces and the client-side test is the same barHasType used for counts,
   // so pages and thresholds can never disagree.

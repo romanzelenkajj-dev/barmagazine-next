@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { boundedNoStoreFetch } from '@/lib/bounded-fetch';
 import { escapeHtml } from '@/lib/notify';
 import { MAIL_FROM, MAIL_REPLY_TO } from '@/lib/mail';
 import { geocodeBar } from '@/lib/geocode';
@@ -11,7 +12,7 @@ function getSupabaseAdmin() {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   if (!serviceKey || !supabaseUrl) return null;
-  return createClient(supabaseUrl, serviceKey);
+  return createClient(supabaseUrl, serviceKey, { global: { fetch: boundedNoStoreFetch } });
 }
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';

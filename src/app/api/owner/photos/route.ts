@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { boundedNoStoreFetch } from '@/lib/bounded-fetch';
 import { verifyOwnerToken } from '@/lib/supabase-auth';
 import { notifyOwnerSubmission } from '@/lib/notify';
 
 export async function POST(request: NextRequest) {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { global: { fetch: boundedNoStoreFetch } }
   );
 
   try {

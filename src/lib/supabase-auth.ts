@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { boundedNoStoreFetch } from './bounded-fetch';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -38,10 +39,12 @@ export function createBrowserClient() {
  * reads into time bombs: verifyOwnerToken's profile lookup in /api/owner/bars
  * cached its first EMPTY result per user, so every later request replayed
  * "no profile", hit the duplicate-key insert, and 401'd a valid session on
- * every lambda, forever. no-store opts every Supabase request out.
+ * every lambda, forever. no-store opts every Supabase request out - and
+ * since the Sept 4 Supabase 522 incident it is also BOUNDED (5s per attempt,
+ * one read retry, then throw) so no claim or admin request can hang a
+ * function for 300s.
  */
-export const noStoreFetch: typeof fetch = (input, init) =>
-  fetch(input, { ...init, cache: 'no-store' });
+export const noStoreFetch: typeof fetch = boundedNoStoreFetch;
 
 /** Server-side admin client (service role key, bypasses RLS). */
 export function createAdminClient() {

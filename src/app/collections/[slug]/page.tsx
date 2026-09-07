@@ -34,7 +34,8 @@ async function collectionBars(barSlugs: string[]): Promise<Bar[]> {
     .select('*')
     .eq('is_active', true)
     .in('slug', barSlugs);
-  if (error || !data) return [];
+  if (error) throw new Error(`collectionBars failed: ${error.message}`);
+  if (!data) return [];
   // Config order is display order.
   const rows = data as Bar[];
   return barSlugs

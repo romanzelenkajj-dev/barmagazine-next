@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { boundedNoStoreFetch } from '@/lib/bounded-fetch';
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidateBarPages } from '@/lib/revalidate-bars';
 
@@ -8,7 +9,7 @@ function getServiceClient() {
   if (!serviceKey || !supabaseUrl) {
     throw new Error('Supabase URL or service role key not configured');
   }
-  return createClient(supabaseUrl, serviceKey);
+  return createClient(supabaseUrl, serviceKey, { global: { fetch: boundedNoStoreFetch } });
 }
 
 function checkAuth(request: NextRequest): boolean {
