@@ -11,16 +11,19 @@ export const revalidate = 300; // 5 min ISR
 const SITE_URL = 'https://barmagazine.com';
 
 export async function generateMetadata(): Promise<Metadata> {
+  // getBarStats throws on DB failure, so a bad regeneration keeps the
+  // previous metadata instead of minting a fallback count ("600+ bars"
+  // lived in WhatsApp previews for months that way).
   const stats = await getBarStats();
-  const barCount = Math.floor((stats.totalBars || 600) / 100) * 100;
+  const barCount = (Math.floor(stats.totalBars / 100) * 100).toLocaleString('en-US');
   return {
     title: 'Global Bar Directory | Discover the World\'s Best Bars',
-    description: `Discover the world's best cocktail bars, speakeasies, hotel bars, and more. Search by city, country, or style. ${barCount}+ curated bars across ${stats.totalCities || 70}+ cities worldwide.`,
+    description: `The Global Bar Directory: ${barCount}+ cocktail bars across ${stats.totalCities} cities and ${stats.totalCountries} countries. Search by city, country, or style - every listing verified by BarMagazine.`,
     alternates: { canonical: `${SITE_URL}/bars` },
     robots: { index: true, follow: true },
     openGraph: {
       title: 'Global Bar Directory | Discover the World\'s Best Bars',
-      description: `${barCount}+ curated bars across ${stats.totalCities || 70}+ cities worldwide.`,
+      description: `The Global Bar Directory: ${barCount}+ cocktail bars across ${stats.totalCities} cities and ${stats.totalCountries} countries.`,
       url: `${SITE_URL}/bars`,
       images: [{ url: `${SITE_URL}/og-bars.jpg`, width: 1200, height: 630, alt: 'BarMagazine Bar Directory' }],
     },

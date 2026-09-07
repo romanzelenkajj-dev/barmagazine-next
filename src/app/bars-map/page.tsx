@@ -9,15 +9,15 @@ const SITE_URL = 'https://barmagazine.com';
 
 export async function generateMetadata(): Promise<Metadata> {
   const stats = await getBarStats();
-  const barCount = Math.floor((stats.totalBars || 600) / 100) * 100;
+  const barCount = (Math.floor(stats.totalBars / 100) * 100).toLocaleString('en-US');
   return {
     title: 'Global Bar Directory | Discover the World\'s Best Bars',
-    description: `Discover the world's best cocktail bars, speakeasies, hotel bars, and more. Search by city, country, or style. ${barCount}+ curated bars across ${stats.totalCities || 70}+ cities worldwide.`,
+    description: `Discover the world's best cocktail bars, speakeasies, hotel bars, and more. Search by city, country, or style. ${barCount}+ cocktail bars across ${stats.totalCities} cities and ${stats.totalCountries} countries.`,
     alternates: { canonical: `${SITE_URL}/bars-map` },
     robots: { index: false, follow: false },
     openGraph: {
       title: 'Global Bar Directory | Discover the World\'s Best Bars',
-      description: `${barCount}+ curated bars across ${stats.totalCities || 70}+ cities worldwide.`,
+      description: `${barCount}+ cocktail bars across ${stats.totalCities} cities and ${stats.totalCountries} countries.`,
       url: `${SITE_URL}/bars`,
       images: [{ url: `${SITE_URL}/og-bars.jpg`, width: 1200, height: 630, alt: 'BarMagazine Bar Directory' }],
     },

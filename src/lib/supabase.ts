@@ -358,18 +358,34 @@ export async function getTop10BarsByCity(city: string): Promise<Bar[]> {
 
 /** Get bar count stats */
 export async function getBarStats() {
-  const { count } = await supabase
+  const { count, error: countError } = await supabase
     .from('bars')
     .select('*', { count: 'exact', head: true })
     .eq('is_active', true);
+  if (countError || count == null) {
+    // Throw, never fall back: a failed regeneration keeps the previous
+    // metadata/counters, whereas a silent 0 minted "600+ bars" into the
+    // OG description and WhatsApp cached it.
+    throw new Error(`getBarStats count failed: ${countError?.message ?? 'no count'}`);
+  }
 
-  const { data: locationData } = await supabase
-    .from('bars')
-    .select('country, city')
-    .eq('is_active', true);
+  // Paginated past the 1000-row cap - the unpaginated scan undercounted
+  // cities and countries the moment the directory passed 1,000 bars.
+  const locationData: { country: string; city: string }[] = [];
+  for (let from = 0; ; from += 1000) {
+    const { data: page, error } = await supabase
+      .from('bars')
+      .select('country, city')
+      .eq('is_active', true)
+      .range(from, from + 999);
+    if (error) throw new Error(`getBarStats locations failed: ${error.message}`);
+    if (!page || page.length === 0) break;
+    locationData.push(...page);
+    if (page.length < 1000) break;
+  }
 
-  const countries = locationData ? Array.from(new Set(locationData.map(b => b.country))).length : 0;
-  const cities = locationData ? Array.from(new Set(locationData.map(b => b.city))).length : 0;
+  const countries = Array.from(new Set(locationData.map(b => b.country))).length;
+  const cities = Array.from(new Set(locationData.map(b => b.city))).length;
 
-  return { totalBars: count || 0, totalCountries: countries, totalCities: cities };
+  return { totalBars: count, totalCountries: countries, totalCities: cities };
 }
