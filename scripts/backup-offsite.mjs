@@ -104,6 +104,7 @@ async function listStorage(prefix) {
 async function dumpStorage() {
   const files = await listStorage('');
   writeFileSync(join(SNAP, 'storage', 'file-list.json'), JSON.stringify(files, null, 1));
+  let downloaded = 0;
   for (const f of files) {
     const dest = join(SNAP, 'storage', 'bar-photos', f.path);
     mkdirSync(dirname(dest), { recursive: true });
@@ -111,10 +112,14 @@ async function dumpStorage() {
     const res = await fetch(`${SUPA_URL}/storage/v1/object/bar-photos/${f.path}`, { headers: ADMIN });
     if (!res.ok) { console.warn(`storage SKIP ${f.path}: ${res.status}`); continue; }
     writeFileSync(dest, Buffer.from(await res.arrayBuffer()));
-    manifest.storage.files++;
-    manifest.storage.bytes += f.size;
+    downloaded++;
   }
-  console.log(`storage: ${manifest.storage.files} files, ${(manifest.storage.bytes / 1e6).toFixed(1)}MB`);
+  // Manifest reports the snapshot's TOTAL contents - a resumed run that
+  // downloaded 0 new files is a complete backup, not an empty one.
+  manifest.storage.files = files.length;
+  manifest.storage.bytes = files.reduce((sum, f) => sum + f.size, 0);
+  manifest.storage.downloaded_this_run = downloaded;
+  console.log(`storage: ${files.length} files (${downloaded} new), ${(manifest.storage.bytes / 1e6).toFixed(1)}MB`);
 }
 
 async function dumpWordPress() {
