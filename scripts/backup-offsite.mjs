@@ -3,7 +3,7 @@
  * Off-platform backup: the copy that survives account-level compromise.
  *
  * Writes a dated snapshot OUTSIDE the repo and outside every hosted account,
- * to ~/BarMagazineBackups/<YYYY-MM-DD>/ :
+ * to ~/Documents/BarMagazineBackups/<YYYY-MM-DD>/ (iCloud-synced) :
  *
  *   db/<table>.json          — every row of every table, via the service key
  *                              (paginated past the 1000-row cap)
@@ -16,9 +16,8 @@
  *                              via the public WP REST API
  *   manifest.json            — counts + sizes for a quick integrity glance
  *
- * Scheduling: cron runs this weekly (see RESTORE.md). Roman syncs
- * ~/BarMagazineBackups to storage he controls (external drive / his own
- * cloud) — that sync is the off-platform hop.
+ * Scheduling: cron runs this weekly (see RESTORE.md). The folder lives in
+ * ~/Documents so iCloud syncs it — that sync is the off-platform hop.
  *
  * Secrets come from the repo's .env.vercel (gitignored, local-only).
  */
@@ -38,7 +37,7 @@ const ADMIN = { apikey: SERVICE_KEY, Authorization: `Bearer ${SERVICE_KEY}` };
 const WP_API = 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com';
 const TABLES = ['bars', 'bar_claims', 'bar_owners', 'bar_submissions', 'owner_submissions'];
 
-const ROOT = process.env.BACKUP_ROOT || join(homedir(), 'BarMagazineBackups');
+const ROOT = process.env.BACKUP_ROOT || join(homedir(), 'Documents', 'BarMagazineBackups');
 const today = new Date().toISOString().slice(0, 10);
 const SNAP = join(ROOT, today);
 const manifest = { date: today, tables: {}, storage: { files: 0, bytes: 0 }, wordpress: {}, pg_dump: false };

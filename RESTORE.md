@@ -1,9 +1,8 @@
 # BarMagazine disaster recovery
 
-The off-platform backup lives in `~/BarMagazineBackups/<date>/` on Roman's
+The off-platform backup lives in `~/Documents/BarMagazineBackups/<date>/` on Roman's
 Mac, written weekly by `scripts/backup-offsite.mjs` (cron, Mondays 08:00).
-**Sync that folder to storage you control** (external drive or your own cloud
-account) — that copy is what survives a Supabase/Vercel/GitHub account
+The folder lives in `~/Documents` so **iCloud syncs it automatically** — that copy is what survives a Supabase/Vercel/GitHub account
 compromise. Nothing in it depends on any hosted account to read.
 
 Each snapshot contains:
@@ -16,7 +15,7 @@ Each snapshot contains:
 | `wordpress/*.json` | All published posts, pages, categories, tags, media metadata |
 | `manifest.json` | Row/file counts for an integrity glance |
 
-The schema itself is in `~/BarMagazineBackups/schema-baseline.sql`
+The schema itself is in `~/Documents/BarMagazineBackups/schema-baseline.sql`
 (regenerate after DDL changes: the backup script prints a reminder, or ask
 Claude). The application code needs no backup here — it is the git repo,
 clone it from any machine that has pushed recently.
