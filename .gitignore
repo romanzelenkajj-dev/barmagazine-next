@@ -42,3 +42,4 @@ next-env.d.ts
 # regenerated on every build (see scripts/generate-bar-redirects.mjs).
 src/lib/bar-redirects.generated.json
 _to_delete/
+.env.backup
