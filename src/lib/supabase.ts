@@ -152,7 +152,11 @@ export async function getBars(filters?: {
   }
   if (filters?.hasPhoto === true) {
     // photos is a jsonb array — filter for non-empty arrays
-    query = query.not('photos', 'eq', '[]').not('photos', 'is', null);
+    // photos is a Postgres text[] - its empty literal is '{}', not the
+    // jsonb-style '[]', which Postgres rejects with 22P02 "malformed array
+    // literal". That error silently emptied this query for as long as the
+    // filter existed; the incident's throw-on-error finally surfaced it.
+    query = query.not('photos', 'eq', '{}').not('photos', 'is', null);
   }
 
   const { data, count, error } = await query;
