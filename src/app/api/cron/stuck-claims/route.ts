@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase-auth';
+import { CLAIM_VERIFICATION_WINDOW_HOURS } from '@/lib/claim-routes';
 import { notifyStuckClaim } from '@/lib/notify';
 
 export const dynamic = 'force-dynamic';
@@ -29,6 +30,61 @@ export async function GET(request: NextRequest) {
 
   try {
     const supabase = createAdminClient();
+
+    // ---- Expiry sweep, BEFORE the alert sweep, so a freshly-expired row
+    // can never trigger a stuck alert. Two kinds of dead rows:
+    //   1. abandoned: awaiting_verification past the 24h link lifetime -
+    //      the link can no longer complete (the callback would expire it on
+    //      click; this expires it without waiting for a click).
+    //   2. superseded: awaiting_verification on a bar someone else already
+    //      claimed - the callback's owner_id-is-null guard means it can
+    //      never complete, but it sat around making an owned bar look
+    //      unverified in the monitoring.
+    // Row-by-row so each carries its reason in evidence for the admin view.
+    let expired = 0;
+    const lifetimeCutoff = new Date(
+      Date.now() - CLAIM_VERIFICATION_WINDOW_HOURS * 60 * 60 * 1000
+    ).toISOString();
+    const { data: staleRows } = await supabase
+      .from('bar_claims')
+      .select('id, bar_id, created_at, evidence')
+      .eq('status', 'awaiting_verification');
+    if (staleRows && staleRows.length > 0) {
+      const { data: ownedBars } = await supabase
+        .from('bars')
+        .select('id')
+        .in('id', Array.from(new Set(staleRows.map(c => c.bar_id))))
+        .not('owner_id', 'is', null);
+      const ownedIds = new Set((ownedBars || []).map(b => b.id));
+      for (const row of staleRows) {
+        const reason = ownedIds.has(row.bar_id)
+          ? 'superseded_by_approved_claim'
+          : row.created_at < lifetimeCutoff
+            ? 'link_lifetime_elapsed'
+            : null;
+        if (!reason) continue;
+        const ev =
+          row.evidence && typeof row.evidence === 'object' && !Array.isArray(row.evidence)
+            ? (row.evidence as Record<string, unknown>)
+            : {};
+        const { error: expireError } = await supabase
+          .from('bar_claims')
+          .update({
+            status: 'expired',
+            evidence: { ...ev, expired_reason: reason, expired_at: new Date().toISOString() },
+          })
+          .eq('id', row.id)
+          // Guard against a click landing mid-sweep: only an
+          // awaiting_verification row flips, never an approved one.
+          .eq('status', 'awaiting_verification');
+        if (expireError) {
+          console.error('[cron/stuck-claims] expire failed for', row.id, expireError.message);
+        } else {
+          expired++;
+        }
+      }
+    }
+
     const cutoff = new Date(Date.now() - 60 * 60 * 1000).toISOString();
 
     const { data: claims, error } = await supabase
@@ -43,7 +99,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Query failed' }, { status: 500 });
     }
     if (!claims || claims.length === 0) {
-      return NextResponse.json({ alerted: 0 });
+      return NextResponse.json({ alerted: 0, expired });
     }
 
     const barIds = Array.from(new Set(claims.map(c => c.bar_id)));
@@ -80,7 +136,7 @@ export async function GET(request: NextRequest) {
       alerted++;
     }
 
-    return NextResponse.json({ alerted });
+    return NextResponse.json({ alerted, expired });
   } catch (e) {
     console.error('[cron/stuck-claims] threw:', e instanceof Error ? e.message : e);
     return NextResponse.json({ error: 'Internal error' }, { status: 500 });
