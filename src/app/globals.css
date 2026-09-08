@@ -296,17 +296,17 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 48px 48px 48px;
+  padding: clamp(24px, 3.3vw, 48px);
 }
 
 .hero-tag {
-  position: absolute;
-  /* Align the badge with the content column's 48px padding inset so it
-     sits in line with the title and "Read the Story" button below it
-     (was 24px each — visually misaligned, badge appeared to "escape"
-     the content column edge). */
-  top: 48px;
-  left: 48px;
+  /* In normal flow above the title (was absolute at 48px/48px, which sat
+     ON the headline whenever the centered title block grew tall - true
+     at every width from ~800 to ~1400 with a long title). In-flow can
+     never overlap, at any width. */
+  position: static;
+  align-self: flex-start;
+  margin-bottom: 16px;
   display: inline-block;
   font-size: 11px;
   font-weight: 600;
@@ -320,7 +320,9 @@ button {
 }
 
 .hero-title {
-  font-size: 56px;
+  /* Scales with the viewport: fixed 56px in the 2fr column meant one
+     word per line anywhere below ~1300px. 3.9vw hits 56px at 1440. */
+  font-size: clamp(30px, 3.9vw, 56px);
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -2175,6 +2177,19 @@ button {
 /* Tablet band: the pill pair is ~130px wider than the single pill it replaced,
    which tipped the full nav row into horizontal overflow below ~1150px. Tighter
    link spacing and an icon-only search absorb it down to the 768px cutover. */
+/* Even the tightened links collide with the pill pair below ~960px
+   (measured gap 0 at 800-900). The burger takes over there - the same
+   handoff the 768 cutover does, just earlier. */
+@media (max-width: 960px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-mobile {
+    display: block;
+  }
+}
+
 @media (max-width: 1150px) {
   .nav-links {
     gap: 16px;
@@ -8118,6 +8133,15 @@ textarea.form-input {
   font-size: 14px;
 }
 
+/* Input and button stack: the card column runs 250-380px and the
+   side-by-side row overflowed the rounded corner by up to 204px around
+   1000px. Scoped to this card - the form elsewhere has room for a row. */
+.home-newsletter .newsletter-form {
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
 .home-newsletter {
   padding: 28px 28px;
   text-align: center;
@@ -8153,6 +8177,17 @@ textarea.form-input {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+}
+
+/* Below ~1080px the side columns outgrow the deck and the stretched white
+   card centered it - a 90-280px empty block above the deck. Hug the deck
+   instead; the page ground shows below, which reads as layout, not void.
+   Above 1080 the columns are near-equal and the stretch look returns. */
+@media (min-width: 769px) and (max-width: 1080px) {
+  .home-split-main {
+    align-self: start;
+    justify-content: flex-start;
   }
 }
 
