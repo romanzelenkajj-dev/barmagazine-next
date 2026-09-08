@@ -871,7 +871,9 @@ export function BarDirectoryMapClient({
           <img src="/images/directory-hero.jpg" alt="" />
         </div>
         <div className="directory-hero-inner">
-          <div className="directory-hero-badge">Global Bar Directory</div>
+          {/* No kicker pill: the headline and stat counters carry the hero.
+              City/country heroes keep .directory-hero-badge for their live
+              bar-count chip. */}
           <h1>Discover the World&apos;s Best Bars</h1>
           <p>Handpicked cocktail bars, speakeasies, and world-renowned destinations.</p>
           <div className="directory-hero-stats">
