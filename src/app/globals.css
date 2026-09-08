@@ -3559,6 +3559,9 @@ textarea.form-input {
 .bar-dir-badge-pill--featured {
   background: #1a1a1a;
   color: #fff;
+  /* Same-color border so this chip stands the same height as the
+     bordered top10/50best chips - it sat 2px shorter without it. */
+  border: 1px solid #1a1a1a;
 }
 
 /* The only remaining use sits on a white card, beside the TOP 10 pill. It was
@@ -9456,6 +9459,42 @@ textarea.form-input {
   background: #B08D3F;
   color: #fff;
   border: 1px solid #B08D3F;
+}
+
+/* ====== TABLET BAND (769-1024px) ======
+   The bar grids stay 3-across here while the sidebar squeezes the main
+   column, so cards run ~200-260px wide - desktop type (21px names, 10px
+   chips) dominated them and long names wrapped to three lines. Step the
+   card text down with the card so tablet reads like a scaled desktop.
+   Below 768px the grids collapse to one full-width column and the base
+   sizes are right again. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .bar-dir-featured-name {
+    font-size: 16px;
+  }
+
+  .bar-dir-featured-location {
+    font-size: 12px;
+  }
+
+  .bar-dir-featured-body {
+    padding: 12px 16px 14px;
+  }
+
+  .bar-dir-visual-pills .bar-dir-badge-pill,
+  .bar-dir-featured-badges .bar-dir-badge-pill {
+    font-size: 8.5px;
+    padding: 3px 8px;
+  }
+
+  .bar-dir-visual-pills {
+    gap: 5px;
+  }
+
+  /* Homepage category cards: 28px headlines in the 2-across tablet grid. */
+  .card h3 {
+    font-size: 22px;
+  }
 }
 
 /* ====== BAR PROFILE JUMP CHIPS ====== */

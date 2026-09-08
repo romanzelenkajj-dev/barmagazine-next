@@ -17,6 +17,7 @@ import BarGallery from '@/components/BarGallery';
 import { AccoladeBadges } from '@/components/AccoladeBadges';
 import { HighlightedText } from '@/components/HighlightedText';
 import { awardStrings, hasFiftyBest } from '@/lib/accolades';
+import { CardStatusPills } from '@/components/CardStatusPills';
 
 export const revalidate = 300;
 // Allow slugs not pre-built at deploy time to be rendered on-demand (ISR)
@@ -537,15 +538,11 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                         <BarPlaceholder name={nb.name} type={nb.type} />
                       )
                     }
-                    {(nb.tier === 'top10' || nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug || hasFiftyBest(nb.accolades)) && (
-                      <div className="bar-dir-visual-pills">
-                        {nb.tier === 'top10' && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>}
-                        {(nb.tier === 'featured' || nb.tier === 'premium' || nb.wp_article_slug) && <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">Featured</span>}
-                        {hasFiftyBest(nb.accolades) && (
-                          <span className="bar-dir-badge-pill bar-dir-badge-pill--50best">50 Best</span>
-                        )}
-                      </div>
-                    )}
+                    <CardStatusPills
+                      top10={nb.tier === 'top10'}
+                      fiftyBest={hasFiftyBest(nb.accolades)}
+                      featured={nb.tier === 'featured' || nb.tier === 'premium' || !!nb.wp_article_slug}
+                    />
                   </div>
                   <div className="bar-dir-featured-body">
 

@@ -2,6 +2,7 @@
 
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { hasFiftyBest } from '@/lib/accolades';
+import { CardStatusPills } from '@/components/CardStatusPills';
 import { useState } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
@@ -28,19 +29,7 @@ function CountryBarCard({ bar }: { bar: Bar }) {
         ) : (
           <BarPlaceholder name={bar.name} type={bar.type} />
         )}
-        {(isTop10 || isFeatured || hasFiftyBest(bar.accolades)) && (
-          <div className="bar-dir-visual-pills">
-            {isTop10 && (
-              <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">★ TOP 10</span>
-            )}
-            {isFeatured && (
-              <span className="bar-dir-badge-pill bar-dir-badge-pill--featured">Featured</span>
-            )}
-            {hasFiftyBest(bar.accolades) && (
-              <span className="bar-dir-badge-pill bar-dir-badge-pill--50best">50 Best</span>
-            )}
-          </div>
-        )}
+        <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} />
       </div>
       <div className="bar-dir-featured-body">
         <h3 className="bar-dir-featured-name">{bar.name}</h3>
