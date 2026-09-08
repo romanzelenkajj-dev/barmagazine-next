@@ -1,0 +1,1432 @@
+[
+ {
+  "slug": "melange-by-cali-sober",
+  "name": "M\u00e9lange by Cali Sober",
+  "city": "New Orleans",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.melangeonfrenchmen.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "hop-sing-laundromat-philadelphia",
+  "name": "Hop Sing Laundromat",
+  "city": "Philadelphia",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "apotheke-nyc",
+  "name": "Apoth\u00e9ke Chinatown",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.apothekemixology.com/location/nyc-apotheke/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "apotheke-nomad",
+  "name": "Apoth\u00e9ke NoMad",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.apothekemixology.com/location/apotheke-nomad/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "schmuck",
+  "name": "Schmuck",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://schmucknyc.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "floreria-atlantico-dc",
+  "name": "Florer\u00eda Atl\u00e1ntico",
+  "city": "Washington DC",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.floreriaatlanticodc.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bar-next-door",
+  "name": "Bar Next Door",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://barnextdoor.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "pretty-decent",
+  "name": "Pretty Decent",
+  "city": "Louisville",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.prettydecentbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "hidden-bar",
+  "name": "Hidden Bar",
+  "city": "Houston",
+  "country": "United States",
+  "email": null,
+  "website": "https://norigamihtx.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "lei-low",
+  "name": "Lei Low",
+  "city": "Houston",
+  "country": "United States",
+  "email": null,
+  "website": "https://leilowbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "ticonderoga-club",
+  "name": "Ticonderoga Club",
+  "city": "Atlanta",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.ticonderogaclub.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "father-forgive-me",
+  "name": "Father Forgive Me",
+  "city": "Detroit",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.fatherforgiveme.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "here-nor-there",
+  "name": "Here Nor There",
+  "city": "Austin",
+  "country": "United States",
+  "email": null,
+  "website": "https://hntaustin.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "cafe-la-trova",
+  "name": "Caf\u00e9 La Trova",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://cafelatrova.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "paper-fan-seattle",
+  "name": "Paper Fan Cocktail Bar",
+  "city": "Seattle",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "overstory",
+  "name": "Overstory",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://overstory-nyc.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "little-branch",
+  "name": "Little Branch",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "gillys-house-of-cocktails",
+  "name": "Gilly's House of Cocktails",
+  "city": "San Diego",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.gillyscocktails.com/",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "bar-kaiju",
+  "name": "Bar Kaiju",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://barkaiju.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "amor-y-amargo",
+  "name": "Amor y Amargo",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.amoryamargo.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "the-broken-shaker",
+  "name": "The Broken Shaker",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://brokenshaker.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "clover-club",
+  "name": "Clover Club",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.cloverclubny.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "nightmoves",
+  "name": "Nightmoves",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "death-and-co-denver",
+  "name": "Death & Co Denver",
+  "city": "Denver",
+  "country": "United States",
+  "email": null,
+  "website": "https://deathandcompany.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "pinky-ring-by-bruno-mars",
+  "name": "Pinky Ring by Bruno Mars",
+  "city": "Las Vegas",
+  "country": "United States",
+  "email": null,
+  "website": "https://the-pinky-ring-by-bruno-mars.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bar-belly",
+  "name": "Bar Belly",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.barbellynyc.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "fresh-kills-bar",
+  "name": "Fresh Kills Bar",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://freshkillsbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "the-long-island-bar",
+  "name": "The Long Island Bar",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.thelongislandbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "happy-accidents",
+  "name": "Happy Accidents",
+  "city": "Albuquerque",
+  "country": "United States",
+  "email": null,
+  "website": "https://happyaccidentsbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "dear-irving",
+  "name": "Dear Irving",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.dearirving.com/dear-irving-gramercy",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "good-enough-cocktail-club",
+  "name": "Good Enough Cocktail Club",
+  "city": "San Diego",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "equal-measure-boston",
+  "name": "Equal Measure",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://equalmeasurebos.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "himitsu",
+  "name": "Himitsu",
+  "city": "Atlanta",
+  "country": "United States",
+  "email": null,
+  "website": "https://umiatlanta.com/himitsu",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bar-lis",
+  "name": "Bar Lis",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.barlisla.com/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "big-bar",
+  "name": "Big Bar",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.alcovecafe.com/bigbar",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "death-co-los-angeles",
+  "name": "Death & Co Los Angeles",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.deathandcompany.com/location/dtla/",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "the-normandie-club",
+  "name": "The Normandie Club",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://thenormandieclub.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "mama-tried-miami",
+  "name": "Mama Tried",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.mamatriedmiami.com/",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "rosa-sky",
+  "name": "Rosa Sky",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://rosaskyrooftop.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "the-white-elephant-cocktail-bar",
+  "name": "The White Elephant Cocktail Bar",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://thewhiteelephantbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "tipsy-flamingo-cocktail-bar",
+  "name": "Tipsy Flamingo Cocktail Bar",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://tipsyflamingomiami.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "yvonnes-boston",
+  "name": "Yvonne's",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://yvonnesboston.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "thyme-bar",
+  "name": "Thyme Bar",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.thymebarnyc.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "rd-philadelphia",
+  "name": "R&D",
+  "city": "Philadelphia",
+  "country": "United States",
+  "email": null,
+  "website": "https://rdphilly.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bar-sotano",
+  "name": "Bar S\u00f3tano",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://barsotano.com/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "happy-medium",
+  "name": "Happy Medium",
+  "city": "San Diego",
+  "country": "United States",
+  "email": null,
+  "website": "https://happymediumsd.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "bar-benjamin",
+  "name": "Bar Benjamin",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://barbenjamin.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "royal-boucherie",
+  "name": "Royal Boucherie",
+  "city": "Philadelphia",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.royalboucherie.com/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "southwark-philadelphia",
+  "name": "Southwark",
+  "city": "Philadelphia",
+  "country": "United States",
+  "email": null,
+  "website": "https://southwarkrestaurant.com/",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "ski-lodge-at-superfrico",
+  "name": "Ski Lodge at Superfrico",
+  "city": "Las Vegas",
+  "country": "United States",
+  "email": null,
+  "website": "https://superfrico.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "doctors-office-seattle",
+  "name": "The Doctor's Office",
+  "city": "Seattle",
+  "country": "United States",
+  "email": null,
+  "website": "https://tdosea.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "ball-chain",
+  "name": "Ball & Chain",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://ballandchainmiami.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "merai-brookline-boston",
+  "name": "Merai",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.meraibar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "peychaud-s",
+  "name": "Peychaud's",
+  "city": "New Orleans",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "offsuit-boston",
+  "name": "OFFSUIT",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.offsuitboston.com/",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "blossom-bar-brookline-boston",
+  "name": "Blossom Bar",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.blossombarbrookline.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "majnoon-seattle",
+  "name": "Majnoon",
+  "city": "Seattle",
+  "country": "United States",
+  "email": null,
+  "website": "https://majnoonsea.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "walrus-and-carpenter-seattle",
+  "name": "The Walrus and the Carpenter",
+  "city": "Seattle",
+  "country": "United States",
+  "email": null,
+  "website": "https://thewalrusbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "sunken-harbor-club",
+  "name": "Sunken Harbor Club",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.sunkenharbor.club",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "deep-dive-seattle",
+  "name": "Deep Dive",
+  "city": "Seattle",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "the-wolves",
+  "name": "The Wolves",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://thewolvesdtla.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "needle-and-thread-seattle",
+  "name": "Needle and Thread",
+  "city": "Seattle",
+  "country": "United States",
+  "email": null,
+  "website": "https://tavernlaw.com/needle-thread",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "semiprecious-denver",
+  "name": "Semiprecious",
+  "city": "Denver",
+  "country": "United States",
+  "email": null,
+  "website": "https://semipreciousdenver.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bar-helix-denver",
+  "name": "Bar Helix",
+  "city": "Denver",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "mezcaleria-alma-denver",
+  "name": "Mezcaleria Alma",
+  "city": "Denver",
+  "country": "United States",
+  "email": null,
+  "website": "https://mezcaleriaalma.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "fino-denver",
+  "name": "Fino",
+  "city": "Denver",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "andra-hem-philadelphia",
+  "name": "Andra Hem",
+  "city": "Philadelphia",
+  "country": "United States",
+  "email": null,
+  "website": "https://andrahemphilly.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "la-jefa-philadelphia",
+  "name": "La Jefa",
+  "city": "Philadelphia",
+  "country": "United States",
+  "email": null,
+  "website": "https://lajefaphilly.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "khyber-pass-pub",
+  "name": "Khyber Pass Pub",
+  "city": "Philadelphia",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.khyberpasspub.com/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "high-grace-nola",
+  "name": "High Grace NOLA",
+  "city": "New Orleans",
+  "country": "United States",
+  "email": null,
+  "website": "https://highgracenola.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "the-will-the-way",
+  "name": "The Will & The Way",
+  "city": "New Orleans",
+  "country": "United States",
+  "email": null,
+  "website": "https://thewillandtheway.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "fives",
+  "name": "Fives",
+  "city": "New Orleans",
+  "country": "United States",
+  "email": null,
+  "website": "https://fives.bar",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "golden-tiki",
+  "name": "The Golden Tiki",
+  "city": "Las Vegas",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.thegoldentiki.com/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "sparrow",
+  "name": "Sparrow",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://sparrowchicago.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "lola-bar",
+  "name": "Lola bar",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bourbon-branch",
+  "name": "Bourbon & Branch",
+  "city": "San Francisco",
+  "country": "United States",
+  "email": null,
+  "website": "https://bourbonandbranch.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bar-iris",
+  "name": "Bar Iris",
+  "city": "San Francisco",
+  "country": "United States",
+  "email": null,
+  "website": "https://bar-iris.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "the-portrait-bar",
+  "name": "The Portrait Bar",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.theportraitbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bar-flores",
+  "name": "Bar Flores",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.barflores.com/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "alchemist-bar-lounge",
+  "name": "Alchemist Bar & Lounge",
+  "city": "San Francisco",
+  "country": "United States",
+  "email": null,
+  "website": "https://alchemistsf.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "gus-sip-dip",
+  "name": "Gus' Sip & Dip",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://gussipanddip.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "arbella",
+  "name": "Arbella",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://arbellachicago.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "anvil",
+  "name": "Anvil Bar & Refuge",
+  "city": "Houston",
+  "country": "United States",
+  "email": null,
+  "website": "https://anvilhouston.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "the-roger-room",
+  "name": "The Roger Room",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://therogerroom.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "permission",
+  "name": "Permission",
+  "city": "Houston",
+  "country": "United States",
+  "email": null,
+  "website": "https://permissionwhiskey.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "captain-foxhearts-bad-news-bar-spirit-lodge",
+  "name": "Captain Foxheart's Bad News Bar & Spirit Lodge",
+  "city": "Houston",
+  "country": "United States",
+  "email": null,
+  "website": "https://badnewsbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "refuge",
+  "name": "Refuge",
+  "city": "Houston",
+  "country": "United States",
+  "email": null,
+  "website": "https://refugehouston.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "spare-room",
+  "name": "Spare Room",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://spareroomhollywood.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "three-dots-and-a-dash",
+  "name": "Three Dots and a Dash",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://threedotschicago.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "dan-sung-sa",
+  "name": "Dan Sung Sa",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://dansungsala.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "cane-table",
+  "name": "Cane & Table",
+  "city": "New Orleans",
+  "country": "United States",
+  "email": null,
+  "website": "https://caneandtablenola.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "swizzle-rum-bar-drinkery",
+  "name": "Swizzle Rum Bar & Drinkery",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://swizzlerumbardrinkery.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "off-the-record-dc",
+  "name": "Off the Record",
+  "city": "Washington DC",
+  "country": "United States",
+  "email": null,
+  "website": "https://hayadams.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "retrograde-denver",
+  "name": "Retrograde",
+  "city": "Denver",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "blindpig-speakeasy-lounge",
+  "name": "BlindPig Speakeasy Lounge",
+  "city": "San Francisco",
+  "country": "United States",
+  "email": null,
+  "website": "https://blindpigspeakeasy.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bandista",
+  "name": "Bandista",
+  "city": "Houston",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.bandistahouston.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "julep",
+  "name": "Julep",
+  "city": "Houston",
+  "country": "United States",
+  "email": null,
+  "website": "https://julephouston.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "employees-only",
+  "name": "Employees Only",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://employeesonlysg.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bar-madonna",
+  "name": "Bar Madonna",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://barmadonna.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "death-co-east-village",
+  "name": "Death & Co East Village",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://deathandcompany.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "queen-mary-tavern",
+  "name": "Queen Mary Tavern",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://queenmarytavern.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "tiki-ti",
+  "name": "Tiki-Ti",
+  "city": "Los Angeles",
+  "country": "United States",
+  "email": null,
+  "website": "https://tiki-ti.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "blackbird-ordinary",
+  "name": "Blackbird Ordinary",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://blackbirdordinarymiami.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "pdt",
+  "name": "PDT",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://pdtnyc.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "lemon",
+  "name": "Lemon",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://lemonchicago.net",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "sir-henrys",
+  "name": "Sir Henry's",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://sirhenrysnyc.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "doberman-drawing-room",
+  "name": "Doberman Drawing Room",
+  "city": "Las Vegas",
+  "country": "United States",
+  "email": null,
+  "website": "https://dobermandtlv.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "convoy-music-bar",
+  "name": "Convoy Music Bar",
+  "city": "San Diego",
+  "country": "United States",
+  "email": null,
+  "website": "https://convoymusicbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "lagniappe",
+  "name": "Lagniappe",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://lagniappehouse.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "true-laurel",
+  "name": "True Laurel",
+  "city": "San Francisco",
+  "country": "United States",
+  "email": null,
+  "website": "https://truelaurelsf.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "backbar-boston",
+  "name": "Backbar",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://backbarunion.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "navy-strength-seattle",
+  "name": "Navy Strength",
+  "city": "Seattle",
+  "country": "United States",
+  "email": null,
+  "website": "https://navystrengthseattle.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "hazlewood-seattle",
+  "name": "Hazlewood",
+  "city": "Seattle",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.hazlewoodbar.com/",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "lazy-bird",
+  "name": "Lazy Bird",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://lazybirdchicago.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "revel-cafe-bar",
+  "name": "Revel Cafe & Bar",
+  "city": "New Orleans",
+  "country": "United States",
+  "email": null,
+  "website": "https://revelcafeandbar.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "bar-tonique",
+  "name": "Bar Tonique",
+  "city": "New Orleans",
+  "country": "United States",
+  "email": null,
+  "website": "https://bartonique.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "la-mezca",
+  "name": "La Mezca",
+  "city": "Austin",
+  "country": "United States",
+  "email": null,
+  "website": "https://lamezcaatx.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "extra-dirty-cocktail-club-boston",
+  "name": "Extra Dirty",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.extradirtynorthend.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "farmacia-boston",
+  "name": "Farmacia",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://farmacianorthend.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "kittys-cosmopolitan-club",
+  "name": "Kitty's Cosmopolitan Club",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://kittyscosmopolitanclub.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "shinji-s",
+  "name": "Shinji's",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://shinjisbar.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "bogies-place-boston",
+  "name": "Bogie's Place",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.bogiesplace.com/",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "daiquiris-and-daisies-boston",
+  "name": "Daiquiris & Daisies",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.highstreetplace.com/food-and-beverage/daiquiris-daisies/",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "the-wig-shop-boston",
+  "name": "The Wig Shop",
+  "city": "Boston",
+  "country": "United States",
+  "email": null,
+  "website": "https://wigshopboston.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "osito-s-tap",
+  "name": "Osito's Tap",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.ositostap.com/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "superbueno",
+  "name": "Superbueno",
+  "city": "New York",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.superbuenonyc.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "nickel-city",
+  "name": "Nickel City",
+  "city": "Austin",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.nickelcitybar.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "better-days-miami",
+  "name": "Better Days",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://betterdaysmiami.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "tropezon-miami",
+  "name": "Tropez\u00f3n",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.tropezonmiami.com/",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "liquid-diet-las-vegas",
+  "name": "Liquid Diet",
+  "city": "Las Vegas",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "bgc-denver",
+  "name": "B&GC",
+  "city": "Denver",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.halcyonhotelcherrycreek.com/",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "the-vault",
+  "name": "The Vault",
+  "city": "Las Vegas",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "legacy-club",
+  "name": "Legacy Club",
+  "city": "Las Vegas",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.circalasvegas.com/drink-dine/legacy-club/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "the-bamboo-room",
+  "name": "The Bamboo Room",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.threedotschicago.com/the-bamboo-room/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "nomad-bar-las-vegas",
+  "name": "The Reserve Bar",
+  "city": "Las Vegas",
+  "country": "United States",
+  "email": null,
+  "website": null,
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "manolito",
+  "name": "Manolito",
+  "city": "New Orleans",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.manolitonola.com/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "estereo",
+  "name": "Estereo",
+  "city": "Chicago",
+  "country": "United States",
+  "email": null,
+  "website": "https://www.estereochicago.com/",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "zig-zag-cafe",
+  "name": "Zig Zag Cafe",
+  "city": "Seattle",
+  "country": "United States",
+  "email": null,
+  "website": "https://zigzagseattle.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "the-carousel-bar",
+  "name": "Carousel Bar & Lounge",
+  "city": "New Orleans",
+  "country": "United States",
+  "email": null,
+  "website": "https://hotelmonteleone.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "champagne-bar-at-four-seasons-surf-club",
+  "name": "Champagne Bar at Four Seasons Surf Club",
+  "city": "Miami",
+  "country": "United States",
+  "email": null,
+  "website": "https://fourseasons.com",
+  "tier": "free",
+  "is_active": true
+ },
+ {
+  "slug": "the-chandelier",
+  "name": "The Chandelier",
+  "city": "Las Vegas",
+  "country": "United States",
+  "email": null,
+  "website": "https://cosmopolitanlasvegas.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "ghost-donkey",
+  "name": "Ghost Donkey",
+  "city": "Las Vegas",
+  "country": "United States",
+  "email": null,
+  "website": "https://ghostdonkey.com",
+  "tier": "top10",
+  "is_active": true
+ },
+ {
+  "slug": "rougarou-denver",
+  "name": "Rougarou",
+  "city": "Denver",
+  "country": "United States",
+  "email": null,
+  "website": "https://lerougarou.com",
+  "tier": "free",
+  "is_active": true
+ }
+]
