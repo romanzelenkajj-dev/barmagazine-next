@@ -189,7 +189,6 @@ export default async function CountryPage({
             <img src={heroPhoto} alt="" />
           </div>
           <div className="directory-hero-inner">
-            <div className="directory-hero-badge">{bars.length} Bars</div>
             <h1>Best Bars in {countryName}</h1>
             <p>
               {bars.length} curated bars across {cityCount}{' '}

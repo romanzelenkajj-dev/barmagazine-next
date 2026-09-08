@@ -244,7 +244,6 @@ export default async function CityPage({
             <img src={sorted.find(b => b.photos?.[0])?.photos?.[0] || '/images/directory-hero.jpg'} alt="" />
           </div>
           <div className="directory-hero-inner">
-            <div className="directory-hero-badge">{bars.length} Bars</div>
             <h1>Best Bars in {cityName}</h1>
             <p>
               Explore {bars.length === 1 ? 'the top bar' : `the ${bars.length} best bars`} in {cityName},{' '}
