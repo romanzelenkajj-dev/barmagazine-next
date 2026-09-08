@@ -30,7 +30,7 @@ export function Top10Ticker({ bars }: { bars: TickerBar[] }) {
 
   return (
     <div className="ticker-strip">
-      <span className="ticker-label">★ Top 10 bars</span>
+      <span className="ticker-label"><span className="ticker-label-star" aria-hidden="true">★</span>Top 10 bars</span>
       <div className="ticker-viewport">
         <div className="ticker-track">
           {row(false)}

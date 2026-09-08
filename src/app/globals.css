@@ -143,8 +143,8 @@ button {
 }
 
 .nav-badge {
-  background: var(--accent);
-  color: #fff;
+  background: #fff;
+  color: var(--text-primary);
   font-size: 9px;
   font-weight: 700;
   padding: 2px 6px;
@@ -5858,7 +5858,9 @@ textarea.form-input {
 }
 
 .cookie-banner__link {
-  color: var(--accent) !important;
+  /* Maroon on the dark banner was 1.7:1 - unreadable. Site rule: the
+     accent lives on light surfaces only; on dark, links go white. */
+  color: #fff !important;
   text-decoration: underline !important;
   text-underline-offset: 2px;
 }
@@ -5894,8 +5896,8 @@ textarea.form-input {
 }
 
 .cookie-banner__btn--accept {
-  background: var(--accent);
-  color: #fff;
+  background: #fff;
+  color: var(--text-primary);
 }
 
 .cookie-banner__btn--reject {
@@ -7600,6 +7602,7 @@ textarea.form-input {
   height: 40px;
   border-radius: 50%;
   background: var(--accent);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7910,8 +7913,10 @@ textarea.form-input {
   align-items: center;
   height: 100%;
   padding: 0 20px;
-  background: var(--accent);
-  color: #fff;
+  /* White chip on the black strip, like the header's Bar Directory pill;
+     the maroon chip read as a dark smudge. The star keeps the accent. */
+  background: #fff;
+  color: var(--text-primary);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -7919,6 +7924,11 @@ textarea.form-input {
   white-space: nowrap;
   position: relative;
   z-index: 2;
+}
+
+.ticker-label-star {
+  color: var(--accent);
+  margin-right: 6px;
 }
 
 .ticker-viewport {
