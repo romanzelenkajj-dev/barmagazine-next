@@ -6767,6 +6767,17 @@ textarea.form-input {
   color: #fff;
 }
 
+.feature-btn-dark {
+  background: var(--bg-dark);
+  color: var(--text-inverse);
+  border-color: var(--bg-dark);
+}
+.feature-btn-dark:hover {
+  background: #000;
+  border-color: #000;
+  color: var(--text-inverse);
+}
+
 .feature-btn-outline {
   background: transparent;
   color: var(--text-primary);
@@ -10035,11 +10046,24 @@ textarea.form-input {
    dashboard, one accent detail (the left rule), no dismiss logic. Rendered
    only while the owner's bar is on an unpaid tier. */
 .owner-dash-upsell {
-  background: var(--bg-card);
-  border: 1px solid #E0D8D0;
-  border-left: 3px solid var(--accent);
+  /* Full-frame offer treatment: the homepage CTA band's blush, with the
+     maroon eyebrow and button on top (accent on light only). The old
+     thin maroon left stripe read as a side note, not an offer. */
+  background: var(--bg-accent-pink);
+  border: none;
   border-radius: var(--radius);
   padding: 24px 28px;
+}
+
+/* Secondary/tertiary grays fall under 4.5:1 on the blush; darken them
+   inside the offer surfaces only. */
+.owner-dash-upsell .claim-offer-intro,
+.owner-dash-upsell .owner-dash-upsell-list li {
+  color: rgba(26, 26, 26, 0.78);
+}
+
+.owner-dash-upsell .claim-offer-fineprint {
+  color: rgba(26, 26, 26, 0.62);
 }
 
 /* Compact upsell strip under the dashboard header - one sentence and a

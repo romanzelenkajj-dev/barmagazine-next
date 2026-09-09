@@ -291,7 +291,7 @@ export default function OwnerDashboardPage() {
                   <h2 className="owner-dash-card-name">{bar.name}</h2>
                   {bar.address && <p className="owner-dash-card-meta">{bar.address}</p>}
                   <div className="owner-dash-card-actions">
-                    <Link href={`/owner-dashboard/edit/${bar.slug}`} className="feature-btn">
+                    <Link href={`/owner-dashboard/edit/${bar.slug}`} className="feature-btn feature-btn-dark">
                       Edit details
                     </Link>
                     <Link href={`/bars/${bar.slug}`} className="feature-btn feature-btn-outline">
