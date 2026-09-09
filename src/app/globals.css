@@ -9150,7 +9150,9 @@ textarea.form-input {
 }
 
 .owner-dash-sub {
-  color: var(--text-secondary);
+  /* A step darker than --text-secondary: this line sits directly on the
+     beige page ground, where 6B6B6B is 4.18:1 (under AA). 575757 is 5.7:1. */
+  color: #575757;
   font-size: 14px;
   margin-top: 4px;
 }
@@ -10055,7 +10057,13 @@ textarea.form-input {
   background: #F6EFEF;
   border: none;
   border-radius: var(--radius);
-  padding: 24px 28px;
+  padding: 30px 32px;
+}
+
+@media (max-width: 480px) {
+  .owner-dash-upsell {
+    padding: 22px 20px;
+  }
 }
 
 /* Darkened a step from secondary/tertiary for comfortable margin on
