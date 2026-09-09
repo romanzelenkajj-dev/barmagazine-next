@@ -41,10 +41,11 @@ export default function OwnerLoginPage() {
   }
 
   return (
-    <div className="add-bar-page owner-dash owner-dash--narrow">
-      <div className="add-bar-form-card">
-        <h1 className="owner-dash-title">Owner sign in</h1>
-        <p className="owner-dash-sub">Manage the bar you’ve claimed.</p>
+    <div className="claim-page">
+      <div className="claim-card">
+        <span className="claim-eyebrow">Owners</span>
+        <h1>Owner sign in</h1>
+        <p className="claim-intro">Manage the bar you’ve claimed.</p>
 
         {sent ? (
           <div className="owner-dash-sent">
@@ -52,11 +53,11 @@ export default function OwnerLoginPage() {
               If that address can access a bar, a sign-in link is on its way.
             </p>
             <p className="owner-dash-note">
-              The link opens your dashboard directly — no password needed. It expires
+              The link opens your dashboard directly, no password needed. It expires
               shortly, so request a new one if it stops working.
             </p>
             <p className="owner-dash-note">
-              Not seeing it? Check your spam or junk folder — and mark it
+              Not seeing it? Check your spam or junk folder, and mark it
               &ldquo;not spam&rdquo; so the confirmation button works.
             </p>
             <button
@@ -67,33 +68,33 @@ export default function OwnerLoginPage() {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="add-bar-form">
-            {error && <p className="add-bar-error">{error}</p>}
+          <form onSubmit={handleSubmit} className="claim-form">
+            {error && <p className="claim-error">{error}</p>}
 
-            <div>
-              <label className="form-label" htmlFor="owner-email">Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                autoComplete="email"
-                className="form-input"
-                id="owner-email"
-              />
-            </div>
+            <label className="form-label" htmlFor="owner-email">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="email"
+              className="form-input"
+              id="owner-email"
+            />
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="add-bar-submit"
-            >
-              {loading ? 'Sending...' : 'Email me a sign-in link'}
-            </button>
+            <p style={{ textAlign: 'center', marginTop: 18 }}>
+              <button
+                type="submit"
+                disabled={loading}
+                className="claim-btn"
+              >
+                {loading ? 'Sending...' : 'Email me a sign-in link'}
+              </button>
+            </p>
           </form>
         )}
 
-        <p className="owner-dash-note">
+        <p className="claim-signin">
           Don&apos;t have access yet?{' '}
           <Link href="/feature-your-bar" className="feature-link">
             Get your bar listed

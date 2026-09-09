@@ -123,26 +123,32 @@ function VerifyInner() {
   }
 
   return (
-    <section className="feature-section">
-      <div className="feature-wrap" style={{ maxWidth: 560 }}>
+    <div className="claim-page">
+      <div className="claim-card">
         {error ? (
           <>
-            <h1 className="feature-sec-title">Couldn&apos;t confirm that claim</h1>
-            <p style={{ marginTop: 12 }}>{error}</p>
+            <span className="claim-eyebrow">Something went wrong</span>
+            <h1>Couldn&apos;t confirm that claim</h1>
+            <p className="claim-intro">{error}</p>
             <p style={{ marginTop: 20 }}>
               <Link href="/claim-your-bar" className="feature-link">Start again</Link>
             </p>
           </>
         ) : (
           <>
-            <h1 className="feature-sec-title">One click to finish</h1>
-            <p style={{ marginTop: 12 }}>
+            <span className="claim-eyebrow">One click to finish</span>
+            {/* The bar's name leads the page, not only the button - a
+                generic "Confirm my claim" H1 never told anyone which bar
+                this link was for. Generic wording remains only when the
+                name lookup fails. */}
+            <h1>{barName ? `Confirm ${barName}` : 'Confirm your claim'}</h1>
+            <p className="claim-intro">
               {barName
                 ? <>Confirming makes you the manager of <strong>{barName}</strong> on BarMagazine.</>
                 : 'Confirming completes your bar claim on BarMagazine.'}
             </p>
-            <p style={{ marginTop: 20 }}>
-              <button className="feature-btn" onClick={confirm} disabled={working || !nameSettled}>
+            <p style={{ marginTop: 4 }}>
+              <button className="claim-btn" onClick={confirm} disabled={working || !nameSettled}>
                 {working
                   ? 'Confirming…'
                   : !nameSettled
@@ -155,14 +161,14 @@ function VerifyInner() {
           </>
         )}
       </div>
-    </section>
+    </div>
   );
 }
 
 export default function ClaimVerifyPage() {
   // useSearchParams needs a Suspense boundary in the app router.
   return (
-    <Suspense fallback={<section className="feature-section"><div className="feature-wrap"><p>Loading…</p></div></section>}>
+    <Suspense fallback={<div className="claim-page"><div className="claim-card"><p>Loading…</p></div></div>}>
       <VerifyInner />
     </Suspense>
   );
