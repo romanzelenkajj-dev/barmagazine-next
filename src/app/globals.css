@@ -7685,6 +7685,256 @@ textarea.form-input {
   }
 }
 
+/* ====== CLAIM FLOW (centered white cards) ======
+   Every claim-flow screen - landing, claim form, check-inbox, proof,
+   verify, owner sign-in - puts its copy inside one centered white card on
+   the beige page ground. No body text sits directly on beige. */
+.claim-page {
+  display: flex;
+  justify-content: center;
+  padding: 44px 16px 72px;
+}
+
+.claim-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  max-width: 600px;
+  width: 100%;
+  padding: 44px 48px 40px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.claim-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.claim-card h1,
+.claim-card .claim-title {
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 12px;
+  color: var(--text-primary);
+}
+
+.claim-intro {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 460px;
+  margin: 0 auto 24px;
+}
+
+/* 3-step indicator. Mobile collapses the labels to bare numbers. */
+.claim-steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 26px;
+  padding: 0;
+  list-style: none;
+}
+
+.claim-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.claim-step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bg-dark);
+  color: var(--text-inverse);
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.claim-step + .claim-step::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--border);
+  margin-right: 10px;
+}
+
+/* Search block: the typeahead needs left-aligned text inside the centered
+   card, and the dropdown must overlay without shifting layout (absolute,
+   from the directory styles). */
+.claim-search {
+  text-align: left;
+  margin: 0 0 6px;
+}
+
+.claim-search .directory-search {
+  margin: 0;
+}
+
+/* Primary action: the site's solid black pill, not the grey Search pill. */
+.claim-btn {
+  display: inline-block;
+  padding: 13px 30px;
+  background: var(--bg-dark);
+  color: var(--text-inverse);
+  border: none;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.claim-btn:hover:not(:disabled) {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.claim-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.claim-btn-ghost {
+  background: none;
+  border: 0;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-size: 13.5px;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 8px 4px;
+}
+
+/* Form step: fields read left-aligned inside the centered card. */
+.claim-form {
+  text-align: left;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.claim-form label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  margin: 14px 0 6px;
+}
+
+.claim-form .form-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.claim-hint {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 6px 0 0;
+}
+
+.claim-note {
+  padding: 10px 14px;
+  background: #fff3cd;
+  color: #856404;
+  border-radius: 10px;
+  font-size: 13.5px;
+  margin: 0 0 16px;
+  text-align: left;
+}
+
+.claim-error {
+  padding: 10px 14px;
+  background: #f8d7da;
+  color: #721c24;
+  border-radius: 10px;
+  font-size: 13.5px;
+  margin: 0 0 16px;
+}
+
+.claim-kicker {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0 0 4px;
+}
+
+.claim-signin {
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.claim-fineprint {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin: 16px 0 10px;
+}
+
+.claim-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13.5px;
+  margin: 0 0 18px;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+/* The add-your-bar footer row inside the typeahead dropdown. */
+.dir-typeahead-footer {
+  border-top: 1px solid var(--border);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.dir-typeahead-footer:hover {
+  background: var(--bg-card-warm);
+}
+
+@media (max-width: 480px) {
+  .claim-page {
+    padding: 16px 10px 56px;
+  }
+
+  .claim-card {
+    padding: 28px 18px 26px;
+  }
+
+  /* Steps collapse to numbers; the connecting rules shrink with them. */
+  .claim-step-label {
+    display: none;
+  }
+
+  .claim-step + .claim-step::before {
+    width: 12px;
+    margin-right: 7px;
+  }
+}
+
 /* ====== BAR NO-PHOTO PLACEHOLDER (shared) ====== */
 .bar-placeholder {
   /* Preflight is disabled, so the default is content-box: width 100% plus

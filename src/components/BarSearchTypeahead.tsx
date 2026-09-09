@@ -36,6 +36,7 @@ export function BarSearchTypeahead({
   inputRef,
   placeholder = 'Search bars, cities, countries...',
   onSelect,
+  footer,
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -45,6 +46,10 @@ export function BarSearchTypeahead({
   /** Overrides the default navigate-to-profile: hosts that want the slug
       itself (e.g. the upgrade form) handle the selection instead. */
   onSelect?: (slug: string) => void;
+  /** Optional last row in the dropdown - a standing link (the claim flow
+      points it at /add-your-bar). Shown under results AND in the empty
+      state, so "no match" is never a dead end. */
+  footer?: { label: string; href: string };
 }) {
   const router = useRouter();
   const [hits, setHits] = useState<Hit[]>([]);
@@ -217,6 +222,16 @@ export function BarSearchTypeahead({
                 <span>{hit.city}</span>
               </li>
             ))
+          )}
+          {footer && (
+            <li
+              className="dir-typeahead-footer"
+              role="option"
+              aria-selected={false}
+              onMouseDown={e => { e.preventDefault(); setOpen(false); router.push(footer.href); }}
+            >
+              {footer.label}
+            </li>
           )}
         </ul>
       )}
