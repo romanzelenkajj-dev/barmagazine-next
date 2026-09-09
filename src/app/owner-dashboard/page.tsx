@@ -346,7 +346,7 @@ export default function OwnerDashboardPage() {
                       {sub.admin_notes
                         ? <>Reason: {sub.admin_notes}</>
                         : <>Not applied. Questions?{' '}
-                            <a href="mailto:zelenka@barmagazine.com" className="feature-link">
+                            <a href="mailto:office@barmagazine.com" className="feature-link">
                               Email us
                             </a>{' '}
                             and we&apos;ll explain.

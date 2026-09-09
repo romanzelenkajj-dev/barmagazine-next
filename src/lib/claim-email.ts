@@ -163,7 +163,7 @@ export async function sendLoginLinkEmail(
           </p>
           <p>The button opens a page where you confirm the sign-in with one click.</p>
           <p style="color:#6B6B6B;">
-            If you didn&rsquo;t request this, ignore it — nothing happens without the click.
+            If you didn&rsquo;t request this, ignore it. Nothing happens without the click.
           </p>
           <div style="margin-top:32px;padding-top:14px;border-top:1px solid #ECE7DE;color:#9A9A9A;font-size:13px;line-height:1.5;">
             <p style="margin:0;font-weight:600;">BarMagazine</p>
