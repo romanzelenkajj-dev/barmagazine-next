@@ -41,8 +41,8 @@ export function claimEmailHtml({ barName, actionLink }: Omit<ClaimLinkEmail, 'de
   const href = escapeHtml(actionLink);
   return `
     <div style="font-family:Inter,system-ui,sans-serif;max-width:560px;margin:0 auto;color:#1A1A1A;font-size:15px;line-height:1.6;">
-      <div style="margin:0 0 26px;">
-        <span style="display:inline-block;background:#1A1A1A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:bold;letter-spacing:0.4px;padding:9px 14px;">bar|magazine</span>
+      <div style="margin:0 0 26px;background:#0a0a0a;padding:16px 20px;">
+        <a href="https://barmagazine.com"><img src="https://barmagazine.com/logo-white.png" alt="BarMagazine" width="150" style="width:150px;height:auto;border:0;display:block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-weight:bold;" /></a>
       </div>
       <p>
         You asked to claim <strong>${bar}</strong> on BarMagazine, the global
@@ -157,8 +157,8 @@ export async function sendLoginLinkEmail(
       subject: 'Your BarMagazine owner dashboard sign-in link',
       html: `
         <div style="font-family:Inter,system-ui,sans-serif;max-width:560px;margin:0 auto;color:#1A1A1A;font-size:15px;line-height:1.6;">
-          <div style="margin:0 0 26px;">
-            <span style="display:inline-block;background:#1A1A1A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:bold;letter-spacing:0.4px;padding:9px 14px;">bar|magazine</span>
+          <div style="margin:0 0 26px;background:#0a0a0a;padding:16px 20px;">
+            <a href="https://barmagazine.com"><img src="https://barmagazine.com/logo-white.png" alt="BarMagazine" width="150" style="width:150px;height:auto;border:0;display:block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-weight:bold;" /></a>
           </div>
           <p>You asked to sign in to your BarMagazine owner dashboard.</p>
           <p style="margin:28px 0;">
