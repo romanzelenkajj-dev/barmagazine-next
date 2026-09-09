@@ -31,7 +31,19 @@ interface Submission {
   bar_id: string;
   status: string;
   submitted_data: Record<string, unknown>;
+  submission_type: string | null;
+  admin_notes: string | null;
   created_at: string;
+}
+
+const SUBMISSION_TYPE_LABEL: Record<string, string> = {
+  info_update: 'Info update',
+  photo_update: 'Photo update',
+};
+
+function submissionTypeLabel(type: string | null): string {
+  if (!type) return 'Update';
+  return SUBMISSION_TYPE_LABEL[type] || type.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
 }
 
 const STATUS_TONE: Record<string, { bg: string; fg: string }> = {
@@ -315,11 +327,12 @@ export default function OwnerDashboardPage() {
             {submissions.map(sub => {
               const tone = STATUS_TONE[sub.status] || STATUS_TONE.pending;
               return (
-                <div key={sub.id} className="owner-dash-sub">
+                <div key={sub.id} className="owner-dash-subrow">
                   <div>
-                    <p className="owner-dash-sub-title">{barName(sub.bar_id)}</p>
+                    <p className="owner-dash-subrow-title">{barName(sub.bar_id)}</p>
                     <p className="owner-dash-card-meta">
-                      Submitted {new Date(sub.created_at).toLocaleDateString()}
+                      {submissionTypeLabel(sub.submission_type)} &middot; Submitted{' '}
+                      {new Date(sub.created_at).toLocaleDateString()}
                     </p>
                   </div>
                   <span
@@ -328,6 +341,18 @@ export default function OwnerDashboardPage() {
                   >
                     {sub.status}
                   </span>
+                  {sub.status === 'rejected' && (
+                    <p className="owner-dash-subrow-note">
+                      {sub.admin_notes
+                        ? <>Reason: {sub.admin_notes}</>
+                        : <>Not applied. Questions?{' '}
+                            <a href="mailto:zelenka@barmagazine.com" className="feature-link">
+                              Email us
+                            </a>{' '}
+                            and we&apos;ll explain.
+                          </>}
+                    </p>
+                  )}
                 </div>
               );
             })}

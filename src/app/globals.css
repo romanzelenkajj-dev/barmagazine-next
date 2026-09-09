@@ -9208,7 +9208,10 @@ textarea.form-input {
   gap: 10px;
 }
 
-.owner-dash-sub {
+/* Renamed from .owner-dash-sub, which collided with the header's
+   "Signed in as" subtitle class and turned that plain muted line into a
+   white card. */
+.owner-dash-subrow {
   background: var(--bg-card);
   border-radius: 16px;
   padding: 16px 20px;
@@ -9219,8 +9222,15 @@ textarea.form-input {
   justify-content: space-between;
 }
 
-.owner-dash-sub-title {
+.owner-dash-subrow-title {
   font-weight: 600;
+}
+
+.owner-dash-subrow-note {
+  flex-basis: 100%;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 2px 0 0;
 }
 
 .owner-dash-status {
@@ -9260,18 +9270,9 @@ textarea.form-input {
   align-items: flex-start;
 }
 
-@media (min-width: 700px) {
-  .owner-dash-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1000px) {
-  .owner-dash-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
+/* Bar cards run full section width - the old 2/3-column split left a
+   single claimed bar as a third-width card beside empty space, out of
+   line with every other dashboard section. */
 @media (max-width: 768px) {
   .owner-dash-title {
     font-size: 24px;

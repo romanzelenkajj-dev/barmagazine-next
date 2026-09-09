@@ -67,7 +67,10 @@ export function claimEmailHtml({ barName, actionLink }: Omit<ClaimLinkEmail, 'de
         This link expires in 24 hours. If it has expired, just start the claim
         again from your bar&rsquo;s page and we&rsquo;ll send you a fresh one.
       </p>
-      <p style="color:#9A9A9A;margin-top:28px;">— BarMagazine · barmagazine.com</p>
+      <div style="margin-top:32px;padding-top:14px;border-top:1px solid #ECE7DE;color:#9A9A9A;font-size:13px;line-height:1.5;">
+        <p style="margin:0;font-weight:600;">BarMagazine</p>
+        <p style="margin:2px 0 0;"><a href="https://barmagazine.com" style="color:#9A9A9A;">barmagazine.com</a></p>
+      </div>
     </div>
   `;
 }
@@ -162,7 +165,10 @@ export async function sendLoginLinkEmail(
           <p style="color:#6B6B6B;">
             If you didn&rsquo;t request this, ignore it — nothing happens without the click.
           </p>
-          <p style="color:#9A9A9A;margin-top:28px;">&mdash; BarMagazine &middot; barmagazine.com</p>
+          <div style="margin-top:32px;padding-top:14px;border-top:1px solid #ECE7DE;color:#9A9A9A;font-size:13px;line-height:1.5;">
+            <p style="margin:0;font-weight:600;">BarMagazine</p>
+            <p style="margin:2px 0 0;"><a href="https://barmagazine.com" style="color:#9A9A9A;">barmagazine.com</a></p>
+          </div>
         </div>
       `,
       context: 'login-link',

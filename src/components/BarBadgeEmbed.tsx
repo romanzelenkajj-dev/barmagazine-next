@@ -21,6 +21,9 @@ function snippetFor(slug: string, name: string, variant: 'light' | 'dark'): stri
 
 export function BarBadgeEmbed({ slug, name }: { slug: string; name: string }) {
   const [copied, setCopied] = useState<'light' | 'dark' | null>(null);
+  // The raw HTML is a fallback for when the copy button can't reach the
+  // clipboard; most owners never need to read it, so it hides by default.
+  const [showCode, setShowCode] = useState(false);
 
   async function copy(variant: 'light' | 'dark') {
     try {
@@ -57,14 +60,24 @@ export function BarBadgeEmbed({ slug, name }: { slug: string; name: string }) {
           </div>
         ))}
       </div>
-      <textarea
-        className="badge-embed-code"
-        readOnly
-        rows={3}
-        value={snippetFor(slug, name, 'dark')}
-        onFocus={e => e.target.select()}
-        aria-label="Badge embed HTML"
-      />
+      <button
+        type="button"
+        className="feature-link badge-embed-toggle"
+        aria-expanded={showCode}
+        onClick={() => setShowCode(v => !v)}
+      >
+        {showCode ? 'Hide code' : 'Show code'}
+      </button>
+      {showCode && (
+        <textarea
+          className="badge-embed-code"
+          readOnly
+          rows={3}
+          value={snippetFor(slug, name, 'dark')}
+          onFocus={e => e.target.select()}
+          aria-label="Badge embed HTML"
+        />
+      )}
     </div>
   );
 }
