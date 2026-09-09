@@ -10046,17 +10046,20 @@ textarea.form-input {
    dashboard, one accent detail (the left rule), no dismiss logic. Rendered
    only while the owner's bar is on an unpaid tier. */
 .owner-dash-upsell {
-  /* Full-frame offer treatment: the homepage CTA band's blush, with the
-     maroon eyebrow and button on top (accent on light only). The old
-     thin maroon left stripe read as a side note, not an offer. */
-  background: var(--bg-accent-pink);
+  /* Full-frame offer treatment: a faint warm tint (7% maroon over
+     white, #F6EFEF) - just perceptibly warmer than the white cards -
+     with the maroon eyebrow and button as the color carriers. Full
+     blush (#EDBBBB) read pink and competed with the page; the old thin
+     maroon left stripe read as a side note. Body grays hold AA here:
+     even standard --text-secondary is 4.7:1 on this tint. */
+  background: #F6EFEF;
   border: none;
   border-radius: var(--radius);
   padding: 24px 28px;
 }
 
-/* Secondary/tertiary grays fall under 4.5:1 on the blush; darken them
-   inside the offer surfaces only. */
+/* Darkened a step from secondary/tertiary for comfortable margin on
+   the tint (8.1:1 body, 4.9:1 fineprint). */
 .owner-dash-upsell .claim-offer-intro,
 .owner-dash-upsell .owner-dash-upsell-list li {
   color: rgba(26, 26, 26, 0.78);
