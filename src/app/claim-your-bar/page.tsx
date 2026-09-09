@@ -68,6 +68,10 @@ function ClaimYourBar() {
    * form as it was — no error, since the visitor did not type it.
    */
   const prefillSlug = useSearchParams().get('bar');
+  // True once the ?bar= lookup has finished WITHOUT selecting a bar - only
+  // then may the landing render. Until it settles, a slug arrival shows the
+  // neutral pending card, never a flash of the search/steps state.
+  const [prefillSettled, setPrefillSettled] = useState(false);
 
   useEffect(() => {
     if (!prefillSlug) return;
@@ -77,13 +81,20 @@ function ClaimYourBar() {
         const res = await fetch(`/api/claim/search?slug=${encodeURIComponent(prefillSlug)}`);
         const data = await res.json();
         const hit = (data.bars || [])[0];
-        if (hit && !cancelled) setSelected(hit);
+        if (cancelled) return;
+        if (hit) setSelected(hit);
+        else setPrefillSettled(true); // bad/inactive slug: landing, no error
       } catch {
-        // Leave the search form alone; the visitor can still find the bar.
+        // Lookup failed; the visitor can still find the bar by search.
+        if (!cancelled) setPrefillSettled(true);
       }
     })();
     return () => { cancelled = true; };
   }, [prefillSlug]);
+
+  // Pending whenever a bar is on its way: a ?bar= slug still resolving, or a
+  // typeahead pick being fetched. The landing is unreachable in either case.
+  const pendingBar = (!!prefillSlug && !selected && !prefillSettled) || resolving;
 
   /**
    * A typeahead pick hands us only the slug; the claim step also needs the
@@ -223,6 +234,16 @@ function ClaimYourBar() {
               </p>
             </>
           )
+        ) : pendingBar ? (
+          /* ---------- neutral pending card while the bar resolves ---------- */
+          <>
+            <p className="claim-kicker">Claiming</p>
+            <div className="claim-skeleton claim-skeleton--title" aria-hidden="true" />
+            <div className="claim-skeleton claim-skeleton--line" aria-hidden="true" />
+            <p className="claim-hint" style={{ textAlign: 'center' }} role="status">
+              Loading your bar…
+            </p>
+          </>
         ) : selected ? (
           /* ---------- claim form ---------- */
           <>
@@ -322,8 +343,6 @@ function ClaimYourBar() {
                 footer={{ label: "Don't see your bar? Add it to the directory - it's free", href: '/add-your-bar' }}
               />
             </div>
-            {resolving && <p className="claim-hint" style={{ textAlign: 'center' }}>Loading your bar…</p>}
-
             <p className="claim-signin">
               Already claimed your bar?{' '}
               <Link href="/owner-dashboard/login" className="feature-link">Sign in</Link>

@@ -7915,6 +7915,38 @@ textarea.form-input {
   background: var(--bg-card-warm);
 }
 
+/* Neutral pending card while a preselected bar resolves - the landing's
+   search/steps must never flash first. */
+.claim-skeleton {
+  background: var(--bg-card-warm);
+  border-radius: 10px;
+  margin: 0 auto;
+  animation: claim-skeleton-pulse 1.2s ease-in-out infinite;
+}
+
+.claim-skeleton--title {
+  width: 60%;
+  height: 34px;
+  margin-bottom: 12px;
+}
+
+.claim-skeleton--line {
+  width: 40%;
+  height: 16px;
+  margin-bottom: 22px;
+}
+
+@keyframes claim-skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .claim-skeleton {
+    animation: none;
+  }
+}
+
 @media (max-width: 480px) {
   .claim-page {
     padding: 16px 10px 56px;
