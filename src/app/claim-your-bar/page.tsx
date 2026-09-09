@@ -207,11 +207,12 @@ function ClaimYourBar() {
             </>
           ) : (
             <>
-              <span className="claim-eyebrow">Almost there</span>
+              <span className="claim-eyebrow">Step 2 of 3</span>
               <h1>Check your inbox</h1>
               <p className="claim-intro">
-                A confirmation email is on its way to the address you gave. Open it
-                and press the button inside; that verifies your email and makes the
+                A confirmation email is on its way to{' '}
+                <strong>{email || 'the address you gave'}</strong>. Open it and
+                press the button inside; that verifies your email and makes the
                 listing yours. The link is valid for 24 hours.
               </p>
               {/* Yahoo and some others disable links on mail sitting in spam,
