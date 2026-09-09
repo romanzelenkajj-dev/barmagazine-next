@@ -5,7 +5,7 @@ Sendable: 131 | Corporate/chain parked: 14 | Other parks: 6 | Rejected junk find
 
 Proposed split (whole countries kept together): wave3a 45 + wave3b 40, 46 queued for a future wave.
 
-## WAVE 3a (batch11-europe-wave3a) - ARMED for 2026-09-10 06:30 PT - 45
+## WAVE 3a (batch11-europe-wave3a) - ARMED for 2026-09-10 06:30 PT - 44
 
 | # | bar | country | city | email | source | flag |
 |---|---|---|---|---|---|---|
@@ -49,7 +49,6 @@ Proposed split (whole countries kept together): wave3a 45 + wave3b 40, 46 queued
 | 38 | blue-fox-the-bar | Hungary | Budapest | info@bluefoxthebar.com | home:mailto |  |
 | 39 | boutiq-bar | Hungary | Budapest | info@boutiqbar.com | home:mailto |  |
 | 40 | hotsy-totsy | Hungary | Budapest | speakeasy@hotsytotsy.hu | contact:mailto |  |
-| 41 | la-siesta-budapest | Hungary | Budapest | lasiestabudapest@gmail.com | home:mailto | venue-named freemail |
 | 42 | leo-rooftop | Hungary | Budapest | rooftop.reservation@leobudapest.hu | home:mailto |  |
 | 43 | muzsa | Hungary | Budapest | info@muzsa.com | contact:mailto |  |
 | 44 | tuk-tuk-bar | Hungary | Budapest | bar@casatihotel.com | home:mailto | FLAG: bar@ mailbox on host-hotel domain (Casati, boutique) |
@@ -273,3 +272,4 @@ Proposed split (whole countries kept together): wave3a 45 + wave3b 40, 46 queued
 - Boutique hotel bars (widder-bar, dukes, tata-cocktail-bar, le-hibou) and the two owner-personal addresses (toca-da-raposa, zizania) ride in the waves per Roman.
 - Emails for both waves written to bars.email (87, email-is-null guard). Region mapping applied: 336 rows, all 1,216 active bars now on the 7 standard regions.
 - Dry-runs clean: 45/45 and 42/42, zero guard hits.
+- 2026-09-09 later: la-siesta-budapest PULLED from wave 3a - held for editorial review (site describes a nightclub). Email stays on file; slug removed from the armed send list.
