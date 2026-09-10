@@ -6,7 +6,7 @@ import { authHeader, signOut } from '@/lib/owner-session';
 import Link from 'next/link';
 import { OWNER_EDITABLE_FIELDS } from '@/lib/owner-fields';
 import { menuUrlProblem, menuDomainDiffers } from '@/lib/menu-url';
-import { downscaleImage, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAGE } from '@/lib/image-downscale';
+import { downscaleImage, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAGE, UnsupportedImageError, UNSUPPORTED_FORMAT_MESSAGE } from '@/lib/image-downscale';
 
 /**
  * Owner edit form.
@@ -162,7 +162,14 @@ export default function EditBarPage() {
     const selected = isPaidTier ? Array.from(files) : Array.from(files).slice(0, 1);
     // Multipart bodies hit the same ~4.5MB platform cap that 413'd the
     // listing form; downscale each photo in the browser first.
-    const compressed = await Promise.all(selected.map(f => downscaleImage(f)));
+    let compressed: Blob[];
+    try {
+      compressed = await Promise.all(selected.map(f => downscaleImage(f)));
+    } catch (err) {
+      setError(err instanceof UnsupportedImageError ? UNSUPPORTED_FORMAT_MESSAGE : 'A photo could not be read. Please try different files.');
+      setUploading(false);
+      return;
+    }
     const totalBytes = compressed.reduce((sum, b) => sum + b.size, 0);
     if (totalBytes > MAX_UPLOAD_BYTES) {
       setError(PHOTO_TOO_LARGE_MESSAGE);

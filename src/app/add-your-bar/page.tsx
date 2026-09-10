@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense, useState, FormEvent, useRef, useEffect } from 'react';
-import { downscaleImage, blobToDataUrl, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAGE } from '@/lib/image-downscale';
+import { downscaleImage, blobToDataUrl, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAGE, UnsupportedImageError, UNSUPPORTED_FORMAT_MESSAGE } from '@/lib/image-downscale';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { BarSearchTypeahead } from '@/components/BarSearchTypeahead';
@@ -157,7 +157,14 @@ function AddYourBarForm() {
     if (photoFile) {
       // Downscale in the browser: base64-in-JSON inflates the body by a
       // third and Vercel 413s anything over ~4.5MB before our code runs.
-      const compressed = await downscaleImage(photoFile);
+      let compressed: Blob;
+      try {
+        compressed = await downscaleImage(photoFile);
+      } catch (err) {
+        setError(err instanceof UnsupportedImageError ? UNSUPPORTED_FORMAT_MESSAGE : 'That photo could not be read. Please try a different file.');
+        setSubmitting(false);
+        return;
+      }
       if (compressed.size > MAX_UPLOAD_BYTES) {
         setError(PHOTO_TOO_LARGE_MESSAGE);
         setSubmitting(false);
