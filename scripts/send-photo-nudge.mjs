@@ -90,7 +90,7 @@ function htmlFor(bar) {
         <a href="https://barmagazine.com"><img src="https://barmagazine.com/logo-white.png" alt="BarMagazine" width="150" style="width:150px;height:auto;border:0;display:block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-weight:bold;" /></a>
       </div>
       <p>Hi ${name} team,</p>
-      <p>A few weeks ago we listed <strong>${name}</strong> in the BarMagazine Bar
+      <p>Recently we listed <strong>${name}</strong> in the BarMagazine Bar
       Directory. The profile is live and getting traffic, but it's still missing
       the thing visitors look at first: a photo. Reply with your favorite shot of
       the room and we'll add it the same day, free.
@@ -108,7 +108,7 @@ function textFor(bar) {
   const link = `https://barmagazine.com/bars/${bar.slug}`;
   return [
     `Hi ${bar.name} team,`, '',
-    `A few weeks ago we listed ${bar.name} in the BarMagazine Bar Directory. The profile is live and getting traffic, but it's still missing the thing visitors look at first: a photo. Reply with your favorite shot of the room and we'll add it the same day, free.`,
+    `Recently we listed ${bar.name} in the BarMagazine Bar Directory. The profile is live and getting traffic, but it's still missing the thing visitors look at first: a photo. Reply with your favorite shot of the room and we'll add it the same day, free.`,
     `See the profile: ${link}`, '',
     "And if you'd like to manage the listing yourself, hours, links, details, the claim button on that page takes two minutes.", '',
     'Best,', 'Roman Zelenka, Publisher, BarMagazine', '',

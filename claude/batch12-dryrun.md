@@ -58,3 +58,13 @@ Copy note: even for the 12, first contact was 8-10 days ago, not quite "a few we
 - No emails written to bars.email (big-bar + any Alt approvals would need writes)
 - Nothing armed for the Friday 09:00 window
 - Wave 3b (Europe, 42 bars) fires separately tomorrow 06:30 PT via launchd
+
+
+## FINAL (approved 2026-09-10, ARMED)
+- Alt ruling extended: venue-specific addresses fair game, agency inboxes stay guarded. Lane A = 4:
+  big-bar, georges-at-the-cove-level2, shibuya-nights-at-cloak-petal (host venue inbox, bar operates inside Cloak & Petal), the-smoking-gun.
+  Venue addresses written to bars.email (the three Alt bars' agency addresses replaced, guarded on exact prior value; documented above).
+- Lane B = the recommended 12 incl. bar-shoji. The ten Tuesday (batch 10) contacts roll to a later nudge wave, no earlier than three weeks after first touch (from 2026-09-08: eligible 2026-09-29+).
+- Template copy: "A few weeks ago" changed to "Recently".
+- Final dry-runs clean: 4/4 and 12/12, zero guard hits.
+- ARMED: launchd com.barmagazine.batch12, Friday 2026-09-11 09:00 PT, one runner firing lane A (batch12-ca-fresh) then lane B (batch12-ca-photo-nudge). Runs on wake if the Mac sleeps through 09:00. Wave 3b (Europe, 42) fires separately at 06:30 the same morning.
