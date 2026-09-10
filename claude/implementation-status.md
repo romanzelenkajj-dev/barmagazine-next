@@ -85,3 +85,15 @@ Running log of shipped work items and their merge commits. Newest first.
   (widens the status CHECK constraint and archives the Apothéke LA photo
   submission, its 6 photos kept on the row). DDL cannot run through
   PostgREST, so this one is a dashboard paste.
+
+## 2026-09-10 - Stripe subscription safety net
+- New webhook /api/stripe-webhook (Stripe endpoint we_1UEG2OHjlgfQ8kMfhEmc95q7,
+  events customer.subscription.updated + .deleted, signature-verified via
+  STRIPE_WEBHOOK_SECRET, Sensitive env on Vercel prod). Flags lapses
+  (ended, past_due, unpaid, canceled, incomplete_expired, paused,
+  cancellation scheduled) by emailing NOTIFICATION_EMAIL with the matched
+  bar and a "tier NOT changed" banner. It never touches the tier: demotion
+  stays a human decision.
+- scripts/audit-featured-tiers.mjs: read-only reconciliation of
+  featured/premium bars against Stripe subscriptions (normalized bar_name
+  matching, pagination, exit 1 on mismatch). First run: clean, 2/2 matched.

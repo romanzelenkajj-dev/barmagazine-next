@@ -209,8 +209,8 @@ export async function notifyClaim(notice: ClaimNotice): Promise<boolean> {
           ${fieldRows({
             Basis: METHOD_LABEL[method],
             Claimant: claimantEmail,
-            Name: claimantName || '—',
-            Role: claimantRole || '—',
+            Name: claimantName || 'not given',
+            Role: claimantRole || 'not given',
             ...(ip ? { IP: ip } : {}),
             ...(proofCount != null ? { Proof: `${proofCount} file${proofCount === 1 ? '' : 's'}` } : {}),
           })}
@@ -253,11 +253,56 @@ export async function notifyStuckClaim(notice: {
         <table style="width:100%;border-collapse:collapse;font-size:15px;">
           ${fieldRows({
             Claimant: claimantEmail,
-            Name: claimantName || '—',
+            Name: claimantName || 'not given',
             Basis: METHOD_LABEL[method as keyof typeof METHOD_LABEL] || method,
           })}
         </table>
         <p style="margin-top:24px;font-size:13px;color:#999;">Claims admin: ${SITE_URL}/admin/review?tab=claims</p>
+      </div>
+    `,
+  });
+}
+
+export interface SubscriptionEventNotice {
+  /** e.g. 'canceled', 'past_due', 'cancel scheduled at period end'. */
+  what: string;
+  subscriptionId: string;
+  stripeBarName: string;
+  plan: string | null;
+  periodEnd: string | null;
+  /** The bars row matched by the subscription's bar_name metadata, if any. */
+  matched: { name: string; slug: string; tier: string } | null;
+}
+
+/**
+ * Email the admin that a Stripe subscription changed state under a bar.
+ * This is a FLAG, not an action: the webhook never touches the tier, so the
+ * note must say clearly that a human decision is still needed.
+ */
+export async function notifySubscriptionEvent(notice: SubscriptionEventNotice): Promise<boolean> {
+  const { what, subscriptionId, stripeBarName, plan, periodEnd, matched } = notice;
+  const barLine = matched
+    ? `<a href="${SITE_URL}/bars/${escapeHtml(matched.slug)}">${escapeHtml(matched.name)}</a> (tier ${escapeHtml(matched.tier)})`
+    : `${escapeHtml(stripeBarName)} (no bar row matched; check the name in Stripe metadata)`;
+  return send({
+    subject: `Stripe subscription ${what}: ${matched?.name || stripeBarName}`,
+    html: `
+      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+        <h2 style="color:#1A1A1A;">Subscription ${escapeHtml(what)}</h2>
+        <p style="font-size:16px;margin:0 0 14px;">${barLine}</p>
+        <p style="padding:10px 12px;background:#fff3cd;color:#856404;font-size:14px;border-radius:6px;">
+          The tier has NOT been changed. Review the situation and decide;
+          scripts/audit-featured-tiers.mjs reconciles all paid tiers against Stripe.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:15px;">
+          ${fieldRows({
+            Subscription: subscriptionId,
+            'Stripe bar_name': stripeBarName,
+            Plan: plan || 'not set',
+            'Paid through': periodEnd || 'not set',
+          })}
+        </table>
+        <p style="margin-top:24px;font-size:13px;color:#999;">Bar admin: ${SITE_URL}/admin/bars</p>
       </div>
     `,
   });
