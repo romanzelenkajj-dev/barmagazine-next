@@ -56,7 +56,7 @@ export default function AdminOwnerEditsPage() {
   const [loginError, setLoginError] = useState('');
   const [subs, setSubs] = useState<OwnerSubmission[]>([]);
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState<'pending' | 'approved' | 'rejected' | 'all'>('pending');
+  const [tab, setTab] = useState<'pending' | 'approved' | 'rejected' | 'archived' | 'all'>('pending');
   const [busy, setBusy] = useState<string | null>(null);
   const [message, setMessage] = useState('');
   // Per-submission photo selection for over-limit photo uploads.
@@ -189,7 +189,7 @@ export default function AdminOwnerEditsPage() {
       </header>
 
       <div className="admin-claim-tabs">
-        {(['pending', 'approved', 'rejected', 'all'] as const).map(t => (
+        {(['pending', 'approved', 'rejected', 'archived', 'all'] as const).map(t => (
           <button
             key={t}
             onClick={() => setTab(t)}

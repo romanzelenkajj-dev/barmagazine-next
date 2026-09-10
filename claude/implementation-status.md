@@ -75,3 +75,13 @@ Running log of shipped work items and their merge commits. Newest first.
   without a pick (422 requiresPhotoPick).
 - Pending Apothéke LA photo_upload (6 photos, tier top10) is the first
   case: it now waits in /admin/review as a one-pick approval.
+
+## 2026-09-10 - 'archived' submission status (quiet shelf)
+- New owner_submissions status for setting a submission aside with no
+  publish, no reject flow, and no owner notification; submitted_data stays
+  intact. Owner API (/api/owner/bars) hides archived rows from the owner
+  dashboard; admin review inbox gains an "archived" tab.
+- Requires scripts/archive-status-migration.sql in the Supabase SQL Editor
+  (widens the status CHECK constraint and archives the Apothéke LA photo
+  submission, its 6 photos kept on the row). DDL cannot run through
+  PostgREST, so this one is a dashboard paste.

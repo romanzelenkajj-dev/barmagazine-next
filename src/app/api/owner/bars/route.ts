@@ -32,10 +32,14 @@ export async function GET(request: NextRequest) {
       .select('*')
       .eq('owner_id', owner.id);
 
+    // 'archived' is the quiet shelf: a submission set aside by an admin with
+    // no reject and no notification. Deliberately invisible to the owner -
+    // surfacing an unexplained status would defeat the point.
     const { data: submissions, error: subsError } = await supabase
       .from('owner_submissions')
       .select('*')
       .eq('owner_id', owner.id)
+      .neq('status', 'archived')
       .order('created_at', { ascending: false });
 
     // Was silent: a failure here returned an empty list, so an owner with
