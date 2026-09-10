@@ -22,7 +22,11 @@ interface AccoladeRecord {
 /** Data titles carry suffixes like "Best U.S. Hotel Bar — Top 4"; prose
     keeps the category alone. */
 function cleanTitle(title: string): string {
-  return title.split('—')[0].split(' - ')[0].trim();
+  return title
+    .split('—')[0]
+    .split(' - ')[0]
+    .replace(/\s*\([^)]*\)\s*$/, '')
+    .trim();
 }
 
 /** Phrase the single strongest accolade (highest score) for prose, or null. */

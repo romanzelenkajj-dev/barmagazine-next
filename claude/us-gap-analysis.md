@@ -340,3 +340,42 @@ Wave order (pairs with future outreach): Chicago, New Orleans, Austin, Denver, N
 - The Mountaineering Club
 
 Verification NOT started - tomorrow's sends come first.
+
+## RB WALKTHROUGH RESOLVED + PHOENIX WAVE LANDED (2026-09-10)
+
+Phoenix inserts done (11 live: century-grand, bitter-and-twisted,
+little-rituals, highball-phoenix, barcoa-agaveria,
+killer-whale-sex-club, coabana, don-woods-say-when, upstairs-at-flint,
+bar-1912, pretty-penny). Highball and Pretty Penny leave the missing
+bucket. Melinda's Alley held.
+
+### RB -> verified-insert pipeline (type Cocktail Bar, subtype Restaurant Bar where the restaurant frame applies)
+- Standby (Detroit)
+- Viridian (Oakland)
+- Holiday (Austin)
+- Your Only Friend (DC)
+- Sunny's Steakhouse (Miami)
+- Kimball House (Decatur)
+- Brennan's (New Orleans)
+- Cobra (Columbus) - CONDITIONAL: admit only if its own site reads cocktail-led (dual BT+RB)
+
+### Note
+- Sunken Harbor Club (Brooklyn): Roman asked to add it to the pipeline,
+  but it is ALREADY LISTED (slug sunken-harbor-club, New York; contacted
+  in batch 10). Nothing to insert.
+
+### Resolved-skip (out of every lane)
+Crown Shy, Valentine (the building's bar is covered by our bar-1912
+insert), Gage and Tollner itself, Daisies, Kato, Donna's LA,
+Macchialina, LPM Miami, The Grey, Kru, The Hope Farm, Huarachis
+Taqueria, Grey Ghost, Lighthouse BK, Latha, Chilte.
+
+### Parked for later review
+Hungry Eyes, Lilac Tiger, The Butterscotch Den, Bar Cecil.
+
+### Pipeline stands at ~68
+61 standard, minus Highball + Pretty Penny (inserted) and Chilte
+(skipped) = 58, plus the 8 RB admissions (Cobra conditional) and
+Donna's Houston unchanged = 66-68 depending on Cobra. No verification
+runs before Friday's sends; metro wave order unchanged (Chicago,
+New Orleans, Austin, Denver, Nashville, Dallas first).
