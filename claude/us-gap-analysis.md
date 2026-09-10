@@ -215,3 +215,128 @@ NOTE: the message defined codes CB/NCB/BT/HB/RB but no per-bar codes were attach
 
 ## DATA FLAG
 - Carousel Bar & Lounge appears TWICE in the table: `carousel-bar-lounge` AND `the-carousel-bar`, both New Orleans - duplicate row, needs a merge/deactivate decision.
+
+## RE-BUCKETED (Roman's RB set applied, 2026-09-10)
+
+Carousel duplicate MERGED per the Kwant method: carousel-bar-lounge kept (richer row: phone, hours, top10 tier), reactivated, 2026 Spirited nomination copied across; the-carousel-bar deactivated.
+
+### RB parked for Roman's editorial lane (27)
+
+- Bar Cecil [Palm Springs]
+- Brennan's [New Orleans]
+- Cobra [Columbus OH] (dual BT+RB: may re-enter via BT lane if own site reads cocktail-led)
+- Crown Shy [NYC/Brooklyn]
+- Daisies [Chicago]
+- Donna's LA [LA area]
+- Gage and Tollner [NYC/Brooklyn]
+- Grey Ghost [Detroit area]
+- Holiday [Austin]
+- Huarachis Taqueria [Phoenix]
+- Hungry Eyes [New Orleans]
+- Kato [LA area]
+- Kimball House [Atlanta]
+- Kru [Sacramento]
+- LPM Miami [Miami]
+- Lighthouse BK [NYC/Brooklyn]
+- Lilac Tiger [Chicago]
+- Macchialina [Miami]
+- Pretty Penny [Phoenix]
+- Standby [Detroit area]
+- Sunny's Steakhouse [Miami]
+- The Butterscotch Den [Sacramento]
+- The Grey [Savannah]
+- The Hope Farm [Fairhope AL]
+- Valentine [Phoenix]
+- Viridian [SF Bay]
+- Your Only Friend [DC]
+
+### Standard verified-insert pipeline (61) - own-site verification, Phoenix method
+
+Wave order (pairs with future outreach): Chicago, New Orleans, Austin, Denver, Nashville, Dallas, then the rest.
+
+**Chicago**
+- Bar Tre Dita
+- Charis Listening Bar
+- Double Fun
+- Friends of Friends
+- MONEYGUN
+- Sportsman's Club
+**New Orleans**
+- Chandelier Bar
+- Junebug
+- The Elysian Bar
+- The Sazerac Bar
+**Austin**
+- Bar Fino
+- Drink.Well
+**Denver**
+- Lady Jane
+- The Cruise Room
+- The Peach Crease Club
+**Nashville**
+- Eleven11
+- White Limozeen
+**Dallas**
+- Catbird
+- Midnight Rambler
+**Atlanta**
+- Bar Ana
+- JoJo's Beloved
+**Birmingham AL**
+- Adiós Bar
+- Bygones
+**DC**
+- Bar Betsie
+- No Goodbyes
+**Detroit area**
+- Best Kept Secret
+- Chenin
+**Hawaii**
+- Shipwreck Bar
+- Tikehau Lounge
+**Houston**
+- Donna's Houston
+- Johnny's Gold Brick
+- Reserve 101
+**LA area**
+- Baby Gee
+- Capri Club
+- Damn I Miss Paris
+- Lucia
+- Not No Bar
+- Real Charmer
+**Las Vegas**
+- Aft Cocktail Deck at the Wynn
+**Milwaukee**
+- PufferFish
+**Minneapolis**
+- Bar Mara
+- Meteor
+**Montecito**
+- The Manor Bar
+**NYC/Brooklyn**
+- Bar Kabawa
+- Birds
+- Dear Irving on Hudson
+- Dolores
+- Hello Hello Bar & Cafe
+- Lobby Bar at The Hotel Chelsea
+- Milly's
+- Nubeluz
+- Raines Law Room at the William
+**Phoenix**
+- Chilte
+- Highball
+**SF Bay**
+- Bar Maritime
+- Cavaña
+- Starlite
+- Tallboy
+**Sacramento**
+- The Snug
+**San Diego**
+- Ponyboy at The Pearl
+**Seattle**
+- The Mountaineering Club
+
+Verification NOT started - tomorrow's sends come first.

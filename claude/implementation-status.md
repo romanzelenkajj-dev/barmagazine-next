@@ -22,3 +22,10 @@ Running log of shipped work items and their merge commits. Newest first.
 - **Verified:** Vercel preview approved by Roman; post-deploy live smoke
   check (landing card, "black" typeahead + footer row, selection into
   claim step, 375px) passed 2026-09-08. Tests 209/209.
+
+## 2026-09-10 - Carousel Bar duplicate merge
+- Kwant method under standing approval: `carousel-bar-lounge` kept (richer:
+  phone, hours, top10 tier) and reactivated; 2026 Spirited Best U.S. Hotel
+  Bar nomination copied from `the-carousel-bar`, which is now inactive.
+  Old live URL /bars/the-carousel-bar now 404s (no redirect infrastructure
+  for bar slugs); flagged in case it shows up in GSC.
