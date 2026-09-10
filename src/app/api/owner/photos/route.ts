@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { boundedNoStoreFetch } from '@/lib/bounded-fetch';
 import { verifyOwnerToken } from '@/lib/supabase-auth';
 import { notifyOwnerSubmission } from '@/lib/notify';
+import { photoLimitForTier } from '@/lib/owner-fields';
 
 export async function POST(request: NextRequest) {
   const supabase = createClient(
@@ -34,12 +35,22 @@ export async function POST(request: NextRequest) {
     if (!bar) return NextResponse.json({ error: 'Not authorized' }, { status: 403 });
 
     // Unpaid tiers get one profile photo; the gallery is a Featured feature.
-    // The UI enforces this too, but the cap has to live where the upload does.
-    const isPaid = bar.tier === 'featured' || bar.tier === 'premium';
-    const accepted = isPaid ? photos : photos.slice(0, 1);
+    // The UI enforces this too, but the gate has to live where the upload
+    // does - and it REJECTS rather than silently truncating, so a direct
+    // API caller learns the rule instead of losing photos quietly.
+    const limit = photoLimitForTier(bar.tier);
+    if (limit !== null && photos.length > limit) {
+      return NextResponse.json(
+        {
+          error:
+            'Your plan includes 1 profile photo. Featured bars can display a full gallery. Please upload a single photo.',
+        },
+        { status: 400 }
+      );
+    }
 
     const uploadedUrls: string[] = [];
-    for (const photo of accepted) {
+    for (const photo of photos) {
       const ext = photo.name.split('.').pop();
       const fileName = `${barId}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
       const buffer = Buffer.from(await photo.arrayBuffer());

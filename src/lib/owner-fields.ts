@@ -51,6 +51,22 @@ export const OWNER_FORBIDDEN_FIELDS = [
 
 export type OwnerEditableField = (typeof OWNER_EDITABLE_FIELDS)[number];
 
+/**
+ * Photo entitlement per tier. Unpaid tiers (free, and the editorial top10
+ * pick) carry ONE profile photo; the gallery is what Featured sells. The
+ * limit is enforced at upload (/api/owner/photos rejects oversized
+ * submissions) and again at approval (a reviewer picks which photo publishes
+ * on an over-limit legacy submission; the rest stay stored on the row).
+ */
+export function isPaidTier(tier: string | null | undefined): boolean {
+  return tier === 'featured' || tier === 'premium';
+}
+
+/** Max photos an owner on this tier may publish; null means no limit. */
+export function photoLimitForTier(tier: string | null | undefined): number | null {
+  return isPaidTier(tier) ? null : 1;
+}
+
 const ALLOWED = new Set<string>(OWNER_EDITABLE_FIELDS);
 
 /**

@@ -57,3 +57,21 @@ Running log of shipped work items and their merge commits. Newest first.
 - /admin/bars now filters to is_active by default; a "Show inactive (n)"
   toolbar toggle reveals the historical rows (closures, editorial holds).
   Client-side only; the API still returns everything.
+
+## 2026-09-10 - Tier photo limits enforced at upload + tier-aware approval
+- Unpaid tiers (free, top10) carry ONE profile photo; Featured/premium keep
+  the multi-photo gallery. Limit lives in src/lib/owner-fields.ts
+  (photoLimitForTier, fail-closed for unknown tiers) and is enforced twice:
+  /api/owner/photos now REJECTS over-limit uploads with a clear message
+  (no more silent truncation), and the owner dashboard upload card says
+  "Your plan includes 1 profile photo. Featured bars can display a full
+  gallery." with a single-file input.
+- Tier-aware approval: approving a photo submission on an unpaid bar
+  REPLACES the profile photo (paid tiers still append). If a submission
+  holds more photos than the plan allows (legacy rows from before the
+  gate), the review UI shows the photos as pickable thumbnails; the
+  reviewer's pick publishes, the rest stay stored in submitted_data on the
+  approved row (they are the upgrade path), and the API refuses to approve
+  without a pick (422 requiresPhotoPick).
+- Pending Apothéke LA photo_upload (6 photos, tier top10) is the first
+  case: it now waits in /admin/review as a one-pick approval.

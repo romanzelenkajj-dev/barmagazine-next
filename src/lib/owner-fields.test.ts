@@ -4,6 +4,8 @@ import {
   buildOwnerBarUpdate,
   OWNER_EDITABLE_FIELDS,
   OWNER_FORBIDDEN_FIELDS,
+  isPaidTier,
+  photoLimitForTier,
 } from './owner-fields';
 
 describe('owner-fields', () => {
@@ -83,6 +85,25 @@ describe('owner-fields', () => {
 
     it('returns an empty object when nothing is permitted', () => {
       expect(buildOwnerBarUpdate({ description: 'x' })).toEqual({});
+    });
+  });
+
+  describe('photoLimitForTier', () => {
+    it('unpaid tiers carry one profile photo', () => {
+      expect(photoLimitForTier('free')).toBe(1);
+      expect(photoLimitForTier('top10')).toBe(1);
+      // Unknown or missing tiers must fail closed to the unpaid limit.
+      expect(photoLimitForTier(null)).toBe(1);
+      expect(photoLimitForTier(undefined)).toBe(1);
+      expect(photoLimitForTier('something-new')).toBe(1);
+    });
+
+    it('paid tiers keep the unlimited gallery', () => {
+      expect(photoLimitForTier('featured')).toBeNull();
+      expect(photoLimitForTier('premium')).toBeNull();
+      expect(isPaidTier('featured')).toBe(true);
+      expect(isPaidTier('premium')).toBe(true);
+      expect(isPaidTier('free')).toBe(false);
     });
   });
 });

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase-auth';
-import { buildOwnerBarUpdate, OWNER_EDITABLE_FIELDS } from '@/lib/owner-fields';
+import { buildOwnerBarUpdate, OWNER_EDITABLE_FIELDS, photoLimitForTier } from '@/lib/owner-fields';
 import { revalidateBarPages } from '@/lib/revalidate-bars';
 
 export const dynamic = 'force-dynamic';
@@ -78,14 +78,28 @@ export async function GET(request: NextRequest) {
       k => !(OWNER_EDITABLE_FIELDS as readonly string[]).includes(k) && k !== 'gallery_images'
     );
 
+    // Over-limit photo submission on an unpaid bar: the reviewer must pick
+    // which photo publishes (the rest stay stored on the row), so hand the
+    // UI the options and the limit rather than making it re-derive them.
+    const submittedPhotos = Array.isArray(applied.photos)
+      ? (applied.photos as unknown[]).filter((u): u is string => typeof u === 'string')
+      : null;
+    const limit = photoLimitForTier(bar?.tier);
+    const photo_pick =
+      sub.status === 'pending' && submittedPhotos && limit !== null && submittedPhotos.length > limit
+        ? { limit, options: submittedPhotos }
+        : null;
+
     return {
       ...sub,
       bar_name: bar?.name ?? null,
       bar_slug: bar?.slug ?? null,
+      bar_tier: bar?.tier ?? null,
       owner_email: owner?.email ?? null,
       diff,
       dropped,
       no_effect: diff.length === 0,
+      photo_pick,
     };
   });
 
@@ -98,7 +112,7 @@ export async function POST(request: NextRequest) {
   const supabase = createAdminClient();
 
   try {
-    const { action, submissionId, notes } = await request.json();
+    const { action, submissionId, notes, selectedPhotos } = await request.json();
     if (!submissionId) {
       return NextResponse.json({ error: 'submissionId required' }, { status: 400 });
     }
@@ -132,7 +146,7 @@ export async function POST(request: NextRequest) {
     // and approval must not let a former owner's edit through.
     const { data: bar } = await supabase
       .from('bars')
-      .select('id, slug, owner_id, photos')
+      .select('id, slug, owner_id, photos, tier')
       .eq('id', sub.bar_id)
       .maybeSingle();
 
@@ -156,15 +170,52 @@ export async function POST(request: NextRequest) {
     // THE allowlist gate. Never spread submitted_data into this.
     const update = buildOwnerBarUpdate(sub.submitted_data);
 
-    // Photo uploads append rather than replace, so an approval can't wipe the
-    // existing gallery.
+    // Records what tier-aware approval did, so the row explains itself later.
+    let autoNote: string | null = null;
+
     if (Array.isArray(update.photos)) {
-      const existing = Array.isArray(bar.photos) ? bar.photos : [];
-      const merged = existing.slice();
-      for (const url of update.photos as string[]) {
-        if (!merged.includes(url)) merged.push(url);
+      const submitted = (update.photos as unknown[]).filter(
+        (u): u is string => typeof u === 'string'
+      );
+      const limit = photoLimitForTier(bar.tier);
+
+      if (limit !== null) {
+        // Unpaid tier: the approved photo IS the profile photo, so it
+        // replaces what's live rather than appending a second one. If the
+        // submission holds more than the plan allows (rows written before
+        // the upload gate shipped), the reviewer picks which photo
+        // publishes; the rest stay stored on the submission, unpublished.
+        let chosen = submitted;
+        if (submitted.length > limit) {
+          const picked = Array.isArray(selectedPhotos)
+            ? (selectedPhotos as unknown[]).filter(
+                (u): u is string => typeof u === 'string' && submitted.includes(u)
+              )
+            : [];
+          if (picked.length !== limit) {
+            return NextResponse.json(
+              {
+                error: `This bar's plan includes ${limit} profile photo. Pick which photo to publish; the others stay stored on the submission.`,
+                requiresPhotoPick: true,
+                photoOptions: submitted,
+              },
+              { status: 422 }
+            );
+          }
+          chosen = picked;
+          autoNote = `Published ${limit} of ${submitted.length} photos (plan limit); the rest remain stored on this submission.`;
+        }
+        update.photos = chosen;
+      } else {
+        // Paid tier: append rather than replace, so an approval can't wipe
+        // the existing gallery.
+        const existing = Array.isArray(bar.photos) ? bar.photos : [];
+        const merged = existing.slice();
+        for (const url of submitted) {
+          if (!merged.includes(url)) merged.push(url);
+        }
+        update.photos = merged;
       }
-      update.photos = merged;
     }
 
     if (Object.keys(update).length === 0) {
@@ -189,7 +240,7 @@ export async function POST(request: NextRequest) {
 
     await supabase
       .from('owner_submissions')
-      .update({ status: 'approved', admin_notes: notes || null, reviewed_at: now })
+      .update({ status: 'approved', admin_notes: notes || autoNote, reviewed_at: now })
       .eq('id', sub.id);
 
     revalidateBarPages([bar.slug]);

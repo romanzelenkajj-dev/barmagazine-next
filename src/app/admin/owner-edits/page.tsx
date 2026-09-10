@@ -31,6 +31,9 @@ interface OwnerSubmission {
   diff: Diff[];
   dropped: string[];
   no_effect: boolean;
+  /** Set when the submission holds more photos than the bar's plan allows:
+      the reviewer must pick which one(s) publish before approving. */
+  photo_pick: { limit: number; options: string[] } | null;
 }
 
 const FIELD_LABEL: Record<string, string> = {
@@ -56,6 +59,8 @@ export default function AdminOwnerEditsPage() {
   const [tab, setTab] = useState<'pending' | 'approved' | 'rejected' | 'all'>('pending');
   const [busy, setBusy] = useState<string | null>(null);
   const [message, setMessage] = useState('');
+  // Per-submission photo selection for over-limit photo uploads.
+  const [picks, setPicks] = useState<Record<string, string[]>>({});
 
   const fetchSubs = useCallback(async (status: string, secret: string) => {
     setLoading(true);
@@ -106,7 +111,18 @@ export default function AdminOwnerEditsPage() {
     }
   }
 
-  async function act(action: string, id: string) {
+  function togglePick(subId: string, url: string, limit: number) {
+    setPicks(prev => {
+      const current = prev[subId] || [];
+      let next: string[];
+      if (current.includes(url)) next = current.filter(u => u !== url);
+      else if (current.length < limit) next = [...current, url];
+      else next = limit === 1 ? [url] : current;
+      return { ...prev, [subId]: next };
+    });
+  }
+
+  async function act(action: string, id: string, selectedPhotos?: string[]) {
     if (!adminSecret) return;
     setBusy(id);
     setMessage('');
@@ -114,7 +130,7 @@ export default function AdminOwnerEditsPage() {
       const res = await fetch('/api/admin/owner-submissions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret },
-        body: JSON.stringify({ action, submissionId: id }),
+        body: JSON.stringify({ action, submissionId: id, selectedPhotos }),
       });
       const data = await res.json();
       setMessage(
@@ -214,7 +230,7 @@ export default function AdminOwnerEditsPage() {
 
               {sub.dropped.length > 0 && (
                 <p className="admin-claim-note">
-                  <strong>Not applicable:</strong> {sub.dropped.join(', ')} — outside the owner
+                  <strong>Not applicable:</strong> {sub.dropped.join(', ')}. Outside the owner
                   allowlist and will not be written.
                 </p>
               )}
@@ -244,13 +260,60 @@ export default function AdminOwnerEditsPage() {
                 <p className="admin-claim-note"><strong>Note:</strong> {sub.admin_notes}</p>
               )}
 
+              {sub.status === 'pending' && sub.photo_pick && (
+                <div style={{ marginTop: 12 }}>
+                  <p className="admin-claim-note">
+                    <strong>
+                      This bar&apos;s plan includes {sub.photo_pick.limit} profile photo
+                      {sub.photo_pick.limit > 1 ? 's' : ''}.
+                    </strong>{' '}
+                    Pick which one publishes; the others stay stored on the submission
+                    (they publish if the bar upgrades to Featured).
+                  </p>
+                  <div className="admin-thumbs" style={{ marginTop: 8 }}>
+                    {sub.photo_pick.options.map(url => {
+                      const chosen = (picks[sub.id] || []).includes(url);
+                      return (
+                        <button
+                          key={url}
+                          type="button"
+                          onClick={() => togglePick(sub.id, url, sub.photo_pick!.limit)}
+                          className="admin-thumb"
+                          aria-pressed={chosen}
+                          style={{
+                            padding: 0,
+                            background: 'none',
+                            cursor: 'pointer',
+                            borderRadius: 10,
+                            border: chosen ? '3px solid #7B1E1E' : '3px solid transparent',
+                          }}
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={url} alt="Submitted photo" loading="lazy" />
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
               {sub.status === 'pending' && (
                 <div className="owner-dash-card-actions">
                   <button
                     className="feature-btn"
-                    disabled={busy === sub.id || sub.no_effect}
-                    onClick={() => act('approve', sub.id)}
-                    title={sub.no_effect ? 'Nothing to publish' : undefined}
+                    disabled={
+                      busy === sub.id ||
+                      sub.no_effect ||
+                      (!!sub.photo_pick && (picks[sub.id] || []).length !== sub.photo_pick.limit)
+                    }
+                    onClick={() => act('approve', sub.id, sub.photo_pick ? picks[sub.id] : undefined)}
+                    title={
+                      sub.no_effect
+                        ? 'Nothing to publish'
+                        : sub.photo_pick && (picks[sub.id] || []).length !== sub.photo_pick.limit
+                          ? 'Pick which photo publishes first'
+                          : undefined
+                    }
                   >
                     {busy === sub.id ? 'Working…' : 'Approve & publish'}
                   </button>
