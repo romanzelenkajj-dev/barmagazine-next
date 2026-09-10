@@ -1,0 +1,115 @@
+# Bare-profile report (2026-09-10)
+
+Active bars: 1227. No description: 183.
+
+## PRIORITY manual enrichment queue - bare WITH accolades (33)
+
+- happy-accidents [Albuquerque, United States] - 1 accolade(s)
+- soka [Bengaluru, India] - 1 accolade(s)
+- missys [Calgary, Canada] - 1 accolade(s)
+- alquimico [Cartagena, Colombia] - 2 accolade(s)
+- gus-sip-dip [Chicago, United States] - 1 accolade(s)
+- panda-sons [Edinburgh, United Kingdom] - 3 accolade(s)
+- library-by-the-sea [Grand Cayman, Cayman Islands] - 1 accolade(s)
+- el-gallo-altanero [Guadalajara, Mexico] - 2 accolade(s)
+- hope-sesame [Guangzhou, China] - 2 accolade(s)
+- chimney [Hangzhou, China] - 1 accolade(s)
+- the-hudson-rooms [Hanoi, Vietnam] - 1 accolade(s)
+- raa [Hiriketiya, Sri Lanka] - 1 accolade(s)
+- smoke-bitters [Hiriketiya, Sri Lanka] - 2 accolade(s)
+- maltail [Kaohsiung, Taiwan] - 1 accolade(s)
+- barc [Kathmandu, Nepal] - 1 accolade(s)
+- cabinet-8 [Kuala Lumpur, Malaysia] - 1 accolade(s)
+- lady-bee [Lima, Peru] - 2 accolade(s)
+- the-st-regis-bar [Macau, China] - 1 accolade(s)
+- mamba-negra [Medellín, Colombia] - 1 accolade(s)
+- hero-bar [Nairobi, Kenya] - 1 accolade(s)
+- l-antiquario [Naples, Italy] - 2 accolade(s)
+- aabbcc [New Delhi, India] - 1 accolade(s)
+- bar-nayuta [Osaka, Japan] - 1 accolade(s)
+- craftroom [Osaka, Japan] - 1 accolade(s)
+- backdoor-bodega [Penang, Malaysia] - 1 accolade(s)
+- identidad [San Juan, Puerto Rico] - 1 accolade(s)
+- la-factora [San Juan, Puerto Rico] - 1 accolade(s)
+- bekeb [San Miguel de Allende, Mexico] - 1 accolade(s)
+- mo-bar-shenzhen [Shenzhen, China] - 1 accolade(s)
+- tan-tan [São Paulo, Brazil] - 1 accolade(s)
+- vender [Taichung, Taiwan] - 2 accolade(s)
+- gorilla [Thessaloniki, Greece] - 1 accolade(s)
+- aruba-day-drink [Tijuana, Mexico] - 1 accolade(s)
+
+## Bare without accolades (150) - covered by the composed fallback
+
+- Taipei: 6
+- Venice: 6
+- Ho Chi Minh City: 6
+- Madrid: 6
+- Denver: 6
+- São Paulo: 5
+- Philadelphia: 5
+- Boston: 5
+- New Orleans: 4
+- Seoul: 4
+- Florence: 4
+- Bangkok: 4
+- San Francisco: 4
+- Dubai: 3
+- Oaxaca: 3
+- Manchester: 2
+- Edinburgh: 2
+- Porto: 2
+- Kyoto: 2
+- Bologna: 2
+- Johannesburg: 2
+- Cartagena: 2
+- Milan: 2
+- Manila: 2
+- Lima: 2
+- Mexico City: 2
+- Lecce: 2
+- Istanbul: 2
+- Barcelona: 2
+- Bengaluru: 2
+- Las Vegas: 2
+- Chicago: 2
+- Budapest: 2
+- Athens: 2
+- Jakarta: 2
+- Mumbai: 2
+- Saint Petersburg: 1
+- Hanoi: 1
+- Montevideo: 1
+- Bucharest: 1
+- Louisville: 1
+- Zaragoza: 1
+- Cardiff: 1
+- Rome: 1
+- Austin: 1
+- Bristol: 1
+- San Diego: 1
+- Cannes: 1
+- Pagani: 1
+- Atlanta: 1
+- Phoenix: 1
+- Oslo: 1
+- Palermo: 1
+- Bali: 1
+- Salvador: 1
+- Brisbane: 1
+- Santiago: 1
+- Birmingham: 1
+- Accra: 1
+- Glasgow: 1
+- Bordeaux: 1
+- Naples: 1
+- Bergamo: 1
+- Abu Dhabi: 1
+- Vienna: 1
+- Rio de Janeiro: 1
+- Shanghai: 1
+- Paris: 1
+- Hong Kong: 1
+- Buenos Aires: 1
+- Zurich: 1
+- Montreal: 1
+- Tokyo: 1

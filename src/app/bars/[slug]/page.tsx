@@ -17,6 +17,7 @@ import BarGallery from '@/components/BarGallery';
 import { AccoladeBadges } from '@/components/AccoladeBadges';
 import { HighlightedText } from '@/components/HighlightedText';
 import { awardStrings, hasFiftyBest } from '@/lib/accolades';
+import { fallbackDescription } from '@/lib/bar-fallback';
 import { CardStatusPills } from '@/components/CardStatusPills';
 
 export const revalidate = 300;
@@ -43,7 +44,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!bar) return {};
 
   const title = `${bar.name} | ${formatBarType(bar.type)} in ${bar.city}, ${bar.country}`;
-  const description = bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} located in ${bar.city}, ${bar.country}. Discover it on BarMagazine — the global bar directory.`;
+  const description = bar.description || fallbackDescription(bar);
 
   return {
     title,
@@ -168,7 +169,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
     '@context': 'https://schema.org',
     '@type': 'BarOrNightclub',
     name: bar.name,
-    description: bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} in ${bar.city}, ${bar.country}.`,
+    description: bar.description || fallbackDescription(bar),
     url: `${SITE_URL}/bars/${bar.slug}`,
     ...(bar.address && {
       address: { '@type': 'PostalAddress', streetAddress: bar.address, addressLocality: bar.city, addressCountry: bar.country },
@@ -327,7 +328,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               {/* Bolding is computed at render time; the stored text stays
                   plain. The fallback keeps the no-em-dash copy rule. */}
               <HighlightedText
-                text={bar.description || `${bar.name} is a ${formatBarType(bar.type).toLowerCase()} in ${bar.city}, ${bar.country}. Discover it on BarMagazine, the global bar directory.`}
+                text={bar.description || fallbackDescription(bar)}
               />
             </p>
             <div className="bar-v2-details">
