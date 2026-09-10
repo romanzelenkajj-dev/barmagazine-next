@@ -91,6 +91,10 @@ export default function AdminBarsClient() {
   const [sortAsc, setSortAsc] = useState(true);
   const [countryFilter, setCountryFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
+  // Everyday view is active bars only; inactive rows are history (closures
+  // etc.) and only appear on request. Note a bar deactivated via the quick
+  // toggle disappears from the list until this is switched on.
+  const [showInactive, setShowInactive] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
 
   const showToast = useCallback((message: string, type: 'success' | 'error') => {
@@ -266,6 +270,7 @@ export default function AdminBarsClient() {
   const filteredBars = useMemo(() => {
     const q = search.toLowerCase();
     const result = bars.filter(bar => {
+      if (!showInactive && !bar.is_active) return false;
       const matchSearch = !search ||
         bar.name.toLowerCase().includes(q) ||
         bar.city.toLowerCase().includes(q) ||
@@ -287,7 +292,9 @@ export default function AdminBarsClient() {
     });
 
     return result;
-  }, [bars, search, countryFilter, typeFilter, sortKey, sortAsc]);
+  }, [bars, search, countryFilter, typeFilter, sortKey, sortAsc, showInactive]);
+
+  const inactiveCount = useMemo(() => bars.filter(b => !b.is_active).length, [bars]);
 
   // Owner edits only — claims and new bars aren't loaded here, so the inbox
   // itself shows the per-queue counts. This is a nudge, not a total.
@@ -416,6 +423,15 @@ export default function AdminBarsClient() {
           <option value="">All Types</option>
           {types.map(t => <option key={t} value={t}>{t}</option>)}
         </select>
+        <label style={styles.inactiveToggle} title="Inactive bars are kept as history (closures, holds); show them when you need it">
+          <input
+            type="checkbox"
+            checked={showInactive}
+            onChange={e => setShowInactive(e.target.checked)}
+            style={{ width: 15, height: 15 }}
+          />
+          Show inactive{inactiveCount > 0 ? ` (${inactiveCount})` : ''}
+        </label>
       </div>
 
       {/* Table */}
@@ -756,6 +772,20 @@ const styles: Record<string, React.CSSProperties> = {
     cursor: 'pointer',
     fontSize: 14,
     padding: 0,
+  },
+  inactiveToggle: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 7,
+    fontSize: 13,
+    fontWeight: 500,
+    padding: '8px 14px',
+    borderRadius: 10,
+    border: '1.5px solid #e0d8d0',
+    background: '#fff',
+    color: '#1a1a1a',
+    cursor: 'pointer',
+    userSelect: 'none' as const,
   },
   select: {
     fontSize: 13,

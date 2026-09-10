@@ -63,9 +63,13 @@ const nextConfig = {
   async redirects() {
     return [
       // ---- Merged bar slugs (STANDARD STEP for every duplicate merge) ----
-      // When two bar rows are merged, the deactivated slug 301s to the kept
-      // one so a previously-live profile URL never 404s. Append a pair here
-      // in the same commit that deactivates the duplicate row.
+      // When two bar rows are merged, the losing slug 301s to the kept one
+      // so a previously-live profile URL never 404s. Procedure: merge data
+      // into the richer row, append the pair here in the same commit, then
+      // hard-delete the duplicate row (after confirming no bar_claims /
+      // owner_submissions rows reference it) and note it in
+      // claude/implementation-status.md. Duplicates are deleted; closures
+      // stay in the table as inactive history.
       ...[
         ['kwant-mayfair', 'kwant'],
         ['la-petite-maison', 'lpm-dubai'],

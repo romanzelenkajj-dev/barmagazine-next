@@ -36,3 +36,24 @@ Running log of shipped work items and their merge commits. Newest first.
   black-swan-lab -> black-swan-budapest, the-carousel-bar ->
   carousel-bar-lounge. STANDARD: every future duplicate merge appends
   its pair in the same commit that deactivates the losing row.
+
+## 2026-09-10 - Duplicate rows hard-deleted (STANDARD updated)
+- The four merged duplicate rows are DELETED from bars, not just
+  inactive (Roman: duplicates are noise, not history; closures stay
+  inactive). Deleted, with pre-delete checks passed (zero bar_claims /
+  owner_submissions references; 301 redirect live in next.config.mjs):
+  - the-carousel-bar (35924999-18c3-4a37-bcbb-a0630f83f7d0) -> carousel-bar-lounge
+  - kwant-mayfair (0e876c23-86fd-44e9-8140-b84d1e10372b) -> kwant
+  - la-petite-maison (b6c80600-ae24-4962-9d50-45c7ffffefdd) -> lpm-dubai
+  - black-swan-lab (6011ebfa-a37b-42d4-87d2-5d4c1cd0be4b) -> black-swan-budapest
+- STANDARD merge procedure is now: (1) merge data into the richer row,
+  (2) append the 301 pair to next.config.mjs in the same commit,
+  (3) verify no bar_claims/owner_submissions rows point at the losing
+  row, then hard-delete it, (4) note the merge + deletion here.
+- Same pass: carousel-bar-lounge instagram corrected carouselbar ->
+  hotelmonteleone (venue posts live on the hotel account).
+
+## 2026-09-10 - Admin listing defaults to active bars
+- /admin/bars now filters to is_active by default; a "Show inactive (n)"
+  toolbar toggle reveals the historical rows (closures, editorial holds).
+  Client-side only; the API still returns everything.
