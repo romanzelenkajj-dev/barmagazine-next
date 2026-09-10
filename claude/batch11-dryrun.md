@@ -299,3 +299,10 @@ Left bare, with reasons (4):
 - drink-art-gallery: description existed; no hours published anywhere on the site.
 
 All copy US English, prose, no em dashes (asserted programmatically before write).
+
+### Officina Milano website pulled (2026-09-10, Roman's call)
+bars.website cleared temporarily so the profile does not send readers to
+the spam-injected site. RESTORE URL when their site is clean:
+https://officinamilano.eu/
+La Menagere Roma confirmed open (SevenRooms/TheFork/Tripadvisor live);
+their stale site page needs no action. Both stay in the 06:30 send.
