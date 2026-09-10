@@ -273,3 +273,29 @@ Proposed split (whole countries kept together): wave3a 45 + wave3b 40, 46 queued
 - Emails for both waves written to bars.email (87, email-is-null guard). Region mapping applied: 336 rows, all 1,216 active bars now on the 7 standard regions.
 - Dry-runs clean: 45/45 and 42/42, zero guard hits.
 - 2026-09-09 later: la-siesta-budapest PULLED from wave 3a - held for editorial review (site describes a nightclub). Email stays on file; slug removed from the armed send list.
+
+
+## WAVE 3b ENRICHMENT PASS (2026-09-10, night before send)
+16 of 42 roster bars were missing description or hours. Own-site sources only; writes guarded on empty fields.
+
+Enriched (12):
+- depero: description (Futurist-inspired bar/pizzeria, from their manifesto copy). No hours published.
+- alto-rooftop: description (rooftop + pool atop Villa del Mare, Cervia). No hours published.
+- caffe-paszkowski: description (since 1903, Caffe Concerto history) + full weekly hours.
+- piano-35-lounge-bar: description (167m up the Intesa Sanpaolo tower). No hours published (site lists only event dates).
+- botanero: description (Latin American cantina concept, Rotterdam). No hours published.
+- dry-martini-sorrento: description (6th Dry Martini worldwide, Majestic Palace rooftop, 200 cocktails). No hours published.
+- la-drogheria: description (since 2002, Piazza Vittorio Veneto) + full weekly hours.
+- mercy-brown: description (unsigned bar, jazz and burlesque, est. 2015) + full weekly hours (Polish-language page).
+- time-social-bar: description (cicchetti + natural wines, Venice). No hours published.
+- himkok: description (on-site distillery, aquavit/gin/vodka, Oslo) + full weekly hours.
+- rita-s-tiki-room: hours only (Tue-Sat 7:30pm-3am; Sun 5:30pm-1am); description already existed.
+- freni-e-frizioni: hours only (Daily 6:30pm-2am, from 'OPEN EVERYDAY' banner); description already existed.
+
+Left bare, with reasons (4):
+- il-mercante (Venice): site renders entirely client-side; zero crawlable copy. Description and hours stay empty.
+- officina-milano: description existed; NO hours found - and FLAG: their site is compromised, injected with casino spam paragraphs (Czech/Russian gambling text on every page). Their harvested email may still work but Roman should know before judging replies.
+- la-menagere-rome: description existed; no hours - FLAG: their own site labels the Rome location 'WORK IN PROGRESS' (announcing the opening). If it has not opened, the listing itself may be premature; email still goes out unless Roman pulls it.
+- drink-art-gallery: description existed; no hours published anywhere on the site.
+
+All copy US English, prose, no em dashes (asserted programmatically before write).
