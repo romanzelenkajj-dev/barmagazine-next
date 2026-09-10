@@ -29,3 +29,10 @@ Running log of shipped work items and their merge commits. Newest first.
   Bar nomination copied from `the-carousel-bar`, which is now inactive.
   Old live URL /bars/the-carousel-bar now 404s (no redirect infrastructure
   for bar slugs); flagged in case it shows up in GSC.
+
+## 2026-09-10 - Merged-slug 301 redirects (STANDARD STEP)
+- next.config.mjs redirects() now carries a merged-bar-slug map:
+  kwant-mayfair -> kwant, la-petite-maison -> lpm-dubai,
+  black-swan-lab -> black-swan-budapest, the-carousel-bar ->
+  carousel-bar-lounge. STANDARD: every future duplicate merge appends
+  its pair in the same commit that deactivates the losing row.

@@ -62,6 +62,20 @@ const nextConfig = {
   // 301 redirects: old WordPress URLs → new Next.js equivalents
   async redirects() {
     return [
+      // ---- Merged bar slugs (STANDARD STEP for every duplicate merge) ----
+      // When two bar rows are merged, the deactivated slug 301s to the kept
+      // one so a previously-live profile URL never 404s. Append a pair here
+      // in the same commit that deactivates the duplicate row.
+      ...[
+        ['kwant-mayfair', 'kwant'],
+        ['la-petite-maison', 'lpm-dubai'],
+        ['black-swan-lab', 'black-swan-budapest'],
+        ['the-carousel-bar', 'carousel-bar-lounge'],
+      ].map(([from, to]) => ({
+        source: `/bars/${from}`,
+        destination: `/bars/${to}`,
+        permanent: true,
+      })),
       // Sub-category consolidations
       { source: '/category/spirits', destination: '/category/brands', permanent: true },
       { source: '/category/wines', destination: '/category/brands', permanent: true },
