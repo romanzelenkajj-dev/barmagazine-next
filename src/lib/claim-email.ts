@@ -36,6 +36,19 @@ export function claimEmailSubject(barName: string): string {
   return `Confirm you manage ${barName} on BarMagazine`;
 }
 
+/**
+ * Bulletproof email CTA: background and padding live on the td (bgcolor
+ * attribute + inline style), the anchor is inline-styled, and Outlook
+ * desktop gets a VML roundrect via MSO conditionals - anchor-only pill
+ * buttons overflowed in Roundcube quoted replies and worse in Outlook.
+ * Border-radius stays progressive enhancement. Callers pass a PRE-ESCAPED
+ * label and href.
+ */
+function emailCta(href: string, label: string): string {
+  const width = Math.min(440, Math.round(70 + label.length * 8.5));
+  return `<!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${href}" style="height:42px;v-text-anchor:middle;width:${width}px;" arcsize="50%" strokecolor="#1A1A1A" fillcolor="#1A1A1A"><w:anchorlock/><center style="color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:600;">${label}</center></v:roundrect><![endif]--><!--[if !mso]><!--><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#1A1A1A" style="background-color:#1A1A1A;border-radius:100px;padding:12px 22px;"><a href="${href}" style="display:inline-block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:600;text-decoration:none;">${label}</a></td></tr></table><!--<![endif]-->`;
+}
+
 export function claimEmailHtml({ barName, actionLink }: Omit<ClaimLinkEmail, 'destination'>): string {
   const bar = escapeHtml(barName);
   const href = escapeHtml(actionLink);
@@ -52,12 +65,9 @@ export function claimEmailHtml({ barName, actionLink }: Omit<ClaimLinkEmail, 'de
         Confirm below to verify your email address and start managing the listing.
         The button opens a page where you confirm with one click.
       </p>
-      <p style="margin:28px 0;">
-        <a href="${href}"
-           style="background:#1A1A1A;color:#fff;padding:12px 22px;border-radius:100px;text-decoration:none;font-weight:600;display:inline-block;">
-          Confirm and claim ${bar}
-        </a>
-      </p>
+      <div style="margin:28px 0;">
+        ${emailCta(href, `Confirm and claim ${bar}`)}
+      </div>
       <p>
         Once confirmed you can keep your opening hours, contact details, menu and
         photos up to date. It&rsquo;s free, and there&rsquo;s nothing to pay or sign up for.
@@ -161,12 +171,9 @@ export async function sendLoginLinkEmail(
             <a href="https://barmagazine.com"><img src="https://barmagazine.com/logo-white.png" alt="BarMagazine" width="150" style="width:150px;height:auto;border:0;display:block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-weight:bold;" /></a>
           </div>
           <p>You asked to sign in to your BarMagazine owner dashboard.</p>
-          <p style="margin:28px 0;">
-            <a href="${escapeHtml(link)}"
-               style="background:#1A1A1A;color:#fff;padding:12px 22px;border-radius:100px;text-decoration:none;font-weight:600;display:inline-block;">
-              Open my dashboard
-            </a>
-          </p>
+          <div style="margin:28px 0;">
+            ${emailCta(escapeHtml(link), 'Open my dashboard')}
+          </div>
           <p>The button opens a page where you confirm the sign-in with one click.</p>
           <p style="color:#6B6B6B;">
             If you didn&rsquo;t request this, ignore it. Nothing happens without the click.
