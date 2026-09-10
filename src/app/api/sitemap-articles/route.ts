@@ -22,7 +22,13 @@ if (!process.env.WP_API && process.env.NODE_ENV === 'production') {
   );
 }
 
-export const revalidate = 3600;
+// Request-time rendering, deliberately: with `revalidate` these routes were
+// prerendered at BUILD time, where one upstream hiccup (WP 500 on posts page
+// 4, build f9c3fdd) is fatal to the whole deploy. At request time the CDN
+// Cache-Control (s-maxage + stale-while-revalidate) keeps them cheap and
+// serves stale through upstream errors; a build never waits on WordPress or
+// Supabase again.
+export const dynamic = 'force-dynamic';
 
 type WPEntry = {
   slug: string;
