@@ -94,3 +94,10 @@ list, newest-tile year in brackets.
 - [ ] `vesper` (2026) — https://barmagazine.com/bars/vesper
 
 80 bars flagged.
+## City-intro rank claims (added 2026-09-10)
+The 20 editorial intros in src/lib/city-intros.ts cite World's 50 Best
+2025 ranks and the 2026 regional lists (plus Spirited Awards years).
+When the next annual lists land, re-verify every named rank/award
+against bars.accolades and update the intros in the same pass as the
+description year refresh. Verification query pattern: select accolades
+where org_key in (w50b, na50b, a50b, e50b, totc) for the named bars.

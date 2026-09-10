@@ -9,6 +9,7 @@ import { createClient } from '@supabase/supabase-js';
 import type { Bar } from '@/lib/supabase';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
+import { getCityIntro } from '@/lib/city-intros';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarDirectorySidebar';
 
 /**
@@ -78,12 +79,14 @@ export async function generateMetadata({
   const barCount = bars.length;
   const currentYear = new Date().getFullYear();
 
+  // Live count interpolated at every ISR regeneration - never baked into
+  // static copy (the OG "600 bars" lesson).
   const description =
-    `Discover the ${barCount} best bars in ${cityName}, ${countryName}. ` +
-    `From cocktail bars and speakeasies to hotel bars and wine bars — ` +
-    `curated by BarMagazine.`;
+    `The ${barCount} best cocktail bars in ${cityName}, ${countryName}, ` +
+    `curated by BarMagazine for ${currentYear}. Speakeasies, hotel bars and ` +
+    `neighborhood rooms, with addresses, hours and signature serves.`;
 
-  const title = `${barCount} Best Bars in ${cityName} (${currentYear} Guide)`;
+  const title = `Best Cocktail Bars in ${cityName}`;
   const canonical = `${SITE_URL}/bars/city/${params.city}`;
 
   return {
@@ -164,6 +167,9 @@ export default async function CityPage({
 
   // Bar types for hero subtitle
   const types = Array.from(new Set(bars.map(b => b.type))).sort();
+
+  // Approved editorial intro for the top cities; template copy otherwise.
+  const cityIntro = getCityIntro(params.city);
 
   // Nearby Cities — removed from UI but kept for potential future use
   const _nearbyCities = allCities
@@ -246,19 +252,23 @@ export default async function CityPage({
           </div>
           <div className="directory-hero-inner">
             <h1>Best Bars in {cityName}</h1>
-            <p>
-              Explore {bars.length === 1 ? 'the top bar' : `the ${bars.length} best bars`} in {cityName},{' '}
-              {countryName} — handpicked by the BarMagazine editorial team.
-              {types.length > 0 && (
-                <>
-                  {' '}Our curated list covers {types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}
-                  {types.length > 3 ? ` and ${types.length - 3} more bar type${types.length - 3 > 1 ? 's' : ''}` : ''},{' '}
-                  ranging from intimate neighbourhood spots to world-renowned cocktail destinations.
-                </>
-              )}
-              {' '}Whether you are a local looking for your next favourite haunt or a visitor planning a bar crawl,
-              this guide covers the essential {cityName} bars you should not miss.
-            </p>
+            {cityIntro ? (
+              <p>{cityIntro}</p>
+            ) : (
+              <p>
+                Explore {bars.length === 1 ? 'the top bar' : `the ${bars.length} best bars`} in {cityName},{' '}
+                {countryName}, handpicked by the BarMagazine editorial team.
+                {types.length > 0 && (
+                  <>
+                    {' '}Our curated list covers {types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}
+                    {types.length > 3 ? ` and ${types.length - 3} more bar type${types.length - 3 > 1 ? 's' : ''}` : ''},{' '}
+                    ranging from intimate neighborhood spots to world-renowned cocktail destinations.
+                  </>
+                )}
+                {' '}Whether you are a local looking for your next favorite haunt or a visitor planning a bar crawl,
+                this guide covers the essential {cityName} bars you should not miss.
+              </p>
+            )}
             {types.length > 1 && (
               <div className="directory-hero-types">
                 {types.map(t => (

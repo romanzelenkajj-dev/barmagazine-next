@@ -68,7 +68,7 @@ export function BarDirectorySidebar() {
         className="bars-sidebar-ad"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster — CODE: BarMagazine" />
+        <img src="/banners/flavour-blaster.jpg" alt="Flavour Blaster · CODE: BarMagazine" />
       </a>
 
       {/* ── Top 10 Bars ── */}
