@@ -98,7 +98,10 @@ function AddYourBarForm() {
     if (upgradeBar && selectedPlan === 'free') setSelectedPlan('featured');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [upgradeBar]);
-  const [currency, setCurrency] = useState<string>('EUR');
+  // USD is the rule-book fallback (biggest audience); EUR only ever by
+  // positive detection. This initialized to EUR and stayed there when the
+  // geo fetch failed.
+  const [currency, setCurrency] = useState<string>('USD');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Detect currency on mount
