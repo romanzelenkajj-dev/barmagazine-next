@@ -97,3 +97,14 @@ Running log of shipped work items and their merge commits. Newest first.
 - scripts/audit-featured-tiers.mjs: read-only reconciliation of
   featured/premium bars against Stripe subscriptions (normalized bar_name
   matching, pagination, exit 1 on mismatch). First run: clean, 2/2 matched.
+
+## 2026-09-11 - Zig Zag merge completed (Seattle TOP 10 back to ten)
+- The 2026-08-25 pre-standard merge deactivated zig-zag-cafe-seattle
+  (tier top10) without moving the tier to the keeper, leaving Seattle's
+  TOP 10 at nine. Standard repair applied: zig-zag-cafe re-tiered
+  free -> top10 (keeper was richer on every other field, nothing else
+  copied), 301 zig-zag-cafe-seattle -> zig-zag-cafe added, dup row
+  hard-deleted after clean bar_claims/owner_submissions checks
+  (full-row snapshot taken pre-delete). Seattle active top10 = 10.
+- Sydney stays at nine pending Roman's tenth pick (The Hook closure);
+  shortlist in claude/top10-audit.md session notes.

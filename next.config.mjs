@@ -75,6 +75,7 @@ const nextConfig = {
         ['la-petite-maison', 'lpm-dubai'],
         ['black-swan-lab', 'black-swan-budapest'],
         ['the-carousel-bar', 'carousel-bar-lounge'],
+        ['zig-zag-cafe-seattle', 'zig-zag-cafe'],
       ].map(([from, to]) => ({
         source: `/bars/${from}`,
         destination: `/bars/${to}`,
