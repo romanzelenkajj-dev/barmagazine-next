@@ -131,3 +131,11 @@ Running log of shipped work items and their merge commits. Newest first.
   raw (machine format, not display copy). Convention documented in
   claude/hours-format.md. One data fix: backdoor-43 "18h30 - 2h30"
   hand-normalized to "18:30-02:30" (same meaning, house shape).
+
+## 2026-09-11 - aapex (Seoul) held, unverified current operation
+- NOT a closure. Inserted earlier today (Roman editorial addition), then
+  set is_active=false the same day: venue opened April 2026, all
+  traceable activity stops May 2026 and the Instagram is gone, so it is
+  held pending confirmation it currently trades. Full row (description,
+  hours, address, geocode) stays intact for one-line reactivation:
+  set is_active=true on slug aapex (id 9eb05cf7) once confirmed open.
