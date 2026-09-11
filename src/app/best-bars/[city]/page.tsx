@@ -1,4 +1,5 @@
 import { HighlightedText } from '@/components/HighlightedText';
+import { formatHoursForCountry } from '@/lib/format-hours';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -167,7 +168,7 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
                   )}
                   <div className="best-bars-meta">
                     {bar.address && <span className="best-bars-address">{bar.address}</span>}
-                    {bar.opening_hours && <span className="best-bars-hours">{bar.opening_hours}</span>}
+                    {bar.opening_hours && <span className="best-bars-hours">{formatHoursForCountry(bar.opening_hours, bar.country)}</span>}
                   </div>
                   <span className="best-bars-more">
                     Full profile

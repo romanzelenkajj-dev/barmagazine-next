@@ -121,3 +121,13 @@ Running log of shipped work items and their merge commits. Newest first.
 - Sanity check passed: cantina-ok was already in the ten; its W50B 2024
   No. 96 (extended list) placement was missing from accolades and is now
   added, sourced to the official previous-list/2024 archive page.
+
+## 2026-09-11 - Country-aware hours display wired
+- formatHoursForCountry() now renders opening_hours on the bar profile
+  (detail row + Plan Your Visit) and both /best-bars pages: 24-hour for
+  most of the world, am/pm for the 12-hour set (US, UK, Ireland, Canada,
+  Australia, New Zealand, Philippines, India - UK/Ireland approved).
+  Storage untouched; irregular strings render as stored; JSON-LD left
+  raw (machine format, not display copy). Convention documented in
+  claude/hours-format.md. One data fix: backdoor-43 "18h30 - 2h30"
+  hand-normalized to "18:30-02:30" (same meaning, house shape).

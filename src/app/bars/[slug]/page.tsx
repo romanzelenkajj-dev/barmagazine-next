@@ -17,6 +17,7 @@ import BarGallery from '@/components/BarGallery';
 import { AccoladeBadges } from '@/components/AccoladeBadges';
 import { HighlightedText } from '@/components/HighlightedText';
 import { awardStrings, hasFiftyBest } from '@/lib/accolades';
+import { formatHoursForCountry } from '@/lib/format-hours';
 import { fallbackDescription } from '@/lib/bar-fallback';
 import { CardStatusPills } from '@/components/CardStatusPills';
 
@@ -359,7 +360,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               {(bar as Bar & { opening_hours?: string }).opening_hours && (
                 <div className="bar-v2-detail">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                  <span>{(bar as Bar & { opening_hours?: string }).opening_hours}</span>
+                  <span>{formatHoursForCountry((bar as Bar & { opening_hours?: string }).opening_hours, bar.country)}</span>
                 </div>
               )}
             </div>
@@ -466,7 +467,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               {bar.opening_hours && (
                 <div className="bar-v2-visit-block">
                   <span className="bar-v2-visit-label">Opening hours</span>
-                  <span className="bar-v2-visit-value">{bar.opening_hours}</span>
+                  <span className="bar-v2-visit-value">{formatHoursForCountry(bar.opening_hours, bar.country)}</span>
                 </div>
               )}
               {bar.address && (
