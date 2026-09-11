@@ -1,0 +1,23 @@
+=== batch12 lane A (fresh) live send Fri Sep 11 09:00:05 PDT 2026 ===
+4 to send — will be logged as batch12-ca-fresh (2026-09-11)
+
+SENT Big Bar -> info@alcovecafe.com (id 369b6a2e-792d-4bd6-a304-d97c89e4dcce)
+SENT George's at the Cove (Level2) -> info@georgesatthecove.com (id b96b4d37-0996-4d22-abc9-a2518bd21d81)
+SENT Shibuya Nights at Cloak & Petal -> info@cloakandpetal.com (id 41eee837-bf2c-4ff1-ab14-da9692eec74f)
+SENT The Smoking Gun -> randy@thesmokinggunsd.com (id fa6e4914-7fc1-4600-b583-70dae3ff6bcb)
+=== batch12 lane B (photo nudge) live send Fri Sep 11 09:00:14 PDT 2026 ===
+12 to send — will be logged as batch12-ca-photo-nudge (2026-09-11)
+
+SENT The Whaling Bar -> concierge@whalingbarlj.com (id d0a85bb7-369b-4943-9975-2899f0a571bc)
+SENT Realm of the 52 Remedies -> 52remedies@commontheorysd.com (id 9e1cba91-8c5d-4dcd-a1dd-ae5cea9817f7)
+SENT ABV -> info@abvsf.com (id 2b6e6455-9a77-4f76-8315-0a541da0ed8a)
+SENT Bar Shoji -> hello@shojisf.com (id 94a79251-a7a2-41f3-af75-1c47108c643e)
+SENT Bar Sprezzatura -> press@barsprezzatura.com (id 134d5da8-2317-486b-8358-63bdd1727b62)
+SENT Buena Vista Cafe -> thebuenavista@comcast.net (id 99bc0cb8-926c-4bfe-aefa-5be70e506400)
+SENT Jilli -> jilli.sf25@gmail.com (id 260214e7-68a4-4f6f-a89c-ea23b7c05041)
+SENT Pacific Cocktail Haven -> info@pacificcocktailsf.com (id d93a93a1-d4fb-44c5-bbeb-81ac8cb78966)
+SENT Smuggler's Cove -> info@smugglerscovesf.com (id 392409e5-f417-480c-b660-1ae87f6ec860)
+SENT Tommy's Mexican Restaurant -> host@tommysmexican.com (id b7fe5510-9985-460c-9678-8153dec9848b)
+SENT Trick Dog -> info@trickdogbar.com (id cb5202b7-42a1-4c4a-84ed-b16bcad5a52d)
+SENT Wildhawk -> wildhawk@plumpjack.com (id 4f1b1d44-02f0-4927-babe-452e7d548f94)
+=== batch12 done Fri Sep 11 09:00:36 PDT 2026 ===
