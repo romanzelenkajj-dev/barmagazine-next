@@ -108,3 +108,16 @@ Running log of shipped work items and their merge commits. Newest first.
   (full-row snapshot taken pre-delete). Seattle active top10 = 10.
 - Sydney stays at nine pending Roman's tenth pick (The Hook closure);
   shortlist in claude/top10-audit.md session notes.
+
+## 2026-09-11 - Sydney TOP 10 back to ten (The Baxter Inn)
+- Roman's pick for the tenth slot after The Hook's closure. the-baxter-inn
+  re-tiered free -> top10 (guarded). Accolades backfilled from the official
+  W50B previous-list archive, all six ranked years verified: 2012 No. 7,
+  2013 No. 8, 2014 No. 7, 2015 No. 6, 2016 No. 12, 2017 No. 45. The "Best
+  Bar in Australasia 2014" title was NOT confirmable on official pages
+  (the archive carries no regional-award markers) and stays out per the
+  verify-or-omit rule; supporting context: Baxter was the highest-ranked
+  Australasian bar on the verified 2014 list.
+- Sanity check passed: cantina-ok was already in the ten; its W50B 2024
+  No. 96 (extended list) placement was missing from accolades and is now
+  added, sourced to the official previous-list/2024 archive page.
