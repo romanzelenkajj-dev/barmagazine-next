@@ -3250,27 +3250,6 @@ textarea.form-input {
   margin-bottom: 0;
 }
 
-/* Hide stats entirely */
-.directory-hero-stats {
-  display: none;
-}
-
-.directory-hero-stat {
-  display: none;
-}
-
-.directory-hero-stat:hover {
-  display: none;
-}
-
-.directory-hero-stat-count {
-  display: none;
-}
-
-.directory-hero-stat-label {
-  display: none;
-}
-
 /* Bar type tags in city page hero — Fix 8: hidden */
 .directory-hero-types {
   display: none;
