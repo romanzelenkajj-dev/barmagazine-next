@@ -46,6 +46,11 @@ const SUPA_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 if (!RESEND) { console.error('Missing RESEND_API_KEY (run: vercel env pull .env.vercel)'); process.exit(1); }
 if (!SUPA_URL || !SUPA_KEY) { console.error('Missing Supabase env'); process.exit(1); }
 
+// A launchd job can fire before Wi-Fi is up (wave 3b, 2026-09-11: ENOTFOUND
+// killed the whole wave before the first send). Wait for DNS, then start.
+const { waitForNetwork } = await import('./net-preflight.mjs');
+await waitForNetwork(SUPA_URL);
+
 const args = process.argv.slice(2);
 let overrideTo = null, live = false, resend = false, batchLabel = null;
 const requested = [];
