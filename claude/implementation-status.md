@@ -234,3 +234,28 @@ Running log of shipped work items and their merge commits. Newest first.
   checked: DB, profile, /bars, city page and /api/bars all agreed. The
   one surface still serving the old name mid-check was /api/bars/map,
   which is exactly the endpoint nothing revalidated.
+
+## 2026-09-14 - Zuma London delisted (admission rule, NOT a closure)
+- zuma-london set is_active=false because it fails the cocktail-led
+  admission test, not because anything happened to the venue. It is open
+  and trading. Its own page leads "authentic Japanese restaurant in
+  Knightsbridge, London | izakaya dining", publishes no bar hours (only
+  "bar is open for drinks all day"), names no bar lead, and runs roughly
+  85-90% food. Same grounds as the Zuma Hong Kong rejection.
+- Consequence: /bars/zuma-london now 404s. No redirect added, since a
+  delisting has no successor row to point at (unlike a duplicate merge).
+  Worth watching in GSC. London's TOP 10 is unaffected, zuma-london was
+  never in it.
+- zuma (Dubai, tier top10) deliberately UNTOUCHED, awaiting Roman's call:
+  it fails the same test on self-description, but is the only one of the
+  three to publish genuinely separate bar hours (Mon-Sun 12:00-02:00).
+  Demoting it would drop Dubai's TOP 10 to nine and need a replacement.
+- NOTE for future edits: two rows are named "Zuma", so an admin update by
+  barName hits both. Use barId.
+
+## 2026-09-14 - Ticuchi coordinates corrected
+- ticuchi stored coordinates that reverse-geocoded to Oaxaca, 366km from
+  its own address. Re-geocoded from "Petrarca 254, Polanco" against a
+  Mexico City bbox to 19.433633, -99.185450, which reverse-geocodes to
+  "Calle Francisco Petrarca 254" and sits 5km from the city centre. This
+  was the single genuine outlier in the coordinate audit.
