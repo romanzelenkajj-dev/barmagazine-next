@@ -365,3 +365,27 @@ Running log of shipped work items and their merge commits. Newest first.
   ruled out for Dubai, so it is worth a decision when he replaces it.
 - Three rows are now named "Zuma" (zuma, zuma-london, zuma-hong-kong), so
   any admin update by barName hits all three. Use barId.
+
+## 2026-09-14 - ABSTRCT Bar Jakarta deactivated (closure)
+- abstrct-bar-jakarta set is_active=false as a CLOSURE, under the
+  standing approval for closures. Evidence is the venue's own Instagram
+  bio, a single line reading "PERMANENTLY CLOSED." The handle
+  (@abstrct.bar, display name "Abstrct Bar SCBD") has been stored on the
+  row so the evidence is traceable. Mild caveat: we held no channel for
+  this bar before, so the identification rests on the name and the SCBD
+  district matching our Jakarta record rather than on a link we already
+  had. Reversible if that turns out to be a different venue.
+
+## 2026-09-14 - Name audit dispositions (Roman)
+- Pass one stands as applied. "Sky Bar" stays "Sky Bar": the fuller "Sky
+  Bar & Restaurant" came from a single channel, and the venue type is
+  captured separately in our own fields.
+- The five conflicted names (lost-and-found-bar-prague, kura-stockholm,
+  ounce-taipei, florattica-rooftop-london, art-katowice) stay HELD, to be
+  settled opportunistically when those bars are next touched for
+  enrichment or outreach rather than as a dedicated pass. art-katowice
+  additionally needs a logged-in Facebook look, so it is parked.
+- Pass two (63 type-suffix candidates) remains a report, unchanged.
+- The ~200 addresses that omit their own city are deliberately LEFT
+  ALONE. They display correctly because the city renders separately on
+  the profile, so rewriting them would be churn with no reader benefit.
