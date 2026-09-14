@@ -657,3 +657,39 @@ Running log of shipped work items and their merge commits. Newest first.
   proven stable across four consecutive runs, and guarded by
   assertNotCollapsed(), which refuses to write a zero-redirect payload
   while the directory holds bars.
+
+## 2026-09-14 - All 30BBI entries held as unverified
+- Two automated reads of the same 30 Best Bars India page returned year
+  sets a FULL YEAR APART. The record backfilled earlier reads #2/2023,
+  #7/2024, #19/2025 for Cobbler & Crew; a later read of the same page
+  reads #2/2022, #7/2023, #19/2024, plus a 2025 listing with no rank.
+  Neither read is trusted, and the entries have NOT been "corrected" to
+  the second one: the point is that the source has not been read reliably,
+  not that one reading beat the other.
+- NEW SCHEMA FIELD: Accolade.unverified. isRenderable() drops any entry
+  carrying it, so the data and its citation are preserved while nothing is
+  drawn. A wrong year on a tile is worse than an absent tile, because the
+  tile's entire claim is that a named body ranked this bar in a stated
+  year. Three unit tests cover it, including that a held entry does not
+  suppress its neighbours.
+- HELD: 19 entries across cobbler-crew (8), elephant-and-co (6),
+  soy-como-soy (2), malaka-spice (2), paasha (1). Every 30BBI entry we
+  hold, since all came from the same source read the same way. The Fox's
+  Tales of the Cocktail entry is a different source and STANDS.
+- TO CLEAR: Roman opens 30bestbarsindia.in/bar/cobbler-crew/ and
+  /bar/elephant-co/ in his own browser, reads the years off the page, and
+  we drop the flag on what matches. The domain is unreachable from this
+  environment, which is why no third automated read is worth attempting.
+
+## 2026-09-14 - Four Walls address: settled, no change
+- Roman's gate was: check a venue-controlled booking page and switch only
+  if it agrees with the venue's own site. There is no Tock page; the venue
+  books through OPENTABLE, which is the same kind of venue-entered
+  listing. It shows "401 Korean Veterans Blvd, Nashville, TN 37203",
+  agreeing with THE HOTEL, not with the bar site's "405 4th avenue south".
+- So the row is correct as stored and no change was made. The description
+  saying the bar is inside The Joseph is also correct: OpenTable's own
+  copy reads "Tucked away within The Joseph Nashville". No relocation.
+- The bar's own site remains the outlier. Worth knowing it also carries a
+  stale menu PDF and a hidden display:none hours block, so its address may
+  simply be another neglected corner of that page.

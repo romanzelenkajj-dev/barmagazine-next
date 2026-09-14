@@ -21,6 +21,18 @@ export interface Accolade {
   title: string | null;
   score: number;
   source: string | null;
+  /**
+   * Set when the entry's facts are in doubt and it must not be displayed.
+   *
+   * Added 2026-09-14: two automated reads of the same 30 Best Bars India
+   * page returned year sets a full year apart from each other, so neither
+   * could be trusted. The data and its citation are kept, the tile is not
+   * drawn, and a human can clear the flag after reading the source page.
+   *
+   * A wrong year on an award tile is worse than no tile: the tile's whole
+   * claim is that a named body ranked this bar in a stated year.
+   */
+  unverified?: boolean;
 }
 
 export type AccoladeTier =
@@ -130,6 +142,10 @@ function isDiscovery(entry: Accolade): boolean {
  *
  * An unknown `org_key` is also dropped — there is no approved wording for it,
  * and inventing one would break the exact-naming rule above.
+ *
+ * So is anything flagged `unverified`: an entry whose facts are in doubt is
+ * held back rather than shown, because a wrong year on a tile is worse than
+ * an absent tile.
  */
 export function isRenderable(entry: unknown): entry is Accolade {
   if (!entry || typeof entry !== 'object') return false;
@@ -137,6 +153,9 @@ export function isRenderable(entry: unknown): entry is Accolade {
   const hasYear = typeof a.year === 'number' && Number.isFinite(a.year);
   const hasSource = typeof a.source === 'string' && a.source.trim().length > 0;
   const known = typeof a.org_key === 'string' && Object.prototype.hasOwnProperty.call(TILES, a.org_key);
+  // An entry held for verification never renders, whatever else is right
+  // about it. See `unverified` on the Accolade interface.
+  if (a.unverified === true) return false;
   if (!hasYear || !hasSource || !known) return false;
   return !isDiscovery(a as unknown as Accolade);
 }

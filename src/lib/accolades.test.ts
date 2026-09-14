@@ -267,4 +267,26 @@ describe('accolades', () => {
       }
     });
   });
+
+  describe('unverified entries', () => {
+    const base = {
+      org: '30 Best Bars India', org_key: '30bbi', kind: 'ranked',
+      rank: 19, year: 2025, score: 500, title: null,
+      source: 'https://www.30bestbarsindia.in/',
+    };
+
+    it('renders normally when not flagged', () => {
+      expect(tilesFor([base])).toHaveLength(1);
+    });
+
+    it('is held back entirely when flagged, even though every field is valid', () => {
+      expect(tilesFor([{ ...base, unverified: true }])).toEqual([]);
+    });
+
+    it('does not suppress its neighbours', () => {
+      const ok = { ...base, year: 2024, rank: 7 };
+      const held = { ...base, unverified: true };
+      expect(tilesFor([held, ok])).toHaveLength(1);
+    });
+  });
 });
