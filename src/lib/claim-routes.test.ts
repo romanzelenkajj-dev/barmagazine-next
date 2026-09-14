@@ -6,6 +6,7 @@ import {
   maskEmail,
   decideRoute,
   isClaimExpired,
+  isRedundantSelfTransfer,
 } from './claim-routes';
 
 describe('claim-routes', () => {
@@ -131,6 +132,31 @@ describe('claim-routes', () => {
       expect(d.autoVerifiable).toBe(false);
       expect(d.destination).toBeNull();
       expect(d.match).toBe(true);
+    });
+  });
+
+  describe('isRedundantSelfTransfer', () => {
+    it('is true when the claimant already owns the bar', () => {
+      expect(isRedundantSelfTransfer('k.nanmoku@parkhoteltokyo.com', 'k.nanmoku@parkhoteltokyo.com')).toBe(true);
+    });
+
+    it('ignores case and surrounding whitespace', () => {
+      expect(isRedundantSelfTransfer('  K.Nanmoku@ParkHotelTokyo.com ', 'k.nanmoku@parkhoteltokyo.com')).toBe(true);
+    });
+
+    it('is FALSE for a colleague on the same domain - that is a real transfer', () => {
+      // The bar's on-file address is acd@parkhoteltokyo.com; a request from
+      // it against an owner at k.nanmoku@ is two different people and must
+      // still reach a human.
+      expect(isRedundantSelfTransfer('acd@parkhoteltokyo.com', 'k.nanmoku@parkhoteltokyo.com')).toBe(false);
+    });
+
+    it('is false when the bar has no owner or the input is junk', () => {
+      expect(isRedundantSelfTransfer('someone@example.com', null)).toBe(false);
+      expect(isRedundantSelfTransfer('someone@example.com', undefined)).toBe(false);
+      expect(isRedundantSelfTransfer(null, null)).toBe(false);
+      expect(isRedundantSelfTransfer('', '')).toBe(false);
+      expect(isRedundantSelfTransfer('   ', '   ')).toBe(false);
     });
   });
 

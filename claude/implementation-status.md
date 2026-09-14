@@ -139,3 +139,29 @@ Running log of shipped work items and their merge commits. Newest first.
   held pending confirmation it currently trades. Full row (description,
   hours, address, geocode) stays intact for one-line reactivation:
   set is_active=true on slug aapex (id 9eb05cf7) once confirmed open.
+
+## 2026-09-11 - aapex (Seoul) reactivated (held-then-confirmed, new handle)
+- Resolves the hold above: Roman confirmed the venue is open, so
+  is_active=true on slug aapex (id 9eb05cf7). The mystery of the vanished
+  Instagram is solved: the account was RENAMED, not deleted -
+  aapex_bar -> aapex_lab (live profile: "'Edible Scents' Distilled
+  Spirits Lab / Cultural Space Center", bio email aapex.seoul@gmail.com,
+  which is why the old handle 404'd). instagram set to aapex_lab and the
+  rendered profile link verified to resolve to instagram.com/aapex_lab.
+  Update went through /api/admin/manage-bar, so profile + Seoul city
+  page revalidated; both confirmed live (bar listed, new IG link).
+
+## 2026-09-14 - Self-transfer claims auto-expire
+- The Society (Tokyo): one claimant submitted the claim form twice seven
+  minutes apart; the first completed and made him owner, the second was
+  classified a transfer because the bar was by then owned - by him. Row
+  expired by hand (status expired, evidence.expired_reason
+  claimant_already_owner); no approval, no owner change, no email, and
+  the review queue is empty.
+- Second occurrence, so the hourly sweep now closes this class itself:
+  a THIRD dead-row rule in /api/cron/stuck-claims expires pending_review
+  transfers whose claimant address exactly equals the current owner's.
+  Decision logic is isRedundantSelfTransfer() in src/lib/claim-routes.ts
+  (pure + unit tested). Exact address match only, deliberately not a
+  domain match, so a colleague on the company domain is still a genuine
+  transfer request and stays in the queue for a human.

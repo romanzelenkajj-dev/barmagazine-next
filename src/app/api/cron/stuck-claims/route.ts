@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase-auth';
-import { CLAIM_VERIFICATION_WINDOW_HOURS } from '@/lib/claim-routes';
+import { CLAIM_VERIFICATION_WINDOW_HOURS, isRedundantSelfTransfer } from '@/lib/claim-routes';
 import { notifyStuckClaim } from '@/lib/notify';
 
 export const dynamic = 'force-dynamic';
@@ -32,7 +32,8 @@ export async function GET(request: NextRequest) {
     const supabase = createAdminClient();
 
     // ---- Expiry sweep, BEFORE the alert sweep, so a freshly-expired row
-    // can never trigger a stuck alert. Two kinds of dead rows:
+    // can never trigger a stuck alert. Two kinds of dead row sit at
+    // awaiting_verification (a third, in the review queue, follows below):
     //   1. abandoned: awaiting_verification past the 24h link lifetime -
     //      the link can no longer complete (the callback would expire it on
     //      click; this expires it without waiting for a click).
@@ -79,6 +80,69 @@ export async function GET(request: NextRequest) {
           .eq('status', 'awaiting_verification');
         if (expireError) {
           console.error('[cron/stuck-claims] expire failed for', row.id, expireError.message);
+        } else {
+          expired++;
+        }
+      }
+    }
+
+    // ---- Third dead-row class, and the only one living in the REVIEW queue
+    // rather than awaiting_verification: a transfer request whose claimant is
+    // already the bar's owner. Structural rather than stale - the row asks
+    // for ownership the claimant holds, so neither waiting nor a human
+    // decision changes the answer (approving is a no-op; rejecting reads as a
+    // verdict on someone who did nothing wrong). Seen twice now, both times
+    // one person submitting the claim form again minutes after their first
+    // claim had already made them owner.
+    //
+    // Narrow by construction: isRedundantSelfTransfer demands an exact
+    // address match, so a colleague writing from the same company domain
+    // stays in the queue as the genuine transfer request it is.
+    const { data: transferRows } = await supabase
+      .from('bar_claims')
+      .select('id, bar_id, claimant_email, evidence')
+      .eq('status', 'pending_review')
+      .eq('is_transfer', true);
+    if (transferRows && transferRows.length > 0) {
+      const { data: transferBars } = await supabase
+        .from('bars')
+        .select('id, owner_id')
+        .in('id', Array.from(new Set(transferRows.map(c => c.bar_id))))
+        .not('owner_id', 'is', null);
+      const ownerIdByBar = new Map((transferBars || []).map(b => [b.id, b.owner_id]));
+      const ownerIds = Array.from(new Set(Array.from(ownerIdByBar.values())));
+      const { data: owners } = ownerIds.length
+        ? await supabase.from('bar_owners').select('id, email').in('id', ownerIds)
+        : { data: [] };
+      const emailByOwnerId = new Map((owners || []).map(o => [o.id, o.email]));
+
+      for (const row of transferRows) {
+        const ownerId = ownerIdByBar.get(row.bar_id);
+        const ownerEmail = ownerId ? emailByOwnerId.get(ownerId) : null;
+        if (!isRedundantSelfTransfer(row.claimant_email, ownerEmail)) continue;
+        const ev =
+          row.evidence && typeof row.evidence === 'object' && !Array.isArray(row.evidence)
+            ? (row.evidence as Record<string, unknown>)
+            : {};
+        const { error: selfTransferError } = await supabase
+          .from('bar_claims')
+          .update({
+            status: 'expired',
+            evidence: {
+              ...ev,
+              expired_reason: 'claimant_already_owner',
+              expired_at: new Date().toISOString(),
+            },
+          })
+          .eq('id', row.id)
+          // Never flip a row a reviewer has just acted on.
+          .eq('status', 'pending_review');
+        if (selfTransferError) {
+          console.error(
+            '[cron/stuck-claims] self-transfer expire failed for',
+            row.id,
+            selfTransferError.message
+          );
         } else {
           expired++;
         }

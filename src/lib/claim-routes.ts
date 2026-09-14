@@ -149,6 +149,31 @@ export function isClaimExpired(createdAt: string | Date, now: Date = new Date())
   return ageHours > CLAIM_VERIFICATION_WINDOW_HOURS;
 }
 
+/**
+ * A transfer request from the address that ALREADY owns the bar.
+ *
+ * Someone asking to take over a listing they hold is asking for nothing:
+ * approving changes no ownership, and rejecting reads as a verdict on a
+ * person who did nothing wrong. Both observed cases were one claimant
+ * submitting the form twice minutes apart, the second time after the first
+ * had already made them owner — so the row is dead on arrival and should
+ * expire, not queue for review.
+ *
+ * Exact address equality, case-insensitively. Deliberately NOT a domain
+ * comparison: a colleague writing from the same company domain is a real
+ * transfer request between two different people and must still reach a
+ * human.
+ */
+export function isRedundantSelfTransfer(
+  claimantEmail: unknown,
+  currentOwnerEmail: unknown
+): boolean {
+  if (typeof claimantEmail !== 'string' || typeof currentOwnerEmail !== 'string') return false;
+  const a = claimantEmail.trim().toLowerCase();
+  const b = currentOwnerEmail.trim().toLowerCase();
+  return !!a && a === b;
+}
+
 /** Rate limits from the spec, counted over the trailing hour. */
 export const CLAIM_RATE_LIMIT_PER_EMAIL = 3;
 export const CLAIM_RATE_LIMIT_PER_IP = 10;
