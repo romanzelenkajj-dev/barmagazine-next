@@ -109,3 +109,23 @@ the repo with this shape. The others write to destinations nothing reads
 back in (`geocode-report.json`, `geocode-updates.sql`, the outreach logs),
 and `bar-redirects.generated.json` is the sole generated file imported by
 `next.config.mjs`.
+
+## Deriving a field from free-text addresses
+
+**Anchor the match, and take a majority across the rows.**
+
+A bare pattern match on a free-text address finds the wrong thing
+confidently. Deriving the US state from an address by searching for any
+two-letter code read `99 Krog Street NE, Atlanta` as **Nebraska**, and did
+the same to an Albuquerque address: the compass direction in the street line
+matched before the real state ever came up. Anchoring the match to the
+postcode that always follows the state (`GA 30307`, `ON M5H 1Y1`) fixed both
+at once, because the anchor is the thing that makes the position meaningful.
+
+Then take a **majority vote across all of a city's rows** rather than
+trusting the first hit. Listings legitimately spill into neighbouring towns
+(Brookline against Boston, Surfside against Miami), so a single address is
+not evidence about the city, and one stray row should not be able to rename
+it.
+
+See `src/lib/city-location.ts`.

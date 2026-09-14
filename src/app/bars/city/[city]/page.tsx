@@ -77,13 +77,17 @@ export async function generateMetadata({
   const cityName = match.city;
   const countryName = match.country;
   const bars = await getBarsByCity(cityName);
-  const barCount = bars.length;
   const currentYear = new Date().getFullYear();
 
-  // Live count interpolated at every ISR regeneration - never baked into
-  // static copy (the OG "600 bars" lesson).
+  // NO BAR COUNT HERE, deliberately. Google holds a meta description for
+  // weeks while this page revalidates every 300 seconds, so a number in it
+  // is stale more often than it is accurate: a cached "the 8 best" against
+  // a page now showing twelve is worse than no number at all. It also
+  // removes the singular/plural branch ("The 1 best cocktail bars in
+  // Detroit"). The live count still belongs in on-page copy, which
+  // regenerates with the data.
   const description =
-    `The ${barCount} best cocktail bars in ${cityLabel(cityName, countryName, subdivisionForCity(bars.map(b => b.address), countryName))}, ` +
+    `The best cocktail bars in ${cityLabel(cityName, countryName, subdivisionForCity(bars.map(b => b.address), countryName))}, ` +
     `curated by BarMagazine for ${currentYear}. Speakeasies, hotel bars and ` +
     `neighborhood rooms, with addresses, hours and signature serves.`;
 

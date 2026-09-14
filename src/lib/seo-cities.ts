@@ -271,15 +271,24 @@ export function composeCityIntro(c: SeoCity, listed: number): string {
   return parts.join(' ');
 }
 
-/** Meta description for a city page. Data-led, 150 to 160 characters aimed. */
+/**
+ * Meta description for a city page. Data-led, 150 to 160 characters aimed.
+ *
+ * NO COUNTS, deliberately. Google caches a meta description for weeks while
+ * these pages revalidate every 300 to 3600 seconds, so any number here is
+ * stale more often than accurate. It also removes every pluralization
+ * branch. Counts still belong in on-page copy, which regenerates with the
+ * data and is read at the same moment it is rendered.
+ */
 export function composeCityDescription(c: SeoCity): string {
+  const where = cityLabel(c.city, c.country, c.subdivision);
   if (c.topBar && c.topBarAward) {
-    return `The best bars in ${c.city} right now, led by ${c.topBar} (${c.topBarAward}). ${c.count} verified listings with addresses, hours and signature drinks.`;
+    return `The best bars in ${where} right now, led by ${c.topBar} (${c.topBarAward}). Verified listings with addresses, hours and signature drinks.`;
   }
   if (c.top10Count > 0) {
-    return `The best bars in ${c.city}, including ${c.top10Count} BarMagazine Top 10 pick${c.top10Count === 1 ? '' : 's'}. ${c.count} verified listings with addresses and opening hours.`;
+    return `The best bars in ${where}, including the BarMagazine Top 10 picks. Verified listings with addresses and opening hours.`;
   }
-  return `The best bars in ${cityLabel(c.city, c.country, c.subdivision)}: ${c.count} verified listings with addresses, opening hours and signature drinks, curated by BarMagazine.`;
+  return `The best bars in ${where}: verified listings with addresses, opening hours and signature drinks, curated by BarMagazine.`;
 }
 
 /** Opening paragraph for a type-city page. */
@@ -308,9 +317,12 @@ export function composeTypeIntro(
   return parts.join(' ');
 }
 
+/** Meta description for a type-city page. No counts, for the same caching
+    reason as composeCityDescription above. */
 export function composeTypeDescription(c: SeoCity, t: TypePage, typeCount: number, topName: string | null): string {
+  const where = cityLabel(c.city, c.country, c.subdivision);
   if (topName) {
-    return `The ${typeCount} best ${t.plural} in ${c.city}, led by ${topName}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
+    return `The best ${t.plural} in ${where}, led by ${topName}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
   }
-  return `The ${typeCount} best ${t.plural} in ${cityLabel(c.city, c.country, c.subdivision)}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
+  return `The best ${t.plural} in ${where}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
 }

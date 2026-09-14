@@ -727,3 +727,26 @@ Running log of shipped work items and their merge commits. Newest first.
   "Explore the best bars in Nashville, Tennessee, handpicked by the
   BarMagazine editorial team", which stays honest at any size and removes
   a number that goes stale between revalidations.
+
+## 2026-09-14 - Counts out of meta descriptions
+- Dropped the bar count from the city-page meta description and from
+  composeCityDescription and composeTypeDescription in seo-cities.ts,
+  matching the intro sentence. Reason recorded in the code is CACHING, not
+  grammar: Google holds a meta description for weeks while these pages
+  revalidate every 300 to 3600 seconds, so a number there is stale more
+  often than accurate, and a cached "the 8 best" against a page now showing
+  twelve is worse than no number. "The 1 best cocktail bars in Detroit" was
+  the visible symptom.
+- Also removed the Top 10 count from the second composeCityDescription
+  branch, which was the last pluralization branch in that copy
+  ("pick${... === 1 ? '' : 's'}"). Counts remain in ON-PAGE copy, which
+  regenerates with the data and is read at the moment it renders.
+- While there, branches one and two of composeCityDescription now use the
+  city LABEL rather than the bare city, so a US city reads "Nashville,
+  Tennessee" consistently across all three branches.
+- CONFIRMED UNCHANGED, both Roman's call: schema.org addressCountry stays
+  the country, and the breadcrumb trail stays two navigation links.
+- claude/data-checks.md gained the derivation rule: deriving a field from
+  free-text addresses needs an ANCHOR (the postcode), because a bare
+  two-letter match reads "Krog Street NE" as Nebraska, plus a MAJORITY VOTE
+  across a city's rows so one spilled address cannot rename the city.
