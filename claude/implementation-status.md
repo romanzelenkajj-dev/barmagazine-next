@@ -422,3 +422,23 @@ Running log of shipped work items and their merge commits. Newest first.
   actually listed.
 - Three brands now have multiple rows sharing a name (Attaboy, Employees
   Only, Zuma), so admin updates by barName are unsafe for these. Use ids.
+
+## 2026-09-14 - Zuma Hong Kong and London descriptions
+- Both written BY ID, not by name: three rows are named "Zuma".
+- zuma-hong-kong: was EMPTY (composed fallback rendering). Now carries
+  Roman's approved copy on the LANDMARK levels five and six, the izakaya
+  register, Burning History, the garden terrace and the DJ nights.
+- zuma-london: replaced the previous description entirely. The old text's
+  "more than 40 sakes" is deliberately gone, being the same class of
+  sized-list claim ruled out for Dubai.
+- YEAR DROPPED from the London copy, per Roman's instruction. He asked me
+  to confirm the about-us page before writing "2002". Findings: the
+  about-us page states NO founding year at all, but the LONDON page does,
+  and it says "Zuma has been one of the city's standout dining
+  destinations since opening in 2008" while the same page also says the
+  restaurant has been renowned "for the last two decades". The venue's
+  own site therefore contradicts itself and disagrees with Wikipedia's
+  2002. The sentence now reads "opened on Raphael Street in Knightsbridge
+  as the first room in what has become a global group", with no year.
+- Verified live on both: composed fallback absent, new copy in the body
+  and the meta description, profiles serving 200.
