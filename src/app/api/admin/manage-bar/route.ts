@@ -3,6 +3,7 @@ import { noStoreFetch } from '@/lib/supabase-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { geocodeBar } from '@/lib/geocode';
 import { normalizeBarFields } from '@/lib/normalize';
+import { flagBarName } from '@/lib/bar-name';
 import { revalidateBarPages } from '@/lib/revalidate-bars';
 
 function getServiceClient() {
@@ -117,6 +118,17 @@ export async function POST(request: NextRequest) {
       });
       if (coords) {
         insertData = { ...insertData, lat: coords.lat, lng: coords.lng };
+      }
+    }
+    // Directory noise ("Kura Stockholm", "Alenka Cocktail bar Prague") most
+    // often arrives here. Log it rather than rewriting: only the venue's own
+    // channels can say whether the suffix belongs to the name.
+    {
+      const flag = flagBarName(insertData.name, insertData.city, insertData.type);
+      if (flag) {
+        console.warn(
+          `[manage-bar] name flag (${flag.kind}) on insert of "${insertData.name}": appended "${flag.suffix}" - verify against the venue's own channels`
+        );
       }
     }
     const { data, error } = await supabase.from('bars').insert(insertData).select();

@@ -3,6 +3,7 @@ import { noStoreFetch } from '@/lib/supabase-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { geocodeBar } from '@/lib/geocode';
 import { normalizeBarFields } from '@/lib/normalize';
+import { flagBarName } from '@/lib/bar-name';
 import { revalidateBarPages } from '@/lib/revalidate-bars';
 
 function getServiceClient() {
@@ -53,7 +54,16 @@ export async function GET(request: NextRequest) {
     submissions = data || [];
   }
 
-  return NextResponse.json({ submissions });
+  // Raise a hand on names carrying an appended city or venue type, so the
+  // reviewer settles it against the venue's own channels BEFORE approval
+  // writes the row. Detection only: see src/lib/bar-name.ts for why these
+  // are never rewritten automatically.
+  const flagged = submissions.map((s: Record<string, unknown>) => ({
+    ...s,
+    name_flag: flagBarName(s.name, s.city, s.type),
+  }));
+
+  return NextResponse.json({ submissions: flagged });
 }
 
 // Map a submission's preferred_plan to a bars.tier value.

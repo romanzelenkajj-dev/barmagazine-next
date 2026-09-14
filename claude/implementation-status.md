@@ -259,3 +259,29 @@ Running log of shipped work items and their merge commits. Newest first.
   Mexico City bbox to 19.433633, -99.185450, which reverse-geocodes to
   "Calle Francisco Petrarca 254" and sits 5km from the city centre. This
   was the single genuine outlier in the coordinate audit.
+
+## 2026-09-14 - Name-quality: detector at the door, Bengaluru addresses
+- NEW src/lib/bar-name.ts flagBarName(): detects a name carrying its own
+  city ("Kura Stockholm") or a venue-type suffix ("... Cocktail Bar").
+  DETECTION ONLY, never a rewrite: plenty of venues really are called
+  "Wave Cocktail Bar", "Experimental Cocktail Club" or "Handshake
+  Speakeasy", and some genuinely carry a city ("Harry's New York Bar"),
+  so only the venue's own channels can settle it. Wired into the two
+  paths where bars enter: /api/admin/submissions GET now returns a
+  name_flag per row so the reviewer sees it BEFORE approving, and
+  /api/admin/manage-bar logs a warning on insert. 10 unit tests.
+- Bengaluru centroid cluster cut from 7 bars to 3. Addresses sourced from
+  own channels and re-geocoded to street level: copitas (Four Seasons
+  contact page), prost-brew-pub (own site), windmills-craftworks (own
+  site, Whitefield being the original in their own words),
+  the-permit-room (own Facebook About).
+- Still on the fallback centroid, reported not guessed:
+  * 1q1 - NO ADDRESS PUBLISHED on any own channel (site live but
+    address-free, IG and FB both now unavailable).
+  * byg-brewski-brewing-company - THREE Bengaluru outlets (Hennur,
+    Sarjapur Road, Yeswanthpur), none labelled main by the venue.
+  * bob-s-bar - SIX outlets, four with full addresses, none labelled
+    main. Needs an editorial pick of which outlet the row represents.
+- Caution flags from the research: the-permit-room's website is expired
+  and its Instagram dormant, so its trading status wants checking before
+  we lean on that row.
