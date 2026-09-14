@@ -221,4 +221,50 @@ describe('accolades', () => {
       expect(awardStrings([make(), make({ source: null })])).toHaveLength(1);
     });
   });
+
+  describe('30 Best Bars India', () => {
+    const src = 'https://www.30bestbarsindia.in/';
+
+    it('renders a ranked placing as a national tile', () => {
+      const [t] = tilesFor([
+        { org: '30 Best Bars India', org_key: '30bbi', kind: 'ranked', rank: 19, year: 2025, score: 500, title: null, source: src },
+      ]);
+      expect(t.region).toBe('INDIA');
+      expect(t.main).toBe('30 BEST');
+      expect(t.year).toBe('2025');
+      expect(t.tier).toBe('navy');
+    });
+
+    it('does not draw the rank, which rides the hover text like every org', () => {
+      const [t] = tilesFor([
+        { org: '30 Best Bars India', org_key: '30bbi', kind: 'ranked', rank: 7, year: 2024, score: 500, title: null, source: src },
+      ]);
+      expect(t.main).not.toMatch(/7|No\./);
+      expect(t.region).not.toMatch(/7|No\./);
+    });
+
+    it('carries named category wins solid and nominees outlined', () => {
+      const [win] = tilesFor([
+        { org: '30 Best Bars India', org_key: '30bbi', kind: 'winner', rank: null, year: 2023, score: 500, title: 'Best Work in Sustainability', source: src },
+      ]);
+      expect(win.tier).toBe('navy');
+      expect(win.title).toBe('Best Work in Sustainability');
+      const [nom] = tilesFor([
+        { org: '30 Best Bars India', org_key: '30bbi', kind: 'nominee', rank: null, year: 2023, score: 500, title: 'Best Bar Team', source: src },
+      ]);
+      expect(nom.tier).toBe('navy-outline');
+    });
+  });
+
+  describe('editorial lists are not accolades', () => {
+    it('drops magazine picks, which have no org key by design', () => {
+      // Food & Wine, Eater, Esquire and their kind never get a tile: the
+      // badge means an awards body ranked this bar.
+      for (const org_key of ['fw', 'eater', 'esquire', 'timeout', 'thrillist']) {
+        expect(
+          tilesFor([{ org: 'A magazine', org_key, kind: 'winner', rank: null, year: 2024, score: 900, title: 'Best Bars', source: 'https://example.com' }])
+        ).toEqual([]);
+      }
+    });
+  });
 });

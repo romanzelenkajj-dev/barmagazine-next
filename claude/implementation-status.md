@@ -561,3 +561,65 @@ Running log of shipped work items and their merge commits. Newest first.
 - Also corrected: the earlier "no shadowed profiles" diff used a regex and
   saw only 20 of the 47 rules. Re-run against nextConfig.redirects() at
   runtime, the conclusion holds: 0 shadowed profiles.
+
+## 2026-09-14 - 30 Best Bars India approved as an accolade org (30bbi)
+- NEW tile: org_key 30bbi, org name exactly "30 Best Bars India", region
+  line INDIA, main line "30 BEST". Ranked placings and named category wins
+  both render; a nominee renders outlined. Bartender awards are NOT stored
+  on bar rows, per Roman.
+- TIER: there was NO free existing key. Every tier below `dark` is already
+  an organisation's signature colour (orange = Spirited, grey = BCA,
+  burgundy = James Beard), so borrowing one would visually merge 30BBI
+  with that body. Added a new pair, `navy` / `navy-outline` (#1F3A5F),
+  which reads one step below the near-black continental tiles and stays
+  heavier than the bca grey. Recolour in one line if Roman prefers.
+- MAIN LINE: Roman asked for a rank-carrying line ("No. 19 in 2025") on
+  the pattern of an existing national tile. There is no such tile: no tile
+  in the system carries a rank, TileDef says the bold line is "constant
+  within each award family; never vary it", and TileView says "Rank stays
+  entirely unexposed, as ever". Implemented as "INDIA / 30 BEST / 2025",
+  mirroring "ASIA'S / 50 BEST / 2025", with rank on hover like every other
+  org. Flagged for Roman: changing it would mean revisiting that invariant
+  across all seven existing orgs, not just adding one tile.
+- RULE RECORDED in src/lib/accolades.ts beside the exact-naming rule:
+  magazine and editorial lists are NOT accolades and never get an org key
+  or a tile (Food & Wine, Eater, Esquire, Time Out, Thrillist,
+  Architectural Digest, Bon Appetit and their kind). Notable mentions
+  belong in description prose with publication and year attributed. Four
+  unit tests cover the new tile and the editorial exclusion.
+- BACKFILLED: cobbler-crew (8 entries: ranked #2/2023, #7/2024, #19/2025,
+  listed 2022, plus Highest New Entry 2023, Best Bar Team 2023 and Best
+  Work in Sustainability 2022 and 2023), elephant-and-co (6: #22/2022,
+  #47/2023 and four People's Choice wins), soy-como-soy (2),
+  malaka-spice (2), paasha (#25/2021). the-fox-bar-cocktail-club got its
+  Tales of the Cocktail 2023 entry under the existing totc key, as a
+  nominee since a regional top ten is a shortlist.
+- SOURCING CAVEAT: 30bestbarsindia.in is UNREACHABLE from this environment
+  (connection failure, not a 404), so the cited source URL could not be
+  opened to verify page by page. Rank values are Roman's supplied record,
+  corroborated by press coverage of the awards.
+
+## 2026-09-14 - Three flag follow-ups
+- MALAKA SPICE: stays, on the admission rule, but RECORDED AS A MARGINAL
+  ADMISSION rather than a clean one. Its own Instagram bio is purely
+  culinary ("29 years of inspired South East Asian cuisine") with no
+  mention of a bar or cocktails, which is the pattern that failed Osteria
+  Gia. It is admitted because 30 Best Bars India ranks it as a bar. Outlet
+  ambiguity resolved the BYG Brewski way: the row now defaults to the
+  KOREGAON PARK original, stated in the description, with coordinates
+  moved there. If the type test is ever revisited, this is the row to find.
+- PATTERSON HOUSE: row left as is, it is correct. Logged as an OUTREACH
+  OPENING rather than a defect: their own site still broadcasts the dead
+  1711 Division Street address through its JSON-LD, its Squarespace site
+  config and its stored map coordinates, despite the visible copy being
+  correctly updated and the site being edited on 2026-08-20. Aggregators
+  read that structured data, so they are still publishing an address they
+  moved away from in 2025. Worth an email.
+- FOUR WALLS: NOT switched, and the gate Roman set is the reason. He asked
+  me to confirm against the bar's own Instagram bio before changing the
+  address to 405 4th Avenue South. The bio (@fourwallsnash) publishes NO
+  address at all: it reads "now pouring vol. 5 / a spaghetti western in
+  cocktails | 50 best discovery" and links only to a 50 Best Discovery
+  page. So the bio neither agrees nor disagrees, the condition is unmet,
+  and the row still holds the hotel's 401 Korean Veterans Blvd. Awaiting
+  Roman's word to switch on the venue-site evidence alone.

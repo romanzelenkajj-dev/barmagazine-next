@@ -31,7 +31,9 @@ export type AccoladeTier =
   | 'grey'
   | 'grey-outline'
   | 'burgundy'
-  | 'burgundy-outline';
+  | 'burgundy-outline'
+  | 'navy'
+  | 'navy-outline';
 
 interface TileDef {
   /** Small line above the bold one — carries the possessive. */
@@ -53,9 +55,25 @@ interface TileDef {
  * themselves. Getting another organisation's name right is part of the
  * credibility, the same principle as showing the year.
  *
+ * WHAT MAY BECOME A TILE (Roman, 2026-09-14). Only BAR-AWARDS BODIES. A tile
+ * means "a panel of this awarding body ranked this bar", and that is the only
+ * reason a reader trusts the row of badges at all.
+ *
+ * Magazine and editorial lists are therefore NOT accolades and never get an
+ * org key or a tile: Food & Wine, Eater, Esquire, Time Out, Thrillist,
+ * Architectural Digest, Bon Appetit and anything of that kind. Diluting the
+ * tiles with editorial picks destroys the signal for the awards that earned
+ * it. This is the same principle as the exact-naming rule above: the tile
+ * asserts something precise, so it may only carry something precise.
+ *
+ * Where such a mention is genuinely notable, it belongs in the description
+ * prose with the publication and the year attributed. That is both honest
+ * and better copy than a badge could be.
+ *
  * Colours: gold is reserved for the world list — if everything is gold,
  * nothing is. Orange is the Spirited Awards' own colour. Grey keeps bca
- * clearly lighter than the near-black regional tiles.
+ * clearly lighter than the near-black regional tiles. Navy sits one step
+ * below the near-black continental tiles, for national rankings.
  */
 const TILES: Record<string, TileDef> = {
   w50b: { region: "WORLD'S", main: '50 BEST', tier: 'gold' },
@@ -76,6 +94,17 @@ const TILES: Record<string, TileDef> = {
   // centers its lines, so this reads as a deliberate two-line tile rather
   // than a missing third line.
   jbf: { region: '', main: 'JAMES BEARD', winnerTier: 'burgundy', nomineeTier: 'burgundy-outline' },
+  // 30 Best Bars India, named exactly as the body writes itself. A NATIONAL
+  // ranking, so navy sits one step below the near-black continental 50 Best
+  // tiles without borrowing another org's signature colour.
+  //
+  // The main line is "30 BEST" rather than a rank, deliberately: it mirrors
+  // "50 BEST" so a reader parses the shape they already know, and it holds
+  // the rule that the bold line is constant within a family and that rank is
+  // never drawn. Rank rides `title` and the hover text like every other org.
+  // This carries ranked placings and named category wins alike: a ranked
+  // entry or a category win renders solid, a nominee outlined.
+  '30bbi': { region: 'INDIA', main: '30 BEST', winnerTier: 'navy', nomineeTier: 'navy-outline' },
 };
 
 function tierFor(def: TileDef, kind: AccoladeKind): AccoladeTier {

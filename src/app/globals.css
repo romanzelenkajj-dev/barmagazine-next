@@ -9687,6 +9687,22 @@ textarea.form-input {
   color: #E8590C;
 }
 
+/* Navy — 30 Best Bars India. A national ranking, so it reads one step below
+   the near-black continental tiles while staying clearly heavier than the
+   bca grey. Every other tier key below `dark` was already an org's own
+   colour, so this family needed its own rather than borrowing one. */
+.acc-tile--navy {
+  border-color: #1F3A5F;
+  background: #1F3A5F;
+  color: #fff;
+}
+
+.acc-tile--navy-outline {
+  border-color: #1F3A5F;
+  background: #fff;
+  color: #1F3A5F;
+}
+
 /* Grey — Bartenders' Choice, style shipped ahead of its data. Deliberately
    lighter than the near-black regional tiles so the families stay distinct. */
 .acc-tile--grey {
