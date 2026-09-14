@@ -198,3 +198,22 @@ Running log of shipped work items and their merge commits. Newest first.
   street-level fix on Ho Tung Mau, Ben Nghe (10.771509, 106.704100).
   bar-leone-shanghai sits on a Huangpu district centroid, roughly 2km
   from Sinan Mansions, for want of a sourceable street-level result.
+
+## 2026-09-14 - Milli inserted; geocode tolerance tightened
+- milli (Singapore) inserted per Roman: Cocktail Bar + Restaurant Bar
+  subtype, National Gallery rooftop, email published, own name styling
+  "Milli" not "Milli's". Instagram left empty: the venue runs two handles
+  (milli.sky.sg level 6, milli.lounge.sg level 5) and neither is clearly
+  primary. Two published phone numbers, unlabelled, also left out.
+- geocode.ts validation rewritten: great-circle distanceKm() replaces a
+  Pythagoras-on-degrees comparison, and the tolerance drops from 1.8
+  degrees (~200km, wider than most metro areas) to MAX_CITY_DISTANCE_KM
+  = 40. Threshold picked from an audit of all 1,162 active bars with
+  coordinates: the furthest DEFENSIBLE outliers are ~31km (Ubud against
+  the Bali centre, Dona Paula against Goa, Dubai Marina against Dubai).
+  Exceeding it is not fatal, the caller still falls back to city centre.
+- Audit result, reported not corrected: exactly ONE row is genuinely
+  wrong. ticuchi (Mexico City) stores coordinates that reverse-geocode to
+  Oaxaca, 366km away, while its address is Polanco. Nothing else exceeds
+  31km. Separately worth a look: seven Bengaluru bars share one
+  city-centre coordinate (no addresses on file), so they stack on the map.

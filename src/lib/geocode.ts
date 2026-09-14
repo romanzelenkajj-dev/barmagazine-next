@@ -16,6 +16,39 @@ const CITY_OVERRIDES: Record<string, [number, number]> = {
 };
 
 /**
+ * Great-circle distance in km. The validation below used to compare raw
+ * degrees with Pythagoras, which is wrong twice over: a degree of longitude
+ * is only ~111km at the equator and shrinks to nothing at the poles, and
+ * mixing it with latitude gives a number that means different distances in
+ * different places.
+ */
+export function distanceKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const rad = (d: number) => (d * Math.PI) / 180;
+  const dLat = rad(lat2 - lat1);
+  const dLng = rad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(rad(lat1)) * Math.cos(rad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+/**
+ * How far from its city a geocode result may land before we distrust it.
+ *
+ * The old tolerance was 1.8 degrees, roughly 200km, which is wider than most
+ * countries' metro areas and let a Ho Chi Minh City bar land 61km out in
+ * another province without complaint. An audit of all 1,162 active bars with
+ * coordinates put the furthest DEFENSIBLE outliers at ~31km (Ubud against a
+ * Bali centre, Dona Paula against Goa, Dubai Marina against Dubai), so 40km
+ * keeps real metro sprawl while catching genuine errors.
+ *
+ * Exceeding it is not fatal: the caller falls back to the city centre, which
+ * is imprecise but always in the right place.
+ */
+export const MAX_CITY_DISTANCE_KM = 40;
+
+/**
  * Geocode a bar's location with validation.
  * Uses city bounding box to prevent results in wrong countries.
  * Returns { lat, lng } or null if geocoding fails.
@@ -78,14 +111,14 @@ export async function geocodeBar(opts: {
 
     const [resultLng, resultLat] = data.features[0].center;
 
-    // Step 3: Validate — result must be within ~200km of city center
+    // Step 3: Validate — the result must be near the city it claims to be in.
     if (cityLat !== null && cityLng !== null) {
-      const dist = Math.sqrt(
-        Math.pow(resultLat - cityLat, 2) + Math.pow(resultLng - cityLng, 2)
-      );
-      if (dist > 1.8) {
+      const dist = distanceKm(resultLat, resultLng, cityLat, cityLng);
+      if (dist > MAX_CITY_DISTANCE_KM) {
         // Result is too far from city — use city center instead
-        console.warn(`Geocode validation failed for "${name}" in ${city}: result (${resultLat}, ${resultLng}) is ${dist.toFixed(1)} deg from city center. Using city center.`);
+        console.warn(
+          `Geocode validation failed for "${name}" in ${city}: result (${resultLat}, ${resultLng}) is ${Math.round(dist)}km from city center (max ${MAX_CITY_DISTANCE_KM}km). Using city center.`
+        );
         return { lat: Math.round(cityLat * 1000000) / 1000000, lng: Math.round(cityLng * 1000000) / 1000000 };
       }
     }
