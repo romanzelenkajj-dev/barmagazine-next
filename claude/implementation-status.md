@@ -285,3 +285,53 @@ Running log of shipped work items and their merge commits. Newest first.
 - Caution flags from the research: the-permit-room's website is expired
   and its Instagram dormant, so its trading status wants checking before
   we lean on that row.
+
+## 2026-09-14 - Zuma London restored
+- Reactivated on Roman's instruction, reversing the admission-rule
+  delisting earlier the same day. The row is unchanged otherwise (tier
+  free, London). The earlier changelog entry stands as the record of why
+  it was removed; this is the reversal, not a correction of the evidence.
+
+## 2026-09-14 - Name audit pass one (16 city-suffix candidates)
+- RENAMED, each against the venue's own site or Instagram (slugs
+  deliberately unchanged, so no redirects needed):
+  * "Alenka Cocktail bar Prague" -> "Alenka Cocktail Bar"
+  * "Bar Mood Taipei" -> "Bar Mood"
+  * "Blind Spot London" -> "Blind Spot"
+  * "Bar Maaya | Toronto" -> "Bar Maaya"
+  * "Elysian Bar Budapest" -> "Elysian Budapest" (the CITY is genuinely
+    part of the name here; the spurious word was "Bar")
+  * "Sky Bar Bratislava" -> "Sky Bar" (own IG display name is "Sky Bar &
+    Restaurant"; whether to carry the restaurant half is Roman's call)
+- KEPT, city verified as genuinely part of the name: tiki-bar-athens
+  ("Tiki Bar Athens" on site and IG), posino-taipei, segreto-athens (IG
+  handle @segretoathens also added), the-speakeasy-rooftop-bar-bangkok.
+- HELD, own channels conflict or are unreachable: lost-and-found-bar-prague
+  (site brands "Lost & Found Bar Prague", body copy says "Lost & Found";
+  also stores "and" where the venue writes "&"), kura-stockholm (site
+  "Kura Stockholm", IG "KURA"), ounce-taipei (Facebook "Ounce Taipei",
+  IG "Ounce Cocktail Bar"), florattica-rooftop-london (site "FLORATTICA
+  ROOFTOP", IG "Florattica Rooftop London"), art-katowice (domain dead,
+  IG display name empty, Facebook age-gated).
+- NOT a naming problem: abstrct-bar-jakarta. Its own Instagram bio reads
+  "PERMANENTLY CLOSED." Needs deactivating as a closure; left untouched
+  pending Roman.
+
+## 2026-09-14 - Address-vs-city audit (the class distance cannot see)
+- Method: flag rows whose address names neither their city (diacritics
+  folded, local-name aliases handled) nor their country, then geocode the
+  address TEXT ALONE and measure how far it lands from the stored city.
+- THREE genuine mismatches, all the same shape: a multi-outpost brand
+  whose fields were mixed between locations. Reported, not corrected,
+  since either field could be the wrong one:
+  * attaboy - city New York, address "8 Mcferrin Ave, Nashville TN",
+    Instagram @attaboynashville. NOTE this row is tier top10, i.e. it is
+    currently one of New York's ten.
+  * employees-only - city New York, website employeesonlynyc.com, but
+    address "112 Amoy Street, Singapore" and Instagram @employeesonlysg.
+  * cobbler-crew - city Bengaluru, address "Kalyani Nagar, Pune".
+- Ten further rows resolved far away but are geocoder artifacts, not data
+  errors: the address is correct and simply omits its city, so Mapbox
+  matched a same-named street elsewhere (Bar Basso's Via Plinio 39 to
+  Taranto, Kinsman's Peel St to the Philippines, No Vacancy's Ossington
+  Avenue to Ottawa, and so on). Listed in the session report.
