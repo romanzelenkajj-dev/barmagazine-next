@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import { getBarsByCity, getCitiesWithCounts } from '@/lib/supabase';
 import { createClient } from '@supabase/supabase-js';
 import type { Bar } from '@/lib/supabase';
+import { subdivisionForCity, cityLabel } from '@/lib/city-location';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import { getCityIntro } from '@/lib/city-intros';
@@ -82,7 +83,7 @@ export async function generateMetadata({
   // Live count interpolated at every ISR regeneration - never baked into
   // static copy (the OG "600 bars" lesson).
   const description =
-    `The ${barCount} best cocktail bars in ${cityName}, ${countryName}, ` +
+    `The ${barCount} best cocktail bars in ${cityLabel(cityName, countryName, subdivisionForCity(bars.map(b => b.address), countryName))}, ` +
     `curated by BarMagazine for ${currentYear}. Speakeasies, hotel bars and ` +
     `neighborhood rooms, with addresses, hours and signature serves.`;
 
@@ -121,6 +122,14 @@ export default async function CityPage({
   const cityName = match.city;
   const countryName = match.country;
   const bars = await getBarsByCity(cityName);
+
+  // "Nashville, Tennessee", not "Nashville, United States". See
+  // src/lib/city-location.ts for the rule and why the country is wrong here.
+  const locationLabel = cityLabel(
+    cityName,
+    countryName,
+    subdivisionForCity(bars.map(b => b.address), countryName)
+  );
   if (bars.length === 0) notFound();
 
   // Determine view mode: ?view=top10 means Top 10 bars appear first (sidebar link)
@@ -195,7 +204,7 @@ export default async function CityPage({
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: `Best Bars in ${cityName}`,
-    description: `Curated list of the best bars in ${cityName}, ${countryName} by BarMagazine.`,
+    description: `Curated list of the best bars in ${locationLabel} by BarMagazine.`,
     url: `${SITE_URL}/bars/city/${params.city}`,
     numberOfItems: bars.length,
     itemListElement: sorted.slice(0, 50).map((bar, i) => ({
@@ -256,8 +265,8 @@ export default async function CityPage({
               <p>{cityIntro}</p>
             ) : (
               <p>
-                Explore {bars.length === 1 ? 'the top bar' : `the ${bars.length} best bars`} in {cityName},{' '}
-                {countryName}, handpicked by the BarMagazine editorial team.
+                Explore the best bars in {locationLabel}, handpicked by the
+                BarMagazine editorial team.
                 {types.length > 0 && (
                   <>
                     {' '}Our curated list covers {types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}

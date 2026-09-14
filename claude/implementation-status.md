@@ -693,3 +693,37 @@ Running log of shipped work items and their merge commits. Newest first.
 - The bar's own site remains the outlier. Worth knowing it also carries a
   stale menu PDF and a hidden display:none hours block, so its address may
   simply be another neglected corner of that page.
+
+## 2026-09-14 - City pages say the state, not the country
+- "Nashville, United States" is not how anyone writes or searches it. NEW
+  src/lib/city-location.ts: US and Canadian cities render the spelled-out
+  state or province ("Nashville, Tennessee"), everywhere else keeps City,
+  Country because that is what genuinely disambiguates Cordoba and
+  Valencia. Neither "United States" nor "Canada" is ever the qualifier.
+  Unresolvable rows fall back to the BARE CITY, never the country. 13
+  unit tests.
+- No state column exists (the `region` column is our 7 continental
+  regions), so the subdivision is derived from addresses and ANCHORED TO
+  THE POSTCODE. A bare two-letter search read "99 Krog Street NE,
+  Atlanta" as Nebraska and did the same to Albuquerque; the anchor fixed
+  both. A majority vote across a city's bars keeps a single spilled
+  address (Brookline against Boston, Surfside against Miami) from
+  renaming the city.
+- Resolution on live data: 26 of 28 US/CA cities resolve. Detroit and
+  Victoria have no postcode in any stored address and fall back to the
+  bare city name, which is the specified behaviour.
+- Washington DC renders as "Washington DC", not "Washington DC, District
+  of Columbia": the label skips a qualifier the city name already carries.
+- Applied at every site the pattern appears, via grep rather than the one
+  reported line: the city page meta description, its JSON-LD description
+  and its intro sentence, plus composeCityDescription and
+  composeTypeDescription in seo-cities.ts, which the /best-bars pages
+  share. Left alone deliberately: schema.org addressCountry (a
+  machine-readable country field, correct as the country) and the
+  breadcrumb trail, which renders Country and City as separate navigation
+  links rather than as a "City, Country" label.
+- COUNT DROPPED from the intro: "Explore the 8 best bars in Nashville"
+  implied a curated top eight when eight was simply every bar we list. Now
+  "Explore the best bars in Nashville, Tennessee, handpicked by the
+  BarMagazine editorial team", which stays honest at any size and removes
+  a number that goes stale between revalidations.

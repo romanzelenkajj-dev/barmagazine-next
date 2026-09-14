@@ -74,3 +74,38 @@ This exists because `checkRedirectDestinations` deliberately skips `/bars/*`
 destinations, so three rules that returned healthy 308s onto 404s went
 unflagged for months. On its first run the new check found 11 more of the
 same class.
+
+## Generators that feed their own input
+
+**Any generator whose output is composed back into its own input must be
+proven stable across CONSECUTIVE runs, not merely correct on a first run,
+and must refuse to write a collapsed result rather than emitting it.**
+
+A generator like that is not a pure function of the world; it is a function
+of the world *and of what it produced last time*. A first run can look
+perfect while the second destroys the data, and neither the build nor the
+type checker will say a word, because emitting nothing is not an error.
+
+This is not hypothetical either. On 2026-09-14,
+`generate-bar-redirects.mjs` began deriving its denylist from
+`nextConfig.redirects()` — correct in itself, and the fix for a
+hand-transcribed list. But `next.config.mjs` composes that generator's own
+previous output, so the second run read all 990 of its own redirects as
+pre-existing config, skipped every one of them, and emitted zero. The build
+would have stayed green while 990 live redirects disappeared.
+
+So, for any generator of this shape:
+
+1. **Subtract your own prior output** from anything you derive from a
+   source that includes it.
+2. **Run it at least twice** and compare. A single run proves nothing about
+   this class of bug; run 1 was correct and run 2 was catastrophic.
+3. **Refuse to write a collapsed result.** `assertNotCollapsed()` exits
+   non-zero when the directory holds bars but zero redirects were emitted,
+   because a silent empty write is far worse than a failed build.
+
+Audited 2026-09-14: `generate-bar-redirects.mjs` is the only generator in
+the repo with this shape. The others write to destinations nothing reads
+back in (`geocode-report.json`, `geocode-updates.sql`, the outreach logs),
+and `bar-redirects.generated.json` is the sole generated file imported by
+`next.config.mjs`.

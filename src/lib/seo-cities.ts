@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { subdivisionForCity, cityLabel } from './city-location';
 import type { Bar } from './supabase';
 import { toUrlSlug } from './utils';
 import { renderableAccolades } from './accolades';
@@ -64,6 +65,9 @@ export function barHasType(bar: { type: string | null; subtypes?: string[] | nul
 export interface SeoCity {
   city: string;
   country: string;
+  /** Spelled-out state or province for US and Canadian cities, else null.
+      Copy must render "Nashville, Tennessee", never the country. */
+  subdivision: string | null;
   slug: string;
   count: number;
   top10Count: number;
@@ -80,6 +84,7 @@ export interface SeoCity {
 
 interface CityAccumulator {
   country: string;
+  addresses: string[];
   count: number;
   top10Count: number;
   awardedCount: number;
@@ -111,11 +116,11 @@ export async function getSeoCities(): Promise<SeoCity[]> {
   // every count on the SEO pages lagged reality (DC showed 11 actives and
   // 10 cocktail bars against a real 12 and 11).
   const PAGE = 1000;
-  const data: Pick<Bar, 'name' | 'city' | 'country' | 'type' | 'subtypes' | 'tier' | 'accolades'>[] = [];
+  const data: Pick<Bar, 'name' | 'city' | 'country' | 'address' | 'type' | 'subtypes' | 'tier' | 'accolades'>[] = [];
   for (let from = 0; ; from += PAGE) {
     const { data: page, error } = await supabase
       .from('bars')
-      .select('name, city, country, type, subtypes, tier, accolades')
+      .select('name, city, country, address, type, subtypes, tier, accolades')
       .eq('is_active', true)
       .range(from, from + PAGE - 1);
     if (error) throw new Error(`getSeoCities failed: ${error.message}`);
@@ -129,10 +134,11 @@ export async function getSeoCities(): Promise<SeoCity[]> {
   for (const bar of data) {
     if (!bar.city) continue;
     if (!acc[bar.city]) {
-      acc[bar.city] = { country: bar.country, count: 0, top10Count: 0, awardedCount: 0, types: {}, best: null };
+      acc[bar.city] = { country: bar.country, addresses: [], count: 0, top10Count: 0, awardedCount: 0, types: {}, best: null };
     }
     const a = acc[bar.city];
     a.count++;
+    if (bar.address) a.addresses.push(bar.address);
     if (bar.tier === 'top10') a.top10Count++;
     // Union counts: each bar counts once per page type it matches, via the
     // primary column or the subtypes array (a Speakeasy-typed bar tagged
@@ -154,6 +160,7 @@ export async function getSeoCities(): Promise<SeoCity[]> {
     .map(([city, a]) => ({
       city,
       country: a.country,
+      subdivision: subdivisionForCity(a.addresses, a.country),
       slug: toUrlSlug(city),
       count: a.count,
       top10Count: a.top10Count,
@@ -272,7 +279,7 @@ export function composeCityDescription(c: SeoCity): string {
   if (c.top10Count > 0) {
     return `The best bars in ${c.city}, including ${c.top10Count} BarMagazine Top 10 pick${c.top10Count === 1 ? '' : 's'}. ${c.count} verified listings with addresses and opening hours.`;
   }
-  return `The best bars in ${c.city}, ${c.country}: ${c.count} verified listings with addresses, opening hours and signature drinks, curated by BarMagazine.`;
+  return `The best bars in ${cityLabel(c.city, c.country, c.subdivision)}: ${c.count} verified listings with addresses, opening hours and signature drinks, curated by BarMagazine.`;
 }
 
 /** Opening paragraph for a type-city page. */
@@ -305,5 +312,5 @@ export function composeTypeDescription(c: SeoCity, t: TypePage, typeCount: numbe
   if (topName) {
     return `The ${typeCount} best ${t.plural} in ${c.city}, led by ${topName}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
   }
-  return `The ${typeCount} best ${t.plural} in ${c.city}, ${c.country}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
+  return `The ${typeCount} best ${t.plural} in ${cityLabel(c.city, c.country, c.subdivision)}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
 }
