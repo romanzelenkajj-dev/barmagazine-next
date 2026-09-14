@@ -335,3 +335,33 @@ Running log of shipped work items and their merge commits. Newest first.
   matched a same-named street elsewhere (Bar Basso's Via Plinio 39 to
   Taranto, Kinsman's Peel St to the Philippines, No Vacancy's Ossington
   Avenue to Ottawa, and so on). Listed in the session report.
+
+## 2026-09-14 - Admission rule clarified (claude/admission-rule.md)
+- Standing rule from Roman: the admission test is about venue TYPE
+  (cocktail-led rooms, not nightclubs, wine bars or pure restaurants) and
+  is NOT a quality bar. We do not remove or refuse bars for being
+  insufficiently prestigious; awards are not a requirement. Removing an
+  already-listed venue is a last resort, and a famous room readers search
+  for stays listed with an honest description instead of being delisted.
+  Recorded in claude/admission-rule.md.
+- Acting on it, both reversals of earlier errors in this session:
+  * zuma-london REACTIVATED. The earlier delisting applied the test as a
+    quality filter; under the rule, "leads with dining and names no bar
+    lead" is an argument about how to describe the venue, not grounds to
+    remove it.
+  * zuma-hong-kong INSERTED (LANDMARK Level 5 & 6, Queen's Road Central),
+    having been refused under the same misreading.
+- zuma (Dubai) now carries Roman's approved description in place of the
+  composed fallback, verified live. Per his constraints it names no
+  bartender, claims no sake or whisky list of any size, and keeps the
+  rankings in the past tense.
+- zuma-hong-kong description deliberately LEFT EMPTY: Roman is
+  researching London and Hong Kong and will supply both, rather than
+  having thin copy written from what we already hold. The composed
+  fallback renders on that profile until his text arrives.
+- Note for that work: zuma-london already has a real description (not the
+  fallback), and it claims "more than 40 sakes". That is sourced from
+  Zuma's own page, but it is the same class of sized-list claim Roman
+  ruled out for Dubai, so it is worth a decision when he replaces it.
+- Three rows are now named "Zuma" (zuma, zuma-london, zuma-hong-kong), so
+  any admin update by barName hits all three. Use barId.
