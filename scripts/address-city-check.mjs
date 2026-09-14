@@ -182,6 +182,30 @@ export function addressSegments(address) {
     .filter(seg => seg.length >= 3);
 }
 
+/**
+ * Flags reviewed and found correct. A check that reports the same two rows
+ * every run stops being read, so a clean run must be zero.
+ *
+ * The suppression is bound to the exact address it was approved against. If
+ * that address is edited, the reason no longer applies and the row is
+ * reported LOUDLY as a stale allowlist entry rather than silently staying
+ * quiet. A suppression must not outlive the thing it was reasoning about.
+ */
+const ALLOWLIST = {
+  'dot-bar': {
+    address: 'Floor 3, 75 Hai Bà Trưng, Bến Nghé, Quận 1',
+    reason:
+      'Hai Bà Trưng is a Ho Chi Minh City street named after the Trung Sisters. ' +
+      'It is also a district of Hanoi, which is what the gazetteer matches.',
+  },
+  'canes-tales': {
+    address: '5-54 Ofukacho, Kita',
+    reason:
+      'Kita is the Osaka ward the bar sits in. It shares its name with a city ' +
+      'elsewhere in Japan, too far away for the local-reading rule to catch.',
+  },
+};
+
 // ------------------------------------------------------------------- check
 
 export function checkRow(row, byName, opts = {}) {
@@ -314,7 +338,18 @@ async function main() {
     process.exit(ok ? 0 : 1);
   }
 
-  const flagged = rows.map(r => checkRow(r, byName)).filter(Boolean);
+  const raw = rows.map(r => checkRow(r, byName)).filter(Boolean);
+  const flagged = [];
+  const stale = [];
+  for (const f of raw) {
+    const allowed = ALLOWLIST[f.slug];
+    if (!allowed) { flagged.push(f); continue; }
+    if (allowed.address === f.address) continue; // reviewed, still true
+    stale.push({ ...f, approvedFor: allowed.address, reason: allowed.reason });
+  }
+  // A stale suppression is worse than a flag: it is a flag someone decided
+  // not to look at, for a reason that has since changed.
+  for (const st of stale) flagged.push(st);
   if (asJson) {
     console.log(JSON.stringify(flagged, null, 1));
     return;
@@ -323,11 +358,18 @@ async function main() {
   console.log(`active bars: ${rows.length} (${withAddr} with an address)`);
   console.log(`flagged: ${flagged.length}\n`);
   for (const f of flagged) {
-    console.log(`  ${f.name} [${f.slug}]`);
+    const isStale = Boolean(f.approvedFor);
+    console.log(`  ${isStale ? 'STALE ALLOWLIST: ' : ''}${f.name} [${f.slug}]`);
     console.log(`     city field : ${f.city}, ${f.country}`);
     console.log(`     address    : ${f.address}`);
     console.log(`     names      : ${f.named.place} (${f.named.cc}, pop ${f.named.pop.toLocaleString()})`);
+    if (isStale) {
+      console.log(`     approved for: ${f.approvedFor}`);
+      console.log(`     the address changed, so this suppression no longer holds: ${f.reason}`);
+    }
   }
+  const suppressed = Object.keys(ALLOWLIST).length - flagged.filter(f => f.approvedFor).length;
+  if (suppressed > 0) console.log(`\n(${suppressed} reviewed row(s) suppressed by the allowlist.)`);
   console.log(
     `\n${flagged.length <= SCHEDULE_THRESHOLD
       ? `At ${flagged.length} this is short enough to run on a schedule.`

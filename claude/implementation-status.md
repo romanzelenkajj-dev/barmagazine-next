@@ -623,3 +623,37 @@ Running log of shipped work items and their merge commits. Newest first.
   page. So the bio neither agrees nor disagrees, the condition is unmet,
   and the row still holds the hotel's 401 Korean Veterans Blvd. Awaiting
   Roman's word to switch on the venue-site evidence alone.
+
+## 2026-09-14 - Address check allowlisted and scheduled; runtime-config rule
+- ALLOWLIST in address-city-check.mjs for the two reviewed flags, dot-bar
+  (a Ho Chi Minh City street named after the Trung Sisters, also a Hanoi
+  district) and canes-tales (Osaka's Kita ward). Each entry records its
+  reason inline and is BOUND TO THE EXACT ADDRESS it was approved against:
+  if the address changes, the row is reported as "STALE ALLOWLIST" with
+  the approved-for value and the reason, rather than staying silent.
+  Verified by simulating an address change. A clean run is now 0 flags.
+- SCHEDULED: npm run audit:addresses (and :validate). Weekly via launchd
+  com.barmagazine.address-audit, Mondays 09:00, logging to
+  outreach/address-audit.log; installed and test-fired clean. PLUS a
+  standing procedure to run it after every insert wave, which is when
+  addresses actually enter the table. Documented in claude/data-checks.md.
+- RUNTIME-CONFIG RULE written where it will be read: at the TOP of
+  next.config.mjs itself (the file someone would be tempted to regex) and
+  in claude/data-checks.md. Anything inspecting the config must evaluate
+  nextConfig.redirects(), never parse text, because the rules are composed
+  with an imported generated JSON and do not exist as literal text.
+- AUDIT RESULT: every in-repo consumer already evaluated the config
+  correctly (seo-check.mjs, redirect-chain.test.ts, headers-config.test.ts).
+  The only text-parser was a throwaway script. Nothing to convert there.
+- But the same principle caught a real one: generate-bar-redirects.mjs
+  carried a HAND-TRANSCRIBED list of root-level redirects that had to be
+  kept in step with the config by hand. Now derived from redirects().
+- THAT CHANGE INTRODUCED AND THEN FIXED A SERIOUS BUG, worth recording:
+  next.config.mjs composes the generator's own previous output, so the
+  derived list counted the last run as pre-existing config and the second
+  consecutive run emitted 0 redirects and skipped 1000. It would have
+  silently wiped 990 live redirects on the next deploy. Fixed by
+  subtracting our own output (keyed on `from`, the shape the JSON uses),
+  proven stable across four consecutive runs, and guarded by
+  assertNotCollapsed(), which refuses to write a zero-redirect payload
+  while the directory holds bars.

@@ -27,7 +27,7 @@
  * the warning and fix the env / network.
  */
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import process from 'node:process';
@@ -52,20 +52,64 @@ const RESERVED_ROUTES = new Set([
   '_next', 'cdn-cgi', 'partner', 'wp-content',
 ]);
 
-// Slugs that already have a hand-curated root-level redirect in
-// next.config.mjs. If a bar slug matches one of these, we must not emit
-// a duplicate (Next.js rejects duplicate `source` values at build time).
-const EXISTING_ROOT_REDIRECTS = new Set([
-  'trending', 'about', 'contact', 'homepage', 'bar-directory', 'list-your-bar',
-  'cocktails', 'privacy-policy', 'advertise', 'home',
-  '2025-shake-it-up-national-finals', 'tales-of-the-cocktail-2025',
-  'athens-bar-show-2025', 'india-bar-show-2025', 'the-bars-of-barcelona',
-  'the-art-of-wine-production', 'drinky-juznej-ameriky',
-  'bartenders-choice-awards-2026',
-  'feed', 'wp-login.php', 'wp-admin',
-]);
+// Root-level redirect sources already declared in next.config.mjs. If a bar
+// slug matches one, we must not emit a duplicate: Next.js rejects duplicate
+// `source` values at build time, so a collision breaks the build.
+//
+// DERIVED, never transcribed. This used to be a hand-maintained list, which
+// is the same defect as regexing the config: a copy that drifts silently
+// from the thing it copies. Adding a root redirect to next.config.mjs and
+// forgetting this set would have broken the next deploy.
+async function existingRootRedirects() {
+  const cfgUrl = new URL(`file://${join(repoRoot, 'next.config.mjs')}`);
+  const nextConfig = (await import(cfgUrl.href)).default;
+  const rules = await nextConfig.redirects();
+
+  // CRITICAL: next.config.mjs composes the hand-curated rules WITH this
+  // script's own previous output, so the raw list contains our last run.
+  // Subtract it, or the generator poisons itself: every slug it emitted last
+  // time reads as an existing redirect, gets skipped, and the whole bar
+  // redirect set collapses to zero on the next build. Verified: without this
+  // subtraction a second consecutive run emits 0 redirects and skips 1000.
+  const ours = new Set();
+  try {
+    const prev = JSON.parse(readFileSync(outPath, 'utf8'));
+    // Entries are stored as { from, to }; next.config maps them to
+    // { source, destination } when it composes the rules.
+    for (const r of prev.redirects || []) {
+      if (typeof r.from === 'string') ours.add(r.from.replace(/^\//, ''));
+    }
+  } catch { /* no previous output, nothing to subtract */ }
+
+  const out = new Set();
+  for (const r of rules) {
+    if (typeof r.source !== 'string') continue;
+    // Root level only: "/about", never "/bars/x" or a ":slug" pattern.
+    const m = /^\/([^/:]+)$/.exec(r.source);
+    if (m && !ours.has(m[1])) out.add(m[1]);
+  }
+  return out;
+}
+
+/**
+ * A generator that suddenly emits nothing while the directory is full of
+ * bars has almost certainly poisoned itself against its own previous
+ * output. That failure is silent and expensive: the build succeeds and 990
+ * live redirects quietly vanish. Refuse instead.
+ */
+function assertNotCollapsed(counts) {
+  if (counts.bars > 100 && counts.redirects === 0) {
+    console.error(
+      `[generate-bar-redirects] REFUSING TO WRITE: ${counts.bars} bars but 0 redirects ` +
+        `(${counts.skipped} skipped). This is the self-poisoning signature: the denylist ` +
+        `is counting this script's own previous output as pre-existing config.`,
+    );
+    process.exit(1);
+  }
+}
 
 function writeOutput(payload) {
+  if (payload.counts) assertNotCollapsed(payload.counts);
   mkdirSync(dirname(outPath), { recursive: true });
   writeFileSync(outPath, JSON.stringify(payload, null, 2) + '\n', 'utf8');
 }
@@ -119,6 +163,7 @@ async function fetchWpSlugSet(endpoint) {
 }
 
 async function main() {
+  const EXISTING_ROOT_REDIRECTS = await existingRootRedirects();
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
     emitEmpty(
       'NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY missing ' +

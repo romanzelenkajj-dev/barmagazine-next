@@ -1,3 +1,8 @@
+// RULE: anything that inspects this file must evaluate nextConfig.redirects(),
+// never parse it as text. The rules below are composed with `barRedirects`,
+// imported from a generated JSON file, so they do not exist as literal text
+// here. A regex audit on 2026-09-14 saw 20 of 47 /bars/ rules and reported a
+// confident answer on 43% of the data. See claude/data-checks.md.
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
