@@ -134,10 +134,10 @@ const nextConfig = {
       { source: '/bars/virt%C3%B9', destination: '/bars/virtu', permanent: true },
       { source: '/bars/alqu-mico', destination: '/bars/alquimico', permanent: true },
       { source: '/bars/bar-des-prs', destination: '/bars/bar-des-pres', permanent: true },
-      { source: '/bars/bar-le-mal-ncessaire', destination: '/bars/bar-le-mal-necessaire', permanent: true },
+      { source: '/bars/bar-le-mal-ncessaire', destination: '/bars/le-mal-necessaire', permanent: true },
       { source: '/bars/bootlegger-cocktail-bar-cuisine-montral', destination: '/bars/bootlegger-cocktail-bar-cuisine-montreal', permanent: true },
       { source: '/bars/caf-de-la-paix', destination: '/bars/cafe-de-la-paix', permanent: true },
-      { source: '/bars/caf-pacifico', destination: '/bars/cafe-pacifico', permanent: true },
+      { source: '/bars/caf-pacifico', destination: '/bars', permanent: true },
       { source: '/bars/barmnster', destination: '/bars/barmunster', permanent: true },
       { source: '/bars/florera-atlntico', destination: '/bars/floreria-atlantico', permanent: true },
       // TODO: redundant since PR #18 renamed the Supabase slug to 'kwant' —
@@ -274,7 +274,7 @@ const nextConfig = {
       // ---------------------------------------------------------------
       { source: '/bars/satan-s-whiskers', destination: '/bars/satans-whiskers', permanent: true },
       { source: '/bars/virt', destination: '/bars/virtu', permanent: true },
-      { source: '/bars/eau-de-vie-bar-melbourne', destination: '/bars/eau-de-vie-melbourne', permanent: true },
+      { source: '/bars/eau-de-vie-bar-melbourne', destination: '/bars', permanent: true },
       { source: '/bars/the-savory-project-shanghai', destination: '/bars/the-savory-project', permanent: true },
 
       // ---------------------------------------------------------------

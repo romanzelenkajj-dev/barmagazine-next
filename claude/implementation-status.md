@@ -442,3 +442,33 @@ Running log of shipped work items and their merge commits. Newest first.
   as the first room in what has become a global group", with no year.
 - Verified live on both: composed fallback absent, new copy in the body
   and the meta description, profiles serving 200.
+
+## 2026-09-14 - Redirect/live-bar diff, TOP 10 recheck, audit method test
+- REDIRECT DIFF: every redirect source under /bars/ (20 rules: 15
+  explicit, 5 in the merged-slug map) matched against the 1,234 active
+  slugs. RESULT: NO shadowed profiles. attaboy-nashville and
+  employees-only-singapore were the only two, and both were already
+  removed. The 404-recovery block is otherwise clean.
+- The reverse check found a different defect: three redirects RESOLVED
+  but landed on 404s, because their destination slug is inactive or does
+  not exist. Repointed:
+  * /bars/bar-le-mal-ncessaire now goes to /bars/le-mal-necessaire, the
+    live row for that Montreal venue (it had pointed at an inactive
+    accent-stripped duplicate).
+  * /bars/caf-pacifico and /bars/eau-de-vie-bar-melbourne now go to
+    /bars, per the block's own stated convention, their targets being an
+    inactive row and no row at all respectively.
+- TOP 10 RECHECK: all 23 TOP 10 cities sit at exactly ten, so nothing
+  regressed. Bengaluru is NOT a TOP 10 city and never was: it has no
+  top10 rows at all (11 active bars, all free tier). Cobbler & Crew was
+  free tier, so moving it to Pune could not have affected any TOP 10.
+- ADDRESS AUDIT METHOD TEST: appending the row's own city and country to
+  the geocode query cut hits from 26 to 17, but ALL 17 remain false
+  positives, so precision is still zero and the method is NOT safe to run
+  unattended. The change also introduced a new systematic artifact: 11 of
+  the 17 are Hong Kong bars resolving to the identical wrong place
+  ("Hongtong Xian, Linfen Shi, Shanxi"), because appending "Hong Kong"
+  makes Mapbox match "Hong". Keep this as an assisted check that a human
+  reads, not a cron. The signal that actually found all three real
+  mismatches was a place name in the address text contradicting the city
+  field, not a distance measurement.
