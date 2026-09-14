@@ -165,3 +165,36 @@ Running log of shipped work items and their merge commits. Newest first.
   (pure + unit tested). Exact address match only, deliberately not a
   domain match, so a colleague on the company domain is still a genuine
   transfer request and stays in the queue for a human.
+
+## 2026-09-14 - Negroni Week Asia additions (3 inserted, 5 not)
+- INSERTED, own-site sourced: drinking-and-healing (Ho Chi Minh City;
+  hours 17:00-02:00 per the venue's own booking site, which overrides the
+  6:30pm in the press release; no email published), pony-and-plume
+  (Macau, Level 1 Capella at Galaxy Macau, Cocktail Bar + Hotel Bar /
+  Whiskey Bar subtypes; Sunday hours are not published by the venue),
+  bar-leone-shanghai (Bar Leone's own site confirms it operates two
+  locations, Hong Kong from June 2023 and Shanghai from November 2025).
+- NOT inserted: Osteria Gia (own site is a food-led Italian restaurant
+  group, 8 outlets); Lai La / Laila HCMC (self-tagged modern cocktail
+  CLUB, DJ from 9pm - the la-siesta-budapest precedent); Odyssey Chengdu
+  (unverifiable, not disproven: mainland venues often live only on
+  WeChat, so absence from Western search is weak evidence); Zuma Hong
+  Kong (rejected on re-check, see below); Ne Cocktail Bar (held pending
+  Izzy - the release says Ho Chi Minh City but the venue's own posts say
+  3B Tong Duy Tan, Hoan Kiem, HANOI).
+- Zuma Hong Kong rejected: own page leads "contemporary Japanese dining
+  experience", publishes only restaurant service hours with no separate
+  bar hours, names no bar lead, and is roughly 80% food. Restaurant-first
+  by its own description (the Chilte case). NOTE it does publish five
+  named seasonal cocktails, so "no bar menu" is not quite right, but the
+  decisive facts hold. CONSISTENCY GAP: zuma (Dubai, tier top10) and
+  zuma-london are already listed and would fail the same test. Dubai
+  demotion would drop that city's TOP 10 to nine.
+- HATS Bar: name capitalization corrected from "Hats Bar". The venue's
+  own Instagram and Linktree both use HATS with no apostrophe; the 50
+  Best list and the Campari release both write "Hat's Bar" and are wrong.
+- Geocoding note: Mapbox cannot resolve either new Asian address. The
+  HCMC insert first landed 61km outside the city and was corrected to a
+  street-level fix on Ho Tung Mau, Ben Nghe (10.771509, 106.704100).
+  bar-leone-shanghai sits on a Huangpu district centroid, roughly 2km
+  from Sinan Mansions, for want of a sourceable street-level result.
