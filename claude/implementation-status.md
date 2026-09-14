@@ -217,3 +217,20 @@ Running log of shipped work items and their merge commits. Newest first.
   Oaxaca, 366km away, while its address is Polanco. Nothing else exceeds
   31km. Separately worth a look: seven Bengaluru bars share one
   city-centre coordinate (no addresses on file), so they stack on the map.
+
+## 2026-09-14 - Bar edits now revalidate every card surface
+- Reported gap: an admin edit already revalidated /bars, /bars-map, the
+  city and country guides and the bar's own profile (not only the
+  profile), but NOT the surfaces with the longest windows. Added:
+  / (homepage top 10 band, 300s), /best-bars/[city] and
+  /best-bars/[city]/[type] (3600s), /collections/[slug] (3600s),
+  /api/bars/map (600s, carries names into map markers) and /api/bars.
+  So a rename could read correct on the profile and stale in the city
+  guides for an hour.
+- Residual, documented in the helper: /api/bars is keyed by query string
+  (filters, pagination), and revalidatePath cannot purge every variant,
+  so a filtered or "load more" grid can still lag its 300s window.
+- The reported "Stir" staleness had already aged out by the time it was
+  checked: DB, profile, /bars, city page and /api/bars all agreed. The
+  one surface still serving the old name mid-check was /api/bars/map,
+  which is exactly the endpoint nothing revalidated.
