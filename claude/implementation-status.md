@@ -472,3 +472,50 @@ Running log of shipped work items and their merge commits. Newest first.
   reads, not a cron. The signal that actually found all three real
   mismatches was a place name in the address text contradicting the city
   field, not a distance measurement.
+
+## 2026-09-14 - Nashville and Pune insert waves (13 rows)
+- DIFFED FIRST, per the rule: all 13 candidates checked against the bars
+  table by name and slug before any write. All were genuine gaps; the
+  only name hits were other cities (De Tiger Bar/Jakarta, The White
+  Elephant/Miami). No slug collisions.
+- NASHVILLE +7: the-fox-bar-cocktail-club, four-walls, the-patterson-house,
+  old-glory, tiger-bar, bastion, pearl-diver. Nashville 1 -> 8.
+- PUNE +6: elephant-and-co, soy-como-soy, juju, qora, malaka-spice,
+  paasha. Pune 1 -> 7.
+- ACCOLADES HELD, NOT WRITTEN, and this is the blocker to resolve: the
+  tile system has exactly seven approved orgs (w50b, a50b, e50b, na50b,
+  totc, bca, jbf) and isRenderable() drops everything else on purpose,
+  because "there is no approved wording for it". 30 BEST BARS INDIA,
+  Food & Wine, Eater and Esquire all have NO tile, so storing them would
+  put invisible rows in the database. Affects Elephant & Co., Soy Como
+  Soy, Malaka Spice, Paasha, Cobbler & Crew and most of the Nashville
+  set. Needs approved tile wording (region line, main line, colour tier)
+  for 30 Best Bars India, plus a decision on whether magazine lists are
+  accolades in our sense at all. Cobbler & Crew's accolade update is
+  held for the same reason.
+- Cobbler & Crew's "#2 in 2023" anomaly RESOLVED and is not an error: it
+  placed #2 overall in 2023 AND won Highest New Entry, which is what the
+  highest-placed debutant wins. Both are real.
+- Research findings worth keeping:
+  * Four Walls: its own site says "405 4th avenue south, TN 37201" while
+    The Joseph says "401 Korean Veterans Blvd, Floor 2, TN 37203".
+    Stored the hotel's version as supplied; the conflict is UNRESOLVED.
+    thejosephnashville.com also has an EXPIRED TLS certificate, which is
+    why automated reading failed.
+  * The Patterson House: visible copy is correctly moved, but the dead
+    1711 Division Street address is STILL in the site's JSON-LD, site
+    config and map coordinates, so aggregators keep broadcasting it. Our
+    row stores only the new address. Note 718 Division Street is the
+    current valet and is NOT the stale one.
+  * Old Glory and The Fox both publish hours on demonstrably stale pages
+    (Super Bowl promo seven months old and an Instagram feed frozen since
+    April; "Summer Hours" with no date range in September). Hours stored
+    as published, but worth a phone check.
+  * Tiger Bar publishes NO social links at all, and @tigerbarnashville
+    does not exist on Instagram. Instagram left empty, confirmed twice.
+  * Pearl Diver's "award-winning" is unsubstantiated in visible copy. Not
+    repeated anywhere in our description.
+  * Soy Como Soy is KOREGAON PARK, settled on the operator's own site.
+  * Juju's handle confirmed (@juju.bar.pune) and its bio publishes hours.
+- No neighbourhood stored for The Patterson House: the bars table has no
+  neighborhood column, so "Midtown" went into the description instead.
