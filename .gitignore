@@ -43,3 +43,6 @@ next-env.d.ts
 src/lib/bar-redirects.generated.json
 _to_delete/
 .env.backup
+
+# GeoNames gazetteer cache for scripts/address-city-check.mjs (15MB, re-downloadable)
+.cache/

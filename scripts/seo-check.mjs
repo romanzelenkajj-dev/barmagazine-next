@@ -401,6 +401,102 @@ async function checkRedirectSources() {
   }
 }
 
+/**
+ * Follow every /bars/* redirect to where it ACTUALLY lands and assert 200.
+ *
+ * checkRedirectDestinations deliberately skips /bars/* destinations ("985
+ * dynamic bar redirects; A4 verification curls cover those"). That left a
+ * real gap: on 2026-09-14 three rules returned perfectly healthy 308s while
+ * their destination slug was inactive or absent, so the chain ended on a
+ * 404 and nothing flagged it. A redirect that resolves is not the same as a
+ * redirect that works.
+ *
+ * Unlike the status-only checks, this follows the chain hop by hop, so a
+ * redirect pointing at another redirect that dies is caught too, as is a
+ * loop.
+ */
+async function checkBarRedirectChains() {
+  let nextConfig;
+  try {
+    const { fileURLToPath } = await import('node:url');
+    const { dirname, join } = await import('node:path');
+    const here = dirname(fileURLToPath(import.meta.url));
+    const cfgUrl = new URL(`file://${join(here, '..', 'next.config.mjs')}`);
+    nextConfig = (await import(cfgUrl.href)).default;
+  } catch (err) {
+    record(
+      'bar-redirect-chains',
+      'warn',
+      'pending',
+      `cannot import next.config.mjs (${err.message}); chain probe skipped`,
+    );
+    return;
+  }
+
+  const redirects = await nextConfig.redirects();
+  const rules = redirects.filter(
+    (r) =>
+      typeof r.source === 'string' &&
+      r.source.startsWith('/bars/') &&
+      !r.source.includes(':'),
+  );
+
+  const MAX_HOPS = 5;
+  const broken = [];
+
+  await Promise.all(
+    rules.map(async (rule) => {
+      let url = `${baseUrl}${rule.source}`;
+      const seen = [rule.source];
+      for (let hop = 0; hop <= MAX_HOPS; hop++) {
+        let res;
+        try {
+          res = await fetch(url, { redirect: 'manual', headers: { 'user-agent': 'barmagazine-seo-check' } });
+        } catch (err) {
+          broken.push(`${rule.source} → network error (${err.message})`);
+          return;
+        }
+        if (res.status >= 300 && res.status < 400) {
+          const loc = res.headers.get('location');
+          if (!loc) {
+            broken.push(`${rule.source} → ${res.status} with no Location`);
+            return;
+          }
+          const next = new URL(loc, url);
+          if (seen.includes(next.pathname)) {
+            broken.push(`${rule.source} → redirect loop at ${next.pathname}`);
+            return;
+          }
+          seen.push(next.pathname);
+          url = next.href;
+          continue;
+        }
+        if (res.status !== 200) {
+          broken.push(`${rule.source} → ${seen.join(' → ')} ends HTTP ${res.status}`);
+        }
+        return;
+      }
+      broken.push(`${rule.source} → more than ${MAX_HOPS} hops (${seen.join(' → ')})`);
+    }),
+  );
+
+  if (broken.length > 0) {
+    record(
+      'bar-redirect-chains',
+      'fail',
+      'enforce',
+      `${broken.length}/${rules.length} land badly: ${broken.slice(0, 5).join(' | ')}${broken.length > 5 ? ' …' : ''}`,
+    );
+  } else {
+    record(
+      'bar-redirect-chains',
+      'pass',
+      'enforce',
+      `all ${rules.length} /bars/ redirects land on a 200`,
+    );
+  }
+}
+
 async function checkHomepageWeight() {
   // Pending: A10 (reduce homepage payload < 300 KB compressed).
   let bytes = 0;
@@ -440,6 +536,7 @@ async function run() {
       checkHomepageWeight(),
       checkRedirectDestinations(),
       checkRedirectSources(),
+      checkBarRedirectChains(),
     ]);
   } else {
     console.error(`Unknown --mode=${mode}; use --mode=build or --mode=live`);

@@ -519,3 +519,45 @@ Running log of shipped work items and their merge commits. Newest first.
   * Juju's handle confirmed (@juju.bar.pune) and its bio publishes hours.
 - No neighbourhood stored for The Patterson House: the bars table has no
   neighborhood column, so "Midtown" went into the description instead.
+
+## 2026-09-14 - Address check rebuilt on names; redirect chains validated
+- NEW scripts/address-city-check.mjs replaces the distance-based audit,
+  which is retired. It matches PLACE NAMES from the address text against
+  a GeoNames cities5000 gazetteer (~70k places, alternate names inline),
+  rather than measuring how far a geocode lands from the city.
+  Gazetteer is cached in .cache/ (gitignored, re-downloads on demand).
+  Rules that matter, each earned from a false positive:
+  * comma SEGMENTS are matched whole, so "Calle Rio de Janeiro 56" is not
+    the city Rio de Janeiro and "Victoria Dockside" is not Victoria;
+  * a row whose address names its OWN city is skipped outright;
+  * alternate names resolve the row's own city (Bangalore/Bengaluru) but
+    are NOT used to match candidates, being full of transliterations that
+    collide with street words;
+  * street and district markers drop "Chengde Rd" and "Xinyi District",
+    and the marker test runs BEFORE the trailing-token strip, or "chuo ku"
+    would become "chuo" and read as a city;
+  * a name followed by a SHORT number is a street ("Turin 52"), while five
+    digits or more is a postcode ("Singapore 069932");
+  * if any place of that name sits near the row's own city, that local
+    reading wins, which is what separates Mexico City's Cuauhtemoc borough
+    from the city in Chihuahua.
+- --validate re-injects the three known mismatches IN MEMORY and fails if
+  any is missed. It caught two real regressions while the rules were being
+  tuned, including one where the street-line rule skipped the first
+  SURVIVING segment, which is usually the city.
+- RESULT: 2 flags across 1,211 addresses, both explainable (a Ho Chi Minh
+  City street named after a Hanoi district, and Osaka's Kita ward). Under
+  the 30 threshold, so it is worth scheduling.
+- NEW check in scripts/seo-check.mjs: bar-redirect-chains. For every
+  /bars/* redirect rule (47 at runtime, not the 20 a regex suggested) it
+  follows the chain hop by hop and asserts a 200, catching loops and
+  multi-hop dead ends. This closes a real gap: checkRedirectDestinations
+  deliberately SKIPS /bars/* destinations, which is why the three rules
+  found by hand today were never flagged.
+- It immediately found 11 MORE: accent-stripped /bars/city/* rules
+  pointing at city pages for cities we do not list, so they 308'd and then
+  404'd. All repointed to /bars, with a note to restore the original
+  target if we ever list bars in those cities.
+- Also corrected: the earlier "no shadowed profiles" diff used a regex and
+  saw only 20 of the 47 rules. Re-run against nextConfig.redirects() at
+  runtime, the conclusion holds: 0 shadowed profiles.
