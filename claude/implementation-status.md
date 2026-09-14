@@ -389,3 +389,36 @@ Running log of shipped work items and their merge commits. Newest first.
 - The ~200 addresses that omit their own city are deliberately LEFT
   ALONE. They display correctly because the city renders separately on
   the profile, so rewriting them would be churn with no reader benefit.
+
+## 2026-09-14 - Outpost-contaminated rows split into real venues
+- Three rows each held one venue's city with another outpost's details.
+  All now internally consistent, and the siblings are listed separately
+  the way Bar Leone Shanghai was.
+- attaboy (New York, tier top10): address was the Nashville outpost's and
+  Instagram was @attaboynashville. Corrected to 134 Eldridge St and
+  @attaboy134 from the brand's own New York page. Its coordinates were
+  already right, and in fact reverse-geocoded to 134 Eldridge Street,
+  which is how the correct address was first confirmed.
+- employees-only (New York): address was "112 Amoy Street, Singapore" and
+  Instagram @employeesonlysg. Corrected to 510 Hudson St and
+  @employeesonlyny. The PIN was wrong too, and instructively so: it had
+  been geocoded off the Singapore address onto "112 Amboy Street,
+  Brooklyn", a same-numbered near-homonym. Repointed to Hudson St.
+- cobbler-crew: the CITY field was the wrong one, not the address. The
+  venue's own Linktree, Facebook page name and LinkedIn all place it in
+  Kalyani Nagar, PUNE, with no Bengaluru outlet anywhere on its own
+  channels. Moved to Pune with matching coordinates, and given a
+  description sourced from its own Instagram bio. Bengaluru drops to 11
+  active bars; Pune becomes a new city.
+- INSERTED as their own rows: attaboy-nashville (8 McFerrin Ave, own
+  hours and email, @attaboynashville) and employees-only-singapore (112
+  Amoy St, @employeesonlysg). Both confirmed still trading from their own
+  channels.
+- next.config.mjs: REMOVED the placeholder redirects for both new slugs.
+  They sat in the "bars we haven't migrated yet" block sending traffic to
+  /bars, and would have shadowed the real profiles. That both slugs were
+  in that block at all is evidence readers were already searching for
+  them. Added a note to the block to drop a line whenever its bar is
+  actually listed.
+- Three brands now have multiple rows sharing a name (Attaboy, Employees
+  Only, Zuma), so admin updates by barName are unsafe for these. Use ids.

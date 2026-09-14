@@ -267,12 +267,14 @@ const nextConfig = {
       // Bar slugs that 404'd in Search Console. Each one is either a
       // rename, an accent-strip, or a bar we haven't migrated yet —
       // send to /bars so the user lands on something useful.
+      // WHEN A BAR HERE IS ACTUALLY LISTED, DROP ITS LINE: a redirect on
+      // a live slug shadows the real profile. attaboy-nashville and
+      // employees-only-singapore were removed on 2026-09-14 for exactly
+      // that reason, when both outposts were inserted as their own rows.
       // ---------------------------------------------------------------
       { source: '/bars/satan-s-whiskers', destination: '/bars/satans-whiskers', permanent: true },
       { source: '/bars/virt', destination: '/bars/virtu', permanent: true },
       { source: '/bars/eau-de-vie-bar-melbourne', destination: '/bars/eau-de-vie-melbourne', permanent: true },
-      { source: '/bars/attaboy-nashville', destination: '/bars', permanent: true },
-      { source: '/bars/employees-only-singapore', destination: '/bars', permanent: true },
       { source: '/bars/the-savory-project-shanghai', destination: '/bars/the-savory-project', permanent: true },
 
       // ---------------------------------------------------------------
