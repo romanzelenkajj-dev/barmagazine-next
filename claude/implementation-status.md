@@ -1214,6 +1214,21 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - No-food rule: Bastion and JoJo's rewritten, description linter
+- bastion (466e654f): "serves no food from that kitchen" -> "serves nachos
+  of its own, which its FAQ states", the following sentence adjusted so the
+  nachos are not said twice. jojos-beloved (9b7a7dcf): the "serves no
+  food" clause removed, the rest untouched. Both revalidated and confirmed
+  live. momus and bar-us left as they are, by decision.
+- RULE added to claude/admission-rule.md, Descriptions: never state that a
+  bar has no kitchen or serves no food; if the venue says so, do not
+  mention food. No description linter existed, so
+  scripts/description-lint.mjs is new: the sweep's phrases plus variants,
+  every row's description and short_excerpt, exit 1 on a hit, reviewed
+  rows allowlisted against their exact phrase (momus, bar-us, the inactive
+  Wise King line). Wired as `npm run audit:descriptions` and into
+  data-checks.md as a post-wave check. First run: 0 hits, 3 suppressed.
+
 ## 2026-09-15 - Same-name cities: city slugs qualified on collision, bars.state column, Kraków merge
 - RULE (Roman, built same day; commits a96f847, 69f1b8a, e2938d4): the
   city slug stays the bare city for every city with no collision. Where two

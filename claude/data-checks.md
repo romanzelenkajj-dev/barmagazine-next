@@ -297,3 +297,10 @@ See `src/lib/city-location.ts`.
   "0 with no derivable state"; add a HAND entry for a bare street line.
 - The stored city string stays bare ("Portland", never "Portland, Maine");
   the state and the slug carry the split.
+
+## Descriptions: no food negations (2026-09-15)
+- `npm run audit:descriptions` after every wave and every description edit.
+  A description never says a bar has no kitchen or serves no food (Friends
+  of Friends, Illinois Liquor Commission); if the venue says so, food is
+  simply not mentioned. The linter fails on any hit; reviewed exceptions
+  are allowlisted against their exact phrase in scripts/description-lint.mjs.

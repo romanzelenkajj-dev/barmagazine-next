@@ -48,3 +48,18 @@ fallback, and the description carries the honesty: say what the room
 actually is. Do not invent a bartender name, do not claim a list of any
 particular size, and keep award rankings in the past tense unless a current
 listing is confirmed.
+
+**Never say a bar has no kitchen or serves no food** (Roman, 2026-09-15).
+If the venue says so itself, we simply do not mention food. Bars are
+licensed on food sales in many US states, and the sentence can create a
+problem for the owner: Friends of Friends flagged "the bar keeps no kitchen
+on site" against the Illinois Liquor Commission the day this rule was
+written. Where the venue publishes what it does serve, say that instead
+(Bastion's Big Bar "serves nachos of its own", from its FAQ); where it
+publishes nothing, leave food out. The phrases from the sweep that found
+the three rows (no kitchen, no food, serves no food, without a kitchen,
+nothing to eat, drinks-only, not a dining room, and variants) live in
+`scripts/description-lint.mjs`, which runs as `npm run audit:descriptions`
+after every wave and fails on any hit. Two rows were left by decision and
+are allowlisted there against their exact phrase: momus (Madrid) and
+bar-us (Bangkok).
