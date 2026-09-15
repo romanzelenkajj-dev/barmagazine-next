@@ -1214,6 +1214,13 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 08: actions column capped (e699e8f)
+- Follow-up to 05 from Roman's live look: the actions column is capped at
+  300px at 1100px and up (grid minmax(0,1fr) 300px), the ownership note
+  reads on three explicit lines ("For ownership changes:"), and the claim
+  call to action is a pill button again, last in the column. Verified at
+  1000 and 1440 on Bitter & Twisted, Daisy and Captain Foxheart's.
+
 ## 2026-09-15 - Queue tasks 05, 06, 07: profile card grid, accolade-tail scan (stopped), The Pinnacle Guide built
 - 05 (04d541f): the profile info card is one grid in reading order; 60/40
   text and stacked actions at 1100px and up, a wrapping actions row under
