@@ -9,6 +9,7 @@ import { hasSlug, safeHref } from '@/lib/safe-slug';
 import { supabase } from '@/lib/supabase';
 import type { Bar } from '@/lib/supabase';
 import { stripPrivateAll } from '@/lib/private-columns';
+import { placeLine } from '@/lib/city-location';
 import { COLLECTIONS, collectionBySlug } from '@/lib/collections';
 
 /**
@@ -115,7 +116,7 @@ export default async function CollectionPage({ params }: { params: { slug: strin
                   )}
                   <div className="best-bars-meta">
                     {bar.address && <span className="best-bars-address">{bar.address}</span>}
-                    {bar.city && <span className="best-bars-hours">{bar.city}, {bar.country}</span>}
+                    {bar.city && <span className="best-bars-hours">{placeLine(bar)}</span>}
                   </div>
                   <span className="best-bars-more">
                     Full profile

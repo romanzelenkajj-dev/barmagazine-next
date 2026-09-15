@@ -118,3 +118,14 @@ export function subdivisionName(code: string | null | undefined, country: string
   const map = country === 'Canada' ? CA_PROVINCES : US_STATES;
   return map[code.toUpperCase()] ?? null;
 }
+
+/**
+ * The place line for one bar, everywhere a card or a profile prints one
+ * (Roman, 2026-09-15: every place line on the site prints the same way):
+ * "Nashville, Tennessee", "Toronto, Ontario", "Malaga, Spain". Reads
+ * bars.state; a US row with no state prints the bare city, never the
+ * country. Pure, so client components can call it.
+ */
+export function placeLine(bar: { city: string; country: string; state?: string | null }): string {
+  return cityLabel(bar.city, bar.country, subdivisionName(bar.state, bar.country));
+}

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { getGeoScore } from '@/lib/geo';
 import { formatBarType } from '@/lib/utils';
+import { placeLine } from '@/lib/city-location';
 import { BarSearchTypeahead } from './BarSearchTypeahead';
 
 interface Props {
@@ -290,7 +291,7 @@ export function BarDirectoryClient({
                   {bar.name}
                 </div>
                 <div className="directory-list-location">
-                  {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+                  {placeLine(bar)}
                 </div>
                 <div className="directory-list-type">{formatBarType(bar.type)}</div>
                 <svg className="directory-list-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -349,7 +350,7 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
         <div className="bar-dir-featured-content">
           <h3>{bar.name}</h3>
           <span className="bar-dir-featured-location">
-            {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+            {placeLine(bar)}
           </span>
         </div>
       </div>
@@ -376,7 +377,7 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
             <circle cx="12" cy="10" r="3" />
           </svg>
-          <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
+          <span>{placeLine(bar)}</span>
         </div>
         <span className="bar-dir-type">{formatBarType(bar.type)}</span>
       </div>

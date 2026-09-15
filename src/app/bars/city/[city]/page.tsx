@@ -6,7 +6,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getCityIndex, getBarsForCity } from '@/lib/city-index';
 import type { Bar } from '@/lib/supabase';
-import { subdivisionName, cityLabel } from '@/lib/city-location';
+import { subdivisionName, cityLabel, placeLine } from '@/lib/city-location';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import { getCityIntro } from '@/lib/city-intros';
@@ -375,7 +375,7 @@ function CityBarCard({ bar }: { bar: Bar }) {
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
           </svg>
-          {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+          {placeLine(bar)}
         </span>
       </div>
     </Link>

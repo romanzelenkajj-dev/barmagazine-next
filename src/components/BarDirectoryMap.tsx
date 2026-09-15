@@ -10,6 +10,7 @@ import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { getGeoScore } from '@/lib/geo';
 import { formatBarType } from '@/lib/utils';
+import { placeLine } from '@/lib/city-location';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from './BarDirectorySidebar';
 import { BarSearchTypeahead } from './BarSearchTypeahead';
 
@@ -609,8 +610,9 @@ export function BarDirectoryMapClient({
       if (res.ok) {
         const data = await res.json();
         // Convert MapBar shape to Bar shape (fill missing fields with defaults)
-        const bars: Bar[] = (data.bars || []).map((b: { id: string; name: string; slug: string; city: string; country: string; type: string; tier: string; lat: number | null; lng: number | null; photo: string | null; subtypes?: string[] | null }) => ({
+        const bars: Bar[] = (data.bars || []).map((b: { id: string; name: string; slug: string; city: string; country: string; state?: string | null; type: string; tier: string; lat: number | null; lng: number | null; photo: string | null; subtypes?: string[] | null }) => ({
           ...b,
+          state: b.state ?? null,
           region: null, address: null, website: null, instagram: null,
           phone: null, email: null, description: null, short_excerpt: null, subtypes: b.subtypes ?? null,
           photos: b.photo ? [b.photo] : [],
@@ -1098,7 +1100,7 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
           </svg>
-          {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+          {placeLine(bar)}
         </span>
       </div>
     </Link>
@@ -1124,7 +1126,7 @@ function PhotoBarCard({ bar }: { bar: Bar }) {
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
           </svg>
-          <span>{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</span>
+          <span>{placeLine(bar)}</span>
         </div>
         <span className="bar-dir-type">{formatBarType(bar.type)}</span>
       </div>

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { programBySlug, getProgramYears, getLiveAwardPrograms } from '@/lib/award-hubs';
+import { placeLine } from '@/lib/city-location';
 
 /**
  * /awards/[program] — award hub pages built from the accolades data.
@@ -94,7 +95,7 @@ export default async function AwardProgramPage({ params }: { params: { program: 
                       <Link href={`/bars/${bar.slug}`} className="awards-bar-link">
                         <strong>{bar.name}</strong>
                         <span>
-                          {bar.city}, {bar.country}
+                          {placeLine(bar)}
                           {bar.entry.rank != null ? ` (No. ${bar.entry.rank})` : ''}
                         </span>
                       </Link>

@@ -58,6 +58,8 @@ export interface HonoredBar {
   slug: string;
   city: string;
   country: string;
+  /** bars.state, for the place line ("Nashville, Tennessee"). */
+  state: string | null;
   entry: Accolade;
 }
 
@@ -74,11 +76,11 @@ export async function getProgramYears(program: AwardProgram): Promise<YearGroup[
   // cap would silently drop the newest accolade-holding bars as the
   // directory grows.
   const PAGE = 1000;
-  const data: { name: string; slug: string; city: string; country: string; accolades: unknown }[] = [];
+  const data: { name: string; slug: string; city: string; country: string; state: string | null; accolades: unknown }[] = [];
   for (let from = 0; ; from += PAGE) {
     const { data: page, error } = await supabase
       .from('bars')
-      .select('name, slug, city, country, accolades')
+      .select('name, slug, city, country, state, accolades')
       .eq('is_active', true)
       .not('accolades', 'is', null)
       .range(from, from + PAGE - 1);
@@ -93,7 +95,7 @@ export async function getProgramYears(program: AwardProgram): Promise<YearGroup[
   for (const bar of data) {
     for (const entry of renderableAccolades(bar.accolades)) {
       if (program.orgKeys.includes(entry.org_key)) {
-        rows.push({ name: bar.name, slug: bar.slug, city: bar.city, country: bar.country, entry });
+        rows.push({ name: bar.name, slug: bar.slug, city: bar.city, country: bar.country, state: bar.state ?? null, entry });
       }
     }
   }

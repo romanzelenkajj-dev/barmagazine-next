@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { formatBarType } from '@/lib/utils';
+import { placeLine } from '@/lib/city-location';
 
 interface Props {
   bars: Bar[];
@@ -52,7 +53,7 @@ export function CollapsibleBarList({ bars, hasPhotoBars }: Props) {
                 recognises each bar as a named entity in a structured list */}
             <h3 className="directory-list-name">{bar.name}</h3>
             <div className="directory-list-location">
-              {bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}
+              {placeLine(bar)}
             </div>
             <div className="directory-list-type">{formatBarType(bar.type)}</div>
             {bar.description && (

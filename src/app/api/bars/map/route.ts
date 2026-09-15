@@ -15,6 +15,7 @@ export type MapBar = {
   slug: string;
   city: string;
   country: string;
+  state: string | null; // bars.state, for the place line on the pin card
   type: string;
   tier: string;
   lat: number | null;
@@ -29,10 +30,10 @@ export async function GET() {
     // are dropped here rather than in the query; tier-then-name order is
     // applied after the pages are joined.
     const all = await getAllActiveBars<{
-      id: string; name: string; slug: string; city: string; country: string; type: string;
+      id: string; name: string; slug: string; city: string; country: string; state: string | null; type: string;
       subtypes: string[] | null; tier: string; lat: number | null; lng: number | null;
       photos: string[] | null; accolades: unknown;
-    }>('id, name, slug, city, country, type, subtypes, tier, lat, lng, photos, accolades');
+    }>('id, name, slug, city, country, state, type, subtypes, tier, lat, lng, photos, accolades');
     const data = all
       .filter(b => b.lat != null && b.lng != null)
       .sort((a, b) => a.tier.localeCompare(b.tier) || a.name.localeCompare(b.name));
@@ -44,6 +45,7 @@ export async function GET() {
       slug: b.slug,
       city: b.city,
       country: b.country,
+      state: b.state ?? null,
       type: b.type,
       tier: b.tier,
       lat: b.lat,
