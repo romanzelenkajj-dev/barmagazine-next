@@ -993,3 +993,50 @@ Running log of shipped work items and their merge commits. Newest first.
   5,885 links, accolade sentences ~11 words on 322 rows, article links
   2,719 new links to 430 profiles from name mentions (72 generic names to
   hand-check).
+
+## 2026-09-14 - Enrichment applied (33 rows); structural pass built and measured
+- ENRICHMENT from "Claude outputs/enrichment-priority-33.md", applied by
+  id with the file's own guard (never overwrite a non-empty field): 33
+  descriptions (all 33 rows were at 0 words), 21 hours strings, 14 emails,
+  6 websites filled where empty, 14 Instagram handles filled where empty.
+  Every hours string was run through classifyHours() first: 21 of 21
+  clean (converted or already in the target format, no partials). The 13
+  zero-word tranche rows went 0 -> 50 to 81 words and the composed
+  fallback is gone from each, verified on the live pages.
+- ACTION ITEMS honoured: el-gallo-altanero website was already empty;
+  la-factora website already the new domain, its stored Instagram
+  'lafactoriapr' FLAGGED (venue publishes none), not removed; lady-bee
+  address verified as Pedro de Osma 205; mo-bar-shenzhen email stored and
+  the address added to outreach/optout.txt (mohg is also in
+  CORPORATE_DOMAINS, so the send scripts already refuse it); the-st-regis
+  and vender emails not stored. Kept as stored and flagged: tan-tan hours
+  ('Tue-Sun') and website, hope-sesame website (root vs deep URL),
+  mo-bar's stored handle, gorilla's postcode (54632 stored, 54625 in the
+  file; address out of scope).
+- "Claude outputs/us-metro-wave1-verified.md" is an INSERT wave of 21 new
+  rows with three decisions marked for Roman, not an enrichment file. Only
+  one slug already exists (drinkwell, 105 words, so its description was
+  not overwritten). Nothing inserted.
+- BUILT (b1b306b): nearby block, five closest active bars by great-circle
+  distance, same city only, miles for US rows, km elsewhere, street and a
+  line from short_excerpt or the first sentence; replaces the photo-first
+  four-card grid. Accolade prose, one sentence per renderable entry under
+  the tiles. Article mentions from a conservative map (full name, whole
+  word, plus the city in the text): 280 bars, 170 articles, 745 links,
+  rendered as "<Bar> in BarMagazine" on the profile and "Bars in this
+  article" on the article; 103 generic-name matches held in
+  claude/article-mentions-held.md, none linked. New tests: 8 (272 total).
+- MEASURED on the same 40-profile sample, before -> after, from full
+  crawls: rendered words median 352 -> 420; inbound links median 4 -> 7.
+  San Diego five-and-five: 380 -> 512 words, inbound 4 -> 11 (indexed)
+  and 4 -> 8 (not indexed). Site-wide, all 1,247 active: words 354 ->
+  428, inbound 3 -> 8, profiles with at most one inbound link 300 -> 37,
+  profiles linked from an article 344 -> 450.
+- The after-crawl regenerated every profile (a new deploy resets ISR;
+  each URL was then fetched). 16 profiles timed out in one alphabetical
+  burst during the crawl and all returned 200 on refetch.
+- ROW CAP, four more: the bars-table grep found getBarFilterOptions,
+  getCountriesWithCounts, getCitiesWithCounts and /api/bars/map still
+  reading the whole directory in one request. All paged. The sitemap grew
+  from 1,755 to 2,006 URLs as a result: city pages past the cap had been
+  missing too. Rule and audit recorded in claude/data-checks.md.
