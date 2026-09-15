@@ -21,6 +21,16 @@
  */
 export const PRIVATE_BAR_COLUMNS = ['admin_notes'] as const;
 
+/**
+ * Columns added after this boundary existed that are PUBLIC by decision, so
+ * the next reader does not have to wonder whether they were forgotten here.
+ *
+ * `neighborhood` (added 2026-09-15): editorial, renders in the nearby block
+ * in place of the street line. Backfilled only where the venue's own site
+ * states it; an inferred neighborhood stays in admin_notes.
+ */
+export const PUBLIC_EDITORIAL_COLUMNS = ['neighborhood'] as const;
+
 export function stripPrivate<T extends Record<string, unknown>>(row: T): T {
   let out: Record<string, unknown> | null = null;
   for (const c of PRIVATE_BAR_COLUMNS) {

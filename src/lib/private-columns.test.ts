@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { PRIVATE_BAR_COLUMNS, stripPrivate, stripPrivateAll } from './private-columns';
+import { PRIVATE_BAR_COLUMNS, PUBLIC_EDITORIAL_COLUMNS, stripPrivate, stripPrivateAll } from './private-columns';
 import { OWNER_FORBIDDEN_FIELDS } from './owner-fields';
 
 describe('private bar columns', () => {
@@ -15,6 +15,15 @@ describe('private bar columns', () => {
     const row = { slug: 'x' };
     expect(stripPrivate(row)).toBe(row);
     expect(stripPrivateAll([row, { slug: 'y', admin_notes: 'n' }])).toEqual([{ slug: 'x' }, { slug: 'y' }]);
+  });
+
+  it('neighborhood is public by decision: never stripped, never listed private', () => {
+    expect(PUBLIC_EDITORIAL_COLUMNS).toContain('neighborhood');
+    for (const c of PUBLIC_EDITORIAL_COLUMNS) {
+      expect(PRIVATE_BAR_COLUMNS as readonly string[]).not.toContain(c);
+    }
+    const row = { slug: 'x', neighborhood: 'Shaw', admin_notes: 'n' };
+    expect(stripPrivate(row)).toEqual({ slug: 'x', neighborhood: 'Shaw' });
   });
 
   it('every private column is also forbidden to owners', () => {

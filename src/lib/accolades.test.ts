@@ -113,6 +113,58 @@ describe('accolades', () => {
     });
   });
 
+  describe('tilesFor — one tile per org per year', () => {
+    const totc = (year: number, kind: Accolade['kind'], title: string, score = 590) =>
+      make({ org: 'Tales of the Cocktail Spirited Awards', org_key: 'totc', kind, rank: null, year, score, title });
+
+    it('renders two same-year categories from one body as ONE tile (Pretty Penny)', () => {
+      const tiles = tilesFor([
+        totc(2024, 'nominee', 'Best New U.S. Cocktail Bar (Regional Honoree)'),
+        totc(2024, 'nominee', 'Best U.S. Restaurant Bar (Regional Honoree)'),
+        totc(2025, 'nominee', 'Best New U.S. Cocktail Bar (Regional Honoree)'),
+        totc(2026, 'nominee', 'Best U.S. Restaurant Bar (Regional Honoree)'),
+      ]);
+      expect(tiles.map(t => t.key)).toEqual(['totc-2024', 'totc-2025', 'totc-2026']);
+      // Same stage: the first stored entry carries the tile.
+      expect(tiles[0].title).toBe('Best New U.S. Cocktail Bar (Regional Honoree)');
+    });
+
+    it('keeps the further stage when the two entries differ (a win over a nomination)', () => {
+      const tiles = tilesFor([
+        totc(2026, 'nominee', 'Best U.S. Bar Team (Regional Honoree)'),
+        totc(2026, 'winner', 'Best U.S. Restaurant Bar', 810),
+      ]);
+      expect(tiles).toHaveLength(1);
+      expect(tiles[0].tier).toBe('orange');
+      expect(tiles[0].title).toBe('Best U.S. Restaurant Bar');
+      // Within nominations the parenthetical is the ladder.
+      const [t] = tilesFor([
+        totc(2026, 'nominee', 'Best U.S. Restaurant Bar (Regional Honoree)'),
+        totc(2026, 'nominee', 'Best U.S. Restaurant Bar (Top 10 Nominee)'),
+      ]);
+      expect(t.title).toBe('Best U.S. Restaurant Bar (Top 10 Nominee)');
+    });
+
+    it('applies the top-three rule AFTER the dedupe', () => {
+      const tiles = tilesFor([
+        totc(2024, 'nominee', 'A (Regional Honoree)'),
+        totc(2024, 'nominee', 'B (Regional Honoree)'),
+        totc(2025, 'nominee', 'A (Regional Honoree)'),
+        totc(2025, 'nominee', 'B (Regional Honoree)'),
+      ]);
+      expect(tiles.map(t => t.key)).toEqual(['totc-2024', 'totc-2025']);
+    });
+
+    it('does not collapse different orgs or different years', () => {
+      const tiles = tilesFor([
+        make({ org_key: 'w50b', year: 2025, score: 1124 }),
+        totc(2025, 'winner', 'Best International Cocktail Bar', 810),
+        totc(2024, 'winner', 'Best International Cocktail Bar', 713),
+      ]);
+      expect(tiles.map(t => t.key)).toEqual(['w50b-2025', 'totc-2025', 'totc-2024']);
+    });
+  });
+
   describe('tilesFor — colour tiers', () => {
     it('reserves gold for the world list only', () => {
       expect(tilesFor([make({ org_key: 'w50b' })])[0].tier).toBe('gold');
@@ -148,11 +200,12 @@ describe('accolades', () => {
       // Same renderability rules: year + source + known org is all it takes.
       const winner = make({ org_key: 'totc', kind: 'winner', rank: null, title: 'Best Bar' });
       expect(isRenderable(winner)).toBe(true);
-      // And they compete in the same top-3-by-score ordering.
+      // And they compete in the same top-3-by-score ordering. (Different
+      // years for the two totc entries: one tile per org per year.)
       const mixed = [
         make({ org_key: 'w50b', kind: 'ranked', score: 500 }),
         make({ org_key: 'totc', kind: 'winner', rank: null, score: 900 }),
-        make({ org_key: 'totc', kind: 'nominee', rank: null, score: 100, year: 2025 }),
+        make({ org_key: 'totc', kind: 'nominee', rank: null, score: 100, year: 2024 }),
       ];
       const keys = tilesFor(mixed).map(t => t.key.split('-')[0]);
       expect(keys).toEqual(['totc', 'w50b', 'totc']);

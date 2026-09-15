@@ -21,6 +21,8 @@ export interface NearbyCandidate {
   name: string;
   city: string;
   address: string | null;
+  /** `bars.neighborhood` (column added 2026-09-15); null on most rows. */
+  neighborhood?: string | null;
   lat: number | null;
   lng: number | null;
   short_excerpt: string | null;
@@ -30,9 +32,22 @@ export interface NearbyCandidate {
 export interface NearbyEntry {
   slug: string;
   name: string;
+  /**
+   * The place line beside the distance: the neighborhood where the row has
+   * one, else the street line of the address. A neighborhood is what a
+   * reader uses to place a bar ("Shaw", "Bed-Stuy"); the street is the
+   * fallback, not the preference.
+   */
   street: string | null;
   distance: string;
   line: string | null;
+}
+
+/** The neighborhood when stated, else the street line. */
+export function placeOf(b: Pick<NearbyCandidate, 'neighborhood' | 'address' | 'city'>): string | null {
+  const n = (b.neighborhood || '').trim();
+  if (n && n.toLowerCase() !== b.city.toLowerCase()) return n;
+  return streetOf(b.address, b.city);
 }
 
 export const NEARBY_LIMIT = 5;
@@ -84,7 +99,7 @@ export function nearestBars(
   return scored.slice(0, limit).map(({ km, b }) => ({
     slug: b.slug,
     name: b.name,
-    street: streetOf(b.address, b.city),
+    street: placeOf(b),
     distance: distanceLabel(km, bar.country),
     line: lineOf(b.short_excerpt, b.description),
   }));

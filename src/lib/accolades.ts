@@ -233,15 +233,54 @@ export interface TileView {
 }
 
 /**
- * The tiles to render: at most three, highest score first.
+ * Stage order within one org and year, for the one-tile rule below and for
+ * the prose. The kind carries most of it (a win outranks a placing outranks
+ * a listing outranks a nomination); within nominations the parenthetical on
+ * the title separates the Spirited Awards' ladder, Top 4 over Top 10 over
+ * regional honoree over a plain nomination. Higher is further along.
+ */
+const KIND_STAGE: Record<AccoladeKind, number> = { winner: 40, ranked: 30, listed: 20, nominee: 10 };
+
+export function stageOf(entry: Accolade): number {
+  const t = entry.title || '';
+  const sub = /top 4/i.test(t) ? 3 : /top 10/i.test(t) ? 2 : /regional/i.test(t) ? 1 : 0;
+  return KIND_STAGE[entry.kind] + sub;
+}
+
+/**
+ * The tiles to render: one per org and year, at most three, highest score
+ * first.
+ *
+ * ONE TILE PER ORG PER YEAR (Roman, 2026-09-15): a row holding two Spirited
+ * Awards categories from the same year (Pretty Penny, 2024: Best New U.S.
+ * Cocktail Bar and Best U.S. Restaurant Bar) rendered two identical
+ * "TOTC SPIRITED 2024" tiles, which reads as a duplicate rather than as two
+ * honors. The face says "this body, this year"; it cannot say which
+ * category, so a second tile adds nothing a reader can see. Both entries
+ * stay on the row, in the prose and in the schema.org award strings; only
+ * the face dedupes. Where the two entries sit at different stages the
+ * further one carries the tile (a win over a nomination), so the tier
+ * colour is right; at the same stage the higher score wins and a tie keeps
+ * stored order.
+ *
+ * The top-three rule applies AFTER the dedupe, so a row with four honors
+ * across two years shows two tiles, not three.
  *
  * The array arrives sorted, but sorting a copy costs nothing and makes the
  * "top 3 by score" rule hold even if an unsorted array ever reaches us. This
  * reads `score`; it never recomputes it.
  */
 export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileView[] {
-  return renderableAccolades(accolades)
+  const sorted = renderableAccolades(accolades)
     .slice()
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0) || stageOf(b) - stageOf(a));
+  const onePerOrgYear = new Map<string, Accolade>();
+  for (const entry of sorted) {
+    const k = `${entry.org_key}-${entry.year}`;
+    const held = onePerOrgYear.get(k);
+    if (!held || stageOf(entry) > stageOf(held)) onePerOrgYear.set(k, entry);
+  }
+  return Array.from(onePerOrgYear.values())
     .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
     .slice(0, limit)
     .map(entry => {

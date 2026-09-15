@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { nearestBars, streetOf, lineOf, distanceLabel } from './nearby';
+import { nearestBars, streetOf, placeOf, lineOf, distanceLabel } from './nearby';
 
 const mk = (o: Partial<Parameters<typeof nearestBars>[1][number]> & { id: string; slug: string }) => ({
   name: o.slug, city: 'San Diego', address: null, lat: null, lng: null, short_excerpt: null, description: null, ...o,
@@ -34,6 +34,16 @@ describe('nearby', () => {
     expect(distanceLabel(1.609344, 'Mexico')).toBe('1.6 km');
     expect(distanceLabel(0.05, 'Spain')).toBe('nearby');
     expect(distanceLabel(12.4, 'United Kingdom')).toBe('12 km');
+  });
+
+  it('uses the neighborhood in place of the street where the row has one', () => {
+    expect(placeOf({ neighborhood: 'Shaw', address: '1114 9th St NW, Washington, DC 20001', city: 'Washington DC' })).toBe('Shaw');
+    expect(placeOf({ neighborhood: null, address: '1114 9th St NW, Washington, DC 20001', city: 'Washington DC' })).toBe('1114 9th St NW');
+    expect(placeOf({ neighborhood: '  ', address: null, city: 'X' })).toBeNull();
+    // A neighborhood that just repeats the city says nothing.
+    expect(placeOf({ neighborhood: 'Cotai', address: 'Cotai, Macau', city: 'Cotai' })).toBeNull();
+    const [e] = nearestBars(me, [mk({ id: 'a', slug: 'a', lat: 32.72, lng: -117.16, neighborhood: 'North Park', address: '4696 30th St, San Diego, CA 92116' })]);
+    expect(e.street).toBe('North Park');
   });
 
   it('takes the street from the address and the line from excerpt or first sentence', () => {
