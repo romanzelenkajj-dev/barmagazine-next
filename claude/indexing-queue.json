@@ -17,7 +17,7 @@
    "tier": "top10",
    "accolades": 6,
    "status": "quota",
-   "date": "2026-09-14"
+   "date": "2026-09-15"
   },
   {
    "slug": "licoreria-limantour",
@@ -32,8 +32,8 @@
    "city": "Hong Kong",
    "tier": "top10",
    "accolades": 3,
-   "status": "pending",
-   "date": null
+   "status": "indexed",
+   "date": "2026-09-15"
   },
   {
    "slug": "three-sheets-soho",
