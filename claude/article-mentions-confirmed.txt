@@ -283,3 +283,10 @@ zlb23 -> zlb23-ranks-no-31-on-asias-50-best-bars-2025
 zuma -> top-10-bars-in-dubai-2025
 zuma -> top-10-nominees-for-the-2024-spirited-awards
 zuma-hong-kong -> negroni-week-2026-asia-pacific-guest-shifts
+#
+# 2026-09-15, restored by Roman after the multi-row rule dropped them: each is
+# an article about the ORIGINAL opening an outpost, so both rows belong.
+bar-leone -> bar-leone-shanghai-opens-this-november
+bar-leone -> bar-leone-expands-with-second-location-in-shanghai
+bar-leone -> negroni-week-2026-asia-pacific-guest-shifts
+seed-library -> mr-lyan-brings-seed-library-to-new-york-this-fall

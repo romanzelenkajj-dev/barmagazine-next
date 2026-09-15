@@ -1,12 +1,12 @@
 {
- "generatedAt": "2026-09-15T04:57:50.053Z",
+ "generatedAt": "2026-09-15T05:15:43.663Z",
  "rule": "full bar name, whole-word, article text also names the bar's city; generic names held",
  "counts": {
   "bars": 369,
   "articles": 181,
-  "links": 1006,
-  "confirmedPairs": 276,
-  "articleSideSkippedAlreadyLinked": 86,
+  "links": 1010,
+  "confirmedPairs": 280,
+  "articleSideSkippedAlreadyLinked": 87,
   "held": 24
  },
  "byBar": {
@@ -514,6 +514,14 @@
     "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
    },
    {
+    "slug": "bar-leone-expands-with-second-location-in-shanghai",
+    "title": "Bar Leone Expands with Second Location in Shanghai"
+   },
+   {
+    "slug": "bar-leone-shanghai-opens-this-november",
+    "title": "Bar Leone Shanghai Opens This November"
+   },
+   {
     "slug": "bar-world-100-2025-full-list-of-global-influencers",
     "title": "Bar World 100 2025: Full List of Global Influencers"
    },
@@ -540,6 +548,10 @@
    {
     "slug": "medellin-cocktail-week-2026",
     "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars"
+   },
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
    },
    {
     "slug": "montana-bar-to-open-in-hong-kong-in-summer-2025",
@@ -3563,6 +3575,10 @@
    }
   ],
   "seed-library": [
+   {
+    "slug": "mr-lyan-brings-seed-library-to-new-york-this-fall",
+    "title": "Mr Lyan Brings Seed Library to New York This Fall"
+   },
    {
     "slug": "seed-library-nyc-new-cocktail-menu-june-2026",
     "title": "Seed Library NYC Unveils New Cocktail Menu June 2026"
@@ -7875,6 +7891,30 @@
     "city": "Seoul"
    }
   ],
+  "bar-leone-expands-with-second-location-in-shanghai": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-leone-shanghai",
+    "name": "Bar Leone",
+    "city": "Shanghai"
+   }
+  ],
+  "bar-leone-shanghai-opens-this-november": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-leone-shanghai",
+    "name": "Bar Leone",
+    "city": "Shanghai"
+   }
+  ],
   "best-bars-in-southeast-asia": [
    {
     "slug": "bar-leone",
@@ -8111,20 +8151,6 @@
     "slug": "side-hustle",
     "name": "Side Hustle",
     "city": "London"
-   }
-  ],
-  "bar-leone-expands-with-second-location-in-shanghai": [
-   {
-    "slug": "bar-leone-shanghai",
-    "name": "Bar Leone",
-    "city": "Shanghai"
-   }
-  ],
-  "bar-leone-shanghai-opens-this-november": [
-   {
-    "slug": "bar-leone-shanghai",
-    "name": "Bar Leone",
-    "city": "Shanghai"
    }
   ],
   "negroni-week-2026-asia-pacific-guest-shifts": [
@@ -9532,7 +9558,7 @@
     "city": "Barcelona"
    }
   ],
-  "seed-library-nyc-new-cocktail-menu-june-2026": [
+  "mr-lyan-brings-seed-library-to-new-york-this-fall": [
    {
     "slug": "seed-library",
     "name": "Seed Library",
@@ -9544,7 +9570,12 @@
     "city": "New York"
    }
   ],
-  "mr-lyan-brings-seed-library-to-new-york-this-fall": [
+  "seed-library-nyc-new-cocktail-menu-june-2026": [
+   {
+    "slug": "seed-library",
+    "name": "Seed Library",
+    "city": "London"
+   },
    {
     "slug": "seed-library-nyc",
     "name": "Seed Library",
