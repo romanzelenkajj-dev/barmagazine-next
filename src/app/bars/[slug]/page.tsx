@@ -411,8 +411,8 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               ) : (
                 <p className="bar-v2-owner-note">
                   This listing is managed by its owner.<br />
-                  For ownership changes:<br />
-                  contact <a href="mailto:office@barmagazine.com">office@barmagazine.com</a>.
+                  For ownership changes contact:<br />
+                  <a href="mailto:office@barmagazine.com">office@barmagazine.com</a>
                 </p>
               )}
             </div>
