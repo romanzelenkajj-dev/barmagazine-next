@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { displayType } from '@/lib/bar-type';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
+import { splitHighlight } from '@/lib/menu-highlight';
 import {
   getSeoCities,
   resolveSeoCity,
@@ -162,12 +163,16 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
                   {(bar.description || bar.short_excerpt) && (
                     <p className="best-bars-desc"><HighlightedText text={bar.description || bar.short_excerpt || ''} /></p>
                   )}
-                  {bar.menu_highlights && bar.menu_highlights.length > 0 && (
-                    <p className="best-bars-serve">
-                      <strong>Order this:</strong> {bar.menu_highlights[0].name}
-                      {bar.menu_highlights[0].ingredients ? ` (${bar.menu_highlights[0].ingredients})` : ''}
-                    </p>
-                  )}
+                  {bar.menu_highlights && bar.menu_highlights.length > 0 && (() => {
+                    const serve = splitHighlight(bar.menu_highlights[0]);
+                    return (
+                      <div className="best-bars-order">
+                        <span className="best-bars-order-label">Order this</span>
+                        <span className="best-bars-order-name">{serve.name}</span>
+                        {serve.ingredients && <span className="best-bars-order-ingredients">{serve.ingredients}</span>}
+                      </div>
+                    );
+                  })()}
                   <div className="best-bars-meta">
                     {bar.address && <span className="best-bars-address">{bar.address}</span>}
                     {bar.opening_hours && <span className="best-bars-hours">{formatHoursForCountry(bar.opening_hours, bar.country)}</span>}

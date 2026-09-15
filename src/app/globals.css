@@ -8945,15 +8945,33 @@ textarea.form-input {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.best-bars-serve {
+/* "Order this" (Roman, 2026-09-15): no panel, no box. A hairline above,
+   the gold uppercase label in the Plan Your Visit label style, the drink
+   name bold in the body colour, the ingredients in the secondary grey. */
+.best-bars-order {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-top: 10px;
+  margin: 0 0 10px;
+}
+.best-bars-order-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #C9A96A;
+}
+.best-bars-order-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.best-bars-order-ingredients {
   font-size: 0.86rem;
   line-height: 1.5;
-  color: #7a6a4d;
-  background: #faf7f2;
-  border-left: 3px solid #C9A96A;
-  padding: 8px 12px;
-  border-radius: 0 8px 8px 0;
-  margin: 0 0 10px;
+  color: var(--text-secondary);
 }
 .best-bars-meta {
   display: flex;
@@ -9025,7 +9043,10 @@ textarea.form-input {
 
 @media (max-width: 720px) {
   .best-bars-card { grid-template-columns: 1fr; }
-  .best-bars-visual { min-height: 190px; }
+  /* 16:10, not a 190px strip: the height follows the card's width (Roman,
+     2026-09-15). Above 720px the photo is the 280px column that fills the
+     card's height. */
+  .best-bars-visual { min-height: 0; aspect-ratio: 16 / 10; }
   .best-bars-body { padding: 18px 18px 20px; }
 }
 
