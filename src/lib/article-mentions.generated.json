@@ -1,13 +1,13 @@
 {
- "generatedAt": "2026-09-15T20:52:05.949Z",
+ "generatedAt": "2026-09-15T21:26:28.731Z",
  "rule": "full bar name, whole-word, article text also names the bar's city; generic names held",
  "counts": {
-  "bars": 369,
-  "articles": 181,
-  "links": 1010,
+  "bars": 378,
+  "articles": 182,
+  "links": 1021,
   "confirmedPairs": 280,
   "articleSideSkippedAlreadyLinked": 87,
-  "held": 24
+  "held": 26
  },
  "byBar": {
   "1920": [
@@ -1980,6 +1980,20 @@
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2024/10/mint-julep.jpg?fit=900%2C1350&ssl=1"
    }
   ],
+  "crown-shy": [
+   {
+    "slug": "musket-room-unveils-new-all-female-wine-leadership-team",
+    "title": "Musket Room Unveils New All-Female Wine Leadership Team",
+    "date": "2024-11-19",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2024/11/IMG_1125.jpg?fit=976%2C1300&ssl=1"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards",
+    "date": "2024-05-30",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2024/05/Top-10.jpeg?fit=800%2C811&ssl=1"
+   }
+  ],
   "cry-baby-gallery": [
    {
     "slug": "north-americas-50-best-bars-2026-the-extended-list",
@@ -2174,6 +2188,14 @@
     "title": "Visiting Bar Luminary Series",
     "date": "2024-02-06",
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2024/02/At-Backbar.jpg?fit=900%2C1350&ssl=1"
+   }
+  ],
+  "dolores": [
+   {
+    "slug": "barcelonas-cocktail-evolution",
+    "title": "Barcelona s Cocktail Evolution",
+    "date": "2023-07-23",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2023/07/Barcelona-doucek-historie-1.jpg?fit=900%2C900&ssl=1"
    }
   ],
   "door-74": [
@@ -3010,6 +3032,14 @@
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2026/05/01-belgrade-cocktail-fest-2025-belgrade-cocktail-fest-2026-graphic-jpg.jpg?fit=1200%2C675&ssl=1"
    }
   ],
+  "jewel-box": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced",
+    "date": "2025-01-22",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2025/01/012225_JBA_SEMI_ANN_SOCIAL_HOMEPAGE_MOBILE_V2_420X370.jpg?fit=840%2C740&ssl=1"
+   }
+  ],
   "jewel-of-the-south": [
    {
     "slug": "18th-annual-spirited-awards-winners",
@@ -3604,6 +3634,14 @@
     "title": "Margarita Mile Returns to Hong Kong with Tequila Trip Prize",
     "date": "2026-09-03",
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2026/09/El-Tequileno-Bar-Counter-e1788416017246.png?fit=544%2C328&ssl=1"
+   }
+  ],
+  "lone-wolf-lounge": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced",
+    "date": "2025-01-22",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2025/01/012225_JBA_SEMI_ANN_SOCIAL_HOMEPAGE_MOBILE_V2_420X370.jpg?fit=840%2C740&ssl=1"
    }
   ],
   "lpm-dubai": [
@@ -4260,6 +4298,20 @@
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2025/10/W50BB25-No.1-shot_high-res.jpg?fit=1200%2C675&ssl=1"
    }
   ],
+  "nubeluz": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards",
+    "date": "2024-05-30",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2024/05/Top-10.jpeg?fit=800%2C811&ssl=1"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced",
+    "date": "2024-06-18",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2024/06/IMG_1944-e1718917002655.jpg?fit=960%2C896&ssl=1"
+   }
+  ],
   "offtrack": [
    {
     "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
@@ -4764,6 +4816,14 @@
     "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List",
     "date": "2025-10-08",
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2025/10/W50BB25-No.1-shot_high-res.jpg?fit=1200%2C675&ssl=1"
+   }
+  ],
+  "raines-law-room-william": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards",
+    "date": "2024-05-30",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2024/05/Top-10.jpeg?fit=800%2C811&ssl=1"
    }
   ],
   "rayo": [
@@ -5692,6 +5752,14 @@
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2023/12/image_123650291-1.jpg?fit=999%2C666&ssl=1"
    }
   ],
+  "the-bar-at-willett": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced",
+    "date": "2025-01-22",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2025/01/012225_JBA_SEMI_ANN_SOCIAL_HOMEPAGE_MOBILE_V2_420X370.jpg?fit=840%2C740&ssl=1"
+   }
+  ],
   "the-bar-in-front-of-the-bar": [
    {
     "slug": "himkok-and-devils-cut-join-belgrade-cocktail-fest-2026",
@@ -6600,6 +6668,14 @@
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2026/06/01-europe-s-50-best-bars-2026-europes-50-best-bars-2026-list.jpg?fit=1000%2C1000&ssl=1"
    }
   ],
+  "water-witch": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced",
+    "date": "2025-01-22",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2025/01/012225_JBA_SEMI_ANN_SOCIAL_HOMEPAGE_MOBILE_V2_420X370.jpg?fit=840%2C740&ssl=1"
+   }
+  ],
   "wax-on": [
    {
     "slug": "europes-50-best-bars-2026-line-athens-number-one",
@@ -6664,6 +6740,14 @@
     "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards",
     "date": "2026-06-24",
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2026/06/01-asia-s-50-best-bars-2026-wynn-palace-macau.jpg?fit=1521%2C1000&ssl=1"
+   }
+  ],
+  "wolf-tree": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced",
+    "date": "2025-01-22",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2025/01/012225_JBA_SEMI_ANN_SOCIAL_HOMEPAGE_MOBILE_V2_420X370.jpg?fit=840%2C740&ssl=1"
    }
   ],
   "workshop14": [
@@ -7283,7 +7367,7 @@
    {
     "slug": "tag",
     "name": "Tag",
-    "city": "Krakow"
+    "city": "Kraków"
    },
    {
     "slug": "tayer-elementary",
@@ -8564,7 +8648,7 @@
    {
     "slug": "tag",
     "name": "Tag",
-    "city": "Krakow"
+    "city": "Kraków"
    },
    {
     "slug": "tokyo-confidential",
@@ -8701,6 +8785,11 @@
     "city": "Buenos Aires"
    },
    {
+    "slug": "crown-shy",
+    "name": "Crown Shy",
+    "city": "New York"
+   },
+   {
     "slug": "danico",
     "name": "Danico",
     "city": "Paris"
@@ -8811,6 +8900,11 @@
     "city": "Austin"
    },
    {
+    "slug": "nubeluz",
+    "name": "Nubeluz",
+    "city": "New York"
+   },
+   {
     "slug": "origin-bar",
     "name": "Origin Bar",
     "city": "Singapore"
@@ -8839,6 +8933,11 @@
     "slug": "pretty-decent",
     "name": "Pretty Decent",
     "city": "Louisville"
+   },
+   {
+    "slug": "raines-law-room-william",
+    "name": "Raines Law Room at the William",
+    "city": "New York"
    },
    {
     "slug": "rumba-seattle",
@@ -9494,6 +9593,11 @@
     "city": "Mexico City"
    },
    {
+    "slug": "nubeluz",
+    "name": "Nubeluz",
+    "city": "New York"
+   },
+   {
     "slug": "overstory",
     "name": "Overstory",
     "city": "New York"
@@ -9829,6 +9933,11 @@
     "city": "San Juan"
    },
    {
+    "slug": "jewel-box",
+    "name": "Jewel Box",
+    "city": "Portland"
+   },
+   {
     "slug": "kumiko",
     "name": "Kumiko",
     "city": "Chicago"
@@ -9842,6 +9951,11 @@
     "slug": "loa-bar",
     "name": "Loa Bar",
     "city": "New Orleans"
+   },
+   {
+    "slug": "lone-wolf-lounge",
+    "name": "Lone Wolf Lounge",
+    "city": "Savannah"
    },
    {
     "slug": "merai-brookline-boston",
@@ -9869,6 +9983,11 @@
     "city": "New York"
    },
    {
+    "slug": "the-bar-at-willett",
+    "name": "The Bar at Willett",
+    "city": "Bardstown"
+   },
+   {
     "slug": "the-wig-shop-boston",
     "name": "The Wig Shop",
     "city": "Boston"
@@ -9887,6 +10006,16 @@
     "slug": "viceversa",
     "name": "Viceversa",
     "city": "Miami"
+   },
+   {
+    "slug": "water-witch",
+    "name": "Water Witch",
+    "city": "Salt Lake City"
+   },
+   {
+    "slug": "wolf-tree",
+    "name": "Wolf Tree",
+    "city": "White River Junction"
    },
    {
     "slug": "yacht-club-denver",
@@ -10651,6 +10780,11 @@
     "city": "Barcelona"
    },
    {
+    "slug": "dolores",
+    "name": "Dolores",
+    "city": "New York"
+   },
+   {
     "slug": "monk",
     "name": "Monk",
     "city": "Barcelona"
@@ -10870,6 +11004,13 @@
     "slug": "coupette",
     "name": "Coupette",
     "city": "London"
+   }
+  ],
+  "musket-room-unveils-new-all-female-wine-leadership-team": [
+   {
+    "slug": "crown-shy",
+    "name": "Crown Shy",
+    "city": "New York"
    }
   ],
   "cure": [

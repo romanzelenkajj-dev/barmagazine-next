@@ -113,6 +113,31 @@ describe('accolades', () => {
     });
   });
 
+  describe('tilesFor — The Pinnacle Guide', () => {
+    const pin = (title: string, kind: Accolade['kind'], year = 2024) =>
+      make({ org: 'The Pinnacle Guide', org_key: 'pinnacle', kind, rank: null, year, score: 546, title });
+
+    it('puts the grade on the small line, keeps PINNACLE as the constant bold line', () => {
+      const [two] = tilesFor([pin('2 Pins', 'winner')]);
+      expect([two.region, two.main, two.year]).toEqual(['2 PINS', 'PINNACLE', '2024']);
+      const [one] = tilesFor([pin('1 Pin', 'nominee')]);
+      expect(one.region).toBe('1 PIN');
+      expect(one.rank).toBeNull();
+    });
+
+    it('is forest green: solid for 2 and 3 Pins, outline for 1 Pin', () => {
+      expect(tilesFor([pin('3 Pins', 'winner')])[0].tier).toBe('green');
+      expect(tilesFor([pin('2 Pins', 'winner')])[0].tier).toBe('green');
+      expect(tilesFor([pin('1 Pin', 'nominee')])[0].tier).toBe('green-outline');
+    });
+
+    it('carries the full name and the grade on hover, not on the face', () => {
+      const [t] = tilesFor([pin('2 Pins', 'winner')]);
+      expect(t.org).toBe('The Pinnacle Guide');
+      expect(t.title).toBe('2 Pins');
+    });
+  });
+
   describe('tilesFor — one tile per org per year', () => {
     const totc = (year: number, kind: Accolade['kind'], title: string, score = 590) =>
       make({ org: 'Tales of the Cocktail Spirited Awards', org_key: 'totc', kind, rank: null, year, score, title });

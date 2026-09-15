@@ -9753,6 +9753,25 @@ textarea.form-input {
   color: #E8590C;
 }
 
+/* Forest green — The Pinnacle Guide (Roman, 2026-09-15). Solid for 2 and
+   3 Pins, outline for 1 Pin. "PINNACLE" at the jbf size and a touch of
+   tracking so the eight capitals sit inside the 72px content box. */
+.acc-tile--green {
+  border-color: #1F4D3A;
+  background: #1F4D3A;
+  color: #fff;
+}
+.acc-tile--green-outline {
+  border-color: #1F4D3A;
+  background: #fff;
+  color: #1F4D3A;
+}
+.acc-tile--green .acc-tile-main,
+.acc-tile--green-outline .acc-tile-main {
+  font-size: 9.5px;
+  letter-spacing: 0.03em;
+}
+
 /* Navy — 30 Best Bars India. A national ranking, so it reads one step below
    the near-black continental tiles while staying clearly heavier than the
    bca grey. Every other tier key below `dark` was already an org's own

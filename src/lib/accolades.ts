@@ -55,11 +55,20 @@ export type AccoladeTier =
   | 'burgundy'
   | 'burgundy-outline'
   | 'navy'
-  | 'navy-outline';
+  | 'navy-outline'
+  | 'green'
+  | 'green-outline';
 
 interface TileDef {
   /** Small line above the bold one — carries the possessive. */
   region: string;
+  /**
+   * A region line computed per entry, where the small line is the grade
+   * rather than a fixed name: The Pinnacle Guide's "1 PIN" / "2 PINS" /
+   * "3 PINS". The bold line stays constant; only the small line varies,
+   * the same way the possessive does across the 50 Best family.
+   */
+  regionFor?: (entry: Accolade) => string;
   /** Bold line. Constant within each award family; never vary it. */
   main: string;
   /** Fixed colour, for orgs whose entries are all one kind (the 50 Best
@@ -159,6 +168,22 @@ const TILES: Record<string, TileDef> = {
   // line that fits 74px. Top 30 placings are `ranked` with the rank on the
   // entry, Top 100 listings are `listed`; both render solid, as with 30bbi.
   shaker: { region: 'MÉXICO', main: 'SHAKER', winnerTier: 'navy', nomineeTier: 'navy-outline' },
+  // The Pinnacle Guide (Roman, 2026-09-15): a 1, 2 and 3 Pin recognition
+  // system, self-application then anonymous in-bar assessment against
+  // published modules. The grade is the small line ("2 PINS", from the
+  // entry's title), the bold line is the constant "PINNACLE" (the full name
+  // is 14 characters and does not fit the tile; it rides the hover). Forest
+  // green, a colour no other org uses: solid for 2 and 3 Pins (kind winner),
+  // outline for 1 Pin (kind nominee). The year is the ANNOUNCEMENT year: the
+  // Guide prints no award year, so the entry carries the date its page was
+  // published, and the accolade record says so.
+  pinnacle: {
+    region: 'PINS',
+    regionFor: entry => (entry.title || 'Pins').toUpperCase(),
+    main: 'PINNACLE',
+    winnerTier: 'green',
+    nomineeTier: 'green-outline',
+  },
 };
 
 function tierFor(def: TileDef, kind: AccoladeKind): AccoladeTier {
@@ -292,7 +317,7 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
       return {
         key: `${entry.org_key}-${entry.year}`,
         tier: tierFor(def, entry.kind),
-        region: def.region,
+        region: def.regionFor ? def.regionFor(entry) : def.region,
         main: def.main,
         year: String(entry.year),
         org: entry.org,

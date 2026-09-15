@@ -42,6 +42,7 @@ const PROSE_SUBJECT: Record<string, string> = {
   totc: 'The Spirited Awards',
   jbf: 'The James Beard Awards',
   bca: "The Bartenders' Choice Awards",
+  pinnacle: 'The Pinnacle Guide',
 };
 
 /** The category with the stage parenthetical removed: "Best U.S. Bar Team". */
@@ -92,6 +93,14 @@ function groupBy(entries: Accolade[], keyOf: (e: Accolade) => string): Accolade[
 /** The sentence for one body's entries (all the same org_key). */
 export function orgSentence(entries: Accolade[]): string {
   const subject = PROSE_SUBJECT[entries[0].org_key] || entries[0].org;
+
+  // The Pinnacle Guide awards a grade, not a category or a placing:
+  // "The Pinnacle Guide awarded it 2 Pins in 2024." The grade is the title
+  // ("2 Pins", "1 Pin"); winner/nominee only drives the tile colour here.
+  if (entries[0].org_key === 'pinnacle') {
+    const grades = groupBy(entries.filter(e => e.title), e => e.title!).map(g => `${g[0].title} in ${years(g)}`);
+    return `${subject} awarded it ${listJoin(grades)}.`;
+  }
   const ranked = entries.filter(e => e.kind === 'ranked' && e.rank != null);
   const listed = entries.filter(e => e.kind === 'listed' || (e.kind === 'ranked' && e.rank == null));
   const winners = entries.filter(e => e.kind === 'winner');

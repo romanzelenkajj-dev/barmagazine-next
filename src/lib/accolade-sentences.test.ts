@@ -80,6 +80,15 @@ describe('accoladeSentences', () => {
     ]);
   });
 
+  it('The Pinnacle Guide awards a grade: "awarded it 2 Pins in 2024", singular for 1 Pin', () => {
+    const pin = (year: number, title: string, kind: Accolade['kind']): Accolade =>
+      ({ org: 'The Pinnacle Guide', org_key: 'pinnacle', kind, rank: null, year, score: 546, title, source: src });
+    expect(orgSentence([pin(2024, '2 Pins', 'winner')])).toBe('The Pinnacle Guide awarded it 2 Pins in 2024.');
+    expect(orgSentence([pin(2025, '1 Pin', 'nominee')])).toBe('The Pinnacle Guide awarded it 1 Pin in 2025.');
+    expect(orgSentence([pin(2024, '1 Pin', 'nominee'), pin(2026, '2 Pins', 'winner')]))
+      .toBe('The Pinnacle Guide awarded it 1 Pin in 2024 and 2 Pins in 2026.');
+  });
+
   it('holds back exactly what the tiles hold back', () => {
     expect(accoladeSentences([
       { org: 'Eater', org_key: 'eater', kind: 'winner', rank: null, year: 2024, score: 900, title: 'Best Bars', source: src },
