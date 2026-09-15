@@ -22,7 +22,7 @@ import { awardStrings } from '@/lib/accolades';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { fallbackDescription } from '@/lib/bar-fallback';
 import { nearestBars } from '@/lib/nearby';
-import { accoladeSentences } from '@/lib/accolade-sentences';
+import { accoladeSentence } from '@/lib/accolade-sentences';
 import articleMentions from '@/lib/article-mentions.generated.json';
 
 export const revalidate = 300;
@@ -94,8 +94,9 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const nearby = nearestBars(bar, cityBars);
   const placeLabel = cityLabel(bar.city, bar.country, subdivisionName(bar.state, bar.country));
 
-  // One sentence per accolade, from the same renderable set as the tiles.
-  const accoladeProse = accoladeSentences(bar.accolades);
+  // One sentence, the bar's name first, one clause per tile in tile order
+  // (the same deduped, score-ordered set the tiles render).
+  const accoladeProse = accoladeSentence(bar.name, bar.accolades);
 
   // Articles that name this bar AND its city (the conservative match built
   // by scripts/build-article-mentions.mjs; generic names are held, never
@@ -345,10 +346,10 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             {/* Placement "A": name → location → tiles. Renders nothing when the
                 bar has no accolades. Identical on free and paid listings. */}
             <AccoladeBadges accolades={bar.accolades} />
-            {accoladeProse.length > 0 && (
-              /* The tiles say which bodies; this says what they said, one
-                 sentence per entry, in words a reader and a crawler can use. */
-              <p className="bar-v2-accolade-prose">{accoladeProse.join(' ')}</p>
+            {accoladeProse && (
+              /* The tiles say which bodies; this says what they said, in
+                 one sentence a reader and a crawler can use. */
+              <p className="bar-v2-accolade-prose">{accoladeProse}</p>
             )}
             {/* Actions: the actionable duplicates of the meta rows below
                 (which stay for crawlers and copy-paste). Only buttons with a

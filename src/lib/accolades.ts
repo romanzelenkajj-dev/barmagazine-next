@@ -298,7 +298,13 @@ export function stageOf(entry: Accolade): number {
  * "top 3 by score" rule hold even if an unsorted array ever reaches us. This
  * reads `score`; it never recomputes it.
  */
-export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileView[] {
+/**
+ * The entries the tiles render, in tile order: renderable, one per org and
+ * year (score first, stage on ties), score descending, capped at `limit`.
+ * The accolade prose reads the same set, so a reader never sees a sentence
+ * about an honor that has no tile, or a tile with no sentence.
+ */
+export function tileEntries(accolades: unknown, limit: number = MAX_TILES): Accolade[] {
   const sorted = renderableAccolades(accolades)
     .slice()
     .sort((a, b) => (b.score ?? 0) - (a.score ?? 0) || stageOf(b) - stageOf(a));
@@ -311,7 +317,11 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
   }
   return Array.from(onePerOrgYear.values())
     .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
-    .slice(0, limit)
+    .slice(0, limit);
+}
+
+export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileView[] {
+  return tileEntries(accolades, limit)
     .map(entry => {
       const def = TILES[entry.org_key];
       return {

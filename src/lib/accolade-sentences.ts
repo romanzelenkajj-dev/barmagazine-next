@@ -1,49 +1,37 @@
-import { renderableAccolades, stageOf, type Accolade } from './accolades';
+import { tileEntries, type Accolade } from './accolades';
 
 /**
- * One sentence per awarding body, for the short paragraph under the tiles.
+ * The accolade sentence under the tiles: ONE sentence, the bar's name as
+ * the subject, one clause per tile in tile order (Roman, 2026-09-15,
+ * superseding the one-sentence-per-org form of the same morning):
  *
- * Rewritten 2026-09-15 (Roman): one sentence per ORG, not per entry. A row
- * with four Spirited Awards honors across three years used to read as four
- * near-identical sentences; now years and categories group into one:
+ *   Bitter & Twisted Cocktail Parlour holds 2 Pins from The Pinnacle
+ *   Guide (2024) and was listed on North America's 50 Best Bars in 2022.
  *
- *   The Spirited Awards named it a regional honoree for Best New U.S.
- *   Cocktail Bar in 2024 and 2025 and for Best U.S. Restaurant Bar in 2024
- *   and 2026.
- *
- * Same discipline as the tiles: the year, the placing and the category
- * exactly as stored, nothing invented. Reads the same renderable set as the
- * tiles, so an entry held back from a tile (no year, no source, unknown
- * org, unverified) is held back from the prose too.
- *
- * THE STAGE WORD COMES FROM THE ENTRY, never from the kind alone. A
- * `nominee` entry titled "(Regional Honoree)" is a regional honoree; the
- * word "nominee" is never written for it, because the Spirited Awards do
- * not call the regional list nominees. The parenthetical on the title is
- * the stage: Regional Honoree, Top 10 Nominee, Top 4 (TOTC's own word for
- * that stage is finalist), Semifinalist. A nominee entry with no
- * parenthetical is a nominee, which is what the James Beard Awards call
- * their shortlist.
- *
- * Ranked lists use "No. N", which is how the 50 Best bodies print a
- * placing. A 51 to 100 placing on the world list is still "No. 71", which
- * is what the list says; the extended list is the same list.
+ * It reads exactly the set the tiles render (tileEntries: renderable, one
+ * per org and year, score order, at most three), so the prose and the
+ * face never disagree. Two clauses join with " and ", three with ", " and
+ * ", and ". Every year, category, placing and grade is the stored value;
+ * nothing is invented, and nothing is written for an entry the tiles hold
+ * back.
  */
 
 /**
- * How the body reads as the subject of a sentence. The stored `org` is the
- * body's full name as it writes itself, which is right for a tile's hover
- * text and for schema.org, but "Tales of the Cocktail Spirited Awards named
- * it" is not how anyone writes the sentence, including the venues' own
- * sites. Orgs not listed here read exactly as stored ("World's 50 Best Bars
- * ranked it", "30 Best Bars India listed it").
+ * The newest edition of each list, for tense: a placing on the current
+ * edition "ranks", an older one "ranked". These are the newest years the
+ * data carries per list today; bump when a body publishes its next list
+ * (the World's 50 Best Bars 2026 lands in October).
  */
-const PROSE_SUBJECT: Record<string, string> = {
-  totc: 'The Spirited Awards',
-  jbf: 'The James Beard Awards',
-  bca: "The Bartenders' Choice Awards",
-  pinnacle: 'The Pinnacle Guide',
+export const LATEST_EDITION: Record<string, number> = {
+  w50b: 2025,
+  na50b: 2026,
+  e50b: 2026,
+  a50b: 2026,
+  '30bbi': 2025,
+  shaker: 2025,
 };
+
+const FIFTY_BEST = new Set(['w50b', 'a50b', 'e50b', 'na50b']);
 
 /** The category with the stage parenthetical removed: "Best U.S. Bar Team". */
 function categoryOf(title: string | null | undefined): string | null {
@@ -51,106 +39,84 @@ function categoryOf(title: string | null | undefined): string | null {
   return t || null;
 }
 
-/** The stage word for a nominee-kind entry, read from the title's parenthetical. */
-function stageWordOf(title: string | null | undefined): string {
+/** The stage parenthetical, lowercased for matching. */
+function stageOf(title: string | null | undefined): string {
   const m = /\(([^)]*)\)\s*$/.exec(title || '');
-  const p = m ? m[1] : '';
-  if (/regional/i.test(p)) return 'regional honoree';
-  if (/top 4/i.test(p)) return 'Top 4 finalist';
-  if (/top 10/i.test(p)) return 'Top 10 nominee';
-  if (/semifinal/i.test(p)) return 'semifinalist';
-  return 'nominee';
+  return (m ? m[1] : '').toLowerCase();
 }
 
-/** "2024", "2024 and 2025", "2023, 2024 and 2025". */
-function listJoin(parts: string[]): string {
+/** "won the Timeless U.S. Award" but "won Best U.S. Hotel Bar". */
+function withArticle(category: string): string {
+  return /\baward\b/i.test(category) && !/^the\b/i.test(category) ? `the ${category}` : category;
+}
+
+/** The clause for one entry, a verb phrase without the subject. */
+export function accoladeClause(a: Accolade): string {
+  const year = String(a.year);
+  const key = a.org_key;
+
+  if (FIFTY_BEST.has(key) || key === '30bbi') {
+    if (a.kind === 'winner' && categoryOf(a.title)) {
+      return `won ${withArticle(categoryOf(a.title)!)} at the ${year} ${a.org}`;
+    }
+    if (a.rank != null) {
+      const current = (a.year ?? 0) >= (LATEST_EDITION[key] ?? Infinity);
+      return `${current ? 'ranks' : 'ranked'} No. ${a.rank} on ${a.org} ${year}`;
+    }
+    return `was listed on ${a.org} in ${year}`;
+  }
+
+  if (key === 'totc') {
+    const cat = categoryOf(a.title);
+    if (a.kind === 'winner') return cat ? `won ${withArticle(cat)} at the ${year} Spirited Awards` : `won at the ${year} Spirited Awards`;
+    const stage = stageOf(a.title);
+    const what = /top 4/.test(stage) ? 'a Top 4 finalist' : /top 10/.test(stage) ? 'a Top 10 nominee' : /regional/.test(stage) ? 'a regional honoree' : 'a nominee';
+    return cat ? `was ${what} for ${cat} at the ${year} Spirited Awards` : `was ${what} at the ${year} Spirited Awards`;
+  }
+
+  if (key === 'jbf') {
+    const cat = categoryOf(a.title) || 'Outstanding Bar';
+    if (a.kind === 'winner') return `won the James Beard Award for ${cat} in ${year}`;
+    const stage = /semifinal/.test(stageOf(a.title)) ? 'semifinalist' : 'finalist';
+    return `was a James Beard Award ${stage} for ${cat} in ${year}`;
+  }
+
+  if (key === 'bca' || key === 'shaker') {
+    const body = key === 'bca' ? "Bartenders' Choice Awards" : 'Shaker Awards';
+    if (a.kind === 'ranked' && a.rank != null) {
+      const current = (a.year ?? 0) >= (LATEST_EDITION[key] ?? Infinity);
+      const list = a.title ? ` ${a.title}` : '';
+      return `${current ? 'ranks' : 'ranked'} No. ${a.rank} on the ${year} ${body}${list}`;
+    }
+    if (a.kind === 'listed') return `was listed on the ${year} ${body}${a.title ? ` ${a.title}` : ''}`;
+    const cat = categoryOf(a.title);
+    if (a.kind === 'winner') return cat ? `won ${withArticle(cat)} at the ${year} ${body}` : `won at the ${year} ${body}`;
+    return cat ? `was nominated for ${cat} at the ${year} ${body}` : `was nominated at the ${year} ${body}`;
+  }
+
+  if (key === 'pinnacle') {
+    return `holds ${a.title || 'a Pin'} from The Pinnacle Guide (${year})`;
+  }
+
+  // An org with a tile but no phrasing here: say only what is stored.
+  if (a.rank != null) return `ranked No. ${a.rank} on ${a.org} ${year}`;
+  if (a.kind === 'winner') return categoryOf(a.title) ? `won ${categoryOf(a.title)} at the ${year} ${a.org}` : `won at the ${year} ${a.org}`;
+  return `was listed on ${a.org} in ${year}`;
+}
+
+/** "a", "a and b", "a, b, and c". */
+function joinClauses(parts: string[]): string {
   if (parts.length <= 1) return parts.join('');
-  return `${parts.slice(0, -1).join(', ')} and ${parts[parts.length - 1]}`;
-}
-
-function years(entries: Accolade[]): string {
-  const ys = Array.from(new Set(entries.map(e => Number(e.year)))).sort((a, b) => a - b);
-  return listJoin(ys.map(String));
+  if (parts.length === 2) return `${parts[0]} and ${parts[1]}`;
+  return `${parts.slice(0, -1).join(', ')}, and ${parts[parts.length - 1]}`;
 }
 
 /**
- * Group entries by a key, keeping first-seen order, then order the groups by
- * their earliest year so the sentence reads forward in time.
+ * The sentence, or an empty string when the tiles render nothing. The
+ * subject is the stored name exactly once, no article added.
  */
-function groupBy(entries: Accolade[], keyOf: (e: Accolade) => string): Accolade[][] {
-  const groups = new Map<string, Accolade[]>();
-  for (const e of entries) {
-    const k = keyOf(e);
-    const g = groups.get(k);
-    if (g) g.push(e);
-    else groups.set(k, [e]);
-  }
-  return Array.from(groups.values()).sort(
-    (a, b) => Math.min(...a.map(e => Number(e.year))) - Math.min(...b.map(e => Number(e.year)))
-  );
-}
-
-/** The sentence for one body's entries (all the same org_key). */
-export function orgSentence(entries: Accolade[]): string {
-  const subject = PROSE_SUBJECT[entries[0].org_key] || entries[0].org;
-
-  // The Pinnacle Guide awards a grade, not a category or a placing:
-  // "The Pinnacle Guide awarded it 2 Pins in 2024." The grade is the title
-  // ("2 Pins", "1 Pin"); winner/nominee only drives the tile colour here.
-  if (entries[0].org_key === 'pinnacle') {
-    const grades = groupBy(entries.filter(e => e.title), e => e.title!).map(g => `${g[0].title} in ${years(g)}`);
-    return `${subject} awarded it ${listJoin(grades)}.`;
-  }
-  const ranked = entries.filter(e => e.kind === 'ranked' && e.rank != null);
-  const listed = entries.filter(e => e.kind === 'listed' || (e.kind === 'ranked' && e.rank == null));
-  const winners = entries.filter(e => e.kind === 'winner');
-  const nominees = entries.filter(e => e.kind === 'nominee');
-
-  const clauses: string[] = [];
-
-  // "named it" once, then the honors it named: wins first, then the
-  // nomination stages furthest along first.
-  const named: string[] = [];
-  if (winners.length) {
-    const withTitle = winners.filter(e => categoryOf(e.title));
-    const bare = winners.filter(e => !categoryOf(e.title));
-    for (const g of groupBy(withTitle, e => categoryOf(e.title)!)) named.push(`${categoryOf(g[0].title)} in ${years(g)}`);
-    if (bare.length) named.push(`a winner in ${years(bare)}`);
-  }
-  const stages = groupBy(nominees, e => stageWordOf(e.title)).sort((a, b) => stageOf(b[0]) - stageOf(a[0]));
-  for (const stage of stages) {
-    const word = stageWordOf(stage[0].title);
-    const withCat = stage.filter(e => categoryOf(e.title));
-    const bare = stage.filter(e => !categoryOf(e.title));
-    const fors = groupBy(withCat, e => categoryOf(e.title)!).map(g => `for ${categoryOf(g[0].title)} in ${years(g)}`);
-    if (fors.length) named.push(`a ${word} ${listJoin(fors)}`);
-    if (bare.length) named.push(`a ${word} in ${years(bare)}`);
-  }
-
-  if (ranked.length) {
-    const byRank = groupBy(ranked, e => String(e.rank)).map(g => `No. ${g[0].rank} in ${years(g)}`);
-    clauses.push(`ranked it ${listJoin(byRank)}`);
-  }
-  if (listed.length) clauses.push(`listed it in ${years(listed)}`);
-  if (named.length) clauses.push(`named it ${listJoin(named)}`);
-
-  return `${subject} ${listJoin(clauses)}.`;
-}
-
-/**
- * One sentence per org, the org with the newest honor first (then the
- * higher score), so the paragraph reads from the present back.
- */
-export function accoladeSentences(accolades: unknown): string[] {
-  const byOrg = new Map<string, Accolade[]>();
-  for (const e of renderableAccolades(accolades)) {
-    const g = byOrg.get(e.org_key);
-    if (g) g.push(e);
-    else byOrg.set(e.org_key, [e]);
-  }
-  const newest = (g: Accolade[]) => Math.max(...g.map(e => Number(e.year)));
-  const best = (g: Accolade[]) => Math.max(...g.map(e => e.score ?? 0));
-  return Array.from(byOrg.values())
-    .sort((a, b) => newest(b) - newest(a) || best(b) - best(a))
-    .map(orgSentence);
+export function accoladeSentence(name: string, accolades: unknown): string {
+  const entries = tileEntries(accolades);
+  if (entries.length === 0) return '';
+  return `${name} ${joinClauses(entries.map(accoladeClause))}.`;
 }
