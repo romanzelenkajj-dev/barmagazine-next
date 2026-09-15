@@ -2,13 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { boundedNoStoreFetch } from '@/lib/bounded-fetch';
 import { verifyOwnerToken } from '@/lib/supabase-auth';
-import { waitUntil } from '@vercel/functions';
-import { ownerEditNotice, DEBOUNCE_MS } from '@/lib/owner-edit-notice';
+import { notifyOwnerSubmission } from '@/lib/notify';
 import { photoLimitForTier } from '@/lib/owner-fields';
-
-// The office notice waits DEBOUNCE_MS after the response before it sends
-// (see owner-edit-notice.ts); the function must outlive that wait.
-export const maxDuration = 90;
 
 export async function POST(request: NextRequest) {
   const supabase = createClient(
@@ -67,29 +62,20 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const { data: inserted, error: insertError } = await supabase
-      .from('owner_submissions')
-      .insert({
-        bar_id: barId, owner_id: owner.id, status: 'pending',
-        submitted_data: { gallery_images: uploadedUrls },
-        submission_type: 'photo_upload',
-      })
-      .select('id')
-      .single();
+    await supabase.from('owner_submissions').insert({
+      bar_id: barId, owner_id: owner.id, status: 'pending',
+      submitted_data: { gallery_images: uploadedUrls },
+      submission_type: 'photo_upload',
+    });
 
-    // Surface it — the photo queue is as invisible as the edit queue. Runs
-    // after the response and waits a minute so a save made just before this
-    // upload lands in the same email (see owner-edit-notice.ts).
-    if (insertError || !inserted) {
-      console.error('[owner/photos] submission insert failed:', insertError?.message);
-    } else {
-      waitUntil(
-        ownerEditNotice(
-          { barId, ownerId: owner.id, ownerEmail: owner.email, submissionId: inserted.id },
-          { delayMs: DEBOUNCE_MS }
-        )
-      );
-    }
+    // Surface it — the photo queue is as invisible as the edit queue.
+    await notifyOwnerSubmission({
+      barName: String(bar.name ?? 'Unknown bar'),
+      barSlug: bar.slug ? String(bar.slug) : null,
+      ownerEmail: owner.email,
+      submissionType: 'photo_upload',
+      fields: { gallery_images: uploadedUrls },
+    });
 
     return NextResponse.json({ success: true, urls: uploadedUrls });
   } catch {

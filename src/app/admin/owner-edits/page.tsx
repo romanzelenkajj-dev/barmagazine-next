@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { AdminValue } from '@/components/AdminMediaValue';
-import { OWNER_FIELD_LABEL } from '@/lib/owner-fields';
 
 /**
  * Owner edit review.
@@ -37,7 +36,18 @@ interface OwnerSubmission {
   photo_pick: { limit: number; options: string[] } | null;
 }
 
-const FIELD_LABEL = OWNER_FIELD_LABEL;
+const FIELD_LABEL: Record<string, string> = {
+  address: 'Address',
+  phone: 'Phone',
+  email: 'Contact email',
+  website: 'Website',
+  instagram: 'Instagram',
+  whatsapp: 'WhatsApp',
+  reservation_url: 'Reservations link',
+  menu_url: 'Menu link',
+  opening_hours: 'Opening hours',
+  photos: 'Photos',
+};
 
 export default function AdminOwnerEditsPage() {
   const [adminSecret, setAdminSecret] = useState<string | null>(null);

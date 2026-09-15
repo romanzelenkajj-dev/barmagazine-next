@@ -16,10 +16,7 @@ export const MAIL_REPLY_TO = process.env.MAIL_REPLY_TO || 'office@barmagazine.co
 export interface SendMailArgs {
   to: string | string[];
   subject: string;
-  /** HTML body. Optional only when `text` is given. */
-  html?: string;
-  /** Plain-text body; sent alone when there is no html (admin notices). */
-  text?: string;
+  html: string;
   from?: string;
   replyTo?: string;
   /** Short tag for the log line, e.g. 'claim-link'. */
@@ -36,14 +33,9 @@ export interface SendMailArgs {
  * recipient, the HTTP status and the provider's message.
  */
 export async function sendMail(args: SendMailArgs): Promise<boolean> {
-  const { to, subject, html, text, from = MAIL_FROM, replyTo = MAIL_REPLY_TO, context = 'mail' } = args;
+  const { to, subject, html, from = MAIL_FROM, replyTo = MAIL_REPLY_TO, context = 'mail' } = args;
   const recipients = Array.isArray(to) ? to : [to];
   const who = recipients.join(', ');
-
-  if (!html && !text) {
-    console.error(`[${context}] NOT SENT to ${who} — no body`);
-    return false;
-  }
 
   if (!RESEND_API_KEY) {
     console.error(`[${context}] NOT SENT to ${who} — RESEND_API_KEY unset`);
@@ -62,8 +54,7 @@ export async function sendMail(args: SendMailArgs): Promise<boolean> {
         to: recipients,
         reply_to: replyTo,
         subject,
-        ...(html ? { html } : {}),
-        ...(text ? { text } : {}),
+        html,
       }),
     });
 
