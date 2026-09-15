@@ -1214,6 +1214,19 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 17: Top 10 city cards, 16:10 photo and the "Order this" block (b4119ab)
+- Below 720px the card photo is aspect-ratio 16:10 (368x230 at 390) instead
+  of a 190px strip; above 720px it stays the 280px column that fills the
+  card's height (forcing 16:10 there would leave a blank strip under the
+  photo), flagged for Roman.
+- "Order this" is no longer a tinted panel: hairline above (the site's
+  rgba(0,0,0,0.06)), gold uppercase label in the Plan Your Visit label
+  style, the drink name bold, the ingredients in --text-secondary. New
+  src/lib/menu-highlight.ts splitHighlight() separates a name that carries
+  its ingredients after a dash and renders no em or en dash anywhere in
+  the block. Same block on the /best-bars/[city]/[type] pages, which share
+  the card. Absent entirely when a bar has no highlight (no empty hairline).
+
 ## 2026-09-15 - Queue task 11d: desktop card gaps 14/29/28 -> 8/15/18; CTA to Nearby 64 -> 32 (071e240)
 - Measured against the pre-05 commit (582d7ea) served from a worktree.
   At 1440 the grid kept both neighbours' margins; the upper margin of each
