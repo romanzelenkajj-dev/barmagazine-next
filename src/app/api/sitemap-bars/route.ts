@@ -14,13 +14,34 @@ const SITE_URL = 'https://barmagazine.com';
 // Supabase again.
 export const dynamic = 'force-dynamic';
 
+/**
+ * When the PROFILE TEMPLATE last changed in a way a reader would notice.
+ *
+ * lastmod must mean "this page changed", and a page changes for two
+ * reasons: its row was written, or the template that renders it was. The
+ * row's updated_at covers the first. This constant covers the second, so a
+ * template change that touched all 1,267 profiles (the 2026-09-14
+ * structural pass: nearby block, accolade prose, article mentions) is not
+ * reported as 1,267 pages last modified in March. Bump it ONLY for a change
+ * a reader would see on every profile; a bumped date on an unchanged page
+ * is the same lie in the other direction.
+ */
+const PROFILE_TEMPLATE_CHANGED_AT = '2026-09-14T19:36:00-07:00'; // deploy of b1b306b
+
+/** A row's own lastmod: the later of its last write and the template change. */
+function rowLastmod(bar: { updated_at: string | null; created_at: string }): string {
+  const own = new Date(bar.updated_at || bar.created_at).getTime();
+  const tpl = new Date(PROFILE_TEMPLATE_CHANGED_AT).getTime();
+  return new Date(Math.max(own, tpl)).toISOString();
+}
+
 export async function GET() {
   // Paginated: a single getBars({ perPage: 2000 }) silently returned 1,000
   // rows and left 247 active profiles out of the sitemap. The live deploy
   // check (seo-check sitemap-bars-count) asserts the count matches.
   const [bars, countries, cities, seoCities] = await Promise.all([
-    getAllActiveBars<{ slug: string; tier: string | null; updated_at: string | null; created_at: string }>(
-      'slug, tier, updated_at, created_at'
+    getAllActiveBars<{ slug: string; tier: string | null; city: string; country: string; updated_at: string | null; created_at: string }>(
+      'slug, tier, city, country, updated_at, created_at'
     ),
     getCountriesWithCounts(),
     getCitiesWithCounts(),
@@ -28,11 +49,29 @@ export async function GET() {
   ]);
   const awardPrograms = await getLiveAwardPrograms();
 
+  // A list page changed when its newest member did. Request time, which
+  // these used to report, says nothing: every crawl saw "modified just now".
+  const newest = (key: 'city' | 'country') => {
+    const m = new Map<string, string>();
+    for (const b of bars) {
+      const lm = rowLastmod(b);
+      const cur = m.get(b[key]);
+      if (!cur || lm > cur) m.set(b[key], lm);
+    }
+    return m;
+  };
+  const newestByCity = newest('city');
+  const newestByCountry = newest('country');
+  const directoryLastmod = bars.reduce((acc, b) => {
+    const lm = rowLastmod(b);
+    return lm > acc ? lm : acc;
+  }, PROFILE_TEMPLATE_CHANGED_AT);
+
   let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${SITE_URL}/bars</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${new Date(directoryLastmod).toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -42,7 +81,7 @@ export async function GET() {
   for (const c of countries) {
     xml += `  <url>
     <loc>${SITE_URL}/bars/country/${toUrlSlug(c.country)}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${newestByCountry.get(c.country) ?? new Date(directoryLastmod).toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -53,7 +92,7 @@ export async function GET() {
   for (const c of cities) {
     xml += `  <url>
     <loc>${SITE_URL}/bars/city/${toUrlSlug(c.city)}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${newestByCity.get(c.city) ?? new Date(directoryLastmod).toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -61,11 +100,13 @@ export async function GET() {
   }
 
   // "Best bars in <city>" SEO landing pages — every city clearing the
-  // thin-page threshold, plus its qualifying type-by-city sub-pages.
+  // thin-page threshold, plus its qualifying type-by-city sub-pages. Same
+  // newest-member date as the city page: they render the same rows.
   for (const c of seoCities) {
+    const cityLastmod = newestByCity.get(c.city) ?? new Date(directoryLastmod).toISOString();
     xml += `  <url>
     <loc>${SITE_URL}/best-bars/${c.slug}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${cityLastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -73,7 +114,7 @@ export async function GET() {
     for (const t of c.typeSlugs) {
       xml += `  <url>
     <loc>${SITE_URL}/best-bars/${c.slug}/${t.slug}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${cityLastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -101,11 +142,10 @@ export async function GET() {
 
   // Individual bar profile pages
   for (const bar of bars) {
-    const lastmod = bar.updated_at || bar.created_at;
     const priority = bar.tier === 'top10' ? 0.9 : bar.tier === 'premium' ? 0.8 : bar.tier === 'featured' ? 0.7 : 0.6;
     xml += `  <url>
     <loc>${SITE_URL}/bars/${bar.slug}</loc>
-    <lastmod>${new Date(lastmod).toISOString()}</lastmod>
+    <lastmod>${rowLastmod(bar)}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${priority}</priority>
   </url>

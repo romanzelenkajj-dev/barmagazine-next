@@ -93,7 +93,11 @@ export async function POST(request: NextRequest) {
   }
 
   if (action === 'update') {
-    const cleanUpdates = normalizeBarFields(updates);
+    // Stamp the write. There is no database trigger on updated_at: rows
+    // patched all day on 2026-09-14 still carried March dates, and the
+    // sitemap's lastmod reads this column, so an unstamped write is a page
+    // change Google is told never happened.
+    const cleanUpdates = normalizeBarFields({ updated_at: new Date().toISOString(), ...updates });
     const query = barId
       ? supabase.from('bars').update(cleanUpdates).eq('id', barId).select()
       : barName

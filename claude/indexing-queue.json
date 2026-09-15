@@ -1,0 +1,1239 @@
+{
+ "built": "2026-09-14",
+ "order": "TOP 10 first, then accolade count desc, then city",
+ "daily": 10,
+ "items": [
+  {
+   "slug": "handshake-speakeasy",
+   "city": "Mexico City",
+   "tier": "top10",
+   "accolades": 6,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-baxter-inn",
+   "city": "Sydney",
+   "tier": "top10",
+   "accolades": 6,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "licoreria-limantour",
+   "city": "Mexico City",
+   "tier": "top10",
+   "accolades": 5,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bar-leone",
+   "city": "Hong Kong",
+   "tier": "top10",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "three-sheets-soho",
+   "city": "London",
+   "tier": "top10",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "sip-guzzle",
+   "city": "New York",
+   "tier": "top10",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "paradiso",
+   "city": "Barcelona",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "sips",
+   "city": "Barcelona",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "coa",
+   "city": "Hong Kong",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "connaught-bar",
+   "city": "London",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "scarfes-bar",
+   "city": "London",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "tayer-elementary",
+   "city": "London",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "viceversa",
+   "city": "Miami",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "attaboy",
+   "city": "New York",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "clemente-bar",
+   "city": "New York",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-cambridge-public-house",
+   "city": "Paris",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "pacific-cocktail-haven",
+   "city": "San Francisco",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "trick-dog",
+   "city": "San Francisco",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "nutmeg-clove",
+   "city": "Singapore",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "maybe-sammy",
+   "city": "Sydney",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-bellwood",
+   "city": "Tokyo",
+   "tier": "top10",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "nickel-city",
+   "city": "Austin",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "dr-stravinsky",
+   "city": "Barcelona",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "lpm-dubai",
+   "city": "Dubai",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "mimi-kakushi",
+   "city": "Dubai",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "penicillin",
+   "city": "Hong Kong",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "cleaver",
+   "city": "Las Vegas",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "side-hustle",
+   "city": "London",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "thunderbolt",
+   "city": "Los Angeles",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "cure",
+   "city": "New Orleans",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "seed-library-nyc",
+   "city": "New York",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "realm-of-the-52-remedies",
+   "city": "San Diego",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "buena-vista-cafe",
+   "city": "San Francisco",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "punch-room-tokyo",
+   "city": "Tokyo",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "silver-lyan-dc",
+   "city": "Washington DC",
+   "tier": "top10",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "midnight-cowboy",
+   "city": "Austin",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "murrays-tavern",
+   "city": "Austin",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "papercut",
+   "city": "Austin",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "dry-martini-by-javier-de-las-muelas",
+   "city": "Barcelona",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "kyara",
+   "city": "Barcelona",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "monk",
+   "city": "Barcelona",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "morro-fi",
+   "city": "Barcelona",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "two-schmucks",
+   "city": "Barcelona",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "carrie-nation-boston",
+   "city": "Boston",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "lazy-bird",
+   "city": "Chicago",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "death-and-co-denver",
+   "city": "Denver",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "run-for-the-roses-denver",
+   "city": "Denver",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "blind-tiger",
+   "city": "Dubai",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "galaxy-bar",
+   "city": "Dubai",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "zuma",
+   "city": "Dubai",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "darkside",
+   "city": "Hong Kong",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-old-man",
+   "city": "Hong Kong",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "doberman-drawing-room",
+   "city": "Las Vegas",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "ghost-donkey",
+   "city": "Las Vegas",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "herbs-rye",
+   "city": "Las Vegas",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "nocturno",
+   "city": "Las Vegas",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "pachi-pachi",
+   "city": "Las Vegas",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "white-whale",
+   "city": "Las Vegas",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "lyaness",
+   "city": "London",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "swift",
+   "city": "London",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "tiki-ti",
+   "city": "Los Angeles",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "sweet-liberty",
+   "city": "Miami",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-broken-shaker",
+   "city": "Miami",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "loa-bar",
+   "city": "New Orleans",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bar-hemingway",
+   "city": "Paris",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "combat",
+   "city": "Paris",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "experimental-cocktail-club",
+   "city": "Paris",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "le-syndicat",
+   "city": "Paris",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "les-ambassadeurs",
+   "city": "Paris",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "franklin-mortgage-philadelphia",
+   "city": "Philadelphia",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "library-bar-philadelphia",
+   "city": "Philadelphia",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "gillys-house-of-cocktails",
+   "city": "San Diego",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "polite-provisions",
+   "city": "San Diego",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "raised-by-wolves",
+   "city": "San Diego",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-whaling-bar",
+   "city": "San Diego",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "zig-zag-cafe",
+   "city": "Seattle",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "manhattan",
+   "city": "Singapore",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "centro-86",
+   "city": "Sydney",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "deux-freres",
+   "city": "Sydney",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "pleasure-club",
+   "city": "Sydney",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-waratah",
+   "city": "Sydney",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "tokyo-confidential",
+   "city": "Tokyo",
+   "tier": "top10",
+   "accolades": 0,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "arca",
+   "city": "Tulum",
+   "tier": "free",
+   "accolades": 6,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bekeb",
+   "city": "San Miguel de Allende",
+   "tier": "free",
+   "accolades": 4,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "baba-au-rum",
+   "city": "Athens",
+   "tier": "free",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bar-us",
+   "city": "Bangkok",
+   "tier": "free",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bkk-social-club",
+   "city": "Bangkok",
+   "tier": "free",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "dry-wave-cocktail-studio",
+   "city": "Bangkok",
+   "tier": "free",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "mirror-bar",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "angelita",
+   "city": "Madrid",
+   "tier": "free",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "moebius-milano",
+   "city": "Milan",
+   "tier": "free",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "double-chicken-please",
+   "city": "New York",
+   "tier": "free",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "selva-oaxaca-cocktail-bar",
+   "city": "Oaxaca",
+   "tier": "free",
+   "accolades": 3,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "barro-negro",
+   "city": "Athens",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "line",
+   "city": "Athens",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-bar-in-front-of-the-bar",
+   "city": "Athens",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "opium",
+   "city": "Bangkok",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "wax-on",
+   "city": "Berlin",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "alquimico",
+   "city": "Cartagena",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "gucci-giardino",
+   "city": "Florence",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "locale-firenze",
+   "city": "Florence",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "hope-sesame",
+   "city": "Guangzhou",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "lady-bee",
+   "city": "Lima",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "caretaker-s-cottage",
+   "city": "Melbourne",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "1930",
+   "city": "Milan",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "sabina-sabe",
+   "city": "Oaxaca",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "drink-kong",
+   "city": "Rome",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "freni-e-frizioni",
+   "city": "Rome",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "charles-h",
+   "city": "Seoul",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "zest",
+   "city": "Seoul",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "tjoget",
+   "city": "Stockholm",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "vender",
+   "city": "Taichung",
+   "tier": "free",
+   "accolades": 2,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "super-lyan",
+   "city": "Amsterdam",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bar-sathorn",
+   "city": "Bangkok",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "lennon-s",
+   "city": "Bangkok",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "mahaniyom-cocktail-bar",
+   "city": "Bangkok",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "vesper",
+   "city": "Bangkok",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "14-de-la-rosa",
+   "city": "Barcelona",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "la-sala-de-laura",
+   "city": "Bogot\u00e1",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-hudson-rooms",
+   "city": "Hanoi",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "stir",
+   "city": "Ho Chi Minh City",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-opposites",
+   "city": "Hong Kong",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bar-leather-apron",
+   "city": "Honolulu",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bandista",
+   "city": "Houston",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "julep",
+   "city": "Houston",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "cosmo-pony",
+   "city": "Jakarta",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "reka-bar",
+   "city": "Kuala Lumpur",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "sastrer-a-martinez",
+   "city": "Lima",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-st-regis-bar",
+   "city": "Macau",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bar-carmen",
+   "city": "Medell\u00edn",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "mamba-negra",
+   "city": "Medell\u00edn",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "cafe-arixi",
+   "city": "Mexico City",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "champagne-bar-at-four-seasons-surf-club",
+   "city": "Miami",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "camparino-in-galleria",
+   "city": "Milan",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "rita",
+   "city": "Milan",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "angel-s-share",
+   "city": "New York",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "dante",
+   "city": "New York",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "maison-premiere",
+   "city": "New York",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bar-nayuta",
+   "city": "Osaka",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "harrys-new-york-bar",
+   "city": "Paris",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "backdoor-bodega",
+   "city": "Penang",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "jerry-thomas-project",
+   "city": "Rome",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "la-factora",
+   "city": "San Juan",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "soko",
+   "city": "Seoul",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "mo-bar-shenzhen",
+   "city": "Shenzhen",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "obsidian-bar",
+   "city": "Shenzhen",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "stay-gold-flamingo",
+   "city": "Singapore",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "eximia",
+   "city": "S\u00e3o Paulo",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "bar-mood",
+   "city": "Taipei",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-public-house",
+   "city": "Taipei",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "gorilla",
+   "city": "Thessaloniki",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "civil-liberties",
+   "city": "Toronto",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "botanist",
+   "city": "Vancouver",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  },
+  {
+   "slug": "the-keefer-bar",
+   "city": "Vancouver",
+   "tier": "free",
+   "accolades": 1,
+   "status": "pending",
+   "date": null
+  }
+ ]
+}
