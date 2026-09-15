@@ -10465,8 +10465,11 @@ a.bar-v2-badge--subtype:hover {
 }
 
 /* ── Profile: nearby list, accolade prose, article mentions (2026-09-14) ── */
+/* Same measure and left edge as the description below it (600px), with a
+   small gap so the two blocks read as two blocks (Roman, 2026-09-15). */
 .bar-v2-accolade-prose {
-  margin: 10px 0 0;
+  margin: 10px 0 10px;
+  max-width: 600px;
   font-size: 14px;
   line-height: 1.55;
   color: var(--text-secondary, #5d5850);
