@@ -1214,7 +1214,21 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
-## 2026-09-15 - Queue task 15: owner-edit notice to office@, batched (8b35f93)
+## 2026-09-15 - Queue task 11c: task 15 reverted in full (542c57a)
+- Roman: the owner-edit notice to his Gmail was fine; task 15 rested on a
+  cloud-side misunderstanding. 8b35f93 reverted whole (module, tests, rig,
+  the @vercel/functions dependency, the maxDuration lines). Recipient in
+  effect: NOTIFICATION_EMAIL, the HTML "Owner edit pending" notice, exactly
+  as before. No email sent in this task.
+- 8b35f93 never reached production: its deploy failed at pnpm install
+  (ERR_PNPM_OUTDATED_LOCKFILE, the new dependency was added with npm and
+  pnpm-lock.yaml was not updated). Lesson for any future dependency add:
+  Vercel installs with pnpm from pnpm-lock.yaml, so run pnpm install and
+  commit that lockfile too.
+- The [Test] email to office@ (Resend d1418296) stands as sent; nothing
+  else went out.
+
+## 2026-09-15 - Queue task 15: owner-edit notice to office@, batched (8b35f93, REVERTED by 11c)
 - Holiday check: the 13:40 PT edits DID send two notices (Resend ids
   f70b6a79 and 607eb39b, both delivered), but to NOTIFICATION_EMAIL, which
   is Roman's Gmail. office@ was never the recipient.
