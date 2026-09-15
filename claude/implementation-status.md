@@ -1214,6 +1214,20 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 04: The Pinnacle Guide as an accolade org, STOPPED for Roman
+- The cloud session asked for a `pinnacle` org and a directory match. Done
+  up to the decision: programme verified against the four criteria
+  (methodology published; jury anonymous by design; rolling waves rather
+  than a yearly edition; no award year printed, only the announcement
+  date), the full 190-bar list saved to claude/pinnacle-guide-list.json,
+  the name-plus-city match saved to claude/pinnacle-guide-match.json: 99
+  automatic matches plus 9 by eye = 108 rows would carry a Pin (3 three-
+  Pin), 15 name-only hits are other venues, 69 pinned bars are not listed.
+  Bitter & Twisted: 2 Pins, announced 2024-04-29. Nothing written, no org
+  added: reports/04 lists the four points for Roman (year semantics, tile
+  lines against the constant-bold-line rule, where the Pin count lives,
+  the by-eye nine).
+
 ## 2026-09-15 - Queue task 03: article-mentions card on profiles (da4f3b2)
 - The "<Bar> in BarMagazine" block was a bare heading and a bulleted list.
   Now the same white rounded card as the info card: one row per article

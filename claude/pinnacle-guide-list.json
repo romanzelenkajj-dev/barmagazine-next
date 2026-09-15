@@ -1,0 +1,1527 @@
+{
+ "source": "https://www.thepinnacleguide.com/wp-json/wp/v2/posts (190 pinned-bar posts; Pin level from the 1/2/3-pinned-bar category)",
+ "fetchedAt": "2026-09-15",
+ "yearNote": "the site prints no award year; year here is the post publish date on thepinnacleguide.com, i.e. the announcement year",
+ "bars": [
+  {
+   "name": "Line Athens",
+   "city": "athens",
+   "pins": 3,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/line-athens/"
+  },
+  {
+   "name": "Champagne Bar at the Surf Club",
+   "city": "miami",
+   "pins": 3,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/champagne-bar-at-the-surf-club/"
+  },
+  {
+   "name": "Kumiko",
+   "city": "chicago",
+   "pins": 3,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/kumiko/"
+  },
+  {
+   "name": "Handshake Speakeasy",
+   "city": "mexico city",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/handshake-speakeasy/"
+  },
+  {
+   "name": "Argo",
+   "city": "hong kong",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/argo/"
+  },
+  {
+   "name": "De Vie",
+   "city": "paris",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/de-vie/"
+  },
+  {
+   "name": "Botanist Bar",
+   "city": "vancouver",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/botanist-bar/"
+  },
+  {
+   "name": "CuCù",
+   "city": "bassano del grappa",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/cucu/"
+  },
+  {
+   "name": "Funky Claude’s Bar",
+   "city": "funky claudes bar montreux",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/funky-claudes-bar/"
+  },
+  {
+   "name": "Himitsu",
+   "city": "dubai",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/himitsu/"
+  },
+  {
+   "name": "Pilina",
+   "city": "maui",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/pilina/"
+  },
+  {
+   "name": "The Upper Room At Duddell’s",
+   "city": null,
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/the-upper-room-at-duddells/"
+  },
+  {
+   "name": "Bateman’s",
+   "city": "batemans new york city",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/batemans/"
+  },
+  {
+   "name": "The Emory",
+   "city": "emory a rooftop bar above belgravia",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/the-emory/"
+  },
+  {
+   "name": "tbc*",
+   "city": "chester",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/tbc/"
+  },
+  {
+   "name": "Strong Water Anaheim",
+   "city": "orange county",
+   "pins": 2,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/strong-water-anaheim/"
+  },
+  {
+   "name": "Death & Co. D.C.",
+   "city": null,
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/death-co-d-c/"
+  },
+  {
+   "name": "Furtivo Speakeasy",
+   "city": "san juan",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/furtivo-speakeasy/"
+  },
+  {
+   "name": "Quinary",
+   "city": "hong kong",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/quinary/"
+  },
+  {
+   "name": "MONOGRAM",
+   "city": "toronto",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/monogram/"
+  },
+  {
+   "name": "SHUB",
+   "city": "sorrento",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/shub/"
+  },
+  {
+   "name": "SIMPL THINGS",
+   "city": "toronto",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/simpl-things/"
+  },
+  {
+   "name": "Slowpour",
+   "city": "liverpool",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/slowpour/"
+  },
+  {
+   "name": "American Bar at the Savoy",
+   "city": "london",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/american-bar-at-the-savoy/"
+  },
+  {
+   "name": "Andra Hem",
+   "city": "philadelphia",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/andra-hem/"
+  },
+  {
+   "name": "Bandista",
+   "city": "houston",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/bandista/"
+  },
+  {
+   "name": "Call Me Pearl",
+   "city": "denver",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/call-me-pearl/"
+  },
+  {
+   "name": "Clockwork",
+   "city": "toronto",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/clockwork/"
+  },
+  {
+   "name": "Course",
+   "city": "phoenix",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/course/"
+  },
+  {
+   "name": "Danico",
+   "city": "paris",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/danico/"
+  },
+  {
+   "name": "Fives Raw Bar",
+   "city": "new orleans",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/fives-raw-bar/"
+  },
+  {
+   "name": "Gus’ Sip & Dip",
+   "city": "gus sip dip chicago",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/gus-sip-dip/"
+  },
+  {
+   "name": "Hello Hello Bar and Cafe",
+   "city": "new york",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/hello-hello-bar-and-cafe/"
+  },
+  {
+   "name": "La Catedral Bar",
+   "city": "zurich",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/la-catedral-bar/"
+  },
+  {
+   "name": "marcelino’s Boutique Bar",
+   "city": "providence",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/marcelinos-boutique-bar/"
+  },
+  {
+   "name": "Squisi",
+   "city": "vittorio veneto",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/squisi/"
+  },
+  {
+   "name": "St James Bar",
+   "city": "london",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/st-james-bar/"
+  },
+  {
+   "name": "The Flamingo Room",
+   "city": "vancouver",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/the-flamingo-room/"
+  },
+  {
+   "name": "The Domino Club",
+   "city": "leeds",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/the-domino-club/"
+  },
+  {
+   "name": "Lowkey",
+   "city": "cardiff",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/lowkey/"
+  },
+  {
+   "name": "Stravinskij Bar at Hotel de Russie",
+   "city": "rome",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/stravinskij-bar-at-hotel-de-russie/"
+  },
+  {
+   "name": "KABIN",
+   "city": "new york",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/kabin/"
+  },
+  {
+   "name": "Shelter",
+   "city": "calgary",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/shelter/"
+  },
+  {
+   "name": "Rundle Bar",
+   "city": null,
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-12",
+   "url": "https://www.thepinnacleguide.com/rundle-bar/"
+  },
+  {
+   "name": "Alto",
+   "city": "cervia",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-07",
+   "url": "https://www.thepinnacleguide.com/alto/"
+  },
+  {
+   "name": "Barro Negro Athens",
+   "city": "athens",
+   "pins": 1,
+   "year": 2026,
+   "date": "2026-05-05",
+   "url": "https://www.thepinnacleguide.com/barro-negro-athens/"
+  },
+  {
+   "name": "SUGAR MONK",
+   "city": "new york",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/sugar-monk/"
+  },
+  {
+   "name": "SEXY FISH",
+   "city": "dubai",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/sexy-fish/"
+  },
+  {
+   "name": "Rayo",
+   "city": "mexico city",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/rayo/"
+  },
+  {
+   "name": "RUMORE BAR AMERICANO",
+   "city": "milan",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/rumore-bar-americano/"
+  },
+  {
+   "name": "Cortiletto",
+   "city": "marzamemi",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/cortiletto/"
+  },
+  {
+   "name": "Bar Dali",
+   "city": "dubai",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/bar-dali/"
+  },
+  {
+   "name": "Castalia",
+   "city": "detroit",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/castalia/"
+  },
+  {
+   "name": "The Sidecar",
+   "city": "dublin",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-sidecar/"
+  },
+  {
+   "name": "PIG’S LANE",
+   "city": "pigs lane kerry",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/pigs-lane/"
+  },
+  {
+   "name": "THE HIDEOUT",
+   "city": "bath",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-hideout/"
+  },
+  {
+   "name": "THE FOUNTAIN INN",
+   "city": "washington dc",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-fountain-inn/"
+  },
+  {
+   "name": "EVE BAR",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/eve-bar/"
+  },
+  {
+   "name": "1930 COCKTAIL BAR",
+   "city": "milan",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/1930-cocktail-bar/"
+  },
+  {
+   "name": "THE COCKTAIL TRADING CO",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-cocktail-trading-co/"
+  },
+  {
+   "name": "SOMA SOHO",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/soma-soho/"
+  },
+  {
+   "name": "THE AUBREY",
+   "city": "hong kong",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-aubrey/"
+  },
+  {
+   "name": "SUITE 115",
+   "city": "toronto",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/suite-115/"
+  },
+  {
+   "name": "SANTA COCKTAIL CLUB",
+   "city": "florence",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/santa-cocktail-club/"
+  },
+  {
+   "name": "THE ROYAL COCKTAIL EXCHANGE",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-royal-cocktail-exchange/"
+  },
+  {
+   "name": "RED NOSE BAR",
+   "city": "volos",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/red-nose-bar/"
+  },
+  {
+   "name": "PUROVOKU PROJECT",
+   "city": "thessaloniki",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/purovoku-project/"
+  },
+  {
+   "name": "THE PISCO BAR AT COYA MAYFAIR",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-pisco-bar-at-coya-mayfair/"
+  },
+  {
+   "name": "PANAMERICANO BAR",
+   "city": "miami",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/panamericano-bar/"
+  },
+  {
+   "name": "NIGHT HAWK",
+   "city": "singapore",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/night-hawk/"
+  },
+  {
+   "name": "1920 SPEAKEASY",
+   "city": "dubai",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/1920-speakeasy/"
+  },
+  {
+   "name": "Bagheera",
+   "city": "vancouver",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/bagheera/"
+  },
+  {
+   "name": "BAR AM WASSER",
+   "city": "zurich",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/bar-am-wasser/"
+  },
+  {
+   "name": "Dean & Nancy on 22",
+   "city": "sydney",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/dean-nancy-on-22/"
+  },
+  {
+   "name": "CLOAKROOM BAR",
+   "city": "montreal",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/cloakroom-bar/"
+  },
+  {
+   "name": "FLORATTICA ROOFTOP",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/florattica-rooftop/"
+  },
+  {
+   "name": "GALAXY BAR",
+   "city": "dubai",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/galaxy-bar/"
+  },
+  {
+   "name": "LIBRARY BAR",
+   "city": "toronto",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/library-bar/"
+  },
+  {
+   "name": "The Roosevelt Room",
+   "city": "austin",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-roosevelt-room/"
+  },
+  {
+   "name": "Tom Thumb Cocktail Bar",
+   "city": "newquay",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/tom-thumb-cocktail-bar/"
+  },
+  {
+   "name": "AGUARDIENTE",
+   "city": "marina di ravenna",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/aguardiente/"
+  },
+  {
+   "name": "ARTS BAR",
+   "city": "venice",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/arts-bar/"
+  },
+  {
+   "name": "LA PETITE MAISON",
+   "city": "dubai",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/la-petite-maison/"
+  },
+  {
+   "name": "SALMON GURU",
+   "city": "dubai",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/salmon-guru/"
+  },
+  {
+   "name": "SOMA CANARY WHARF",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/soma-canary-wharf/"
+  },
+  {
+   "name": "SCALES",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/scales/"
+  },
+  {
+   "name": "Giacosa 1815",
+   "city": "florence",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/giacosa-1815/"
+  },
+  {
+   "name": "BAR POMPETTE",
+   "city": "toronto",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/bar-pompette/"
+  },
+  {
+   "name": "MOUNT PLEASANT VINTAGE & PROVISIONS",
+   "city": "vancouver",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/mount-pleasant-vintage-provisions/"
+  },
+  {
+   "name": "MURDER INC.",
+   "city": "london",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/murder-inc/"
+  },
+  {
+   "name": "Standby",
+   "city": "detroit",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/standby/"
+  },
+  {
+   "name": "THE MANOR BAR",
+   "city": "montecito",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-manor-bar/"
+  },
+  {
+   "name": "THE COURT",
+   "city": "rome",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-court/"
+  },
+  {
+   "name": "REALM OF THE 52 REMEDIES",
+   "city": "san diego",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/realm-of-the-52-remedies/"
+  },
+  {
+   "name": "PROPHECY",
+   "city": "vancouver",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/prophecy/"
+  },
+  {
+   "name": "PAPERCUT",
+   "city": "austin",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/papercut/"
+  },
+  {
+   "name": "N/5 THE BAR",
+   "city": "st moritz",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/n-5-the-bar/"
+  },
+  {
+   "name": "MÍRATE",
+   "city": "los angeles",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/mirate/"
+  },
+  {
+   "name": "CAAA by Pietro Catalano",
+   "city": "lucerne",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/caaa-by-pietro-catalano/"
+  },
+  {
+   "name": "DOVER YARD",
+   "city": "london",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/dover-yard/"
+  },
+  {
+   "name": "FO+MA",
+   "city": "mexico city",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/foma/"
+  },
+  {
+   "name": "GENTLEMEN 1919",
+   "city": "paris",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/gentlemen-1919/"
+  },
+  {
+   "name": "Kaito Del Valle",
+   "city": "mexico city",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/kaito-del-valle/"
+  },
+  {
+   "name": "PRESS CLUB",
+   "city": "washington dc",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/press-club/"
+  },
+  {
+   "name": "THE LOBBY BAR",
+   "city": "montalcino",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-lobby-bar/"
+  },
+  {
+   "name": "BAR 1661",
+   "city": "dublin",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/bar-1661/"
+  },
+  {
+   "name": "BEKEB",
+   "city": "san miguel de allende",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/bekeb/"
+  },
+  {
+   "name": "The Clumsies",
+   "city": "athens",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-09-22",
+   "url": "https://www.thepinnacleguide.com/the-clumsies/"
+  },
+  {
+   "name": "Bar 1802",
+   "city": "paris",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/bar-1802/"
+  },
+  {
+   "name": "Kioku Sake Bar",
+   "city": "london",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/kioku-bar-at-the-owo/"
+  },
+  {
+   "name": "Little Red Door",
+   "city": "paris",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/little-red-door/"
+  },
+  {
+   "name": "The Bar In Front Of The Bar",
+   "city": "athens",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/the-bar-in-front-of-the-bar/"
+  },
+  {
+   "name": "The Cambridge Public House",
+   "city": "paris",
+   "pins": 2,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/the-cambridge-public-house/"
+  },
+  {
+   "name": "Cinquanta",
+   "city": "spirito italiano pagani",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/cinquanta/"
+  },
+  {
+   "name": "Le Mary Celeste",
+   "city": "paris",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/le-mary-celeste/"
+  },
+  {
+   "name": "Sentaku Izakaya",
+   "city": "bologna",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/sentaku-izakaya/"
+  },
+  {
+   "name": "Aster Bar",
+   "city": "sydney",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/aster-bar/"
+  },
+  {
+   "name": "Baba Au Rum",
+   "city": "athens",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/baba-au-rum/"
+  },
+  {
+   "name": "Backdoor43",
+   "city": "milan",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/backdoor43/"
+  },
+  {
+   "name": "Candelaria",
+   "city": "paris",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/candelaria/"
+  },
+  {
+   "name": "Cat Bite Club",
+   "city": "singapore",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/cat-bite-club/"
+  },
+  {
+   "name": "CERESIO 7",
+   "city": "milan",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/ceresio-7/"
+  },
+  {
+   "name": "Copper Spoon",
+   "city": "fort wayne",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-10",
+   "url": "https://www.thepinnacleguide.com/copper-spoon/"
+  },
+  {
+   "name": "Dr. Zhivago Bar",
+   "city": "zurich",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-09",
+   "url": "https://www.thepinnacleguide.com/dr-zhivago-bar/"
+  },
+  {
+   "name": "Dry Milano",
+   "city": "milan",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-09",
+   "url": "https://www.thepinnacleguide.com/dry-milano/"
+  },
+  {
+   "name": "Equal Parts",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-09",
+   "url": "https://www.thepinnacleguide.com/equal-parts/"
+  },
+  {
+   "name": "Hanky Panky",
+   "city": "mexico city",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-09",
+   "url": "https://www.thepinnacleguide.com/hanky-panky/"
+  },
+  {
+   "name": "MANHATTAN",
+   "city": "singapore",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-09",
+   "url": "https://www.thepinnacleguide.com/manhattan/"
+  },
+  {
+   "name": "Moebius",
+   "city": "milan",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-09",
+   "url": "https://www.thepinnacleguide.com/moebius/"
+  },
+  {
+   "name": "Service Bar",
+   "city": "washington dc",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-09",
+   "url": "https://www.thepinnacleguide.com/service-bar/"
+  },
+  {
+   "name": "Sexy Fish Miami",
+   "city": null,
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-09",
+   "url": "https://www.thepinnacleguide.com/sexy-fish-miami/"
+  },
+  {
+   "name": "Shinji’s",
+   "city": "new york",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-09",
+   "url": "https://www.thepinnacleguide.com/shinjis/"
+  },
+  {
+   "name": "The Bar Below",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-08",
+   "url": "https://www.thepinnacleguide.com/the-bar-below/"
+  },
+  {
+   "name": "The Diplomat",
+   "city": "hong kong",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-08",
+   "url": "https://www.thepinnacleguide.com/the-diplomat/"
+  },
+  {
+   "name": "THE K BAR",
+   "city": "london",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-08",
+   "url": "https://www.thepinnacleguide.com/the-k-bar/"
+  },
+  {
+   "name": "THE MILK THISTLE",
+   "city": "bristol",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-08",
+   "url": "https://www.thepinnacleguide.com/the-milk-thistle/"
+  },
+  {
+   "name": "THYME BAR",
+   "city": "new york",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-08",
+   "url": "https://www.thepinnacleguide.com/thyme-bar/"
+  },
+  {
+   "name": "Tiger bar",
+   "city": "nashville",
+   "pins": 1,
+   "year": 2025,
+   "date": "2025-04-08",
+   "url": "https://www.thepinnacleguide.com/tiger-bar/"
+  },
+  {
+   "name": "Lyaness",
+   "city": "london",
+   "pins": 3,
+   "year": 2024,
+   "date": "2024-09-30",
+   "url": "https://www.thepinnacleguide.com/lyaness/"
+  },
+  {
+   "name": "ALLEGORY",
+   "city": "washington dc",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-09-30",
+   "url": "https://www.thepinnacleguide.com/allegory/"
+  },
+  {
+   "name": "CENTURY GRAND",
+   "city": "phoenix",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-09-30",
+   "url": "https://www.thepinnacleguide.com/century-grand/"
+  },
+  {
+   "name": "FURA",
+   "city": "singapore",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-09-30",
+   "url": "https://www.thepinnacleguide.com/fura/"
+  },
+  {
+   "name": "Silver Lyan",
+   "city": "washington dc",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-09-30",
+   "url": "https://www.thepinnacleguide.com/silver-lyan/"
+  },
+  {
+   "name": "THE COCKTAIL BAR AT THE MERCHANT HOTEL",
+   "city": "belfast",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-09-30",
+   "url": "https://www.thepinnacleguide.com/the-cocktail-bar-at-the-merchant-hotel/"
+  },
+  {
+   "name": "BACCHANALIA",
+   "city": "london",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-29",
+   "url": "https://www.thepinnacleguide.com/bacchanalia/"
+  },
+  {
+   "name": "Bar Kinky",
+   "city": "london",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-29",
+   "url": "https://www.thepinnacleguide.com/bar-kinky/"
+  },
+  {
+   "name": "Dr Stravinksy",
+   "city": "dr stravinksy barcelona",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-29",
+   "url": "https://www.thepinnacleguide.com/dr-stravinksy/"
+  },
+  {
+   "name": "Happy Accidents",
+   "city": "albuquerque",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-29",
+   "url": "https://www.thepinnacleguide.com/happy-accidents/"
+  },
+  {
+   "name": "HEY PALU",
+   "city": "edinburgh",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-29",
+   "url": "https://www.thepinnacleguide.com/hey-palu/"
+  },
+  {
+   "name": "Lab 22",
+   "city": "cardiff",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-29",
+   "url": "https://www.thepinnacleguide.com/lab-22/"
+  },
+  {
+   "name": "Lucky7",
+   "city": "birmingham",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-29",
+   "url": "https://www.thepinnacleguide.com/lucky7/"
+  },
+  {
+   "name": "LITTLE NED AT THE NED NOMAD HOTEL",
+   "city": null,
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-29",
+   "url": "https://www.thepinnacleguide.com/little-ned-at-the-ned-nomad-hotel/"
+  },
+  {
+   "name": "Otto’s High Dive",
+   "city": "orlando",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-27",
+   "url": "https://www.thepinnacleguide.com/ottos-high-dive/"
+  },
+  {
+   "name": "SUSHISAMBA",
+   "city": "dubai",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-27",
+   "url": "https://www.thepinnacleguide.com/sushisamba/"
+  },
+  {
+   "name": "The Dark Horse",
+   "city": "bath",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-27",
+   "url": "https://www.thepinnacleguide.com/the-dark-horse/"
+  },
+  {
+   "name": "Vesper Bar at The Dorchester",
+   "city": "london",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-27",
+   "url": "https://www.thepinnacleguide.com/vesper-bar-at-the-dorchester/"
+  },
+  {
+   "name": "VIAJANTE87",
+   "city": "london",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-09-27",
+   "url": "https://www.thepinnacleguide.com/viajante87/"
+  },
+  {
+   "name": "ARTESIAN",
+   "city": "london",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/artesian/"
+  },
+  {
+   "name": "COUCH",
+   "city": "birmingham",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/couch/"
+  },
+  {
+   "name": "KIKI LOUNGE",
+   "city": "isle of man",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/kiki-lounge/"
+  },
+  {
+   "name": "Maybe Sammy",
+   "city": "sydney",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/maybe-sammy/"
+  },
+  {
+   "name": "METEOR",
+   "city": "minneapolis",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/meteor/"
+  },
+  {
+   "name": "MILADY’S",
+   "city": "new york",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/miladys/"
+  },
+  {
+   "name": "NIGHTJAR SHOREDITCH",
+   "city": "nightjar london",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/nightjar-shoreditch/"
+  },
+  {
+   "name": "ORIGIN BAR",
+   "city": "shangri la",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/origin-bar/"
+  },
+  {
+   "name": "PANDA & SONS",
+   "city": "edinburgh",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/panda-sons/"
+  },
+  {
+   "name": "PARADISO",
+   "city": "barcelona",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/paradiso/"
+  },
+  {
+   "name": "Passing Fancies",
+   "city": "birmingham",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/passing-fancies/"
+  },
+  {
+   "name": "PRETTY DECENT",
+   "city": "louisville",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/pretty-decent/"
+  },
+  {
+   "name": "RATTLEBAG",
+   "city": "belfast",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/rattlebag/"
+  },
+  {
+   "name": "ROKA DUBAI",
+   "city": "inspired by japanese highball culture",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/roka-dubai/"
+  },
+  {
+   "name": "SELVA",
+   "city": "oaxaca",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/selva/"
+  },
+  {
+   "name": "SEXY FISH LONDON",
+   "city": null,
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/sexy-fish-london/"
+  },
+  {
+   "name": "SEXY FISH MANCHESTER",
+   "city": null,
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/sexy-fish-manchester/"
+  },
+  {
+   "name": "SIDE HUSTLE",
+   "city": "london",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/side-hustle/"
+  },
+  {
+   "name": "Swift Soho",
+   "city": "london",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/swift-soho/"
+  },
+  {
+   "name": "THE AMERICAN BAR AT GLENEAGLES",
+   "city": "auchterarder",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/the-american-bar-at-gleneagles/"
+  },
+  {
+   "name": "THE DEAD RABBIT",
+   "city": "new york",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/the-dead-rabbit/"
+  },
+  {
+   "name": "THE GUARDS BAR & LOUNGE AT RAFFLES LONDON",
+   "city": "london",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/the-guards-bar-lounge-at-raffles-london/"
+  },
+  {
+   "name": "THE SPY BAR AT RAFFLES LONDON",
+   "city": "london",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/the-spy-bar-at-raffles-london/"
+  },
+  {
+   "name": "TRUE LAUREL",
+   "city": "san francisco",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/true-laurel/"
+  },
+  {
+   "name": "ATLAS",
+   "city": "singapore",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/atlas/"
+  },
+  {
+   "name": "THUNDERBOLT",
+   "city": "los angeles",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/thunderbolt/"
+  },
+  {
+   "name": "VELVET BY SALVATORE CALBRESE",
+   "city": "london",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/velvet-by-salvatore-calbrese/"
+  },
+  {
+   "name": "BITTER & TWISTED",
+   "city": "phoenix",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/bitter-twisted/"
+  },
+  {
+   "name": "Cure",
+   "city": "new orleans",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/cure/"
+  },
+  {
+   "name": "EL PRIMO SANCHEZ",
+   "city": "sydney",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/el-primo-sanchez/"
+  },
+  {
+   "name": "LITTLE RITUALS",
+   "city": "phoenix",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/little-rituals/"
+  },
+  {
+   "name": "KWÃNT MAYFAIR",
+   "city": "london",
+   "pins": 1,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/kwant-mayfair/"
+  },
+  {
+   "name": "MAGNUS ON WATER",
+   "city": "maine",
+   "pins": 2,
+   "year": 2024,
+   "date": "2024-04-29",
+   "url": "https://www.thepinnacleguide.com/magnus-on-water/"
+  }
+ ]
+}
