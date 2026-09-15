@@ -70,6 +70,9 @@ export async function generateMetadata({
   const cityName = match.city;
   const countryName = match.country;
   const currentYear = new Date().getFullYear();
+  // A same-name city carries its qualifier in the title too, or the two
+  // Portlands would share one title. Everything else keeps the bare name.
+  const titleName = match.qualified ? cityLabel(cityName, countryName, subdivisionName(match.state, countryName)) : cityName;
 
   // NO BAR COUNT HERE, deliberately. Google holds a meta description for
   // weeks while this page revalidates every 300 seconds, so a number in it
@@ -83,7 +86,7 @@ export async function generateMetadata({
     `curated by BarMagazine for ${currentYear}. Speakeasies, hotel bars and ` +
     `neighborhood rooms, with addresses, hours and signature serves.`;
 
-  const title = `Best Cocktail Bars in ${cityName}`;
+  const title = `Best Cocktail Bars in ${titleName}`;
   const canonical = `${SITE_URL}/bars/city/${params.city}`;
 
   return {
@@ -124,6 +127,8 @@ export default async function CityPage({
   // The state is the stored column (bars.state) via the city entry, never a
   // re-derivation from the addresses.
   const locationLabel = cityLabel(cityName, countryName, subdivisionName(match.state, countryName));
+  // The heading of a same-name city carries its qualifier (see generateMetadata).
+  const headingName = match.qualified ? locationLabel : cityName;
   if (bars.length === 0) notFound();
 
   // Determine view mode: ?view=top10 means Top 10 bars appear first (sidebar link)
@@ -191,7 +196,7 @@ export default async function CityPage({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `Best Bars in ${cityName}`,
+    name: `Best Bars in ${headingName}`,
     description: `Curated list of the best bars in ${locationLabel} by BarMagazine.`,
     url: `${SITE_URL}/bars/city/${params.city}`,
     numberOfItems: bars.length,
@@ -248,7 +253,7 @@ export default async function CityPage({
             <img src={sorted.find(b => b.photos?.[0])?.photos?.[0] || '/images/directory-hero.jpg'} alt="" />
           </div>
           <div className="directory-hero-inner">
-            <h1>Best Bars in {cityName}</h1>
+            <h1>Best Bars in {headingName}</h1>
             {cityIntro ? (
               <p>{cityIntro}</p>
             ) : (

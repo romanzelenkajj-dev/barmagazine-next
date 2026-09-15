@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBarBySlug, getBars } from '@/lib/supabase';
 import { getCityIndex, getBarsForCity } from '@/lib/city-index';
+import { cityLabel, subdivisionName } from '@/lib/city-location';
 import { getSeoCities, typePageForType, TYPE_PAGES } from '@/lib/seo-cities';
 import { displayType, barTypeUnion } from '@/lib/bar-type';
 import type { Bar, MenuSection } from '@/lib/supabase';
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const bar = await getBarBySlug(params.slug);
   if (!bar) return {};
 
-  const title = `${bar.name} | ${formatBarType(bar.type)} in ${bar.city}, ${bar.country}`;
+  const title = `${bar.name} | ${formatBarType(bar.type)} in ${cityLabel(bar.city, bar.country, subdivisionName(bar.state, bar.country))}`;
   const description = bar.description || fallbackDescription(bar);
 
   return {
@@ -91,6 +92,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const citySlug = cityEntry?.slug ?? toUrlSlug(bar.city);
   const cityBars = cityEntry ? await getBarsForCity(cityEntry) : [];
   const nearby = nearestBars(bar, cityBars);
+  const placeLabel = cityLabel(bar.city, bar.country, subdivisionName(bar.state, bar.country));
 
   // One sentence per accolade, from the same renderable set as the tiles.
   const accoladeProse = accoladeSentences(bar.accolades);
@@ -331,7 +333,9 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         <div className="bar-v2-info">
           <div className="bar-v2-info-main">
             <h1>{bar.name}</h1>
-            <p className="bar-v2-place">{bar.city}{bar.city !== bar.country ? `, ${bar.country}` : ''}</p>
+            {/* "Portland, Maine" / "Malaga, Spain": the label rule in
+                src/lib/city-location.ts, with the state from bars.state. */}
+            <p className="bar-v2-place">{placeLabel}</p>
             {/* Placement "A": name → location → tiles. Renders nothing when the
                 bar has no accolades. Identical on free and paid listings. */}
             <AccoladeBadges accolades={bar.accolades} />
