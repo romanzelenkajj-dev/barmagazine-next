@@ -284,3 +284,16 @@ See `src/lib/city-location.ts`.
   Portland/Birmingham/Charleston/Columbus/... needs a qualifier in the city
   string and an address-check allowlist entry. See the structural item in
   implementation-status.md.
+
+## Same-name cities (2026-09-15)
+- City pages key on the city ENTRY (src/lib/city-keys.ts), not the city
+  string: a collision across countries or US states gives qualified slugs
+  (portland-or, portland-me, birmingham-gb); everything else keeps the bare
+  slug. Never build a city link from toUrlSlug(city); use
+  getCityIndex().slugFor(row).
+- bars.state must be filled on every US and Canadian row. A null state
+  joins the city's majority, which is safe for a lone row and wrong for a
+  namesake: run `node scripts/backfill-state.mjs` after any wave and expect
+  "0 with no derivable state"; add a HAND entry for a bare street line.
+- The stored city string stays bare ("Portland", never "Portland, Maine");
+  the state and the slug carry the split.

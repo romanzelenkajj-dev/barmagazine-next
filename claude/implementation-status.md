@@ -1214,6 +1214,65 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Same-name cities: city slugs qualified on collision, bars.state column, Kraków merge
+- RULE (Roman, built same day; commits a96f847, 69f1b8a, e2938d4): the
+  city slug stays the bare city for every city with no collision. Where two
+  or more active rows share a folded city name across different countries
+  or different US states, each city gets a qualified slug: US cities the
+  two-letter state (portland-or, portland-me, birmingham-al), everything
+  else the ISO country code (birmingham-gb). src/lib/city-keys.ts builds
+  the entries from every active row's city, country and state (a null
+  state joins the city's majority state, so an unfilled row can never fake
+  a collision); src/lib/city-index.ts caches them 300 s under a tag that
+  revalidateBarPages purges on every write. City pages, best-bars pages
+  and their type sub-pages, the sitemap, breadcrumbs, the country page's
+  city links and the nearby block (sameCity: city, country, state) all key
+  on the entry. Stored city strings stay bare: jewel-box is "Portland"
+  again, with ME in bars.state.
+- bars.state (Roman ran scripts/state-column-migration.sql): backfilled on
+  all 445 US and Canadian rows by scripts/backfill-state.mjs, zero nulls.
+  Derivation in order: the code before a postcode, a code that ends the
+  address (", CA", anchored to a comma before and the end after), a
+  spelled-out state or province, the Canadian postal code's first letter,
+  a qualifier in the city string. 18 rows with a bare street line or no
+  address (inactive) were set by hand from their city, none a namesake
+  (New Orleans 5, San Diego 2, San Francisco 1, New York 2, Seattle 1,
+  Detroit 1, Austin 1, Rogers 1, Albuquerque 1, Toronto 1, Victoria 1,
+  Montreal 1). The insert path (manage-bar create) now sets state from
+  stateHint for US/CA rows. The slug rule and the label read the column;
+  subdivisionForCity (the address vote) is the backfill source only.
+  PUBLIC_EDITORIAL_COLUMNS lists it as public.
+- LABEL: the profile place line and title now go through cityLabel with
+  the state ("Portland, Maine", "Malaga, Spain"); they used to print
+  "City, Country" for every row, against the 2026-09-14 label rule. A
+  qualified city's page carries the label in h1 and title ("Best Bars in
+  Portland, Maine"); no unqualified page's title changed (Nashville
+  checked).
+- REDIRECTS (next.config.mjs, through the chain test): /bars/city/portland
+  -> portland-or, /bars/city/portland-maine (the interim URL, in the
+  sitemap for a few hours) -> portland-me, /bars/city/birmingham ->
+  birmingham-gb (Passing Fancies held the page first). No best-bars
+  redirects: none of the four cities clears MIN_CITY_BARS.
+- KRAKÓW: mercy-brown and tag moved from "Krakow" to "Kraków", the venue
+  spelling every address and The Trust already used; /bars/city/krakow
+  now lists all three (it showed one string's rows before). Same slug
+  either way, so no redirect.
+- VERIFIED LIVE: birmingham-al (adios, bygones) and birmingham-gb
+  (passing-fancies), portland-or (scotch-lodge) and portland-me
+  (jewel-box) render as separate pages with the right bars and qualified
+  titles; the three redirects land on 200s; profile breadcrumbs link the
+  qualified slugs; Adios's nearby block shows Bygones at 0.3 mi and
+  nothing from England; sitemap city URLs before/after differ by exactly
+  the seven expected lines (200 -> 201 URLs), no other city page changed
+  its URL; sitemap profiles 1,348 = 1,348 active; address audit 0 flags
+  with the jewel-box allowlist entry removed.
+- NOT TOUCHED: directory and city cards still print "City, Country" in
+  their location line (the label rule would say "Portland, Maine");
+  getCitiesWithCounts and getBarsByCity remain in supabase.ts unused by
+  the pages; two Canadian same-name cities in different provinces would
+  take the province code (windsor-on, windsor-ns), untested against real
+  rows.
+
 ## 2026-09-15 - Friends of Friends description: owner licensing flag
 - Abe (owner) flagged that "and the bar keeps no kitchen on site" creates a
   problem with the Illinois Liquor Commission. Replaced by id
