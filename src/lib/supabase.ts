@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { stripPrivate, stripPrivateAll } from './private-columns';
 import { searchOrFilter } from './ascii-fold';
 import type { Accolade } from './accolades';
 
@@ -177,7 +178,7 @@ export async function getBars(filters?: {
     return a.name.localeCompare(b.name);
   });
 
-  return { bars: sorted as Bar[], total: count || 0 };
+  return { bars: stripPrivateAll(sorted) as Bar[], total: count || 0 };
 }
 
 /** Get a single bar by slug */
@@ -196,7 +197,7 @@ export async function getBarBySlug(slug: string): Promise<Bar | null> {
     throw new Error(`getBarBySlug failed: ${error.message}`);
   }
   if (!data) return null;
-  return data as Bar;
+  return stripPrivate(data) as Bar;
 }
 
 /** Get unique filter values */
@@ -263,7 +264,7 @@ export async function getBarsByCountry(country: string) {
     console.error('Error fetching bars by country:', error);
     throw new Error('getBarsByCountry failed');
   }
-  return data as Bar[];
+  return stripPrivateAll(data || []) as Bar[];
 }
 
 /** Get all bars for a specific city */
@@ -279,7 +280,7 @@ export async function getBarsByCity(city: string) {
     console.error('Error fetching bars by city:', error);
     throw new Error('getBarsByCity failed');
   }
-  return data as Bar[];
+  return stripPrivateAll(data || []) as Bar[];
 }
 
 /** Get all unique countries with bar counts */
@@ -349,7 +350,7 @@ export async function getTop10BarsByCity(city: string): Promise<Bar[]> {
     .order('name', { ascending: true });
   if (error) throw new Error(`getTop10BarsByCity failed: ${error.message}`);
   if (!data) return [];
-  return data as Bar[];
+  return stripPrivateAll(data) as Bar[];
 }
 
 /**
@@ -376,7 +377,8 @@ export async function getAllActiveBars<T = Bar>(select: string = '*'): Promise<T
     rows.push(...(data as unknown as T[]));
     if (data.length < 1000) break;
   }
-  return rows;
+  // '*' callers hand these rows to client components; private columns stop here.
+  return stripPrivateAll(rows as unknown as Record<string, unknown>[]) as unknown as T[];
 }
 
 /** Get bar count stats */

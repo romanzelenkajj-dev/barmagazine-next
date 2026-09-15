@@ -8,6 +8,7 @@ import { displayType } from '@/lib/bar-type';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import { supabase } from '@/lib/supabase';
 import type { Bar } from '@/lib/supabase';
+import { stripPrivateAll } from '@/lib/private-columns';
 import { COLLECTIONS, collectionBySlug } from '@/lib/collections';
 
 /**
@@ -36,8 +37,9 @@ async function collectionBars(barSlugs: string[]): Promise<Bar[]> {
     .in('slug', barSlugs);
   if (error) throw new Error(`collectionBars failed: ${error.message}`);
   if (!data) return [];
-  // Config order is display order.
-  const rows = data as Bar[];
+  // Config order is display order. Private columns stripped: these rows are
+  // rendered and can reach client props.
+  const rows = stripPrivateAll(data as Record<string, unknown>[]) as unknown as Bar[];
   return barSlugs
     .map(slug => rows.find(b => b.slug === slug))
     .filter((b): b is Bar => !!b);

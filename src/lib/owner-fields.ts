@@ -47,6 +47,10 @@ export const OWNER_FORBIDDEN_FIELDS = [
   'country',
   'lat',
   'lng',
+  // Internal editorial flags (address provenance, handle doubts, outreach
+  // decisions). Never rendered, never returned by a public read; see
+  // PRIVATE_BAR_COLUMNS in supabase.ts.
+  'admin_notes',
 ] as const;
 
 export type OwnerEditableField = (typeof OWNER_EDITABLE_FIELDS)[number];
