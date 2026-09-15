@@ -1214,6 +1214,23 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Every card place line through placeLine (4292e63)
+- placeLine(bar) in src/lib/city-location.ts: cityLabel with the state
+  from bars.state; one call for every place line on the site. Routed:
+  the directory grid, featured and list cards (BarDirectory), the map
+  pins and cards (BarDirectoryMap; /api/bars/map now returns state and
+  the MapBar-to-Bar conversion keeps it), the city page cards, the
+  collapsible list, collections, and the award hubs (award-hubs selects
+  state). Verified live: /bars "San Diego, California"; /bars/city/
+  nashville "Nashville, Tennessee"; /bars/city/tokyo "Tokyo, Japan";
+  /bars/city/toronto "Toronto, Ontario"; /bars/city/portland-me
+  "Portland, Maine"; /awards/spirited-awards "London, United Kingdom".
+- Left alone: BarsDirectory.tsx and FeaturedBarsScroller.tsx (static
+  legacy dataset, rendered nowhere) and the admin, claim and add-your-bar
+  forms. Seen in passing: Bar Leone and Argo carry country "China" with
+  city "Hong Kong", so their line reads "Hong Kong, China"; a data
+  question for Roman, not a label defect.
+
 ## 2026-09-15 - No-food rule: Bastion and JoJo's rewritten, description linter
 - bastion (466e654f): "serves no food from that kitchen" -> "serves nachos
   of its own, which its FAQ states", the following sentence adjusted so the
