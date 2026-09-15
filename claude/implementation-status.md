@@ -1214,6 +1214,36 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - US metro wave 2: 22 inserted (New York 10, LA area 7, Bay Area 5)
+- Source: "Claude outputs/us-metro-wave2-verified.md"; every row a 2026
+  Spirited Awards Regional Top 10 Honoree verified on the venue's own
+  channels. Diffed by slug and folded name plus city: all 22 clear.
+- BROOKLYN CONVENTION confirmed against the seven existing Brooklyn rows
+  (nightmoves, clover-club, maison-premiere, bar-madonna, ...): city
+  "New York", borough in the address. Followed for dolores, millys,
+  gage-tollner, lighthouse-bk. New cities as the file decided: Santa
+  Monica (not-no-bar), Long Beach (baby-gee), Oakland (tallboy,
+  viridian).
+- Admissions as decided: six restaurant bars as Cocktail Bar + Restaurant
+  Bar (crown-shy, gage-tollner, lighthouse-bk, lucia, kato, viridian);
+  six hotel bars as Cocktail Bar + Hotel Bar. Two low-confidence rows in
+  with flags (millys, real-charmer): short descriptions sourced only to
+  the awarding body, no website stored for millys (password-locked).
+- ACCOLADES: totc 2026 nominee with the parenthetical title on every
+  row; tallboy carries two (Best U.S. Cocktail Bar, Best U.S. Bar Team).
+- ADMIN_NOTES written on insert for the eleven flagged rows (bar-kabawa,
+  dolores, millys, real-charmer, nubeluz, lighthouse-bk, tallboy,
+  viridian, lucia, crown-shy, gage-tollner), the file's address and data
+  flags verbatim in substance.
+- PARKED (outreach/parked.txt): lobby-bar-hotel-chelsea, starlite-sf,
+  crown-shy, lighthouse-bk, damn-i-miss-paris, viridian, millys,
+  real-charmer; nubeluz under the relationship lot (Jose Andres Group),
+  its venue-specific address stored but never mailed.
+- AFTER INSERT: all 22 geocoded on insert, every one within 36 km of its
+  metro centroid (Long Beach 35.7 km from the LA centroid is Long Beach);
+  all 22 serve 200; sitemap-bars.xml lists 1,289 profiles = 1,289 active
+  rows; address check 0 flags.
+
 ## 2026-09-15 09:06 PT - Batch 13 SENT (27/27), fired directly on Roman's call
 - The Wednesday date was a day-counting error; Tuesday 09:00 PT was the
   intended window. outreach/batch13-runner.sh run directly at 09:06 PT:

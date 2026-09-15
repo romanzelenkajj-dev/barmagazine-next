@@ -22,3 +22,17 @@ four-walls                  # only the hotel's general inbox (thejosephnashville
 #
 # 2026-09-15, batch13-phoenix eyeball (Roman): hotel reservations inbox, the-cruise-room class.
 don-woods-say-when          # reservations@riseuptownhotel.com, hotel general inbox
+#
+# 2026-09-15, US metro wave 2 (Claude outputs/us-metro-wave2-verified.md):
+lobby-bar-hotel-chelsea     # hotel general reservations inbox only
+starlite-sf                 # only events@ and a PR inbox; hotel general otherwise
+crown-shy                   # events-only email
+lighthouse-bk               # forms only
+damn-i-miss-paris           # forms only
+viridian                    # forms only
+millys                      # nothing published
+real-charmer                # nothing published
+# RELATIONSHIP LOT (Roman's call, not a guard decision): Jose Andres Group is
+# a guarded relationship; venue-specific info.nyc@nubeluzbyjose.com is stored
+# on the row but never mailed from here.
+nubeluz                     # relationship lot, Jose Andres Group
