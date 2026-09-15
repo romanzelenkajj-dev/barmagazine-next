@@ -4,3 +4,4 @@ Queue: claude/indexing-queue.json (154 not-indexed profiles that are TOP 10 or c
 
 | Date | Requested | Skipped (already indexed) | Remaining | Note |
 |---|---|---|---|---|
+| 2026-09-14 | 1 | 0 | 153 | handshake-speakeasy requested; quota message on the second request (the-baxter-inn), so the day's allowance was already spent before this run; baxter retried tomorrow. Daily job scheduled 09:24 local from 2026-09-15. |

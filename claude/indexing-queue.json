@@ -8,16 +8,16 @@
    "city": "Mexico City",
    "tier": "top10",
    "accolades": 6,
-   "status": "pending",
-   "date": null
+   "status": "requested",
+   "date": "2026-09-14"
   },
   {
    "slug": "the-baxter-inn",
    "city": "Sydney",
    "tier": "top10",
    "accolades": 6,
-   "status": "pending",
-   "date": null
+   "status": "quota",
+   "date": "2026-09-14"
   },
   {
    "slug": "licoreria-limantour",
