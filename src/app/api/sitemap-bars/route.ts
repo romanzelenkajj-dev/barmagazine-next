@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getBars, getCountriesWithCounts, getCitiesWithCounts } from '@/lib/supabase';
+import { getAllActiveBars, getCountriesWithCounts, getCitiesWithCounts } from '@/lib/supabase';
 import { getSeoCities } from '@/lib/seo-cities';
 import { getLiveAwardPrograms } from '@/lib/award-hubs';
 import { toUrlSlug } from '@/lib/utils';
@@ -15,8 +15,13 @@ const SITE_URL = 'https://barmagazine.com';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const [{ bars }, countries, cities, seoCities] = await Promise.all([
-    getBars({ perPage: 2000 }),
+  // Paginated: a single getBars({ perPage: 2000 }) silently returned 1,000
+  // rows and left 247 active profiles out of the sitemap. The live deploy
+  // check (seo-check sitemap-bars-count) asserts the count matches.
+  const [bars, countries, cities, seoCities] = await Promise.all([
+    getAllActiveBars<{ slug: string; tier: string | null; updated_at: string | null; created_at: string }>(
+      'slug, tier, updated_at, created_at'
+    ),
     getCountriesWithCounts(),
     getCitiesWithCounts(),
     getSeoCities(),

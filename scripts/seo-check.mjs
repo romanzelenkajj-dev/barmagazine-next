@@ -519,6 +519,82 @@ async function checkHomepageWeight() {
   );
 }
 
+/**
+ * sitemap-bars.xml must list EVERY active profile.
+ *
+ * On 2026-09-14 it listed exactly 1,000 against 1,247 active: the route
+ * asked getBars for 2,000 rows, Supabase returned its 1,000-row cap with no
+ * error, and nothing compared the two numbers. This does. The active count
+ * comes straight from Supabase (anon key, public-read RLS on is_active) so
+ * the check is against the source of truth, not against another page that
+ * could share the same cap.
+ *
+ * Missing env is a FAIL, not a skip: a check that quietly passes when it
+ * cannot run is how this went unnoticed.
+ */
+async function envFromDotfiles() {
+  const out = {};
+  try {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const { fileURLToPath } = await import('node:url');
+    const here = path.dirname(fileURLToPath(import.meta.url));
+    for (const f of ['.env.local', '.env.vercel']) {
+      const p = path.join(here, '..', f);
+      if (!fs.existsSync(p)) continue;
+      for (const line of fs.readFileSync(p, 'utf8').split('\n')) {
+        const m = /^([A-Z0-9_]+)=(.*)$/.exec(line.trim());
+        if (m && !(m[1] in out)) out[m[1]] = m[2].replace(/^"|"$/g, '');
+      }
+    }
+  } catch {
+    /* fall through to process.env only */
+  }
+  return out;
+}
+
+async function checkSitemapBarsCount() {
+  const dot = await envFromDotfiles();
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || dot.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || dot.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) {
+    record('sitemap-bars-count', 'fail', 'enforce', 'NEXT_PUBLIC_SUPABASE_URL / ANON_KEY missing; cannot compare against the active row count');
+    return;
+  }
+
+  let active;
+  try {
+    const res = await fetch(`${url}/rest/v1/bars?select=id&is_active=eq.true`, {
+      method: 'HEAD',
+      headers: { apikey: key, Authorization: `Bearer ${key}`, Prefer: 'count=exact' },
+    });
+    const range = res.headers.get('content-range') || '';
+    active = Number(range.split('/')[1]);
+    if (!Number.isFinite(active)) throw new Error(`no count in content-range "${range}"`);
+  } catch (err) {
+    record('sitemap-bars-count', 'fail', 'enforce', `active row count unavailable: ${err.message}`);
+    return;
+  }
+
+  const r = await safeFetchText(`${baseUrl}/sitemap-bars.xml`);
+  if (!r.ok || r.status !== 200) {
+    record('sitemap-bars-count', 'fail', 'enforce', `sitemap-bars.xml HTTP ${r.status ?? 'network-error'}`);
+    return;
+  }
+  const profiles = (r.text.match(/<loc>https:\/\/barmagazine\.com\/bars\/(?!city\/|country\/)[^<\/]+<\/loc>/g) || []).length;
+
+  if (profiles !== active) {
+    record(
+      'sitemap-bars-count',
+      'fail',
+      'enforce',
+      `sitemap lists ${profiles} profiles, table has ${active} active (a round 1,000 means the Supabase row cap is back)`,
+    );
+  } else {
+    record('sitemap-bars-count', 'pass', 'enforce', `${profiles} profiles = ${active} active rows`);
+  }
+}
+
 // ---------- DRIVER ----------
 
 async function run() {
@@ -537,6 +613,7 @@ async function run() {
       checkRedirectDestinations(),
       checkRedirectSources(),
       checkBarRedirectChains(),
+      checkSitemapBarsCount(),
     ]);
   } else {
     console.error(`Unknown --mode=${mode}; use --mode=build or --mode=live`);

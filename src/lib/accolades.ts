@@ -141,7 +141,7 @@ const TILES: Record<string, TileDef> = {
   // The main line is "30 BEST" rather than a rank, deliberately: it mirrors
   // "50 BEST" so a reader parses the shape they already know, and it holds
   // the rule that the bold line is constant within a family and that rank is
-  // never drawn. Rank rides `title` and the hover text like every other org.
+  // never drawn on the face. Rank rides the hover text like every other org.
   // This carries ranked placings and named category wins alike: a ranked
   // entry or a category win renders solid, a nominee outlined.
   '30bbi': { region: 'INDIA', main: '30 BEST', winnerTier: 'navy', nomineeTier: 'navy-outline' },
@@ -217,8 +217,17 @@ export interface TileView {
       abbreviations, and "TOTC SPIRITED 2026" is not a name to announce. */
   org: string;
   /** The award category ("World's Best Bar") — hover/aria only, never drawn
-      in the tile. Rank stays entirely unexposed, as ever. */
+      in the tile. */
   title: string | null;
+  /**
+   * The placing, hover/aria only. INVARIANT (Roman, 2026-09-14): rank is
+   * never drawn on the tile face, because the bold line must stay constant
+   * within a family; but it IS present in the hover text for every org,
+   * alongside org, year and source. "Unexposed" used to mean both, and that
+   * was an early decision taken with the tile shape, not a licensing
+   * constraint from any awarding body. Do not reverse the hover part.
+   */
+  rank: number | null;
   /** Kept for auditability — surfaced as a title attribute, not shown. */
   source: string | null;
 }
@@ -245,6 +254,7 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
         year: String(entry.year),
         org: entry.org,
         title: entry.title ?? null,
+        rank: entry.rank ?? null,
         source: entry.source,
       };
     });

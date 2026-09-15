@@ -287,6 +287,19 @@ describe('accolades', () => {
       expect(t.region).not.toMatch(/1|No\./);
     });
 
+    it('carries the rank for the hover text without drawing it', () => {
+      // Rank is unexposed on the tile FACE, present on hover, for every org.
+      const [t] = tilesFor([
+        { org: 'Shaker Awards', org_key: 'shaker', kind: 'ranked', rank: 4, year: 2025, score: 576, title: null, source: src },
+      ]);
+      expect(t.rank).toBe(4);
+      expect(`${t.region} ${t.main} ${t.year}`).not.toMatch(/\b4\b|No\./);
+      const [w] = tilesFor([
+        { org: "World's 50 Best Bars", org_key: 'w50b', kind: 'ranked', rank: 2, year: 2025, score: 1124, title: null, source: 'https://www.theworlds50best.com/bars/' },
+      ]);
+      expect(w.rank).toBe(2);
+    });
+
     it('ignores the audit-only basis field', () => {
       const [t] = tilesFor([
         { org: 'Shaker Awards', org_key: 'shaker', kind: 'ranked', rank: 1, year: 2023, score: 561, title: null, source: 'https://shakerawards.com/top-30/top2023/', basis: 'name carried across Shaker 2024/2025 entries' },

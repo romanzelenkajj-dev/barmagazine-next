@@ -334,6 +334,39 @@ const nextConfig = {
       { source: '/bars/tay%C4%93r-elementary', destination: '/bars/tayer-elementary', permanent: true },
       { source: '/bars/colette-boston', destination: '/bars', permanent: true },
 
+      // 2026-09-14, from the Search Console 404 report. Deactivated rows go
+      // to their city page (Roman's rule: a closure is history, not a 404);
+      // dangerous-water's city has no page, so it goes to its country.
+      { source: '/bars/bullard-worth', destination: '/bars/city/edinburgh', permanent: true },
+      { source: '/bars/bar-marilou', destination: '/bars/city/new-orleans', permanent: true },
+      { source: '/bars/cane-and-table', destination: '/bars/city/new-orleans', permanent: true },
+      { source: '/bars/cloakroom', destination: '/bars/city/montreal', permanent: true },
+      { source: '/bars/harry-s-bar', destination: '/bars/city/paris', permanent: true },
+      { source: '/bars/28-hongkong-street', destination: '/bars/city/singapore', permanent: true },
+      { source: '/bars/nineteen80', destination: '/bars/city/singapore', permanent: true },
+      { source: '/bars/viajante87', destination: '/bars/city/london', permanent: true },
+      { source: '/bars/the-odd-couple', destination: '/bars/city/shanghai', permanent: true },
+      { source: '/bars/ars-delecto', destination: '/bars/city/shanghai', permanent: true },
+      { source: '/bars/dangerous-water', destination: '/bars/country/spain', permanent: true },
+      { source: '/bars/library-bar-at-leela-palace', destination: '/bars/city/new-delhi', permanent: true },
+      { source: '/bars/to-infinity-and-beyond', destination: '/bars/city/taipei', permanent: true },
+      { source: '/bars/re', destination: '/bars/city/sydney', permanent: true },
+      { source: '/bars/customs-house-bar', destination: '/bars/city/sydney', permanent: true },
+      // Slug variants of live bars ("the-", city suffixes, old spellings)
+      // go to the live profile.
+      { source: '/bars/cloakroom-bar', destination: '/bars/the-cloakroom', permanent: true },
+      { source: '/bars/roosevelt-room', destination: '/bars/the-roosevelt-room', permanent: true },
+      { source: '/bars/green-door-bar', destination: '/bars/green-door', permanent: true },
+      { source: '/bars/pco-new-delhi', destination: '/bars/pco', permanent: true },
+      { source: '/bars/pco-bar', destination: '/bars/pco', permanent: true },
+      { source: '/bars/cochinchina-singapore', destination: '/bars/cochinchina', permanent: true },
+      { source: '/bars/slink-bardot-mumbai', destination: '/bars/slink-bardot', permanent: true },
+      { source: '/bars/junglebird', destination: '/bars/jungle-bird', permanent: true },
+      { source: '/bars/manhattan-bar', destination: '/bars/manhattan', permanent: true },
+      { source: '/bars/zest-seoul', destination: '/bars/zest', permanent: true },
+      { source: '/bars/coa-shanghai', destination: '/bars/coa', permanent: true },
+      { source: '/bars/the-connaught-bar', destination: '/bars/connaught-bar', permanent: true },
+
       // WP infrastructure catch-all — these paths never existed on the Next.js
       // frontend but legacy crawlers / link tables still probe them. Sending
       // them home is the soft-404 trap the audit warned against, but it

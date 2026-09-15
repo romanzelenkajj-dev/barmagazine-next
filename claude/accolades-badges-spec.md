@@ -72,7 +72,7 @@ Passing makes a body eligible for an org key and a tile. Whether a tile is actua
 - **Maximum 3 tiles.** Beyond that show the top 3 by `score` and nothing else — no "+N" chip; the description carries the rest.
 - **Do not render 50 Best Discovery.** It is a curated listing, not a jury ranking, so it does not belong beside badges that all mean "a panel voted for this bar". Discovery stays in the description text only.
 - **Never render an entry missing `year` or `source`.** That is the accuracy guarantee for the whole system.
-- **Ranks are not displayed.** Being on the list is the badge; the placement lives in the description. This is deliberate.
+- **Ranks are not drawn on the tile face, but they ARE in the hover text** (Roman, 2026-09-14). The face stays constant so the tiles read as one family; the title attribute carries org, year, "No. N", category and source for every org. The original "not displayed" rule was a design decision taken with the tile shape, not a constraint from any awarding body, and is superseded.
 - Badges appear on **free listings exactly as on paid ones** — they are editorial, never a paid feature.
 - Do not recompute `score` client-side; a monthly scheduled task rewrites it with a recency decay. Treat the array as read-only, already sorted, one entry per `org_key`.
 - No `aggregateRating` / `Review` schema from this data — Google forbids marking up ratings aggregated from other sites, and awards are not ratings. `schema.org/award` on the bar entity is fine.

@@ -1,5 +1,5 @@
 import { headers } from 'next/headers';
-import { getBars, getBarFilterOptions, getBarStats } from '@/lib/supabase';
+import { getAllActiveBars, getBarFilterOptions, getBarStats } from '@/lib/supabase';
 import { BarDirectoryMapClient } from '@/components/BarDirectoryMap';
 import type { Metadata } from 'next';
 
@@ -36,8 +36,10 @@ export default async function BarsPage() {
   const geoCountryCode = headersList.get('x-vercel-ip-country') || '';
   const geoContinent = headersList.get('x-vercel-ip-continent') || '';
 
-  const [{ bars }, filters, stats] = await Promise.all([
-    getBars({ perPage: 1000 }),
+  // Paginated: getBars({ perPage: 1000 }) stopped at Supabase's row cap and
+  // the map silently dropped every bar past the first thousand.
+  const [bars, filters, stats] = await Promise.all([
+    getAllActiveBars(),
     getBarFilterOptions(),
     getBarStats(),
   ]);

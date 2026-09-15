@@ -356,6 +356,33 @@ export async function getTop10BarsByCity(city: string): Promise<Bar[]> {
   return data as Bar[];
 }
 
+/**
+ * Every active bar, for consumers that must see the WHOLE directory.
+ *
+ * Paginated past Supabase's 1,000-row cap. `getBars({ perPage: 2000 })`
+ * looks like it asks for everything but issues one .range() and comes back
+ * with exactly 1,000 rows and no error, which is how sitemap-bars.xml
+ * listed 1,000 profiles against 1,247 active for weeks (found 2026-09-14;
+ * same defect e1a748d fixed in the SEO data layer). Use this, never a big
+ * perPage, when the answer has to be complete.
+ */
+export async function getAllActiveBars<T = Bar>(select: string = '*'): Promise<T[]> {
+  const rows: T[] = [];
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await supabase
+      .from('bars')
+      .select(select)
+      .eq('is_active', true)
+      .order('slug', { ascending: true })
+      .range(from, from + 999);
+    if (error) throw new Error(`getAllActiveBars failed: ${error.message}`);
+    if (!data || data.length === 0) break;
+    rows.push(...(data as unknown as T[]));
+    if (data.length < 1000) break;
+  }
+  return rows;
+}
+
 /** Get bar count stats */
 export async function getBarStats() {
   const { count, error: countError } = await supabase

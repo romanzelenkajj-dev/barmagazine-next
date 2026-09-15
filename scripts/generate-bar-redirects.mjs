@@ -131,17 +131,31 @@ async function fetchBars() {
   // public-read RLS policy on `bars` (using is_active = true) means the
   // anon key returns only active rows even without an explicit filter,
   // but we add eq.is_active for clarity.
-  const url = `${SUPABASE_URL}/rest/v1/bars?select=slug,wp_article_slug&is_active=eq.true&limit=10000`;
-  const res = await fetch(url, {
-    headers: {
-      apikey: SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-    },
-  });
-  if (!res.ok) {
-    throw new Error(`Supabase /rest/v1/bars returned ${res.status}: ${await res.text()}`);
+  //
+  // PAGINATED. `limit=10000` looked like "everything" but Supabase caps a
+  // request at 1,000 rows and returns no error, so this script saw 1,000 of
+  // 1,247 active bars and 247 of them had no root redirect (found
+  // 2026-09-14, the same cap that truncated sitemap-bars.xml). Page by
+  // offset until a short page comes back.
+  const rows = [];
+  for (let offset = 0; ; offset += 1000) {
+    const url =
+      `${SUPABASE_URL}/rest/v1/bars?select=slug,wp_article_slug&is_active=eq.true` +
+      `&order=slug.asc&offset=${offset}&limit=1000`;
+    const res = await fetch(url, {
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      },
+    });
+    if (!res.ok) {
+      throw new Error(`Supabase /rest/v1/bars returned ${res.status}: ${await res.text()}`);
+    }
+    const page = await res.json();
+    rows.push(...page);
+    if (page.length < 1000) break;
   }
-  return res.json();
+  return rows;
 }
 
 async function fetchWpSlugSet(endpoint) {
