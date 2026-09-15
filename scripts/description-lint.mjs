@@ -42,12 +42,16 @@ export const FOOD_NEGATIONS = [
   /\bno food\b/i,
   /\bwithout food\b/i,
   /\bserves? no food\b/i,
+  // "serves no beer, wine or food": the negation reaches food through a list.
+  /\bserves? no\b[^.;]{0,40}\bfood\b/i,
   /\b(?:does|do)n'?t serve food\b/i,
   /\bdoes not serve food\b/i,
   /\bno (?:bar )?snacks\b/i,
   /\bnothing to eat\b/i,
   /\bno (?:food|dining) (?:menu|service|program)\b/i,
-  /\bdrinks?[- ]only\b/i,
+  // "a drinks-only room" is a food negation; "drinks-only reservations" is
+  // a booking policy (Bar des Prés) and says the opposite.
+  /\bdrinks?[- ]only\b(?![- ]?(?:reservation|booking|table|seating))/i,
   /\bnot a dining\b/i,
 ];
 

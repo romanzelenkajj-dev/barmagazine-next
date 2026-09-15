@@ -1227,7 +1227,7 @@ Running log of shipped work items and their merge commits. Newest first.
   every row's description and short_excerpt, exit 1 on a hit, reviewed
   rows allowlisted against their exact phrase (momus, bar-us, the inactive
   Wise King line). Wired as `npm run audit:descriptions` and into
-  data-checks.md as a post-wave check. First run: 0 hits, 3 suppressed.
+  data-checks.md as a post-wave check. First run caught one false positive (Bar des Pres, "drinks-only reservations", a booking policy); the pattern now excludes reservation wording. Clean run: 0 hits, 3 suppressed.
 
 ## 2026-09-15 - Same-name cities: city slugs qualified on collision, bars.state column, Kraków merge
 - RULE (Roman, built same day; commits a96f847, 69f1b8a, e2938d4): the
