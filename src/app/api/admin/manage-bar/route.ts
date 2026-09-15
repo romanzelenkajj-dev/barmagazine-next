@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 import { noStoreFetch } from '@/lib/supabase-auth';
 import { NextRequest, NextResponse } from 'next/server';
-import { geocodeBar } from '@/lib/geocode';
+import { geocodeBar, stateHint } from '@/lib/geocode';
+import { usesSubdivision } from '@/lib/city-location';
 import { normalizeBarFields } from '@/lib/normalize';
 import { flagBarName } from '@/lib/bar-name';
 import { revalidateBarPages } from '@/lib/revalidate-bars';
@@ -113,6 +114,13 @@ export async function POST(request: NextRequest) {
   if (action === 'create') {
     // Auto-geocode if lat/lng not already provided
     let insertData = normalizeBarFields({ ...updates });
+    // bars.state for US and Canadian rows, from the address postcode line or
+    // a qualifier in the city string, unless the caller set it. The city
+    // slug rule and the location label read this column, never the address.
+    if (!insertData.state && insertData.city && usesSubdivision(insertData.country)) {
+      const s = stateHint({ address: insertData.address || null, city: insertData.city, country: insertData.country });
+      if (s && /^[A-Za-z]{2}$/.test(s)) insertData = { ...insertData, state: s.toUpperCase() };
+    }
     if (!insertData.lat && !insertData.lng && insertData.name && insertData.city && insertData.country) {
       const coords = await geocodeBar({
         name: insertData.name,

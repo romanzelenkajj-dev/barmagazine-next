@@ -28,8 +28,12 @@ export const PRIVATE_BAR_COLUMNS = ['admin_notes'] as const;
  * `neighborhood` (added 2026-09-15): editorial, renders in the nearby block
  * in place of the street line. Backfilled only where the venue's own site
  * states it; an inferred neighborhood stays in admin_notes.
+ *
+ * `state` (added 2026-09-15): the two-letter US state or Canadian province.
+ * Renders in the location label ("Portland, Maine") and decides the city
+ * slug for same-name cities (portland-me). Public, and part of the address.
  */
-export const PUBLIC_EDITORIAL_COLUMNS = ['neighborhood'] as const;
+export const PUBLIC_EDITORIAL_COLUMNS = ['neighborhood', 'state'] as const;
 
 export function stripPrivate<T extends Record<string, unknown>>(row: T): T {
   let out: Record<string, unknown> | null = null;

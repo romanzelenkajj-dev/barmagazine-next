@@ -105,3 +105,16 @@ export function cityLabel(
   }
   return country ? `${city}, ${country}` : city;
 }
+
+/**
+ * The spelled-out name for a stored state or province code (bars.state):
+ * "ME" -> "Maine", "ON" -> "Ontario". Null for no code, an unknown code, or
+ * a country that does not qualify by subdivision. This is what the pages
+ * read since 2026-09-15; subdivisionForCity (the address vote) remains the
+ * backfill source only.
+ */
+export function subdivisionName(code: string | null | undefined, country: string | null | undefined): string | null {
+  if (!code || !usesSubdivision(country)) return null;
+  const map = country === 'Canada' ? CA_PROVINCES : US_STATES;
+  return map[code.toUpperCase()] ?? null;
+}

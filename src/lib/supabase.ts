@@ -43,6 +43,12 @@ export interface Bar {
   country: string;
   region: string | null;
   address: string | null;
+  /** Two-letter US state or Canadian province (bars.state, 2026-09-15); null
+      elsewhere. Read by the city slug rule and the location label; never
+      re-derived from the address at render time. */
+  state?: string | null;
+  /** Editorial neighborhood (bars.neighborhood, 2026-09-15); null on most rows. */
+  neighborhood?: string | null;
   lat: number | null;
   lng: number | null;
   type: string;

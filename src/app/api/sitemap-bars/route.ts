@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { getAllActiveBars, getCountriesWithCounts, getCitiesWithCounts } from '@/lib/supabase';
+import { getAllActiveBars, getCountriesWithCounts } from '@/lib/supabase';
+import { getCityIndex } from '@/lib/city-index';
 import { getSeoCities } from '@/lib/seo-cities';
 import { getLiveAwardPrograms } from '@/lib/award-hubs';
 import { toUrlSlug } from '@/lib/utils';
@@ -39,29 +40,31 @@ export async function GET() {
   // Paginated: a single getBars({ perPage: 2000 }) silently returned 1,000
   // rows and left 247 active profiles out of the sitemap. The live deploy
   // check (seo-check sitemap-bars-count) asserts the count matches.
-  const [bars, countries, cities, seoCities] = await Promise.all([
-    getAllActiveBars<{ slug: string; tier: string | null; city: string; country: string; updated_at: string | null; created_at: string }>(
-      'slug, tier, city, country, updated_at, created_at'
+  const [bars, countries, cityIndex, seoCities] = await Promise.all([
+    getAllActiveBars<{ slug: string; tier: string | null; city: string; country: string; state: string | null; updated_at: string | null; created_at: string }>(
+      'slug, tier, city, country, state, updated_at, created_at'
     ),
     getCountriesWithCounts(),
-    getCitiesWithCounts(),
+    getCityIndex(),
     getSeoCities(),
   ]);
   const awardPrograms = await getLiveAwardPrograms();
 
   // A list page changed when its newest member did. Request time, which
   // these used to report, says nothing: every crawl saw "modified just now".
-  const newest = (key: 'city' | 'country') => {
+  // City pages key on the city SLUG (qualified for same-name cities).
+  const newest = (keyOf: (b: (typeof bars)[number]) => string) => {
     const m = new Map<string, string>();
     for (const b of bars) {
       const lm = rowLastmod(b);
-      const cur = m.get(b[key]);
-      if (!cur || lm > cur) m.set(b[key], lm);
+      const k = keyOf(b);
+      const cur = m.get(k);
+      if (!cur || lm > cur) m.set(k, lm);
     }
     return m;
   };
-  const newestByCity = newest('city');
-  const newestByCountry = newest('country');
+  const newestByCity = newest(b => cityIndex.slugFor(b));
+  const newestByCountry = newest(b => b.country);
   const directoryLastmod = bars.reduce((acc, b) => {
     const lm = rowLastmod(b);
     return lm > acc ? lm : acc;
@@ -88,11 +91,11 @@ export async function GET() {
 `;
   }
 
-  // City pages
-  for (const c of cities) {
+  // City pages, one per city entry (same-name cities are separate entries)
+  for (const c of cityIndex.entries) {
     xml += `  <url>
-    <loc>${SITE_URL}/bars/city/${toUrlSlug(c.city)}</loc>
-    <lastmod>${newestByCity.get(c.city) ?? new Date(directoryLastmod).toISOString()}</lastmod>
+    <loc>${SITE_URL}/bars/city/${c.slug}</loc>
+    <lastmod>${newestByCity.get(c.slug) ?? new Date(directoryLastmod).toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -103,7 +106,7 @@ export async function GET() {
   // thin-page threshold, plus its qualifying type-by-city sub-pages. Same
   // newest-member date as the city page: they render the same rows.
   for (const c of seoCities) {
-    const cityLastmod = newestByCity.get(c.city) ?? new Date(directoryLastmod).toISOString();
+    const cityLastmod = newestByCity.get(c.slug) ?? new Date(directoryLastmod).toISOString();
     xml += `  <url>
     <loc>${SITE_URL}/best-bars/${c.slug}</loc>
     <lastmod>${cityLastmod}</lastmod>

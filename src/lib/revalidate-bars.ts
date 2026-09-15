@@ -1,4 +1,5 @@
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
+import { CITY_INDEX_TAG } from './city-keys';
 
 /**
  * Revalidate the public surfaces that render bar directory data, so admin
@@ -18,6 +19,10 @@ import { revalidatePath } from 'next/cache';
  * 5 minute window.
  */
 export function revalidateBarPages(slugs: string[] = []) {
+  // The city index (slugs, collisions, counts) is derived from every active
+  // row; a new city, a moved bar or a filled state changes it.
+  revalidateTag(CITY_INDEX_TAG);
+
   // Homepage: renders the top 10 band straight from `bars` (300s).
   revalidatePath('/');
 

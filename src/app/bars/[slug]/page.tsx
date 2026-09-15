@@ -1,7 +1,8 @@
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getBarBySlug, getBarsByCity, getBars } from '@/lib/supabase';
+import { getBarBySlug, getBars } from '@/lib/supabase';
+import { getCityIndex, getBarsForCity } from '@/lib/city-index';
 import { getSeoCities, typePageForType, TYPE_PAGES } from '@/lib/seo-cities';
 import { displayType, barTypeUnion } from '@/lib/bar-type';
 import type { Bar, MenuSection } from '@/lib/supabase';
@@ -82,7 +83,13 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   // this one carries street, distance and a line from each neighbour's
   // own copy. A city with fewer than five others shows what exists; a
   // city with none renders no block.
-  const cityBars = await getBarsByCity(bar.city);
+  // The bar's city ENTRY (src/lib/city-keys.ts): same-name cities are
+  // separate entries with qualified slugs, so Jewel Box in Portland, Maine
+  // links to /bars/city/portland-me and never sees Oregon in its nearby list.
+  const cityIndex = await getCityIndex();
+  const cityEntry = cityIndex.forRow(bar);
+  const citySlug = cityEntry?.slug ?? toUrlSlug(bar.city);
+  const cityBars = cityEntry ? await getBarsForCity(cityEntry) : [];
   const nearby = nearestBars(bar, cityBars);
 
   // One sentence per accolade, from the same renderable set as the tiles.
@@ -99,7 +106,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   // pages exist. Keeps the programmatic pages from being orphans (every bar
   // in a qualifying city links up to them).
   const seoCities = await getSeoCities();
-  const seoCity = seoCities.find(c => c.city === bar.city) ?? null;
+  const seoCity = seoCities.find(c => c.slug === citySlug) ?? null;
   const seoTypeDef = typePageForType(bar.type);
   const seoType = seoCity && seoTypeDef ? seoCity.typeSlugs.find(t => t.slug === seoTypeDef.slug) ?? null : null;
 
@@ -249,7 +256,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
       { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
       { '@type': 'ListItem', position: 2, name: 'Bar Directory', item: `${SITE_URL}/bars` },
       { '@type': 'ListItem', position: 3, name: bar.country, item: `${SITE_URL}/bars/country/${toUrlSlug(bar.country)}` },
-      { '@type': 'ListItem', position: 4, name: bar.city, item: `${SITE_URL}/bars/city/${toUrlSlug(bar.city)}` },
+      { '@type': 'ListItem', position: 4, name: bar.city, item: `${SITE_URL}/bars/city/${citySlug}` },
       { '@type': 'ListItem', position: 5, name: bar.name, item: `${SITE_URL}/bars/${bar.slug}` },
     ],
   };
@@ -265,7 +272,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         <span className="bar-breadcrumb-sep">/</span>
         <Link href={`/bars/country/${toUrlSlug(bar.country)}`}>{bar.country}</Link>
         <span className="bar-breadcrumb-sep">/</span>
-        <Link href={`/bars/city/${toUrlSlug(bar.city)}`}>{bar.city}</Link>
+        <Link href={`/bars/city/${citySlug}`}>{bar.city}</Link>
         <span className="bar-breadcrumb-sep">/</span>
         <span>{bar.name}</span>
       </nav>

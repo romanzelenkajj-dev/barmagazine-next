@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getBarBySlug, getBarsByCity } from '@/lib/supabase';
+import { getBarBySlug } from '@/lib/supabase';
+import { getCityIndex, getBarsForCity } from '@/lib/city-index';
 import { formatBarType } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
@@ -47,7 +48,8 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   // Fetch nearby bars (same city, exclude current bar). Fill up to 4:
   // photographed bars first, photo-less bars top up the rest — same rule as
   // the live profile.
-  const cityBars = await getBarsByCity(bar.city);
+  const cityEntry = (await getCityIndex()).forRow(bar);
+  const cityBars = cityEntry ? await getBarsForCity(cityEntry) : [];
   const otherCityBars = cityBars.filter(b => b.id !== bar.id);
   const nearbyBars = [
     ...otherCityBars.filter(b => b.photos && b.photos.length > 0),

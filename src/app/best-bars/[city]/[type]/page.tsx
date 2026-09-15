@@ -48,7 +48,7 @@ async function resolveCombo(citySlug: string, typeSlug: string) {
 export async function generateMetadata({ params }: { params: { city: string; type: string } }): Promise<Metadata> {
   const combo = await resolveCombo(params.city, params.type);
   if (!combo) return {};
-  const bars = await getSeoCityBars(combo.city.city, combo.t.type);
+  const bars = await getSeoCityBars(combo.city.key, combo.t.type);
   const topName = bars[0]?.name ?? null;
   const year = new Date().getFullYear();
   const title = `The Best ${combo.t.plural
@@ -77,7 +77,7 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
   if (!combo) notFound();
 
   const { city, t } = combo;
-  const bars = photosFirst(await getSeoCityBars(city.city, t.type));
+  const bars = photosFirst(await getSeoCityBars(city.key, t.type));
   if (bars.length < MIN_TYPE_BARS) notFound();
 
   const year = new Date().getFullYear();

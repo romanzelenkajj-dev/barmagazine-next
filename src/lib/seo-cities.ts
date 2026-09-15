@@ -1,8 +1,9 @@
 import { supabase } from './supabase';
-import { subdivisionForCity, cityLabel } from './city-location';
+import { subdivisionName, cityLabel } from './city-location';
 import type { Bar } from './supabase';
-import { toUrlSlug } from './utils';
 import { renderableAccolades } from './accolades';
+import { buildCityEntries, CityIndex, type CityEntry } from './city-keys';
+import { getBarsForCity } from './city-index';
 
 /**
  * Data layer for the programmatic SEO surface: /best-bars/[city] and
@@ -68,6 +69,8 @@ export interface SeoCity {
   /** Spelled-out state or province for US and Canadian cities, else null.
       Copy must render "Nashville, Tennessee", never the country. */
   subdivision: string | null;
+  /** The city entry (slug, country, state, raw city strings) the page keys on. */
+  key: CityEntry;
   slug: string;
   count: number;
   top10Count: number;
@@ -83,8 +86,7 @@ export interface SeoCity {
 }
 
 interface CityAccumulator {
-  country: string;
-  addresses: string[];
+  entry: CityEntry;
   count: number;
   top10Count: number;
   awardedCount: number;
@@ -116,11 +118,11 @@ export async function getSeoCities(): Promise<SeoCity[]> {
   // every count on the SEO pages lagged reality (DC showed 11 actives and
   // 10 cocktail bars against a real 12 and 11).
   const PAGE = 1000;
-  const data: Pick<Bar, 'name' | 'city' | 'country' | 'address' | 'type' | 'subtypes' | 'tier' | 'accolades'>[] = [];
+  const data: Pick<Bar, 'name' | 'city' | 'country' | 'state' | 'type' | 'subtypes' | 'tier' | 'accolades'>[] = [];
   for (let from = 0; ; from += PAGE) {
     const { data: page, error } = await supabase
       .from('bars')
-      .select('name, city, country, address, type, subtypes, tier, accolades')
+      .select('name, city, country, state, type, subtypes, tier, accolades')
       .eq('is_active', true)
       .range(from, from + PAGE - 1);
     if (error) throw new Error(`getSeoCities failed: ${error.message}`);
@@ -130,15 +132,20 @@ export async function getSeoCities(): Promise<SeoCity[]> {
   }
   if (data.length === 0) return [];
 
+  // Accumulate by city ENTRY (src/lib/city-keys.ts), built from the same
+  // rows: same-name cities are separate entries with qualified slugs, two
+  // spellings of one city are one entry.
+  const index = new CityIndex(buildCityEntries(data));
   const acc: Record<string, CityAccumulator> = {};
   for (const bar of data) {
     if (!bar.city) continue;
-    if (!acc[bar.city]) {
-      acc[bar.city] = { country: bar.country, addresses: [], count: 0, top10Count: 0, awardedCount: 0, types: {}, best: null };
+    const entry = index.forRow(bar);
+    if (!entry) continue;
+    if (!acc[entry.slug]) {
+      acc[entry.slug] = { entry, count: 0, top10Count: 0, awardedCount: 0, types: {}, best: null };
     }
-    const a = acc[bar.city];
+    const a = acc[entry.slug];
     a.count++;
-    if (bar.address) a.addresses.push(bar.address);
     if (bar.tier === 'top10') a.top10Count++;
     // Union counts: each bar counts once per page type it matches, via the
     // primary column or the subtypes array (a Speakeasy-typed bar tagged
@@ -157,11 +164,12 @@ export async function getSeoCities(): Promise<SeoCity[]> {
 
   return Object.entries(acc)
     .filter(([, a]) => a.count >= MIN_CITY_BARS)
-    .map(([city, a]) => ({
-      city,
-      country: a.country,
-      subdivision: subdivisionForCity(a.addresses, a.country),
-      slug: toUrlSlug(city),
+    .map(([slug, a]) => ({
+      city: a.entry.city,
+      country: a.entry.country,
+      subdivision: subdivisionName(a.entry.state, a.entry.country),
+      key: a.entry,
+      slug,
       count: a.count,
       top10Count: a.top10Count,
       awardedCount: a.awardedCount,
@@ -189,14 +197,8 @@ export async function resolveSeoCity(citySlug: string): Promise<SeoCity | null> 
  */
 export const CITY_PAGE_MAX_BARS = 12;
 
-export async function getSeoCityBars(city: string, type?: string): Promise<Bar[]> {
-  const { data: rows, error } = await supabase
-    .from('bars')
-    .select('*')
-    .eq('is_active', true)
-    .eq('city', city);
-  if (error) throw new Error(`getSeoCityBars failed: ${error.message}`);
-  if (!rows) return [];
+export async function getSeoCityBars(city: CityEntry, type?: string): Promise<Bar[]> {
+  const rows = await getBarsForCity(city);
   // Union filter in JS rather than PostgREST or() syntax: type values carry
   // spaces and the client-side test is the same barHasType used for counts,
   // so pages and thresholds can never disagree.

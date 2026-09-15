@@ -4,10 +4,9 @@ import { CardStatusPills } from '@/components/CardStatusPills';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { getBarsByCity, getCitiesWithCounts } from '@/lib/supabase';
-import { createClient } from '@supabase/supabase-js';
+import { getCityIndex, getBarsForCity } from '@/lib/city-index';
 import type { Bar } from '@/lib/supabase';
-import { subdivisionForCity, cityLabel } from '@/lib/city-location';
+import { subdivisionName, cityLabel } from '@/lib/city-location';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import { getCityIntro } from '@/lib/city-intros';
@@ -49,17 +48,11 @@ const SITE_URL = 'https://barmagazine.com';
 // Static params — pre-build ALL active city pages
 // ---------------------------------------------------------------------------
 export async function generateStaticParams() {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-  const { data } = await supabase
-    .from('bars')
-    .select('city')
-    .eq('is_active', true);
-  if (!data) return [];
-  const uniqueCities = Array.from(new Set(data.map(b => b.city)));
-  return uniqueCities.map(city => ({ city: toUrlSlug(city) }));
+  // One page per city ENTRY, not per city string: same-name cities are
+  // separate entries with qualified slugs (portland-or, portland-me), and
+  // two spellings of one city are one entry. See src/lib/city-keys.ts.
+  const index = await getCityIndex();
+  return index.entries.map(e => ({ city: e.slug }));
 }
 
 // ---------------------------------------------------------------------------
@@ -70,13 +63,12 @@ export async function generateMetadata({
 }: {
   params: { city: string };
 }): Promise<Metadata> {
-  const allCities = await getCitiesWithCounts();
-  const match = allCities.find(c => toUrlSlug(c.city) === params.city);
+  const index = await getCityIndex();
+  const match = index.resolve(params.city);
   if (!match) return {};
 
   const cityName = match.city;
   const countryName = match.country;
-  const bars = await getBarsByCity(cityName);
   const currentYear = new Date().getFullYear();
 
   // NO BAR COUNT HERE, deliberately. Google holds a meta description for
@@ -87,7 +79,7 @@ export async function generateMetadata({
   // Detroit"). The live count still belongs in on-page copy, which
   // regenerates with the data.
   const description =
-    `The best cocktail bars in ${cityLabel(cityName, countryName, subdivisionForCity(bars.map(b => b.address), countryName))}, ` +
+    `The best cocktail bars in ${cityLabel(cityName, countryName, subdivisionName(match.state, countryName))}, ` +
     `curated by BarMagazine for ${currentYear}. Speakeasies, hotel bars and ` +
     `neighborhood rooms, with addresses, hours and signature serves.`;
 
@@ -119,21 +111,19 @@ export default async function CityPage({
   params: { city: string };
   searchParams?: { view?: string };
 }) {
-  const allCities = await getCitiesWithCounts();
-  const match = allCities.find(c => toUrlSlug(c.city) === params.city);
+  const index = await getCityIndex();
+  const match = index.resolve(params.city);
   if (!match) notFound();
 
   const cityName = match.city;
   const countryName = match.country;
-  const bars = await getBarsByCity(cityName);
+  const bars = await getBarsForCity(match);
 
   // "Nashville, Tennessee", not "Nashville, United States". See
   // src/lib/city-location.ts for the rule and why the country is wrong here.
-  const locationLabel = cityLabel(
-    cityName,
-    countryName,
-    subdivisionForCity(bars.map(b => b.address), countryName)
-  );
+  // The state is the stored column (bars.state) via the city entry, never a
+  // re-derivation from the addresses.
+  const locationLabel = cityLabel(cityName, countryName, subdivisionName(match.state, countryName));
   if (bars.length === 0) notFound();
 
   // Determine view mode: ?view=top10 means Top 10 bars appear first (sidebar link)
@@ -184,12 +174,6 @@ export default async function CityPage({
   // Approved editorial intro for the top cities; template copy otherwise.
   const cityIntro = getCityIntro(params.city);
 
-  // Nearby Cities — removed from UI but kept for potential future use
-  const _nearbyCities = allCities
-    .filter(c => c.country === countryName && c.city !== cityName)
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 8);
-  void _nearbyCities;
 
   // JSON-LD — BreadcrumbList
   const breadcrumbLd = {

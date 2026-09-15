@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { nearestBars, streetOf, placeOf, lineOf, distanceLabel } from './nearby';
 
 const mk = (o: Partial<Parameters<typeof nearestBars>[1][number]> & { id: string; slug: string }) => ({
-  name: o.slug, city: 'San Diego', address: null, lat: null, lng: null, short_excerpt: null, description: null, ...o,
+  name: o.slug, city: 'San Diego', country: 'United States', address: null, lat: null, lng: null, short_excerpt: null, description: null, ...o,
 });
 
 describe('nearby', () => {
@@ -16,6 +16,14 @@ describe('nearby', () => {
       mk({ id: 'c', slug: 'other-city', city: 'Los Angeles', lat: 32.7158, lng: -117.1612 }),
     ]);
     expect(out.map(e => e.slug)).toEqual(['near', 'far']);
+  });
+
+  it('keeps same-name cities apart by country and by state', () => {
+    const near = { id: 'x', slug: 'x', lat: 32.716, lng: -117.162 };
+    expect(nearestBars(me, [mk({ ...near, country: 'United Kingdom' })])).toEqual([]);
+    expect(nearestBars({ ...me, state: 'CA' }, [mk({ ...near, state: 'TX' })])).toEqual([]);
+    // A row with no state is not excluded: it belongs to its city's majority.
+    expect(nearestBars({ ...me, state: 'CA' }, [mk({ ...near, state: null })])).toHaveLength(1);
   });
 
   it('shows what exists under five and nothing for a lonely bar', () => {

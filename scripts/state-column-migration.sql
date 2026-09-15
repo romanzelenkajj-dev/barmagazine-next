@@ -1,0 +1,13 @@
+-- bars.state (2026-09-15): the US state or Canadian province code of the
+-- row, two letters ("KS", "ME", "ON"), null everywhere else.
+--
+-- Why a column: the city slug rule qualifies same-name cities by state
+-- (portland-or, portland-me) and the location label spells the state out
+-- ("Portland, Maine"). Both used to derive it from the address postcode line
+-- on every render, a heuristic that fails on nine rows whose address has no
+-- "ST 12345" line and cannot be corrected without editing the address.
+-- The column is the record; the derivation is only the backfill source.
+--
+-- Run once in the Supabase SQL editor. Backfill follows from the repo
+-- (scripts, via the admin API), not from here.
+alter table public.bars add column if not exists state text;

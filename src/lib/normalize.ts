@@ -20,7 +20,7 @@ export function normalizeFacet(v: string): string {
 const FACET_FIELDS = ['name', 'city', 'country', 'type', 'slug'] as const;
 const TRIM_FIELDS = [
   'address', 'website', 'instagram', 'email', 'phone',
-  'description', 'short_excerpt', 'contact_name', 'neighborhood',
+  'description', 'short_excerpt', 'contact_name', 'neighborhood', 'state',
 ] as const;
 
 /**

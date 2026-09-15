@@ -4,7 +4,7 @@ import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { getTop10BarsByCity } from '@/lib/supabase';
+import { getBarsForCity } from '@/lib/city-index';
 import { displayType } from '@/lib/bar-type';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import { TOP10_CITIES } from '@/lib/top10-cities';
@@ -69,15 +69,15 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
   // Cities with a curated top10 set keep exactly that set (the original 23
   // pages are unchanged in substance); everywhere else lists the ranked
   // best, capped, with the full dump one click away at /bars/city.
-  const curated = match.top10Count > 0 ? await getTop10BarsByCity(match.city) : [];
+  const curated = match.top10Count > 0 ? await getBarsForCity(match.key, { top10Only: true }) : [];
   // Photos first, stable within each group: the page leads with its best
   // visuals whichever path produced the list.
-  const bars = photosFirst(curated.length > 0 ? curated : await getSeoCityBars(match.city));
+  const bars = photosFirst(curated.length > 0 ? curated : await getSeoCityBars(match.key));
   if (bars.length === 0) notFound();
 
   const year = new Date().getFullYear();
   const editorial = TOP10_CITIES.find(c => c.dirSlug === params.city && c.articleSlug);
-  const otherCities = (await getSeoCities()).filter(c => c.city !== match.city);
+  const otherCities = (await getSeoCities()).filter(c => c.slug !== match.slug);
   const intro = composeCityIntro(match, bars.length);
 
   const itemListLd = {
@@ -197,7 +197,7 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
             <h2>Best bars in other cities</h2>
             <div className="best-bars-cities-grid">
               {otherCities.map(c => (
-                <Link key={c.city} href={`/best-bars/${c.slug}`} className="best-bars-city-link">
+                <Link key={c.slug} href={`/best-bars/${c.slug}`} className="best-bars-city-link">
                   {c.city}
                 </Link>
               ))}

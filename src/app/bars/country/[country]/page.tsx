@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getBarsByCountry, getCountriesWithCounts } from '@/lib/supabase';
+import { getCityIndex } from '@/lib/city-index';
 import { createClient } from '@supabase/supabase-js';
 import type { Bar } from '@/lib/supabase';
 import { toUrlSlug, fromUrlSlug, formatBarType } from '@/lib/utils';
@@ -94,8 +95,18 @@ export default async function CountryPage({
 
   if (bars.length === 0) notFound();
 
-  const cities = Array.from(new Set(bars.map(b => b.city))).sort();
-  const cityCount = cities.length;
+  // City links go through the city index: a same-name city in this country
+  // (Portland, Maine) carries a qualified slug, and two spellings of one
+  // city collapse to one link.
+  const cityIndex = await getCityIndex();
+  const cityLinks = Array.from(
+    bars.reduce((m, b) => {
+      const slug = cityIndex.slugFor(b);
+      if (!m.has(slug)) m.set(slug, cityIndex.forRow(b)?.city ?? b.city);
+      return m;
+    }, new Map<string, string>())
+  ).map(([slug, label]) => ({ slug, label })).sort((a, b) => a.label.localeCompare(b.label));
+  const cityCount = cityLinks.length;
 
   // Sort: Featured+Top10 first, then featured, then top10, then with photo, then no photo
   const tierRank = (bar: Bar): number => {
@@ -201,15 +212,15 @@ export default async function CountryPage({
               )}
             </p>
             {/* City quick-links */}
-            {cities.length > 0 && (
+            {cityLinks.length > 0 && (
               <div className="directory-hero-types">
-                {cities.slice(0, 6).map(city => (
+                {cityLinks.slice(0, 6).map(c => (
                   <Link
-                    key={city}
-                    href={`/bars/city/${toUrlSlug(city)}`}
+                    key={c.slug}
+                    href={`/bars/city/${c.slug}`}
                     className="directory-hero-type-tag"
                   >
-                    {city}
+                    {c.label}
                   </Link>
                 ))}
               </div>

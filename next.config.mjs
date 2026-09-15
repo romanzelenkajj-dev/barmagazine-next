@@ -122,6 +122,12 @@ const nextConfig = {
       { source: '/bars/city/c-rdoba', destination: '/bars', permanent: true }, // was /bars/city/cordoba
       { source: '/bars/city/m-laga', destination: '/bars', permanent: true }, // was /bars/city/malaga
       { source: '/bars/city/canc-n', destination: '/bars', permanent: true }, // was /bars/city/cancun
+      // Same-name cities (2026-09-15, src/lib/city-keys.ts): the bare slug
+      // 301s to the row that held the page first. portland-maine was the
+      // interim qualified string, live for a few hours and in the sitemap.
+      { source: '/bars/city/portland', destination: '/bars/city/portland-or', permanent: true },
+      { source: '/bars/city/portland-maine', destination: '/bars/city/portland-me', permanent: true },
+      { source: '/bars/city/birmingham', destination: '/bars/city/birmingham-gb', permanent: true },
       { source: '/bars/city/bogot', destination: '/bars/city/bogota', permanent: true },
       { source: '/bars/city/medell-n', destination: '/bars/city/medellin', permanent: true },
       { source: '/bars/city/bras-lia', destination: '/bars', permanent: true }, // was /bars/city/brasilia

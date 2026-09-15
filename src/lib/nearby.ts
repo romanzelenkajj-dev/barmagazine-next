@@ -20,6 +20,9 @@ export interface NearbyCandidate {
   slug: string;
   name: string;
   city: string;
+  country: string;
+  /** bars.state; the same-city guard compares it when both sides carry one. */
+  state?: string | null;
   address: string | null;
   /** `bars.neighborhood` (column added 2026-09-15); null on most rows. */
   neighborhood?: string | null;
@@ -83,15 +86,30 @@ export function distanceLabel(km: number, country: string | null | undefined): s
   return `${n} ${miles ? 'mi' : 'km'}`;
 }
 
+/**
+ * Same city, same country, and the same state where both rows carry one:
+ * Portland, Maine is not Portland, Oregon, and Birmingham, Alabama is not
+ * Birmingham, England, even though the city string matches.
+ */
+export function sameCity(
+  a: { city: string; country: string; state?: string | null },
+  b: { city: string; country: string; state?: string | null }
+): boolean {
+  if (a.city !== b.city || a.country !== b.country) return false;
+  const sa = (a.state || '').toUpperCase();
+  const sb = (b.state || '').toUpperCase();
+  return !sa || !sb || sa === sb;
+}
+
 export function nearestBars(
-  bar: { id: string; city: string; country: string; lat: number | null; lng: number | null },
+  bar: { id: string; city: string; country: string; state?: string | null; lat: number | null; lng: number | null },
   cityBars: NearbyCandidate[],
   limit: number = NEARBY_LIMIT
 ): NearbyEntry[] {
   if (bar.lat == null || bar.lng == null) return [];
   const scored: { km: number; b: NearbyCandidate }[] = [];
   for (const b of cityBars) {
-    if (b.id === bar.id || b.city !== bar.city) continue;
+    if (b.id === bar.id || !sameCity(b, bar)) continue;
     if (b.lat == null || b.lng == null || !b.slug) continue;
     scored.push({ km: distanceKm(bar.lat, bar.lng, b.lat, b.lng), b });
   }
