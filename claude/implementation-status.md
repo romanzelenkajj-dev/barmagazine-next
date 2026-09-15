@@ -1214,6 +1214,22 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 15: owner-edit notice to office@, batched (8b35f93)
+- Holiday check: the 13:40 PT edits DID send two notices (Resend ids
+  f70b6a79 and 607eb39b, both delivered), but to NOTIFICATION_EMAIL, which
+  is Roman's Gmail. office@ was never the recipient.
+- New src/lib/owner-edit-notice.ts: plain text to office@barmagazine.com,
+  subject "Edit to approve: <Bar> (<fields>)", body with bar and place line,
+  owner, each field's proposed value (photos as a count plus URLs), the
+  /admin/review?tab=edits link. One email per burst: the notice runs in
+  waitUntil after the response, waits 60 s, yields if a newer row from the
+  same owner for the same bar exists, and lists every row less than 75 s
+  apart back from its own. Both owner routes set maxDuration = 90.
+  Claim and Stripe notices still go to NOTIFICATION_EMAIL (unchanged).
+- Test rig scripts/run-owner-edit-notice-test.mjs (dry | send) composes
+  from Holiday's real rows and creates nothing; one [Test] email delivered
+  to office@ (Resend id d1418296).
+
 ## 2026-09-15 - Queue task 14: location map above the nearby list (3316bdb)
 - Literal swap of the two blocks on the profile: the map now sits where
   the nearby list was (after the gallery, before the mentions card and the
