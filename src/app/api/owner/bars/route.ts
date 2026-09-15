@@ -3,11 +3,15 @@ import { createClient } from '@supabase/supabase-js';
 import { verifyOwnerToken, noStoreFetch } from '@/lib/supabase-auth';
 import { filterOwnerFields } from '@/lib/owner-fields';
 import { menuUrlProblem } from '@/lib/menu-url';
-import { notifyOwnerSubmission } from '@/lib/notify';
+import { waitUntil } from '@vercel/functions';
+import { ownerEditNotice, DEBOUNCE_MS } from '@/lib/owner-edit-notice';
 
 // Owner data is always per-request (Authorization header) — never prerender.
 // Also keeps builds green in environments without SUPABASE_SERVICE_ROLE_KEY.
 export const dynamic = 'force-dynamic';
+// The office notice waits DEBOUNCE_MS after the response before it sends
+// (see owner-edit-notice.ts); the function must outlive that wait.
+export const maxDuration = 90;
 
 // GET - fetch owner's bars and submissions
 export async function GET(request: NextRequest) {
@@ -149,27 +153,30 @@ export async function PUT(request: NextRequest) {
     }
 
     // Create submission for admin review
-    const { error } = await supabase.from('owner_submissions').insert({
-      bar_id,
-      owner_id: owner.id,
-      status: 'pending',
-      submitted_data: allowed,
-      submission_type: 'info_update',
-    });
+    const { data: inserted, error } = await supabase
+      .from('owner_submissions')
+      .insert({
+        bar_id,
+        owner_id: owner.id,
+        status: 'pending',
+        submitted_data: allowed,
+        submission_type: 'info_update',
+      })
+      .select('id')
+      .single();
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-    // Tell the admin it's waiting — nothing else surfaces this queue. Awaited
-    // so the serverless function doesn't exit before the request goes out, but
-    // it never throws, so a mail failure can't fail a stored submission.
-    await notifyOwnerSubmission({
-      barName: String(bar.name ?? 'Unknown bar'),
-      barSlug: bar.slug ? String(bar.slug) : null,
-      ownerEmail: owner.email,
-      submissionType: 'info_update',
-      fields: allowed,
-      rejected,
-    });
+    // Tell the office it's waiting — nothing else surfaces this queue. The
+    // notice runs after the response (waitUntil) so it can wait a minute and
+    // fold a photo upload that follows this save into the same email. It
+    // never throws, so a mail failure can't fail a stored submission.
+    waitUntil(
+      ownerEditNotice(
+        { barId: bar_id, ownerId: owner.id, ownerEmail: owner.email, submissionId: inserted.id, rejected },
+        { delayMs: DEBOUNCE_MS }
+      )
+    );
 
     // Report what was ignored so the dashboard can say so plainly rather than
     // letting an owner believe an edit is pending review when it was dropped.

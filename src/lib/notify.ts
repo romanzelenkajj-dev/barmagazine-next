@@ -2,10 +2,11 @@ import { sendMail } from './mail';
 /**
  * Admin notifications for things that land in a review queue.
  *
- * A queue only protects the site if someone sees it — owner edits sit in
- * `owner_submissions` with no UI surfacing them, so without this an edit could
- * wait indefinitely. Sends are best-effort: a notification failure must never
- * fail the owner's request, since their submission is already stored.
+ * A queue only protects the site if someone sees it. Sends are best-effort: a
+ * notification failure must never fail the request that stored the record.
+ * Owner edits have their own plain-text notice to the office inbox, see
+ * owner-edit-notice.ts; the claim and Stripe notices here go to
+ * NOTIFICATION_EMAIL.
  */
 
 const SITE_URL = 'https://barmagazine.com';
@@ -81,52 +82,6 @@ async function send({ subject, html }: { subject: string; html: string }): Promi
     return false;
   }
   return sendMail({ to, subject, html, context: 'notify' });
-}
-
-export interface OwnerSubmissionNotice {
-  barName: string;
-  barSlug?: string | null;
-  ownerEmail: string;
-  submissionType: string;
-  fields: Record<string, unknown>;
-  /** Keys the allowlist dropped, worth seeing — repeated attempts are a signal. */
-  rejected?: string[];
-}
-
-/** Email the admin that an owner edit is waiting in the review queue. */
-export async function notifyOwnerSubmission(notice: OwnerSubmissionNotice): Promise<boolean> {
-  const { barName, barSlug, ownerEmail, submissionType, fields, rejected = [] } = notice;
-
-  const label = submissionType === 'photo_upload' ? 'Photo upload' : 'Info update';
-  const barLink = barSlug
-    ? `<a href="${SITE_URL}/bars/${escapeHtml(barSlug)}">${escapeHtml(barName)}</a>`
-    : escapeHtml(barName);
-
-  const rejectedBlock = rejected.length
-    ? `<p style="margin-top:16px;padding:10px 12px;background:#fff3cd;color:#856404;font-size:13px;">
-         Dropped by the field allowlist: ${escapeHtml(rejected.join(', '))}
-       </p>`
-    : '';
-
-  return send({
-    subject: `Owner edit pending: ${barName} (${label})`,
-    html: `
-      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
-        <h2 style="color:#1A1A1A;">Owner edit awaiting review</h2>
-        <p style="font-size:15px;color:#444;">
-          ${barLink} — submitted by ${escapeHtml(ownerEmail)}
-        </p>
-        <table style="width:100%;border-collapse:collapse;font-size:15px;">
-          ${fieldRows(fields)}
-        </table>
-        ${rejectedBlock}
-        <p style="margin-top:24px;font-size:13px;color:#999;">
-          Nothing is live until you approve it.
-          <a href="${SITE_URL}/admin/review?tab=edits">Review this edit</a>
-        </p>
-      </div>
-    `,
-  });
 }
 
 export interface ClaimNotice {

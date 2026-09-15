@@ -56,6 +56,30 @@ export const OWNER_FORBIDDEN_FIELDS = [
 export type OwnerEditableField = (typeof OWNER_EDITABLE_FIELDS)[number];
 
 /**
+ * Human labels for the editable fields, shared by the admin review page and
+ * the owner-edit notice email so both call a field the same thing.
+ * `gallery_images` is the photo upload route's key for `photos`.
+ */
+export const OWNER_FIELD_LABEL: Record<string, string> = {
+  address: 'Address',
+  phone: 'Phone',
+  email: 'Contact email',
+  website: 'Website',
+  instagram: 'Instagram',
+  whatsapp: 'WhatsApp',
+  reservation_url: 'Reservations link',
+  menu_url: 'Menu link',
+  menu_sections: 'Menu sections',
+  opening_hours: 'Opening hours',
+  photos: 'Photos',
+  gallery_images: 'Photos',
+};
+
+export function ownerFieldLabel(key: string): string {
+  return OWNER_FIELD_LABEL[key] || key;
+}
+
+/**
  * Photo entitlement per tier. Unpaid tiers (free, and the editorial top10
  * pick) carry ONE profile photo; the gallery is what Featured sells. The
  * limit is enforced at upload (/api/owner/photos rejects oversized
