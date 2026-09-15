@@ -22,7 +22,7 @@ import { awardStrings } from '@/lib/accolades';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { fallbackDescription } from '@/lib/bar-fallback';
 import { nearestBars } from '@/lib/nearby';
-import { accoladeSentence } from '@/lib/accolade-sentences';
+import { credentialsLine } from '@/lib/accolade-sentences';
 import articleMentions from '@/lib/article-mentions.generated.json';
 
 export const revalidate = 300;
@@ -94,9 +94,9 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   const nearby = nearestBars(bar, cityBars);
   const placeLabel = cityLabel(bar.city, bar.country, subdivisionName(bar.state, bar.country));
 
-  // One sentence, the bar's name first, one clause per tile in tile order
-  // (the same deduped, score-ordered set the tiles render).
-  const accoladeProse = accoladeSentence(bar.name, bar.accolades);
+  // The credentials line: no subject (the H1 above says the name), one
+  // clause per tile in tile order, the same deduped set the tiles render.
+  const accoladeProse = credentialsLine(bar.accolades);
 
   // Articles that name this bar AND its city (the conservative match built
   // by scripts/build-article-mentions.mjs; generic names are held, never

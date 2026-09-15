@@ -1,26 +1,30 @@
 import { tileEntries, type Accolade } from './accolades';
 
 /**
- * The accolade sentence under the tiles: ONE sentence, the bar's name as
- * the subject, one clause per tile in tile order (Roman, 2026-09-15,
- * superseding the one-sentence-per-org form of the same morning):
+ * The credentials line under the tiles (Roman, 2026-09-15, superseding the
+ * name-first sentence of the same afternoon): no subject, because the H1
+ * directly above already says the name. One clause per tile in tile order,
+ * each written without a subject, the line capitalised at the start and
+ * closed with a period:
  *
- *   Bitter & Twisted Cocktail Parlour holds 2 Pins from The Pinnacle
- *   Guide (2024) and was listed on North America's 50 Best Bars in 2022.
+ *   Listed on North America's 50 Best Bars in 2022 and awarded 2 Pins by
+ *   The Pinnacle Guide in 2024.
  *
  * It reads exactly the set the tiles render (tileEntries: renderable, one
- * per org and year, score order, at most three), so the prose and the
- * face never disagree. Two clauses join with " and ", three with ", " and
- * ", and ". Every year, category, placing and grade is the stored value;
- * nothing is invented, and nothing is written for an entry the tiles hold
- * back.
+ * per org and year, score order, at most three), so the line and the face
+ * never disagree. Two clauses join with " and ", three with ", " and
+ * ", and ". Every year, category, placing and grade is the stored value.
+ *
+ * Off-page reuse (a meta description, JSON-LD) must prefix the bar name and
+ * a colon so the line stands alone; see credentialsLineWithName. Nothing
+ * reuses it today.
  */
 
 /**
- * The newest edition of each list, for tense: a placing on the current
- * edition "ranks", an older one "ranked". These are the newest years the
- * data carries per list today; bump when a body publishes its next list
- * (the World's 50 Best Bars 2026 lands in October).
+ * The newest edition of each list. Kept for callers that need the tense
+ * ("ranks" vs "ranked"); the credentials line itself is tenseless. Bump when
+ * a body publishes its next list (the World's 50 Best Bars 2026 lands in
+ * October).
  */
 export const LATEST_EDITION: Record<string, number> = {
   w50b: 2025,
@@ -45,63 +49,56 @@ function stageOf(title: string | null | undefined): string {
   return (m ? m[1] : '').toLowerCase();
 }
 
-/** "won the Timeless U.S. Award" but "won Best U.S. Hotel Bar". */
+/** "winner of the Timeless U.S. Award" but "winner of Best U.S. Hotel Bar". */
 function withArticle(category: string): string {
   return /\baward\b/i.test(category) && !/^the\b/i.test(category) ? `the ${category}` : category;
 }
 
-/** The clause for one entry, a verb phrase without the subject. */
+/** The clause for one entry: a credential without a subject, lowercase start. */
 export function accoladeClause(a: Accolade): string {
   const year = String(a.year);
   const key = a.org_key;
 
   if (FIFTY_BEST.has(key) || key === '30bbi') {
     if (a.kind === 'winner' && categoryOf(a.title)) {
-      return `won ${withArticle(categoryOf(a.title)!)} at the ${year} ${a.org}`;
+      return `winner of ${withArticle(categoryOf(a.title)!)} at the ${year} ${a.org}`;
     }
-    if (a.rank != null) {
-      const current = (a.year ?? 0) >= (LATEST_EDITION[key] ?? Infinity);
-      return `${current ? 'ranks' : 'ranked'} No. ${a.rank} on ${a.org} ${year}`;
-    }
-    return `was listed on ${a.org} in ${year}`;
+    if (a.rank != null) return `No. ${a.rank} on ${a.org} ${year}`;
+    return `listed on ${a.org} in ${year}`;
   }
 
   if (key === 'totc') {
     const cat = categoryOf(a.title);
-    if (a.kind === 'winner') return cat ? `won ${withArticle(cat)} at the ${year} Spirited Awards` : `won at the ${year} Spirited Awards`;
+    if (a.kind === 'winner') return cat ? `winner of ${withArticle(cat)} at the ${year} Spirited Awards` : `winner at the ${year} Spirited Awards`;
     const stage = stageOf(a.title);
-    const what = /top 4/.test(stage) ? 'a Top 4 finalist' : /top 10/.test(stage) ? 'a Top 10 nominee' : /regional/.test(stage) ? 'a regional honoree' : 'a nominee';
-    return cat ? `was ${what} for ${cat} at the ${year} Spirited Awards` : `was ${what} at the ${year} Spirited Awards`;
+    const what = /top 4/.test(stage) ? 'Top 4 finalist' : /top 10/.test(stage) ? 'Top 10 nominee' : /regional/.test(stage) ? 'regional honoree' : 'nominee';
+    return cat ? `${what} for ${cat} at the ${year} Spirited Awards` : `${what} at the ${year} Spirited Awards`;
   }
 
   if (key === 'jbf') {
     const cat = categoryOf(a.title) || 'Outstanding Bar';
-    if (a.kind === 'winner') return `won the James Beard Award for ${cat} in ${year}`;
+    if (a.kind === 'winner') return `James Beard Award winner for ${cat} in ${year}`;
     const stage = /semifinal/.test(stageOf(a.title)) ? 'semifinalist' : 'finalist';
-    return `was a James Beard Award ${stage} for ${cat} in ${year}`;
+    return `James Beard Award ${stage} for ${cat} in ${year}`;
   }
 
   if (key === 'bca' || key === 'shaker') {
     const body = key === 'bca' ? "Bartenders' Choice Awards" : 'Shaker Awards';
-    if (a.kind === 'ranked' && a.rank != null) {
-      const current = (a.year ?? 0) >= (LATEST_EDITION[key] ?? Infinity);
-      const list = a.title ? ` ${a.title}` : '';
-      return `${current ? 'ranks' : 'ranked'} No. ${a.rank} on the ${year} ${body}${list}`;
-    }
-    if (a.kind === 'listed') return `was listed on the ${year} ${body}${a.title ? ` ${a.title}` : ''}`;
+    if (a.kind === 'ranked' && a.rank != null) return `No. ${a.rank} on the ${year} ${body}${a.title ? ` ${a.title}` : ''}`;
+    if (a.kind === 'listed') return `listed on the ${year} ${body}${a.title ? ` ${a.title}` : ''}`;
     const cat = categoryOf(a.title);
-    if (a.kind === 'winner') return cat ? `won ${withArticle(cat)} at the ${year} ${body}` : `won at the ${year} ${body}`;
-    return cat ? `was nominated for ${cat} at the ${year} ${body}` : `was nominated at the ${year} ${body}`;
+    if (a.kind === 'winner') return cat ? `winner of ${withArticle(cat)} at the ${year} ${body}` : `winner at the ${year} ${body}`;
+    return cat ? `nominated for ${cat} at the ${year} ${body}` : `nominated at the ${year} ${body}`;
   }
 
   if (key === 'pinnacle') {
-    return `holds ${a.title || 'a Pin'} from The Pinnacle Guide (${year})`;
+    return `awarded ${a.title || 'a Pin'} by The Pinnacle Guide in ${year}`;
   }
 
   // An org with a tile but no phrasing here: say only what is stored.
-  if (a.rank != null) return `ranked No. ${a.rank} on ${a.org} ${year}`;
-  if (a.kind === 'winner') return categoryOf(a.title) ? `won ${categoryOf(a.title)} at the ${year} ${a.org}` : `won at the ${year} ${a.org}`;
-  return `was listed on ${a.org} in ${year}`;
+  if (a.rank != null) return `No. ${a.rank} on ${a.org} ${year}`;
+  if (a.kind === 'winner') return categoryOf(a.title) ? `winner of ${categoryOf(a.title)} at the ${year} ${a.org}` : `winner at the ${year} ${a.org}`;
+  return `listed on ${a.org} in ${year}`;
 }
 
 /** "a", "a and b", "a, b, and c". */
@@ -111,12 +108,16 @@ function joinClauses(parts: string[]): string {
   return `${parts.slice(0, -1).join(', ')}, and ${parts[parts.length - 1]}`;
 }
 
-/**
- * The sentence, or an empty string when the tiles render nothing. The
- * subject is the stored name exactly once, no article added.
- */
-export function accoladeSentence(name: string, accolades: unknown): string {
+/** The line, or an empty string when the tiles render nothing. */
+export function credentialsLine(accolades: unknown): string {
   const entries = tileEntries(accolades);
   if (entries.length === 0) return '';
-  return `${name} ${joinClauses(entries.map(accoladeClause))}.`;
+  const body = joinClauses(entries.map(accoladeClause));
+  return `${body.charAt(0).toUpperCase()}${body.slice(1)}.`;
+}
+
+/** For off-page reuse only: "Bitter & Twisted Cocktail Parlour: Listed on ...". */
+export function credentialsLineWithName(name: string, accolades: unknown): string {
+  const line = credentialsLine(accolades);
+  return line ? `${name}: ${line}` : '';
 }
