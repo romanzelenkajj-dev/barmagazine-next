@@ -1214,6 +1214,14 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 12: accolade prose as a credentials line (f3592cc, 3c0cfa2)
+- No subject (the H1 says the name): "Listed on North America's 50 Best
+  Bars in 2022 and awarded 2 Pins by The Pinnacle Guide in 2024." Same
+  tile set and order as task 10, clauses recast as credentials, first
+  letter capitalised, one period. credentialsLineWithName for any off-page
+  reuse (none today). Prose now shares the description's 600px measure
+  and left edge with a 10px gap.
+
 ## 2026-09-15 - Queue task 11: Holiday (Austin) specials sentence; specials field waits on the column
 - Owner-requested happy hour sentence appended by id to Holiday's
   description (slug holiday, holidayon7th.com; the task said Phoenix, the
