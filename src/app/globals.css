@@ -6280,8 +6280,11 @@ textarea.form-input {
   min-width: 0;
 }
 @media (min-width: 1100px) {
+  /* The actions column is capped at 300px (the width that fits "Is this
+     your bar? Claim it" as a pill with its padding); the text column takes
+     everything else. 3fr 2fr gave the buttons ~480px at 1440 (Roman). */
   .bar-v2-info {
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: minmax(0, 1fr) 300px;
     column-gap: 2.5rem;
     align-items: start;
   }
@@ -6351,6 +6354,11 @@ textarea.form-input {
   flex-basis: 100%;
   align-self: auto;
   margin-top: 2px;
+  line-height: 1.5;
+}
+.bar-v2-actions .bar-v2-btn--claim {
+  font-size: 14px;
+  padding: 12px 20px;
 }
 @media (max-width: 640px) {
   /* Two per row at most. border-box, because the site is content-box and
