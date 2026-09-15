@@ -1214,6 +1214,16 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 09:06 PT - Batch 13 SENT (27/27), fired directly on Roman's call
+- The Wednesday date was a day-counting error; Tuesday 09:00 PT was the
+  intended window. outreach/batch13-runner.sh run directly at 09:06 PT:
+  batch13-phoenix 9 SENT, batch13-nashville 6 SENT, batch13-metro1 12
+  SENT, zero failures, every send with a Resend id in
+  outreach/batch13-send.log and 27 lines in outreach/sent-log.txt. The
+  runner unloaded and deleted com.barmagazine.batch13.plist, so the
+  Wednesday trigger cannot fire; launchctl shows only batch14-w1,
+  batch14-w2 and address-audit. Batch 14 stays on Thursday 21:00/23:00.
+
 ## 2026-09-14 (PT) - Batch 13 and 14 armed; Alibaba AS45102 challenge rule
 - EYEBALL CALLS (Roman): don-woods-say-when PARKED (hotel reservations
   inbox, the-cruise-room class); century-grand kept (operator inbox,
