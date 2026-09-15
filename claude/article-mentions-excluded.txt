@@ -1,0 +1,5 @@
+# Article mentions the automatic rule gets wrong: bar slug -> article slug.
+# Read by scripts/build-article-mentions.mjs; a pair here is never linked by
+# the name-plus-city rule (a confirmed pair still wins if it is also listed
+# in article-mentions-confirmed.txt). Give the reason on the line.
+salmon-guru -> top-10-bars-in-dubai-2025   # Madrid row matched on a passing "Madrid original"; the Dubai outpost row is the mention

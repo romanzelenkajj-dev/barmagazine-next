@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-09-15T03:50:20.395Z",
+ "generatedAt": "2026-09-15T03:54:40.454Z",
  "rule": "full bar name, whole-word, article text also names the bar's city; generic names held",
  "counts": {
   "bars": 372,
   "articles": 181,
-  "links": 1024,
+  "links": 1023,
   "confirmedPairs": 276,
   "articleSideSkippedAlreadyLinked": 87,
   "held": 24
@@ -3488,10 +3488,6 @@
     "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
    },
    {
-    "slug": "top-10-bars-in-dubai-2025",
-    "title": "Top 10 Bars in Dubai 2025"
-   },
-   {
     "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
     "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
    }
@@ -4892,11 +4888,6 @@
     "slug": "mimi-kakushi",
     "name": "Mimi Kakushi",
     "city": "Dubai"
-   },
-   {
-    "slug": "salmon-guru",
-    "name": "Salmon Guru",
-    "city": "Madrid"
    },
    {
     "slug": "salmon-guru-dubai",

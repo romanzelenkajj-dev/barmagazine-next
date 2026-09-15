@@ -29,6 +29,10 @@ const HELD = join(root, 'claude/article-mentions-held.md');
 // confirmed pair is linked whatever the name looks like; it is the answer to
 // the held list, and it survives every regeneration because it lives here.
 const CONFIRMED = join(root, 'claude/article-mentions-confirmed.txt');
+// Pairs the automatic rule gets wrong (same format). The classic case is a
+// multi-outpost brand: the Dubai top ten mentions "the Madrid original" in
+// passing, which satisfies name-plus-city for the Madrid row too.
+const EXCLUDED = join(root, 'claude/article-mentions-excluded.txt');
 const SITE = 'https://barmagazine.com';
 const WP_API = process.env.WP_API ?? 'https://public-api.wordpress.com/wp/v2/sites/romanzelenka-wjgek.wpcomstaging.com';
 
@@ -113,6 +117,14 @@ async function main() {
     }
   }
 
+  const excluded = new Map(); // bar -> Set(article)
+  if (existsSync(EXCLUDED)) {
+    for (const raw of readFileSync(EXCLUDED, 'utf8').split('\n')) {
+      const m = /^([a-z0-9-]+)\s*->\s*([a-z0-9-]+)$/.exec(raw.replace(/#.*$/, '').trim());
+      if (m) (excluded.get(m[1]) || excluded.set(m[1], new Set()).get(m[1])).add(m[2]);
+    }
+  }
+
   const byBar = {}; // bar slug -> [{slug,title}]
   const held = [];  // {bar, name, city, articles:[]}
   for (const b of allBars) {
@@ -122,7 +134,8 @@ async function main() {
     // Whole-word match on the full name; a name inside a longer name
     // ("Bar Leone" inside "Bar Leone Shanghai") is not a mention of this bar.
     const re = new RegExp(`(^|[^a-z0-9])${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-z0-9]|$)`);
-    const auto = isGeneric(b.name) ? [] : texts.filter(t => re.test(t.text) && (!city || t.text.includes(city)));
+    const excl = excluded.get(b.slug) || new Set();
+    const auto = isGeneric(b.name) ? [] : texts.filter(t => re.test(t.text) && (!city || t.text.includes(city)) && !excl.has(t.slug));
     const conf = confirmed.get(b.slug) || new Set();
     const chosen = new Map(auto.map(t => [t.slug, t]));
     for (const art of conf) chosen.set(art, bySlug[art]);

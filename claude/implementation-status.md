@@ -1082,3 +1082,34 @@ Running log of shipped work items and their merge commits. Newest first.
   1,267 (cache-busted read; the CDN copy refreshes within the hour).
 - The 103 held article-name matches were sent to Roman as
   claude/article-mentions-held.md for the hand check.
+
+## 2026-09-15 - Held article mentions confirmed: 276 pairs loaded, map rebuilt
+- Roman reviewed the 103 held names by reading each article: 274
+  confirmed pairs across 90 bars ("Claude outputs/confirmed-pairs.txt").
+  Loaded as claude/article-mentions-confirmed.txt, a tracked allowlist
+  the build script reads, so confirmed pairs survive regeneration. Two
+  pairs added on Roman's instruction: top-10-bars-in-los-angeles-2026 and
+  dante-in-beverly-hills belong to dante-beverly-hills (the row exists),
+  not to the New York dante row, which keeps only the 51-100 list piece.
+- SECOND-LINK GUARD: the article-side block now skips any profile the
+  article body already links, so no article carries two links to one bar;
+  the profile side keeps the mention. 87 pairs skipped on that rule. Of
+  the four Roman named, two were already linked in the body (atlas in the
+  Singapore top ten, kwant in Negroni Week) and are skipped; two were
+  NOT (gaba in the Dubai top ten links only its Instagram; gokan has no
+  profile link in the Signature Sessions piece), so the block gives them
+  their first link. Verified live on all four articles.
+- FALSE POSITIVE caught on the live check and fixed the same hour: the
+  Dubai top ten matched the MADRID salmon-guru row on a passing "Madrid
+  original", the multi-outpost trap again. New
+  claude/article-mentions-excluded.txt (same format, reason inline) is
+  read by the script; the automatic rule never links an excluded pair.
+- MAP NOW: 372 bars, 181 articles, 1,024 profile-side links, 24 names
+  still held (the unconfirmed remainder of the generic list).
+- MEASURED after deploy 0667b95, article pages re-crawled, on the same
+  1,247-row set as the structural pass: profiles linked from an article
+  450 -> 481; median inbound links 8 -> 8 (unchanged: the confirmed
+  pairs concentrate on bars that were already well linked, Paradiso,
+  Sips, Himkok, Line); article->profile links 1,388 in total; profiles
+  with at most one inbound link stay at 37. On the 40-profile sample the
+  median stays at 7.
