@@ -49,3 +49,19 @@ the-manor-bar               # only the Rosewood resort inbox
 # KEEPS recorded for the record (not parked): the-mountaineering-club (Graduate/
 # Hilton, venue-specific inbox) and no-goodbyes (LINE, venue-named inbox on the
 # hotel domain), the Wildhawk/PlumpJack precedent.
+#
+# 2026-09-15, US JBF wave 4 (Claude outputs/us-jbf-wave4-verified.md):
+john-browns-underground     # nothing published
+horn-cantle-saloon          # only the ranch-wide reservations inbox (Lone Mountain Ranch)
+post-office-place           # nothing published
+las-ramblas                 # Instagram DM only
+ayahuasca-cantina           # nothing published
+techo                       # nothing published
+bittersweet                 # nothing published
+wolf-tree                   # nothing published
+garagiste                   # wine club inbox only
+le-caveau                   # nothing published; operator tavern inbox only
+aldo-sohm-wine-bar          # form only
+# KEEPS recorded for the record (not parked): the-bar-at-willett (venue-specific
+# inbox on the distillery domain), watch-hill-proper (venue-named on the operator
+# domain), barr-hill-cocktail-bar (single-property distillery inbox).

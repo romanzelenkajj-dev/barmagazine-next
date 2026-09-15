@@ -1214,6 +1214,63 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - US JBF wave 4: 28 inserted (22 cocktail, 6 wine), 19 new city pages
+- Source: "Claude outputs/us-jbf-wave4-verified.md"; every row a James
+  Beard Outstanding Bar semifinalist or nominee 2023 to 2026. Every entry
+  re-checked against JBF's own page for its year and stage before insert:
+  semifinalists 2026 /stories/james-beard-award-semifinalists-2026, 2025
+  /blog/the-2025-james-beard-award-semifinalists, 2024
+  /blog/the-2024-james-beard-awards-semifinalists, 2023
+  /blog/the-2023-james-beard-awards-semifinalists; nominees 2026
+  /stories/james-beard-awards-restaurant-and-chef-nominees-2026, 2025
+  /stories/2025-james-beard-awards-restaurant-and-chef-nominees, 2024
+  /blog/the-2024-restaurant-and-chef-award-nominees, 2023
+  /stories/the-2023-james-beard-restaurant-and-chef-awards-nominees (JBF's
+  URL pattern changes every year; these are the ones that resolve). Stored
+  as jbf nominee 200, title "Outstanding Bar (Semifinalist)" or
+  "Outstanding Bar" for a finalist, the existing style. Bryant's also
+  carries totc 2026 winner, Timeless U.S. Award, 790 (the Timeless
+  International precedent), confirmed on TOTC's winners page. Diffed by
+  slug and folded name plus city: all 28 clear. Three JBF venues excluded
+  for cause per the file (Leyenda and Esters closed, Webb's City Cellar a
+  brewery tasting room).
+- SUBTYPES: Wine Bar on the six wine bars (type stays Cocktail Bar per
+  the file), Distillery Bar on the-bar-at-willett and
+  barr-hill-cocktail-bar (added to bar-type.ts and the admin options
+  earlier today).
+- CITY: jewel-box stored as "Portland, Maine". The one existing Portland
+  row (scotch-lodge) is Oregon and a shared "Portland" string would merge
+  the two cities (one city page, Maine in Scotch Lodge's nearby list).
+  Only precedent for a qualifier is "Washington DC". Page is
+  /bars/city/portland-maine; the address audit flags the row for the
+  city/address mismatch until Roman confirms or renames the qualifier.
+- GEOCODE: 28/28 on insert, but drastic-measures landed in Shawnee,
+  Oklahoma (35.49, -97.02); re-geocoded from the full street address
+  (Nominatim: 5817 Nieman Road, Shawnee, Johnson County, Kansas) to
+  39.0232, -94.7144 and updated. The other 27 sit at their cities.
+- NEIGHBORHOOD: stored on 15 rows the file gives as stated (Downtown for
+  john-browns-underground, bittersweet, wolf-tree, wild-child-wines; Lone
+  Mountain Ranch, Cannery District, Willett Distillery, Norton Commons,
+  Market Square, Starland District, Arts District (garagiste), Midtown,
+  Uptown, Davis Square). The file's 13 inferred went to admin_notes only;
+  barr-hill's "Winooski riverside" is a description, not a neighborhood,
+  noted and not stored.
+- ADMIN_NOTES on 25 rows: the file's flags, parking reasons, the three
+  KEEP reasons, the inferred neighborhoods, the Portland qualifier.
+- PARKED (outreach/parked.txt, 11): john-browns-underground,
+  horn-cantle-saloon, post-office-place, las-ramblas, ayahuasca-cantina,
+  techo, bittersweet, wolf-tree, garagiste, le-caveau, aldo-sohm-wine-bar.
+  17 addresses stored for the send scripts.
+- AFTER INSERT: all 28 serve 200 (le-caveau threw one 500 on first
+  render, 200 on every retry); sitemap-bars.xml 1,348 profiles = 1,348
+  active rows, all 28 present; address check 1 flag (jewel-box, above).
+  NEW CITY PAGES (19), all 200 and in the sitemap: shawnee, lawrence,
+  big-sky, bozeman, salt-lake-city, bardstown, prospect, brownsville,
+  st-louis, portland-maine, durham, raleigh, providence, baltimore,
+  white-river-junction, montpelier, charleston, somerville, lafayette.
+  Dallas, Austin, New York, Milwaukee, Savannah, Las Vegas and
+  Philadelphia gained rows.
+
 ## 2026-09-15 - One tile per org per year; prose one sentence per org; national-stage pass; neighborhood column
 - TILES (src/lib/accolades.ts tilesFor): each org and year pair renders at
   most once. Pretty Penny showed two "TOTC SPIRITED 2024" tiles for its two
