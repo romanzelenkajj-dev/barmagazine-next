@@ -1178,3 +1178,39 @@ Running log of shipped work items and their merge commits. Newest first.
   the sample and 86% in the burst, so roughly half the function and ISR
   spend, i.e. a few dollars a cycle. Not material in money; material in
   load, since each burst is thousands of ISR regenerations at once.
+- SELF-INFLICTED: the 330-request self-test of the rule, run from the Mac
+  against production, tripped Vercel's automatic DDoS mitigation on the
+  Mac's own IP (68.72.208.8): a System Rule challenge, "Ongoing", visible
+  under Firewall > Persistent Actions, with no entry in the IP Blocking
+  list and Attack Challenge Mode off. Every non-browser fetch from the
+  Mac was a 403 (x-vercel-mitigated: challenge) for about ten minutes;
+  browsers were unaffected. The persistent action offers no removal in
+  the dashboard; it expired on its own and a plain fetch returned 200 at
+  05:31 UTC. Rule recorded in data-checks.md: production is never
+  load-tested from the Mac. The 240 x 200 then 403s the burst saw were
+  the mitigation, NOT the rate limit, so the burst proved nothing about
+  the rule.
+- SAFE VERIFICATION after clearing: 20 requests inside one second under
+  the meta-externalagent UA all returned 200, an ordinary-UA control 200,
+  plain curl 200. At a 300-per-60-second ceiling a 20-request test
+  cannot produce a 429, so this proves the rule is scoped and harmless
+  at normal volume, not that the 429 fires; that proof needs a preview
+  deployment, not production. Deploy suite green from the Mac
+  (sitemap-bars-count 1267 = 1267), so tomorrow's runs from this IP are
+  clear.
+- SINGAPORE, last hour (04:05 to 05:05 UTC, six 10-minute windows each
+  capped at its newest 20,000 rows): 33,600 requests served from the
+  Singapore edge, 31,200 browser-like, of which 28,800 carry ONE user
+  agent (Mac Chrome/145, frozen) across 34 paths hit ~2,000 times each
+  (city pages, the top tens, /privacy, /bars, /terms, /search) with
+  spoofed internal referrers, bursting 19,600 in the 04:34 minute. That
+  is a crawl from a rotating pool with a headless browser that executes
+  GA, not a shared link: the same signature as the Tencent AS132203 rule,
+  on an ASN the request log does not expose. No single shared page.
+- OUTREACH: batch13 (three lanes, 28 emails) and batch14 (3 emails) dry
+  runs written to claude/batch13-dryrun.md and batch14-dryrun.md for
+  Roman's eyeball, NOTHING ARMED. Both send scripts gained a claimed-bar
+  guard (owner_id on file = CLAIMED, not sent). The Fox and Four Walls
+  parked. The "outreach status doc" with a PR-agency track and Hanna Lee
+  is not in the repo; Agencia 22 and the Florería Atlántico D.C.
+  agency-routing note wait for its location.
