@@ -576,26 +576,17 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           </div>
         )}
 
-        {nearby.length > 0 && (
-          <div className="bar-v2-nearby">
-            <h2>Nearby in {bar.city}</h2>
-            <ol className="bar-v2-near-list">
-              {nearby.map(nb => (
-                <li key={nb.slug} className="bar-v2-near">
-                  <div className="bar-v2-near-head">
-                    <Link href={safeHref('/bars', nb.slug)} className="bar-v2-near-name">{nb.name}</Link>
-                    <span className="bar-v2-near-meta">
-                      {nb.street && <span>{nb.street}</span>}
-                      <span className="bar-v2-near-distance">{nb.distance}</span>
-                    </span>
-                  </div>
-                  {nb.line && <p className="bar-v2-near-line">{nb.line}</p>}
-                </li>
-              ))}
-            </ol>
+        {/* Location Map: above the nearby list on every viewport (Roman,
+            2026-09-15: the map is more relevant to the bar than the list, and
+            on a phone it took too long to reach). Nothing else moved. */}
+        {bar.lat && bar.lng && (
+          <div className="bar-v2-location">
+            <h2>Location</h2>
+            <div className="bar-v2-location-map">
+              <BarProfileClient lat={bar.lat} lng={bar.lng} name={bar.name} />
+            </div>
           </div>
         )}
-
         {/* Article mentions as a card (Roman, 2026-09-15): thumbnail, title,
             publish date per row, the whole row clickable. The anchor wraps
             the thumbnail (alt "") and the title ONLY, so its href and anchor
@@ -645,15 +636,26 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           </div>
         )}
 
-        {/* Location Map — bottom of page */}
-        {bar.lat && bar.lng && (
-          <div className="bar-v2-location">
-            <h2>Location</h2>
-            <div className="bar-v2-location-map">
-              <BarProfileClient lat={bar.lat} lng={bar.lng} name={bar.name} />
-            </div>
+        {nearby.length > 0 && (
+          <div className="bar-v2-nearby">
+            <h2>Nearby in {bar.city}</h2>
+            <ol className="bar-v2-near-list">
+              {nearby.map(nb => (
+                <li key={nb.slug} className="bar-v2-near">
+                  <div className="bar-v2-near-head">
+                    <Link href={safeHref('/bars', nb.slug)} className="bar-v2-near-name">{nb.name}</Link>
+                    <span className="bar-v2-near-meta">
+                      {nb.street && <span>{nb.street}</span>}
+                      <span className="bar-v2-near-distance">{nb.distance}</span>
+                    </span>
+                  </div>
+                  {nb.line && <p className="bar-v2-near-line">{nb.line}</p>}
+                </li>
+              ))}
+            </ol>
           </div>
         )}
+
         {/* Mobile-only Top 10 box — shown below map on mobile, hidden on desktop (sidebar shows it) */}
         <div className="bar-v2-mobile-top10">
           <Top10FooterBlock />
