@@ -1214,6 +1214,14 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 18: /bars hero content on the page column's edge (fa6cc2a)
+- .directory-hero side padding 48 -> 24 (desktop: headline, subtitle and
+  stat tiles at x=48, the search pill's content edge; were 72) and
+  20 -> 26 at 768 and below (full-bleed hero: the search pill's outer
+  edge, 10px gutter + 16px filters padding; were 20). Vertical padding,
+  hero height (357 / 381), image, overlay, type sizes and the tiles'
+  layout unchanged; the h1 wraps the same (63 / 47 tall).
+
 ## 2026-09-15 - Queue task 17: Top 10 city cards, 16:10 photo and the "Order this" block (b4119ab)
 - Below 720px the card photo is aspect-ratio 16:10 (368x230 at 390) instead
   of a 190px strip; above 720px it stays the 280px column that fills the
