@@ -962,3 +962,34 @@ Running log of shipped work items and their merge commits. Newest first.
   lives in the description. This is deliberate"), and 5d1ace0 on 08-26
   wrote the invariant into TileView. It was a design decision taken with
   the tile shape, not a licensing one.
+
+## 2026-09-14 - Row cap fixed in three places; 28 profile 301s; rank on hover
+- THE 1,000-ROW CAP was in three consumers, not one. sitemap-bars.xml
+  (getBars perPage 2000), the /bars-map page (perPage 1000) and the
+  redirect generator (REST limit=10000) each issued a single request and
+  got Supabase's silent 1,000-row maximum. New getAllActiveBars() in
+  supabase.ts pages by 1,000; the generator pages by offset. Live after
+  e469350: sitemap 1,247 profiles = 1,247 active rows, all ten San Diego
+  TOP 10 present; the generator now sees 1,247 bars and emits 1,235 root
+  redirects (was 989), identical across two consecutive runs with
+  assertNotCollapsed() holding.
+- DEPLOY CHECK: seo-check live mode gained sitemap-bars-count, which
+  compares the sitemap's profile <loc> count with a HEAD count=exact
+  against Supabase over the anon key. Missing env is a FAIL, not a skip.
+  Passes: "1247 profiles = 1247 active rows".
+- 28 REDIRECTS in next.config.mjs from the Search Console 404 report: 15
+  deactivated rows to their city page (dangerous-water to
+  /bars/country/spain, Palma has no city page); 13 slug variants to the
+  live profile. Four of the 17 variants already had rules from earlier
+  today (licorería-limantour, tlecān, tayēr-elementary, the-dead-rabbit).
+  Next emits 308 for permanent rules, as for every existing one. The
+  eight with no target stay 404. bar-redirect-chains: 74/74 land on 200.
+- RANK ON HOVER for all nine orgs: title and aria-label now carry "No. N"
+  between year and category. Verified live: "World's 50 Best Bars 2025 —
+  No. 2 — <source>" on handshake-speakeasy. Face unchanged. Invariant
+  rewritten in TileView and the spec so the hover part is not reversed.
+- STRUCTURAL PASS ESTIMATES (report only, nothing built): see the session
+  report of this date; headline numbers are nearby block ~96 words and
+  5,885 links, accolade sentences ~11 words on 322 rows, article links
+  2,719 new links to 430 profiles from name mentions (72 generic names to
+  hand-check).
