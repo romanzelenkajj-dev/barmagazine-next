@@ -10443,10 +10443,92 @@ a.bar-v2-badge--subtype:hover {
   line-height: 1.5;
   color: var(--text-primary);
 }
-.bar-v2-mentions { margin-top: 2.5rem; }
-.bar-v2-mentions h2 { font-size: 1.15rem; margin: 0 0 12px; }
-.bar-v2-mentions-list { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
-.bar-v2-mentions-list a { color: var(--text-primary); }
+/* "<Bar> in BarMagazine": the article-mentions card (Roman, 2026-09-15).
+   Same white rounded card as .bar-v2-info; one row per article with a
+   small rounded thumbnail on the left, the title, and the publish date in
+   the muted meta style. The row is clickable through the anchor's
+   stretched ::after so the anchor itself keeps title-only text. */
+.bar-v2-mentions {
+  margin-top: var(--gap);
+  padding: 2rem 2.5rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.bar-v2-mentions h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: #1a1a1a;
+}
+.bar-v2-mentions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+.bar-v2-mention {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.bar-v2-mention:first-child { border-top: 0; padding-top: 0; }
+.bar-v2-mention:last-child { padding-bottom: 0; }
+.bar-v2-mention-link {
+  display: contents;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.bar-v2-mention-thumb {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 96px;
+  height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1a1a;
+  display: block;
+}
+.bar-v2-mention-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.bar-v2-mention-title {
+  grid-column: 2;
+  grid-row: 1;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+/* The whole row is the link: the title's ::after covers the row. */
+.bar-v2-mention-title::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.bar-v2-mention:hover .bar-v2-mention-title { text-decoration: underline; }
+.bar-v2-mention-date {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 13px;
+  color: var(--text-secondary, #5d5850);
+  margin-top: 2px;
+}
+@media (max-width: 768px) {
+  .bar-v2-mentions { padding: 1.5rem 1.25rem; }
+  .bar-v2-mention { grid-template-columns: 72px 1fr; column-gap: 12px; }
+  .bar-v2-mention-thumb { width: 72px; height: 48px; }
+  .bar-v2-mention-title { font-size: 14px; }
+}
 .article-bars {
   margin: 32px 0 0;
   padding: 18px 20px;

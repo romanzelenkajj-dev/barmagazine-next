@@ -101,7 +101,7 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   // by scripts/build-article-mentions.mjs; generic names are held, never
   // linked). The feature article, when there is one, already has its own
   // button and is not repeated here.
-  const mentionedIn = ((articleMentions as { byBar: Record<string, { slug: string; title: string }[]> }).byBar[bar.slug] || [])
+  const mentionedIn = ((articleMentions as { byBar: Record<string, { slug: string; title: string; date?: string | null; image?: string | null }[]> }).byBar[bar.slug] || [])
     .filter(a => a.slug !== bar.wp_article_slug);
 
   // SEO cross-links: the city guide and the type-by-city guide, where those
@@ -566,16 +566,36 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           </div>
         )}
 
+        {/* Article mentions as a card (Roman, 2026-09-15): thumbnail, title,
+            publish date per row, the whole row clickable. The anchor wraps
+            the thumbnail (alt "") and the title ONLY, so its href and anchor
+            text are exactly what they were; the date sits outside the
+            anchor and the row is made clickable by the anchor's stretched
+            ::after, not by widening the link. Server-rendered, and nothing
+            renders for a bar with no confirmed mention. */}
         {mentionedIn.length > 0 && (
-          <div className="bar-v2-mentions">
+          <div className="bar-v2-mentions" id="mentions">
             <h2>{bar.name} in BarMagazine</h2>
-            <ul className="bar-v2-mentions-list">
+            <ol className="bar-v2-mentions-list">
               {mentionedIn.map(a => (
-                <li key={a.slug}>
-                  <Link href={`/${a.slug}`}>{a.title}</Link>
+                <li key={a.slug} className="bar-v2-mention">
+                  <Link href={`/${a.slug}`} className="bar-v2-mention-link">
+                    <span className="bar-v2-mention-thumb">
+                      {a.image ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={a.image} alt="" loading="lazy" width="96" height="64" />
+                      ) : null}
+                    </span>
+                    <span className="bar-v2-mention-title">{a.title}</span>
+                  </Link>
+                  {a.date && (
+                    <span className="bar-v2-mention-date">
+                      {new Date(`${a.date}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </span>
+                  )}
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
         )}
 

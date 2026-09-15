@@ -75,7 +75,9 @@ async function bars() {
 async function posts() {
   const out = [];
   for (let page = 1; ; page++) {
-    const res = await fetch(`${WP_API}/posts?per_page=100&page=${page}&_fields=slug,title,content,excerpt&status=publish`);
+    // date and jetpack_featured_media_url feed the profile's mentions card
+    // (thumbnail and publish date); they change nothing about matching.
+    const res = await fetch(`${WP_API}/posts?per_page=100&page=${page}&_fields=slug,title,content,excerpt,date,jetpack_featured_media_url&status=publish`);
     if (res.status === 400) break; // past the last page
     if (!res.ok) throw new Error(`posts ${res.status}`);
     const data = await res.json();
@@ -93,6 +95,8 @@ async function main() {
     // WP titles carry |pipes| as bold markers for the card renderer; plain
     // text here.
     title: strip(p.title.rendered).replace(/\|/g, '').replace(/\s+/g, ' ').trim(),
+    date: typeof p.date === 'string' ? p.date.slice(0, 10) : null,
+    image: typeof p.jetpack_featured_media_url === 'string' && p.jetpack_featured_media_url ? p.jetpack_featured_media_url : null,
     text: ' ' + fold(strip(`${p.title.rendered} ${p.content.rendered}`)) + ' ',
     // Profiles the article body ALREADY links. The article-side block must
     // not add a second link to the same profile.
@@ -206,7 +210,7 @@ async function main() {
     const chosen = new Map(auto.map(t => [t.slug, t]));
     for (const art of conf) chosen.set(art, bySlug[art]);
     if (chosen.size > 0) {
-      byBar[b.slug] = [...chosen.values()].map(h => ({ slug: h.slug, title: h.title })).sort((x, y) => x.title.localeCompare(y.title));
+      byBar[b.slug] = [...chosen.values()].map(h => ({ slug: h.slug, title: h.title, date: h.date ?? null, image: h.image ?? null })).sort((x, y) => x.title.localeCompare(y.title));
     }
     if (isGeneric(b.name)) {
       // Still held: generic-name matches that nobody has confirmed yet.
