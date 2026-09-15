@@ -38,30 +38,76 @@ const US = new Set('AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME 
 const CA = new Set('AB BC MB NB NL NS NT NU ON PE QC SK YT'.split(' '));
 const US_NAMES = { Alabama: 'AL', Alaska: 'AK', Arizona: 'AZ', Arkansas: 'AR', California: 'CA', Colorado: 'CO', Connecticut: 'CT', Delaware: 'DE', 'District of Columbia': 'DC', Florida: 'FL', Georgia: 'GA', Hawaii: 'HI', Idaho: 'ID', Illinois: 'IL', Indiana: 'IN', Iowa: 'IA', Kansas: 'KS', Kentucky: 'KY', Louisiana: 'LA', Maine: 'ME', Maryland: 'MD', Massachusetts: 'MA', Michigan: 'MI', Minnesota: 'MN', Mississippi: 'MS', Missouri: 'MO', Montana: 'MT', Nebraska: 'NE', Nevada: 'NV', 'New Hampshire': 'NH', 'New Jersey': 'NJ', 'New Mexico': 'NM', 'New York': 'NY', 'North Carolina': 'NC', 'North Dakota': 'ND', Ohio: 'OH', Oklahoma: 'OK', Oregon: 'OR', Pennsylvania: 'PA', 'Rhode Island': 'RI', 'South Carolina': 'SC', 'South Dakota': 'SD', Tennessee: 'TN', Texas: 'TX', Utah: 'UT', Vermont: 'VT', Virginia: 'VA', Washington: 'WA', 'West Virginia': 'WV', Wisconsin: 'WI', Wyoming: 'WY' };
 
-/** Same rule as subdivisionCode: anchored to the postcode. */
+const CA_NAMES = { Alberta: 'AB', 'British Columbia': 'BC', Manitoba: 'MB', 'New Brunswick': 'NB', 'Newfoundland and Labrador': 'NL', 'Nova Scotia': 'NS', 'Northwest Territories': 'NT', Nunavut: 'NU', Ontario: 'ON', 'Prince Edward Island': 'PE', Quebec: 'QC', Québec: 'QC', Saskatchewan: 'SK', Yukon: 'YT' };
+/** A Canadian postal code's first letter names the province. */
+const CA_POSTAL_LETTER = { A: 'NL', B: 'NS', C: 'PE', E: 'NB', G: 'QC', H: 'QC', J: 'QC', K: 'ON', L: 'ON', M: 'ON', N: 'ON', P: 'ON', R: 'MB', S: 'SK', T: 'AB', V: 'BC', X: 'NT', Y: 'YT' };
+
+/**
+ * The derivation, in order of confidence:
+ *   1. the code before a postcode ("KS 66203", "ON M5V 2T6"), the same
+ *      anchored rule as subdivisionCode in src/lib/city-location.ts;
+ *   2. a code that ends the address (", CA", ", BC", optionally followed by
+ *      the country): anchored to a comma before and the end after, so a
+ *      compass direction in a street line ("Krog Street NE") cannot match;
+ *   3. a spelled-out state or province ("Toronto, Ontario", "Quebec H4C");
+ *   4. Canada only: the postal code's first letter;
+ *   5. a qualifier in the city string ("Portland, Maine").
+ */
 function derive(address, city, country) {
+  const a = (address || '').trim();
+  const codes = country === 'Canada' ? CA : US;
+  const names = country === 'Canada' ? CA_NAMES : US_NAMES;
   if (country === 'Canada') {
-    const m = /\b([A-Z]{2})[,\s]+[A-Z]\d[A-Z]\s?\d[A-Z]\d\b/.exec(address || '');
+    const m = /\b([A-Z]{2})[,\s]+[A-Z]\d[A-Z]\s?\d[A-Z]\d\b/.exec(a);
     if (m && CA.has(m[1])) return m[1];
   } else {
-    const m = /\b([A-Z]{2})[,\s]+\d{5}(?:-\d{4})?\b/.exec(address || '');
+    const m = /\b([A-Z]{2})[,\s]+\d{5}(?:-\d{4})?\b/.exec(a);
     if (m && US.has(m[1])) return m[1];
-    if (/\bWashington,?\s+DC\b/i.test(address || '') || /^Washington DC$/i.test(city || '')) return 'DC';
+    if (/\bWashington,?\s+DC\b/i.test(a) || /^Washington DC$/i.test(city || '')) return 'DC';
+  }
+  const t = /,\s*([A-Z]{2})\s*(?:\(closed\))?\s*(?:,\s*(?:USA|United States|Canada))?\s*$/.exec(a);
+  if (t && codes.has(t[1])) return t[1];
+  for (const [name, code] of Object.entries(names)) {
+    if (new RegExp(`\\b${name}\\b`).exec(a)) return code;
+  }
+  if (country === 'Canada') {
+    const p = /\b([A-Z])\d[A-Z]\s?\d[A-Z]\d\b/.exec(a);
+    if (p && CA_POSTAL_LETTER[p[1]]) return CA_POSTAL_LETTER[p[1]];
   }
   const q = (city || '').split(',').slice(1).join(',').trim();
   if (q) {
-    if (US.has(q.toUpperCase())) return q.toUpperCase();
-    if (US_NAMES[q]) return US_NAMES[q];
+    if (codes.has(q.toUpperCase())) return q.toUpperCase();
+    if (names[q]) return names[q];
   }
   return null;
 }
 
 /**
- * Hand fixes for rows whose address carries no state line, from the venue's
- * own address (the city alone settles every one of these; none is a
- * namesake). Slug -> state.
+ * Hand fixes (2026-09-15) for rows whose address carries no state at all: a
+ * bare street line, a zip with no state, or no address (inactive rows).
+ * The city settles every one of these; none is a namesake in the table.
+ * Slug -> state.
  */
-const HAND = {};
+const HAND = {
+  // New Orleans, LA
+  bacchanal: 'LA', 'erin-rose': 'LA', manolito: 'LA', 'bar-marilou': 'LA', 'cane-and-table': 'LA',
+  // San Diego, CA
+  'georges-at-the-cove-level2': 'CA', 'shibuya-nights-at-cloak-petal': 'CA',
+  // San Francisco, CA
+  'bar-agricole': 'CA',
+  // New York, NY
+  'bar-contra': 'NY', speaklow: 'NY',
+  // Seattle, WA
+  'inside-passage': 'WA',
+  // Detroit, MI
+  'father-forgive-me': 'MI',
+  // Austin, TX
+  underdog: 'TX',
+  // Rogers, AR and Albuquerque, NM (inactive)
+  'onyx-coffee-lab': 'AR', 'bow-arrow-brewing-co': 'NM',
+  // Toronto, ON; Victoria, BC; Montreal, QC
+  'no-vacancy': 'ON', 'citrus-cane': 'BC', cloakroom: 'QC',
+};
 
 async function all() {
   const rows = [];
