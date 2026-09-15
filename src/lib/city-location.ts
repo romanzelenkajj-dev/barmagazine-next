@@ -95,6 +95,9 @@ export function cityLabel(
   country: string | null | undefined,
   subdivision: string | null
 ): string {
+  // A city-state prints once: "Singapore", "Hong Kong", "Macau", never
+  // "Singapore, Singapore".
+  if (country && city.trim().toLowerCase() === country.trim().toLowerCase()) return city;
   if (usesSubdivision(country)) {
     if (!subdivision) return city;
     // "Washington DC, District of Columbia" is nobody's idea of a place
