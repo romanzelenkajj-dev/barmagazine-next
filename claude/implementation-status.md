@@ -1285,6 +1285,23 @@ Running log of shipped work items and their merge commits. Newest first.
   The Snug: "East Sacramento", "Oak Park"); PUBLIC_EDITORIAL_COLUMNS in
   private-columns.ts records it as public by decision with a test;
   normalize.ts trims it. Reads use select('*') so no select changed.
+- FOLLOW-UP (Roman, same day): TOTC 2026 entries added to seven of the
+  rows above at the stage the Top 10 page gives, sourced to it:
+  daisy-margarita-bar and semiprecious-denver (Best New U.S. Cocktail
+  Bar), thunderbolt and martinys (Best U.S. Cocktail Bar), amazonia-dc and
+  bar-madonna (Best U.S. Restaurant Bar), nickel-city (Best U.S. Bar
+  Team). dear-irving SKIPPED: the row is the Gramercy original (55 Irving
+  Pl); TOTC's honoree is Dear Irving on Hudson at the Aliz Hotel, a
+  separate venue with no row. donna left alone (not TOTC's Donna's,
+  Houston). GAP LIST, no row: Daisies (Chicago), Hungry Eyes (New
+  Orleans), Dear Irving on Hudson (New York), Donna's (Houston).
+  Wave 2 neighborhoods: fourteen promoted to the column on Roman's word
+  (bar-kabawa, birds, crown-shy, gage-tollner, lighthouse-bk, nubeluz,
+  raines-law-room-william, capri-club, damn-i-miss-paris, lucia,
+  bar-maritime, cavana, starlite-sf, viridian), the pending note removed
+  from their admin_notes; the other eight (dolores, millys,
+  lobby-bar-hotel-chelsea, real-charmer, not-no-bar, kato, baby-gee,
+  tallboy) re-noted as inferred, not backfilled. 32 rows carry the column.
 - SUBTYPE: "Distillery Bar" added to TYPE_PRIORITY (bar-type.ts, leads
   like Whiskey Bar) and the admin TYPE_OPTIONS, for The Bar at Willett and
   Barr Hill in wave 4. Wave 4 itself NOT run: "Claude outputs/
