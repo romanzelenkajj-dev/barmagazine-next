@@ -256,6 +256,46 @@ describe('accolades', () => {
     });
   });
 
+  describe('Shaker Awards', () => {
+    const src = 'https://shakerawards.com/top-30/top2025/';
+
+    it('renders a Top 30 placing as a national tile with the accented region line', () => {
+      const [t] = tilesFor([
+        { org: 'Shaker Awards', org_key: 'shaker', kind: 'ranked', rank: 4, year: 2025, score: 576, title: 'Top 30 Bares de México', source: src },
+      ]);
+      expect(t.region).toBe('MÉXICO');
+      expect(t.main).toBe('SHAKER');
+      expect(t.year).toBe('2025');
+      expect(t.tier).toBe('navy');
+    });
+
+    it('keeps the bold line constant for an unranked Top 100 listing', () => {
+      // From 2026 Shaker also issues an unranked Top 100; the tile must not
+      // claim "TOP 30" for it, which is why the main line is the body's name.
+      const [t] = tilesFor([
+        { org: 'Shaker Awards', org_key: 'shaker', kind: 'listed', rank: null, year: 2026, score: 520, title: 'Top 100 Bares de México', source: 'https://shakerawards.com/bartolome/' },
+      ]);
+      expect(t.main).toBe('SHAKER');
+      expect(t.tier).toBe('navy');
+    });
+
+    it('does not draw the rank', () => {
+      const [t] = tilesFor([
+        { org: 'Shaker Awards', org_key: 'shaker', kind: 'ranked', rank: 1, year: 2025, score: 585, title: null, source: src },
+      ]);
+      expect(t.main).not.toMatch(/1|No\./);
+      expect(t.region).not.toMatch(/1|No\./);
+    });
+
+    it('ignores the audit-only basis field', () => {
+      const [t] = tilesFor([
+        { org: 'Shaker Awards', org_key: 'shaker', kind: 'ranked', rank: 1, year: 2023, score: 561, title: null, source: 'https://shakerawards.com/top-30/top2023/', basis: 'name carried across Shaker 2024/2025 entries' },
+      ]);
+      expect(t.year).toBe('2023');
+      expect(JSON.stringify(t)).not.toContain('carried');
+    });
+  });
+
   describe('editorial lists are not accolades', () => {
     it('drops magazine picks, which have no org key by design', () => {
       // Food & Wine, Eater, Esquire and their kind never get a tile: the

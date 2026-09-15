@@ -815,3 +815,88 @@ Running log of shipped work items and their merge commits. Newest first.
 - tsc reports three pre-existing TS2722 errors in
   src/lib/redirect-chain.test.ts (untouched by this change; the production
   build does not type-check test files). Noted, not fixed here.
+
+## 2026-09-14 - Shaker Awards tile built and backfilled; Cobbler & Crew unheld
+- TILE: org_key `shaker`, org "Shaker Awards" exactly as the body writes
+  it. Region line MÉXICO with the accent the body uses. Main line SHAKER,
+  the body's own name, NOT "TOP 30": the bold line must stay constant
+  within a family and from 2026 Shaker also issues an unranked Top 100, so
+  a list name on the tile would be a false claim for those entries.
+  "SHAKER AWARDS" is 13 characters against JAMES BEARD's 11, already the
+  widest line that fits 74px. Navy, the same national tier as 30bbi: one
+  colour per national body would not scale past three countries, the
+  region line does the differentiating, and a bar never carries both
+  national tiles so the two are never side by side on one row. Top 30
+  placings are `ranked` with rank on the entry; Top 100 listings are
+  `listed`. Four unit tests added (45 pass).
+- NOT CHANGED, flagged for Roman: no org exposes rank on hover. The tile
+  title attribute is org, year, `title` and source; ranked entries in every
+  org (50 Best included) carry `title` null, so rank never appears in the
+  hover text, matching TileView's "rank stays entirely unexposed"
+  invariant. Shaker follows the same convention. If rank on hover is
+  wanted, it is a one-line change in AccoladeBadges.tsx for every org at
+  once, not a per-org exception.
+- SCORING: same national calibration as the 30bbi backfill (recovered from
+  the session transcript, since the changelog had not recorded it):
+  ranked = 600 - 3 x rank - 12 x (2026 - year); listed = 520 - 12 x
+  (2026 - year). Handshake #1/2024 scores 573, below its na50b #12/2026
+  (856) and w50b #2/2025 (1124), so the national tile never displaces a
+  50 Best tile on the same row.
+- CITATION: source is the year's own list page
+  (shakerawards.com/top-30/topYYYY/). New audit-only `basis` field on the
+  Accolade type, never rendered: every 2023 entry says the 2023 page
+  carries no links and identity is Shaker's own 2024/2025 handle for the
+  same entry name, carried across Shaker's own pages.
+- BACKFILLED 49 entries on 20 rows via the admin API (revalidates), merged
+  into existing accolades and re-sorted by score. The 13 identity-matched
+  rows (27 entries): handshake-speakeasy 1/1/3, licoreria-limantour
+  2/15/9, hanky-panky 3/8/22, bijou-drinkery-room 5/5/4, kaito-del-valle
+  8/7/5, tlecan 20/2/2, selva-oaxaca-cocktail-bar 22/9/16, sabina-sabe
+  7/24, rayo 13/28, bar-mauro 1 (2025), form-matter 10, cafe-arixi 24,
+  mecenas 25 (ranks for 2023/2024/2025).
+- THE NINE NAME-ONLY ROWS, each pair opened on Instagram (public profiles;
+  Roman's Chrome is not signed in to Instagram, which mattered once):
+  * CONFIRMED and backfilled, 7 rows, 22 entries. Handle corrected by id
+    where ours was dead or missing, to the one the venue actually uses:
+    aruba-day-drink -> @arubadaydrinkbar (bio: No.51 NA50B 2026 = our
+    row); baltra-bar @baltra.bar dead -> @baltrabar (bio: No.78 W50B
+    2025 = our row); bekeb -> @bekeb_sma (bio: No.24 NA50B '26 at
+    @liveaquasanmiguel; Shaker's own venue page gives Calzada de la Presa
+    85 = our address); cafe-de-nadie @cafedenadie_cdmx dead ->
+    @cafe.denadie (bio: chihuahua 135, cdmx = our address);
+    el-gallo-altanero -> @elgalloaltanero (bio names the venue);
+    zapote-bar-playa-del-carmen -> @zapotebar (bio: No.95 NA50B, bar at
+    @rwmayakoba; our own Rosewood website field links the same handle).
+    arca keeps @arcatulum (bio: No.77 W50B 2025 = our row; Shaker's own
+    venue page: Carretera Tulum-Boca Paila km 7.6 = our address).
+  * HANDLE FIXED, NO ACCOLADE: brujas. Our @brujasroma is dead; the
+    venue's own site lasbrujas.mx links @brujasmex, whose bio (No.45
+    NA50B '24, No.64 W50B '22) confirms it is the Roma Norte bar, so the
+    handle is corrected. But Shaker's Brujas entry links @brujasmx, a
+    94-follower stub, so the chain from Shaker's entry to this venue
+    could not be closed on the venue's own profile. Not counted.
+  * LEFT ALONE: casa-prunes. Our @casaprunesbar is dead; Shaker's
+    @casaprunes is age-restricted and needs a signed-in session to read.
+    Nothing confirmable without logging in. Roman can close it in one
+    look: if @casaprunes's bio gives Chihuahua 78, Roma Norte, the handle
+    and three placings (16/2023, 10/2024, 30/2025) follow.
+- THIRD SHAKER DATA DEFECT, logged in data-checks.md beside Kanché and
+  the Bronson/BEKEB swap: on all three years' pages the ARCA entry links
+  @arca_bar, a beach bar in Vama Veche, Romania. Handle identity from an
+  awards page gets the same scepticism as its city field; a handle counts
+  only once its own profile agrees with the entry.
+- COBBLER & CREW: Roman read 30bestbarsindia.in/bar/cobbler-crew/ in his
+  browser: 2022 listed unranked, 2 in 2023, 7 in 2024, 19 in 2025, which
+  is exactly the first-pass read. The `unverified` flag is cleared on all
+  eight entries via the admin API. The other eleven 30bbi entries
+  (elephant-and-co 6, soy-como-soy, malaka-spice, paasha) stay held until
+  Roman reads one more page; if Elephant & Co matches, all eleven are
+  restored on the same one-line basis.
+- HOUSEKEEPING: the TS2722 errors in redirect-chain.test.ts and
+  headers-config.test.ts fixed with a loadRedirects()/loadHeaders() helper
+  that throws if next.config.mjs ever loses the function, rather than a
+  non-null assertion that would let an empty list pass. scripts/
+  geocode-report.json and geocode-updates.sql are run records that someone
+  applies by hand (the SQL) and reads (the report); the modified pair is
+  the 2026-08-27 run (105 targets, 13 resolved, 92 skipped), committed as
+  such rather than left in the tree.

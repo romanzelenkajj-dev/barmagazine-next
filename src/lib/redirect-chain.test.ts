@@ -25,9 +25,16 @@ import nextConfig from '../../next.config.mjs';
 
 type Redirect = { source: string; destination: string; permanent?: boolean };
 
+// NextConfig types redirects() as optional. Ours is not, and a config that
+// lost it should fail these tests loudly rather than pass on an empty list.
+async function loadRedirects(): Promise<Redirect[]> {
+  if (!nextConfig.redirects) throw new Error('next.config.mjs has no redirects()');
+  return (await nextConfig.redirects()) as Redirect[];
+}
+
 describe('next.config.mjs redirects()', () => {
   it('no static redirect destination is itself another redirect source (no chains)', async () => {
-    const redirects: Redirect[] = await nextConfig.redirects();
+    const redirects = await loadRedirects();
     expect(redirects.length).toBeGreaterThan(0);
 
     // Treat the rule list as the source-of-truth set.
@@ -53,7 +60,7 @@ describe('next.config.mjs redirects()', () => {
   });
 
   it('the /events/X de-chained rules each point at their final destination', async () => {
-    const redirects: Redirect[] = await nextConfig.redirects();
+    const redirects = await loadRedirects();
     // Athens Bar Show goes to its own article (GSC audit); the rest have no
     // dedicated coverage and land on the events category.
     const targets: Record<string, string> = {
@@ -79,7 +86,7 @@ describe('next.config.mjs redirects()', () => {
     // Fix: remove the catch-all entirely. Explicit rules now match
     // unambiguously; unlisted /events/X URLs return 404 (correct signal
     // for crawlers to drop them, preferable to a chained 308).
-    const redirects: Redirect[] = await nextConfig.redirects();
+    const redirects = await loadRedirects();
     const catchAll = redirects.find((r) => r.source === '/events/:slug');
     expect(catchAll, 'catch-all /events/:slug must not exist').toBeUndefined();
   });
@@ -89,7 +96,7 @@ describe('next.config.mjs redirects()', () => {
     // only while the slug held stale pricing content. It is now the free
     // search-and-claim flow, and claiming must never route to pricing, so a
     // redirect reappearing here is a regression rather than the intent.
-    const redirects: Redirect[] = await nextConfig.redirects();
+    const redirects = await loadRedirects();
     const bare = redirects.find((r) => r.source === '/claim-your-bar');
     const trailing = redirects.find((r) => r.source === '/claim-your-bar/');
     expect(bare, '/claim-your-bar must not redirect — it is a real page').toBeUndefined();
@@ -103,7 +110,7 @@ describe('next.config.mjs redirects()', () => {
     // /claim-your-bar → /feature-your-bar — a 2-hop chain. The generic
     // chain-detection test above catches this too, but pinning the destination
     // here makes the failure message read in plain English.
-    const redirects: Redirect[] = await nextConfig.redirects();
+    const redirects = await loadRedirects();
     const rule = redirects.find((r) => r.source === '/list-your-bar');
     expect(rule, '/list-your-bar rule missing').toBeDefined();
     expect(rule!.destination).toBe('/feature-your-bar');
@@ -114,7 +121,7 @@ describe('next.config.mjs redirects()', () => {
     // Barcelona"). The previous /category/places destination 404'd because
     // 'places' isn't one of the seven live categories. /the-bars-of-barcelona
     // is a slug-variant inbound link; it should resolve to the real article.
-    const redirects: Redirect[] = await nextConfig.redirects();
+    const redirects = await loadRedirects();
     const rule = redirects.find((r) => r.source === '/the-bars-of-barcelona');
     expect(rule, '/the-bars-of-barcelona rule missing').toBeDefined();
     expect(rule!.destination, 'broken: /category/places does not exist').not.toBe(

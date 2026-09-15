@@ -33,6 +33,16 @@ export interface Accolade {
    * claim is that a named body ranked this bar in a stated year.
    */
   unverified?: boolean;
+  /**
+   * How the venue behind this entry was identified, when the source page
+   * alone does not settle it. Audit-only; never rendered.
+   *
+   * Added 2026-09-14 for Shaker Awards' 2023 Top 30, whose page carries no
+   * links: identity there is Shaker's own 2024/2025 Instagram handle for the
+   * same entry name, carried across Shaker's own pages, and the citation
+   * says so rather than implying the 2023 page proved it.
+   */
+  basis?: string;
 }
 
 export type AccoladeTier =
@@ -135,6 +145,20 @@ const TILES: Record<string, TileDef> = {
   // This carries ranked placings and named category wins alike: a ranked
   // entry or a category win renders solid, a nominee outlined.
   '30bbi': { region: 'INDIA', main: '30 BEST', winnerTier: 'navy', nomineeTier: 'navy-outline' },
+  // Shaker Awards, Mexico's national body, named exactly as it writes itself
+  // and with the accent the body itself uses on México. Same navy as 30bbi:
+  // one colour per national body would not scale past three countries, and
+  // the region line already says which country. A bar never carries both
+  // national tiles, so the two are never side by side on one row.
+  //
+  // The main line is "SHAKER", the body's own name, rather than "TOP 30":
+  // the bold line must stay constant within a family, and from 2026 Shaker
+  // also issues an unranked Top 100 listing, so a list name on the tile
+  // would be a false claim for those entries. "SHAKER AWARDS" is thirteen
+  // characters against JAMES BEARD's eleven, which is already the widest
+  // line that fits 74px. Top 30 placings are `ranked` with the rank on the
+  // entry, Top 100 listings are `listed`; both render solid, as with 30bbi.
+  shaker: { region: 'MÉXICO', main: 'SHAKER', winnerTier: 'navy', nomineeTier: 'navy-outline' },
 };
 
 function tierFor(def: TileDef, kind: AccoladeKind): AccoladeTier {

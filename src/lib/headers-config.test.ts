@@ -13,9 +13,16 @@ import nextConfig from '../../next.config.mjs';
 type HeaderEntry = { key: string; value: string };
 type HeaderRule = { source: string; headers: HeaderEntry[] };
 
+// NextConfig types headers() as optional. Ours is not, and a config that
+// lost it should fail loudly here rather than pass on an empty list.
+async function loadHeaders(): Promise<HeaderRule[]> {
+  if (!nextConfig.headers) throw new Error('next.config.mjs has no headers()');
+  return (await nextConfig.headers()) as HeaderRule[];
+}
+
 describe('next.config.mjs headers()', () => {
   it('emits X-Robots-Tag: noindex on /_next/static/:path*', async () => {
-    const all = (await nextConfig.headers()) as HeaderRule[];
+    const all = await loadHeaders();
     const rule = all.find((r) => r.source === '/_next/static/:path*');
     expect(rule, 'rule for /_next/static/:path* must exist').toBeDefined();
 
@@ -27,7 +34,7 @@ describe('next.config.mjs headers()', () => {
   });
 
   it('every header rule has a non-empty source and at least one header', async () => {
-    const all = (await nextConfig.headers()) as HeaderRule[];
+    const all = await loadHeaders();
     expect(all.length).toBeGreaterThan(0);
     for (const rule of all) {
       expect(rule.source, 'rule.source must be a non-empty string').toBeTruthy();

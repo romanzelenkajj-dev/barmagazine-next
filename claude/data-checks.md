@@ -72,6 +72,18 @@ accolades, run the city the awards body gives against the venue's address
 before trusting it; an awards body is a source for the award, not for the
 city.
 
+**Handle identity from an awards page gets the same scepticism as its city
+field.** Second defect class inside the same body's data, found the same
+day: Shaker's 2025 Top 30 page links Bronson's entry to `@bekeb_sma` and
+BEKEB's entry to `@vinithebar`, a one-row shift in their template. And on
+all three years' pages the ARCA entry links `@arca_bar`, which is a beach
+bar in Vama Veche, Romania, not Arca Tulum. So a handle on an awards page
+is evidence of which venue the body MEANT only once the handle's own
+profile agrees with the entry (bio names the venue, or the address or a
+50 Best placing on the profile matches the row). The Shaker backfill of
+2026-09-14 accepted a handle only on that test, and corrected our own
+stored handles to the ones the venues actually use where ours were dead.
+
 ## Expansion candidates: parked
 
 Ten accent-stripped city URLs were measured for supply on 2026-09-14
