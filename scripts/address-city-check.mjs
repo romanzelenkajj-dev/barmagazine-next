@@ -204,6 +204,16 @@ const ALLOWLIST = {
       'Kita is the Osaka ward the bar sits in. It shares its name with a city ' +
       'elsewhere in Japan, too far away for the local-reading rule to catch.',
   },
+  'jewel-box': {
+    address: '644 Congress St, Portland, ME 04101',
+    reason:
+      'City stored as "Portland, Maine" (Roman, 2026-09-15) because the one ' +
+      'other Portland row is Oregon and the city page keys on the bare city ' +
+      'string; the address says Portland, ME, which is the same place. Interim ' +
+      'until city slugs carry the state for same-name US cities (see ' +
+      'claude/implementation-status.md, same-name cities item); then the city ' +
+      'goes back to "Portland" and this entry is removed.',
+  },
 };
 
 // ------------------------------------------------------------------- check
