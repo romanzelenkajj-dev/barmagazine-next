@@ -1214,6 +1214,13 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 14: location map above the nearby list (3316bdb)
+- Literal swap of the two blocks on the profile: the map now sits where
+  the nearby list was (after the gallery, before the mentions card and the
+  CTA) and the list where the map was (before the mobile Top 10). No
+  markup or CSS of either block changed; a bar with no coordinates renders
+  neither block and nothing empty.
+
 ## 2026-09-15 - Queue task 11a: phone card back to block flow, actions last (5f9b537)
 - 05's grid put the buttons between the prose and the description on
   phones and widened every gap (grid items keep both neighbours' margins).
