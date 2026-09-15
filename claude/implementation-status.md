@@ -1214,6 +1214,67 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Geocoder address-first; week re-geocoded; same-name US cities logged as the next structural item
+- GEOCODER (src/lib/geocode.ts, commit 450e289): the insert path now
+  resolves the FULL STREET ADDRESS first, unboxed, with city, state (where
+  derivable) and country appended only where the address lacks them, and
+  falls back to name + city + country (boxed to the city) only when the
+  address returns nothing usable. The 40 km city check is kept on every
+  step; city centre last. The state comes from the address postcode line
+  (subdivisionCode, "KS 66203") or from a qualifier the city string
+  carries ("Portland, Maine"); the city-centre query carries it too, which
+  is the actual fix: "Shawnee, United States" resolved to Shawnee,
+  Oklahoma, the box around it excluded the Kansas address, and the row
+  fell to the wrong centre 400 km out. geocodeBarDetailed reports the
+  method (address, name, city-centre). Unit tests on the query builders.
+  Callers unchanged: manage-bar create, submissions, bar-submission.
+- ADMIN ROUTE /api/admin/geocode-bars: gains barIds, since, force (rows
+  that already have coordinates), dryRun, minMoveKm; every result carries
+  before, after, method and movedKm; writes stamp updated_at and
+  revalidate. Chunk by ids (15 per call) to stay inside the function
+  timeout.
+- WEEK RE-RUN: all 121 rows inserted since 2026-09-14 re-geocoded dry.
+  118 resolved by address, 2 by name, 1 city centre. Moved 3 km or more:
+  ONE, zuma-hong-kong, 12.6 km, and that is the new result being WORSE
+  (name search after the Landmark address returned nothing usable; the
+  stored Central point is right), so nothing was applied. drastic-measures
+  came back unchanged, i.e. the address-first path agrees with the
+  Nominatim fix. Under 3 km: horn-cantle-saloon 0.9, qora 1.2 (address
+  refinements, not applied), drinking-and-healing 0.5 (centre). Drastic
+  Measures was the only namesake landing in the week.
+- SAME-NAME CITIES, interim: jewel-box stays "Portland, Maine". cityLabel
+  returns a city that already carries its subdivision unchanged, so the
+  city page reads "Best Cocktail Bars in Portland, Maine" and the profile
+  "Portland, Maine, United States"; nothing doubles. Added to the
+  address-check allowlist with the reason (audit 0 flags, 3 suppressed).
+- NEXT STRUCTURAL ITEM (Roman, 2026-09-15), NOT BUILT: for US (and
+  Canada) cities, derive the city slug from city plus state whenever
+  another active row shares the city name in a different state, so the
+  stored city stays "Portland" and the pages split as portland-or and
+  portland-me. The city page keys on the bare city string across ALL
+  countries (src/app/bars/city/[city]/page.tsx matches toUrlSlug(city)
+  only), so the rule must also split on COUNTRY. Inventory today, 1,348
+  active rows:
+  * LIVE COLLISIONS (two): Portland (scotch-lodge OR; jewel-box ME, held
+    apart only by the interim qualifier) and Birmingham (adios, bygones
+    AL; passing-fancies UK) which already renders as ONE page,
+    /bars/city/birmingham, listing all three, title "Best Cocktail Bars
+    in Birmingham".
+  * NEAR-COLLISIONS (one state present, a well-known namesake elsewhere):
+    Charleston SC (WV), Columbus OH (GA), Decatur GA (IL, AL), Durham NC
+    (UK), Lafayette LA (IN, CA), Lawrence KS (MA), Shawnee KS (OK),
+    Montpelier VT (France), Oakland CA, Prospect KY, Louisville KY, Miami
+    FL (OK), Santa Monica CA. Any second row in the namesake collides on
+    insert.
+  * STATE NOT DERIVABLE from the address (no "ST 12345" line), which the
+    rule needs: Detroit 1, New Orleans 3, New York 1, San Diego 2,
+    Seattle 1, Washington DC 1 row. Fix the addresses or fall back to the
+    majority state of the city (subdivisionForCity already votes).
+  * STRING VARIANTS, separate defect: Kraków and Krakow both exist as
+    city strings (two pages for one city).
+  * Also needed: redirects for the slugs that change (portland ->
+    portland-or), the sitemap and the seo-cities table keyed by city.
+
 ## 2026-09-15 - US JBF wave 4: 28 inserted (22 cocktail, 6 wine), 19 new city pages
 - Source: "Claude outputs/us-jbf-wave4-verified.md"; every row a James
   Beard Outstanding Bar semifinalist or nominee 2023 to 2026. Every entry

@@ -266,3 +266,21 @@ not evidence about the city, and one stray row should not be able to rename
 it.
 
 See `src/lib/city-location.ts`.
+
+## Geocoding on insert (2026-09-15)
+- The insert geocoder (src/lib/geocode.ts) is ADDRESS FIRST: the full street
+  address, unboxed, with city, state where derivable and country appended;
+  name + city + country only when the address returns nothing usable; city
+  centre last; 40 km check on every step. The state comes from the address
+  postcode line or a qualifier in the city string. Namesake cities
+  ("Shawnee": Kansas vs Oklahoma) were the failure this fixes.
+- After every insert wave, re-run the wave dry through
+  POST /api/admin/geocode-bars {barIds, force:true, dryRun:true} in chunks
+  of 15 and read movedKm and method before applying anything. A move over a
+  few km by the NAME method can be the geocoder getting worse (Zuma Hong
+  Kong), not better; only the address method is trusted blind.
+- Same-name US cities collide on the city page (keyed on the bare city
+  string, across countries too). Until city slugs carry the state, a second
+  Portland/Birmingham/Charleston/Columbus/... needs a qualifier in the city
+  string and an address-check allowlist entry. See the structural item in
+  implementation-status.md.
