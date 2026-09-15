@@ -900,3 +900,65 @@ Running log of shipped work items and their merge commits. Newest first.
   applies by hand (the SQL) and reads (the report); the modified pair is
   the 2026-08-27 run (105 targets, 13 resolved, 92 skipped), committed as
   such rather than left in the tree.
+
+## 2026-09-14 - 30BBI fully unheld; Shaker backfill closed at 21 rows
+- Roman read 30bestbarsindia.in/bar/elephant-co/: 2021 listed, 22 in 2022,
+  47 in 2023, 2025 listed, matching the stored entries exactly. First-pass
+  read now confirmed on two of five pages; the remaining eleven flags
+  cleared via the admin API (elephant-and-co 6, soy-como-soy 2,
+  malaka-spice 2, paasha 1). NOTHING in the table carries `unverified`.
+- casa-prunes: Roman opened @casaprunes signed in and confirmed the Roma
+  Norte bar (bio "Cocktail Bar / Casa Prunes", grid shows the house; no
+  street address in the bio). Handle corrected from the dead
+  @casaprunesbar to @casaprunes by id; Shaker 16/2023, 10/2024, 30/2025
+  added with `basis` recording Roman's confirmation of the profile rather
+  than an address match.
+- FINAL COUNTS: 30bbi 19 entries on 5 rows; shaker 52 entries on 21 rows.
+  brujas stays the one open Shaker row (handle corrected, no accolade:
+  Shaker's own link is a stub, chain of custody not closed).
+
+## 2026-09-14 - Profile indexing diagnosis (report only, nothing fixed)
+- Method: every active profile fetched (1,247), rendered word count from
+  the stripped HTML; inbound links counted from a crawl of all 1,755
+  sitemap URLs plus the 247 profiles the sitemap omits; row fields from
+  the table; not-indexed list (425 profile URLs) and the 867 profiles with
+  impressions pulled from Search Console in the browser.
+- STRUCTURAL FINDING, unrelated to row content: sitemap-bars.xml lists
+  exactly 1,000 profiles against 1,247 active. src/app/api/sitemap-bars/
+  route.ts calls getBars({ perPage: 2000 }) but getBars issues a single
+  .range() and Supabase caps a request at 1,000 rows, so 247 active
+  profiles are absent from the sitemap, all ten San Diego TOP 10 among
+  them. Not fixed yet, per instruction; it is the same class as the
+  "paginate past Supabase's 1000-row cap" fix that reached the SEO data
+  layer (e1a748d) but not this route.
+- NO ROW FIELD SPLITS the San Diego five from five: description 80 to 96
+  words on both sides (one fallback, on the not-indexed side), zero photos
+  on nine of ten, zero accolades on nine of ten, hours/website/Instagram/
+  email present on nine of ten, rendered page 378 to 410 words, inbound
+  links 3 to 5 from the same city page and best-bars pages, all created
+  2026-03-31 (three on 03-18/20). Across the whole set (340 not-indexed
+  active vs 907 others) every median is within noise and the not-indexed
+  side is if anything slightly richer. The split is Google's, not ours.
+- The real number: a profile is ~354 words rendered of which the
+  description is ~53; ~300 words are template and field labels. That is
+  the thinness "Crawled, currently not indexed" usually names.
+- Robots-blocked 229: 107 /_next/static css, 120 root ?p= WP post IDs, 1
+  /search. All three are intentional Disallow lines.
+- ?view=top10 city variants already emit canonical to the base city page
+  (verified on london); the six are the "Alternate page with proper
+  canonical" rows, working as intended.
+- 404 profiles (40): 15 are deactivated rows (should 301 to the city
+  page); 25 have no row, of which 17 are slug variants of live bars
+  (accented, "the-", city-suffixed: licorería-limantour, tlecān,
+  the-connaught-bar, the-dead-rabbit, junglebird, zest-seoul, coa-shanghai
+  and so on) that should 301 to the live profile; 8 have no target
+  (barmagazine-claim-test, peaches-cream-bar, bathtub-gin-co, service-bar,
+  paradiso-voted-…, tay-r-elementary, honeycombs-hi-fi,
+  berlin-bar-singapore, champagne-bar-four-seasons-surf-club).
+- RANK-ON-HOVER ORIGIN: not a 50 Best brand constraint. Nothing in the
+  repo cites a guideline; the approved mockup of 2026-08-24 drew the rank
+  in the chip ("No. 25 · 2025"), the fixed-tile redesign approved
+  2026-08-25 dropped it ("Being on the list is the badge; the placement
+  lives in the description. This is deliberate"), and 5d1ace0 on 08-26
+  wrote the invariant into TileView. It was a design decision taken with
+  the tile shape, not a licensing one.
