@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { getAllActiveBars } from '@/lib/supabase';
 
 // Lightweight endpoint for the map view.
 // Returns ONLY the fields needed to render map pins for ALL active bars.
@@ -24,19 +24,21 @@ export type MapBar = {
 
 export async function GET() {
   try {
-    const { data, error } = await supabase
-      .from('bars')
-      .select('id, name, slug, city, country, type, subtypes, tier, lat, lng, photos, accolades')
-      .eq('is_active', true)
-      .not('lat', 'is', null)
-      .not('lng', 'is', null)
-      .order('tier', { ascending: true })
-      .order('name', { ascending: true });
-
-    if (error) throw error;
+    // Whole-directory read: paged past Supabase's silent 1,000-row cap
+    // (the map page itself had the same defect). Pins without coordinates
+    // are dropped here rather than in the query; tier-then-name order is
+    // applied after the pages are joined.
+    const all = await getAllActiveBars<{
+      id: string; name: string; slug: string; city: string; country: string; type: string;
+      subtypes: string[] | null; tier: string; lat: number | null; lng: number | null;
+      photos: string[] | null; accolades: unknown;
+    }>('id, name, slug, city, country, type, subtypes, tier, lat, lng, photos, accolades');
+    const data = all
+      .filter(b => b.lat != null && b.lng != null)
+      .sort((a, b) => a.tier.localeCompare(b.tier) || a.name.localeCompare(b.name));
 
     // Slim down: extract only first photo from the photos array
-    const mapBars: MapBar[] = (data || []).map(b => ({
+    const mapBars: MapBar[] = data.map(b => ({
       id: b.id,
       name: b.name,
       slug: b.slug,

@@ -7,6 +7,7 @@ import { ShareBar } from '@/components/ShareBar';
 import { ReadingProgress } from '@/components/ReadingProgress';
 import { upgradeGalleryImages, formatCardTitle } from '@/lib/utils';
 import { isNewsArticleCategory, truncateHeadline } from '@/lib/article-schema';
+import articleMentions from '@/lib/article-mentions.generated.json';
 import type { Metadata } from 'next';
 
 const SITE_URL = 'https://barmagazine.com';
@@ -90,6 +91,10 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     : { '@type': 'Organization', name: 'BarMagazine', url: SITE_URL };
 
   // Get related posts from the same category, fall back to recent posts
+  // Directory profiles this article names (conservative map, see
+  // scripts/build-article-mentions.mjs).
+  const barsInArticle = (articleMentions as { byArticle: Record<string, { slug: string; name: string; city: string }[]> }).byArticle[params.slug] || [];
+
   const relatedResult = await getPosts(1, 5, categories[0]?.id);
   let relatedPosts = relatedResult.data.filter(p => p.id !== post.id).slice(0, 4);
   if (relatedPosts.length < 2) {
@@ -263,6 +268,24 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       <div className="article-layout">
         <article className="article-body">
           <div dangerouslySetInnerHTML={{ __html: upgradeGalleryImages(rewriteContentImageUrls(post.content.rendered)) }} />
+
+          {/* Bars this article names, linked to their directory profiles.
+              From the conservative mention map (full name plus city in the
+              text); generic names are held for a hand check and never
+              appear here. The WP content itself is untouched. */}
+          {barsInArticle.length > 0 && (
+            <div className="article-bars">
+              <h3>Bars in this article</h3>
+              <ul className="article-bars-list">
+                {barsInArticle.map(b => (
+                  <li key={b.slug}>
+                    <Link href={`/bars/${b.slug}`}>{b.name}</Link>
+                    <span className="article-bars-city">{b.city}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Author box */}
           {authorName && (

@@ -16,10 +16,12 @@ import { Top10FooterBlock } from '@/components/Top10FooterBlock';
 import BarGallery from '@/components/BarGallery';
 import { AccoladeBadges } from '@/components/AccoladeBadges';
 import { HighlightedText } from '@/components/HighlightedText';
-import { awardStrings, hasFiftyBest } from '@/lib/accolades';
+import { awardStrings } from '@/lib/accolades';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { fallbackDescription } from '@/lib/bar-fallback';
-import { CardStatusPills } from '@/components/CardStatusPills';
+import { nearestBars } from '@/lib/nearby';
+import { accoladeSentences } from '@/lib/accolade-sentences';
+import articleMentions from '@/lib/article-mentions.generated.json';
 
 export const revalidate = 300;
 // Allow slugs not pre-built at deploy time to be rendered on-demand (ISR)
@@ -74,23 +76,24 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   if (!bar) notFound();
 
 
-  // Fetch nearby bars (same city, exclude current bar).
-  // Always fill up to 4 cards: photographed bars lead, photo-less bars top
-  // up the remainder — the old photo-only filter left a city with one
-  // photographed bar showing one lonely card in a four-card row. Photo-less
-  // cards fall back to the BarPlaceholder visual. Within each group the
-  // prior ordering holds: top10 first, then the query's name order.
+  // Nearby: the five closest active bars by great-circle distance, same
+  // city only (the guard lives in nearestBars). Replaces the photo-first
+  // four-card grid, which said nothing a reader or a crawler could use;
+  // this one carries street, distance and a line from each neighbour's
+  // own copy. A city with fewer than five others shows what exists; a
+  // city with none renders no block.
   const cityBars = await getBarsByCity(bar.city);
-  const otherCityBars = cityBars.filter(b => b.id !== bar.id);
-  const barHasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);
-  const tierFirst = (bars: Bar[]) => [
-    ...bars.filter(b => b.tier === 'top10'),
-    ...bars.filter(b => b.tier !== 'top10'),
-  ];
-  const nearbyBars = [
-    ...tierFirst(otherCityBars.filter(barHasPhoto)),
-    ...tierFirst(otherCityBars.filter(b => !barHasPhoto(b))),
-  ].slice(0, 4);
+  const nearby = nearestBars(bar, cityBars);
+
+  // One sentence per accolade, from the same renderable set as the tiles.
+  const accoladeProse = accoladeSentences(bar.accolades);
+
+  // Articles that name this bar AND its city (the conservative match built
+  // by scripts/build-article-mentions.mjs; generic names are held, never
+  // linked). The feature article, when there is one, already has its own
+  // button and is not repeated here.
+  const mentionedIn = ((articleMentions as { byBar: Record<string, { slug: string; title: string }[]> }).byBar[bar.slug] || [])
+    .filter(a => a.slug !== bar.wp_article_slug);
 
   // SEO cross-links: the city guide and the type-by-city guide, where those
   // pages exist. Keeps the programmatic pages from being orphans (every bar
@@ -325,6 +328,11 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             {/* Placement "A": name → location → tiles. Renders nothing when the
                 bar has no accolades. Identical on free and paid listings. */}
             <AccoladeBadges accolades={bar.accolades} />
+            {accoladeProse.length > 0 && (
+              /* The tiles say which bodies; this says what they said, one
+                 sentence per entry, in words a reader and a crawler can use. */
+              <p className="bar-v2-accolade-prose">{accoladeProse.join(' ')}</p>
+            )}
             <p className="bar-v2-description">
               {/* Bolding is computed at render time; the stored text stays
                   plain. The fallback keeps the no-em-dash copy rule. */}
@@ -527,38 +535,36 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
           </div>
         )}
 
-        {nearbyBars.length > 0 && (
+        {nearby.length > 0 && (
           <div className="bar-v2-nearby">
-            <h2>More Bars in {bar.city}</h2>
-            <div className="bar-v2-nearby-grid">
-              {nearbyBars.filter(hasSlug).map(nb => (
-                <Link key={nb.id} href={safeHref('/bars', nb.slug)} className="bar-dir-featured-card">
-                  <div className="bar-dir-featured-visual">
-                    {nb.photos && nb.photos.length > 0
-                      ? <img src={nb.photos[0]} alt={nb.name} loading="lazy" />
-                      : (
-                        <BarPlaceholder name={nb.name} type={nb.type} />
-                      )
-                    }
-                    <CardStatusPills
-                      top10={nb.tier === 'top10'}
-                      fiftyBest={hasFiftyBest(nb.accolades)}
-                      featured={nb.tier === 'featured' || nb.tier === 'premium' || !!nb.wp_article_slug}
-                    />
-                  </div>
-                  <div className="bar-dir-featured-body">
-
-                    <h3 className="bar-dir-featured-name">{nb.name}</h3>
-                    <span className="bar-dir-featured-location">
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-                      </svg>
-                      {nb.city}{nb.city !== nb.country ? `, ${nb.country}` : ''}
+            <h2>Nearby in {bar.city}</h2>
+            <ol className="bar-v2-near-list">
+              {nearby.map(nb => (
+                <li key={nb.slug} className="bar-v2-near">
+                  <div className="bar-v2-near-head">
+                    <Link href={safeHref('/bars', nb.slug)} className="bar-v2-near-name">{nb.name}</Link>
+                    <span className="bar-v2-near-meta">
+                      {nb.street && <span>{nb.street}</span>}
+                      <span className="bar-v2-near-distance">{nb.distance}</span>
                     </span>
                   </div>
-                </Link>
+                  {nb.line && <p className="bar-v2-near-line">{nb.line}</p>}
+                </li>
               ))}
-            </div>
+            </ol>
+          </div>
+        )}
+
+        {mentionedIn.length > 0 && (
+          <div className="bar-v2-mentions">
+            <h2>{bar.name} in BarMagazine</h2>
+            <ul className="bar-v2-mentions-list">
+              {mentionedIn.map(a => (
+                <li key={a.slug}>
+                  <Link href={`/${a.slug}`}>{a.title}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 

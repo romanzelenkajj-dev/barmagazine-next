@@ -1,3 +1,6 @@
 # Addresses that asked not to receive listing emails again.
 # One address per line; matched case-insensitively by the send script.
 # NEVER remove an address from this list without their renewed consent.
+
+# 2026-09-14: Mandarin Oriental declined the hotel partnership. Venue-specific address stored for editorial only; never send.
+moszn-mobar@mohg.com

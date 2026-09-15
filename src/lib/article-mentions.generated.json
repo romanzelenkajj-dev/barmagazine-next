@@ -1,0 +1,7619 @@
+{
+ "generatedAt": "2026-09-15T02:32:10.868Z",
+ "rule": "full bar name, whole-word, article text also names the bar's city; generic names held",
+ "counts": {
+  "bars": 280,
+  "articles": 170,
+  "links": 745,
+  "held": 103
+ },
+ "byBar": {
+  "14-de-la-rosa": [
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   }
+  ],
+  "1986-steak-house": [
+   {
+    "slug": "1986-steak-house-miami-coconut-grove-tres-monos",
+    "title": "1986 Steak House Opens in Miami with Tres Monos Cocktails"
+   }
+  ],
+  "28-hong-kong-street": [
+   {
+    "slug": "eco-totes",
+    "title": "Eco Totes"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2026-returns-to-bratislava",
+    "title": "Mirror Hospitality Expo 2026 Returns to Bratislava"
+   },
+   {
+    "slug": "nz-bar-con-2025-brings-global-energy-to-auckland",
+    "title": "NZ Bar Con 2025 Brings Global Energy to Auckland"
+   }
+  ],
+  "a-bar-with-shapes-for-a-name": [
+   {
+    "slug": "monica-berg-reigns-in-the-bar-world-100-rankings",
+    "title": "Monica Berg reigns in the Bar World 100 rankings"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "above-board": [
+   {
+    "slug": "nz-bar-con-2025-brings-global-energy-to-auckland",
+    "title": "NZ Bar Con 2025 Brings Global Energy to Auckland"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "alice-cheongdam": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   }
+  ],
+  "allegory-dc": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "alma-prague": [
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "central-europe-hospitality-expo-cehe-2027",
+    "title": "Mirror Hospitality Expo Rebrands as CEHE for 2027"
+   }
+  ],
+  "almanac-philadelphia": [
+   {
+    "slug": "almanac-brings-slow-drinks-to-philadelphia",
+    "title": "Almanac Brings Slow Drinks to Philadelphia"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "alquimico": [
+   {
+    "slug": "18th-annual-spirited-awards-winners",
+    "title": "18th Annual Spirited Awards Winners"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "bar-world-100-2026-full-list-of-global-influencers",
+    "title": "Bar World 100 2026: Full List of Global Influencers"
+   },
+   {
+    "slug": "torres-brandy-zero-challenge-2026-camila-flechas-winner",
+    "title": "Camila Flechas Wins Torres Brandy Zero Challenge 2026"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "key-takeaways-from-tales-of-the-cocktail-2024",
+    "title": "Key Takeaways from Tales of the Cocktail 2024"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "torres-brandy-zero-challenge-names-12-global-finalists",
+    "title": "Torres Brandy Zero Challenge Names 12 Global Finalists"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "apotheke-los-angeles": [
+   {
+    "slug": "top-10-bars-in-los-angeles-2026",
+    "title": "Top 10 Bars in Los Angeles 2026"
+   }
+  ],
+  "artesian": [
+   {
+    "slug": "saikindo-abu-dhabi-aji-no-hibiki-menu",
+    "title": "Saikindo Abu Dhabi Menu Built Like a Vinyl Record"
+   },
+   {
+    "slug": "simone-caporale",
+    "title": "Simone Caporale"
+   },
+   {
+    "slug": "top-10-bar-trends-for-2024-elevate-your-cocktail-game",
+    "title": "Top 10 Bar Trends for 2024: Elevate Your Cocktail Game"
+   },
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced"
+   }
+  ],
+  "aruba-day-drink": [
+   {
+    "slug": "north-americas-50-best-bars-2026-the-extended-list",
+    "title": "North America s 50 Best Bars 2026: The Extended List"
+   }
+  ],
+  "atrium-bar": [
+   {
+    "slug": "martina-bonci",
+    "title": "Martina Bonci"
+   }
+  ],
+  "attaboy": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "top-10-bars-in-new-york-2026",
+    "title": "Top 10 Bars in New York 2026"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "atwater-cocktail-club": [
+   {
+    "slug": "atwater-cocktail-club",
+    "title": "Atwater Cocktail Club"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced"
+   }
+  ],
+  "baba-au-rum": [
+   {
+    "slug": "18th-annual-spirited-awards-winners",
+    "title": "18th Annual Spirited Awards Winners"
+   },
+   {
+    "slug": "athens-bar-show-2023",
+    "title": "Athens Bar Show 2023"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "backdoor-bodega": [
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "bagheera": [
+   {
+    "slug": "north-americas-50-best-bars-2026-the-extended-list",
+    "title": "North America s 50 Best Bars 2026: The Extended List"
+   }
+  ],
+  "baltra-bar": [
+   {
+    "slug": "benjamin-padron-novoa",
+    "title": "Benjamín Padrón Novoa"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "bamboo-bar": [
+   {
+    "slug": "aberdeen-arts-row-animates-hong-kong-art-month",
+    "title": "Aberdeen Arts Row Animates Hong Kong Art Month"
+   },
+   {
+    "slug": "spirited-awards-2026-winners-tales-of-the-cocktail",
+    "title": "Spirited Awards 2026 Crown Winners in New Orleans"
+   }
+  ],
+  "bandista": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "bar-bellamy": [
+   {
+    "slug": "nz-bar-con-2025-brings-global-energy-to-auckland",
+    "title": "NZ Bar Con 2025 Brings Global Energy to Auckland"
+   }
+  ],
+  "bar-benfiddich": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "the-opposites-celebrates-one-year-in-hong-kong",
+    "title": "The Opposites Celebrates One Year in Hong Kong"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "bar-carmen": [
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "bar-cham": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "global-bar-exchange-2025-26-by-woodford-reserve",
+    "title": "Global Bar Exchange 2025/26 by Woodford Reserve"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "bar-contra": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   }
+  ],
+  "bar-high-five": [
+   {
+    "slug": "bar-world-100-2024-a-toast-to-global-mixology-leaders",
+    "title": "BAR WORLD 100 2024"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   }
+  ],
+  "bar-leone": [
+   {
+    "slug": "18th-annual-spirited-awards-winners",
+    "title": "18th Annual Spirited Awards Winners"
+   },
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "bar-leone-expands-with-second-location-in-shanghai",
+    "title": "Bar Leone Expands with Second Location in Shanghai"
+   },
+   {
+    "slug": "bar-leone-shanghai-opens-this-november",
+    "title": "Bar Leone Shanghai Opens This November"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "bar-world-100-2026-full-list-of-global-influencers",
+    "title": "Bar World 100 2026: Full List of Global Influencers"
+   },
+   {
+    "slug": "best-bars-in-southeast-asia",
+    "title": "Best Bars in Southeast Asia"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "himkok-turns-10-with-global-bar-takeovers",
+    "title": "Himkok Turns 10 with Global Bar Takeovers"
+   },
+   {
+    "slug": "lorenzo-antinori-popolare-systems-launch",
+    "title": "Lorenzo Antinori Launches Popolare Systems With SpeedX"
+   },
+   {
+    "slug": "medellin-cocktail-week-2026",
+    "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars"
+   },
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   },
+   {
+    "slug": "montana-bar-to-open-in-hong-kong-in-summer-2025",
+    "title": "Montana Bar to Open in Hong Kong in Summer 2025"
+   },
+   {
+    "slug": "montana-by-antinori-caporale-opens-in-hong-kong",
+    "title": "Montana by Antinori Caporale Opens in Hong Kong"
+   },
+   {
+    "slug": "paradiso-sustainability-summit-2025",
+    "title": "Paradiso Sustainability Summit 2025"
+   },
+   {
+    "slug": "scarfes-bar-hosts-bar-leone-for-exclusive-london-takeover",
+    "title": "Scarfes Bar Hosts Bar Leone for Exclusive London Takeover"
+   },
+   {
+    "slug": "spirited-awards-2026-winners-tales-of-the-cocktail",
+    "title": "Spirited Awards 2026 Crown Winners in New Orleans"
+   },
+   {
+    "slug": "the-pontiac-hong-kong-neon-lit-menu",
+    "title": "The Pontiac Hong Kong Launches Neon Lit Cocktail Menu"
+   },
+   {
+    "slug": "top-10-bars-in-hong-kong-for-2026",
+    "title": "Top 10 Bars in Hong Kong for 2026"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced"
+   },
+   {
+    "slug": "world-gin-week-2026-debut",
+    "title": "World Gin Week 2026 Debuts June 13-20 Worldwide"
+   },
+   {
+    "slug": "worlds-best-bars-head-to-stockholm-for-bca-week",
+    "title": "World s Best Bars Head to Stockholm for BCA Week"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "bar-leone-shanghai": [
+   {
+    "slug": "bar-leone-expands-with-second-location-in-shanghai",
+    "title": "Bar Leone Expands with Second Location in Shanghai"
+   },
+   {
+    "slug": "bar-leone-shanghai-opens-this-november",
+    "title": "Bar Leone Shanghai Opens This November"
+   },
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   }
+  ],
+  "bar-libre": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   }
+  ],
+  "bar-madonna": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "world-gin-week-2026-debut",
+    "title": "World Gin Week 2026 Debuts June 13-20 Worldwide"
+   }
+  ],
+  "bar-mate": [
+   {
+    "slug": "daniel-pappa-wins-torres-brandy-zero-challenge",
+    "title": "Daniel Pappa Wins Torres Brandy Zero Challenge"
+   }
+  ],
+  "bar-mauro": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "spirited-awards-2026-winners-tales-of-the-cocktail",
+    "title": "Spirited Awards 2026 Crown Winners in New Orleans"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "bar-mood": [
+   {
+    "slug": "asias-50-best-bars-2025-coming-to-wynn-macau-in-july",
+    "title": "Asia’s 50 Best Bars 2025 Coming to Wynn Macau in July"
+   },
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   }
+  ],
+  "bar-mordecai": [
+   {
+    "slug": "bar-mordecai",
+    "title": "Bar Mordecai"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   }
+  ],
+  "bar-next-door": [
+   {
+    "slug": "north-americas-50-best-bars-2025-heads-to-vancouver",
+    "title": "North America’s 50 Best Bars 2025 Heads to Vancouver"
+   }
+  ],
+  "bar-nouveau": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "medellin-cocktail-week-2026",
+    "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "bar-planet": [
+   {
+    "slug": "herbs-taverne-lands-in-sydney-with-psychedelic-negronis",
+    "title": "Herbs Taverne Lands in Sydney with Psychedelic Negronis"
+   },
+   {
+    "slug": "herbs-taverne-to-open-in-sydney-with-a-bold-take-on-negronis",
+    "title": "Herbs Taverne to Open in Sydney with a Bold Take on Negronis"
+   }
+  ],
+  "bar-pompette": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "bar-sathorn": [
+   {
+    "slug": "asias-best-bartenders-descend-on-ozone-hong-kong",
+    "title": "Asia s Best Bartenders Descend on OZONE Hong Kong"
+   },
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "bar-sathorn-redefines-bangkok-as-a-cultural-exchange-bar",
+    "title": "Bar Sathorn Redefines Bangkok as a Cultural Exchange Bar"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "bar-snack": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "spirited-awards-2026-winners-tales-of-the-cocktail",
+    "title": "Spirited Awards 2026 Crown Winners in New Orleans"
+   },
+   {
+    "slug": "top-10-bars-in-new-york-2026",
+    "title": "Top 10 Bars in New York 2026"
+   }
+  ],
+  "bar-trench": [
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "bar-trigona": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "bar-twentyseven": [
+   {
+    "slug": "amsterdam-cocktail-week-2026-bars-events-guide",
+    "title": "Amsterdam Cocktail Week 2026 Has Never Been Bigger"
+   }
+  ],
+  "barchef": [
+   {
+    "slug": "mirror-hospitality-expo-2025",
+    "title": "Mirror Hospitality Expo 2025"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2025-puts-bratislava-on-the-bar-map",
+    "title": "Mirror Hospitality Expo 2025 Puts Bratislava on the Bar Map"
+   }
+  ],
+  "barrier": [
+   {
+    "slug": "europes-50-best-bars-2026-with-the-polot-1882-family",
+    "title": "Europe s 50 Best Bars 2026 with the Polot 1882 family"
+   },
+   {
+    "slug": "himkok-and-devils-cut-join-belgrade-cocktail-fest-2026",
+    "title": "Himkok and Devil s Cut Join Belgrade Cocktail Fest 2026"
+   }
+  ],
+  "barro-negro": [
+   {
+    "slug": "athens-bar-show-2023",
+    "title": "Athens Bar Show 2023"
+   },
+   {
+    "slug": "copy-taste-festival-2026-zagreb",
+    "title": "Copy Taste Festival 2026 Brings 50 Best Bars to Zagreb"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "bees-bar-by-narisawa": [
+   {
+    "slug": "asias-best-bartenders-descend-on-ozone-hong-kong",
+    "title": "Asia s Best Bartenders Descend on OZONE Hong Kong"
+   },
+   {
+    "slug": "bees-bar-narisawa-residencia-mexicana-tokio-2026",
+    "title": "BEES BAR by NARISAWA Hosts Residencia Mexicana en Tokio"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "beogradski-koktel-klub": [
+   {
+    "slug": "himkok-and-devils-cut-join-belgrade-cocktail-fest-2026",
+    "title": "Himkok and Devil s Cut Join Belgrade Cocktail Fest 2026"
+   }
+  ],
+  "best-intentions": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "between-the-sips": [
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   }
+  ],
+  "bijou-drinkery-room": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "bkk-social-club": [
+   {
+    "slug": "18th-annual-spirited-awards-winners",
+    "title": "18th Annual Spirited Awards Winners"
+   },
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "best-bars-in-southeast-asia",
+    "title": "Best Bars in Southeast Asia"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2026-returns-to-bratislava",
+    "title": "Mirror Hospitality Expo 2026 Returns to Bratislava"
+   },
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   },
+   {
+    "slug": "nico-de-soto",
+    "title": "Nico de Soto"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "blind-spot-london": [
+   {
+    "slug": "best-cocktail-bars-amsterdam-2026",
+    "title": "The 4 Best Cocktail Bars in Amsterdam Right Now"
+   }
+  ],
+  "blind-tiger": [
+   {
+    "slug": "top-10-bars-in-dubai-2025",
+    "title": "Top 10 Bars in Dubai 2025"
+   }
+  ],
+  "bon-vivants": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "bramble": [
+   {
+    "slug": "iain-mcpherson",
+    "title": "Iain McPherson"
+   }
+  ],
+  "britannia-bar": [
+   {
+    "slug": "inside-britannia-bar-trondheim-norways-best-menu-2026",
+    "title": "Inside Britannia Bar Trondheim: Norway’s Best Menu 2026"
+   }
+  ],
+  "cabinet-8": [
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   }
+  ],
+  "cafe-de-nadie": [
+   {
+    "slug": "north-americas-50-best-bars-2026-the-extended-list",
+    "title": "North America s 50 Best Bars 2026: The Extended List"
+   }
+  ],
+  "cafe-la-trova": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "top-10-bar-trends-for-2024-elevate-your-cocktail-game",
+    "title": "Top 10 Bar Trends for 2024: Elevate Your Cocktail Game"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "caffe-paszkowski": [
+   {
+    "slug": "europes-50-best-bars-2026-with-the-polot-1882-family",
+    "title": "Europe s 50 Best Bars 2026 with the Polot 1882 family"
+   }
+  ],
+  "camparino-in-galleria": [
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "cantina-ok": [
+   {
+    "slug": "cantina-ok-unveils-ritual-inspired-cocktails",
+    "title": "Cantina OK! Unveils Ritual-Inspired Cocktails"
+   },
+   {
+    "slug": "herbs-taverne-lands-in-sydney-with-psychedelic-negronis",
+    "title": "Herbs Taverne Lands in Sydney with Psychedelic Negronis"
+   },
+   {
+    "slug": "herbs-taverne-to-open-in-sydney-with-a-bold-take-on-negronis",
+    "title": "Herbs Taverne to Open in Sydney with a Bold Take on Negronis"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "carnaval": [
+   {
+    "slug": "aaron-diaz-superbar-peru",
+    "title": "Aaron Díaz: The Man Behind SUPERBAR"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "carrots-bar": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   }
+  ],
+  "casa-prunes": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "cat-bite-club": [
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "top-10-bars-in-singapore-2026",
+    "title": "Top 10 Bars in Singapore 2026"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "wing-lei-bars-unity-cocktail-menu-celebrates-global-flavors",
+    "title": "Wing Lei Bar’s UNITY Cocktail Menu Celebrates Global Flavors"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "centro-86": [
+   {
+    "slug": "herbs-taverne-lands-in-sydney-with-psychedelic-negronis",
+    "title": "Herbs Taverne Lands in Sydney with Psychedelic Negronis"
+   },
+   {
+    "slug": "herbs-taverne-to-open-in-sydney-with-a-bold-take-on-negronis",
+    "title": "Herbs Taverne to Open in Sydney with a Bold Take on Negronis"
+   }
+  ],
+  "century-grand": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced"
+   }
+  ],
+  "charles-h": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "civil-works": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "clap-ongaku": [
+   {
+    "slug": "top-10-bars-in-dubai-2025",
+    "title": "Top 10 Bars in Dubai 2025"
+   }
+  ],
+  "cleaver": [
+   {
+    "slug": "18th-annual-spirited-awards-winners",
+    "title": "18th Annual Spirited Awards Winners"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "clemente-bar": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "top-10-bars-in-new-york-2026",
+    "title": "Top 10 Bars in New York 2026"
+   }
+  ],
+  "clover-club": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "women-hospitality-miladys-new-york-june-2026",
+    "title": "Women Hospitality Lands at Milady s New York June 8"
+   }
+  ],
+  "cochinchina": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "medellin-cocktail-week-2026",
+    "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "tres-monos-turns-buenos-aires-into-a-cocktail-carnival",
+    "title": "Tres Monos Turns Buenos Aires into a Cocktail Carnival"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "codigo-86": [
+   {
+    "slug": "quito-cocktail-week-2026-ecuador-edwin-lobo",
+    "title": "Quito Cocktail Week 2026 Launches Ecuador Bar Scene"
+   }
+  ],
+  "connaught-bar": [
+   {
+    "slug": "athens-bar-show-2023",
+    "title": "Athens Bar Show 2023"
+   },
+   {
+    "slug": "felice-capasso-wins-2025-world-class-global-finals",
+    "title": "Felice Capasso Wins 2025 World Class Global Finals"
+   },
+   {
+    "slug": "giorgio-bargiani-altos-bartenders-bartender-2026",
+    "title": "Giorgio Bargiani Wins Altos Bartenders Bartender 2026"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   },
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "world-gin-week-2026-debut",
+    "title": "World Gin Week 2026 Debuts June 13-20 Worldwide"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "copperbay": [
+   {
+    "slug": "bars-becoming-their-own-distillers-house-spirits-3",
+    "title": "Bars That Distill Their Own Spirits: Himkok, CopperBay More"
+   }
+  ],
+  "coupette": [
+   {
+    "slug": "mastering-classic-american-cocktails",
+    "title": "Mastering Classic American Cocktails"
+   }
+  ],
+  "cry-baby-gallery": [
+   {
+    "slug": "north-americas-50-best-bars-2026-the-extended-list",
+    "title": "North America s 50 Best Bars 2026: The Extended List"
+   }
+  ],
+  "daisy-margarita-bar": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "top-10-bars-in-los-angeles-2026",
+    "title": "Top 10 Bars in Los Angeles 2026"
+   }
+  ],
+  "dangerous-water-palma-de-mallorca": [
+   {
+    "slug": "dangerous-water-palma-sa-gerreria-salvatore-camagna",
+    "title": "Dangerous Water Brings Prohibition-Era Storytelling to Palma s Sa Gerreria"
+   }
+  ],
+  "dante-beverly-hills": [
+   {
+    "slug": "top-10-bars-in-los-angeles-2026",
+    "title": "Top 10 Bars in Los Angeles 2026"
+   }
+  ],
+  "dead-poets": [
+   {
+    "slug": "aberdeen-arts-row-animates-hong-kong-art-month",
+    "title": "Aberdeen Arts Row Animates Hong Kong Art Month"
+   },
+   {
+    "slug": "aberdeen-arts-row-transforms-hong-kong-nightlife",
+    "title": "Aberdeen Arts Row Transforms Hong Kong Nightlife"
+   },
+   {
+    "slug": "best-bars-in-southeast-asia",
+    "title": "Best Bars in Southeast Asia"
+   },
+   {
+    "slug": "hong-kong-soho-bars-may-2026-events",
+    "title": "Hong Kong Soho Bars Pack May with Five New Events"
+   },
+   {
+    "slug": "margarita-mile-hong-kong-2026",
+    "title": "Margarita Mile Returns to Hong Kong with Tequila Trip Prize"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "dead-rabbit": [
+   {
+    "slug": "the-dead-rabbit",
+    "title": "The Dead Rabbit"
+   }
+  ],
+  "dear-irving": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "visiting-bar-luminary-series",
+    "title": "Visiting Bar Luminary Series"
+   }
+  ],
+  "door-74": [
+   {
+    "slug": "amsterdam-cocktail-week-2026-when-a-city-becomes-a-living-bar-scene",
+    "title": "Amsterdam Cocktail Week 2026: When a City Becomes a Living Bar Scene"
+   }
+  ],
+  "double-chicken-please": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "takuma-watanabe-martinys-altos-bartenders-bartender-2026",
+    "title": "Takuma Watanabe of Martiny s Named Altos Bartenders Bartender 2026"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced"
+   },
+   {
+    "slug": "top-500-bars-2024-celebrates-the-best-in-global-mixology",
+    "title": "Top 500 Bars 2024 Celebrates the Best in Global Mixology"
+   },
+   {
+    "slug": "women-hospitality-miladys-new-york-june-2026",
+    "title": "Women Hospitality Lands at Milady s New York June 8"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "dr-stravinsky": [
+   {
+    "slug": "bars-in-barcelona",
+    "title": "Bars in Barcelona"
+   },
+   {
+    "slug": "paradiso-sustainability-summit-2025",
+    "title": "Paradiso Sustainability Summit 2025"
+   },
+   {
+    "slug": "paradiso-sustainability-summit-2025-announced",
+    "title": "Paradiso Sustainability Summit 2025 Announced"
+   },
+   {
+    "slug": "the-opposites-celebrates-one-year-in-hong-kong",
+    "title": "The Opposites Celebrates One Year in Hong Kong"
+   }
+  ],
+  "dragoljub": [
+   {
+    "slug": "himkok-and-devils-cut-join-belgrade-cocktail-fest-2026",
+    "title": "Himkok and Devil s Cut Join Belgrade Cocktail Fest 2026"
+   }
+  ],
+  "dragonfly": [
+   {
+    "slug": "margarita-mile-hong-kong-2026",
+    "title": "Margarita Mile Returns to Hong Kong with Tequila Trip Prize"
+   }
+  ],
+  "drink-kong": [
+   {
+    "slug": "amsterdam-cocktail-week-2026-bars-events-guide",
+    "title": "Amsterdam Cocktail Week 2026 Has Never Been Bigger"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "martina-bonci",
+    "title": "Martina Bonci"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "dry-wave-cocktail-studio": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "dutch-courage-cocktail-bar-amsterdam": [
+   {
+    "slug": "amsterdam-cocktail-week-2026-bars-events-guide",
+    "title": "Amsterdam Cocktail Week 2026 Has Never Been Bigger"
+   },
+   {
+    "slug": "reinventing-gin",
+    "title": "Reinventing Gin"
+   }
+  ],
+  "el-gallo-altanero": [
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "el-infusionista": [
+   {
+    "slug": "6-women-shaping-latin-american-hospitality",
+    "title": "6 Women Shaping Latin American Hospitality"
+   },
+   {
+    "slug": "aaron-diaz-superbar-peru",
+    "title": "Aaron Díaz: The Man Behind SUPERBAR"
+   }
+  ],
+  "el-primo-sanchez": [
+   {
+    "slug": "maybe-cocktail-festival-returns-to-sydney-for-its-third-year",
+    "title": "Maybe Cocktail Festival Returns to Sydney for Its Third Year"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "employees-only": [
+   {
+    "slug": "employees-only",
+    "title": "Employees Only"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "employees-only-singapore": [
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "equal-measure-boston": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "equal-parts": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "experimental-cocktail-club": [
+   {
+    "slug": "bar-world-100-2024-a-toast-to-global-mixology-leaders",
+    "title": "BAR WORLD 100 2024"
+   },
+   {
+    "slug": "nico-de-soto",
+    "title": "Nico de Soto"
+   }
+  ],
+  "father-forgive-me": [
+   {
+    "slug": "north-americas-50-best-bars-2026-the-extended-list",
+    "title": "North America s 50 Best Bars 2026: The Extended List"
+   }
+  ],
+  "fifty-mils": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "flipdog": [
+   {
+    "slug": "flipdog-opens-in-shoreditch",
+    "title": "FlipDog Opens in Shoreditch"
+   }
+  ],
+  "floreria-atlantico": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "floreria-atlantico-dc": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   }
+  ],
+  "flying-dutchmen-cocktails": [
+   {
+    "slug": "amsterdam-cocktail-week-2026-bars-events-guide",
+    "title": "Amsterdam Cocktail Week 2026 Has Never Been Bigger"
+   }
+  ],
+  "forbina-bar": [
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   }
+  ],
+  "form-matter": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "freni-e-frizioni": [
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "martina-bonci",
+    "title": "Martina Bonci"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "galaxy-bar": [
+   {
+    "slug": "top-10-bars-in-dubai-2025",
+    "title": "Top 10 Bars in Dubai 2025"
+   }
+  ],
+  "giacosa": [
+   {
+    "slug": "summer-negroni-variations-giacosa-florence",
+    "title": "3 Summer Negroni Variations from Florence s Giacosa Bar"
+   },
+   {
+    "slug": "five-spritzes-worth-ordering-instead-of-aperol",
+    "title": "Five Spritzes Worth Ordering Instead of Aperol"
+   },
+   {
+    "slug": "negroni-cocktail",
+    "title": "Negroni Cocktail"
+   }
+  ],
+  "goto": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced"
+   }
+  ],
+  "green-door": [
+   {
+    "slug": "amsterdam-cocktail-week-2026-bars-events-guide",
+    "title": "Amsterdam Cocktail Week 2026 Has Never Been Bigger"
+   }
+  ],
+  "handshake-speakeasy": [
+   {
+    "slug": "18th-annual-spirited-awards-winners",
+    "title": "18th Annual Spirited Awards Winners"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "felice-capasso-wins-2025-world-class-global-finals",
+    "title": "Felice Capasso Wins 2025 World Class Global Finals"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "key-takeaways-from-tales-of-the-cocktail-2024",
+    "title": "Key Takeaways from Tales of the Cocktail 2024"
+   },
+   {
+    "slug": "medellin-cocktail-week-2026",
+    "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars"
+   },
+   {
+    "slug": "mexican-bar-tour",
+    "title": "Mexican Bar Tour"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "best-cocktail-bars-amsterdam-2026",
+    "title": "The 4 Best Cocktail Bars in Amsterdam Right Now"
+   },
+   {
+    "slug": "the-50-best-bars-in-north-america-for-2024",
+    "title": "The 50 Best Bars in North America for 2024"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced"
+   },
+   {
+    "slug": "world-gin-week-2026-debut",
+    "title": "World Gin Week 2026 Debuts June 13-20 Worldwide"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "hanky-panky": [
+   {
+    "slug": "mexican-bar-tour",
+    "title": "Mexican Bar Tour"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced"
+   }
+  ],
+  "happy-accidents": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "hats-bar": [
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   }
+  ],
+  "hero-bar": [
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "world-gin-week-2026-debut",
+    "title": "World Gin Week 2026 Debuts June 13-20 Worldwide"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "hey-palu": [
+   {
+    "slug": "iain-mcpherson",
+    "title": "Iain McPherson"
+   }
+  ],
+  "honeycomb-hi-fi": [
+   {
+    "slug": "top-10-bars-in-dubai-2025",
+    "title": "Top 10 Bars in Dubai 2025"
+   }
+  ],
+  "honky-tonks-tavern": [
+   {
+    "slug": "50-best-signature-sessions-return-to-hong-kong",
+    "title": "50 Best Signature Sessions Return to Hong Kong"
+   },
+   {
+    "slug": "margarita-mile-hong-kong-2026",
+    "title": "Margarita Mile Returns to Hong Kong with Tequila Trip Prize"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "horatio": [
+   {
+    "slug": "horatio-at-resorts-world-sentosa-opens-in-singapore",
+    "title": "Horatio at Resorts World Sentosa Opens in Singapore"
+   }
+  ],
+  "identidad": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "isabel-speakeasy": [
+   {
+    "slug": "himkok-and-devils-cut-join-belgrade-cocktail-fest-2026",
+    "title": "Himkok and Devil s Cut Join Belgrade Cocktail Fest 2026"
+   }
+  ],
+  "jewel-of-the-south": [
+   {
+    "slug": "18th-annual-spirited-awards-winners",
+    "title": "18th Annual Spirited Awards Winners"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "jewel-of-the-south",
+    "title": "Jewel of the South"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "jin-bo-law": [
+   {
+    "slug": "jin-bo-law-hong-kong-cocktail-menu-review",
+    "title": "Jin Bo Law Hong Kong Cocktail Menu Review"
+   }
+  ],
+  "june-on-cambie": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "kaito-del-valle": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "katana-kitten": [
+   {
+    "slug": "iain-mcpherson",
+    "title": "Iain McPherson"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-the-extended-list",
+    "title": "North America s 50 Best Bars 2026: The Extended List"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "kink-bar": [
+   {
+    "slug": "barstars-world-tour-2024-brings-asias-top-bartenders-to-europe",
+    "title": "BARSTARS World Tour 2024 Brings Asia’s Top Bartenders to Europe"
+   },
+   {
+    "slug": "kink-bar-berlin-launches-a-bold-new-cocktail-menu",
+    "title": "KINK Bar Berlin Launches a Bold New Cocktail Menu"
+   }
+  ],
+  "kol-mezcaleria": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "kultura-bar": [
+   {
+    "slug": "himkok-and-devils-cut-join-belgrade-cocktail-fest-2026",
+    "title": "Himkok and Devil s Cut Join Belgrade Cocktail Fest 2026"
+   }
+  ],
+  "la-calor": [
+   {
+    "slug": "6-women-shaping-latin-american-hospitality",
+    "title": "6 Women Shaping Latin American Hospitality"
+   }
+  ],
+  "la-factora": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "la-sala-de-laura": [
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   }
+  ],
+  "lady-bee": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "lady-bee-lima-wins-michters-art-of-hospitality-award",
+    "title": "Lady Bee Lima Wins Michter’s Art of Hospitality Award"
+   },
+   {
+    "slug": "medellin-cocktail-week-2026",
+    "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars"
+   },
+   {
+    "slug": "worlds-best-bars-head-to-stockholm-for-bca-week",
+    "title": "World s Best Bars Head to Stockholm for BCA Week"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "landsky": [
+   {
+    "slug": "copy-taste-festival-2026-zagreb",
+    "title": "Copy Taste Festival 2026 Brings 50 Best Bars to Zagreb"
+   }
+  ],
+  "late-bloomers": [
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   }
+  ],
+  "le-chamber": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "best-bars-in-southeast-asia",
+    "title": "Best Bars in Southeast Asia"
+   }
+  ],
+  "le-hibou": [
+   {
+    "slug": "bartenders-choice-awards-2026-all-the-winners",
+    "title": "Bartenders Choice Awards 2026: All the Winners"
+   }
+  ],
+  "les-ambassadeurs": [
+   {
+    "slug": "bar-les-ambassadeurs-launches-new-seasonal-cocktail-menu",
+    "title": "Bar Les Ambassadeurs Launches New Seasonal Cocktail Menu"
+   },
+   {
+    "slug": "bar-les-ambassadeurs-launches-nostalgic-cocktail-menu",
+    "title": "Bar Les Ambassadeurs Launches Nostalgic Cocktail Menu"
+   }
+  ],
+  "library-bar-toronto": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2025-heads-to-vancouver",
+    "title": "North America’s 50 Best Bars 2025 Heads to Vancouver"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "library-by-the-sea": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "licoreria-limantour": [
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "mexican-bar-tour",
+    "title": "Mexican Bar Tour"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "little-red-door": [
+   {
+    "slug": "five-spritzes-worth-ordering-instead-of-aperol",
+    "title": "Five Spritzes Worth Ordering Instead of Aperol"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2025",
+    "title": "Mirror Hospitality Expo 2025"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2025-puts-bratislava-on-the-bar-map",
+    "title": "Mirror Hospitality Expo 2025 Puts Bratislava on the Bar Map"
+   },
+   {
+    "slug": "the-sustainable-documents-a-free-resource-for-bars",
+    "title": "The Sustainable Documents: A Free Resource for Bars"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "worlds-best-bars-head-to-stockholm-for-bca-week",
+    "title": "World s Best Bars Head to Stockholm for BCA Week"
+   }
+  ],
+  "little-rituals": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "live-twice": [
+   {
+    "slug": "top-10-bars-in-singapore-2026",
+    "title": "Top 10 Bars in Singapore 2026"
+   }
+  ],
+  "loa-bar": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   }
+  ],
+  "locale-firenze": [
+   {
+    "slug": "copy-taste-festival-2026-zagreb",
+    "title": "Copy Taste Festival 2026 Brings 50 Best Bars to Zagreb"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "lockdown": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "margarita-mile-hong-kong-2026",
+    "title": "Margarita Mile Returns to Hong Kong with Tequila Trip Prize"
+   }
+  ],
+  "lpm-dubai": [
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "top-10-bars-in-dubai-2025",
+    "title": "Top 10 Bars in Dubai 2025"
+   }
+  ],
+  "lyaness": [
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "top-10-bars-in-new-york-2026",
+    "title": "Top 10 Bars in New York 2026"
+   }
+  ],
+  "mahaniyom-cocktail-bar": [
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "maison-premiere": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "mala-audio-bar": [
+   {
+    "slug": "medellin-cocktail-week-2026",
+    "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars"
+   }
+  ],
+  "mamba-negra": [
+   {
+    "slug": "medellin-cocktail-week-2026",
+    "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "maria-mezcal": [
+   {
+    "slug": "6-women-shaping-latin-american-hospitality",
+    "title": "6 Women Shaping Latin American Hospitality"
+   },
+   {
+    "slug": "aaron-diaz-superbar-peru",
+    "title": "Aaron Díaz: The Man Behind SUPERBAR"
+   }
+  ],
+  "mariposa-negra-cocktail-bar-cocteleria-artesana": [
+   {
+    "slug": "bars-in-barcelona",
+    "title": "Bars in Barcelona"
+   }
+  ],
+  "maybe-sammy": [
+   {
+    "slug": "50-best-bars-roku-scholarship-2024",
+    "title": "50 Best Bars Roku Scholarship 2024"
+   },
+   {
+    "slug": "asias-50-best-bars-2025-coming-to-wynn-macau-in-july",
+    "title": "Asia’s 50 Best Bars 2025 Coming to Wynn Macau in July"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "maybe-cocktail-festival-returns-to-sydney-for-its-third-year",
+    "title": "Maybe Cocktail Festival Returns to Sydney for Its Third Year"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2025",
+    "title": "Mirror Hospitality Expo 2025"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2025-puts-bratislava-on-the-bar-map",
+    "title": "Mirror Hospitality Expo 2025 Puts Bratislava on the Bar Map"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "world-gin-week-2026-debut",
+    "title": "World Gin Week 2026 Debuts June 13-20 Worldwide"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "meadowlark": [
+   {
+    "slug": "meadowlark",
+    "title": "Meadowlark"
+   }
+  ],
+  "mecenas": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "melange-by-cali-sober": [
+   {
+    "slug": "melange-by-cali-sober-is-rewriting-new-orleans-nightlife",
+    "title": "Mélange by Cali Sober Is Rewriting New Orleans Nightlife"
+   }
+  ],
+  "mimi-kakushi": [
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "top-10-bars-in-dubai-2025",
+    "title": "Top 10 Bars in Dubai 2025"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "mirror-bar": [
+   {
+    "slug": "adrian-michalcik",
+    "title": "Adrian Michalcik"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "copy-taste-festival-2026-zagreb",
+    "title": "Copy Taste Festival 2026 Brings 50 Best Bars to Zagreb"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "mirror-bar-michters-art-of-hospitality-award-2026",
+    "title": "Mirror Bar Wins Michter s Art of Hospitality Award 2026"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2024",
+    "title": "Mirror Hospitality Expo 2024"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2025",
+    "title": "Mirror Hospitality Expo 2025"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2025-puts-bratislava-on-the-bar-map",
+    "title": "Mirror Hospitality Expo 2025 Puts Bratislava on the Bar Map"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2026-returns-to-bratislava",
+    "title": "Mirror Hospitality Expo 2026 Returns to Bratislava"
+   },
+   {
+    "slug": "central-europe-hospitality-expo-cehe-2027",
+    "title": "Mirror Hospitality Expo Rebrands as CEHE for 2027"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "mixology": [
+   {
+    "slug": "bar-world-100-2024-a-toast-to-global-mixology-leaders",
+    "title": "BAR WORLD 100 2024"
+   },
+   {
+    "slug": "best-bars-in-southeast-asia",
+    "title": "Best Bars in Southeast Asia"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "paradiso-sustainability-summit-2025",
+    "title": "Paradiso Sustainability Summit 2025"
+   },
+   {
+    "slug": "the-opposites-celebrates-one-year-in-hong-kong",
+    "title": "The Opposites Celebrates One Year in Hong Kong"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "wing-lei-bars-unity-cocktail-menu-celebrates-global-flavors",
+    "title": "Wing Lei Bar’s UNITY Cocktail Menu Celebrates Global Flavors"
+   }
+  ],
+  "modernhaus": [
+   {
+    "slug": "wing-lei-bar-friends-vol-2-lands-in-macao",
+    "title": "Wing Lei Bar Friends Vol. 2 Lands in Macao"
+   }
+  ],
+  "moebius-milano": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "montana": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "montana-bar-to-open-in-hong-kong-in-summer-2025",
+    "title": "Montana Bar to Open in Hong Kong in Summer 2025"
+   },
+   {
+    "slug": "montana-by-antinori-caporale-opens-in-hong-kong",
+    "title": "Montana by Antinori Caporale Opens in Hong Kong"
+   }
+  ],
+  "moonrock": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   }
+  ],
+  "murder-inc": [
+   {
+    "slug": "amsterdam-cocktail-week-2026-bars-events-guide",
+    "title": "Amsterdam Cocktail Week 2026 Has Never Been Bigger"
+   }
+  ],
+  "nauticus-bar": [
+   {
+    "slug": "iain-mcpherson",
+    "title": "Iain McPherson"
+   },
+   {
+    "slug": "iain-mcpherson-named-altos-bartenders-bartender-2024",
+    "title": "Iain McPherson Named Altos Bartenders’ Bartender 2024"
+   }
+  ],
+  "new-york-bar": [
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   }
+  ],
+  "nickel-city": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "night-hawk": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "barstars-world-tour-2024-brings-asias-top-bartenders-to-europe",
+    "title": "BARSTARS World Tour 2024 Brings Asia’s Top Bartenders to Europe"
+   },
+   {
+    "slug": "bcb-singapore-2025-asias-premier-bar-and-beverage-event-returns",
+    "title": "BCB Singapore 2025: Asia’s Premier Bar and Beverage Event Returns"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "wing-lei-bar-friends-vol-2-lands-in-macao",
+    "title": "Wing Lei Bar Friends Vol. 2 Lands in Macao"
+   }
+  ],
+  "nipperkin": [
+   {
+    "slug": "hyper-drinks-by-angelos-bafas-redefines-cocktail-simplicity",
+    "title": "HYPER Drinks by Angelos Bafas Redefines Cocktail Simplicity"
+   }
+  ],
+  "nite-kong": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   }
+  ],
+  "nouvelle-vague": [
+   {
+    "slug": "europes-50-best-bars-2026-with-the-polot-1882-family",
+    "title": "Europe s 50 Best Bars 2026 with the Polot 1882 family"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2025",
+    "title": "Mirror Hospitality Expo 2025"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "offtrack": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   },
+   {
+    "slug": "top-10-bars-in-singapore-2026",
+    "title": "Top 10 Bars in Singapore 2026"
+   }
+  ],
+  "old-fashioned-bar": [
+   {
+    "slug": "mirror-hospitality-expo-2025-puts-bratislava-on-the-bar-map",
+    "title": "Mirror Hospitality Expo 2025 Puts Bratislava on the Bar Map"
+   }
+  ],
+  "origin-bar": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "outline": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "overstory": [
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "overstory",
+    "title": "Overstory"
+   },
+   {
+    "slug": "the-50-best-bars-in-north-america-for-2024",
+    "title": "The 50 Best Bars in North America for 2024"
+   },
+   {
+    "slug": "top-10-bars-in-new-york-2026",
+    "title": "Top 10 Bars in New York 2026"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "pacific-cocktail-haven": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "passing-fancies": [
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "penrose": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "best-bars-in-southeast-asia",
+    "title": "Best Bars in Southeast Asia"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "permission": [
+   {
+    "slug": "wishka-russell-davis-returns-to-his-origins",
+    "title": "‘Wishka’ Russell Davis Returns to His Origins"
+   }
+  ],
+  "pony-up": [
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "pop-city-x-pony": [
+   {
+    "slug": "inside-pop-city-x-pony-full-menu-experience",
+    "title": "Inside POP CITY X PONY: Full Menu Experience"
+   },
+   {
+    "slug": "pop-city-x-pony-opens-in-singapore-by-jigger-pony-group",
+    "title": "POP CITY X PONY Opens in Singapore by Jigger Pony Group"
+   }
+  ],
+  "press-club-dc": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "pretty-decent": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "prophecy": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "quema-que-quema": [
+   {
+    "slug": "medellin-cocktail-week-2026",
+    "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars"
+   }
+  ],
+  "quinary": [
+   {
+    "slug": "asias-best-bartenders-descend-on-ozone-hong-kong",
+    "title": "Asia s Best Bartenders Descend on OZONE Hong Kong"
+   },
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "top-10-bars-in-hong-kong-for-2026",
+    "title": "Top 10 Bars in Hong Kong for 2026"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "r-da-huset": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "himkok-turns-10-with-global-bar-takeovers",
+    "title": "Himkok Turns 10 with Global Bar Takeovers"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "mirror-hospitality-expo-2026-returns-to-bratislava",
+    "title": "Mirror Hospitality Expo 2026 Returns to Bratislava"
+   },
+   {
+    "slug": "paradiso-sustainability-summit-2025",
+    "title": "Paradiso Sustainability Summit 2025"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "realm-of-the-52-remedies": [
+   {
+    "slug": "artful-bar-design",
+    "title": "The World s Best Bars"
+   }
+  ],
+  "red-frog": [
+   {
+    "slug": "paradiso-sustainability-summit-2025",
+    "title": "Paradiso Sustainability Summit 2025"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "riddle-bar": [
+   {
+    "slug": "himkok-and-devils-cut-join-belgrade-cocktail-fest-2026",
+    "title": "Himkok and Devil s Cut Join Belgrade Cocktail Fest 2026"
+   }
+  ],
+  "rob-roy-seattle": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "nicola-olianas-on-heritage-innovation-and-the-future-of-mixology",
+    "title": "Nicola Olianas on Heritage, Innovation, and the Future of Mixology"
+   }
+  ],
+  "room-207": [
+   {
+    "slug": "room-207-is-new-yorks-next-cocktail-tourism-destination",
+    "title": "Room 207 Is New York’s Next Cocktail Tourism Destination"
+   },
+   {
+    "slug": "world-gin-week-2026-debut",
+    "title": "World Gin Week 2026 Debuts June 13-20 Worldwide"
+   }
+  ],
+  "roquette-seattle": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   }
+  ],
+  "sago-house": [
+   {
+    "slug": "top-10-bars-in-singapore-2026",
+    "title": "Top 10 Bars in Singapore 2026"
+   }
+  ],
+  "saikindo": [
+   {
+    "slug": "five-spritzes-worth-ordering-instead-of-aperol",
+    "title": "Five Spritzes Worth Ordering Instead of Aperol"
+   },
+   {
+    "slug": "saikindo-abu-dhabi-aji-no-hibiki-menu",
+    "title": "Saikindo Abu Dhabi Menu Built Like a Vinyl Record"
+   }
+  ],
+  "salmon-guru": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "top-10-bars-in-dubai-2025",
+    "title": "Top 10 Bars in Dubai 2025"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "salmon-guru-dubai": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "top-10-bars-in-dubai-2025",
+    "title": "Top 10 Bars in Dubai 2025"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "salmon-guru-milan": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "sastrer-a-martinez": [
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "scarfes-bar": [
+   {
+    "slug": "advocatuur-opens-at-rosewood-amsterdam",
+    "title": "Advocatuur Opens at Rosewood Amsterdam"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "mexican-coffee",
+    "title": "Mexican Coffee"
+   },
+   {
+    "slug": "central-europe-hospitality-expo-cehe-2027",
+    "title": "Mirror Hospitality Expo Rebrands as CEHE for 2027"
+   },
+   {
+    "slug": "scarfes-bar-at-rosewood-london-launches-from-scratch-cocktail-menu",
+    "title": "Scarfes Bar at Rosewood London Launches From Scratch Cocktail Menu"
+   },
+   {
+    "slug": "scarfes-bar-hosts-bar-leone-for-exclusive-london-takeover",
+    "title": "Scarfes Bar Hosts Bar Leone for Exclusive London Takeover"
+   },
+   {
+    "slug": "scarfes-bar-hosts-international-womens-month-talks",
+    "title": "Scarfes Bar Hosts International Women’s Month Talks"
+   },
+   {
+    "slug": "scarfes-bar-launches-long-drawn-out-sip-cocktail-menu",
+    "title": "Scarfes Bar Launches Long Drawn Out Sip Cocktail Menu"
+   },
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "schmuck": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "himkok-turns-10-with-global-bar-takeovers",
+    "title": "Himkok Turns 10 with Global Bar Takeovers"
+   },
+   {
+    "slug": "moe-aljaff",
+    "title": "Moe Aljaff"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "spirited-awards-2026-winners-tales-of-the-cocktail",
+    "title": "Spirited Awards 2026 Crown Winners in New Orleans"
+   },
+   {
+    "slug": "top-10-bars-in-new-york-2026",
+    "title": "Top 10 Bars in New York 2026"
+   },
+   {
+    "slug": "visiting-bar-luminary-series",
+    "title": "Visiting Bar Luminary Series"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "scotch-lodge": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   }
+  ],
+  "seed-library": [
+   {
+    "slug": "mr-lyan-brings-seed-library-to-new-york-this-fall",
+    "title": "Mr Lyan Brings Seed Library to New York This Fall"
+   },
+   {
+    "slug": "seed-library-nyc-new-cocktail-menu-june-2026",
+    "title": "Seed Library NYC Unveils New Cocktail Menu June 2026"
+   },
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "top-10-bars-in-new-york-2026",
+    "title": "Top 10 Bars in New York 2026"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "seed-library-nyc": [
+   {
+    "slug": "five-spritzes-worth-ordering-instead-of-aperol",
+    "title": "Five Spritzes Worth Ordering Instead of Aperol"
+   },
+   {
+    "slug": "mr-lyan-brings-seed-library-to-new-york-this-fall",
+    "title": "Mr Lyan Brings Seed Library to New York This Fall"
+   },
+   {
+    "slug": "seed-library-nyc-new-cocktail-menu-june-2026",
+    "title": "Seed Library NYC Unveils New Cocktail Menu June 2026"
+   },
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "top-10-bars-in-new-york-2026",
+    "title": "Top 10 Bars in New York 2026"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "sentaku-izakaya": [
+   {
+    "slug": "himkok-and-devils-cut-join-belgrade-cocktail-fest-2026",
+    "title": "Himkok and Devil s Cut Join Belgrade Cocktail Fest 2026"
+   }
+  ],
+  "service-bar-dc": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "seven-grand-los-angeles": [
+   {
+    "slug": "top-10-bars-in-los-angeles-2026",
+    "title": "Top 10 Bars in Los Angeles 2026"
+   }
+  ],
+  "sexy-fish": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "shakerato": [
+   {
+    "slug": "amaretto-adriatico-the-new-generation-amaretto",
+    "title": "Amaretto ADRIATICO The New Generation Amaretto"
+   },
+   {
+    "slug": "best-cocktail-bars-amsterdam-2026",
+    "title": "The 4 Best Cocktail Bars in Amsterdam Right Now"
+   },
+   {
+    "slug": "world-gin-week-2026-debut",
+    "title": "World Gin Week 2026 Debuts June 13-20 Worldwide"
+   },
+   {
+    "slug": "worlds-best-bars-head-to-stockholm-for-bca-week",
+    "title": "World s Best Bars Head to Stockholm for BCA Week"
+   }
+  ],
+  "side-door": [
+   {
+    "slug": "bcb-singapore-2025-asias-premier-bar-and-beverage-event-returns",
+    "title": "BCB Singapore 2025: Asia’s Premier Bar and Beverage Event Returns"
+   },
+   {
+    "slug": "top-10-bars-in-singapore-2026",
+    "title": "Top 10 Bars in Singapore 2026"
+   }
+  ],
+  "side-hustle": [
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "worlds-best-bars-head-to-stockholm-for-bca-week",
+    "title": "World s Best Bars Head to Stockholm for BCA Week"
+   }
+  ],
+  "sidecar": [
+   {
+    "slug": "wing-lei-bars-unity-cocktail-menu-celebrates-global-flavors",
+    "title": "Wing Lei Bar’s UNITY Cocktail Menu Celebrates Global Flavors"
+   }
+  ],
+  "silver-lyan-dc": [
+   {
+    "slug": "silver-lyan-folklore-menu",
+    "title": "Silver Lyan Folklore Menu Turns Cryptids Into Cocktails"
+   },
+   {
+    "slug": "the-butterfly-effect-at-silver-lyan-in-washington-dc",
+    "title": "The Butterfly Effect at Silver Lyan in Washington DC"
+   }
+  ],
+  "sin-tax": [
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "sins-of-sal": [
+   {
+    "slug": "amsterdam-cocktail-week-2026-bars-events-guide",
+    "title": "Amsterdam Cocktail Week 2026 Has Never Been Bigger"
+   },
+   {
+    "slug": "amsterdam-cocktail-week-2026-when-a-city-becomes-a-living-bar-scene",
+    "title": "Amsterdam Cocktail Week 2026: When a City Becomes a Living Bar Scene"
+   },
+   {
+    "slug": "best-cocktail-bars-amsterdam-2026",
+    "title": "The 4 Best Cocktail Bars in Amsterdam Right Now"
+   }
+  ],
+  "sky-bar-bratislava": [
+   {
+    "slug": "mirror-hospitality-expo-2025-puts-bratislava-on-the-bar-map",
+    "title": "Mirror Hospitality Expo 2025 Puts Bratislava on the Bar Map"
+   }
+  ],
+  "sober-company": [
+   {
+    "slug": "hong-kong-soho-bars-may-2026-events",
+    "title": "Hong Kong Soho Bars Pack May with Five New Events"
+   }
+  ],
+  "solara-bar": [
+   {
+    "slug": "solara-bar-sao-paulo-bumble-safe-space",
+    "title": "Solara Bar São Paulo Earns Bumble Safe-Date Status"
+   }
+  ],
+  "stjartilleriet": [
+   {
+    "slug": "bartenders-choice-awards-2026-all-the-winners",
+    "title": "Bartenders Choice Awards 2026: All the Winners"
+   }
+  ],
+  "super-lyan": [
+   {
+    "slug": "amsterdam-cocktail-week-2026-bars-events-guide",
+    "title": "Amsterdam Cocktail Week 2026 Has Never Been Bigger"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "best-cocktail-bars-amsterdam-2026",
+    "title": "The 4 Best Cocktail Bars in Amsterdam Right Now"
+   }
+  ],
+  "superbueno": [
+   {
+    "slug": "18th-annual-spirited-awards-winners",
+    "title": "18th Annual Spirited Awards Winners"
+   },
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "superbueno",
+    "title": "Superbueno"
+   },
+   {
+    "slug": "the-50-best-bars-in-north-america-for-2024",
+    "title": "The 50 Best Bars in North America for 2024"
+   },
+   {
+    "slug": "top-10-bars-in-new-york-2026",
+    "title": "Top 10 Bars in New York 2026"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "tan-tan": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "tayer-elementary": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "bar-world-100-2026-full-list-of-global-influencers",
+    "title": "Bar World 100 2026: Full List of Global Influencers"
+   },
+   {
+    "slug": "felice-capasso-wins-2025-world-class-global-finals",
+    "title": "Felice Capasso Wins 2025 World Class Global Finals"
+   },
+   {
+    "slug": "flipdog-opens-in-shoreditch",
+    "title": "FlipDog Opens in Shoreditch"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "himkok-turns-10-with-global-bar-takeovers",
+    "title": "Himkok Turns 10 with Global Bar Takeovers"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   },
+   {
+    "slug": "monica-berg-on-community-bartending-trends-and-elevating-the-bar-world",
+    "title": "Monica Berg on Community, Bartending Trends, and Elevating the Bar World"
+   },
+   {
+    "slug": "monica-berg-reigns-in-the-bar-world-100-rankings",
+    "title": "Monica Berg reigns in the Bar World 100 rankings"
+   },
+   {
+    "slug": "simone-caporale",
+    "title": "Simone Caporale"
+   },
+   {
+    "slug": "tayer-elementary-casual-by-tayer-cato-london",
+    "title": "Tayēr + Elementary Opens Casual by Tayēr at Cato London"
+   },
+   {
+    "slug": "artful-bar-design",
+    "title": "The World s Best Bars"
+   },
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "top-500-bars-2024-celebrates-the-best-in-global-mixology",
+    "title": "Top 500 Bars 2024 Celebrates the Best in Global Mixology"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "teens-of-thailand": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   }
+  ],
+  "the-american-bar": [
+   {
+    "slug": "benjamin-padron-novoa",
+    "title": "Benjamín Padrón Novoa"
+   },
+   {
+    "slug": "mexican-coffee",
+    "title": "Mexican Coffee"
+   },
+   {
+    "slug": "rasty-kasar",
+    "title": "Rasty Kasar"
+   }
+  ],
+  "the-bar-in-front-of-the-bar": [
+   {
+    "slug": "himkok-and-devils-cut-join-belgrade-cocktail-fest-2026",
+    "title": "Himkok and Devil s Cut Join Belgrade Cocktail Fest 2026"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "the-baxter-inn": [
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "the-bellwood": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "nico-de-soto",
+    "title": "Nico de Soto"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "the-cambridge-public-house": [
+   {
+    "slug": "copy-taste-festival-2026-zagreb",
+    "title": "Copy Taste Festival 2026 Brings 50 Best Bars to Zagreb"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "paradiso-sustainability-summit-2025",
+    "title": "Paradiso Sustainability Summit 2025"
+   },
+   {
+    "slug": "pariss-the-cambridge-public-house-unveils-global-cocktail-series",
+    "title": "Paris s The Cambridge Public House Unveils Global Cocktail Series"
+   },
+   {
+    "slug": "the-cambridge-public-house-launches-shaken-leaf",
+    "title": "The Cambridge Public House Launches Shaken Leaf"
+   },
+   {
+    "slug": "the-seychelles-bar-sustainability-project",
+    "title": "The Seychelles Bar Sustainability Project"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "the-clumsies": [
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "himkok-turns-10-with-global-bar-takeovers",
+    "title": "Himkok Turns 10 with Global Bar Takeovers"
+   },
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "nikos-bakoulis",
+    "title": "NIKOS BAKOULIS"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "the-cocktail-club": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "the-haflington": [
+   {
+    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
+    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
+   }
+  ],
+  "the-keefer-bar": [
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   }
+  ],
+  "the-loft": [
+   {
+    "slug": "the-loft-santiago",
+    "title": "The Loft Santiago Raises the Bar for Classic Cocktails"
+   }
+  ],
+  "the-mixing-room": [
+   {
+    "slug": "margarita-mile-hong-kong-2026",
+    "title": "Margarita Mile Returns to Hong Kong with Tequila Trip Prize"
+   }
+  ],
+  "the-old-man": [
+   {
+    "slug": "aberdeen-arts-row-animates-hong-kong-art-month",
+    "title": "Aberdeen Arts Row Animates Hong Kong Art Month"
+   },
+   {
+    "slug": "aberdeen-arts-row-transforms-hong-kong-nightlife",
+    "title": "Aberdeen Arts Row Transforms Hong Kong Nightlife"
+   },
+   {
+    "slug": "margarita-mile-hong-kong-2026",
+    "title": "Margarita Mile Returns to Hong Kong with Tequila Trip Prize"
+   },
+   {
+    "slug": "top-10-bars-in-hong-kong-for-2026",
+    "title": "Top 10 Bars in Hong Kong for 2026"
+   }
+  ],
+  "the-opposites": [
+   {
+    "slug": "asian-twist-signature-cocktails-from-macau-and-hong-kong",
+    "title": "Asian Twist Signature Cocktails from Macau and Hong Kong"
+   },
+   {
+    "slug": "himkok-turns-10-with-global-bar-takeovers",
+    "title": "Himkok Turns 10 with Global Bar Takeovers"
+   },
+   {
+    "slug": "the-opposites-celebrates-one-year-in-hong-kong",
+    "title": "The Opposites Celebrates One Year in Hong Kong"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "the-pontiac": [
+   {
+    "slug": "hong-kong-soho-bars-may-2026-events",
+    "title": "Hong Kong Soho Bars Pack May with Five New Events"
+   },
+   {
+    "slug": "margarita-mile-hong-kong-2026",
+    "title": "Margarita Mile Returns to Hong Kong with Tequila Trip Prize"
+   },
+   {
+    "slug": "the-pontiac-hong-kong-neon-lit-menu",
+    "title": "The Pontiac Hong Kong Launches Neon Lit Cocktail Menu"
+   },
+   {
+    "slug": "the-pontiac-x-bar-flora-celebrate-women-in-bars",
+    "title": "The Pontiac x Bar Flora Celebrate Women in Bars"
+   },
+   {
+    "slug": "top-10-bars-in-hong-kong-for-2026",
+    "title": "Top 10 Bars in Hong Kong for 2026"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "the-punch-room-at-edition": [
+   {
+    "slug": "barcelona-hotel-bar-week-2026",
+    "title": "Barcelona Hotel Bar Week 2026 Returns September 21 to 27"
+   }
+  ],
+  "the-savory-project": [
+   {
+    "slug": "50-best-signature-sessions-return-to-hong-kong",
+    "title": "50 Best Signature Sessions Return to Hong Kong"
+   },
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "top-10-bars-in-hong-kong-for-2026",
+    "title": "Top 10 Bars in Hong Kong for 2026"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "the-sg-club": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "the-st-regis-bar": [
+   {
+    "slug": "asias-best-bartenders-descend-on-ozone-hong-kong",
+    "title": "Asia s Best Bartenders Descend on OZONE Hong Kong"
+   },
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   }
+  ],
+  "the-st-regis-bar-jakarta": [
+   {
+    "slug": "asias-best-bartenders-descend-on-ozone-hong-kong",
+    "title": "Asia s Best Bartenders Descend on OZONE Hong Kong"
+   },
+   {
+    "slug": "the-st-regis-bar-jakarta-revives-1920s-jazz-in-cocktails",
+    "title": "The St. Regis Bar Jakarta Revives 1920s Jazz in Cocktails"
+   }
+  ],
+  "the-sun-tavern": [
+   {
+    "slug": "iain-mcpherson",
+    "title": "Iain McPherson"
+   }
+  ],
+  "the-wig-shop-boston": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   }
+  ],
+  "the-wolves": [
+   {
+    "slug": "the-wolves",
+    "title": "The Wolves"
+   },
+   {
+    "slug": "top-10-bars-in-los-angeles-2026",
+    "title": "Top 10 Bars in Los Angeles 2026"
+   }
+  ],
+  "three-sheets-soho": [
+   {
+    "slug": "europes-50-best-bars-2026-line-athens-number-one",
+    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
+   },
+   {
+    "slug": "top-10-bars-in-london-2026",
+    "title": "Top 10 Bars in London 2026"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "three-x-co": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   },
+   {
+    "slug": "scarfes-bar-hosts-international-womens-month-talks",
+    "title": "Scarfes Bar Hosts International Women’s Month Talks"
+   }
+  ],
+  "ticonderoga-club": [
+   {
+    "slug": "north-americas-50-best-bars-2026-the-extended-list",
+    "title": "North America s 50 Best Bars 2026: The Extended List"
+   }
+  ],
+  "tigra-disco-pantera": [
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "tiki-ti": [
+   {
+    "slug": "top-10-bars-in-los-angeles-2026",
+    "title": "Top 10 Bars in Los Angeles 2026"
+   }
+  ],
+  "tokyo-confidential": [
+   {
+    "slug": "50-best-signature-sessions-return-to-hong-kong",
+    "title": "50 Best Signature Sessions Return to Hong Kong"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "barstars-world-tour-2024-brings-asias-top-bartenders-to-europe",
+    "title": "BARSTARS World Tour 2024 Brings Asia’s Top Bartenders to Europe"
+   },
+   {
+    "slug": "central-europe-hospitality-expo-cehe-2027",
+    "title": "Mirror Hospitality Expo Rebrands as CEHE for 2027"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   }
+  ],
+  "tres-monos": [
+   {
+    "slug": "1986-steak-house-miami-coconut-grove-tres-monos",
+    "title": "1986 Steak House Opens in Miami with Tres Monos Cocktails"
+   },
+   {
+    "slug": "50-best-bars-scholarship-2026-line-athens-tres-monos-buenos-aires",
+    "title": "50 Best Bars Scholarship 2026 Heads to Athens and Buenos Aires"
+   },
+   {
+    "slug": "50-best-signature-sessions-return-to-hong-kong",
+    "title": "50 Best Signature Sessions Return to Hong Kong"
+   },
+   {
+    "slug": "6-women-shaping-latin-american-hospitality",
+    "title": "6 Women Shaping Latin American Hospitality"
+   },
+   {
+    "slug": "bar-world-100-2025-full-list-of-global-influencers",
+    "title": "Bar World 100 2025: Full List of Global Influencers"
+   },
+   {
+    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
+    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
+   },
+   {
+    "slug": "tres-monos-named-best-bar-in-south-america",
+    "title": "Tres Monos Named Best Bar in South America"
+   },
+   {
+    "slug": "tres-monos-turns-buenos-aires-into-a-cocktail-carnival",
+    "title": "Tres Monos Turns Buenos Aires into a Cocktail Carnival"
+   },
+   {
+    "slug": "wing-lei-bar-friends-launches-at-wynn-palace",
+    "title": "Wing Lei Bar Friends Launches at Wynn Palace"
+   },
+   {
+    "slug": "wing-lei-bars-unity-cocktail-menu-celebrates-global-flavors",
+    "title": "Wing Lei Bar’s UNITY Cocktail Menu Celebrates Global Flavors"
+   },
+   {
+    "slug": "worlds-50-best-bars-2026-milan",
+    "title": "World s 50 Best Bars 2026 Heads to Milan in October"
+   },
+   {
+    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
+    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
+   }
+  ],
+  "trick-dog": [
+   {
+    "slug": "north-americas-50-best-bars-2026-the-extended-list",
+    "title": "North America s 50 Best Bars 2026: The Extended List"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "world-gin-week-2026-debut",
+    "title": "World Gin Week 2026 Debuts June 13-20 Worldwide"
+   }
+  ],
+  "true-laurel": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "true-laurel",
+    "title": "True Laurel"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "two-schmucks": [
+   {
+    "slug": "barcelonas-cocktail-evolution",
+    "title": "Barcelona s Cocktail Evolution"
+   },
+   {
+    "slug": "bars-in-barcelona",
+    "title": "Bars in Barcelona"
+   },
+   {
+    "slug": "moe-aljaff",
+    "title": "Moe Aljaff"
+   },
+   {
+    "slug": "top-10-bars-in-new-york-2026",
+    "title": "Top 10 Bars in New York 2026"
+   }
+  ],
+  "urania-bar": [
+   {
+    "slug": "copy-taste-festival-2026-zagreb",
+    "title": "Copy Taste Festival 2026 Brings 50 Best Bars to Zagreb"
+   }
+  ],
+  "vandell": [
+   {
+    "slug": "top-10-bars-in-los-angeles-2026",
+    "title": "Top 10 Bars in Los Angeles 2026"
+   }
+  ],
+  "vault-bar": [
+   {
+    "slug": "amsterdam-cocktail-week-2026-bars-events-guide",
+    "title": "Amsterdam Cocktail Week 2026 Has Never Been Bigger"
+   }
+  ],
+  "velvet-by-salvatore-calabrese": [
+   {
+    "slug": "the-quote-book",
+    "title": "The Quote Book"
+   }
+  ],
+  "viajante-87": [
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ],
+  "viceversa": [
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "north-americas-50-best-bars-2026-results",
+    "title": "North America s 50 Best Bars 2026 Results"
+   },
+   {
+    "slug": "spirited-awards-2026-winners-tales-of-the-cocktail",
+    "title": "Spirited Awards 2026 Crown Winners in New Orleans"
+   }
+  ],
+  "victor-audio-bar-buenos-aires": [
+   {
+    "slug": "tres-monos-named-best-bar-in-south-america",
+    "title": "Tres Monos Named Best Bar in South America"
+   },
+   {
+    "slug": "tres-monos-turns-buenos-aires-into-a-cocktail-carnival",
+    "title": "Tres Monos Turns Buenos Aires into a Cocktail Carnival"
+   },
+   {
+    "slug": "victor-audio-bar-marks-one-year-with-global-guest-shifts",
+    "title": "Victor Audio Bar Marks One Year with Global Guest Shifts"
+   },
+   {
+    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
+    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
+   }
+  ],
+  "widder-bar": [
+   {
+    "slug": "zurich-bar-show-2025-spotlight-on-swiss-bar-culture",
+    "title": "Zurich Bar Show 2025: Spotlight on Swiss Bar Culture"
+   }
+  ],
+  "wing-lei-bar": [
+   {
+    "slug": "50-best-signature-sessions-return-to-hong-kong",
+    "title": "50 Best Signature Sessions Return to Hong Kong"
+   },
+   {
+    "slug": "asias-best-bartenders-descend-on-ozone-hong-kong",
+    "title": "Asia s Best Bartenders Descend on OZONE Hong Kong"
+   },
+   {
+    "slug": "asian-twist-signature-cocktails-from-macau-and-hong-kong",
+    "title": "Asian Twist Signature Cocktails from Macau and Hong Kong"
+   },
+   {
+    "slug": "wing-lei-bars-unity-cocktail-menu-celebrates-global-flavors",
+    "title": "Wing Lei Bar’s UNITY Cocktail Menu Celebrates Global Flavors"
+   },
+   {
+    "slug": "asias-50-best-bars-2026-wynn-macau-host-partner",
+    "title": "Wynn Macau Hosts Asia s 50 Best Bars 2026 Awards"
+   }
+  ],
+  "workshop14": [
+   {
+    "slug": "asias-50-best-bars-2025-names-bar-leone-no-1-again",
+    "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
+   }
+  ],
+  "yacht-club-denver": [
+   {
+    "slug": "18th-annual-spirited-awards-winners",
+    "title": "18th Annual Spirited Awards Winners"
+   },
+   {
+    "slug": "2025-james-beard-awards-semifinalists-announced",
+    "title": "2025 James Beard Awards Semifinalists Announced"
+   },
+   {
+    "slug": "50-best-signature-sessions-return-to-hong-kong",
+    "title": "50 Best Signature Sessions Return to Hong Kong"
+   },
+   {
+    "slug": "top-10-nominees-for-the-2024-spirited-awards",
+    "title": "Top 10 Nominees for the 2024 Spirited Awards"
+   },
+   {
+    "slug": "top-4-finalists-for-the-2024-spirited-awards-announced",
+    "title": "Top 4 Finalists for the 2024 Spirited Awards Announced"
+   }
+  ],
+  "zapote-bar-playa-del-carmen": [
+   {
+    "slug": "north-americas-50-best-bars-2026-the-extended-list",
+    "title": "North America s 50 Best Bars 2026: The Extended List"
+   },
+   {
+    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
+    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
+   }
+  ]
+ },
+ "byArticle": {
+  "europes-50-best-bars-2026-line-athens-number-one": [
+   {
+    "slug": "14-de-la-rosa",
+    "name": "14 de la Rosa",
+    "city": "Barcelona"
+   },
+   {
+    "slug": "alma-prague",
+    "name": "Alma Prague",
+    "city": "Prague"
+   },
+   {
+    "slug": "baba-au-rum",
+    "name": "Baba au Rum",
+    "city": "Athens"
+   },
+   {
+    "slug": "bar-nouveau",
+    "name": "Bar Nouveau",
+    "city": "Paris"
+   },
+   {
+    "slug": "barro-negro",
+    "name": "Barro Negro",
+    "city": "Athens"
+   },
+   {
+    "slug": "camparino-in-galleria",
+    "name": "Camparino in Galleria",
+    "city": "Milan"
+   },
+   {
+    "slug": "connaught-bar",
+    "name": "Connaught Bar",
+    "city": "London"
+   },
+   {
+    "slug": "drink-kong",
+    "name": "Drink Kong",
+    "city": "Rome"
+   },
+   {
+    "slug": "forbina-bar",
+    "name": "Forbína Bar",
+    "city": "Prague"
+   },
+   {
+    "slug": "freni-e-frizioni",
+    "name": "Freni e Frizioni",
+    "city": "Rome"
+   },
+   {
+    "slug": "late-bloomers",
+    "name": "Late Bloomers",
+    "city": "Zurich"
+   },
+   {
+    "slug": "locale-firenze",
+    "name": "Locale Firenze",
+    "city": "Florence"
+   },
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   },
+   {
+    "slug": "moebius-milano",
+    "name": "Moebius Milano",
+    "city": "Milan"
+   },
+   {
+    "slug": "nouvelle-vague",
+    "name": "Nouvelle Vague",
+    "city": "Tirana"
+   },
+   {
+    "slug": "r-da-huset",
+    "name": "Röda Huset",
+    "city": "Stockholm"
+   },
+   {
+    "slug": "salmon-guru",
+    "name": "Salmon Guru",
+    "city": "Madrid"
+   },
+   {
+    "slug": "salmon-guru-milan",
+    "name": "Salmon Guru",
+    "city": "Milan"
+   },
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   },
+   {
+    "slug": "super-lyan",
+    "name": "Super Lyan",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   },
+   {
+    "slug": "the-bar-in-front-of-the-bar",
+    "name": "The Bar in Front of the Bar",
+    "city": "Athens"
+   },
+   {
+    "slug": "the-cambridge-public-house",
+    "name": "The Cambridge Public House",
+    "city": "Paris"
+   },
+   {
+    "slug": "the-clumsies",
+    "name": "The Clumsies",
+    "city": "Athens"
+   },
+   {
+    "slug": "three-sheets-soho",
+    "name": "Three Sheets Soho",
+    "city": "London"
+   }
+  ],
+  "1986-steak-house-miami-coconut-grove-tres-monos": [
+   {
+    "slug": "1986-steak-house",
+    "name": "1986 Steak House",
+    "city": "Miami"
+   },
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   }
+  ],
+  "eco-totes": [
+   {
+    "slug": "28-hong-kong-street",
+    "name": "28 Hong Kong Street",
+    "city": "Singapore"
+   }
+  ],
+  "mirror-hospitality-expo-2026-returns-to-bratislava": [
+   {
+    "slug": "28-hong-kong-street",
+    "name": "28 Hong Kong Street",
+    "city": "Singapore"
+   },
+   {
+    "slug": "bkk-social-club",
+    "name": "BKK Social Club",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   },
+   {
+    "slug": "r-da-huset",
+    "name": "Röda Huset",
+    "city": "Stockholm"
+   }
+  ],
+  "nz-bar-con-2025-brings-global-energy-to-auckland": [
+   {
+    "slug": "28-hong-kong-street",
+    "name": "28 Hong Kong Street",
+    "city": "Singapore"
+   },
+   {
+    "slug": "above-board",
+    "name": "Above Board",
+    "city": "Melbourne"
+   },
+   {
+    "slug": "bar-bellamy",
+    "name": "Bar Bellamy",
+    "city": "Melbourne"
+   }
+  ],
+  "monica-berg-reigns-in-the-bar-world-100-rankings": [
+   {
+    "slug": "a-bar-with-shapes-for-a-name",
+    "name": "A Bar with Shapes For a Name",
+    "city": "London"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   }
+  ],
+  "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100": [
+   {
+    "slug": "a-bar-with-shapes-for-a-name",
+    "name": "A Bar with Shapes For a Name",
+    "city": "London"
+   },
+   {
+    "slug": "above-board",
+    "name": "Above Board",
+    "city": "Melbourne"
+   },
+   {
+    "slug": "attaboy",
+    "name": "Attaboy",
+    "city": "New York"
+   },
+   {
+    "slug": "baltra-bar",
+    "name": "Baltra Bar",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "bar-cham",
+    "name": "Bar Cham",
+    "city": "Seoul"
+   },
+   {
+    "slug": "bar-pompette",
+    "name": "Bar Pompette",
+    "city": "Toronto"
+   },
+   {
+    "slug": "barro-negro",
+    "name": "Barro Negro",
+    "city": "Athens"
+   },
+   {
+    "slug": "cafe-la-trova",
+    "name": "Café La Trova",
+    "city": "Miami"
+   },
+   {
+    "slug": "camparino-in-galleria",
+    "name": "Camparino in Galleria",
+    "city": "Milan"
+   },
+   {
+    "slug": "cantina-ok",
+    "name": "Cantina OK!",
+    "city": "Sydney"
+   },
+   {
+    "slug": "carnaval",
+    "name": "Carnaval",
+    "city": "Lima"
+   },
+   {
+    "slug": "cat-bite-club",
+    "name": "Cat Bite Club",
+    "city": "Singapore"
+   },
+   {
+    "slug": "employees-only",
+    "name": "Employees Only",
+    "city": "New York"
+   },
+   {
+    "slug": "employees-only-singapore",
+    "name": "Employees Only",
+    "city": "Singapore"
+   },
+   {
+    "slug": "freni-e-frizioni",
+    "name": "Freni e Frizioni",
+    "city": "Rome"
+   },
+   {
+    "slug": "hanky-panky",
+    "name": "Hanky Panky",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "hero-bar",
+    "name": "Hero Bar",
+    "city": "Nairobi"
+   },
+   {
+    "slug": "katana-kitten",
+    "name": "Katana Kitten",
+    "city": "New York"
+   },
+   {
+    "slug": "little-red-door",
+    "name": "Little Red Door",
+    "city": "Paris"
+   },
+   {
+    "slug": "lpm-dubai",
+    "name": "LPM Dubai",
+    "city": "Dubai"
+   },
+   {
+    "slug": "mahaniyom-cocktail-bar",
+    "name": "Mahaniyom Cocktail Bar",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   },
+   {
+    "slug": "mixology",
+    "name": "Mixology",
+    "city": "Seoul"
+   },
+   {
+    "slug": "night-hawk",
+    "name": "Night Hawk",
+    "city": "Singapore"
+   },
+   {
+    "slug": "nouvelle-vague",
+    "name": "Nouvelle Vague",
+    "city": "Tirana"
+   },
+   {
+    "slug": "pacific-cocktail-haven",
+    "name": "Pacific Cocktail Haven",
+    "city": "San Francisco"
+   },
+   {
+    "slug": "penrose",
+    "name": "Penrose",
+    "city": "Kuala Lumpur"
+   },
+   {
+    "slug": "red-frog",
+    "name": "Red Frog",
+    "city": "Lisbon"
+   },
+   {
+    "slug": "sin-tax",
+    "name": "Sin + Tax",
+    "city": "Johannesburg"
+   },
+   {
+    "slug": "the-bar-in-front-of-the-bar",
+    "name": "The Bar in Front of the Bar",
+    "city": "Athens"
+   },
+   {
+    "slug": "the-bellwood",
+    "name": "The Bellwood",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "the-clumsies",
+    "name": "The Clumsies",
+    "city": "Athens"
+   },
+   {
+    "slug": "the-savory-project",
+    "name": "The Savory Project",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-sg-club",
+    "name": "The SG Club",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "viajante-87",
+    "name": "Viajante87",
+    "city": "London"
+   },
+   {
+    "slug": "zapote-bar-playa-del-carmen",
+    "name": "Zapote Bar",
+    "city": "Playa del Carmen"
+   }
+  ],
+  "top-10-bars-in-london-2026": [
+   {
+    "slug": "a-bar-with-shapes-for-a-name",
+    "name": "A Bar with Shapes For a Name",
+    "city": "London"
+   },
+   {
+    "slug": "artesian",
+    "name": "Artesian",
+    "city": "London"
+   },
+   {
+    "slug": "connaught-bar",
+    "name": "Connaught Bar",
+    "city": "London"
+   },
+   {
+    "slug": "little-red-door",
+    "name": "Little Red Door",
+    "city": "Paris"
+   },
+   {
+    "slug": "lyaness",
+    "name": "Lyaness",
+    "city": "London"
+   },
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   },
+   {
+    "slug": "seed-library",
+    "name": "Seed Library",
+    "city": "London"
+   },
+   {
+    "slug": "seed-library-nyc",
+    "name": "Seed Library",
+    "city": "New York"
+   },
+   {
+    "slug": "side-hustle",
+    "name": "Side Hustle",
+    "city": "London"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   },
+   {
+    "slug": "three-sheets-soho",
+    "name": "Three Sheets Soho",
+    "city": "London"
+   }
+  ],
+  "worlds-50-best-bars-reveals-51-100-list-for-2025": [
+   {
+    "slug": "a-bar-with-shapes-for-a-name",
+    "name": "A Bar with Shapes For a Name",
+    "city": "London"
+   },
+   {
+    "slug": "attaboy",
+    "name": "Attaboy",
+    "city": "New York"
+   },
+   {
+    "slug": "bar-carmen",
+    "name": "Bar Carmen",
+    "city": "Medellín"
+   },
+   {
+    "slug": "bar-cham",
+    "name": "Bar Cham",
+    "city": "Seoul"
+   },
+   {
+    "slug": "bar-pompette",
+    "name": "Bar Pompette",
+    "city": "Toronto"
+   },
+   {
+    "slug": "bar-trench",
+    "name": "Bar Trench",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "barro-negro",
+    "name": "Barro Negro",
+    "city": "Athens"
+   },
+   {
+    "slug": "cafe-la-trova",
+    "name": "Café La Trova",
+    "city": "Miami"
+   },
+   {
+    "slug": "dry-wave-cocktail-studio",
+    "name": "Dry Wave Cocktail Studio",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "employees-only",
+    "name": "Employees Only",
+    "city": "New York"
+   },
+   {
+    "slug": "employees-only-singapore",
+    "name": "Employees Only",
+    "city": "Singapore"
+   },
+   {
+    "slug": "floreria-atlantico",
+    "name": "Florería Atlántico",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "hero-bar",
+    "name": "Hero Bar",
+    "city": "Nairobi"
+   },
+   {
+    "slug": "mamba-negra",
+    "name": "Mamba Negra",
+    "city": "Medellín"
+   },
+   {
+    "slug": "schmuck",
+    "name": "Schmuck",
+    "city": "New York"
+   },
+   {
+    "slug": "the-savory-project",
+    "name": "The Savory Project",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-sg-club",
+    "name": "The SG Club",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "three-sheets-soho",
+    "name": "Three Sheets Soho",
+    "city": "London"
+   },
+   {
+    "slug": "true-laurel",
+    "name": "True Laurel",
+    "city": "San Francisco"
+   },
+   {
+    "slug": "victor-audio-bar-buenos-aires",
+    "name": "Victor Audio Bar",
+    "city": "Buenos Aires"
+   }
+  ],
+  "asias-50-best-bars-2025-names-bar-leone-no-1-again": [
+   {
+    "slug": "alice-cheongdam",
+    "name": "Alice Cheongdam",
+    "city": "Seoul"
+   },
+   {
+    "slug": "bar-benfiddich",
+    "name": "Bar Benfiddich",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "bar-cham",
+    "name": "Bar Cham",
+    "city": "Seoul"
+   },
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-libre",
+    "name": "Bar Libre",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "bar-mood",
+    "name": "Bar Mood",
+    "city": "Taipei"
+   },
+   {
+    "slug": "bar-sathorn",
+    "name": "Bar Sathorn",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "bar-trigona",
+    "name": "Bar Trigona",
+    "city": "Kuala Lumpur"
+   },
+   {
+    "slug": "bkk-social-club",
+    "name": "BKK Social Club",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "carrots-bar",
+    "name": "Carrots Bar",
+    "city": "Jakarta"
+   },
+   {
+    "slug": "dry-wave-cocktail-studio",
+    "name": "Dry Wave Cocktail Studio",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "le-chamber",
+    "name": "Le Chamber",
+    "city": "Seoul"
+   },
+   {
+    "slug": "moonrock",
+    "name": "Moonrock",
+    "city": "Tainan"
+   },
+   {
+    "slug": "night-hawk",
+    "name": "Night Hawk",
+    "city": "Singapore"
+   },
+   {
+    "slug": "offtrack",
+    "name": "Offtrack",
+    "city": "Singapore"
+   },
+   {
+    "slug": "origin-bar",
+    "name": "Origin Bar",
+    "city": "Singapore"
+   },
+   {
+    "slug": "penrose",
+    "name": "Penrose",
+    "city": "Kuala Lumpur"
+   },
+   {
+    "slug": "quinary",
+    "name": "Quinary",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-bellwood",
+    "name": "The Bellwood",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "the-cocktail-club",
+    "name": "The Cocktail Club",
+    "city": "Jakarta"
+   },
+   {
+    "slug": "the-savory-project",
+    "name": "The Savory Project",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-sg-club",
+    "name": "The SG Club",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "the-st-regis-bar",
+    "name": "The St. Regis Bar",
+    "city": "Macau"
+   },
+   {
+    "slug": "three-x-co",
+    "name": "Three X Co",
+    "city": "Kuala Lumpur"
+   },
+   {
+    "slug": "workshop14",
+    "name": "Workshop14",
+    "city": "Hanoi"
+   }
+  ],
+  "north-americas-50-best-bars-2026-results": [
+   {
+    "slug": "allegory-dc",
+    "name": "Allegory",
+    "city": "Washington DC"
+   },
+   {
+    "slug": "attaboy",
+    "name": "Attaboy",
+    "city": "New York"
+   },
+   {
+    "slug": "baltra-bar",
+    "name": "Baltra Bar",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "bandista",
+    "name": "Bandista",
+    "city": "Houston"
+   },
+   {
+    "slug": "bar-madonna",
+    "name": "Bar Madonna",
+    "city": "New York"
+   },
+   {
+    "slug": "bar-mauro",
+    "name": "Bar Mauro",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "bar-pompette",
+    "name": "Bar Pompette",
+    "city": "Toronto"
+   },
+   {
+    "slug": "bar-snack",
+    "name": "Bar Snack",
+    "city": "New York"
+   },
+   {
+    "slug": "best-intentions",
+    "name": "Best Intentions",
+    "city": "Chicago"
+   },
+   {
+    "slug": "bon-vivants",
+    "name": "Bon Vivants",
+    "city": "Nassau"
+   },
+   {
+    "slug": "cafe-la-trova",
+    "name": "Café La Trova",
+    "city": "Miami"
+   },
+   {
+    "slug": "civil-works",
+    "name": "Civil Works",
+    "city": "Toronto"
+   },
+   {
+    "slug": "clemente-bar",
+    "name": "Clemente Bar",
+    "city": "New York"
+   },
+   {
+    "slug": "daisy-margarita-bar",
+    "name": "Daisy Margarita Bar",
+    "city": "Los Angeles"
+   },
+   {
+    "slug": "double-chicken-please",
+    "name": "Double Chicken Please",
+    "city": "New York"
+   },
+   {
+    "slug": "el-gallo-altanero",
+    "name": "El Gallo Altanero",
+    "city": "Guadalajara"
+   },
+   {
+    "slug": "employees-only",
+    "name": "Employees Only",
+    "city": "New York"
+   },
+   {
+    "slug": "form-matter",
+    "name": "Form + Matter",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "identidad",
+    "name": "Identidad",
+    "city": "San Juan"
+   },
+   {
+    "slug": "jewel-of-the-south",
+    "name": "Jewel of the South",
+    "city": "New Orleans"
+   },
+   {
+    "slug": "june-on-cambie",
+    "name": "June on Cambie",
+    "city": "Vancouver"
+   },
+   {
+    "slug": "kaito-del-valle",
+    "name": "Kaito del Valle",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "la-factora",
+    "name": "La Factoría",
+    "city": "San Juan"
+   },
+   {
+    "slug": "library-bar-toronto",
+    "name": "Library Bar",
+    "city": "Toronto"
+   },
+   {
+    "slug": "library-by-the-sea",
+    "name": "Library by the Sea",
+    "city": "Grand Cayman"
+   },
+   {
+    "slug": "licoreria-limantour",
+    "name": "Licorería Limantour",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "maison-premiere",
+    "name": "Maison Premiere",
+    "city": "New York"
+   },
+   {
+    "slug": "mecenas",
+    "name": "Mecenas",
+    "city": "Guadalajara"
+   },
+   {
+    "slug": "overstory",
+    "name": "Overstory",
+    "city": "New York"
+   },
+   {
+    "slug": "pacific-cocktail-haven",
+    "name": "Pacific Cocktail Haven",
+    "city": "San Francisco"
+   },
+   {
+    "slug": "press-club-dc",
+    "name": "Press Club",
+    "city": "Washington DC"
+   },
+   {
+    "slug": "prophecy",
+    "name": "Prophecy",
+    "city": "Vancouver"
+   },
+   {
+    "slug": "schmuck",
+    "name": "Schmuck",
+    "city": "New York"
+   },
+   {
+    "slug": "service-bar-dc",
+    "name": "Service Bar",
+    "city": "Washington DC"
+   },
+   {
+    "slug": "superbueno",
+    "name": "Superbueno",
+    "city": "New York"
+   },
+   {
+    "slug": "the-keefer-bar",
+    "name": "The Keefer Bar",
+    "city": "Vancouver"
+   },
+   {
+    "slug": "true-laurel",
+    "name": "True Laurel",
+    "city": "San Francisco"
+   },
+   {
+    "slug": "viceversa",
+    "name": "Viceversa",
+    "city": "Miami"
+   }
+  ],
+  "central-europe-hospitality-expo-cehe-2027": [
+   {
+    "slug": "alma-prague",
+    "name": "Alma Prague",
+    "city": "Prague"
+   },
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   },
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   },
+   {
+    "slug": "tokyo-confidential",
+    "name": "Tokyo Confidential",
+    "city": "Tokyo"
+   }
+  ],
+  "almanac-brings-slow-drinks-to-philadelphia": [
+   {
+    "slug": "almanac-philadelphia",
+    "name": "Almanac",
+    "city": "Philadelphia"
+   }
+  ],
+  "top-10-nominees-for-the-2024-spirited-awards": [
+   {
+    "slug": "almanac-philadelphia",
+    "name": "Almanac",
+    "city": "Philadelphia"
+   },
+   {
+    "slug": "alquimico",
+    "name": "Alquímico",
+    "city": "Cartagena"
+   },
+   {
+    "slug": "atwater-cocktail-club",
+    "name": "Atwater Cocktail Club",
+    "city": "Montreal"
+   },
+   {
+    "slug": "baba-au-rum",
+    "name": "Baba au Rum",
+    "city": "Athens"
+   },
+   {
+    "slug": "goto",
+    "name": "Bar Goto",
+    "city": "New York"
+   },
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-nouveau",
+    "name": "Bar Nouveau",
+    "city": "Paris"
+   },
+   {
+    "slug": "bar-trigona",
+    "name": "Bar Trigona",
+    "city": "Kuala Lumpur"
+   },
+   {
+    "slug": "best-intentions",
+    "name": "Best Intentions",
+    "city": "Chicago"
+   },
+   {
+    "slug": "bijou-drinkery-room",
+    "name": "Bijou Drinkery Room",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "bkk-social-club",
+    "name": "BKK Social Club",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "casa-prunes",
+    "name": "Casa Prunes",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "cat-bite-club",
+    "name": "Cat Bite Club",
+    "city": "Singapore"
+   },
+   {
+    "slug": "century-grand",
+    "name": "Century Grand",
+    "city": "Phoenix"
+   },
+   {
+    "slug": "charles-h",
+    "name": "Charles H",
+    "city": "Seoul"
+   },
+   {
+    "slug": "cleaver",
+    "name": "Cleaver",
+    "city": "Las Vegas"
+   },
+   {
+    "slug": "cochinchina",
+    "name": "CoChinChina",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "dear-irving",
+    "name": "Dear Irving",
+    "city": "New York"
+   },
+   {
+    "slug": "double-chicken-please",
+    "name": "Double Chicken Please",
+    "city": "New York"
+   },
+   {
+    "slug": "el-primo-sanchez",
+    "name": "El Primo Sanchez",
+    "city": "Sydney"
+   },
+   {
+    "slug": "equal-measure-boston",
+    "name": "Equal Measure",
+    "city": "Boston"
+   },
+   {
+    "slug": "equal-parts",
+    "name": "Equal Parts",
+    "city": "London"
+   },
+   {
+    "slug": "fifty-mils",
+    "name": "Fifty Mils",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "hanky-panky",
+    "name": "Hanky Panky",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "happy-accidents",
+    "name": "Happy Accidents",
+    "city": "Albuquerque"
+   },
+   {
+    "slug": "jewel-of-the-south",
+    "name": "Jewel of the South",
+    "city": "New Orleans"
+   },
+   {
+    "slug": "kol-mezcaleria",
+    "name": "Kol Mezcalería",
+    "city": "London"
+   },
+   {
+    "slug": "la-factora",
+    "name": "La Factoría",
+    "city": "San Juan"
+   },
+   {
+    "slug": "library-bar-toronto",
+    "name": "Library Bar",
+    "city": "Toronto"
+   },
+   {
+    "slug": "little-rituals",
+    "name": "Little Rituals",
+    "city": "Phoenix"
+   },
+   {
+    "slug": "maison-premiere",
+    "name": "Maison Premiere",
+    "city": "New York"
+   },
+   {
+    "slug": "maybe-sammy",
+    "name": "Maybe Sammy",
+    "city": "Sydney"
+   },
+   {
+    "slug": "nickel-city",
+    "name": "Nickel City",
+    "city": "Austin"
+   },
+   {
+    "slug": "origin-bar",
+    "name": "Origin Bar",
+    "city": "Singapore"
+   },
+   {
+    "slug": "outline",
+    "name": "Outline",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "overstory",
+    "name": "Overstory",
+    "city": "New York"
+   },
+   {
+    "slug": "pacific-cocktail-haven",
+    "name": "Pacific Cocktail Haven",
+    "city": "San Francisco"
+   },
+   {
+    "slug": "pretty-decent",
+    "name": "Pretty Decent",
+    "city": "Louisville"
+   },
+   {
+    "slug": "seed-library",
+    "name": "Seed Library",
+    "city": "London"
+   },
+   {
+    "slug": "seed-library-nyc",
+    "name": "Seed Library",
+    "city": "New York"
+   },
+   {
+    "slug": "sexy-fish",
+    "name": "Sexy Fish",
+    "city": "London"
+   },
+   {
+    "slug": "side-hustle",
+    "name": "Side Hustle",
+    "city": "London"
+   },
+   {
+    "slug": "superbueno",
+    "name": "Superbueno",
+    "city": "New York"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   },
+   {
+    "slug": "the-baxter-inn",
+    "name": "The Baxter Inn",
+    "city": "Sydney"
+   },
+   {
+    "slug": "tokyo-confidential",
+    "name": "Tokyo Confidential",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "trick-dog",
+    "name": "Trick Dog",
+    "city": "San Francisco"
+   },
+   {
+    "slug": "yacht-club-denver",
+    "name": "Yacht Club",
+    "city": "Denver"
+   }
+  ],
+  "18th-annual-spirited-awards-winners": [
+   {
+    "slug": "alquimico",
+    "name": "Alquímico",
+    "city": "Cartagena"
+   },
+   {
+    "slug": "baba-au-rum",
+    "name": "Baba au Rum",
+    "city": "Athens"
+   },
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bkk-social-club",
+    "name": "BKK Social Club",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "cleaver",
+    "name": "Cleaver",
+    "city": "Las Vegas"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "jewel-of-the-south",
+    "name": "Jewel of the South",
+    "city": "New Orleans"
+   },
+   {
+    "slug": "superbueno",
+    "name": "Superbueno",
+    "city": "New York"
+   },
+   {
+    "slug": "yacht-club-denver",
+    "name": "Yacht Club",
+    "city": "Denver"
+   }
+  ],
+  "bar-world-100-2025-full-list-of-global-influencers": [
+   {
+    "slug": "alquimico",
+    "name": "Alquímico",
+    "city": "Cartagena"
+   },
+   {
+    "slug": "bar-benfiddich",
+    "name": "Bar Benfiddich",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "bar-contra",
+    "name": "Bar Contra",
+    "city": "New York"
+   },
+   {
+    "slug": "bar-high-five",
+    "name": "Bar High Five",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-mordecai",
+    "name": "Bar Mordecai",
+    "city": "Toronto"
+   },
+   {
+    "slug": "bar-nouveau",
+    "name": "Bar Nouveau",
+    "city": "Paris"
+   },
+   {
+    "slug": "clover-club",
+    "name": "Clover Club",
+    "city": "New York"
+   },
+   {
+    "slug": "cochinchina",
+    "name": "CoChinChina",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "double-chicken-please",
+    "name": "Double Chicken Please",
+    "city": "New York"
+   },
+   {
+    "slug": "drink-kong",
+    "name": "Drink Kong",
+    "city": "Rome"
+   },
+   {
+    "slug": "floreria-atlantico",
+    "name": "Florería Atlántico",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "floreria-atlantico-dc",
+    "name": "Florería Atlántico",
+    "city": "Washington DC"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "happy-accidents",
+    "name": "Happy Accidents",
+    "city": "Albuquerque"
+   },
+   {
+    "slug": "lady-bee",
+    "name": "Lady Bee",
+    "city": "Lima"
+   },
+   {
+    "slug": "lockdown",
+    "name": "Lockdown",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   },
+   {
+    "slug": "moebius-milano",
+    "name": "Moebius Milano",
+    "city": "Milan"
+   },
+   {
+    "slug": "montana",
+    "name": "Montana",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "nite-kong",
+    "name": "Nite Kong",
+    "city": "Rome"
+   },
+   {
+    "slug": "pacific-cocktail-haven",
+    "name": "Pacific Cocktail Haven",
+    "city": "San Francisco"
+   },
+   {
+    "slug": "r-da-huset",
+    "name": "Röda Huset",
+    "city": "Stockholm"
+   },
+   {
+    "slug": "salmon-guru",
+    "name": "Salmon Guru",
+    "city": "Madrid"
+   },
+   {
+    "slug": "salmon-guru-dubai",
+    "name": "Salmon Guru",
+    "city": "Dubai"
+   },
+   {
+    "slug": "salmon-guru-milan",
+    "name": "Salmon Guru",
+    "city": "Milan"
+   },
+   {
+    "slug": "schmuck",
+    "name": "Schmuck",
+    "city": "New York"
+   },
+   {
+    "slug": "tan-tan",
+    "name": "Tan Tan",
+    "city": "São Paulo"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   },
+   {
+    "slug": "teens-of-thailand",
+    "name": "Teens of Thailand",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "the-clumsies",
+    "name": "The Clumsies",
+    "city": "Athens"
+   },
+   {
+    "slug": "tokyo-confidential",
+    "name": "Tokyo Confidential",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   }
+  ],
+  "bar-world-100-2026-full-list-of-global-influencers": [
+   {
+    "slug": "alquimico",
+    "name": "Alquímico",
+    "city": "Cartagena"
+   },
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   }
+  ],
+  "torres-brandy-zero-challenge-2026-camila-flechas-winner": [
+   {
+    "slug": "alquimico",
+    "name": "Alquímico",
+    "city": "Cartagena"
+   }
+  ],
+  "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024": [
+   {
+    "slug": "alquimico",
+    "name": "Alquímico",
+    "city": "Cartagena"
+   },
+   {
+    "slug": "baba-au-rum",
+    "name": "Baba au Rum",
+    "city": "Athens"
+   },
+   {
+    "slug": "bar-benfiddich",
+    "name": "Bar Benfiddich",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-nouveau",
+    "name": "Bar Nouveau",
+    "city": "Paris"
+   },
+   {
+    "slug": "bkk-social-club",
+    "name": "BKK Social Club",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "cat-bite-club",
+    "name": "Cat Bite Club",
+    "city": "Singapore"
+   },
+   {
+    "slug": "cochinchina",
+    "name": "CoChinChina",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "connaught-bar",
+    "name": "Connaught Bar",
+    "city": "London"
+   },
+   {
+    "slug": "double-chicken-please",
+    "name": "Double Chicken Please",
+    "city": "New York"
+   },
+   {
+    "slug": "drink-kong",
+    "name": "Drink Kong",
+    "city": "Rome"
+   },
+   {
+    "slug": "el-gallo-altanero",
+    "name": "El Gallo Altanero",
+    "city": "Guadalajara"
+   },
+   {
+    "slug": "floreria-atlantico",
+    "name": "Florería Atlántico",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "jewel-of-the-south",
+    "name": "Jewel of the South",
+    "city": "New Orleans"
+   },
+   {
+    "slug": "la-sala-de-laura",
+    "name": "La Sala de Laura",
+    "city": "Bogotá"
+   },
+   {
+    "slug": "lady-bee",
+    "name": "Lady Bee",
+    "city": "Lima"
+   },
+   {
+    "slug": "licoreria-limantour",
+    "name": "Licorería Limantour",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "locale-firenze",
+    "name": "Locale Firenze",
+    "city": "Florence"
+   },
+   {
+    "slug": "lyaness",
+    "name": "Lyaness",
+    "city": "London"
+   },
+   {
+    "slug": "maybe-sammy",
+    "name": "Maybe Sammy",
+    "city": "Sydney"
+   },
+   {
+    "slug": "mimi-kakushi",
+    "name": "Mimi Kakushi",
+    "city": "Dubai"
+   },
+   {
+    "slug": "mixology",
+    "name": "Mixology",
+    "city": "Seoul"
+   },
+   {
+    "slug": "moebius-milano",
+    "name": "Moebius Milano",
+    "city": "Milan"
+   },
+   {
+    "slug": "new-york-bar",
+    "name": "New York Bar",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "overstory",
+    "name": "Overstory",
+    "city": "New York"
+   },
+   {
+    "slug": "r-da-huset",
+    "name": "Röda Huset",
+    "city": "Stockholm"
+   },
+   {
+    "slug": "salmon-guru",
+    "name": "Salmon Guru",
+    "city": "Madrid"
+   },
+   {
+    "slug": "salmon-guru-dubai",
+    "name": "Salmon Guru",
+    "city": "Dubai"
+   },
+   {
+    "slug": "salmon-guru-milan",
+    "name": "Salmon Guru",
+    "city": "Milan"
+   },
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   },
+   {
+    "slug": "superbueno",
+    "name": "Superbueno",
+    "city": "New York"
+   },
+   {
+    "slug": "tan-tan",
+    "name": "Tan Tan",
+    "city": "São Paulo"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   },
+   {
+    "slug": "the-cambridge-public-house",
+    "name": "The Cambridge Public House",
+    "city": "Paris"
+   },
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   }
+  ],
+  "key-takeaways-from-tales-of-the-cocktail-2024": [
+   {
+    "slug": "alquimico",
+    "name": "Alquímico",
+    "city": "Cartagena"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   }
+  ],
+  "torres-brandy-zero-challenge-names-12-global-finalists": [
+   {
+    "slug": "alquimico",
+    "name": "Alquímico",
+    "city": "Cartagena"
+   }
+  ],
+  "worlds-50-best-bars-2025-bar-leone-tops-the-list": [
+   {
+    "slug": "alquimico",
+    "name": "Alquímico",
+    "city": "Cartagena"
+   },
+   {
+    "slug": "baba-au-rum",
+    "name": "Baba au Rum",
+    "city": "Athens"
+   },
+   {
+    "slug": "backdoor-bodega",
+    "name": "Backdoor Bodega",
+    "city": "Penang"
+   },
+   {
+    "slug": "bar-benfiddich",
+    "name": "Bar Benfiddich",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-mauro",
+    "name": "Bar Mauro",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "bar-nouveau",
+    "name": "Bar Nouveau",
+    "city": "Paris"
+   },
+   {
+    "slug": "bkk-social-club",
+    "name": "BKK Social Club",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "cochinchina",
+    "name": "CoChinChina",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "connaught-bar",
+    "name": "Connaught Bar",
+    "city": "London"
+   },
+   {
+    "slug": "double-chicken-please",
+    "name": "Double Chicken Please",
+    "city": "New York"
+   },
+   {
+    "slug": "drink-kong",
+    "name": "Drink Kong",
+    "city": "Rome"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "hero-bar",
+    "name": "Hero Bar",
+    "city": "Nairobi"
+   },
+   {
+    "slug": "jewel-of-the-south",
+    "name": "Jewel of the South",
+    "city": "New Orleans"
+   },
+   {
+    "slug": "lady-bee",
+    "name": "Lady Bee",
+    "city": "Lima"
+   },
+   {
+    "slug": "locale-firenze",
+    "name": "Locale Firenze",
+    "city": "Florence"
+   },
+   {
+    "slug": "maybe-sammy",
+    "name": "Maybe Sammy",
+    "city": "Sydney"
+   },
+   {
+    "slug": "mimi-kakushi",
+    "name": "Mimi Kakushi",
+    "city": "Dubai"
+   },
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   },
+   {
+    "slug": "moebius-milano",
+    "name": "Moebius Milano",
+    "city": "Milan"
+   },
+   {
+    "slug": "nouvelle-vague",
+    "name": "Nouvelle Vague",
+    "city": "Tirana"
+   },
+   {
+    "slug": "overstory",
+    "name": "Overstory",
+    "city": "New York"
+   },
+   {
+    "slug": "r-da-huset",
+    "name": "Röda Huset",
+    "city": "Stockholm"
+   },
+   {
+    "slug": "salmon-guru",
+    "name": "Salmon Guru",
+    "city": "Madrid"
+   },
+   {
+    "slug": "salmon-guru-dubai",
+    "name": "Salmon Guru",
+    "city": "Dubai"
+   },
+   {
+    "slug": "salmon-guru-milan",
+    "name": "Salmon Guru",
+    "city": "Milan"
+   },
+   {
+    "slug": "sastrer-a-martinez",
+    "name": "Sastrería Martinez",
+    "city": "Lima"
+   },
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   },
+   {
+    "slug": "superbueno",
+    "name": "Superbueno",
+    "city": "New York"
+   },
+   {
+    "slug": "tan-tan",
+    "name": "Tan Tan",
+    "city": "São Paulo"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   },
+   {
+    "slug": "the-bar-in-front-of-the-bar",
+    "name": "The Bar in Front of the Bar",
+    "city": "Athens"
+   },
+   {
+    "slug": "the-bellwood",
+    "name": "The Bellwood",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "the-cambridge-public-house",
+    "name": "The Cambridge Public House",
+    "city": "Paris"
+   },
+   {
+    "slug": "tigra-disco-pantera",
+    "name": "Tigra + Disco Pantera",
+    "city": "Sydney"
+   },
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   }
+  ],
+  "top-10-bars-in-los-angeles-2026": [
+   {
+    "slug": "apotheke-los-angeles",
+    "name": "Apothéke",
+    "city": "Los Angeles"
+   },
+   {
+    "slug": "daisy-margarita-bar",
+    "name": "Daisy Margarita Bar",
+    "city": "Los Angeles"
+   },
+   {
+    "slug": "dante-beverly-hills",
+    "name": "Dante Beverly Hills",
+    "city": "Los Angeles"
+   },
+   {
+    "slug": "seven-grand-los-angeles",
+    "name": "Seven Grand",
+    "city": "Los Angeles"
+   },
+   {
+    "slug": "the-wolves",
+    "name": "The Wolves",
+    "city": "Los Angeles"
+   },
+   {
+    "slug": "tiki-ti",
+    "name": "Tiki-Ti",
+    "city": "Los Angeles"
+   },
+   {
+    "slug": "vandell",
+    "name": "Vandell",
+    "city": "Los Angeles"
+   }
+  ],
+  "saikindo-abu-dhabi-aji-no-hibiki-menu": [
+   {
+    "slug": "artesian",
+    "name": "Artesian",
+    "city": "London"
+   },
+   {
+    "slug": "saikindo",
+    "name": "Saikindō",
+    "city": "Abu Dhabi"
+   }
+  ],
+  "simone-caporale": [
+   {
+    "slug": "artesian",
+    "name": "Artesian",
+    "city": "London"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   }
+  ],
+  "top-10-bar-trends-for-2024-elevate-your-cocktail-game": [
+   {
+    "slug": "artesian",
+    "name": "Artesian",
+    "city": "London"
+   },
+   {
+    "slug": "cafe-la-trova",
+    "name": "Café La Trova",
+    "city": "Miami"
+   }
+  ],
+  "top-4-finalists-for-the-2024-spirited-awards-announced": [
+   {
+    "slug": "artesian",
+    "name": "Artesian",
+    "city": "London"
+   },
+   {
+    "slug": "atwater-cocktail-club",
+    "name": "Atwater Cocktail Club",
+    "city": "Montreal"
+   },
+   {
+    "slug": "goto",
+    "name": "Bar Goto",
+    "city": "New York"
+   },
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "century-grand",
+    "name": "Century Grand",
+    "city": "Phoenix"
+   },
+   {
+    "slug": "double-chicken-please",
+    "name": "Double Chicken Please",
+    "city": "New York"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "hanky-panky",
+    "name": "Hanky Panky",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "overstory",
+    "name": "Overstory",
+    "city": "New York"
+   },
+   {
+    "slug": "yacht-club-denver",
+    "name": "Yacht Club",
+    "city": "Denver"
+   }
+  ],
+  "north-americas-50-best-bars-2026-the-extended-list": [
+   {
+    "slug": "aruba-day-drink",
+    "name": "Aruba Day Drink",
+    "city": "Tijuana"
+   },
+   {
+    "slug": "bagheera",
+    "name": "Bagheera",
+    "city": "Vancouver"
+   },
+   {
+    "slug": "cafe-de-nadie",
+    "name": "Café de Nadie",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "cry-baby-gallery",
+    "name": "Cry Baby Gallery",
+    "city": "Toronto"
+   },
+   {
+    "slug": "father-forgive-me",
+    "name": "Father Forgive Me",
+    "city": "Detroit"
+   },
+   {
+    "slug": "katana-kitten",
+    "name": "Katana Kitten",
+    "city": "New York"
+   },
+   {
+    "slug": "ticonderoga-club",
+    "name": "Ticonderoga Club",
+    "city": "Atlanta"
+   },
+   {
+    "slug": "trick-dog",
+    "name": "Trick Dog",
+    "city": "San Francisco"
+   },
+   {
+    "slug": "zapote-bar-playa-del-carmen",
+    "name": "Zapote Bar",
+    "city": "Playa del Carmen"
+   }
+  ],
+  "martina-bonci": [
+   {
+    "slug": "atrium-bar",
+    "name": "Atrium Bar",
+    "city": "Florence"
+   },
+   {
+    "slug": "drink-kong",
+    "name": "Drink Kong",
+    "city": "Rome"
+   },
+   {
+    "slug": "freni-e-frizioni",
+    "name": "Freni e Frizioni",
+    "city": "Rome"
+   }
+  ],
+  "top-10-bars-in-new-york-2026": [
+   {
+    "slug": "attaboy",
+    "name": "Attaboy",
+    "city": "New York"
+   },
+   {
+    "slug": "bar-snack",
+    "name": "Bar Snack",
+    "city": "New York"
+   },
+   {
+    "slug": "clemente-bar",
+    "name": "Clemente Bar",
+    "city": "New York"
+   },
+   {
+    "slug": "lyaness",
+    "name": "Lyaness",
+    "city": "London"
+   },
+   {
+    "slug": "overstory",
+    "name": "Overstory",
+    "city": "New York"
+   },
+   {
+    "slug": "schmuck",
+    "name": "Schmuck",
+    "city": "New York"
+   },
+   {
+    "slug": "seed-library",
+    "name": "Seed Library",
+    "city": "London"
+   },
+   {
+    "slug": "seed-library-nyc",
+    "name": "Seed Library",
+    "city": "New York"
+   },
+   {
+    "slug": "superbueno",
+    "name": "Superbueno",
+    "city": "New York"
+   },
+   {
+    "slug": "two-schmucks",
+    "name": "Two Schmucks",
+    "city": "Barcelona"
+   }
+  ],
+  "atwater-cocktail-club": [
+   {
+    "slug": "atwater-cocktail-club",
+    "name": "Atwater Cocktail Club",
+    "city": "Montreal"
+   }
+  ],
+  "athens-bar-show-2023": [
+   {
+    "slug": "baba-au-rum",
+    "name": "Baba au Rum",
+    "city": "Athens"
+   },
+   {
+    "slug": "barro-negro",
+    "name": "Barro Negro",
+    "city": "Athens"
+   },
+   {
+    "slug": "connaught-bar",
+    "name": "Connaught Bar",
+    "city": "London"
+   }
+  ],
+  "benjamin-padron-novoa": [
+   {
+    "slug": "baltra-bar",
+    "name": "Baltra Bar",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "the-american-bar",
+    "name": "The American Bar",
+    "city": "London"
+   }
+  ],
+  "aberdeen-arts-row-animates-hong-kong-art-month": [
+   {
+    "slug": "dead-poets",
+    "name": "Dead Poets",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bamboo-bar",
+    "name": "The Bamboo Bar",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "the-old-man",
+    "name": "The Old Man",
+    "city": "Hong Kong"
+   }
+  ],
+  "spirited-awards-2026-winners-tales-of-the-cocktail": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-mauro",
+    "name": "Bar Mauro",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "bar-snack",
+    "name": "Bar Snack",
+    "city": "New York"
+   },
+   {
+    "slug": "schmuck",
+    "name": "Schmuck",
+    "city": "New York"
+   },
+   {
+    "slug": "bamboo-bar",
+    "name": "The Bamboo Bar",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "viceversa",
+    "name": "Viceversa",
+    "city": "Miami"
+   }
+  ],
+  "the-opposites-celebrates-one-year-in-hong-kong": [
+   {
+    "slug": "bar-benfiddich",
+    "name": "Bar Benfiddich",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "dr-stravinsky",
+    "name": "Dr. Stravinsky",
+    "city": "Barcelona"
+   },
+   {
+    "slug": "mixology",
+    "name": "Mixology",
+    "city": "Seoul"
+   },
+   {
+    "slug": "the-opposites",
+    "name": "The Opposites",
+    "city": "Hong Kong"
+   }
+  ],
+  "global-bar-exchange-2025-26-by-woodford-reserve": [
+   {
+    "slug": "bar-cham",
+    "name": "Bar Cham",
+    "city": "Seoul"
+   }
+  ],
+  "2025-james-beard-awards-semifinalists-announced": [
+   {
+    "slug": "bar-contra",
+    "name": "Bar Contra",
+    "city": "New York"
+   },
+   {
+    "slug": "best-intentions",
+    "name": "Best Intentions",
+    "city": "Chicago"
+   },
+   {
+    "slug": "cafe-la-trova",
+    "name": "Café La Trova",
+    "city": "Miami"
+   },
+   {
+    "slug": "equal-measure-boston",
+    "name": "Equal Measure",
+    "city": "Boston"
+   },
+   {
+    "slug": "happy-accidents",
+    "name": "Happy Accidents",
+    "city": "Albuquerque"
+   },
+   {
+    "slug": "identidad",
+    "name": "Identidad",
+    "city": "San Juan"
+   },
+   {
+    "slug": "little-rituals",
+    "name": "Little Rituals",
+    "city": "Phoenix"
+   },
+   {
+    "slug": "loa-bar",
+    "name": "Loa Bar",
+    "city": "New Orleans"
+   },
+   {
+    "slug": "rob-roy-seattle",
+    "name": "Rob Roy",
+    "city": "Seattle"
+   },
+   {
+    "slug": "roquette-seattle",
+    "name": "Roquette",
+    "city": "Seattle"
+   },
+   {
+    "slug": "scotch-lodge",
+    "name": "Scotch Lodge",
+    "city": "Portland"
+   },
+   {
+    "slug": "superbueno",
+    "name": "Superbueno",
+    "city": "New York"
+   },
+   {
+    "slug": "the-wig-shop-boston",
+    "name": "The Wig Shop",
+    "city": "Boston"
+   },
+   {
+    "slug": "true-laurel",
+    "name": "True Laurel",
+    "city": "San Francisco"
+   },
+   {
+    "slug": "viceversa",
+    "name": "Viceversa",
+    "city": "Miami"
+   },
+   {
+    "slug": "yacht-club-denver",
+    "name": "Yacht Club",
+    "city": "Denver"
+   }
+  ],
+  "bar-world-100-2024-a-toast-to-global-mixology-leaders": [
+   {
+    "slug": "bar-high-five",
+    "name": "Bar High Five",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "experimental-cocktail-club",
+    "name": "Experimental Cocktail Club",
+    "city": "Paris"
+   },
+   {
+    "slug": "mixology",
+    "name": "Mixology",
+    "city": "Seoul"
+   }
+  ],
+  "bar-leone-expands-with-second-location-in-shanghai": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-leone-shanghai",
+    "name": "Bar Leone",
+    "city": "Shanghai"
+   }
+  ],
+  "bar-leone-shanghai-opens-this-november": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-leone-shanghai",
+    "name": "Bar Leone",
+    "city": "Shanghai"
+   }
+  ],
+  "best-bars-in-southeast-asia": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bkk-social-club",
+    "name": "BKK Social Club",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "dead-poets",
+    "name": "Dead Poets",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "le-chamber",
+    "name": "Le Chamber",
+    "city": "Seoul"
+   },
+   {
+    "slug": "mixology",
+    "name": "Mixology",
+    "city": "Seoul"
+   },
+   {
+    "slug": "penrose",
+    "name": "Penrose",
+    "city": "Kuala Lumpur"
+   }
+  ],
+  "himkok-turns-10-with-global-bar-takeovers": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "r-da-huset",
+    "name": "Röda Huset",
+    "city": "Stockholm"
+   },
+   {
+    "slug": "schmuck",
+    "name": "Schmuck",
+    "city": "New York"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   },
+   {
+    "slug": "the-clumsies",
+    "name": "The Clumsies",
+    "city": "Athens"
+   },
+   {
+    "slug": "the-opposites",
+    "name": "The Opposites",
+    "city": "Hong Kong"
+   }
+  ],
+  "lorenzo-antinori-popolare-systems-launch": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   }
+  ],
+  "medellin-cocktail-week-2026": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-nouveau",
+    "name": "Bar Nouveau",
+    "city": "Paris"
+   },
+   {
+    "slug": "cochinchina",
+    "name": "CoChinChina",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "lady-bee",
+    "name": "Lady Bee",
+    "city": "Lima"
+   },
+   {
+    "slug": "mala-audio-bar",
+    "name": "Mala Audio Bar",
+    "city": "Medellín"
+   },
+   {
+    "slug": "mamba-negra",
+    "name": "Mamba Negra",
+    "city": "Medellín"
+   },
+   {
+    "slug": "quema-que-quema",
+    "name": "Quema Que Quema",
+    "city": "Medellín"
+   }
+  ],
+  "negroni-week-2026-asia-pacific-guest-shifts": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-leone-shanghai",
+    "name": "Bar Leone",
+    "city": "Shanghai"
+   },
+   {
+    "slug": "bar-trigona",
+    "name": "Bar Trigona",
+    "city": "Kuala Lumpur"
+   },
+   {
+    "slug": "between-the-sips",
+    "name": "Between the Sips",
+    "city": "Jakarta"
+   },
+   {
+    "slug": "bkk-social-club",
+    "name": "BKK Social Club",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "cabinet-8",
+    "name": "Cabinet 8",
+    "city": "Kuala Lumpur"
+   },
+   {
+    "slug": "carrots-bar",
+    "name": "Carrots Bar",
+    "city": "Jakarta"
+   },
+   {
+    "slug": "connaught-bar",
+    "name": "Connaught Bar",
+    "city": "London"
+   },
+   {
+    "slug": "hats-bar",
+    "name": "HATS Bar",
+    "city": "Jakarta"
+   },
+   {
+    "slug": "offtrack",
+    "name": "Offtrack",
+    "city": "Singapore"
+   },
+   {
+    "slug": "pony-up",
+    "name": "Pony Up",
+    "city": "Shanghai"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   },
+   {
+    "slug": "the-cocktail-club",
+    "name": "The Cocktail Club",
+    "city": "Jakarta"
+   },
+   {
+    "slug": "the-haflington",
+    "name": "The Haflington",
+    "city": "Hanoi"
+   }
+  ],
+  "montana-bar-to-open-in-hong-kong-in-summer-2025": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "montana",
+    "name": "Montana",
+    "city": "Hong Kong"
+   }
+  ],
+  "montana-by-antinori-caporale-opens-in-hong-kong": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "montana",
+    "name": "Montana",
+    "city": "Hong Kong"
+   }
+  ],
+  "paradiso-sustainability-summit-2025": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "dr-stravinsky",
+    "name": "Dr. Stravinsky",
+    "city": "Barcelona"
+   },
+   {
+    "slug": "mixology",
+    "name": "Mixology",
+    "city": "Seoul"
+   },
+   {
+    "slug": "red-frog",
+    "name": "Red Frog",
+    "city": "Lisbon"
+   },
+   {
+    "slug": "r-da-huset",
+    "name": "Röda Huset",
+    "city": "Stockholm"
+   },
+   {
+    "slug": "the-cambridge-public-house",
+    "name": "The Cambridge Public House",
+    "city": "Paris"
+   }
+  ],
+  "scarfes-bar-hosts-bar-leone-for-exclusive-london-takeover": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   }
+  ],
+  "the-pontiac-hong-kong-neon-lit-menu": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-pontiac",
+    "name": "The Pontiac",
+    "city": "Hong Kong"
+   }
+  ],
+  "top-10-bars-in-hong-kong-for-2026": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "quinary",
+    "name": "Quinary",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-old-man",
+    "name": "The Old Man",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-pontiac",
+    "name": "The Pontiac",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-savory-project",
+    "name": "The Savory Project",
+    "city": "Hong Kong"
+   }
+  ],
+  "world-gin-week-2026-debut": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "bar-madonna",
+    "name": "Bar Madonna",
+    "city": "New York"
+   },
+   {
+    "slug": "connaught-bar",
+    "name": "Connaught Bar",
+    "city": "London"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "hero-bar",
+    "name": "Hero Bar",
+    "city": "Nairobi"
+   },
+   {
+    "slug": "maybe-sammy",
+    "name": "Maybe Sammy",
+    "city": "Sydney"
+   },
+   {
+    "slug": "room-207",
+    "name": "Room 207",
+    "city": "New York"
+   },
+   {
+    "slug": "shakerato",
+    "name": "Shakerato",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "trick-dog",
+    "name": "Trick Dog",
+    "city": "San Francisco"
+   }
+  ],
+  "worlds-best-bars-head-to-stockholm-for-bca-week": [
+   {
+    "slug": "bar-leone",
+    "name": "Bar Leone",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "lady-bee",
+    "name": "Lady Bee",
+    "city": "Lima"
+   },
+   {
+    "slug": "little-red-door",
+    "name": "Little Red Door",
+    "city": "Paris"
+   },
+   {
+    "slug": "shakerato",
+    "name": "Shakerato",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "side-hustle",
+    "name": "Side Hustle",
+    "city": "London"
+   }
+  ],
+  "daniel-pappa-wins-torres-brandy-zero-challenge": [
+   {
+    "slug": "bar-mate",
+    "name": "Bar Mate",
+    "city": "Helsinki"
+   }
+  ],
+  "asias-50-best-bars-2025-coming-to-wynn-macau-in-july": [
+   {
+    "slug": "bar-mood",
+    "name": "Bar Mood",
+    "city": "Taipei"
+   },
+   {
+    "slug": "maybe-sammy",
+    "name": "Maybe Sammy",
+    "city": "Sydney"
+   }
+  ],
+  "bar-mordecai": [
+   {
+    "slug": "bar-mordecai",
+    "name": "Bar Mordecai",
+    "city": "Toronto"
+   }
+  ],
+  "north-americas-50-best-bars-2025-heads-to-vancouver": [
+   {
+    "slug": "bar-next-door",
+    "name": "Bar Next Door",
+    "city": "Los Angeles"
+   },
+   {
+    "slug": "library-bar-toronto",
+    "name": "Library Bar",
+    "city": "Toronto"
+   }
+  ],
+  "herbs-taverne-lands-in-sydney-with-psychedelic-negronis": [
+   {
+    "slug": "bar-planet",
+    "name": "Bar Planet",
+    "city": "Sydney"
+   },
+   {
+    "slug": "cantina-ok",
+    "name": "Cantina OK!",
+    "city": "Sydney"
+   },
+   {
+    "slug": "centro-86",
+    "name": "Centro 86",
+    "city": "Sydney"
+   }
+  ],
+  "herbs-taverne-to-open-in-sydney-with-a-bold-take-on-negronis": [
+   {
+    "slug": "bar-planet",
+    "name": "Bar Planet",
+    "city": "Sydney"
+   },
+   {
+    "slug": "cantina-ok",
+    "name": "Cantina OK!",
+    "city": "Sydney"
+   },
+   {
+    "slug": "centro-86",
+    "name": "Centro 86",
+    "city": "Sydney"
+   }
+  ],
+  "asias-best-bartenders-descend-on-ozone-hong-kong": [
+   {
+    "slug": "bar-sathorn",
+    "name": "Bar Sathorn",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "bees-bar-by-narisawa",
+    "name": "BEES BAR by NARISAWA",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "quinary",
+    "name": "Quinary",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-st-regis-bar",
+    "name": "The St. Regis Bar",
+    "city": "Macau"
+   },
+   {
+    "slug": "the-st-regis-bar-jakarta",
+    "name": "The St. Regis Bar Jakarta",
+    "city": "Jakarta"
+   },
+   {
+    "slug": "wing-lei-bar",
+    "name": "Wing Lei Bar",
+    "city": "Macau"
+   }
+  ],
+  "bar-sathorn-redefines-bangkok-as-a-cultural-exchange-bar": [
+   {
+    "slug": "bar-sathorn",
+    "name": "Bar Sathorn",
+    "city": "Bangkok"
+   }
+  ],
+  "asias-50-best-bars-2026-wynn-macau-host-partner": [
+   {
+    "slug": "bar-sathorn",
+    "name": "Bar Sathorn",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "bees-bar-by-narisawa",
+    "name": "BEES BAR by NARISAWA",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "cat-bite-club",
+    "name": "Cat Bite Club",
+    "city": "Singapore"
+   },
+   {
+    "slug": "dead-poets",
+    "name": "Dead Poets",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "honky-tonks-tavern",
+    "name": "Honky Tonks Tavern",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "passing-fancies",
+    "name": "Passing Fancies",
+    "city": "Birmingham"
+   },
+   {
+    "slug": "pony-up",
+    "name": "Pony Up",
+    "city": "Shanghai"
+   },
+   {
+    "slug": "quinary",
+    "name": "Quinary",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-cocktail-club",
+    "name": "The Cocktail Club",
+    "city": "Jakarta"
+   },
+   {
+    "slug": "the-opposites",
+    "name": "The Opposites",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-pontiac",
+    "name": "The Pontiac",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "wing-lei-bar",
+    "name": "Wing Lei Bar",
+    "city": "Macau"
+   }
+  ],
+  "amsterdam-cocktail-week-2026-bars-events-guide": [
+   {
+    "slug": "bar-twentyseven",
+    "name": "Bar TwentySeven",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "drink-kong",
+    "name": "Drink Kong",
+    "city": "Rome"
+   },
+   {
+    "slug": "dutch-courage-cocktail-bar-amsterdam",
+    "name": "Dutch Courage",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "flying-dutchmen-cocktails",
+    "name": "Flying Dutchmen Cocktails",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "green-door",
+    "name": "Green Door",
+    "city": "Berlin"
+   },
+   {
+    "slug": "murder-inc",
+    "name": "Murder Inc",
+    "city": "London"
+   },
+   {
+    "slug": "sins-of-sal",
+    "name": "Sins of Sal",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "super-lyan",
+    "name": "Super Lyan",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "vault-bar",
+    "name": "Vault Bar",
+    "city": "Berlin"
+   }
+  ],
+  "mirror-hospitality-expo-2025": [
+   {
+    "slug": "barchef",
+    "name": "BarChef",
+    "city": "Toronto"
+   },
+   {
+    "slug": "little-red-door",
+    "name": "Little Red Door",
+    "city": "Paris"
+   },
+   {
+    "slug": "maybe-sammy",
+    "name": "Maybe Sammy",
+    "city": "Sydney"
+   },
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   },
+   {
+    "slug": "nouvelle-vague",
+    "name": "Nouvelle Vague",
+    "city": "Tirana"
+   }
+  ],
+  "mirror-hospitality-expo-2025-puts-bratislava-on-the-bar-map": [
+   {
+    "slug": "barchef",
+    "name": "BarChef",
+    "city": "Toronto"
+   },
+   {
+    "slug": "little-red-door",
+    "name": "Little Red Door",
+    "city": "Paris"
+   },
+   {
+    "slug": "maybe-sammy",
+    "name": "Maybe Sammy",
+    "city": "Sydney"
+   },
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   },
+   {
+    "slug": "old-fashioned-bar",
+    "name": "Old Fashioned Bar",
+    "city": "Bratislava"
+   },
+   {
+    "slug": "sky-bar-bratislava",
+    "name": "Sky Bar",
+    "city": "Bratislava"
+   }
+  ],
+  "europes-50-best-bars-2026-with-the-polot-1882-family": [
+   {
+    "slug": "barrier",
+    "name": "Barrier",
+    "city": "Bergamo"
+   },
+   {
+    "slug": "caffe-paszkowski",
+    "name": "Caffe Paszkowski",
+    "city": "Florence"
+   },
+   {
+    "slug": "nouvelle-vague",
+    "name": "Nouvelle Vague",
+    "city": "Tirana"
+   }
+  ],
+  "himkok-and-devils-cut-join-belgrade-cocktail-fest-2026": [
+   {
+    "slug": "barrier",
+    "name": "Barrier",
+    "city": "Bergamo"
+   },
+   {
+    "slug": "beogradski-koktel-klub",
+    "name": "Beogradski Koktel Klub",
+    "city": "Belgrade"
+   },
+   {
+    "slug": "dragoljub",
+    "name": "Dragoljub",
+    "city": "Belgrade"
+   },
+   {
+    "slug": "isabel-speakeasy",
+    "name": "Isabel Speakeasy",
+    "city": "Belgrade"
+   },
+   {
+    "slug": "kultura-bar",
+    "name": "Kultura Bar",
+    "city": "Belgrade"
+   },
+   {
+    "slug": "riddle-bar",
+    "name": "Riddle Bar",
+    "city": "Belgrade"
+   },
+   {
+    "slug": "sentaku-izakaya",
+    "name": "Sentaku Izakaya",
+    "city": "Bologna"
+   },
+   {
+    "slug": "the-bar-in-front-of-the-bar",
+    "name": "The Bar in Front of the Bar",
+    "city": "Athens"
+   }
+  ],
+  "copy-taste-festival-2026-zagreb": [
+   {
+    "slug": "barro-negro",
+    "name": "Barro Negro",
+    "city": "Athens"
+   },
+   {
+    "slug": "landsky",
+    "name": "Landsky",
+    "city": "Zagreb"
+   },
+   {
+    "slug": "locale-firenze",
+    "name": "Locale Firenze",
+    "city": "Florence"
+   },
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   },
+   {
+    "slug": "the-cambridge-public-house",
+    "name": "The Cambridge Public House",
+    "city": "Paris"
+   },
+   {
+    "slug": "urania-bar",
+    "name": "Urania Bar",
+    "city": "Zagreb"
+   }
+  ],
+  "bees-bar-narisawa-residencia-mexicana-tokio-2026": [
+   {
+    "slug": "bees-bar-by-narisawa",
+    "name": "BEES BAR by NARISAWA",
+    "city": "Tokyo"
+   }
+  ],
+  "nico-de-soto": [
+   {
+    "slug": "bkk-social-club",
+    "name": "BKK Social Club",
+    "city": "Bangkok"
+   },
+   {
+    "slug": "experimental-cocktail-club",
+    "name": "Experimental Cocktail Club",
+    "city": "Paris"
+   },
+   {
+    "slug": "the-bellwood",
+    "name": "The Bellwood",
+    "city": "Tokyo"
+   }
+  ],
+  "best-cocktail-bars-amsterdam-2026": [
+   {
+    "slug": "blind-spot-london",
+    "name": "Blind Spot",
+    "city": "London"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "shakerato",
+    "name": "Shakerato",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "sins-of-sal",
+    "name": "Sins of Sal",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "super-lyan",
+    "name": "Super Lyan",
+    "city": "Amsterdam"
+   }
+  ],
+  "top-10-bars-in-dubai-2025": [
+   {
+    "slug": "blind-tiger",
+    "name": "Blind Tiger",
+    "city": "Dubai"
+   },
+   {
+    "slug": "clap-ongaku",
+    "name": "Clap / Ongaku",
+    "city": "Dubai"
+   },
+   {
+    "slug": "galaxy-bar",
+    "name": "Galaxy Bar",
+    "city": "Dubai"
+   },
+   {
+    "slug": "honeycomb-hi-fi",
+    "name": "Honeycomb Hi-Fi",
+    "city": "Dubai"
+   },
+   {
+    "slug": "lpm-dubai",
+    "name": "LPM Dubai",
+    "city": "Dubai"
+   },
+   {
+    "slug": "mimi-kakushi",
+    "name": "Mimi Kakushi",
+    "city": "Dubai"
+   },
+   {
+    "slug": "salmon-guru",
+    "name": "Salmon Guru",
+    "city": "Madrid"
+   },
+   {
+    "slug": "salmon-guru-dubai",
+    "name": "Salmon Guru",
+    "city": "Dubai"
+   }
+  ],
+  "iain-mcpherson": [
+   {
+    "slug": "bramble",
+    "name": "Bramble",
+    "city": "Edinburgh"
+   },
+   {
+    "slug": "hey-palu",
+    "name": "Hey Palu",
+    "city": "Edinburgh"
+   },
+   {
+    "slug": "katana-kitten",
+    "name": "Katana Kitten",
+    "city": "New York"
+   },
+   {
+    "slug": "nauticus-bar",
+    "name": "Nauticus",
+    "city": "Edinburgh"
+   },
+   {
+    "slug": "the-sun-tavern",
+    "name": "The Sun Tavern",
+    "city": "London"
+   }
+  ],
+  "inside-britannia-bar-trondheim-norways-best-menu-2026": [
+   {
+    "slug": "britannia-bar",
+    "name": "Britannia Bar",
+    "city": "Trondheim"
+   }
+  ],
+  "cantina-ok-unveils-ritual-inspired-cocktails": [
+   {
+    "slug": "cantina-ok",
+    "name": "Cantina OK!",
+    "city": "Sydney"
+   }
+  ],
+  "aaron-diaz-superbar-peru": [
+   {
+    "slug": "carnaval",
+    "name": "Carnaval",
+    "city": "Lima"
+   },
+   {
+    "slug": "el-infusionista",
+    "name": "El Infusionista",
+    "city": "Lima"
+   },
+   {
+    "slug": "maria-mezcal",
+    "name": "María Mezcal",
+    "city": "Lima"
+   }
+  ],
+  "top-10-bars-in-singapore-2026": [
+   {
+    "slug": "cat-bite-club",
+    "name": "Cat Bite Club",
+    "city": "Singapore"
+   },
+   {
+    "slug": "live-twice",
+    "name": "Live Twice",
+    "city": "Singapore"
+   },
+   {
+    "slug": "offtrack",
+    "name": "Offtrack",
+    "city": "Singapore"
+   },
+   {
+    "slug": "sago-house",
+    "name": "Sago House",
+    "city": "Singapore"
+   },
+   {
+    "slug": "side-door",
+    "name": "Side Door",
+    "city": "Singapore"
+   }
+  ],
+  "wing-lei-bars-unity-cocktail-menu-celebrates-global-flavors": [
+   {
+    "slug": "cat-bite-club",
+    "name": "Cat Bite Club",
+    "city": "Singapore"
+   },
+   {
+    "slug": "mixology",
+    "name": "Mixology",
+    "city": "Seoul"
+   },
+   {
+    "slug": "sidecar",
+    "name": "Sidecar",
+    "city": "New Delhi"
+   },
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "wing-lei-bar",
+    "name": "Wing Lei Bar",
+    "city": "Macau"
+   }
+  ],
+  "women-hospitality-miladys-new-york-june-2026": [
+   {
+    "slug": "clover-club",
+    "name": "Clover Club",
+    "city": "New York"
+   },
+   {
+    "slug": "double-chicken-please",
+    "name": "Double Chicken Please",
+    "city": "New York"
+   }
+  ],
+  "tres-monos-turns-buenos-aires-into-a-cocktail-carnival": [
+   {
+    "slug": "cochinchina",
+    "name": "CoChinChina",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "victor-audio-bar-buenos-aires",
+    "name": "Victor Audio Bar",
+    "city": "Buenos Aires"
+   }
+  ],
+  "quito-cocktail-week-2026-ecuador-edwin-lobo": [
+   {
+    "slug": "codigo-86",
+    "name": "Código 86",
+    "city": "Quito"
+   }
+  ],
+  "felice-capasso-wins-2025-world-class-global-finals": [
+   {
+    "slug": "connaught-bar",
+    "name": "Connaught Bar",
+    "city": "London"
+   },
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   }
+  ],
+  "giorgio-bargiani-altos-bartenders-bartender-2026": [
+   {
+    "slug": "connaught-bar",
+    "name": "Connaught Bar",
+    "city": "London"
+   }
+  ],
+  "bars-becoming-their-own-distillers-house-spirits-3": [
+   {
+    "slug": "copperbay",
+    "name": "CopperBay",
+    "city": "Paris"
+   }
+  ],
+  "mastering-classic-american-cocktails": [
+   {
+    "slug": "coupette",
+    "name": "Coupette",
+    "city": "London"
+   }
+  ],
+  "dangerous-water-palma-sa-gerreria-salvatore-camagna": [
+   {
+    "slug": "dangerous-water-palma-de-mallorca",
+    "name": "Dangerous Water",
+    "city": "Palma de Mallorca"
+   }
+  ],
+  "aberdeen-arts-row-transforms-hong-kong-nightlife": [
+   {
+    "slug": "dead-poets",
+    "name": "Dead Poets",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-old-man",
+    "name": "The Old Man",
+    "city": "Hong Kong"
+   }
+  ],
+  "hong-kong-soho-bars-may-2026-events": [
+   {
+    "slug": "dead-poets",
+    "name": "Dead Poets",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "sober-company",
+    "name": "Sober Company",
+    "city": "Shanghai"
+   },
+   {
+    "slug": "the-pontiac",
+    "name": "The Pontiac",
+    "city": "Hong Kong"
+   }
+  ],
+  "margarita-mile-hong-kong-2026": [
+   {
+    "slug": "dead-poets",
+    "name": "Dead Poets",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "dragonfly",
+    "name": "Dragonfly",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "honky-tonks-tavern",
+    "name": "Honky Tonks Tavern",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "lockdown",
+    "name": "Lockdown",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-mixing-room",
+    "name": "The Mixing Room",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-old-man",
+    "name": "The Old Man",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-pontiac",
+    "name": "The Pontiac",
+    "city": "Hong Kong"
+   }
+  ],
+  "the-dead-rabbit": [
+   {
+    "slug": "dead-rabbit",
+    "name": "Dead Rabbit",
+    "city": "New York"
+   }
+  ],
+  "visiting-bar-luminary-series": [
+   {
+    "slug": "dear-irving",
+    "name": "Dear Irving",
+    "city": "New York"
+   },
+   {
+    "slug": "schmuck",
+    "name": "Schmuck",
+    "city": "New York"
+   }
+  ],
+  "amsterdam-cocktail-week-2026-when-a-city-becomes-a-living-bar-scene": [
+   {
+    "slug": "door-74",
+    "name": "Door 74",
+    "city": "Amsterdam"
+   },
+   {
+    "slug": "sins-of-sal",
+    "name": "Sins of Sal",
+    "city": "Amsterdam"
+   }
+  ],
+  "takuma-watanabe-martinys-altos-bartenders-bartender-2026": [
+   {
+    "slug": "double-chicken-please",
+    "name": "Double Chicken Please",
+    "city": "New York"
+   }
+  ],
+  "top-500-bars-2024-celebrates-the-best-in-global-mixology": [
+   {
+    "slug": "double-chicken-please",
+    "name": "Double Chicken Please",
+    "city": "New York"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   }
+  ],
+  "bars-in-barcelona": [
+   {
+    "slug": "dr-stravinsky",
+    "name": "Dr. Stravinsky",
+    "city": "Barcelona"
+   },
+   {
+    "slug": "mariposa-negra-cocktail-bar-cocteleria-artesana",
+    "name": "Mariposa Negra",
+    "city": "Barcelona"
+   },
+   {
+    "slug": "two-schmucks",
+    "name": "Two Schmucks",
+    "city": "Barcelona"
+   }
+  ],
+  "paradiso-sustainability-summit-2025-announced": [
+   {
+    "slug": "dr-stravinsky",
+    "name": "Dr. Stravinsky",
+    "city": "Barcelona"
+   }
+  ],
+  "reinventing-gin": [
+   {
+    "slug": "dutch-courage-cocktail-bar-amsterdam",
+    "name": "Dutch Courage",
+    "city": "Amsterdam"
+   }
+  ],
+  "6-women-shaping-latin-american-hospitality": [
+   {
+    "slug": "el-infusionista",
+    "name": "El Infusionista",
+    "city": "Lima"
+   },
+   {
+    "slug": "la-calor",
+    "name": "La Calor",
+    "city": "Lima"
+   },
+   {
+    "slug": "maria-mezcal",
+    "name": "María Mezcal",
+    "city": "Lima"
+   },
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   }
+  ],
+  "maybe-cocktail-festival-returns-to-sydney-for-its-third-year": [
+   {
+    "slug": "el-primo-sanchez",
+    "name": "El Primo Sanchez",
+    "city": "Sydney"
+   },
+   {
+    "slug": "maybe-sammy",
+    "name": "Maybe Sammy",
+    "city": "Sydney"
+   }
+  ],
+  "employees-only": [
+   {
+    "slug": "employees-only",
+    "name": "Employees Only",
+    "city": "New York"
+   }
+  ],
+  "flipdog-opens-in-shoreditch": [
+   {
+    "slug": "flipdog",
+    "name": "FlipDog",
+    "city": "London"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   }
+  ],
+  "summer-negroni-variations-giacosa-florence": [
+   {
+    "slug": "giacosa",
+    "name": "Giacosa",
+    "city": "Florence"
+   }
+  ],
+  "five-spritzes-worth-ordering-instead-of-aperol": [
+   {
+    "slug": "giacosa",
+    "name": "Giacosa",
+    "city": "Florence"
+   },
+   {
+    "slug": "little-red-door",
+    "name": "Little Red Door",
+    "city": "Paris"
+   },
+   {
+    "slug": "saikindo",
+    "name": "Saikindō",
+    "city": "Abu Dhabi"
+   },
+   {
+    "slug": "seed-library-nyc",
+    "name": "Seed Library",
+    "city": "New York"
+   }
+  ],
+  "negroni-cocktail": [
+   {
+    "slug": "giacosa",
+    "name": "Giacosa",
+    "city": "Florence"
+   }
+  ],
+  "mexican-bar-tour": [
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "hanky-panky",
+    "name": "Hanky Panky",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "licoreria-limantour",
+    "name": "Licorería Limantour",
+    "city": "Mexico City"
+   }
+  ],
+  "the-50-best-bars-in-north-america-for-2024": [
+   {
+    "slug": "handshake-speakeasy",
+    "name": "Handshake Speakeasy",
+    "city": "Mexico City"
+   },
+   {
+    "slug": "overstory",
+    "name": "Overstory",
+    "city": "New York"
+   },
+   {
+    "slug": "superbueno",
+    "name": "Superbueno",
+    "city": "New York"
+   }
+  ],
+  "50-best-signature-sessions-return-to-hong-kong": [
+   {
+    "slug": "honky-tonks-tavern",
+    "name": "Honky Tonks Tavern",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "the-savory-project",
+    "name": "The Savory Project",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "tokyo-confidential",
+    "name": "Tokyo Confidential",
+    "city": "Tokyo"
+   },
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "wing-lei-bar",
+    "name": "Wing Lei Bar",
+    "city": "Macau"
+   },
+   {
+    "slug": "yacht-club-denver",
+    "name": "Yacht Club",
+    "city": "Denver"
+   }
+  ],
+  "horatio-at-resorts-world-sentosa-opens-in-singapore": [
+   {
+    "slug": "horatio",
+    "name": "Horatio",
+    "city": "Singapore"
+   }
+  ],
+  "jewel-of-the-south": [
+   {
+    "slug": "jewel-of-the-south",
+    "name": "Jewel of the South",
+    "city": "New Orleans"
+   }
+  ],
+  "jin-bo-law-hong-kong-cocktail-menu-review": [
+   {
+    "slug": "jin-bo-law",
+    "name": "Jin Bo Law",
+    "city": "Hong Kong"
+   }
+  ],
+  "barstars-world-tour-2024-brings-asias-top-bartenders-to-europe": [
+   {
+    "slug": "kink-bar",
+    "name": "KINK Bar",
+    "city": "Berlin"
+   },
+   {
+    "slug": "night-hawk",
+    "name": "Night Hawk",
+    "city": "Singapore"
+   },
+   {
+    "slug": "tokyo-confidential",
+    "name": "Tokyo Confidential",
+    "city": "Tokyo"
+   }
+  ],
+  "kink-bar-berlin-launches-a-bold-new-cocktail-menu": [
+   {
+    "slug": "kink-bar",
+    "name": "KINK Bar",
+    "city": "Berlin"
+   }
+  ],
+  "lady-bee-lima-wins-michters-art-of-hospitality-award": [
+   {
+    "slug": "lady-bee",
+    "name": "Lady Bee",
+    "city": "Lima"
+   }
+  ],
+  "bartenders-choice-awards-2026-all-the-winners": [
+   {
+    "slug": "le-hibou",
+    "name": "Le Hibou",
+    "city": "Stockholm"
+   },
+   {
+    "slug": "stjartilleriet",
+    "name": "Stjärtilleriet",
+    "city": "Stockholm"
+   }
+  ],
+  "bar-les-ambassadeurs-launches-new-seasonal-cocktail-menu": [
+   {
+    "slug": "les-ambassadeurs",
+    "name": "Les Ambassadeurs",
+    "city": "Paris"
+   }
+  ],
+  "bar-les-ambassadeurs-launches-nostalgic-cocktail-menu": [
+   {
+    "slug": "les-ambassadeurs",
+    "name": "Les Ambassadeurs",
+    "city": "Paris"
+   }
+  ],
+  "the-sustainable-documents-a-free-resource-for-bars": [
+   {
+    "slug": "little-red-door",
+    "name": "Little Red Door",
+    "city": "Paris"
+   }
+  ],
+  "50-best-bars-roku-scholarship-2024": [
+   {
+    "slug": "maybe-sammy",
+    "name": "Maybe Sammy",
+    "city": "Sydney"
+   }
+  ],
+  "meadowlark": [
+   {
+    "slug": "meadowlark",
+    "name": "Meadowlark",
+    "city": "Chicago"
+   }
+  ],
+  "melange-by-cali-sober-is-rewriting-new-orleans-nightlife": [
+   {
+    "slug": "melange-by-cali-sober",
+    "name": "Mélange by Cali Sober",
+    "city": "New Orleans"
+   }
+  ],
+  "adrian-michalcik": [
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   }
+  ],
+  "mirror-bar-michters-art-of-hospitality-award-2026": [
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   }
+  ],
+  "mirror-hospitality-expo-2024": [
+   {
+    "slug": "mirror-bar",
+    "name": "Mirror Bar",
+    "city": "Bratislava"
+   }
+  ],
+  "wing-lei-bar-friends-vol-2-lands-in-macao": [
+   {
+    "slug": "modernhaus",
+    "name": "Modernhaus",
+    "city": "Jakarta"
+   },
+   {
+    "slug": "night-hawk",
+    "name": "Night Hawk",
+    "city": "Singapore"
+   }
+  ],
+  "iain-mcpherson-named-altos-bartenders-bartender-2024": [
+   {
+    "slug": "nauticus-bar",
+    "name": "Nauticus",
+    "city": "Edinburgh"
+   }
+  ],
+  "bcb-singapore-2025-asias-premier-bar-and-beverage-event-returns": [
+   {
+    "slug": "night-hawk",
+    "name": "Night Hawk",
+    "city": "Singapore"
+   },
+   {
+    "slug": "side-door",
+    "name": "Side Door",
+    "city": "Singapore"
+   }
+  ],
+  "hyper-drinks-by-angelos-bafas-redefines-cocktail-simplicity": [
+   {
+    "slug": "nipperkin",
+    "name": "Nipperkin",
+    "city": "London"
+   }
+  ],
+  "overstory": [
+   {
+    "slug": "overstory",
+    "name": "Overstory",
+    "city": "New York"
+   }
+  ],
+  "wishka-russell-davis-returns-to-his-origins": [
+   {
+    "slug": "permission",
+    "name": "Permission",
+    "city": "Houston"
+   }
+  ],
+  "inside-pop-city-x-pony-full-menu-experience": [
+   {
+    "slug": "pop-city-x-pony",
+    "name": "Pop City x Pony",
+    "city": "Singapore"
+   }
+  ],
+  "pop-city-x-pony-opens-in-singapore-by-jigger-pony-group": [
+   {
+    "slug": "pop-city-x-pony",
+    "name": "Pop City x Pony",
+    "city": "Singapore"
+   }
+  ],
+  "artful-bar-design": [
+   {
+    "slug": "realm-of-the-52-remedies",
+    "name": "Realm of the 52 Remedies",
+    "city": "San Diego"
+   },
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   }
+  ],
+  "nicola-olianas-on-heritage-innovation-and-the-future-of-mixology": [
+   {
+    "slug": "rob-roy-seattle",
+    "name": "Rob Roy",
+    "city": "Seattle"
+   }
+  ],
+  "room-207-is-new-yorks-next-cocktail-tourism-destination": [
+   {
+    "slug": "room-207",
+    "name": "Room 207",
+    "city": "New York"
+   }
+  ],
+  "advocatuur-opens-at-rosewood-amsterdam": [
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   }
+  ],
+  "mexican-coffee": [
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   },
+   {
+    "slug": "the-american-bar",
+    "name": "The American Bar",
+    "city": "London"
+   }
+  ],
+  "scarfes-bar-at-rosewood-london-launches-from-scratch-cocktail-menu": [
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   }
+  ],
+  "scarfes-bar-hosts-international-womens-month-talks": [
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   },
+   {
+    "slug": "three-x-co",
+    "name": "Three X Co",
+    "city": "Kuala Lumpur"
+   }
+  ],
+  "scarfes-bar-launches-long-drawn-out-sip-cocktail-menu": [
+   {
+    "slug": "scarfes-bar",
+    "name": "Scarfes Bar",
+    "city": "London"
+   }
+  ],
+  "moe-aljaff": [
+   {
+    "slug": "schmuck",
+    "name": "Schmuck",
+    "city": "New York"
+   },
+   {
+    "slug": "two-schmucks",
+    "name": "Two Schmucks",
+    "city": "Barcelona"
+   }
+  ],
+  "mr-lyan-brings-seed-library-to-new-york-this-fall": [
+   {
+    "slug": "seed-library",
+    "name": "Seed Library",
+    "city": "London"
+   },
+   {
+    "slug": "seed-library-nyc",
+    "name": "Seed Library",
+    "city": "New York"
+   }
+  ],
+  "seed-library-nyc-new-cocktail-menu-june-2026": [
+   {
+    "slug": "seed-library",
+    "name": "Seed Library",
+    "city": "London"
+   },
+   {
+    "slug": "seed-library-nyc",
+    "name": "Seed Library",
+    "city": "New York"
+   }
+  ],
+  "amaretto-adriatico-the-new-generation-amaretto": [
+   {
+    "slug": "shakerato",
+    "name": "Shakerato",
+    "city": "Amsterdam"
+   }
+  ],
+  "silver-lyan-folklore-menu": [
+   {
+    "slug": "silver-lyan-dc",
+    "name": "Silver Lyan",
+    "city": "Washington DC"
+   }
+  ],
+  "the-butterfly-effect-at-silver-lyan-in-washington-dc": [
+   {
+    "slug": "silver-lyan-dc",
+    "name": "Silver Lyan",
+    "city": "Washington DC"
+   }
+  ],
+  "solara-bar-sao-paulo-bumble-safe-space": [
+   {
+    "slug": "solara-bar",
+    "name": "Solara Bar",
+    "city": "São Paulo"
+   }
+  ],
+  "superbueno": [
+   {
+    "slug": "superbueno",
+    "name": "Superbueno",
+    "city": "New York"
+   }
+  ],
+  "monica-berg-on-community-bartending-trends-and-elevating-the-bar-world": [
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   }
+  ],
+  "tayer-elementary-casual-by-tayer-cato-london": [
+   {
+    "slug": "tayer-elementary",
+    "name": "Tayēr + Elementary",
+    "city": "London"
+   }
+  ],
+  "rasty-kasar": [
+   {
+    "slug": "the-american-bar",
+    "name": "The American Bar",
+    "city": "London"
+   }
+  ],
+  "pariss-the-cambridge-public-house-unveils-global-cocktail-series": [
+   {
+    "slug": "the-cambridge-public-house",
+    "name": "The Cambridge Public House",
+    "city": "Paris"
+   }
+  ],
+  "the-cambridge-public-house-launches-shaken-leaf": [
+   {
+    "slug": "the-cambridge-public-house",
+    "name": "The Cambridge Public House",
+    "city": "Paris"
+   }
+  ],
+  "the-seychelles-bar-sustainability-project": [
+   {
+    "slug": "the-cambridge-public-house",
+    "name": "The Cambridge Public House",
+    "city": "Paris"
+   }
+  ],
+  "nikos-bakoulis": [
+   {
+    "slug": "the-clumsies",
+    "name": "The Clumsies",
+    "city": "Athens"
+   }
+  ],
+  "the-loft-santiago": [
+   {
+    "slug": "the-loft",
+    "name": "The Loft",
+    "city": "Santiago"
+   }
+  ],
+  "asian-twist-signature-cocktails-from-macau-and-hong-kong": [
+   {
+    "slug": "the-opposites",
+    "name": "The Opposites",
+    "city": "Hong Kong"
+   },
+   {
+    "slug": "wing-lei-bar",
+    "name": "Wing Lei Bar",
+    "city": "Macau"
+   }
+  ],
+  "the-pontiac-x-bar-flora-celebrate-women-in-bars": [
+   {
+    "slug": "the-pontiac",
+    "name": "The Pontiac",
+    "city": "Hong Kong"
+   }
+  ],
+  "barcelona-hotel-bar-week-2026": [
+   {
+    "slug": "the-punch-room-at-edition",
+    "name": "Punch Room",
+    "city": "Barcelona"
+   }
+  ],
+  "the-st-regis-bar-jakarta-revives-1920s-jazz-in-cocktails": [
+   {
+    "slug": "the-st-regis-bar-jakarta",
+    "name": "The St. Regis Bar Jakarta",
+    "city": "Jakarta"
+   }
+  ],
+  "the-wolves": [
+   {
+    "slug": "the-wolves",
+    "name": "The Wolves",
+    "city": "Los Angeles"
+   }
+  ],
+  "50-best-bars-scholarship-2026-line-athens-tres-monos-buenos-aires": [
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   }
+  ],
+  "tres-monos-named-best-bar-in-south-america": [
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   },
+   {
+    "slug": "victor-audio-bar-buenos-aires",
+    "name": "Victor Audio Bar",
+    "city": "Buenos Aires"
+   }
+  ],
+  "wing-lei-bar-friends-launches-at-wynn-palace": [
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   }
+  ],
+  "worlds-50-best-bars-2026-milan": [
+   {
+    "slug": "tres-monos",
+    "name": "Tres Monos",
+    "city": "Buenos Aires"
+   }
+  ],
+  "true-laurel": [
+   {
+    "slug": "true-laurel",
+    "name": "True Laurel",
+    "city": "San Francisco"
+   }
+  ],
+  "barcelonas-cocktail-evolution": [
+   {
+    "slug": "two-schmucks",
+    "name": "Two Schmucks",
+    "city": "Barcelona"
+   }
+  ],
+  "the-quote-book": [
+   {
+    "slug": "velvet-by-salvatore-calabrese",
+    "name": "Velvet by Salvatore Calabrese",
+    "city": "London"
+   }
+  ],
+  "victor-audio-bar-marks-one-year-with-global-guest-shifts": [
+   {
+    "slug": "victor-audio-bar-buenos-aires",
+    "name": "Victor Audio Bar",
+    "city": "Buenos Aires"
+   }
+  ],
+  "zurich-bar-show-2025-spotlight-on-swiss-bar-culture": [
+   {
+    "slug": "widder-bar",
+    "name": "Widder Bar",
+    "city": "Zurich"
+   }
+  ]
+ }
+}

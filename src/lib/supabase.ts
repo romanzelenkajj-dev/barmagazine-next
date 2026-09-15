@@ -201,10 +201,10 @@ export async function getBarBySlug(slug: string): Promise<Bar | null> {
 
 /** Get unique filter values */
 export async function getBarFilterOptions() {
-  const { data } = await supabase
-    .from('bars')
-    .select('country, city, type, subtypes')
-    .eq('is_active', true);
+  // Whole-directory read: paged, or the filter menus stop at bar 1,000.
+  const data = await getAllActiveBars<{ country: string; city: string; type: string | null; subtypes: string[] | null }>(
+    'country, city, type, subtypes'
+  );
 
   if (!data) return { countries: [], cities: [], types: [] };
 
@@ -284,10 +284,8 @@ export async function getBarsByCity(city: string) {
 
 /** Get all unique countries with bar counts */
 export async function getCountriesWithCounts() {
-  const { data } = await supabase
-    .from('bars')
-    .select('country')
-    .eq('is_active', true);
+  // Whole-directory read, feeds the sitemap: paged past the row cap.
+  const data = await getAllActiveBars<{ country: string }>('country');
 
   if (!data) return [];
   const counts: Record<string, number> = {};
@@ -297,10 +295,8 @@ export async function getCountriesWithCounts() {
 
 /** Get all unique cities with bar counts and their country */
 export async function getCitiesWithCounts() {
-  const { data } = await supabase
-    .from('bars')
-    .select('city, country')
-    .eq('is_active', true);
+  // Whole-directory read, feeds the sitemap: paged past the row cap.
+  const data = await getAllActiveBars<{ city: string; country: string }>('city, country');
 
   if (!data) return [];
   const map: Record<string, { count: number; country: string }> = {};

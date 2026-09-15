@@ -38,6 +38,54 @@ previous output, so the raw list contains the last run. Subtract it, or the
 generator poisons itself and the whole 990-redirect set collapses to zero on
 the next build. `assertNotCollapsed()` now refuses to write that state.
 
+## The silent row cap
+
+**Any Supabase read that expects more than a few hundred rows must page
+explicitly, because the cap is silent.** A request for 2,000 rows, or
+10,000, or "everything", returns exactly 1,000 rows and no error. Nothing
+downstream can tell the difference between "there are 1,000" and "there
+are more".
+
+On 2026-09-14 this was found in THREE consumers at once, each with the
+same shape: `sitemap-bars.xml` listed 1,000 profiles against 1,247 active;
+the `/bars-map` page dropped every bar past the first thousand; and the
+redirect generator saw 1,000 bars, so 247 had no root redirect. All three
+are now paginated (`getAllActiveBars()` in supabase.ts; offset paging in
+the generator), and the live deploy check `sitemap-bars-count` asserts
+the sitemap's profile count equals the active row count.
+
+Rule of thumb: a `.select()` on `bars` filtered to one city, one country,
+one tier-and-city, one owner or a list of ids is bounded by the data and
+fine. A `.select()` on `bars` filtered only by `is_active`, or by nothing,
+is the whole directory and MUST page.
+
+Audited 2026-09-14, every `.from('bars')` in `src/` and `scripts/`:
+
+- **Paginated already:** `getAllActiveBars`, `getBarStats` (count via
+  `head: true`; locations paged), `getSeoCities`, `award-hubs`, the admin
+  list endpoints (`manage-bar`, `audit`), `geocode-backfill.mjs`,
+  `generate-bar-redirects.mjs`, `build-article-mentions.mjs`.
+- **Bounded by their filter, fine:** `getBarBySlug`, `getBarsByCity`,
+  `getBarsByCountry`, `getTop10BarsByCity`, `getSeoCityBars`, the owner,
+  claim, submission and photo routes, `audit-featured-tiers.mjs`.
+- **Whole-directory reads that were still one request, found by this
+  grep and fixed the same day (a fourth, fifth, sixth and seventh
+  instance):**
+  - `getBarFilterOptions()`: the directory's filter menus were built from
+    the first 1,000 bars, so a city or style that only existed past the
+    cap was never offered. Now paged.
+  - `getCountriesWithCounts()` and `getCitiesWithCounts()`: both feed
+    `sitemap-bars.xml`, so a city whose bars all sat past the cap had no
+    city page in the sitemap. Now paged.
+  - `/api/bars/map`: the map's own data endpoint, the same defect as the
+    page. Now paged, with the coordinate filter and tier-name sort applied
+    after the pages are joined.
+- **Same shape, currently far below the cap, left as they are:**
+  `getTop10Cities()` (tier filter, ~230 rows) and `getBarArticleSlugs()`
+  (non-null article slug, 14 rows). They will cross the cap silently if
+  the tiers or the article set ever grow that far.
+- `scripts/migrate-bars.ts`: legacy, not run.
+
 ## scripts/address-city-check.mjs
 
 Finds rows whose address text names a different city than the row's city
