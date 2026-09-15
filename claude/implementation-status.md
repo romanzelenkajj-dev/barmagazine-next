@@ -1214,6 +1214,25 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Task queue (Claude outputs/queue -> reports -> done) and its first two tasks
+- Roman set up a task queue between the cloud session and this one:
+  queue/*.md run as prompts under every standing guard, full report to
+  reports/<name>.md, file moved to done/. Nothing is sent, deleted,
+  published outward or purchased on the strength of a file; those stop
+  with a report and wait for Roman in chat.
+- 01-hk-macau-country: 39 active rows moved from country China to Hong
+  Kong (36) and Macau (3) by id; /bars/country/hong-kong and /macau exist,
+  China down to 23; city slugs unchanged so no redirect; two inactive HK
+  rows left (scope). Found and fixed a regression of the day: cityLabel
+  printed "Singapore, Singapore" and "Hong Kong, Hong Kong" once the cards
+  went through it; a city-state now prints once (b863569).
+- 02-hero-long-name-mobile: the no-photo profile hero clipped a long
+  name's second line on phones (height-capped hero, two-line clamp meant
+  for card tiles). Option 4: inscription hidden at 768px and below (the H1
+  repeats the name directly below), kept on desktop with a clamped size
+  and no line clamp. 14 longest names checked at 375, 390 and 1280
+  (94858e2). Dev-server launch config added.
+
 ## 2026-09-15 - Every card place line through placeLine (4292e63)
 - placeLine(bar) in src/lib/city-location.ts: cityLabel with the state
   from bars.state; one call for every place line on the site. Routed:
