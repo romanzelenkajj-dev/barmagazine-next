@@ -1214,6 +1214,14 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 11a: phone card back to block flow, actions last (5f9b537)
+- 05's grid put the buttons between the prose and the description on
+  phones and widened every gap (grid items keep both neighbours' margins).
+  Below 1100px the card is block flow again in reading order with the
+  actions block at the end (moved in the DOM; desktop placement is by
+  grid, order-independent); phones stack full-width buttons; tablets wrap
+  a row. Gaps at 390: 14/29/28 -> 8/15/18.
+
 ## 2026-09-15 - Queue task 12: accolade prose as a credentials line (f3592cc, 3c0cfa2)
 - No subject (the H1 says the name): "Listed on North America's 50 Best
   Bars in 2022 and awarded 2 Pins by The Pinnacle Guide in 2024." Same
