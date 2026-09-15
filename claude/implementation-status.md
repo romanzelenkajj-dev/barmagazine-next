@@ -1232,9 +1232,11 @@ Running log of shipped work items and their merge commits. Newest first.
   question for Roman, not a label defect.
 
 ## 2026-09-15 - No-food rule: Bastion and JoJo's rewritten, description linter
-- bastion (466e654f): "serves no food from that kitchen" -> "serves nachos
-  of its own, which its FAQ states", the following sentence adjusted so the
-  nachos are not said twice. jojos-beloved (9b7a7dcf): the "serves no
+- bastion (466e654f): "serves no food from that kitchen" removed; the
+  sentence now reads plainly "It opens seven nights a week, and the Big
+  Bar serves nachos until close to last call" (Roman smoothed the first
+  cut, which cited the FAQ in the copy); the FAQ source sits in
+  admin_notes. jojos-beloved (9b7a7dcf): the "serves no
   food" clause removed, the rest untouched. Both revalidated and confirmed
   live. momus and bar-us left as they are, by decision.
 - RULE added to claude/admission-rule.md, Descriptions: never state that a
