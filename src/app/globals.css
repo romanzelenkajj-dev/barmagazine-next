@@ -3167,7 +3167,11 @@ textarea.form-input {
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  padding: 48px;
+  /* 24px at the sides, the search pill's own padding, so the headline,
+     the subtitle and the stat tiles start on the same x as the text in
+     the search box beneath (48px from the column edge); 72px before
+     (Roman, 2026-09-15). The vertical 48px is unchanged. */
+  padding: 48px 24px;
   min-height: 285px;
 }
 
@@ -4228,7 +4232,10 @@ textarea.form-input {
   }
 
   .directory-hero {
-    padding: 36px 20px;
+    /* Full-bleed here (see the mobile hero block), so the side padding is
+       the page gutter (10px) plus the filters' padding (16px): the
+       headline starts on the search box's left edge, 26px. */
+    padding: 36px 26px;
   }
 
   .directory-hero h1 {
