@@ -1214,6 +1214,23 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 16: 70 active rows without coordinates, 60 geocoded (7dad688)
+- Paged count: 70 active rows with lat or lng null (Phoenix 11, Hong Kong
+  10, Tokyo 10, Shanghai 5, Jakarta 3, Lima 3, 28 more cities). Dry run
+  through /api/admin/geocode-bars in chunks of 15: 60 address results,
+  10 name results, no explicit city-centre. The 60 were written by id via
+  manage-bar (revalidated); Bitter & Twisted (33.446985, -112.074025)
+  renders its map live.
+- The 10 name results are held: seven sit exactly on the city centre
+  (Mapbox answers a failed name search with the city's place feature), one
+  is 31 km out (Beogradski Koktel Klub, no address), two are unverified
+  (CMYK Changsha, Door No. 4 at the wrong end of Grand Cayman). Listed in
+  reports/16 for a manual look; nine of them have no address on the row.
+- src/lib/geocode.ts: a name result within 50 m of the city centre now
+  reports as city-centre, not name. New `npm run audit:coords`
+  (scripts/coords-check.mjs, paged) ends every add wave with the count;
+  rule added to claude/data-checks.md.
+
 ## 2026-09-15 - Queue task 11c: task 15 reverted in full (542c57a)
 - Roman: the owner-edit notice to his Gmail was fine; task 15 rested on a
   cloud-side misunderstanding. 8b35f93 reverted whole (module, tests, rig,
