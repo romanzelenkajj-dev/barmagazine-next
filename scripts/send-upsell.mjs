@@ -234,12 +234,16 @@ function textFor(bar) {
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 for (const slug of slugs) {
-  const res = await fetch(`${SUPA_URL}/rest/v1/bars?select=name,slug,email&slug=eq.${encodeURIComponent(slug)}&is_active=eq.true`, {
+  const res = await fetch(`${SUPA_URL}/rest/v1/bars?select=name,slug,email,owner_id&slug=eq.${encodeURIComponent(slug)}&is_active=eq.true`, {
     headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` },
   });
   const rows = await res.json();
   if (!rows.length) { console.error(`SKIP ${slug}: not found/active`); continue; }
   const bar = rows[0];
+  // A claimed bar has an owner in the dashboard already; the listing pitch
+  // is for the unclaimed. Checked before parked/opt-out so the reason is
+  // the most specific one.
+  if (bar.owner_id) { console.log(`CLAIMED ${slug}: owner on file, not sent`); continue; }
   if (PARKED.has(slug.toLowerCase())) {
     console.log(`PARKED ${slug}: editorial decision in outreach/parked.txt, not sent`);
     continue;

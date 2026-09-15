@@ -1143,3 +1143,38 @@ Running log of shipped work items and their merge commits. Newest first.
 - Map now 369 bars, 181 articles, 1,006 links, 24 held. Multi-row report
   re-run on the final map: every outpost row carries only its own city's
   articles.
+- Roman then RESTORED the four original-opens-an-outpost pairs (bar-leone
+  x3, seed-library -> mr-lyan-brings-seed-library-to-new-york-this-fall)
+  as confirmed pairs; both rows carry them (bb63298). The eight other
+  drops stand. Map 1,010 links.
+
+## 2026-09-15 - Traffic audit; meta-externalagent rate-limited in the Vercel Firewall
+- Vercel request logs (vercel.com/api/logs/request-logs, the endpoint
+  behind `vercel logs`) carry clientUserAgent, requestReferer and
+  clientRegion, but only 50 rows a page, newest first, and the volume is
+  far beyond a full 24-hour pull. Sampled the LAST ~1,000 requests of
+  each hour (23,650 rows) plus one 2-minute window pulled in full.
+  clientRegion is the Vercel edge (iad1, sfo1, lhr1), NOT the client's
+  country, so country of origin is not answerable from this source.
+- FINDING: meta-externalagent (Meta's AI training crawler) is 52% of the
+  sample, present in 20 of 24 hours, and the complete window shows a
+  burst of 54,901 Meta requests in 2 min 11 s at 05:30 UTC on the 14th,
+  peaking at 39,577 in one minute (~650/s), across 33 paths, 86% of all
+  origin-hitting (MISS/STALE) requests in that window. No WAF action on
+  any of it. Googlebot 1.1% of the sample, ChatGPT-User 0.8%,
+  OAI-SearchBot 0.7%, Bingbot 0.6%, ClaudeBot 0.2%; robots.txt allows
+  every named AI crawler (explicit blocks for GPTBot, ChatGPT-User,
+  ClaudeBot, PerplexityBot, Google-Extended; the rest under *).
+- FIREWALL RULE (Roman): "meta-externalagent rate limit (429 above
+  5/s)": user_agent contains meta-externalagent, fixed window 60 s,
+  limit 300, keyed on ua, action deny (429). Config version 2, beside the
+  existing Tencent SG challenge rule. Not a block; no other crawler
+  touched. Self-tested with 330 requests in a minute under that UA.
+- USAGE, billing cycle Aug 27 to date (Vercel Usage page): function
+  invocations 785.97K, edge requests 740.67K, fast data transfer 36 GB,
+  fast origin transfer 25 GB, ISR writes 328K, ISR reads 1.78M;
+  on-demand charges $15.65 in total. Vercel does not attribute usage to
+  a user agent; from the logs Meta is ~56% of origin-hitting requests in
+  the sample and 86% in the burst, so roughly half the function and ISR
+  spend, i.e. a few dollars a cycle. Not material in money; material in
+  load, since each burst is thousands of ISR regenerations at once.

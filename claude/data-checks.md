@@ -86,6 +86,25 @@ Audited 2026-09-14, every `.from('bars')` in `src/` and `scripts/`:
   the tiers or the article set ever grow that far.
 - `scripts/migrate-bars.ts`: legacy, not run.
 
+## Production is never load-tested from the Mac
+
+**Rate-limit and firewall rules are verified with a handful of requests, or
+on a preview deployment. Never a burst against production from the Mac.**
+
+On 2026-09-14 a 330-request self-test of the meta-externalagent rate
+limit, sent from the Mac against production, tripped Vercel's automatic
+DDoS mitigation on the Mac's own IP: a system challenge on 68.72.208.8,
+"Ongoing", which turned every non-browser fetch from this machine into a
+403 (`x-vercel-mitigated: challenge`). The deploy suite
+(`npm run seo:check:live`), the address check and every curl-based
+verification run from that IP, so the test took out the tooling that
+would have verified it. The rule itself was never proven by the test,
+because the mitigation answered before the rate limit did.
+
+The safe check is twenty requests inside one second with the target user
+agent, expecting 429 above the ceiling and 200 on a normal-user-agent
+control, and stopping there. Anything heavier runs against a preview URL.
+
 ## scripts/address-city-check.mjs
 
 Finds rows whose address text names a different city than the row's city

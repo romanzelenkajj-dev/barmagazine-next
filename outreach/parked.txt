@@ -15,3 +15,7 @@ bar-tre-dita           # form only; operator Lettuce Entertain You is in the rel
 # the-elysian-bar (single boutique property inbox on the bar's own listed
 # domain, DUKES/Widder/Sanders precedent; Roman's eyeball at dry-run);
 # midnight-rambler (info@ in the venue's own JSON-LD, Bitter & Twisted precedent).
+#
+# 2026-09-15, US wave 4 (batch13-nashville), Roman:
+the-fox-bar-cocktail-club   # only a press@ mailbox published
+four-walls                  # only the hotel's general inbox (thejosephnashville.com) published

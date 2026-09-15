@@ -130,11 +130,12 @@ function textFor(bar) {
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 console.log(`${slugs.length} to send${live && !overrideTo ? ` — will be logged as ${BATCH} (${TODAY})` : ''}\n`);
 for (const slug of slugs) {
-  const res = await fetch(`${SUPA_URL}/rest/v1/bars?select=name,slug,email&slug=eq.${encodeURIComponent(slug)}&is_active=eq.true`, {
+  const res = await fetch(`${SUPA_URL}/rest/v1/bars?select=name,slug,email,owner_id&slug=eq.${encodeURIComponent(slug)}&is_active=eq.true`, {
     headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` },
   });
   const bar = (await res.json())[0];
   if (!bar) { console.error(`SKIP ${slug}: not found/active`); continue; }
+  if (bar.owner_id) { console.log(`CLAIMED ${slug}: owner on file, not sent`); continue; }
   if (PARKED.has(slug.toLowerCase())) { console.log(`PARKED ${slug}: editorial decision in outreach/parked.txt, not sent`); continue; }
   if (OPTED_OUT.has(String(bar.email || '').trim().toLowerCase())) {
     console.log(`EXCLUDED ${slug}: opted out (no bypass)`); continue;
