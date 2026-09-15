@@ -8029,9 +8029,35 @@ textarea.form-input {
   height: 56px;
 }
 
+/* The hero inscription wraps and fits, never clips or truncates (Roman,
+   2026-09-15: "Captain Foxheart's Bad News Bar & Spirit Lodge" showed one
+   line on an iPhone with "BAD NEWS BAR & SPIRIT LODGE" cut off under the
+   hero's height cap). No line clamp here: the base rule's two-line clamp
+   is for card tiles, which hide the name anyway. The size scales down on
+   narrower desktops so three lines of a 47-character name sit inside the
+   520px hero above the badges. */
 .bar-placeholder--hero .bar-placeholder-name {
-  font-size: 19px;
+  font-size: clamp(15px, 1.5vw, 19px);
   letter-spacing: 0.18em;
+  display: block;
+  -webkit-line-clamp: none;
+  overflow: visible;
+  overflow-wrap: anywhere;
+  max-width: 84%;
+  line-height: 1.55;
+}
+
+/* On phones the hero is height-capped (320px) and the page H1 repeats the
+   full name directly below it, so the inscription is duplication that can
+   only clip: drop it and let the glyph center with the pills. Desktop keeps
+   the name. */
+@media (max-width: 768px) {
+  .bar-v2-hero .bar-placeholder-name {
+    display: none;
+  }
+  .bar-v2-hero .bar-placeholder {
+    padding-bottom: 56px;
+  }
 }
 
 /* Overlay pills (Top 10 / 50 Best / Featured) sit bottom-left on card
