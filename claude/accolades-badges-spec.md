@@ -1,54 +1,85 @@
-# Accolade badges — front-end spec
-*Data is LIVE in the database; nothing renders it yet. 273 active bars carry accolades, 352 entries, 52 gold-tier.*
+# Accolade badges — front-end spec (FINAL, approved by Roman 2026-08-25)
+*Supersedes the earlier draft. Design settled after five rounds of mockups; the approved visual is `claude/accolade-badges-mockup.html` (option "tile", placement "A").*
 
 ## Current state
-- `bars.accolades` jsonb is populated and correct.
-- `src/lib/supabase.ts` does **not** select the column — fix this first or nothing downstream has data.
-- No component renders it. The only reference in the codebase is `owner-fields.ts`, where it is (correctly) forbidden to owners.
+- `bars.accolades` jsonb is populated: **273 active bars, 352 entries**.
+- `src/lib/supabase.ts` does **NOT** select the column — fix this first or nothing downstream has data.
+- Nothing renders it. The only reference in the codebase is `owner-fields.ts`, where it is correctly forbidden to owners.
 
-## Data shape
-```json
-[{"org":"World's 50 Best Bars","org_key":"w50b","year":2025,"rank":32,
-  "kind":"ranked","title":null,"score":1011,
-  "source":"https://www.theworlds50best.com/bars/list/1-50"}]
-```
-`kind` ∈ ranked | winner | nominee | listed. Array is already sorted by `score` descending, one entry per `org_key`. Treat it as read-only display data — never recompute score client-side.
+## What is in the data today
+| org_key | org | entries | gold (score ≥ 900) |
+|---|---|---|---|
+| `w50b` | World's 50 Best Bars | 102 | 52 |
+| `a50b` | Asia's 50 Best Bars | 100 | 1 |
+| `na50b` | North America's 50 Best Bars | 98 | 1 |
+| `e50b` | Europe's 50 Best Bars | 52 | 1 |
 
-## Where badges go
-1. **Bar profile** — a row directly under the bar name / above the location line. Show up to 3; if more, a `+N more` chip.
-2. **Directory cards** — 1 badge, 2 maximum, highest score first. The card sells the bar, not the trophy cabinet.
-3. **A bar with no accolades renders no badge row at all** — no empty state, no placeholder.
+`bca` (Bartender's Choice Awards) is **not yet imported** — build its tile style now; entries land later.
 
-## Badge anatomy
-Two-part chip: organisation label + value. Uppercase, letterspaced ~0.09em, ~10.5px, font-weight 600/700, `white-space: nowrap`, border-radius 3px.
+## The tile
+Fixed **74 × 44px**, `border: 1px solid`, `border-radius: 4px`, three centred lines, `line-height: 1`:
 
-Label / value text by kind:
-- `ranked` → org name + `No. {rank} · {year}`
-- `winner` → org name + `{title or "Winner"} · {year}`
-- `nominee` → org name + `Nominee · {year}`
-- `listed` → org name + `{title or "Listed"}` (Discovery has no year to show)
+| Line | Size | Tracking | Weight | Notes |
+|---|---|---|---|---|
+| region | 6px | .12em | 700 | uppercase, `opacity: .72` |
+| **main** | 10.5px | .04em | 800 | margin `3px 0 2.5px` |
+| year | 6.5px | .08em | 700 | `opacity: .72` |
 
-Shorten long org names on cards only: "World's 50 Best Bars" → "World's 50 Best", "North America's 50 Best Bars" → "NA 50 Best".
+The **main line is identical on every 50 Best tile** — that is what makes them read as one family. Never vary it.
 
-## Four visual tiers — driven by data, never hand-tagged
-| Tier | Rule | Treatment |
+## Wording — possessive, exactly as the awarding bodies name themselves
+| org_key | line 1 | line 2 | line 3 |
+|---|---|---|---|
+| `w50b` | `WORLD'S` | `50 BEST` | year |
+| `a50b` | `ASIA'S` | `50 BEST` | year |
+| `e50b` | `EUROPE'S` | `50 BEST` | year |
+| `na50b` | `N. AMERICA'S` | `50 BEST` | year |
+| `bca` | `BARTENDER'S` | `CHOICE` | year |
+
+The possessive rides on the small line so the bold line stays constant. Getting another organisation's name exactly right is part of the credibility — same principle as showing the year.
+
+## Colour
+| Tier | Rule | Border | Background | Text |
+|---|---|---|---|---|
+| Gold | `org_key = w50b` | `#B08D3F` | `#F7F0E0` | `#6d5420` |
+| Dark | any regional 50 Best (`a50b`, `e50b`, `na50b`) | `#111` | `#111` | `#fff` |
+| Outline | `bca` | `#111` | `#fff` | `#111` |
+
+Gold is reserved for the world list only. If everything is gold, nothing is.
+
+## Placement — "A", under the city
+Bar name → location → tiles. Left-aligned, `margin-top: 14px`, flex row, `gap: 7px`, `flex-wrap: wrap`.
+Identical on **bar profiles and directory cards**. Never beside the name: names vary in length, which staggers the tiles card to card — the exact problem this design exists to solve.
+
+Spacing matters. The live page before this change was cramped; use 14px between the location and the tile row, and keep the card's internal padding at ~20px.
+
+## What counts as an accolade org (Roman, 2026-09-14, refined the same day)
+The test is about **process, not publisher**. "Published by a media company" cannot be the exclusion: The World's 50 Best Bars is published by William Reed, a trade media company, and would fail it. An org qualifies only with **all four** of:
+
+1. a named jury or voting body;
+2. a published methodology;
+3. an annual cycle;
+4. results issued as a ranked or awarded list tied to a year.
+
+| Verdict | Bodies | Why |
 |---|---|---|
-| Gold | `score >= 900` | border + value-chip `--gold`; light gold label background |
-| Ranked | `kind = ranked`, score < 900 | 1px black border, black value chip, white label |
-| Winner | `kind = winner`, score < 900 | solid black background, gold value chip |
-| Soft | `kind` = nominee or listed | 1px light border, muted label, quiet value |
+| **Pass** | The 50 Best lists, Tales of the Cocktail Spirited Awards, Bartenders' Choice, James Beard, 30 Best Bars India, **Mixology Bar Awards** (Mixology magazine), **Top Cocktail Bars Spain** (Neodrinks), **EXAME Casual 100 Melhores Bares do Brasil**, **Shaker Awards** (Mexico) | All four present, whoever prints the result |
+| **Fail** | Food & Wine, Eater, Esquire, Time Out, Thrillist, Architectural Digest, Bon Appétit and editorial lists of that kind | None of the four; an editor's pick, not a jury's |
 
-Suggested colours (match the site's warm palette; use existing CSS variables where they exist): gold `#B08D3F`, gold background `#F3EAD6`, ink `#111`, muted `#6b6660`, line `#d8d2c8`.
+Passing makes a body eligible for an org key and a tile. Whether a tile is actually built is a separate decision, made on how many existing rows would carry it. Editorial mentions that are genuinely notable go in the description prose with publication and year. Keep both example columns here so nobody re-argues this from scratch.
 
-## Reference implementation
-The approved mockup is a standalone HTML file Roman has (badge library, profile header, directory cards, worked examples). Ask him for it if the CSS above is ambiguous — the class names there are `acc`, `acc--top`, `acc--rank`, `acc--win`, `acc--soft`, `acc--more`, with inner `.org` and `.val` spans.
-
-## Rules that must hold
+## Rules
+- **Maximum 3 tiles.** Beyond that show the top 3 by `score` and nothing else — no "+N" chip; the description carries the rest.
+- **Do not render 50 Best Discovery.** It is a curated listing, not a jury ranking, so it does not belong beside badges that all mean "a panel voted for this bar". Discovery stays in the description text only.
 - **Never render an entry missing `year` or `source`.** That is the accuracy guarantee for the whole system.
-- Accolades show on **free listings exactly as on paid ones** — they are editorial, not a paid feature. The moment a badge can be bought it stops being a credential.
-- Do not add `aggregateRating`/`Review` schema markup from this data. Google's review-snippet guidelines forbid marking up ratings aggregated from other sites; awards are not ratings. `schema.org/award` on the bar entity is fine if you want structured output.
-- `source` need not be visible, but keep it in the data and consider it as a `title` attribute for auditability.
+- **Ranks are not displayed.** Being on the list is the badge; the placement lives in the description. This is deliberate.
+- Badges appear on **free listings exactly as on paid ones** — they are editorial, never a paid feature.
+- Do not recompute `score` client-side; a monthly scheduled task rewrites it with a recency decay. Treat the array as read-only, already sorted, one entry per `org_key`.
+- No `aggregateRating` / `Review` schema from this data — Google forbids marking up ratings aggregated from other sites, and awards are not ratings. `schema.org/award` on the bar entity is fine.
+
+## Check on a phone
+The 6px region line is at the edge of comfortable, and the real reading environment is a dark bar. Verify `N. AMERICA'S` fits 74px without clipping, and that three tiles hold one line at 330px.
 
 ## Related
-- Admin editing of accolades: see `claude/admin-editor-spec.md` (computed score, required source URL, live badge preview).
-- Monthly refresh: a scheduled task re-checks the awarding bodies and rewrites scores with the recency decay. Front end must not assume scores are static.
+- Admin editing: `claude/admin-editor-spec.md` (computed score, required source URL, live badge preview).
+- Monthly refresh: scheduled task re-checks the awarding bodies and rewrites scores.

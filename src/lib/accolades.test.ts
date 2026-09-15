@@ -259,7 +259,10 @@ describe('accolades', () => {
   describe('editorial lists are not accolades', () => {
     it('drops magazine picks, which have no org key by design', () => {
       // Food & Wine, Eater, Esquire and their kind never get a tile: the
-      // badge means an awards body ranked this bar.
+      // badge means an awards body ranked this bar. The test is process
+      // (named jury, published methodology, annual cycle, year-tied list),
+      // not publisher: a jury-voted list printed by a magazine passes, an
+      // editor's pick does not. See the TILES comment in accolades.ts.
       for (const org_key of ['fw', 'eater', 'esquire', 'timeout', 'thrillist']) {
         expect(
           tilesFor([{ org: 'A magazine', org_key, kind: 'winner', rank: null, year: 2024, score: 900, title: 'Best Bars', source: 'https://example.com' }])

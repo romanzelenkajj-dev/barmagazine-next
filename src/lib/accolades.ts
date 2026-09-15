@@ -67,20 +67,38 @@ interface TileDef {
  * themselves. Getting another organisation's name right is part of the
  * credibility, the same principle as showing the year.
  *
- * WHAT MAY BECOME A TILE (Roman, 2026-09-14). Only BAR-AWARDS BODIES. A tile
+ * WHAT MAY BECOME A TILE (Roman, 2026-09-14, refined the same day). A tile
  * means "a panel of this awarding body ranked this bar", and that is the only
  * reason a reader trusts the row of badges at all.
  *
- * Magazine and editorial lists are therefore NOT accolades and never get an
- * org key or a tile: Food & Wine, Eater, Esquire, Time Out, Thrillist,
- * Architectural Digest, Bon Appetit and anything of that kind. Diluting the
- * tiles with editorial picks destroys the signal for the awards that earned
- * it. This is the same principle as the exact-naming rule above: the tile
- * asserts something precise, so it may only carry something precise.
+ * The test is about PROCESS, not publisher. "Published by a media company"
+ * cannot be the exclusion, because The World's 50 Best Bars is published by
+ * William Reed, a trade media company, and would fail it. An accolade org
+ * must have ALL FOUR of:
+ *   1. a named jury or voting body;
+ *   2. a published methodology;
+ *   3. an annual cycle;
+ *   4. results issued as a ranked or awarded list tied to a year.
  *
- * Where such a mention is genuinely notable, it belongs in the description
- * prose with the publication and the year attributed. That is both honest
- * and better copy than a badge could be.
+ * PASS (all four, whoever prints the result): the 50 Best lists, Tales of
+ * the Cocktail Spirited Awards, Bartenders' Choice, James Beard, 30 Best
+ * Bars India, Mixology Bar Awards (Mixology magazine), Top Cocktail Bars
+ * Spain (Neodrinks), EXAME Casual's 100 Melhores Bares do Brasil, Shaker
+ * Awards (Mexico).
+ *
+ * FAIL (none of the four): editorial lists from Food & Wine, Eater, Esquire,
+ * Time Out, Thrillist, Architectural Digest, Bon Appetit and anything of
+ * that kind. They never get an org key or a tile. Diluting the tiles with
+ * editorial picks destroys the signal for the awards that earned it. This is
+ * the same principle as the exact-naming rule above: the tile asserts
+ * something precise, so it may only carry something precise.
+ *
+ * Passing the test makes a body ELIGIBLE for a tile; whether one is built
+ * is a separate call based on how many rows would carry it.
+ *
+ * Where an editorial mention is genuinely notable, it belongs in the
+ * description prose with the publication and the year attributed. That is
+ * both honest and better copy than a badge could be.
  *
  * Colours: gold is reserved for the world list — if everything is gold,
  * nothing is. Orange is the Spirited Awards' own colour. Grey keeps bca

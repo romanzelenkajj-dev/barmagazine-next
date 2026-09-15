@@ -330,6 +330,17 @@ Running log of shipped work items and their merge commits. Newest first.
   * employees-only - city New York, website employeesonlynyc.com, but
     address "112 Amoy Street, Singapore" and Instagram @employeesonlysg.
   * cobbler-crew - city Bengaluru, address "Kalyani Nagar, Pune".
+  * ADDED LATER THE SAME DAY, same defect class, NOT our row: Shaker
+    Awards' own nominee list labels Kanché as "Mérida" while Shaker's own
+    venue page for it is titled "Kanché Izamal", 70 km away. An awards
+    body's nominee list contradicting its own venue page on city is
+    exactly the address-vs-city defect, sitting in award data rather than
+    ours. Consequence: award data needs the address check too, not just
+    our own rows; any accolade import must run the city of the award
+    entry against the venue's address before it is trusted. Shaker's 2025
+    Top 30 page also mis-links two entries (Bronson carries @bekeb_sma,
+    BEKEB carries @vinithebar), so handle-level identity from an awards
+    page needs the same scepticism.
 - Ten further rows resolved far away but are geocoder artifacts, not data
   errors: the address is correct and simply omits its city, so Mapbox
   matched a same-named street elsewhere (Bar Basso's Via Plinio 39 to
@@ -750,3 +761,57 @@ Running log of shipped work items and their merge commits. Newest first.
   free-text addresses needs an ANCHOR (the postcode), because a bare
   two-letter match reads "Krog Street NE" as Nebraska, plus a MAJORITY VOTE
   across a city's rows so one spilled address cannot rename the city.
+
+## 2026-09-14 - Accolade-org test refined; supply counts; Shaker Awards count
+- RULING TWO REFINED (Roman): the accolade test is about PROCESS, not
+  publisher. "Published by a media company" cannot be the exclusion,
+  because The World's 50 Best Bars is published by William Reed, a trade
+  media company. An org qualifies with all four of: a named jury or voting
+  body; a published methodology; an annual cycle; results issued as a
+  ranked or awarded list tied to a year. PASS: Mixology Bar Awards, Top
+  Cocktail Bars Spain (Neodrinks), EXAME Casual 100 Melhores Bares, Shaker
+  Awards, alongside the 50 Best lists, Spirited, BCA, JBF and 30BBI. FAIL:
+  Eater, Food & Wine, Esquire, Time Out, Thrillist and editorial lists of
+  that kind. Written into the TILES comment in src/lib/accolades.ts, the
+  test comment in accolades.test.ts, and a new section of
+  claude/accolades-badges-spec.md, with the example bodies on BOTH sides so
+  it is not re-argued from scratch.
+- SUPPLY COUNTS, ten accent-stripped city URLs, verified against the
+  awarding bodies' own pages (50 Best Discovery machine-checked over the
+  full sitemap; Shaker, TCB, EXAME, Bar and Drinks list pages read
+  directly): Querétaro 3, Asunción 3, Málaga 2, València 2, Brasília 2,
+  Córdoba (Spain) 1, Cancún 1, Mérida 1, Córdoba (Argentina) 0,
+  Düsseldorf 0, Curaçao 0. Threshold for a wave is four. NO WAVE FOR ANY.
+  An interim report had credited six Mexican bars with a "Shaker Top 100
+  2025" listing; there is no 2025 Top 100 (2025 published a Top 30, the
+  Top 100 begins with 2026) and none of the six exists on Shaker's site.
+  Corrected before any decision rested on it.
+- PARKED with a date: Querétaro, revisit after 2026-11-24 when Shaker's
+  Top 100 2026 finishes publishing at the gala (currently about half out;
+  the city sits one entry short). Everything else parked with no date.
+  Recorded in claude/data-checks.md under "Expansion candidates: parked".
+- SHAKER AWARDS TILE DECISION INPUT. Matched Shaker's Top 30 lists for
+  2023, 2024 and 2025 (30 entries each, read from shakerawards.com) to our
+  35 active Mexican rows by IDENTITY, never by name: the Instagram handle
+  Shaker links from each entry against our instagram field, or the website
+  domain where Shaker links a site instead. 13 rows match on identity and
+  would carry a Shaker accolade today: bar-mauro, bijou-drinkery-room,
+  cafe-arixi, form-matter, handshake-speakeasy, hanky-panky,
+  kaito-del-valle, licoreria-limantour, mecenas, rayo, sabina-sabe,
+  selva-oaxaca-cocktail-bar, tlecan (27 entries between them, e.g.
+  Handshake 1/1/3, Tlecān 20/2/2, Bijou 5/5/4). The 2023 page carries no
+  links, so 2023 identity is Shaker's 2024/25 handle carried across by
+  Shaker's own entry name; marked as such per entry. Nine further rows
+  match on name only and were NOT counted (arca, aruba-day-drink,
+  baltra-bar, bekeb, brujas, cafe-de-nadie, casa-prunes, el-gallo-altanero,
+  zapote-bar-playa-del-carmen), each because our stored handle differs
+  from Shaker's or we store none. 36 Shaker entries have no row at all.
+  Result exceeds the dozen Roman set as the build threshold. Match output:
+  scratch shaker-match.json (session scratchpad, not committed).
+- Shaker data defects found on the way, logged beside cobbler-crew above:
+  Kanché "Mérida" vs its own venue page "Kanché Izamal"; the 2025 Top 30
+  page mis-links Bronson and BEKEB's Instagram handles. Award data gets
+  the address check too.
+- tsc reports three pre-existing TS2722 errors in
+  src/lib/redirect-chain.test.ts (untouched by this change; the production
+  build does not type-check test files). Noted, not fixed here.

@@ -65,6 +65,28 @@ Run `--validate` after touching the matching rules. It re-injects the three
 known mismatches in memory and fails if any is missed; it caught two real
 regressions during tuning.
 
+**Award data needs this check too, not just our rows.** On 2026-09-14
+Shaker Awards' own nominee list placed Kanché in "Mérida" while Shaker's
+own venue page for it reads "Kanché Izamal", 70 km away. When importing
+accolades, run the city the awards body gives against the venue's address
+before trusting it; an awards body is a source for the award, not for the
+city.
+
+## Expansion candidates: parked
+
+Ten accent-stripped city URLs were measured for supply on 2026-09-14
+(bars carrying a 50 Best Discovery listing or a national award-body
+ranking). The bar for a verification wave is **four or more verified**.
+None reached it, so **no wave for any of the ten**; the counts are in the
+changelog entry of that date.
+
+- **Querétaro: revisit after 2026-11-24.** It stands at three (Vertical,
+  Dodo Café, Bestia Agave Room) with Shaker Awards' Top 100 Bares de
+  México 2026 only about half published ahead of the 24 November gala.
+  Re-count once the list is complete; one more entry clears the bar.
+- Everything else (Córdoba ×2, Málaga, Cancún, Brasília, Düsseldorf,
+  Asunción, Curaçao, València, Mérida) stays parked with no date.
+
 ## seo-check bar-redirect-chains
 
 Part of `npm run seo:check:live`. Follows every `/bars/*` redirect hop by hop
