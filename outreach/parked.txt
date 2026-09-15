@@ -36,3 +36,16 @@ real-charmer                # nothing published
 # a guarded relationship; venue-specific info.nyc@nubeluzbyjose.com is stored
 # on the row but never mailed from here.
 nubeluz                     # relationship lot, Jose Andres Group
+#
+# 2026-09-15, US metro wave 3 (Claude outputs/us-metro-wave3-verified.md):
+the-best-kept-secret        # nothing published
+bar-mara                    # nothing published; Four Seasons property
+adios                       # nothing published
+kru                         # nothing published
+aft-cocktail-deck           # Wynn, nothing venue-specific published
+shipwreck-bar               # only the Rosewood resort dining inbox
+pufferfish                  # only the hotel sales inbox
+the-manor-bar               # only the Rosewood resort inbox
+# KEEPS recorded for the record (not parked): the-mountaineering-club (Graduate/
+# Hilton, venue-specific inbox) and no-goodbyes (LINE, venue-named inbox on the
+# hotel domain), the Wildhawk/PlumpJack precedent.

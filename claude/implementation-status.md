@@ -1214,6 +1214,67 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - US metro wave 3: 31 inserted across 12 cities plus five single-venue cities
+- Source: "Claude outputs/us-metro-wave3-verified.md"; every row a 2026
+  Spirited Awards U.S. Regional Top 10 Honoree, all 31 names re-checked
+  on TOTC's own 2026 U.S. regional page before insert. Diffed by slug and
+  folded name plus city: all 31 clear.
+- HAWAII CONVENTION: the one existing Hawaii row (bar-leather-apron) uses
+  the town, Honolulu, not the island; Kihei (tikehau-lounge) and
+  Kailua-Kona (shipwreck-bar) follow it. Thirteen new city pages:
+  st-clair-shores, minneapolis, birmingham, sacramento, kihei,
+  kailua-kona, decatur, miami-beach, columbus, milwaukee, fairhope,
+  savannah, montecito (all under /bars/city/, all 200, all in the
+  sitemap). Detroit, Houston, Seattle, Las Vegas, Atlanta, Miami and
+  Washington DC gained rows.
+- NAMES per the file (venue spelling over TOTC's): ADIÕS, Bar Chenin,
+  Bar ANA, Bygones Cocktail Bar, JoJo's Beloved Cocktail Lounge, Grey
+  Ghost Detroit, Kru (legal name in admin_notes), LPM Miami (legal name
+  in admin_notes), Shipwreck Bar, Sunny's Steakhouse. Ten restaurant bars
+  and eight hotel bars in as Cocktail Bar + subtype.
+- ACCOLADES: 2026 regional honorees as totc nominee 590, source the 2026
+  U.S. regional page. Prior-year honors as separate totc 2025 nominee
+  entries at 555 (the 2025 Top 4 decay), source the 2025 U.S. regional
+  page, on the-butterscotch-den, the-mountaineering-club and
+  jojos-beloved, each confirmed on that page. Meteor carries jbf 2024
+  Outstanding Bar (Semifinalist) at 200, confirmed on jamesbeard.org
+  (/blog/the-2024-james-beard-awards-semifinalists; the /stories/ pattern
+  used for 2026 does not exist for 2024). COBRA: winner, Best U.S.
+  Restaurant Bar 2026, 810, confirmed on TOTC's winners page ("Cobra,
+  Columbus, OH"). The insert attached only the file's Bar Team line, so
+  the winner entry went on by a manage-bar update a minute later.
+- NATIONAL STAGE, three deviations from the file, all from TOTC's own
+  2026 Top 10 U.S. nominee page: kimball-house as the file said, plus
+  sunnys-steakhouse (Best U.S. Restaurant Bar), the-manor-bar (Best U.S.
+  Hotel Bar) and cobra's Bar Team honor all reached the national Top 10.
+  Stored as "<category> (Top 10 Nominee)", nominee 590, source the Top 10
+  page, replacing the regional entry for that category. The deviation is
+  recorded in each row's admin_notes.
+- ADMIN_NOTES written on insert for 24 rows: the file's address and data
+  flags, the parking reason on every parked row, the KEEP reasoning on
+  the two chain-property keeps, and the national-stage deviations.
+  neighborhood is not a bars column; the file's neighborhoods (stated and
+  inferred) are not stored anywhere.
+- PARKED (outreach/parked.txt): the-best-kept-secret, bar-mara, adios,
+  kru (nothing published); aft-cocktail-deck (Wynn), shipwreck-bar and
+  the-manor-bar (Rosewood resort inboxes), pufferfish (hotel sales inbox).
+  KEEP recorded for the-mountaineering-club (Graduate/Hilton,
+  venue-specific inbox) and no-goodbyes (LINE, venue-named inbox on the
+  hotel domain). 23 addresses stored for the send scripts.
+- AFTER INSERT: all 31 geocoded on insert, every one within 22 km of its
+  city reference point (shipwreck-bar 21.4 km north of Kailua-Kona is
+  Kona Village at Kaʻūpūlehu; tikehau-lounge 8.8 km is Wailea); all 31
+  serve 200; sitemap-bars.xml lists 1,320 profiles = 1,320 active rows;
+  address check 0 flags.
+- BACKLOG FOUND, NOT DONE: a rough sweep of the same Top 10 page against
+  existing U.S. rows shows about a dozen stored as "(Regional Honoree)"
+  only for a category where TOTC lists them in the national Top 10
+  (highball-phoenix, lady-jane, chandelier-bar, midnight-rambler,
+  raines-law-room-william, the-sazerac-bar, white-limozeen, viridian,
+  dolores, eleven11, junebug, the-peach-crease-club) and several prior
+  winners with no 2026 entry at all. Needs a proper pass with Roman's
+  call on it.
+
 ## 2026-09-15 - US metro wave 2: 22 inserted (New York 10, LA area 7, Bay Area 5)
 - Source: "Claude outputs/us-metro-wave2-verified.md"; every row a 2026
   Spirited Awards Regional Top 10 Honoree verified on the venue's own
