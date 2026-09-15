@@ -55,7 +55,7 @@ const EDITABLE_FIELDS: EditableField[] = [
 
 const TYPE_OPTIONS = [
   'Cocktail Bar', 'Speakeasy', 'Hotel Bar', 'Rooftop Bar', 'Wine Bar',
-  'Pub', 'Tiki Bar', 'Whiskey Bar',
+  'Pub', 'Tiki Bar', 'Whiskey Bar', 'Distillery Bar',
 ];
 
 const TIER_OPTIONS = ['free', 'featured', 'premium', 'top10'];

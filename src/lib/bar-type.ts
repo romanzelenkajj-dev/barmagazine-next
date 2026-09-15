@@ -19,6 +19,9 @@ const TYPE_PRIORITY = [
   'Speakeasy',
   'Rooftop Bar',
   'Whiskey Bar',
+  // A bar inside or run by a distillery (The Bar at Willett, Barr Hill):
+  // the spirit is the identity, so it leads like a whiskey bar does.
+  'Distillery Bar',
   'Wine Bar',
   'Beer Bar',
   'Pub',

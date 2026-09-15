@@ -1214,6 +1214,82 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - One tile per org per year; prose one sentence per org; national-stage pass; neighborhood column
+- TILES (src/lib/accolades.ts tilesFor): each org and year pair renders at
+  most once. Pretty Penny showed two "TOTC SPIRITED 2024" tiles for its two
+  2024 categories; now one. The tile goes to the higher-scored entry, and
+  where scores tie (the Spirited Awards ladder is all 590) to the further
+  stage: Top 4 over Top 10 over regional honoree (stageOf). The top-three
+  rule applies after the dedupe. Both entries stay on the row, in the prose
+  and in schema.org/award. First cut put stage before score, which handed
+  Cobbler & Crew's 2023 tile to the category win (524) over the No. 2
+  placing (558) and pushed it to third; corrected to score first.
+- PROSE (src/lib/accolade-sentences.ts rewritten): one sentence per org,
+  years and categories grouped, the org with the newest honor first. The
+  stage word comes from the title parenthetical: regional honoree, Top 10
+  nominee, Top 4 finalist (TOTC's word), semifinalist, else nominee; the
+  word "nominee" is never written for a regional honoree. Subject names:
+  "The Spirited Awards", "The James Beard Awards", "The Bartenders' Choice
+  Awards"; other bodies exactly as stored. Verified live: Pretty Penny
+  reads exactly Roman's sentence; Handshake four sentences (na50b, w50b,
+  Shaker grouped "No. 1 in 2023 and 2024 and No. 3 in 2025", TOTC win);
+  Cobbler & Crew one sentence covering three placings, the 2022 listing and
+  four category wins. Pretty Penny's description lost the composed line
+  "Its Spirited Awards run includes back-to-back regional nominations"
+  (the only row carrying it). src/lib/bar-fallback.ts (meta description
+  for rows with no hand-written description) is untouched.
+- INDEXING TASK: moved to 16:30 PT (cron 16:23 local plus the task
+  runner's fixed 395 s jitter) so the rolling 24-hour quota has cleared
+  from morning submissions. Prompt now ends every run with a log row
+  whatever stops it; a quota hit on the first request logs "quota not yet
+  reset, 0 requested". Roman clicks Run now once to pre-approve the tools.
+- NATIONAL-STAGE PASS: every active U.S. row with a totc 2026 entry checked
+  against TOTC's 2026 U.S. Top 10 nominee page, Top 4 finalists page and
+  winners page (parsed per category, matched by folded name and city with
+  Brooklyn = New York). 26 rows changed, the regional entry kept on every
+  row and the higher stage added with its own source:
+  Top 10 added on chandelier-bar, dolores, eleven11, highball-phoenix (Bar
+  Team), junebug, lady-jane (Bar Team), midnight-rambler,
+  raines-law-room-william, the-sazerac-bar, viridian, white-limozeen, and
+  on prior winners with no 2026 entry double-chicken-please, mirate
+  (Restaurant Bar; its World's Best Spirits Selection Top 4 was already
+  on), overstory, pacific-cocktail-haven, service-bar-dc (Cocktail Bar,
+  beside its Bar Team win), true-laurel, yacht-club-denver. Top 4 added on
+  bar-snack (Bar Team, beside its Cocktail Bar win), sip-guzzle (two
+  categories), superbueno (two), the-peach-crease-club; kimball-house and
+  sunnys-steakhouse moved from Top 10 to Top 4 (both on the Top 4 page).
+  The four wave 3 rows whose national entry had REPLACED the regional one
+  (kimball-house, sunnys-steakhouse, the-manor-bar, cobra Bar Team) got
+  the regional entry back. Shape per category and year: regional plus the
+  highest confirmed stage, no intermediate. Every face checked with the
+  one-tile rule: no org-year repeats, three tiles at most.
+  NOT DONE, ROMAN'S CALL: nine Top 10 venues exist as active rows with NO
+  totc entry at all (outside the pass's scope): daisy-margarita-bar,
+  thunderbolt, dear-irving (confirm it is Dear Irving on Hudson, not the
+  Gramercy original), semiprecious-denver, amazonia-dc, bar-madonna,
+  martinys, nickel-city. "donna" (New York) is NOT TOTC's Donna's
+  (Houston); leave it. Daisies (Chicago) and Hungry Eyes (New Orleans)
+  have no row.
+- NEIGHBORHOOD: column live (Roman ran the migration). Backfilled on 18
+  wave 3 rows the file gives without an inferred flag (bar-chenin,
+  standby-detroit, reserve-101, johnnys-gold-brick, adios, the-snug, kru,
+  the-butterscotch-den, the-mountaineering-club, tikehau-lounge,
+  jojos-beloved, bar-ana, lpm-miami, sunnys-steakhouse, no-goodbyes,
+  cobra, pufferfish, the-grey). The nine wave 3 inferred (eight listed in
+  the file plus aft-cocktail-deck's The Strip) and shipwreck-bar's "no
+  formal neighborhood" went to admin_notes only. Wave 2's 22 neighborhoods
+  went to admin_notes only, because that file never recorded stated
+  versus inferred; Roman can promote them. Wave 1's file has no
+  neighborhood field. Code: nearby block shows the neighborhood in place
+  of the street where present (placeOf in src/lib/nearby.ts, verified on
+  The Snug: "East Sacramento", "Oak Park"); PUBLIC_EDITORIAL_COLUMNS in
+  private-columns.ts records it as public by decision with a test;
+  normalize.ts trims it. Reads use select('*') so no select changed.
+- SUBTYPE: "Distillery Bar" added to TYPE_PRIORITY (bar-type.ts, leads
+  like Whiskey Bar) and the admin TYPE_OPTIONS, for The Bar at Willett and
+  Barr Hill in wave 4. Wave 4 itself NOT run: "Claude outputs/
+  us-jbf-wave4-verified.md" is not in the folder.
+
 ## 2026-09-15 - US metro wave 3: 31 inserted across 12 cities plus five single-venue cities
 - Source: "Claude outputs/us-metro-wave3-verified.md"; every row a 2026
   Spirited Awards U.S. Regional Top 10 Honoree, all 31 names re-checked

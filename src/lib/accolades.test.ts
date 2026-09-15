@@ -145,6 +145,18 @@ describe('accolades', () => {
       expect(t.title).toBe('Best U.S. Restaurant Bar (Top 10 Nominee)');
     });
 
+    it('where the scores differ the calibration decides, and the tile sorts by that score (Cobbler & Crew 2023)', () => {
+      const b = (over: Partial<Accolade>) =>
+        make({ org: '30 Best Bars India', org_key: '30bbi', source: 'https://www.30bestbarsindia.com/', ...over });
+      const tiles = tilesFor([
+        b({ kind: 'ranked', rank: 2, year: 2023, score: 558, title: null }),
+        b({ kind: 'ranked', rank: 7, year: 2024, score: 555, title: null }),
+        b({ kind: 'ranked', rank: 19, year: 2025, score: 531, title: null }),
+        b({ kind: 'winner', rank: null, year: 2023, score: 524, title: 'Highest New Entry' }),
+      ]);
+      expect(tiles.map(t => [t.key, t.rank])).toEqual([['30bbi-2023', 2], ['30bbi-2024', 7], ['30bbi-2025', 19]]);
+    });
+
     it('applies the top-three rule AFTER the dedupe', () => {
       const tiles = tilesFor([
         totc(2024, 'nominee', 'A (Regional Honoree)'),

@@ -258,10 +258,13 @@ export function stageOf(entry: Accolade): number {
  * honors. The face says "this body, this year"; it cannot say which
  * category, so a second tile adds nothing a reader can see. Both entries
  * stay on the row, in the prose and in the schema.org award strings; only
- * the face dedupes. Where the two entries sit at different stages the
- * further one carries the tile (a win over a nomination), so the tier
- * colour is right; at the same stage the higher score wins and a tie keeps
- * stored order.
+ * the face dedupes. The entry that carries the tile is the higher-scored
+ * one (the calibration has already ranked a win over a nomination, a No. 2
+ * placing over a category win), and where the scores tie, which is the
+ * whole Spirited Awards ladder at 590, the further stage wins: Top 4 over
+ * Top 10 over regional honoree. So a win always outranks a nomination for
+ * the tile and its tier colour, and a same-year Top 10 nomination outranks
+ * the regional one. A full tie keeps stored order.
  *
  * The top-three rule applies AFTER the dedupe, so a row with four honors
  * across two years shows two tiles, not three.
@@ -274,11 +277,12 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
   const sorted = renderableAccolades(accolades)
     .slice()
     .sort((a, b) => (b.score ?? 0) - (a.score ?? 0) || stageOf(b) - stageOf(a));
+  // `sorted` is score desc, then stage desc, so the first entry seen for a
+  // key is the one that carries the tile.
   const onePerOrgYear = new Map<string, Accolade>();
   for (const entry of sorted) {
     const k = `${entry.org_key}-${entry.year}`;
-    const held = onePerOrgYear.get(k);
-    if (!held || stageOf(entry) > stageOf(held)) onePerOrgYear.set(k, entry);
+    if (!onePerOrgYear.has(k)) onePerOrgYear.set(k, entry);
   }
   return Array.from(onePerOrgYear.values())
     .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
