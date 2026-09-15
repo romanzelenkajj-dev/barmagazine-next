@@ -1214,6 +1214,11 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 09: ownership note final wording (1763b67)
+- "This listing is managed by its owner. / For ownership changes contact:
+  / office@barmagazine.com", the email alone on the third line as a mailto
+  link, no trailing period.
+
 ## 2026-09-15 - Queue task 08: actions column capped (e699e8f)
 - Follow-up to 05 from Roman's live look: the actions column is capped at
   300px at 1100px and up (grid minmax(0,1fr) 300px), the ownership note
