@@ -1214,6 +1214,17 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 11d: desktop card gaps 14/29/28 -> 8/15/18; CTA to Nearby 64 -> 32 (071e240)
+- Measured against the pre-05 commit (582d7ea) served from a worktree.
+  At 1440 the grid kept both neighbours' margins; the upper margin of each
+  pair (place, tiles, prose) is now 0 inside the 1100px grid. Phones
+  already matched pre-05 except the 11a button stack and the 09 note.
+  Card bottom to Plan Your Visit was 40 everywhere, before and after.
+- .bar-v2-nearby: 2rem above as margin, not padding, so it collapses into
+  the CTA's margin (task 14 put the list under the CTA). 32 at both
+  widths, the same as every other section gap.
+- Kept on purpose: prose to description 10px (task 12), not the pre-05 0.
+
 ## 2026-09-15 - Queue task 16: 70 active rows without coordinates, 60 geocoded (7dad688)
 - Paged count: 70 active rows with lat or lng null (Phoenix 11, Hong Kong
   10, Tokyo 10, Shanghai 5, Jakarta 3, Lima 3, 28 more cities). Dry run
