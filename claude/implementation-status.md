@@ -1214,6 +1214,22 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 03: article-mentions card on profiles (da4f3b2)
+- The "<Bar> in BarMagazine" block was a bare heading and a bulleted list.
+  Now the same white rounded card as the info card: one row per article
+  with a small rounded lazy thumbnail (the article's featured image), the
+  title, and the publish date in the muted meta style; the whole row is
+  clickable through the title's stretched ::after while the anchor keeps
+  title-only text and the same href, so the internal-link graph is
+  unchanged (verified against a live baseline on Little Rituals and 1930).
+  Mobile: 72px thumbnail on the left, title wraps. Nothing renders for a
+  bar with no mention. Server-rendered. id="mentions" on the block.
+- Data: scripts/build-article-mentions.mjs now carries date and
+  jetpack_featured_media_url per article into the JSON. The pairing rule
+  is untouched; a regeneration would ADD 11 pairs for rows inserted since
+  the last build (listed in reports/03), so only the new fields were
+  merged into the committed 1,010 pairs. Roman decides the regeneration.
+
 ## 2026-09-15 - Task queue (Claude outputs/queue -> reports -> done) and its first two tasks
 - Roman set up a task queue between the cloud session and this one:
   queue/*.md run as prompts under every standing guard, full report to
