@@ -1214,6 +1214,19 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Friends of Friends description: owner licensing flag
+- Abe (owner) flagged that "and the bar keeps no kitchen on site" creates a
+  problem with the Illinois Liquor Commission. Replaced by id
+  (73d48412-3d72-4789-a09d-a0d8da327293) with "and small bar snacks are
+  available", revalidated, live page and meta description confirmed.
+- Sweep of every description and excerpt (1,444 rows) for a negated
+  kitchen/food statement, NOT changed, for Roman: bastion (Nashville,
+  "serves no food from that kitchen"), jojos-beloved (Atlanta, "serves no
+  food"), momus (Madrid, "serves no beer, wine or food"); borderline: bar-us
+  (Bangkok, "Not a dining but a drinking room"). the-wise-king-soho-hong-kong
+  is inactive and historical. The rest were false positives (negations
+  near "food" that say the opposite).
+
 ## 2026-09-15 - Geocoder address-first; week re-geocoded; same-name US cities logged as the next structural item
 - GEOCODER (src/lib/geocode.ts, commit 450e289): the insert path now
   resolves the FULL STREET ADDRESS first, unboxed, with city, state (where
