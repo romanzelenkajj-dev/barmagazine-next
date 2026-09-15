@@ -1214,6 +1214,17 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 10: accolade prose as one sentence, name first (a129d26)
+- Supersedes the morning's one-sentence-per-org form (relayed as Roman's
+  approval). accoladeSentence(name, accolades): one sentence, the stored
+  name once, one clause per tile in tile order (tileEntries, the exact
+  deduped score-ordered set the face renders), per-org phrasing from the
+  task, "ranks" on the current edition (LATEST_EDITION map) and "ranked"
+  on older ones. Bitter & Twisted's clauses come out listing-first because
+  its 2022 North America listing is stored at 600 (undecayed; the
+  calibration says 472), flagged for the score refresh. 156 rows have a
+  description that also opens with the name (count only).
+
 ## 2026-09-15 - Queue task 09: ownership note final wording (1763b67)
 - "This listing is managed by its owner. / For ownership changes contact:
   / office@barmagazine.com", the email alone on the third line as a mailto
