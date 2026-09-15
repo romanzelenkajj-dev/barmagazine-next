@@ -6295,6 +6295,15 @@ textarea.form-input {
     grid-column: 1;
     min-width: 0;
   }
+  /* Grid items keep BOTH neighbours' margins where block flow kept the
+     larger one, so the desktop card ran 14/29/28 where the pre-05 card ran
+     8/15/18 (Roman, 11d). Drop the upper margin of each pair; the lower
+     one (h1 8px, the place line's 15px, the tiles' 18px) is the gap. */
+  .bar-v2-info > .bar-v2-place,
+  .bar-v2-info > .acc-tiles,
+  .bar-v2-info > .bar-v2-accolade-prose {
+    margin-top: 0;
+  }
   .bar-v2-info > .bar-v2-actions {
     grid-column: 2;
     grid-row: 1 / span 7;
@@ -6523,9 +6532,14 @@ textarea.form-input {
   .bar-v2-lightbox-img { max-width: 100vw; border-radius: 0; }
 }
 
-/* Nearby Bars */
+/* Nearby Bars. The gap above is a MARGIN, not padding: since task 14 the
+   list follows the CTA banner (margin-bottom 2rem), and padding on top of
+   that margin made 64px where every other section gap is 32 (Roman, 11d).
+   A margin collapses into the CTA's; after the map or the mentions card
+   it supplies the same 32 on its own. */
 .bar-v2-nearby {
-  padding: 2rem 0;
+  margin-top: 2rem;
+  padding: 0 0 2rem;
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .bar-v2-nearby h2 {
