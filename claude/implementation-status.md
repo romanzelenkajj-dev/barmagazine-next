@@ -1214,6 +1214,13 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 11: Holiday (Austin) specials sentence; specials field waits on the column
+- Owner-requested happy hour sentence appended by id to Holiday's
+  description (slug holiday, holidayon7th.com; the task said Phoenix, the
+  row is Austin), lint clean, live. The owner "Specials" field (form,
+  approval flow, two render spots) waits on bars.specials; re-queue when
+  the column exists.
+
 ## 2026-09-15 - Queue task 10: accolade prose as one sentence, name first (a129d26)
 - Supersedes the morning's one-sentence-per-org form (relayed as Roman's
   approval). accoladeSentence(name, accolades): one sentence, the stored
