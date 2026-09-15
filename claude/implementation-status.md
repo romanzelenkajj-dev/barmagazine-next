@@ -1211,6 +1211,28 @@ Running log of shipped work items and their merge commits. Newest first.
   runs written to claude/batch13-dryrun.md and batch14-dryrun.md for
   Roman's eyeball, NOTHING ARMED. Both send scripts gained a claimed-bar
   guard (owner_id on file = CLAIMED, not sent). The Fox and Four Walls
-  parked. The "outreach status doc" with a PR-agency track and Hanna Lee
-  is not in the repo; Agencia 22 and the Florería Atlántico D.C.
-  agency-routing note wait for its location.
+  parked. The "outreach status doc" with a PR-agency track lives in the
+  claude.ai project, not the repo; Roman updated it himself.
+
+## 2026-09-14 (PT) - Batch 13 and 14 armed; Alibaba AS45102 challenge rule
+- EYEBALL CALLS (Roman): don-woods-say-when PARKED (hotel reservations
+  inbox, the-cruise-room class); century-grand kept (operator inbox,
+  decided 09-11); the-elysian-bar kept (boutique single-property inbox,
+  DUKES precedent). Final counts: batch13-phoenix 9, batch13-nashville 6,
+  batch13-metro1 12 = 27; batch14-asia-enriched 1 + 2 = 3.
+- ARMED via launchd, all local time: com.barmagazine.batch13 fires
+  outreach/batch13-runner.sh Wednesday 2026-09-16 09:00 (three lanes in
+  sequence, each --batch labelled, slug files outreach/batch13-*.slugs);
+  com.barmagazine.batch14-w1 Thursday 2026-09-17 21:00 (the-hudson-rooms)
+  and com.barmagazine.batch14-w2 23:00 (smoke-bitters, barc). Runners
+  unload and delete their own plist after the send so a reload cannot
+  fire twice. net-preflight runs inside send-upsell.mjs. `launchctl list`
+  shows all three loaded beside address-audit.
+- FIREWALL: Roman asked for an ASN 132203 challenge for the Singapore
+  scraper. That rule already existed (active since 09-01, ~130 hits that
+  day) and had NOT caught it; the Firewall Traffic view attributes the
+  scraper's 3.9k requests to Alibaba (US) Technology, AS45102. Added
+  "Alibaba Cloud SG scraper (AS45102) challenge", challenge not deny,
+  config version 3. Plain fetches from the Mac unchanged (200 on home,
+  a profile, robots.txt). Both rules and the ASN note recorded in
+  data-checks.md.

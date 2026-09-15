@@ -118,6 +118,14 @@ managed through `PATCH /v1/security/firewall/config` with the CLI token.
 - **meta-externalagent rate limit (429 above 5/s)**, since 2026-09-14:
   `user_agent inc meta-externalagent`, action rate_limit, fixed window
   60 s, limit 300, keyed on user agent, deny above the ceiling.
+- **Alibaba Cloud SG scraper (AS45102) challenge**, since 2026-09-15:
+  `geo_as_number eq 45102`, action challenge (not deny). The 2026-09-15
+  Singapore crawl: 28,800 requests in one hour under one frozen Mac
+  Chrome/145 UA with spoofed internal referrers, reading as ~87 GA users.
+  Roman asked for it as an AS132203 rule; the Firewall's Traffic view
+  attributed those exact 3.9k requests to Alibaba (US) Technology,
+  AS45102, so the rule was written against 45102 and the existing
+  Tencent rule left as it was.
 
 **ASN is a rule condition even though the request log does not expose
 it.** The log endpoint behind `vercel logs` carries user agent, referrer
@@ -125,10 +133,13 @@ and the serving edge region, but no client ASN or country; the Firewall's
 own Traffic view and the rule conditions (`geo_as_number`, `geo_country`,
 `ja4_digest`) do. So a scraper identified in the log by a frozen UA and
 spoofed referrers is attributed to its network in the Firewall, not the
-log. The 2026-09-15 Singapore crawl (28,800 requests in an hour under one
-Mac Chrome/145 UA) was NOT caught by the AS132203 rule, which stayed at
-~130 hits that day, so it runs on a different ASN; read it off the
-Traffic view before writing a rule for it.
+log: open Traffic, "Use in Query" on the AS row, and the query URL carries
+`asnId`. Read it off there before writing a rule.
+
+Two API details, learned the hard way: a rule `description` over 256
+characters makes the schema fall through to the wrong variant and the
+error reads "`action` should be equal to constant"; and a rule is checked
+after insert with a plain fetch from the Mac, which must still be 200.
 
 ## scripts/address-city-check.mjs
 
