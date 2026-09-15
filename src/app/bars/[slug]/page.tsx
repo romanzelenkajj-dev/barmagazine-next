@@ -330,8 +330,14 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         <BarSectionChips hasMenu={!!hasFullMenu} hasPhotos={!!hasGallery} hasVisit={hasVisit} />
 
         {/* Bar Info */}
+        {/* The info card is ONE grid with the children in reading order:
+            name, place, tiles, prose, actions, description, meta rows. Below
+            1100px that order is the layout (actions as a wrapping row under
+            the tiles, before the description). At 1100px and up the CSS
+            lifts the actions block into a 40% right column spanning the
+            rows, so the text column is never the narrow strip the old
+            two-column flex made of it at tablet widths (Roman, 2026-09-15). */}
         <div className="bar-v2-info">
-          <div className="bar-v2-info-main">
             <h1>{bar.name}</h1>
             {/* "Portland, Maine" / "Malaga, Spain": the label rule in
                 src/lib/city-location.ts, with the state from bars.state. */}
@@ -344,6 +350,70 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                  sentence per entry, in words a reader and a crawler can use. */
               <p className="bar-v2-accolade-prose">{accoladeProse.join(' ')}</p>
             )}
+            {/* Actions: the actionable duplicates of the meta rows below
+                (which stay for crawlers and copy-paste). Only buttons with a
+                target render; never an empty button. */}
+            <div className="bar-v2-actions">
+              {bar.wp_article_slug && (
+                <Link href={`/${bar.wp_article_slug}`} className="bar-v2-btn bar-v2-btn--primary">
+                  Read the BarMagazine Feature
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                </Link>
+              )}
+              {reserveHref && (
+                <a href={reserveHref} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--reserve">
+                  Reserve a Table
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                </a>
+              )}
+              {bar.website && (
+                <a href={bar.website} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--secondary">
+                  Visit Website
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" /></svg>
+                </a>
+              )}
+              {bar.menu_url && (
+                <a href={bar.menu_url} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--secondary">
+                  View Menu
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 006.5 22H20V2H6.5A2.5 2.5 0 004 4.5v15z" /></svg>
+                </a>
+              )}
+              {bar.instagram && (
+                <a href={`https://instagram.com/${bar.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--secondary">
+                  Instagram
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="5" /><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" /></svg>
+                </a>
+              )}
+              {bar.phone && (
+                <a href={`tel:${bar.phone}`} className="bar-v2-btn bar-v2-btn--secondary">
+                  Call
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
+                </a>
+              )}
+              {directionsHref && (
+                <a href={directionsHref} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--secondary">
+                  Get Directions
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                </a>
+              )}
+              {/* Every unclaimed bar is claimable, tier does not matter;
+                  `owner_id` is the one real "already spoken for" signal. The
+                  claim prompt and the ownership note share the muted meta
+                  style under the buttons (Roman, 2026-09-15). The successor
+                  problem: when a manager leaves, the next one must still see
+                  a way in, hence the mailbox on the note. */}
+              {!bar.owner_id ? (
+                <p className="bar-v2-owner-note">
+                  Is this your bar?{' '}
+                  <Link href={`/claim-your-bar?bar=${encodeURIComponent(bar.slug)}`}>Claim it</Link>
+                </p>
+              ) : (
+                <p className="bar-v2-owner-note">
+                  This listing is managed by its owner. Ownership changes:{' '}
+                  contact <a href="mailto:office@barmagazine.com">office@barmagazine.com</a>.
+                </p>
+              )}
+            </div>
             <p className="bar-v2-description">
               {/* Bolding is computed at render time; the stored text stays
                   plain. The fallback keeps the no-em-dash copy rule. */}
@@ -383,53 +453,6 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 </div>
               )}
             </div>
-          </div>
-
-          <div className="bar-v2-actions">
-            {isPaid && reserveHref && (
-              <a href={reserveHref} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--reserve">
-                Reserve a Table
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-              </a>
-            )}
-            {bar.wp_article_slug && (
-              <Link href={`/${bar.wp_article_slug}`} className="bar-v2-btn bar-v2-btn--primary">
-                Read the BarMagazine Feature
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-              </Link>
-            )}
-            {bar.website && (
-              <a href={bar.website} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--secondary">
-                Visit Website
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" /></svg>
-              </a>
-            )}
-            {bar.menu_url && (
-              <a href={bar.menu_url} target="_blank" rel="noopener noreferrer" className="bar-v2-btn bar-v2-btn--secondary">
-                View Menu
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 006.5 22H20V2H6.5A2.5 2.5 0 004 4.5v15z" /></svg>
-              </a>
-            )}
-            {/* Every unclaimed bar is claimable — tier does not matter.
-                Nothing is claimed yet, and even the paid tiers (only two bars
-                actually pay) have no owner account, so hiding the button on
-                them just blocked the very owners most likely to want in.
-                `owner_id` is the one real "already spoken for" signal; the
-                pill disappears the moment a claim completes. */}
-            {!bar.owner_id ? (
-              <Link href={`/claim-your-bar?bar=${encodeURIComponent(bar.slug)}`} className="bar-v2-btn bar-v2-btn--claim">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                Is this your bar? Claim it
-              </Link>
-            ) : (
-              /* The successor problem: when a manager leaves, the next one
-                 finds a listing that is "taken" with no visible way in. */
-              <p className="bar-v2-owner-note">
-                This listing is managed by its owner. Ownership changes:{' '}
-                contact <a href="mailto:office@barmagazine.com">office@barmagazine.com</a>.
-              </p>
-            )}
-          </div>
         </div>
 
         {/* Signature Serves — featured/premium/top10 tiers only */}

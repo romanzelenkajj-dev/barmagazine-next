@@ -1,0 +1,5728 @@
+[
+ {
+  "slug": "14-de-la-rosa",
+  "id": "ba753953-2e4e-448f-9088-a9d919563805",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 35 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "1930",
+  "id": "c333ef8d-10cd-45a9-91d0-35bebe1ae46c",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It currently stands at No. 43 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "1930",
+  "id": "c333ef8d-10cd-45a9-91d0-35bebe1ae46c",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "w50b",
+   "e50b"
+  ],
+  "years": [
+   2026,
+   2019
+  ],
+  "sentence": "No.22 in Europe's 50 Best Bars 2026 and a World's 50 Best fixture since 2019."
+ },
+ {
+  "slug": "28-hong-kong-street",
+  "id": "7d2e47ec-588c-4ebe-852f-1e8f464b893d",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "No.21 in the World's 50 Best Bars 2021."
+ },
+ {
+  "slug": "878-bar",
+  "id": "e0d9bbfc-40fa-4a13-ba14-7fe76ba10f11",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2011
+  ],
+  "sentence": "It entered the World's 50 Best Bars back in 2011 (No.25) and was twice named Argentina's best bar; the cigar-infused, Maradona-inspired Segurola y Habana is the signature."
+ },
+ {
+  "slug": "a-bar-with-shapes-for-a-name",
+  "id": "1a017595-7c33-466d-ab7d-aeb6e79dd8e4",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Cocktail Bar at the 2024 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "above-board",
+  "id": "55198e63-b9a6-4191-862e-3e5410726b50",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2021,
+   2024
+  ],
+  "sentence": "No.44 on the World's 50 Best Bars 2021 and back on the extended list at No.100 in 2024."
+ },
+ {
+  "slug": "aldea",
+  "id": "8d2c1171-2b3a-48ca-be1f-da8cfca1e393",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 26 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "aldo-sohm-wine-bar",
+  "id": "c87a7b86-605c-4bcd-97f9-fa764daee476",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2026."
+ },
+ {
+  "slug": "alice-cheongdam",
+  "id": "41976f51-bede-4899-8057-aef0cf993ac2",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "No.13 on Asia's 50 Best Bars in both 2025 and 2026."
+ },
+ {
+  "slug": "all-night-skate",
+  "id": "ad6f81a7-0061-4955-a306-d0a47445b8de",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "The cocktails run to a Green Light Go of rosemary gin, mastiha and cucumber and a Prom Night of mezcal, pomegranate and ginger, with tacos from Mr. Taco, and the James Beard Foundation named it an Outstanding Bar semifinalist in 2024."
+ },
+ {
+  "slug": "alma-prague",
+  "id": "0820f53a-9222-43c6-973e-0e6a1781a8d0",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 25 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "amma-don",
+  "id": "42351cfe-4204-443d-931e-3c4e839a5293",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Bar for Iceland at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "angel-s-share",
+  "id": "87b8120b-b092-4a73-81f4-24ca81352485",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 31 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "angelita",
+  "id": "d8ef2fd8-501c-4726-bf1b-f5109d983d37",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The bar holds No. 51 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "angelita",
+  "id": "d8ef2fd8-501c-4726-bf1b-f5109d983d37",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Restaurant Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "aqua-bar",
+  "id": "c689e987-d915-485f-8011-968ee69de990",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 48 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "arca",
+  "id": "464b9e28-a61a-40f9-91b1-0226453b34b0",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It sits at No. 77 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "arca",
+  "id": "464b9e28-a61a-40f9-91b1-0226453b34b0",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Restaurant Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "argo",
+  "id": "38472b61-07fb-496d-8f8d-7659370ace99",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best International Hotel Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "art-katowice",
+  "id": "cc5d2f40-300c-451e-aaeb-6941d81199e8",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Bar for Poland at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "attaboy",
+  "id": "79e3b1ef-a284-4f13-bae0-b4568b099caf",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 37 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "atwater-cocktail-club",
+  "id": "4a535888-39fa-4656-90b4-ba312a3666fd",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 62 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "atwater-cocktail-club",
+  "id": "4a535888-39fa-4656-90b4-ba312a3666fd",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "Ranked No. 36 on North America's 50 Best Bars 2025."
+ },
+ {
+  "slug": "ayahuasca-cantina",
+  "id": "e1fa9373-7f40-4f7c-9450-909ff14e0ae5",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2026."
+ },
+ {
+  "slug": "baba-au-rum",
+  "id": "b1e2b140-eb67-4424-ba7c-d0db4279417c",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 14 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "baba-au-rum",
+  "id": "b1e2b140-eb67-4424-ba7c-d0db4279417c",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It won World's Best Spirits Selection at the 2024 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "baby-gee",
+  "id": "9b47872e-0fc8-4c3c-b371-261f11d221fa",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "It opens seven days a week, from two in the afternoon on weekends, and the Spirited Awards have named it a U.S. West honoree for Best U.S. Cocktail Bar in both 2025 and 2026."
+ },
+ {
+  "slug": "bagheera",
+  "id": "14f79ffd-61dd-4675-9328-24152956c311",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 59 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "baltra-bar",
+  "id": "187a9828-a307-45c1-a79a-07c8d1ac12dd",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "na50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "The bar holds No. 78 on the World's 50 Best Bars 2025 and No. 48 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "baltra-bar",
+  "id": "187a9828-a307-45c1-a79a-07c8d1ac12dd",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [],
+  "sentence": "Ranked No. 20 on North America's 50 Best Bars, Baltra operates as the creative laboratory of León's expanding empire."
+ },
+ {
+  "slug": "bamboo-bar",
+  "id": "bb82e20d-d7ef-4af5-8ee2-d12720cb8352",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It received the Timeless International Award at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "bandista",
+  "id": "a4e48cf5-1606-4e55-999c-dd5061954553",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "Known for inventive cocktails and rare spirits, it ranked No. 47 on North America's 50 Best Bars 2026 and has been billed as the No. 1 bar in Texas."
+ },
+ {
+  "slug": "bar-1661",
+  "id": "a902496c-7863-43c8-9fa7-542d27dd3beb",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It was a Top 4 finalist for World's Best Cocktail Menu at the 2025 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "bar-ana",
+  "id": "55127230-e781-4d6f-9505-0de27c348137",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "Bar ANA is a late-night dessert and cocktail bar in Poncey-Highland led by pastry chef Claudia Martínez, a 2026 James Beard semifinalist, with a beverage program by Mayim Williams rooted in Afro-Latin and Caribbean traditions."
+ },
+ {
+  "slug": "bar-bello",
+  "id": "d77c4030-affa-4636-a538-c12ddc48d30b",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 75 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-benfiddich",
+  "id": "4302f9c1-f925-468d-8c7b-29c60fc399fa",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 62 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-bon-funk",
+  "id": "8608149d-d171-4bee-8149-464ad60ae3a3",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 90 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-carmen",
+  "id": "629d679e-1349-406f-9966-62311b4d76a4",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The bar holds No. 100 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "bar-cham",
+  "id": "3a86e62e-9924-4667-a294-63b149531ef8",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 33 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-chenin",
+  "id": "38cf8499-d820-4a33-a955-4dcc2aec88b0",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The Spirited Awards named it a U.S. Central honoree for Best New U.S. Cocktail Bar in 2026."
+ },
+ {
+  "slug": "bar-contra",
+  "id": "7dd0fb53-c50e-492f-8fc1-ae8a19d75d3b",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.98 in North America's 50 Best Bars 2025."
+ },
+ {
+  "slug": "bar-de-vie",
+  "id": "ba948335-ede3-4694-ad73-8de0129b96e7",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b",
+   "totc"
+  ],
+  "years": [
+   2026,
+   2026
+  ],
+  "sentence": "No.34 in Europe's 50 Best Bars 2026 with the Ketel One Sustainable Bar Award, and winner of Best New International Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "bar-deco",
+  "id": "47709522-6466-40a8-b422-399d9f722fce",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Menu for Denmark at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "bar-kaiju",
+  "id": "733fdc41-5775-4756-a36a-43a893e936bb",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 70 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-leather-apron",
+  "id": "e96ab32c-c1e4-489c-8c2e-4c93dce57ca5",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 81 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-leone",
+  "id": "518d7fdc-1fd7-49f6-9340-0d1f6fde1cc9",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best International Bar Team at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "bar-libre",
+  "id": "54e2ada8-e3fb-407b-8581-5126d42ae251",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 39 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-long-fong",
+  "id": "d8af3054-4f2f-42b3-9e55-965ca9323995",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 96 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-madonna",
+  "id": "ad65acf6-ab03-469f-b39c-8318c33ed5d3",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 36 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-mate",
+  "id": "b6bf175f-873b-472e-9d03-d78a0377bcc0",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Bar for Finland at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "bar-mauro",
+  "id": "e0491154-339a-4586-8e6a-a1437ca44b54",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Bar Team at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "bar-mauro",
+  "id": "e0491154-339a-4586-8e6a-a1437ca44b54",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "na50b"
+  ],
+  "years": [],
+  "sentence": "At No. 14 on North America's 50 Best Bars and No. 54 on the World's 50 Best Bars as a new entry, Bar Mauro is built for the kind of repeat visits, two, three times a week, that sustain a bar beyond its opening buzz."
+ },
+ {
+  "slug": "bar-mood",
+  "id": "45172d30-dbb1-47cf-8a4a-cec13958babd",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 82 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-mood",
+  "id": "45172d30-dbb1-47cf-8a4a-cec13958babd",
+  "pos": "second-last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2019,
+   2024,
+   2022
+  ],
+  "sentence": "On Asia's 50 Best every year since 2019 (No.37 in 2024), with the Ketel One Sustainable Bar Award in 2022; sibling MEET by BAR MOOD pours at the Grand Hotel."
+ },
+ {
+  "slug": "bar-mordecai",
+  "id": "8869e51f-7bde-4752-b440-ad2fcef9d6f6",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 94 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-nouveau",
+  "id": "9b3e0792-0020-44c9-9d03-328214a0a8c9",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 5 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-nouveau",
+  "id": "9b3e0792-0020-44c9-9d03-328214a0a8c9",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It was a Top 4 finalist for Best New International Cocktail Bar at the 2024 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "bar-orchard-ginza",
+  "id": "5d729537-4765-4fd1-9c0e-8cfaf895819c",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2019
+  ],
+  "sentence": "The fruit-first approach earned it No.28 on Asia's 50 Best Bars in 2019."
+ },
+ {
+  "slug": "bar-outrigger",
+  "id": "ab6414cc-fa1c-4d68-9e6d-2a1d872fb7c9",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 51 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-pompette",
+  "id": "8034606d-ffb3-46cd-aae8-02cfca13067b",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "na50b"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "sentence": "It currently stands at No. 8 on North America's 50 Best Bars 2026 and No. 55 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "bar-sathorn",
+  "id": "90c026a2-be01-46c2-ab6f-cbd31d0083ae",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No.17 in Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-sistema",
+  "id": "f72d6d05-a302-4631-a883-8a3afb6b3b35",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Bar for Croatia at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "bar-snack",
+  "id": "d2262994-6b03-4d40-9fc0-54703290e1fd",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best U.S. Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "bar-snack",
+  "id": "d2262994-6b03-4d40-9fc0-54703290e1fd",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [],
+  "sentence": "At No. 85 on North America's 50 Best, Bar Snack delivers serious drinking disguised as a neighborhood hangout."
+ },
+ {
+  "slug": "bar-spirit-forward",
+  "id": "3853d2d2-02eb-4f46-b599-70fdcac001aa",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 30 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-termini",
+  "id": "95dd6154-522d-4e17-989b-399d931755bc",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2016,
+   2018
+  ],
+  "sentence": "Bar Termini made the World's 50 Best Bars list three consecutive years, 2016–2018, and the team runs an experimental Drinks Factory in Islington."
+ },
+ {
+  "slug": "bar-trench",
+  "id": "1918bdb3-e1af-499b-ae84-1858c21caed9",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 53 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-trigona",
+  "id": "df7c8b42-46b1-4125-96d4-30da89356292",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 38 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bar-trigona",
+  "id": "df7c8b42-46b1-4125-96d4-30da89356292",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.39 on Asia's 50 Best Bars 2025."
+ },
+ {
+  "slug": "bar-us",
+  "id": "430109a3-35e7-4658-af52-976b08b16f65",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It sits at No. 15 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "bar-us",
+  "id": "430109a3-35e7-4658-af52-976b08b16f65",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "barr-hill-cocktail-bar",
+  "id": "f90d23ae-2221-480f-9e96-0d68c7674ed4",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "The James Beard Foundation named it one of five finalists for Outstanding Bar in 2024."
+ },
+ {
+  "slug": "barro-negro",
+  "id": "28e98b10-3bd3-4ed9-a436-1bf90b31d871",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "e50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "Five consecutive years in the World's 50 Best top 100 (No.62 in 2025) and No.13 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "beogradski-koktel-klub",
+  "id": "2474f9a4-9468-40f0-8ee5-74ab3fcd69a5",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Bar for Serbia at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "best-intentions",
+  "id": "7bcd4700-3ae6-4b6e-af5d-cf85ca7af5b9",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best U.S. Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "between-the-sips",
+  "id": "ab98e7f3-0095-408d-9749-464d75b3927b",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 73 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bird",
+  "id": "840e8a4f-1f00-44a1-ace4-aaeefea15295",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 24 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bird",
+  "id": "840e8a4f-1f00-44a1-ace4-aaeefea15295",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "Ranked No. 66 on The World's 50 Best Bars 2025 extended list."
+ },
+ {
+  "slug": "bisous",
+  "id": "849ee5e5-e447-4abe-b403-584513c47823",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 30 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bittersweet",
+  "id": "3cf813fd-806a-473b-99f6-415fb904d42a",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It takes no reservations and turns 21 and over after eight, and the James Beard Foundation named it an Outstanding Bar semifinalist in 2024."
+ },
+ {
+  "slug": "bkk-social-club",
+  "id": "f094b63c-9ac7-4f71-9e3e-3cc77a2fb093",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It won Best International Hotel Bar at the 2024 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "black-pearl",
+  "id": "6a7205c0-af96-4526-a9fd-16528dc72e7f",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2002,
+   2018
+  ],
+  "sentence": "A Fitzroy institution since 2002, Black Pearl is the neighborhood bar with global reach, credited with fostering some of the best talent the Australian bar scene has produced, named Best Bar in Australasia 2018 and No.30 on the World's 50 Best that year."
+ },
+ {
+  "slug": "boadas",
+  "id": "35e161e2-3838-4c38-a017-f7622493740e",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 36 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bon-vivants",
+  "id": "57539e2c-4114-4e6b-9e87-e0d1cef954b0",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 50 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "bop",
+  "id": "75466b67-d78d-4aec-a6e2-75af2bb6faaf",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 52 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "botanist",
+  "id": "afa3b6dd-3b6d-42ec-99bb-090a4ebeaea4",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 38 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "botanist",
+  "id": "afa3b6dd-3b6d-42ec-99bb-090a4ebeaea4",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [],
+  "sentence": "Ranked No. 24 on North America's 50 Best Bars and No. 2 on Canada's 50 Best Bars."
+ },
+ {
+  "slug": "boutiq-bar",
+  "id": "91a80a3d-581b-43c6-b505-d789ea3120a8",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b",
+   "totc"
+  ],
+  "years": [
+   2012,
+   2021,
+   2025,
+   2020
+  ],
+  "sentence": "The bar cites a No. 42 placing on the World's 50 Best Bars list in 2012, shortlist placings from 2021 to 2025, and Tales of the Cocktail's Best International Bar Team in Europe in 2020."
+ },
+ {
+  "slug": "britannia-bar",
+  "id": "eff993d8-3629-4ea2-836a-ba3a364874d2",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Menu for Norway at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "brujas",
+  "id": "331e1bf4-3d73-4cd9-9a4e-d2a366d18691",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [],
+  "sentence": "At No. 65 on North America's 50 Best extended list, Brujas represents a vital current in Mexico City's bar culture: feminist, ingredient-driven, and rooted in traditions that predate cocktails by centuries."
+ },
+ {
+  "slug": "bryants-cocktail-lounge",
+  "id": "c313df65-815b-40b7-8a8b-edc1d2be1bb3",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc",
+   "jbf"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2025 and Tales of the Cocktail gave it the Timeless U.S. Award in 2026."
+ },
+ {
+  "slug": "byrdi",
+  "id": "40d99d47-19d2-4095-8853-3cfbe8191f0f",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The bar holds No. 91 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "cafe-de-nadie",
+  "id": "a0e925c5-b4a2-4695-ac09-3f5509ead101",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 60 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "cafe-la-trova",
+  "id": "84658899-5ff6-4f6c-a005-6c2f0cb5bd99",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 42 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "camparino-in-galleria",
+  "id": "5285c6db-9134-4743-8117-439e17cf5509",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 18 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "caretaker-s-cottage",
+  "id": "6be32ea7-e5d1-4f73-91ef-d0b407a48805",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "caretaker-s-cottage",
+  "id": "6be32ea7-e5d1-4f73-91ef-d0b407a48805",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.19 on the World's 50 Best Bars 2025 and The Best Bar in Australasia."
+ },
+ {
+  "slug": "carrots-bar",
+  "id": "83ea06a1-ae98-4c7e-b3d6-8bbdfdb32305",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 21 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "cat-bite-club",
+  "id": "ecfb176b-5848-4f0e-8bdb-c50254c1c50f",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for World's Best Spirits Selection at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "cat-bite-club",
+  "id": "ecfb176b-5848-4f0e-8bdb-c50254c1c50f",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [],
+  "sentence": "Ranked No. 44 on Asia's 50 Best Bars, Cat Bite Club occupies a niche that sounds narrow but drinks wide, drawing connections between distillation traditions separated by oceans but united by fermentation logic."
+ },
+ {
+  "slug": "champagne-bar-at-four-seasons-surf-club",
+  "id": "8e19eb2e-3d29-4659-8741-c317fa95e3ca",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "A Top 4 finalist for Best U.S. Hotel Bar at the Tales of the Cocktail Spirited Awards in consecutive years, most recently 2026, this Surfside address delivers timeless luxury without the stuffiness that luxury hotel bars often default to."
+ },
+ {
+  "slug": "charles-h",
+  "id": "d0365014-38de-42dd-a8af-35dc2c1a7a93",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 87 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "charles-h",
+  "id": "d0365014-38de-42dd-a8af-35dc2c1a7a93",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Hotel Bar at the 2025 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "citrus-cane",
+  "id": "c0199d2a-5cbf-4496-b351-172cfccdbf49",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 87 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "civil-liberties",
+  "id": "ee751498-cca2-4fc0-9ffc-83c14a1a5de7",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 54 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "civil-liberties",
+  "id": "ee751498-cca2-4fc0-9ffc-83c14a1a5de7",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2024,
+   2025
+  ],
+  "sentence": "Ranked No. 21 on North America's 50 Best Bars in 2024 and 2025."
+ },
+ {
+  "slug": "civil-works",
+  "id": "787e04f1-66dc-4b18-a1a8-ab40cd9dbe4f",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "Ranked No. 29 on North America's 50 Best Bars 2026, where its menu was named best in North America."
+ },
+ {
+  "slug": "clavel",
+  "id": "6f1cfa9b-f664-4ea4-bdb5-90b0bd4743ad",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It takes no reservations, sells bottles to go from its Nixtamalería, and the James Beard Foundation named it an Outstanding Bar finalist in 2024."
+ },
+ {
+  "slug": "cleaver",
+  "id": "81eab3b9-3be0-457d-88c9-7358fc001195",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2020,
+   2022
+  ],
+  "sentence": "Top Four finalist at Tales of the Cocktail 2020, Regional Top Ten Honoree in 2022, and operating with the same Mendoza philosophy that drives his Sahara Avenue flagship: classic cocktails, fair prices, no compromises."
+ },
+ {
+  "slug": "clemente-bar",
+  "id": "06d6ee9f-7160-44ea-970e-86e30e945232",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It was a Top 4 finalist for Best New U.S. Cocktail Bar at the 2025 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "clemente-bar",
+  "id": "06d6ee9f-7160-44ea-970e-86e30e945232",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "At No. 11 on North America's 50 Best Bars with the Newcomer Award in its pocket, Clemente Bar sets an early benchmark for 2026."
+ },
+ {
+  "slug": "cmyk",
+  "id": "509aff1c-4463-4e9b-8ed3-0b7775a72117",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 27 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "coa",
+  "id": "9831c6a9-a187-42c4-b949-7d7552b0051c",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 24 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "coa-shanghai-1773995982",
+  "id": "ff742008-2134-480c-b4ef-5a3ea9a3fd57",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No.95 on Asia's 50 Best Bars 2026; sister of Hong Kong's Coa, three-time No.1 in Asia."
+ },
+ {
+  "slug": "cochinchina",
+  "id": "2d560a86-db57-42fa-90d6-34bee343840c",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.26 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "coley",
+  "id": "bf702dd8-48c7-45a4-a975-b81ae6540026",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 83 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "coley",
+  "id": "bf702dd8-48c7-45a4-a975-b81ae6540026",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2019
+  ],
+  "sentence": "Best Bar in Malaysia and No.27 on Asia's 50 Best in 2019."
+ },
+ {
+  "slug": "connaught-bar",
+  "id": "78e21adf-dbf7-48e2-8594-85a0e0237481",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "e50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 6 on the World's 50 Best Bars 2025 and No. 10 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "cosmo-pony",
+  "id": "8b2679d6-6813-49dc-b025-f1891026544d",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No.15 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "coupette",
+  "id": "69eb6d98-635d-431d-8b8b-7b14ce3a332e",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b",
+   "totc"
+  ],
+  "years": [
+   2018,
+   2019,
+   2018
+  ],
+  "sentence": "Awards came fast: Best New Opening at the World's 50 Best Bars 2018, No.18 that year and No.23 in 2019, plus Tales of the Cocktail's Best New International Cocktail Bar 2018."
+ },
+ {
+  "slug": "courtland-club",
+  "id": "d4acabcb-c5f1-491d-b3f5-23c6c801b578",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "Live jazz plays every Sunday, the kitchen is Paula Agganis's Greek-ish cooking, and the James Beard Foundation named it an Outstanding Bar semifinalist in 2024."
+ },
+ {
+  "slug": "cry-baby-gallery",
+  "id": "612cb517-6e8a-4c9e-a32a-92830c77be04",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 69 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "cure",
+  "id": "6ea1b468-eadb-4dce-8352-9d6ba7e0e7da",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 21 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "daisy-margarita-bar",
+  "id": "91a05680-eee4-4faf-87cd-e2d194814755",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 44 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "danico",
+  "id": "0d2ea409-025a-42ca-afeb-887dda52c940",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 19 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "danico",
+  "id": "0d2ea409-025a-42ca-afeb-887dda52c940",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It won Best International Restaurant Bar at the 2024 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "dante",
+  "id": "76a0325b-19dc-400a-a4ba-6a52e823e368",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 58 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "dante",
+  "id": "76a0325b-19dc-400a-a4ba-6a52e823e368",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.46 in North America's 50 Best Bars 2025."
+ },
+ {
+  "slug": "daydreamer",
+  "id": "9ced2cdc-495a-44fc-b04c-e26bc9a85251",
+  "pos": "second-last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "A 2025 Spirited Awards Regional Top 10 honoree for Best U.S. Bar Team (Central), Daydreamer builds its program around champagne, caviar, and martinis, a combination that sounds more Mayfair than East Austin, but the execution carries the city's trademark informality."
+ },
+ {
+  "slug": "devil-s-cut",
+  "id": "80c630c3-1739-4a3c-8405-7fb64efc9c8b",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It won Best New International Cocktail Bar at the 2025 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "devils-toboggan",
+  "id": "4c24e194-2f6e-4a04-be85-a399d86fb02b",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It runs a daily happy hour, a small kitchen, a printed spirits list and a catering arm called the Devil's Bar Car, and the James Beard Foundation named it an Outstanding Bar semifinalist in 2025."
+ },
+ {
+  "slug": "door-no-4",
+  "id": "37d45a7e-d785-4967-9dd5-d559d2d11700",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 99 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "double-chicken-please",
+  "id": "21c56ff6-5459-401e-9bb3-c559b3c11efd",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "na50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "It sits at No. 41 on the World's 50 Best Bars 2025 and No. 35 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "double-chicken-please",
+  "id": "21c56ff6-5459-401e-9bb3-c559b3c11efd",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It was a Top 4 finalist for Best U.S. Cocktail Bar at the 2024 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "dragoljub",
+  "id": "477b1d55-0833-44bb-83af-da325f2f82cf",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Menu for Serbia at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "drastic-measures",
+  "id": "0f02b12b-820e-4c51-8844-d22bf4a74281",
+  "pos": "second-last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2023,
+   2026,
+   2023,
+   2024,
+   2026
+  ],
+  "sentence": "Drastic Measures is a cocktail bar on Nieman Road in Shawnee, on the Kansas side of Kansas City, and the only bar to appear three times on the James Beard Outstanding Bar lists between 2023 and 2026, as a nominee in 2023 and a semifinalist in 2024 and 2026."
+ },
+ {
+  "slug": "drink-kong",
+  "id": "b78f28c1-6470-422b-a5db-ab447776924a",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025,
+   2026,
+   2019
+  ],
+  "sentence": "No.40 on the World's 50 Best Bars 2025, No.32 in Europe 2026, and the 2019 Campari One To Watch."
+ },
+ {
+  "slug": "dry-wave-cocktail-studio",
+  "id": "709092ed-0baa-4e63-a780-7e628a034761",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It was a Top 4 finalist for Best New International Cocktail Bar at the 2025 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "dunlin",
+  "id": "e8d9d32f-2b85-4af0-a509-0796bde172e2",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 50 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "dunlin",
+  "id": "e8d9d32f-2b85-4af0-a509-0796bde172e2",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It was named Mixology's Bar of the Year Austria 2025 and is the only Austrian entry on the inaugural Europe's 50 Best Bars list."
+ },
+ {
+  "slug": "elysian-bar-budapest",
+  "id": "70ce700f-aea9-41ee-aeea-408fb1feea7a",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Bar for Hungary at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "employees-only",
+  "id": "9de607de-7188-43cb-beb6-dbd7124dbf5e",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 45 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "epic",
+  "id": "5a92bf39-8ec4-4a58-a942-086d8c14d119",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "In 2021 it became the first mainland-China bar to win the Campari One To Watch award and entered the World's 50 Best at No.41."
+ },
+ {
+  "slug": "eximia",
+  "id": "2540deac-e0c3-4e4b-b8ea-f8566439fae2",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.61 on the World's 50 Best Bars 2025; now above Restaurante Locale in Itaim Bibi."
+ },
+ {
+  "slug": "father-forgive-me",
+  "id": "5d8fecb4-1cda-488e-91dc-175c3b7d7043",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 83 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "fifty-mils",
+  "id": "ccf3b462-bc1d-4732-9be8-c3e6116cb1d4",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2018,
+   2025
+  ],
+  "sentence": "The Four Seasons Mexico City's cocktail flagship, Fifty Mils entered the World's 50 Best list in 2018 and was ranked No.4 among Food & Wine's Top 10 International Hotel Bars in 2025."
+ },
+ {
+  "slug": "firefly",
+  "id": "bc9c3328-15cc-4f12-b655-2ac37689a5cb",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 78 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "flisak-76",
+  "id": "81368fb9-748a-4cc4-a90a-88a50e4a7e0d",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Menu for Poland at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "floreria-atlantico",
+  "id": "03918908-df4c-4be0-979f-3b6e8d39c93e",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It sits at No. 90 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "floreria-atlantico",
+  "id": "03918908-df4c-4be0-979f-3b6e8d39c93e",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2023,
+   2023
+  ],
+  "sentence": "A World's 50 Best fixture for a decade (No.30 in 2023), with Giovannoni named the 2023 Industry Icon."
+ },
+ {
+  "slug": "floreria-atlantico-dc",
+  "id": "b4004e4b-5d45-45c9-8f4b-28eae94728e6",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "In 2026 the bar was named a Tales of the Cocktail Spirited Awards Regional Top 10 Honoree for Best New U.S. Cocktail Bar in the U.S. East."
+ },
+ {
+  "slug": "foco",
+  "id": "d21b1c83-03a9-48d9-ad42-be6063655ff4",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 48 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "forbina-bar",
+  "id": "b65cc718-5e44-4b80-881a-807b5807ccda",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Bar for Czechia at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "form-matter",
+  "id": "f6d97339-3964-4a12-a95f-dab52e3e78ee",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 13 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "freni-e-frizioni",
+  "id": "5ebf0b0f-1581-482b-8a4f-57096b6dba6a",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It sits at No. 58 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "freni-e-frizioni",
+  "id": "5ebf0b0f-1581-482b-8a4f-57096b6dba6a",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No.31 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "fura",
+  "id": "021d775e-bc93-477b-9ac3-b6ed0e6c1c81",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was named World's Best Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "g-o-d",
+  "id": "37835bc5-579c-419e-9583-01adf844f255",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 31 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "g-o-d",
+  "id": "37835bc5-579c-419e-9583-01adf844f255",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.26 in Asia's 50 Best Bars 2025."
+ },
+ {
+  "slug": "garagiste",
+  "id": "290cbc51-399a-4160-b38c-618812271463",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2023
+  ],
+  "sentence": "The James Beard Foundation named it one of five finalists for Outstanding Bar in 2023."
+ },
+ {
+  "slug": "gibson",
+  "id": "f993125b-ffba-4cd1-af35-9f169e1fcf6a",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2019
+  ],
+  "sentence": "No.15 in Asia's 50 Best Bars 2019."
+ },
+ {
+  "slug": "gokan",
+  "id": "e91f78fd-18fa-40e3-a493-573aa736b8fd",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 22 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "gong-gan",
+  "id": "44c3fb88-fd86-4791-b0e3-3c5a0f9d0537",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "No.63 on Asia's 50 Best Bars 2025, No.74 in 2026."
+ },
+ {
+  "slug": "graft",
+  "id": "b275fa7f-b8cd-42d8-bd87-a6b2ee6cf972",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2026."
+ },
+ {
+  "slug": "gucci-giardino",
+  "id": "5841a8d5-05af-4ce8-b5af-13d550196e0f",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It sits at No. 99 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "handshake-speakeasy",
+  "id": "d55b5a06-4d0a-4cb7-b2e9-c7ff0440d857",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 12 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "handshake-speakeasy",
+  "id": "d55b5a06-4d0a-4cb7-b2e9-c7ff0440d857",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It won World's Best Cocktail Menu at the 2024 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "hanky-panky",
+  "id": "3aa985fd-851a-45eb-9ca9-8615413d1e65",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Bar Team at the 2024 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "hanky-panky",
+  "id": "3aa985fd-851a-45eb-9ca9-8615413d1e65",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2022
+  ],
+  "sentence": "The Michter's Art of Hospitality Award in 2022 and a former No. 13 ranking on the World's 50 Best Bars confirm that Hanky Panky defined a format that the city's subsequent speakeasies have spent years trying to equal."
+ },
+ {
+  "slug": "happiness-forgets",
+  "id": "14634352-cc43-4323-a6ad-ad9e9cc2520f",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2019
+  ],
+  "sentence": "It reached No.40 in the World's 50 Best Bars 2019."
+ },
+ {
+  "slug": "harrys-new-york-bar",
+  "id": "523373fd-4d8f-43c1-9698-f197cb671997",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 27 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "horn-cantle-saloon",
+  "id": "e5bc16cb-de9d-468c-b21d-f1db756005f0",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2024."
+ },
+ {
+  "slug": "humboldt-bar",
+  "id": "ac00444b-07a7-45e0-b424-6717a507e599",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 53 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "indulge-bistro",
+  "id": "7cc684f0-0383-49b0-9d6a-28881f7a8b1d",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2023,
+   2019
+  ],
+  "sentence": "No.11 on Asia's 50 Best Bars 2023 and No.21 in the world in 2019."
+ },
+ {
+  "slug": "isa-cocteleria",
+  "id": "05a399c4-e5ed-411d-a413-970a8adb1053",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024,
+   2024,
+   2025,
+   2022
+  ],
+  "sentence": "The trophy shelf is crowded: Condé Nast Traveler's Best Hotel Cocktail Bar in Spain & Portugal (2024), FIBAR's Best Hotel Cocktail Bar (2024 and 2025) and a Spirited Awards honor for Best New International Cocktail Bar (2022)."
+ },
+ {
+  "slug": "jerry-thomas-project",
+  "id": "7df70481-5c5c-4879-81ea-28eeccc7eeec",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It sits at No. 98 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "jerry-thomas-project",
+  "id": "7df70481-5c5c-4879-81ea-28eeccc7eeec",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2013
+  ],
+  "sentence": "The project has entered the World's 50 Best Bars six times, created Vermouth del Professore with Distillerie Quaglia in 2013, and runs its own bartending school in collaboration with Campari Academy."
+ },
+ {
+  "slug": "jewel-box",
+  "id": "8b43d5f6-dcc7-4997-a8e8-a49c9776984a",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2023
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2023."
+ },
+ {
+  "slug": "jewel-of-the-south",
+  "id": "cbda125d-b50a-48c4-bc26-ff53ee181d83",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "na50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "It sits at No. 44 on the World's 50 Best Bars 2025 and No. 6 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "jigger-pony",
+  "id": "5dc01f9f-89fe-42e2-b167-125cd110e84e",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for World's Best Cocktail Menu at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "john-browns-underground",
+  "id": "4e95cc47-1b42-4c4c-8052-b9877dd78e2a",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2025."
+ },
+ {
+  "slug": "jojos-beloved",
+  "id": "9b7a7dcf-db9a-47a8-90af-724b138180d6",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "It opened in July 2021 and prints its menu with each signature cocktail credited to the bartender who created it, which is how a room wins Best U.S. Bar Team honors from the Spirited Awards two years running."
+ },
+ {
+  "slug": "julep",
+  "id": "bd872d30-5fbc-4d51-b84e-d16794be858d",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 84 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "june-on-cambie",
+  "id": "a5d7da6f-efa7-41f5-8211-63e895e3b8a8",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It entered North America's 50 Best Bars 2026 at No. 17."
+ },
+ {
+  "slug": "jungle-bird",
+  "id": "8bafc17d-7e55-4e65-a39d-e538ad5ccec4",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "Its Malaysiana concept takes inspiration from everything around it; No.37 on Asia's 50 Best Bars 2021."
+ },
+ {
+  "slug": "kaito-del-valle",
+  "id": "410e37a6-0177-41aa-a08e-93c3fd38df7c",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No.25 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "katana-kitten",
+  "id": "daa70896-e6ef-4cb2-b68e-2f2368513bd9",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 52 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "katana-kitten",
+  "id": "daa70896-e6ef-4cb2-b68e-2f2368513bd9",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2023,
+   2024
+  ],
+  "sentence": "No.27 in the World's 50 Best Bars 2023 and No.12 in North America's 2024 list."
+ },
+ {
+  "slug": "kato",
+  "id": "b311f14f-c5e5-4150-9631-689b295a0dd7",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "The bar is 21 and over, and the Spirited Awards have named it a U.S. West honoree for Best U.S. Restaurant Bar in both 2025 and 2026."
+ },
+ {
+  "slug": "kimball-house",
+  "id": "96e1fce7-6d98-4da1-ae5d-709e31122567",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The Spirited Awards named it a U.S. East honoree for Best U.S. Restaurant Bar in 2026 and advanced it to the national top ten."
+ },
+ {
+  "slug": "king-cole-bar",
+  "id": "34f295ac-ea66-4be9-a719-5c731c7cba83",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It picked up recognition from Condé Nast Traveler and Tales of the Cocktail in 2024."
+ },
+ {
+  "slug": "kingfisher",
+  "id": "a84f3e71-a001-40a5-a866-046c49b3980c",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2023
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2023."
+ },
+ {
+  "slug": "kol-mezcaleria",
+  "id": "df99e450-56ad-4702-8bec-c0082ba93ebf",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The subterranean agave bar beneath KOL, Santiago Lastra's modern Mexican restaurant ranked No.49 in the World's 50 Best Restaurants 2025."
+ },
+ {
+  "slug": "kumiko",
+  "id": "d6dbdf08-53ba-46c0-9600-cc911a93fd14",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 11 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "la-sala-de-laura",
+  "id": "945b666b-4c4a-4c71-8a5d-a2f2c2ceb7c9",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It currently stands at No. 68 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "lab",
+  "id": "6656dbec-5ff1-480d-bf4b-29f0e38eb048",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 99 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "lair",
+  "id": "ca054fad-1143-45b2-84e5-e5e99496cc86",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The Best Bar in India 2025, No.8 on Asia's 50 Best, the year's highest new entry, and No.96 in the world."
+ },
+ {
+  "slug": "lamp-bar",
+  "id": "b42ec467-370c-4ea9-b6c2-39fbeb392a92",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 94 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "laowai",
+  "id": "853e3f4d-b5a7-430c-ac78-fa6be1a68a2c",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 72 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "las-ramblas",
+  "id": "7f5265c9-4ef0-49af-a004-a54d21985b8f",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2023,
+   2024
+  ],
+  "sentence": "Las Ramblas is a cocktail lounge in Market Square in historic downtown Brownsville, at the southern tip of Texas, and a James Beard Outstanding Bar finalist in both 2023 and 2024."
+ },
+ {
+  "slug": "late-bloomers",
+  "id": "0feb13aa-a3bd-490d-b003-af63e106f7fd",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 44 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "le-caveau",
+  "id": "60acab6e-70b3-4740-b419-e590417014c6",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2023
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2023."
+ },
+ {
+  "slug": "le-chamber",
+  "id": "dc8be466-db1b-4b3d-9481-a86363bb9a11",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 88 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "le-chamber",
+  "id": "dc8be466-db1b-4b3d-9481-a86363bb9a11",
+  "pos": "second-last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2023
+  ],
+  "sentence": "No.25 on Asia's 50 Best Bars 2023; the Chamber Story arrives inside a book."
+ },
+ {
+  "slug": "le-hibou",
+  "id": "5206f8c8-b570-4566-b961-8ef1b40b759c",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Bar for Sweden at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "le-mary-celeste",
+  "id": "2743647b-aebc-4f73-9d03-cbf8aba50b0e",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Restaurant Bar at the 2025 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "lennon-s",
+  "id": "4fd80f95-bac5-4b11-82ae-ecaf40f9f20f",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No.7 in Asia's 50 Best Bars 2026, Highest New Entry."
+ },
+ {
+  "slug": "leo-rooftop",
+  "id": "e7304601-66aa-4884-9d67-e62b854637cb",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Menu for Hungary at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "library-bar-toronto",
+  "id": "ee196570-4c83-48cc-a71d-a77289fa77a1",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Hotel Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "library-bar-toronto",
+  "id": "ee196570-4c83-48cc-a71d-a77289fa77a1",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026,
+   2026
+  ],
+  "sentence": "It ranks No. 19 on North America's 50 Best Bars 2026 and holds the list's Ketel One Sustainable Bar Award 2026."
+ },
+ {
+  "slug": "licoreria-limantour",
+  "id": "1d577472-58a9-4710-8c8b-56003be1c27b",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 20 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "licoreria-limantour",
+  "id": "1d577472-58a9-4710-8c8b-56003be1c27b",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "na50b"
+  ],
+  "years": [],
+  "sentence": "At No. 9 on North America's 50 Best Bars and No. 52 on the World's 50 Best Bars, Limantour is the foundation the rest of the scene stands on."
+ },
+ {
+  "slug": "line",
+  "id": "366683b7-856b-4712-bb59-7f4f6ebba2da",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "e50b"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "sentence": "Named The Best Bar in Europe on Europe's 50 Best Bars 2026, and No. 8 on the World's 50 Best Bars in 2025, Line is the Kato Petralona project of Vasilis Kyritsis and Nikos Bakoulis (The Clumsies) with Dimitris Dafopoulos (Three Cents)."
+ },
+ {
+  "slug": "live-twice",
+  "id": "482892a3-8f16-4ebc-af4c-4c425af02f55",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2023
+  ],
+  "sentence": "Spirited Awards Top 10 Best International Cocktail Bar APAC 2023."
+ },
+ {
+  "slug": "locale-firenze",
+  "id": "950896df-d6e8-4143-8b72-7bc23d761ff7",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "No.22 on the World's 50 Best Bars 2025 and No.21 in Europe for 2026."
+ },
+ {
+  "slug": "lone-wolf-lounge",
+  "id": "ace369db-ff3e-4491-970d-07590e97f061",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2025."
+ },
+ {
+  "slug": "lpm-dubai",
+  "id": "d378498b-660e-4bb2-931f-7502dac26d90",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The latest lists place it at No. 60 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "lucy-s-flower-shop",
+  "id": "76b7b8ae-a499-47e0-be59-70c4a3809154",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2022
+  ],
+  "sentence": "No.49 on the World's 50 Best Bars 2022; some seats always held for walk-ins."
+ },
+ {
+  "slug": "lyaness",
+  "id": "15c59c8c-7502-4372-af6c-b26e31e60038",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2019
+  ],
+  "sentence": "Lyaness was the first bar awarded three PINs in The Pinnacle Guide and ranked No.39 in the World's 50 Best Bars 2019."
+ },
+ {
+  "slug": "m-ms-bar",
+  "id": "c175ed4f-ae36-40f4-b379-1e9a52858cc8",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 42 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "mahaniyom-cocktail-bar",
+  "id": "5b0c2e99-7cc7-4855-bfd0-5ddac15df53d",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "w50b",
+   "a50b"
+  ],
+  "years": [
+   2023,
+   2026
+  ],
+  "sentence": "No.19 in the World's 50 Best Bars 2023; No.76 in Asia's 50 Best 2026."
+ },
+ {
+  "slug": "maison-premiere",
+  "id": "d32d2275-0f45-41fb-8806-29e43d0a2cbc",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 40 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "mala-audio-bar",
+  "id": "664b343d-990d-4780-afd8-30ab1b912164",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "In 2026 Mala joined 50 Best Discovery, the recommendation platform compiled by the voting Academy behind the World's 50 Best Bars."
+ },
+ {
+  "slug": "martinys",
+  "id": "69add00b-4044-465e-b1e5-a52573fbb3f9",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "na50b"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "sentence": "The latest lists place it at No. 23 on North America's 50 Best Bars 2026 and No. 75 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "maybe-sammy",
+  "id": "09a63f17-4ac2-44db-b33d-3b891edc3754",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It was a Top 4 finalist for World's Best Cocktail Menu at the 2025 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "meadowlark",
+  "id": "8dae7d93-bcf0-4b3a-9653-9ccd1feaecbe",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 65 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "mecenas",
+  "id": "a1e57740-4db5-4112-996b-df307602b797",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 18 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "meo",
+  "id": "55883569-942b-44f9-a62c-5c6d7d0e7aa0",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 64 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "messengerservice",
+  "id": "1b247626-23e9-4709-99d7-d86d8a8f4fed",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "Winner of the Best Bar Design Award, Asia's 50 Best Bars 2025; No.69 in 2026."
+ },
+ {
+  "slug": "meteor",
+  "id": "bc2dd4bd-ad0d-4d50-8981-4294d9e6ddfa",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "The back bar runs deep on mezcal, sotol, raicilla and bacanora, and the James Beard Foundation named it an Outstanding Bar semifinalist in 2024."
+ },
+ {
+  "slug": "millys",
+  "id": "0698aa48-73a5-41ba-abf9-72a53798a2df",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "Milly's is a neighborhood cocktail bar with live music on Greene Avenue in Bed-Stuy, named a Regional Top 10 Honoree for Best New U.S. Cocktail Bar at the 2026 Spirited Awards."
+ },
+ {
+  "slug": "mimi-kakushi",
+  "id": "e55a5014-c39c-4c40-8d9c-5a66ea792c48",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It sits at No. 36 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "mirate",
+  "id": "e74e4b85-8c2d-4765-b581-3cdff0cbef81",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for World's Best Spirits Selection at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "mirror-bar",
+  "id": "93969e15-4ae7-4508-b48b-dfa3833f422a",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It sits at No. 25 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "mirror-bar",
+  "id": "93969e15-4ae7-4508-b48b-dfa3833f422a",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Bar for Slovakia at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "mius",
+  "id": "bd87fed3-c2d6-4197-b241-9c492ed877ed",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best New International Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "mo-bar",
+  "id": "563f5879-8553-4007-9017-e58756688fec",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "No.36 in the World's 50 Best Bars 2021."
+ },
+ {
+  "slug": "moebius-milano",
+  "id": "c77bd322-83d3-4518-bca4-b1daa437622e",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Bar Team at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "moebius-milano",
+  "id": "c77bd322-83d3-4518-bca4-b1daa437622e",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.7 in the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "montana",
+  "id": "6e078351-28be-4b89-b0c2-9d6558c6af35",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best New International Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "moonrock",
+  "id": "29065c3e-9076-44b9-a7fd-47dffdd3fa6d",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 67 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "mother",
+  "id": "1f403e6e-4c03-4bd3-a9d5-ce5477019115",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "Ranked No. 22 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "mount-pleasant-vintage-provisions",
+  "id": "958ddabb-f7d4-489b-b765-242ed5aed96e",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 91 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "native",
+  "id": "df2efbda-186e-4ce1-bc5a-6af71758f4f5",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 80 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "nickel-city",
+  "id": "35824202-d9e4-4cf8-a7f5-fb024498c441",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 96 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "night-hawk",
+  "id": "841ce2bd-5f27-43ac-9344-08e5e8251078",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [],
+  "sentence": "Ranked No. 77 on Asia's 50 Best extended list."
+ },
+ {
+  "slug": "nine-bar",
+  "id": "5e3a191d-e0d9-455f-85f7-64d69414f7a4",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 76 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "no-sleep-club",
+  "id": "2ed26580-2749-48b5-8131-44922693137c",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "w50b",
+   "a50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "No.8 in Asia's 50 Best Bars 2021 and No.26 in the World's 50 Best that year."
+ },
+ {
+  "slug": "no-vacancy",
+  "id": "8c10467c-2fd7-4138-8a88-d222eb36c495",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 82 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "nouvelle-vague",
+  "id": "123c1b61-2b81-448f-94ea-fd84dcbe95ba",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2023
+  ],
+  "sentence": "Its fourth signature menu, ORIGIN'AL, runs to 14 cocktails rooted in Albanian ingredients from mountain tea and quince to bee pollen and local raki, and the bar cites a No. 86 placing on the World's 50 Best Bars extended list in 2023."
+ },
+ {
+  "slug": "nutmeg-clove",
+  "id": "a00d4e8e-be57-48d3-a81a-e71fdb965d7e",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 12 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "obsidian-bar",
+  "id": "ff31a937-3e54-4c3e-bd85-423b5f623718",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 10 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "offtrack",
+  "id": "6d5d8683-62b2-4bcc-869b-4f6c95116b9c",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 16 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "opium",
+  "id": "0adf224b-645b-4f2c-b94a-fcde4e5ebbd3",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It currently stands at No. 92 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "origin-bar",
+  "id": "ca3a63e2-f813-4782-b009-6d98879a6ca3",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b",
+   "totc"
+  ],
+  "years": [
+   2026,
+   2026
+  ],
+  "sentence": "Ranked No.43 on Asia's 50 Best Bars 2026 and a Top 4 finalist for Best International Hotel Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "otro-bar",
+  "id": "c1498fe0-fc47-42ec-939a-310c0efa357e",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "In 2026 the bar was added to 50 Best Discovery, the recommendation platform compiled by the voting Academy behind the World's 50 Best Bars."
+ },
+ {
+  "slug": "overstory",
+  "id": "748dbcf8-09ae-449d-85e5-925f2995c0af",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 33 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "overstory",
+  "id": "748dbcf8-09ae-449d-85e5-925f2995c0af",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It was a Top 4 finalist for Best U.S. Cocktail Bar at the 2025 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "pacific-cocktail-haven",
+  "id": "555b9d34-0122-4cdc-84ff-8a37ed196412",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 41 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "pacific-cocktail-haven",
+  "id": "555b9d34-0122-4cdc-84ff-8a37ed196412",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "The bar was a Top 4 finalist for Best U.S. Bar Team at the 2024 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "pantja",
+  "id": "ae287a54-fcd7-466b-b294-56551035cd9e",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "No.27 on Asia's 50 Best Bars 2024."
+ },
+ {
+  "slug": "papa-gedes-bar-cocktail-bar-sydney",
+  "id": "b09e501c-72e7-4008-80e1-91faba10e7fb",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2015,
+   2017,
+   2017
+  ],
+  "sentence": "Hidden down a laneway off 348 Kent Street, Papa Gede's runs a voodoo and witch-doctor-apothecary concept, its own words, with a track record to match: Time Out bar awards from 2015 to 2017 and a Spirited Awards nomination in 2017."
+ },
+ {
+  "slug": "pco",
+  "id": "94575a01-0367-4085-8ce3-7d41e2c865cd",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "The flagship of Pass Code Hospitality; No.54 on Asia's 50 Best 2021."
+ },
+ {
+  "slug": "pdt",
+  "id": "3066660b-f9b5-441c-914c-16d6bb8318d4",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2011
+  ],
+  "sentence": "PDT topped the World's 50 Best Bars in 2011 and still treats the mystery of entry as part of the appeal, with innovative yet unpretentious drinks."
+ },
+ {
+  "slug": "penicillin",
+  "id": "d7e713d8-176d-4dae-ad4f-ee189b2604b8",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 49 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "penicillin",
+  "id": "d7e713d8-176d-4dae-ad4f-ee189b2604b8",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "Ranked No. 27 on Asia's 50 Best in 2025, Penicillin proves that environmental responsibility and world-class cocktail making strengthen rather than compromise each other."
+ },
+ {
+  "slug": "penrose",
+  "id": "50f07387-052c-422b-96cb-86efa879788e",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 64 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "penrose",
+  "id": "50f07387-052c-422b-96cb-86efa879788e",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "Named The Best Bar in Malaysia and No.10 on Asia's 50 Best Bars 2025."
+ },
+ {
+  "slug": "pine-co",
+  "id": "587fdd53-8e2d-4638-b24c-14ad95876f50",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "No.50 on Asia's 50 Best Bars 2024; known for oddballs like the Ant Love Corn."
+ },
+ {
+  "slug": "pony-up",
+  "id": "7fd24555-a6d1-49de-9438-7b1e1ab1e765",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 19 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "post-office-place",
+  "id": "379217f8-7b0e-4793-b939-d9ba0edfe186",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2023,
+   2026
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2023 and again in 2026."
+ },
+ {
+  "slug": "presidente-bar",
+  "id": "fd0c4b12-7f31-4d1a-ab6c-551336dd4f3b",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "No.21 on the World's 50 Best Bars 2021."
+ },
+ {
+  "slug": "press-club-dc",
+  "id": "8c6d38c8-8a0b-450f-8864-4fae00ebaf42",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 34 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "proof",
+  "id": "9d1ce783-e5cf-4db6-bcb7-465d79c9871e",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 78 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "pufferfish",
+  "id": "bbd021cf-baf4-4fc8-b94f-1842d4197a9d",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The Spirited Awards named it a U.S. Central honoree for Best U.S. Hotel Bar in 2026."
+ },
+ {
+  "slug": "punch-room-tokyo",
+  "id": "b9d85cb9-ad2e-443b-928b-026a687b0917",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 23 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "queen-mary-tavern",
+  "id": "00784264-7e49-4d82-99f6-774eb28a52c8",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 80 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "r-da-huset",
+  "id": "96706af7-0b24-44f3-80a6-de0a6decbfdc",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 43 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "r-da-huset",
+  "id": "96706af7-0b24-44f3-80a6-de0a6decbfdc",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.35 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "ralph-s-bar",
+  "id": "4569cdef-1130-41f2-84a9-d7921c922d11",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 28 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "rayo",
+  "id": "314b37ee-a9c1-4c2a-90f3-dc69dad3c832",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "The Soldado Medina layers tequila, chilli-infused liqueur, green herbal liqueur, Maraschino, cactus sorbet, and lime into a drink that functions as both narrative and flavor experience. reached No. 5 on North America's 50 Best Bars in 2024, a recognition that reflects the bar's theatrical approach to Mexican spirits and its commitment to treating every drink as an origin story."
+ },
+ {
+  "slug": "real-charmer",
+  "id": "17b0f421-3cd2-42f1-a509-2a2bd2c88aec",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "Real Charmer is a cocktail bar in Virgil Village that the Spirited Awards named a Regional Top 10 Honoree for Best New U.S. Cocktail Bar in 2025 and for Best U.S. Bar Team in 2026."
+ },
+ {
+  "slug": "realm-of-the-52-remedies",
+  "id": "283ffd7e-5388-4ef3-99d0-c92970c91869",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 93 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "red-frog",
+  "id": "72b78da3-0aac-4f6e-a0be-7e418931561b",
+  "pos": "second-last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2022
+  ],
+  "sentence": "Named for Red Frog Island in Panama, it pours modernist takes on the classics with Portuguese ingredients; a five-time World's 50 Best entrant, peaking at No.40 in 2022."
+ },
+ {
+  "slug": "reka-bar",
+  "id": "070c86e8-9078-40dd-9a05-cead79732708",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 63 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "reka-bar",
+  "id": "070c86e8-9078-40dd-9a05-cead79732708",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.47 on Asia's 50 Best Bars 2025."
+ },
+ {
+  "slug": "republic-bar",
+  "id": "2a96a9ac-d28a-4918-b1aa-ee93981646c2",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2022
+  ],
+  "sentence": "No.12 in Asia's 50 Best Bars 2022."
+ },
+ {
+  "slug": "rita",
+  "id": "655407a9-c7b5-48ea-a809-263942f0d74b",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No.49 in Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "ropewalk",
+  "id": "531a36b2-4a6e-49df-836e-759285043a32",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 93 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "roquette-seattle",
+  "id": "b5db506c-539e-4f64-855a-2f33e91f0abe",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 89 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "rougarou-denver",
+  "id": "e5c51725-3e26-4c92-88c2-b0e8f05e89a5",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best New U.S. Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "sabina-sabe",
+  "id": "15b5f707-b54f-4094-b333-e8bd20f0a663",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2022,
+   2023
+  ],
+  "sentence": "Down-to-earth and comfortable, it reached No.20 on North America's 50 Best Bars in 2022 and No.22 in 2023."
+ },
+ {
+  "slug": "salmon-guru",
+  "id": "2ae33f92-289f-4b2a-a0a0-686f197066d2",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 46 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "sastrer-a-martinez",
+  "id": "d0ad60df-417b-4776-a4c3-8887f792c6de",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It placed No.33 on The World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "satans-whiskers",
+  "id": "48634983-1e0a-42ff-b598-e34c0c499b6e",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best International Cocktail Bar at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "satans-whiskers",
+  "id": "48634983-1e0a-42ff-b598-e34c0c499b6e",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best International Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "scarfes-bar",
+  "id": "e2b0b292-d260-4c5e-9f51-a8f5aa3c064b",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 47 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "schmuck",
+  "id": "6ed51554-c652-4254-8f9f-d1c5fb6f387d",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best New U.S. Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "scotch-lodge",
+  "id": "26ec6c1e-24fb-4730-bf1d-9652abc19b14",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 63 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "seed-library-nyc",
+  "id": "b458c21c-221e-48e4-b84d-85e64165ee79",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 66 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "selva-oaxaca-cocktail-bar",
+  "id": "2486441d-e5da-4146-a5c1-e56acf84d7d4",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "No.29 on North America's 50 Best Bars 2025, No.43 in 2026."
+ },
+ {
+  "slug": "service-bar-dc",
+  "id": "8a5a7b0e-597c-4cf7-a609-42397d853e4d",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best U.S. Bar Team at the 2026 Tales of the Cocktail Spirited Awards for good reason, this crew operates like a unit."
+ },
+ {
+  "slug": "shakerato",
+  "id": "c7aec067-52ea-4aab-9f77-f77d9a637000",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [],
+  "sentence": "Shakerato is the Amsterdam bar from Eric van Beek and the team behind Handshake Speakeasy, No. 2 in the World's 50 Best Bars."
+ },
+ {
+  "slug": "shelter",
+  "id": "60452dc4-8aeb-4ed7-8449-5228fffa381f",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 98 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "shinji-s",
+  "id": "dfd4cfb1-a9ea-40f6-aa0a-d3a2ae34ef64",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No.77 in North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "side-door",
+  "id": "e111ab60-1d50-45a2-90cc-ded0604a9fb4",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 57 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "sidecar",
+  "id": "1e245307-a6a8-4e8a-8ac0-22c5bb8acf81",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2022,
+   2025
+  ],
+  "sentence": "It reached No.26 on the World's 50 Best Bars in 2022 and sits at No.62 in Asia for 2025."
+ },
+ {
+  "slug": "silver-lyan-dc",
+  "id": "255b4cba-614f-444b-a8c2-dd2475ae555c",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "Ranked No.55 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "sip-guzzle",
+  "id": "21eec2c3-85dc-474e-b2a4-5b21208fb879",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 1 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "sip-guzzle",
+  "id": "21eec2c3-85dc-474e-b2a4-5b21208fb879",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [],
+  "sentence": "At No. 5 on North America's 50 Best Bars, this is the most ambitious new opening the city has produced in years."
+ },
+ {
+  "slug": "slice-of-life",
+  "id": "f20ed50d-5b79-493a-a773-08796c805655",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 90 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "sober-company",
+  "id": "ef99cbfc-321b-402f-af1a-6155dc6a0f64",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b",
+   "totc"
+  ],
+  "years": [
+   2020,
+   2021
+  ],
+  "sentence": "Its original incarnation (café, kitchen, cocktail society and the hidden Tipsy speakeasy) reached No.42 on the World's 50 Best Bars 2020 and No.5 in Asia 2021, with a Tales of the Cocktail award for Best International Restaurant Bar."
+ },
+ {
+  "slug": "soko",
+  "id": "52306b15-fac4-46e2-bbf0-98b78f76614f",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2023,
+   2026
+  ],
+  "sentence": "No.46 on Asia's 50 Best Bars 2023, still on the extended list in 2026."
+ },
+ {
+  "slug": "sora",
+  "id": "b55707dd-3915-406d-a3ea-c420bfcf38b4",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 100 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "speak-low",
+  "id": "7bdca88b-9fa3-4f3f-b24f-58fa2494be63",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2017
+  ],
+  "sentence": "Prohibition America is the theme; it reached No.2 on Asia's 50 Best Bars and No.10 in the world in 2017."
+ },
+ {
+  "slug": "spoke",
+  "id": "e2ee83f7-8db5-4fcb-84d1-5b96dfb0bda2",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2026."
+ },
+ {
+  "slug": "standby-detroit",
+  "id": "8bf0ac43-69c3-4fc7-b6a8-a59278e9637c",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "totc",
+   "jbf"
+  ],
+  "years": [
+   2017,
+   2018,
+   2020,
+   2023,
+   2024
+  ],
+  "sentence": "Its menus run as themed editions, the current one an exploration of culinary icons with each drink credited to a chef, and its own site lists James Beard semifinalist honors for Outstanding Bar Program in 2017 and 2018 and Spirited Awards regional honors in 2020, 2023 and 2024."
+ },
+ {
+  "slug": "star-bar",
+  "id": "f399175e-e901-4ae7-9703-b2973e4da912",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "The original of the STAR BAR group, it placed No.50 on Asia's 50 Best Bars in 2021."
+ },
+ {
+  "slug": "stay-gold-flamingo",
+  "id": "e6b18a99-72ca-4e7e-82f3-bb633da3d5be",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 97 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "stay-gold-flamingo",
+  "id": "e6b18a99-72ca-4e7e-82f3-bb633da3d5be",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2023
+  ],
+  "sentence": "No.32 in Asia's 50 Best Bars 2023."
+ },
+ {
+  "slug": "stir",
+  "id": "b54f5e4f-c962-4b5d-aa56-0287f71c2d90",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2024,
+   2026
+  ],
+  "sentence": "A fixture of Asia's 50 Best extended list five years running (No.58 in 2024, No.84 in 2026)."
+ },
+ {
+  "slug": "stjartilleriet",
+  "id": "2343fec2-aa86-46b2-b4fc-c8b3e90be45d",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Menu for Sweden at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "suite-115",
+  "id": "89af8a12-5803-4fbc-a752-1bcf0097d558",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 74 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "summer-experiment",
+  "id": "a942a4d7-ce8b-44cc-b42b-16218b697541",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "No.77 on Asia's 50 Best Bars 2021, and cocktails still average about four dollars."
+ },
+ {
+  "slug": "super-lyan",
+  "id": "cba33567-45d0-4c8c-ada8-2d9ec3113011",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No. 42 on Europe's 50 Best Bars 2026 and Best Bar in the Netherlands."
+ },
+ {
+  "slug": "superbueno",
+  "id": "cc4729a6-3525-4ea5-86ad-6c18016fe391",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 9 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "svanen",
+  "id": "aeeb7687-c98c-4ace-b99f-47fae52a5f9a",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Bar for Norway at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "svanen",
+  "id": "aeeb7687-c98c-4ace-b99f-47fae52a5f9a",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.32 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "swizzle-rum-bar-drinkery",
+  "id": "af10beeb-faec-45ed-a4f7-582c029e5cb0",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "Regional Top 10 Honoree at the 2025 Spirited Awards for Best U.S. Hotel Bar (East), Swizzle operates late enough to catch the post-midnight crowd and seriously enough to hold its own against daytime scrutiny."
+ },
+ {
+  "slug": "tag",
+  "id": "28b81d84-c0f6-499f-b2cb-6738c1de7c13",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "Ranked No. 39 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "taigen",
+  "id": "7adcb521-2640-41fe-af79-63b4c3671733",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Menu for Czechia at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "tallboy",
+  "id": "99bee5f6-4cb8-4aa5-a5c7-c11fd134694b",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The Spirited Awards named it a U.S. West honoree in two categories in 2026, Best U.S. Cocktail Bar and Best U.S. Bar Team."
+ },
+ {
+  "slug": "tayer-elementary",
+  "id": "aeea612e-44e1-4013-9819-639e5c1cf6c5",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 12 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "techo",
+  "id": "029f31ac-1a8f-457d-9a4b-abd4013aa92c",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "Techo is a mezcal and tequila bar on Manor Road in East Austin, in a speakeasy setting with a patio above a Tex-Mex restaurant, that the James Beard Foundation named an Outstanding Bar semifinalist in 2025."
+ },
+ {
+  "slug": "tell-camellia",
+  "id": "5154edea-0e1b-418c-a7d5-ceafde3e8783",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 81 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "tell-camellia",
+  "id": "5154edea-0e1b-418c-a7d5-ceafde3e8783",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "No.23 in Asia's 50 Best Bars 2021."
+ },
+ {
+  "slug": "the-aubrey",
+  "id": "f201e542-2857-4427-a6f6-b0d3f42a4a8b",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2023
+  ],
+  "sentence": "No.17 in Asia's 50 Best Bars 2023."
+ },
+ {
+  "slug": "the-bar-at-the-ritz-carlton-tokyo",
+  "id": "e7b36315-e0a8-49b9-843d-adbf1d184990",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 75 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-bar-at-willett",
+  "id": "7b6be8d8-d823-4820-888b-e152efa07443",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2025."
+ },
+ {
+  "slug": "the-bar-in-front-of-the-bar",
+  "id": "2d57cc01-a39e-463c-b499-2c8f05d9abe2",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "'Streets are the new family.' It sits at No. 47 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "the-bellwood",
+  "id": "2c545000-b631-4057-bbdd-98669ada48ec",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 79 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-bombay-canteen",
+  "id": "e77563e4-919e-404c-b75c-6070ea73ac59",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.69 on Asia's 50 Best Bars 2025."
+ },
+ {
+  "slug": "the-butterscotch-den",
+  "id": "aeb4227c-d033-43e4-b46e-babcfe9a2c91",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "Happy hour runs twice a day, a jazz trio plays Tuesdays and Thursdays, and the Spirited Awards named it a U.S. West honoree for Best U.S. Restaurant Bar in both 2025 and 2026."
+ },
+ {
+  "slug": "the-cambridge-public-house",
+  "id": "ad81f003-2e4f-46f2-af2a-da888a091d79",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 7 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-cloakroom",
+  "id": "61817eb2-7a49-4b86-b43b-635b9f984a07",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "Named number one bar in Canada in 2026 and ranked on North America's 50 Best Bars."
+ },
+ {
+  "slug": "the-clumsies",
+  "id": "197c2716-e845-4f42-a9b3-80e00c7ec2ed",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2020,
+   2026
+  ],
+  "sentence": "Once No.3 in the world (2020), No.30 on Europe's 50 Best 2026; ask about The Room, the hidden fireplace-and-billiards space for six to ten."
+ },
+ {
+  "slug": "the-cocktail-club",
+  "id": "d140fba3-3f05-4752-92d2-e45f9af49b9b",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2021,
+   2024,
+   2023
+  ],
+  "sentence": "Opened in 2021 above a bistro on Senopati, The Cocktail Club was named The Best Bar in Indonesia 2024 (No.12 on Asia's 50 Best) and won the Siete Misterios Best Cocktail Menu Award 2023."
+ },
+ {
+  "slug": "the-coldroom",
+  "id": "ea790137-9c68-44c2-937d-27767d5e69f3",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 97 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-court",
+  "id": "439ca460-2d78-4ff4-83b9-4a63368ae3d2",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2022
+  ],
+  "sentence": "The format is a curated tasting journey with a two-cocktail minimum per guest, and it reached the World's 50 Best Bars extended list in 2022 (No.77)."
+ },
+ {
+  "slug": "the-elephant-room",
+  "id": "b08e7a6d-8503-47bc-b804-73dc1ae22416",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "Named among Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-enigma-mansion",
+  "id": "2f16328a-4d6a-4c54-8b9f-bd99fd90c839",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No.55 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-gin-room",
+  "id": "9b8e9534-2b8f-47f7-8d0e-d1810ae17188",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2023,
+   2025
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2023 and Bahrami a semifinalist for Outstanding Professional in Beverage Service in 2025, and she runs The Gin World event series from here."
+ },
+ {
+  "slug": "the-golden-tooth",
+  "id": "b46f7e55-9e42-436c-8aa1-b8bade9c6879",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The menu runs on flavor memory rather than technique, outside food is welcome (cup noodles, fried crickets offered), and the unhurried approach carried it to No.40 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-han-jia",
+  "id": "c1914408-764f-4909-916b-54c177b4951f",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 41 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-keefer-bar",
+  "id": "9e33afc6-a024-43fd-89d8-e6b733276a4d",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 7 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-mountaineering-club",
+  "id": "24fd1271-f06e-4587-b7f7-70d31a211230",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "The Spirited Awards named it a U.S. West honoree for Best U.S. Hotel Bar in 2025 and 2026."
+ },
+ {
+  "slug": "the-opposites",
+  "id": "c6bc28e2-d6cf-4de3-9bb6-9fc0ec12ff63",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 54 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-pontiac",
+  "id": "6b492e85-577a-4c6d-aafd-64dab146315a",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2022
+  ],
+  "sentence": "The bar ranked No. 33 on Asia's 50 Best Bars in 2022."
+ },
+ {
+  "slug": "the-portrait-bar",
+  "id": "b8b64ed6-42f9-47c8-a476-8745d9b30f0d",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 71 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-public-house",
+  "id": "7111890d-89e0-4fcc-8994-9af442d3f261",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 92 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-public-house",
+  "id": "7111890d-89e0-4fcc-8994-9af442d3f261",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.40 on Asia's 50 Best Bars 2025."
+ },
+ {
+  "slug": "the-savory-project",
+  "id": "a9428a39-3dbb-4cf1-8cb0-0959b17c3168",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "a50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "It sits at No. 86 on the World's 50 Best Bars 2025 and No. 60 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-snug",
+  "id": "e538a026-56c6-4718-8c9e-409d80536762",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It opened to serve affordable, expertly made drinks, and the Spirited Awards named it a U.S. West honoree for Best U.S. Cocktail Bar in 2026."
+ },
+ {
+  "slug": "the-spirits-library",
+  "id": "eaed9f63-2766-402f-9e7b-bce5c935df35",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 98 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "the-st-regis-bar-jakarta",
+  "id": "b7e6a060-505c-4b8b-ade2-a1194cfa4b11",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.22 on Asia's 50 Best Bars 2025."
+ },
+ {
+  "slug": "three-sheets-soho",
+  "id": "32693992-23bc-48c0-a892-72e203591a72",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 41 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "three-sheets-soho",
+  "id": "32693992-23bc-48c0-a892-72e203591a72",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It was a Top 4 finalist for Best New International Cocktail Bar at the 2025 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "three-x-co",
+  "id": "0a32d499-818f-453b-9c56-bcda7f4e67be",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025,
+   2026
+  ],
+  "sentence": "No.15 on Asia's 50 Best Bars 2025, No.32 in 2026."
+ },
+ {
+  "slug": "thunderbolt",
+  "id": "1d074154-0215-4166-8437-97223fee9de6",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The latest lists place it at No. 92 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "tiao",
+  "id": "4ab19dda-96cd-46cc-b29d-8c3d6b004a05",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 50 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "ticonderoga-club",
+  "id": "422cfb1c-cb6e-4d02-892e-b972e08fb4df",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 85 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "tikehau-lounge",
+  "id": "2fb3104b-14df-4f25-aca9-9d92d5fd4eab",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The 1944 Mai Tai is made with Kuleana HuiHui, Appleton 8 and Worthy Park 109 over macadamia orgeat, and the Spirited Awards named it a 2026 U.S. West honoree in two categories, Best U.S. Cocktail Bar and Best U.S. Bar Team."
+ },
+ {
+  "slug": "tjoget",
+  "id": "119ae25f-ba43-4b18-a8c5-60059a1a7e28",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It currently stands at No. 76 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "tjoget",
+  "id": "119ae25f-ba43-4b18-a8c5-60059a1a7e28",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The Best Bar in Sweden 2026 and No.37 on Europe's 50 Best, after seven straight years on the world list."
+ },
+ {
+  "slug": "tlecan",
+  "id": "5d32205d-8446-447c-9d0e-dc6bcae3d4fc",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won World's Best Spirits Selection at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "tlecan",
+  "id": "5d32205d-8446-447c-9d0e-dc6bcae3d4fc",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b",
+   "na50b"
+  ],
+  "years": [],
+  "sentence": "At No. 3 on North America's 50 Best Bars and No. 20 on the World's 50 Best Bars, Tlecān burns with conviction."
+ },
+ {
+  "slug": "to-infinity-beyond",
+  "id": "4aea4f2d-4ee2-4b7e-9e3c-8ad036218019",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "No.35 on Asia's 50 Best Bars 2026; the dumplings are, of course, Mars Spicy."
+ },
+ {
+  "slug": "tokyo-confidential",
+  "id": "b463a3a7-3dbf-4329-8a85-d3d49dfad846",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [],
+  "sentence": "Ranked No. 70 on Asia's 50 Best extended list, Tokyo Confidential channels Graham's editorial eye into cocktail curation: every drink tells a story, every ingredient carries context."
+ },
+ {
+  "slug": "tres-monos",
+  "id": "7f85c1e7-ed0c-473b-a8e4-255dca05c21e",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.10 on the World's 50 Best Bars 2025 and Best Bar in South America."
+ },
+ {
+  "slug": "trick-dog",
+  "id": "b68e8c68-5be9-4e5c-995d-a0f8adfac470",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 100 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "trillby-chadwick",
+  "id": "3271081a-2892-4193-9559-177d44d3e152",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best Cocktail Menu for Finland at the 2026 Bartenders' Choice Awards."
+ },
+ {
+  "slug": "true-laurel",
+  "id": "ddf2b3dc-d9d5-4ac0-a7d9-90b33aa7dc67",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 14 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "true-laurel",
+  "id": "ddf2b3dc-d9d5-4ac0-a7d9-90b33aa7dc67",
+  "pos": "second-last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It was a Top 4 finalist for Best U.S. Cocktail Bar at the 2025 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "under-lab",
+  "id": "398559f4-1cf1-4af7-9dd0-df86677cfc72",
+  "pos": "last",
+  "kind": "compound",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "No.73 on Asia's 50 Best Bars 2025 extended list; bartender Liu Guan-lin is a World Class Taiwan champion."
+ },
+ {
+  "slug": "union-trading-company",
+  "id": "68cee805-d727-4448-9c8a-989035a12ea9",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2021
+  ],
+  "sentence": "It reached No.31 on Asia's 50 Best Bars and No.47 in the world in 2021."
+ },
+ {
+  "slug": "urania-bar",
+  "id": "29f92e12-4cc1-4256-8173-4284b52bb91b",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar was added to the World's 50 Best Discovery list in July 2026."
+ },
+ {
+  "slug": "vandell",
+  "id": "6ae5bbc0-31cb-4dad-a42b-c2b5600fd4ad",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best New U.S. Cocktail Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "vesper",
+  "id": "59d3a289-9a1f-4844-8b1c-a98872869f9c",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It currently stands at No. 56 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "viceversa",
+  "id": "dfca7b9c-9bc9-4903-b0d8-0c711a638ab8",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It won Best U.S. Hotel Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "victor-audio-bar-buenos-aires",
+  "id": "f904b014-76fb-4c8b-ba1e-7be131ab01be",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "It currently stands at No. 87 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "victory-copenhagen",
+  "id": "518b2978-1e23-48b8-8adf-06f937f0e110",
+  "pos": "second-last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "bca"
+  ],
+  "years": [
+   2025,
+   2024,
+   2026
+  ],
+  "sentence": "It operates its own distillery, Mælkevejen, producing house akvavit, gin and vodka, and won Best New Cocktail Bar Denmark at the 2025 Bartenders' Choice Awards within its first year of opening in 2024, followed by Best Cocktail Bar for Denmark at the 2026 edition."
+ },
+ {
+  "slug": "virtu",
+  "id": "0ae9b8dc-c516-43fb-b482-6ee6d7f92451",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It was a Top 4 finalist for Best International Hotel Bar at the 2026 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "waltz",
+  "id": "8c817f8e-aa65-4a56-9e1b-4f11f46818e8",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "e50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 23 on Europe's 50 Best Bars 2026."
+ },
+ {
+  "slug": "watch-hill-proper",
+  "id": "6e7bc9a1-ba4c-48b7-9b37-b3cac3944be5",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It serves no beer, only bourbon, American whiskey, cocktails and wine, and the James Beard Foundation named it an Outstanding Bar semifinalist in 2026."
+ },
+ {
+  "slug": "water-witch",
+  "id": "365f620a-4ebe-4f1c-b2da-18e5d147e9a9",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The James Beard Foundation named it one of five finalists for Outstanding Bar in 2025."
+ },
+ {
+  "slug": "wax-on",
+  "id": "172aa1ff-bd27-4094-b605-48928f4093c1",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "The bar holds No. 57 on the World's 50 Best Bars 2025."
+ },
+ {
+  "slug": "wild-child-wines",
+  "id": "196367ea-8900-49b6-8d72-d54a78eceb21",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The James Beard Foundation named it an Outstanding Bar semifinalist in 2026."
+ },
+ {
+  "slug": "wing-lei-bar",
+  "id": "7df42b65-cad4-4518-b884-d0cbfd951d92",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": false,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "Home to the Asia's 50 Best Bars 2025 ceremony, the bar is helmed by Head Mixologist Mark Lloyd."
+ },
+ {
+  "slug": "wolf-tree",
+  "id": "4e2bce44-c32d-4495-a95d-a5be246f8d0e",
+  "pos": "last",
+  "kind": "compound",
+  "covered": true,
+  "orgs": [
+   "jbf"
+  ],
+  "years": [
+   2025
+  ],
+  "sentence": "A dollar from every Friend of a Friend, a rum blend with miso syrup and lime, goes to The Haven, and the James Beard Foundation named it one of five finalists for Outstanding Bar in 2025."
+ },
+ {
+  "slug": "yacht-club-denver",
+  "id": "285165ed-c6f0-459d-9f03-803b1ed25ef2",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": true,
+  "orgs": [
+   "totc"
+  ],
+  "years": [
+   2024
+  ],
+  "sentence": "It won Best U.S. Cocktail Bar at the 2024 Tales of the Cocktail Spirited Awards."
+ },
+ {
+  "slug": "yakoboku",
+  "id": "ee1408fc-14c2-43ad-b34a-90c725d45cfa",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "a50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "The bar holds No. 59 on Asia's 50 Best Bars 2026."
+ },
+ {
+  "slug": "zapote-bar-playa-del-carmen",
+  "id": "8058f7a6-bcd8-40c5-a283-5a0e49562f04",
+  "pos": "last",
+  "kind": "mixed-lead",
+  "covered": true,
+  "orgs": [
+   "na50b"
+  ],
+  "years": [
+   2026
+  ],
+  "sentence": "It sits at No. 95 on North America's 50 Best Bars 2026."
+ },
+ {
+  "slug": "zuma",
+  "id": "df3ac4c8-0797-4d4f-9006-47c5ce7b3317",
+  "pos": "last",
+  "kind": "accolade-only",
+  "covered": false,
+  "orgs": [
+   "w50b"
+  ],
+  "years": [
+   2020,
+   2019,
+   2022
+  ],
+  "sentence": "It was named the Best Bar in the Middle East and Africa in 2020 and ranked as high as No. 17 on The World's 50 Best Bars across a run from 2019 to 2022."
+ }
+]

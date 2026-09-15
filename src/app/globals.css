@@ -6256,19 +6256,45 @@ textarea.form-input {
 }
 
 /* Info section */
+/* The profile info card: one grid, children in reading order. Single
+   column below 1100px (the actions block sits under the tiles as a wrapping
+   row); 60/40 text/actions at 1100px and up, the actions lifted into the
+   right column. The old two-column flex gave the right column half the
+   card for one button at 900 to 1100px and left the name wrapping to three
+   lines (Roman, 2026-09-15). */
 .bar-v2-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   padding: 2rem 2.5rem;
   background: var(--bg-card);
   border-radius: var(--radius);
   margin-top: var(--gap);
   border: 1px solid rgba(0,0,0,0.06);
 }
+.bar-v2-info > * {
+  grid-column: 1;
+  min-width: 0;
+}
+/* bars-preview still wraps its text in .bar-v2-info-main. */
 .bar-v2-info-main {
-  flex: 1;
+  min-width: 0;
+}
+@media (min-width: 1100px) {
+  .bar-v2-info {
+    grid-template-columns: 3fr 2fr;
+    column-gap: 2.5rem;
+    align-items: start;
+  }
+  .bar-v2-info > .bar-v2-actions {
+    grid-column: 2;
+    grid-row: 1 / span 6;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0;
+  }
+  .bar-v2-info > .bar-v2-actions .bar-v2-btn {
+    justify-content: center;
+  }
 }
 .bar-v2-info h1 {
   font-size: 2rem;
@@ -6312,12 +6338,32 @@ textarea.form-input {
   color: #1a1a1a;
 }
 
-/* Action buttons */
+/* Action buttons: a wrapping row under the tiles below 1100px, a stacked
+   column in the right 40% above. The ownership note or claim prompt takes
+   the full width under the buttons in either layout. */
 .bar-v2-actions {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
-  flex-shrink: 0;
+  margin: 0.25rem 0 1.25rem;
+}
+.bar-v2-actions .bar-v2-owner-note {
+  flex-basis: 100%;
+  align-self: auto;
+  margin-top: 2px;
+}
+@media (max-width: 640px) {
+  /* Two per row at most. border-box, because the site is content-box and
+     the padding would otherwise push a 50% basis past the half. */
+  .bar-v2-actions .bar-v2-btn {
+    box-sizing: border-box;
+    flex: 1 1 calc(50% - 5px);
+    max-width: calc(50% - 5px);
+    justify-content: center;
+    min-width: 0;
+    white-space: normal;
+    text-align: center;
+  }
 }
 .bar-v2-btn {
   display: inline-flex;
@@ -6615,13 +6661,7 @@ textarea.form-input {
     height: 280px;
   }
   .bar-v2-info {
-    flex-direction: column;
-    gap: 1.5rem;
     padding: 1.5rem 1.25rem;
-  }
-  .bar-v2-actions {
-    flex-direction: row;
-    flex-wrap: wrap;
   }
   .bar-v2-nearby-grid {
     grid-template-columns: 1fr;
