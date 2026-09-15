@@ -1040,3 +1040,45 @@ Running log of shipped work items and their merge commits. Newest first.
   reading the whole directory in one request. All paged. The sitemap grew
   from 1,755 to 2,006 URLs as a result: city pages past the cap had been
   missing too. Rule and audit recorded in claude/data-checks.md.
+
+## 2026-09-14 - US metro wave 1: 20 inserted (Chicago 6, New Orleans 5, Austin 2, Denver 3, Nashville 2, Dallas 2)
+- Source: "Claude outputs/us-metro-wave1-verified.md", 21 blocks, all 2026
+  Spirited Awards regional honorees verified on each venue's own site.
+  Diffed first by slug and by folded name plus city: 20 clear, drinkwell
+  already present (105 words) and left alone as the guard had it.
+- Roman's three decisions applied: the-roost-bar inserted as "The Roost
+  Bar at Brennan's" with the description as written; the-elysian-bar
+  admitted; bar-tre-dita admitted as Cocktail Bar with Hotel Bar subtype.
+- Inserted one by one through the admin create path (geocodes on insert,
+  revalidates). All 20 geocoded; every one within 6.3 km of its city's
+  existing centroid (Dallas is a new city, its two rows sit 0.3 km apart
+  downtown). All 20 serve 200. Address check: 0 flags.
+- ACCOLADES: every row carries Tales of the Cocktail Spirited Awards 2026
+  as a nominee with the parenthetical title, the same treatment as the
+  Phoenix set (lady-jane carries two: Best U.S. Cocktail Bar and Best U.S.
+  Bar Team). The file's note on lady-jane checked out against the
+  official JBF page (jamesbeard.org/stories/james-beard-award-
+  semifinalists-2026 lists "Lady Jane, Denver, CO" under Outstanding
+  Bar): jbf nominee, title "Outstanding Bar (Semifinalist)", added. The
+  chandelier-bar note (earlier Spirited years) was NOT added; the file
+  says verify first and that has not been done.
+- OUTREACH FLAGS stored where the send scripts see them: new
+  outreach/parked.txt, slug-keyed with the reason inline, read by
+  send-upsell.mjs and send-photo-nudge.mjs before the email is looked at.
+  Parked: the-sazerac-bar, the-cruise-room, catbird, bar-tre-dita. Keeps
+  recorded in the same file as comments: friends-of-friends,
+  sportsmans-club (Heisler, venue-specific addresses on own domains),
+  the-elysian-bar, midnight-rambler. Dry runs of both scripts print
+  PARKED for a parked slug and DRY RUN for a normal one.
+- ADDRESS FLAGS (third-party address, not first-party confirmed):
+  friends-of-friends 2001 W Grand Ave (operator confirms West Town only);
+  moneygun 660 W Lake St (own map link points to matching coordinates);
+  sportsmans-club 948 N Western Ave (own site prints it without the N).
+  The bars row has NO notes column, so these cannot yet be recorded on
+  the row itself. scripts/admin-notes-migration.sql adds `admin_notes
+  text` for Roman to run in the SQL editor; once it lands the three flags
+  go on the rows and owner-fields.ts must forbid the column to owners.
+- COUNTS after the wave: active rows 1,267; sitemap-bars.xml profiles
+  1,267 (cache-busted read; the CDN copy refreshes within the hour).
+- The 103 held article-name matches were sent to Roman as
+  claude/article-mentions-held.md for the hand check.

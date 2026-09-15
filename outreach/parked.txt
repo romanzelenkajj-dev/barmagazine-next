@@ -1,0 +1,17 @@
+# Bars parked from listing outreach: a decision to NOT send for now, with the
+# reason. One slug per line, '#' comments allowed. Both send scripts skip
+# these before anything else, the same as optout.txt, but this list is
+# editorial and can change; optout.txt is a promise to the recipient and
+# cannot. Remove a slug only with a written reason in the changelog.
+#
+# 2026-09-14, us-metro wave 1 (Claude outputs/us-metro-wave1-verified.md):
+the-sazerac-bar        # Hilton/Waldorf chain, only departmental inboxes
+the-cruise-room        # only a hotel general reservations inbox
+catbird                # form only; the only addresses found are a hotel staff member and a PR agency
+bar-tre-dita           # form only; operator Lettuce Entertain You is in the relationship parking lot
+# KEEPS recorded for the record (not parked): friends-of-friends and
+# sportsmans-club (Heisler Hospitality, but venue-specific addresses on their
+# own domains, per the CH Projects / Alt Strategies precedent);
+# the-elysian-bar (single boutique property inbox on the bar's own listed
+# domain, DUKES/Widder/Sanders precedent; Roman's eyeball at dry-run);
+# midnight-rambler (info@ in the venue's own JSON-LD, Bitter & Twisted precedent).

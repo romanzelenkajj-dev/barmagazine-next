@@ -81,6 +81,12 @@ const OPTED_OUT = new Set(
   readFileSync(resolve(ROOT, 'outreach/optout.txt'), 'utf8')
     .split('\n').map(l => l.trim().toLowerCase()).filter(l => l && !l.startsWith('#'))
 );
+// Editorially parked bars (outreach/parked.txt, slug-keyed, reasons inline).
+// Checked before the email, same as in send-upsell.mjs.
+const PARKED = new Set(
+  (existsSync(resolve(ROOT, 'outreach/parked.txt')) ? readFileSync(resolve(ROOT, 'outreach/parked.txt'), 'utf8') : '')
+    .split('\n').map(l => l.replace(/#.*$/, '').trim().toLowerCase()).filter(Boolean)
+);
 
 const FROM = 'Roman Zelenka <zelenka@barmagazine.com>';
 const SUBJ = (name) => `A photo for ${name}'s BarMagazine profile`;
@@ -129,6 +135,7 @@ for (const slug of slugs) {
   });
   const bar = (await res.json())[0];
   if (!bar) { console.error(`SKIP ${slug}: not found/active`); continue; }
+  if (PARKED.has(slug.toLowerCase())) { console.log(`PARKED ${slug}: editorial decision in outreach/parked.txt, not sent`); continue; }
   if (OPTED_OUT.has(String(bar.email || '').trim().toLowerCase())) {
     console.log(`EXCLUDED ${slug}: opted out (no bypass)`); continue;
   }
