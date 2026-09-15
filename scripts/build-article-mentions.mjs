@@ -125,8 +125,28 @@ async function main() {
     }
   }
 
+  // Names shared by two or more active rows (Zuma, Paradiso, Employees
+  // Only, Attaboy, Salmon Guru). For these the city must sit in the SAME
+  // SENTENCE as the name, not merely somewhere in the article: a ranking
+  // piece names exactly one venue, and "Madrid" appearing three paragraphs
+  // later is how the Dubai outpost inherited the Madrid original's
+  // placings (Roman, 2026-09-15).
+  const nameCount = new Map();
+  const siblingCities = new Map(); // folded name -> Set(folded city) of the rows sharing it
+  for (const b of allBars) {
+    const n = fold(b.name || '');
+    nameCount.set(n, (nameCount.get(n) || 0) + 1);
+    (siblingCities.get(n) || siblingCities.set(n, new Set()).get(n)).add(fold(b.city || ''));
+  }
+  const sentencesOf = new Map(); // article slug -> folded sentences
+  const sentences = t => {
+    if (!sentencesOf.has(t.slug)) sentencesOf.set(t.slug, t.text.split(/(?<=[.!?])\s+|\s{2,}|\|/).map(s => ' ' + s.trim() + ' '));
+    return sentencesOf.get(t.slug);
+  };
+
   const byBar = {}; // bar slug -> [{slug,title}]
   const held = [];  // {bar, name, city, articles:[]}
+  const multiRowDropped = []; // audit: pairs the same-sentence rule removed
   for (const b of allBars) {
     if (!b.name || b.name.length < 3) continue;
     const name = fold(b.name);
@@ -135,7 +155,53 @@ async function main() {
     // ("Bar Leone" inside "Bar Leone Shanghai") is not a mention of this bar.
     const re = new RegExp(`(^|[^a-z0-9])${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-z0-9]|$)`);
     const excl = excluded.get(b.slug) || new Set();
-    const auto = isGeneric(b.name) ? [] : texts.filter(t => re.test(t.text) && (!city || t.text.includes(city)) && !excl.has(t.slug));
+    const multiRow = (nameCount.get(name) || 0) > 1;
+    const nameRe = new RegExp(re.source, 'g');
+    const cityOk = t => {
+      if (!city) return true;
+      if (!multiRow) return t.text.includes(city);
+      // The sibling rows' cities COMPETE for the mention, and the nearest
+      // one wins. Three steps:
+      //   1. The title decides when it can: a city top ten is about that
+      //      city, so "Top 10 Bars in Dubai" belongs to the Dubai outpost
+      //      and never to the Madrid original, whatever the body says.
+      //   2. Otherwise the first sibling city AFTER the name (within 100
+      //      characters) decides: lists print "Salmon Guru, Madrid 64" and
+      //      "Salmon Guru – Madrid", and in a dense list the entry BEFORE
+      //      ends with its own city right next to our name, so "nearest in
+      //      either direction" read "…Zuma – Dubai Salmon Guru – Madrid" as
+      //      Dubai. Only when nothing follows does the nearest city before
+      //      the name count ("Direct from Madrid, Salmon Guru…").
+      //   3. If no sibling city appears near any occurrence, fall back to
+      //      the same-sentence test.
+      const sibs = [...siblingCities.get(name)].filter(Boolean);
+      const title = fold(t.title);
+      if (title.includes(city)) return true;
+      if (sibs.some(c => c !== city && title.includes(c))) return false;
+      let sawSibling = false;
+      for (const m of t.text.matchAll(nameRe)) {
+        const end = m.index + m[0].length;
+        const after = t.text.slice(end, end + 100);
+        let first = null;
+        for (const c of sibs) {
+          const i = after.indexOf(c);
+          if (i !== -1 && (!first || i < first.i)) first = { c, i };
+        }
+        if (!first) {
+          const before = t.text.slice(Math.max(0, m.index - 100), m.index);
+          for (const c of sibs) {
+            const i = before.lastIndexOf(c);
+            if (i !== -1 && (!first || i > first.i)) first = { c, i };
+          }
+        }
+        if (first) { sawSibling = true; if (first.c === city) return true; }
+      }
+      if (sawSibling) return false;
+      return sentences(t).some(s => re.test(s) && s.includes(city));
+    };
+    const loose = isGeneric(b.name) ? [] : texts.filter(t => re.test(t.text) && (!city || t.text.includes(city)) && !excl.has(t.slug));
+    const auto = loose.filter(cityOk);
+    if (multiRow) for (const t of loose) if (!auto.includes(t)) multiRowDropped.push(`${b.slug} -> ${t.slug}`);
     const conf = confirmed.get(b.slug) || new Set();
     const chosen = new Map(auto.map(t => [t.slug, t]));
     for (const art of conf) chosen.set(art, bySlug[art]);
@@ -163,6 +229,8 @@ async function main() {
   }
   for (const k of Object.keys(byArticle)) byArticle[k].sort((x, y) => x.name.localeCompare(y.name));
   if (badPairs.length) console.warn(`[article-mentions] ${badPairs.length} confirmed pair(s) ignored:\n  ` + badPairs.join('\n  '));
+  if (multiRowDropped.length) console.log(`[article-mentions] same-sentence rule dropped ${multiRowDropped.length} multi-row pair(s):\n  ` + multiRowDropped.join('\n  '));
+  else console.log('[article-mentions] same-sentence rule dropped nothing');
 
   const payload = {
     generatedAt: new Date().toISOString(),

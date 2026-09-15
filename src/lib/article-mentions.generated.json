@@ -1,12 +1,12 @@
 {
- "generatedAt": "2026-09-15T03:54:40.454Z",
+ "generatedAt": "2026-09-15T04:57:50.053Z",
  "rule": "full bar name, whole-word, article text also names the bar's city; generic names held",
  "counts": {
-  "bars": 372,
+  "bars": 369,
   "articles": 181,
-  "links": 1023,
+  "links": 1006,
   "confirmedPairs": 276,
-  "articleSideSkippedAlreadyLinked": 87,
+  "articleSideSkippedAlreadyLinked": 86,
   "held": 24
  },
  "byBar": {
@@ -514,14 +514,6 @@
     "title": "Asia’s 50 Best Bars 2025 Names Bar Leone No. 1 Again"
    },
    {
-    "slug": "bar-leone-expands-with-second-location-in-shanghai",
-    "title": "Bar Leone Expands with Second Location in Shanghai"
-   },
-   {
-    "slug": "bar-leone-shanghai-opens-this-november",
-    "title": "Bar Leone Shanghai Opens This November"
-   },
-   {
     "slug": "bar-world-100-2025-full-list-of-global-influencers",
     "title": "Bar World 100 2025: Full List of Global Influencers"
    },
@@ -548,10 +540,6 @@
    {
     "slug": "medellin-cocktail-week-2026",
     "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars"
-   },
-   {
-    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
-    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026"
    },
    {
     "slug": "montana-bar-to-open-in-hong-kong-in-summer-2025",
@@ -1716,16 +1704,6 @@
     "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
    }
   ],
-  "employees-only-singapore": [
-   {
-    "slug": "the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100",
-    "title": "The World’s 50 Best Bars 2024 Reveals Bars Ranked 51-100"
-   },
-   {
-    "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
-    "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
-   }
-  ],
   "epic": [
    {
     "slug": "the-opposites-celebrates-one-year-in-hong-kong",
@@ -1804,12 +1782,6 @@
    {
     "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
     "title": "World’s 50 Best Bars Reveals 51–100 List for 2025"
-   }
-  ],
-  "floreria-atlantico-dc": [
-   {
-    "slug": "bar-world-100-2025-full-list-of-global-influencers",
-    "title": "Bar World 100 2025: Full List of Global Influencers"
    }
   ],
   "flying-dutchmen-cocktails": [
@@ -3494,38 +3466,8 @@
   ],
   "salmon-guru-dubai": [
    {
-    "slug": "bar-world-100-2025-full-list-of-global-influencers",
-    "title": "Bar World 100 2025: Full List of Global Influencers"
-   },
-   {
-    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
-    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
-   },
-   {
     "slug": "top-10-bars-in-dubai-2025",
     "title": "Top 10 Bars in Dubai 2025"
-   },
-   {
-    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
-    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
-   }
-  ],
-  "salmon-guru-milan": [
-   {
-    "slug": "bar-world-100-2025-full-list-of-global-influencers",
-    "title": "Bar World 100 2025: Full List of Global Influencers"
-   },
-   {
-    "slug": "handshake-speakeasy-no-1-at-worlds-50-best-bars-2024",
-    "title": "Handshake Speakeasy No. 1 at World’s 50 Best Bars 2024"
-   },
-   {
-    "slug": "europes-50-best-bars-2026-line-athens-number-one",
-    "title": "Line in Athens Tops Europe s 50 Best Bars 2026 List"
-   },
-   {
-    "slug": "worlds-50-best-bars-2025-bar-leone-tops-the-list",
-    "title": "World’s 50 Best Bars 2025: Bar Leone Tops the List"
    }
   ],
   "sastrer-a-martinez": [
@@ -3622,20 +3564,12 @@
   ],
   "seed-library": [
    {
-    "slug": "mr-lyan-brings-seed-library-to-new-york-this-fall",
-    "title": "Mr Lyan Brings Seed Library to New York This Fall"
-   },
-   {
     "slug": "seed-library-nyc-new-cocktail-menu-june-2026",
     "title": "Seed Library NYC Unveils New Cocktail Menu June 2026"
    },
    {
     "slug": "top-10-bars-in-london-2026",
     "title": "Top 10 Bars in London 2026"
-   },
-   {
-    "slug": "top-10-bars-in-new-york-2026",
-    "title": "Top 10 Bars in New York 2026"
    },
    {
     "slug": "top-10-nominees-for-the-2024-spirited-awards",
@@ -3656,16 +3590,8 @@
     "title": "Seed Library NYC Unveils New Cocktail Menu June 2026"
    },
    {
-    "slug": "top-10-bars-in-london-2026",
-    "title": "Top 10 Bars in London 2026"
-   },
-   {
     "slug": "top-10-bars-in-new-york-2026",
     "title": "Top 10 Bars in New York 2026"
-   },
-   {
-    "slug": "top-10-nominees-for-the-2024-spirited-awards",
-    "title": "Top 10 Nominees for the 2024 Spirited Awards"
    }
   ],
   "sentaku-izakaya": [
@@ -5087,16 +5013,6 @@
     "city": "Madrid"
    },
    {
-    "slug": "salmon-guru-dubai",
-    "name": "Salmon Guru",
-    "city": "Dubai"
-   },
-   {
-    "slug": "salmon-guru-milan",
-    "name": "Salmon Guru",
-    "city": "Milan"
-   },
-   {
     "slug": "scarfes-bar",
     "name": "Scarfes Bar",
     "city": "London"
@@ -5307,11 +5223,6 @@
     "slug": "salmon-guru",
     "name": "Salmon Guru",
     "city": "Madrid"
-   },
-   {
-    "slug": "salmon-guru-milan",
-    "name": "Salmon Guru",
-    "city": "Milan"
    },
    {
     "slug": "scarfes-bar",
@@ -5575,16 +5486,6 @@
     "city": "Madrid"
    },
    {
-    "slug": "salmon-guru-dubai",
-    "name": "Salmon Guru",
-    "city": "Dubai"
-   },
-   {
-    "slug": "salmon-guru-milan",
-    "name": "Salmon Guru",
-    "city": "Milan"
-   },
-   {
     "slug": "sastrer-a-martinez",
     "name": "Sastrería Martinez",
     "city": "Lima"
@@ -5815,11 +5716,6 @@
     "city": "New York"
    },
    {
-    "slug": "employees-only-singapore",
-    "name": "Employees Only",
-    "city": "Singapore"
-   },
-   {
     "slug": "freni-e-frizioni",
     "name": "Freni e Frizioni",
     "city": "Rome"
@@ -6030,11 +5926,6 @@
     "slug": "employees-only",
     "name": "Employees Only",
     "city": "New York"
-   },
-   {
-    "slug": "employees-only-singapore",
-    "name": "Employees Only",
-    "city": "Singapore"
    },
    {
     "slug": "eximia",
@@ -6924,11 +6815,6 @@
     "city": "London"
    },
    {
-    "slug": "seed-library-nyc",
-    "name": "Seed Library",
-    "city": "New York"
-   },
-   {
     "slug": "sexy-fish",
     "name": "Sexy Fish",
     "city": "London"
@@ -7148,11 +7034,6 @@
     "city": "Buenos Aires"
    },
    {
-    "slug": "floreria-atlantico-dc",
-    "name": "Florería Atlántico",
-    "city": "Washington DC"
-   },
-   {
     "slug": "handshake-speakeasy",
     "name": "Handshake Speakeasy",
     "city": "Mexico City"
@@ -7241,16 +7122,6 @@
     "slug": "salmon-guru",
     "name": "Salmon Guru",
     "city": "Madrid"
-   },
-   {
-    "slug": "salmon-guru-dubai",
-    "name": "Salmon Guru",
-    "city": "Dubai"
-   },
-   {
-    "slug": "salmon-guru-milan",
-    "name": "Salmon Guru",
-    "city": "Milan"
    },
    {
     "slug": "schmuck",
@@ -7533,11 +7404,6 @@
     "slug": "seed-library",
     "name": "Seed Library",
     "city": "London"
-   },
-   {
-    "slug": "seed-library-nyc",
-    "name": "Seed Library",
-    "city": "New York"
    },
    {
     "slug": "three-sheets-soho",
@@ -8009,30 +7875,6 @@
     "city": "Seoul"
    }
   ],
-  "bar-leone-expands-with-second-location-in-shanghai": [
-   {
-    "slug": "bar-leone",
-    "name": "Bar Leone",
-    "city": "Hong Kong"
-   },
-   {
-    "slug": "bar-leone-shanghai",
-    "name": "Bar Leone",
-    "city": "Shanghai"
-   }
-  ],
-  "bar-leone-shanghai-opens-this-november": [
-   {
-    "slug": "bar-leone",
-    "name": "Bar Leone",
-    "city": "Hong Kong"
-   },
-   {
-    "slug": "bar-leone-shanghai",
-    "name": "Bar Leone",
-    "city": "Shanghai"
-   }
-  ],
   "best-bars-in-southeast-asia": [
    {
     "slug": "bar-leone",
@@ -8269,6 +8111,20 @@
     "slug": "side-hustle",
     "name": "Side Hustle",
     "city": "London"
+   }
+  ],
+  "bar-leone-expands-with-second-location-in-shanghai": [
+   {
+    "slug": "bar-leone-shanghai",
+    "name": "Bar Leone",
+    "city": "Shanghai"
+   }
+  ],
+  "bar-leone-shanghai-opens-this-november": [
+   {
+    "slug": "bar-leone-shanghai",
+    "name": "Bar Leone",
+    "city": "Shanghai"
    }
   ],
   "negroni-week-2026-asia-pacific-guest-shifts": [
@@ -9418,11 +9274,6 @@
     "city": "London"
    },
    {
-    "slug": "seed-library",
-    "name": "Seed Library",
-    "city": "London"
-   },
-   {
     "slug": "two-schmucks",
     "name": "Two Schmucks",
     "city": "Barcelona"
@@ -9681,7 +9532,7 @@
     "city": "Barcelona"
    }
   ],
-  "mr-lyan-brings-seed-library-to-new-york-this-fall": [
+  "seed-library-nyc-new-cocktail-menu-june-2026": [
    {
     "slug": "seed-library",
     "name": "Seed Library",
@@ -9693,12 +9544,7 @@
     "city": "New York"
    }
   ],
-  "seed-library-nyc-new-cocktail-menu-june-2026": [
-   {
-    "slug": "seed-library",
-    "name": "Seed Library",
-    "city": "London"
-   },
+  "mr-lyan-brings-seed-library-to-new-york-this-fall": [
    {
     "slug": "seed-library-nyc",
     "name": "Seed Library",

@@ -3,3 +3,11 @@
 # the name-plus-city rule (a confirmed pair still wins if it is also listed
 # in article-mentions-confirmed.txt). Give the reason on the line.
 salmon-guru -> top-10-bars-in-dubai-2025   # Madrid row matched on a passing "Madrid original"; the Dubai outpost row is the mention
+# 2026-09-15, approved by Roman after the multi-row report: outpost rows
+# inheriting the original's ranking mentions because their city appears
+# elsewhere in a long list article.
+employees-only-singapore -> the-worlds-50-best-bars-2024-reveals-bars-ranked-51-100   # "97 Employees Only New York"; Singapore only in the new-entries list
+employees-only-singapore -> worlds-50-best-bars-reveals-51-100-list-for-2025          # New York sentence; Singapore only via Native at No.84
+salmon-guru-dubai -> bar-world-100-2025-full-list-of-global-influencers               # "Diego Cabrera, Salmon Guru, Madrid"; Dubai only via Monin
+salmon-guru-dubai -> handshake-speakeasy-no-1-at-worlds-50-best-bars-2024             # the ranked Salmon Guru is Madrid
+salmon-guru-dubai -> worlds-50-best-bars-2025-bar-leone-tops-the-list                 # the ranked Salmon Guru is Madrid
