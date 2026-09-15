@@ -6262,18 +6262,20 @@ textarea.form-input {
    right column. The old two-column flex gave the right column half the
    card for one button at 900 to 1100px and left the name wrapping to three
    lines (Roman, 2026-09-15). */
+/* Below 1100px the card is BLOCK FLOW in DOM order (name, place, tiles,
+   prose, description, meta rows, then the actions at the end), which is
+   the pre-05 phone card: block flow collapses the elements' margins the
+   way it always did (a grid keeps both neighbours' margins and widened
+   every gap by 8 to 15px, Roman's second screenshot pair). At 1100px and
+   up the same children go into a two-column grid, the actions lifted into
+   a 300px right column by placement, which does not depend on DOM order. */
 .bar-v2-info {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  display: block;
   padding: 2rem 2.5rem;
   background: var(--bg-card);
   border-radius: var(--radius);
   margin-top: var(--gap);
   border: 1px solid rgba(0,0,0,0.06);
-}
-.bar-v2-info > * {
-  grid-column: 1;
-  min-width: 0;
 }
 /* bars-preview still wraps its text in .bar-v2-info-main. */
 .bar-v2-info-main {
@@ -6284,13 +6286,18 @@ textarea.form-input {
      your bar? Claim it" as a pill with its padding); the text column takes
      everything else. 3fr 2fr gave the buttons ~480px at 1440 (Roman). */
   .bar-v2-info {
+    display: grid;
     grid-template-columns: minmax(0, 1fr) 300px;
     column-gap: 2.5rem;
     align-items: start;
   }
+  .bar-v2-info > * {
+    grid-column: 1;
+    min-width: 0;
+  }
   .bar-v2-info > .bar-v2-actions {
     grid-column: 2;
-    grid-row: 1 / span 6;
+    grid-row: 1 / span 7;
     flex-direction: column;
     align-items: stretch;
     margin: 0;
@@ -6341,14 +6348,16 @@ textarea.form-input {
   color: #1a1a1a;
 }
 
-/* Action buttons: a wrapping row under the tiles below 1100px, a stacked
-   column in the right 40% above. The ownership note or claim prompt takes
-   the full width under the buttons in either layout. */
+/* Action buttons: at the END of the card below 1100px, a wrapping row on
+   tablets and a full-width stack on phones ("wider and underneath each
+   other", Roman); a stacked column in the 300px right column on desktop.
+   The ownership note or the claim pill sits under the buttons in every
+   layout. */
 .bar-v2-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 0.25rem 0 1.25rem;
+  margin: 1.5rem 0 0;
 }
 .bar-v2-actions .bar-v2-owner-note {
   flex-basis: 100%;
@@ -6361,16 +6370,14 @@ textarea.form-input {
   padding: 12px 20px;
 }
 @media (max-width: 640px) {
-  /* Two per row at most. border-box, because the site is content-box and
-     the padding would otherwise push a 50% basis past the half. */
+  .bar-v2-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
   .bar-v2-actions .bar-v2-btn {
     box-sizing: border-box;
-    flex: 1 1 calc(50% - 5px);
-    max-width: calc(50% - 5px);
+    width: 100%;
     justify-content: center;
-    min-width: 0;
-    white-space: normal;
-    text-align: center;
   }
 }
 .bar-v2-btn {

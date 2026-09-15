@@ -351,9 +351,52 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                  one sentence a reader and a crawler can use. */
               <p className="bar-v2-accolade-prose">{accoladeProse}</p>
             )}
-            {/* Actions: the actionable duplicates of the meta rows below
-                (which stay for crawlers and copy-paste). Only buttons with a
-                target render; never an empty button. */}
+            <p className="bar-v2-description">
+              {/* Bolding is computed at render time; the stored text stays
+                  plain. The fallback keeps the no-em-dash copy rule. */}
+              <HighlightedText
+                text={bar.description || fallbackDescription(bar)}
+              />
+            </p>
+            <div className="bar-v2-details">
+              {bar.address && (
+                <div className="bar-v2-detail">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                  <span>{bar.address}</span>
+                </div>
+              )}
+              {bar.website && (
+                <a href={bar.website} target="_blank" rel="noopener noreferrer" className="bar-v2-detail bar-v2-detail--link">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" /></svg>
+                  <span>{bar.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
+                </a>
+              )}
+              {bar.instagram && (
+                <a href={`https://instagram.com/${bar.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="bar-v2-detail bar-v2-detail--link">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="5" /><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" /></svg>
+                  <span>@{bar.instagram.replace('@', '')}</span>
+                </a>
+              )}
+              {bar.phone && (
+                <a href={`tel:${bar.phone}`} className="bar-v2-detail bar-v2-detail--link">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
+                  <span>{bar.phone}</span>
+                </a>
+              )}
+              {(bar as Bar & { opening_hours?: string }).opening_hours && (
+                <div className="bar-v2-detail">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                  <span>{formatHoursForCountry((bar as Bar & { opening_hours?: string }).opening_hours, bar.country)}</span>
+                </div>
+              )}
+            </div>
+            {/* Actions: the actionable duplicates of the meta rows above
+                (which stay for crawlers and copy-paste), LAST in the DOM so
+                the phone reading order is name, place, tiles, prose,
+                description, meta rows, buttons (Roman, 2026-09-15, undoing
+                the 05 order). Desktop lifts this block into the right column
+                by grid placement, which does not depend on DOM order. Only
+                buttons with a target render; never an empty button. */}
             <div className="bar-v2-actions">
               {bar.wp_article_slug && (
                 <Link href={`/${bar.wp_article_slug}`} className="bar-v2-btn bar-v2-btn--primary">
@@ -415,45 +458,6 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                   For ownership changes contact:<br />
                   <a href="mailto:office@barmagazine.com">office@barmagazine.com</a>
                 </p>
-              )}
-            </div>
-            <p className="bar-v2-description">
-              {/* Bolding is computed at render time; the stored text stays
-                  plain. The fallback keeps the no-em-dash copy rule. */}
-              <HighlightedText
-                text={bar.description || fallbackDescription(bar)}
-              />
-            </p>
-            <div className="bar-v2-details">
-              {bar.address && (
-                <div className="bar-v2-detail">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
-                  <span>{bar.address}</span>
-                </div>
-              )}
-              {bar.website && (
-                <a href={bar.website} target="_blank" rel="noopener noreferrer" className="bar-v2-detail bar-v2-detail--link">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" /></svg>
-                  <span>{bar.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</span>
-                </a>
-              )}
-              {bar.instagram && (
-                <a href={`https://instagram.com/${bar.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="bar-v2-detail bar-v2-detail--link">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="5" /><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" /></svg>
-                  <span>@{bar.instagram.replace('@', '')}</span>
-                </a>
-              )}
-              {bar.phone && (
-                <a href={`tel:${bar.phone}`} className="bar-v2-detail bar-v2-detail--link">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" /></svg>
-                  <span>{bar.phone}</span>
-                </a>
-              )}
-              {(bar as Bar & { opening_hours?: string }).opening_hours && (
-                <div className="bar-v2-detail">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                  <span>{formatHoursForCountry((bar as Bar & { opening_hours?: string }).opening_hours, bar.country)}</span>
-                </div>
               )}
             </div>
         </div>
