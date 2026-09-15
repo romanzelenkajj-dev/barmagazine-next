@@ -16,7 +16,8 @@
     "indexnow:backfill": "node scripts/indexnow-backfill.mjs",
     "audit:addresses": "node scripts/address-city-check.mjs",
     "audit:addresses:validate": "node scripts/address-city-check.mjs --validate",
-    "audit:descriptions": "node scripts/description-lint.mjs"
+    "audit:descriptions": "node scripts/description-lint.mjs",
+    "audit:coords": "node scripts/coords-check.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.99.2",

@@ -279,6 +279,14 @@ See `src/lib/city-location.ts`.
   of 15 and read movedKm and method before applying anything. A move over a
   few km by the NAME method can be the geocoder getting worse (Zuma Hong
   Kong), not better; only the address method is trusted blind.
+- Every add wave ends with `npm run audit:coords` (scripts/coords-check.mjs,
+  paged) printing "active rows without coordinates: 0" or the list. The
+  profile hides the map when lat or lng is null; 70 active rows sat that
+  way until 2026-09-15. For a list: dry-run it through
+  /api/admin/geocode-bars in chunks of 15, write the address results by
+  id, look at the name results, and never write a city-centre result.
+  Mapbox answers a failed name search with the city's own place feature;
+  the geocoder now reports that as city-centre, not as a location.
 - Same-name US cities collide on the city page (keyed on the bare city
   string, across countries too). Until city slugs carry the state, a second
   Portland/Birmingham/Charleston/Columbus/... needs a qualifier in the city

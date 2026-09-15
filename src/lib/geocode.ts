@@ -188,8 +188,13 @@ export async function geocodeBarDetailed(opts: {
         ? `&bbox=${cityLng - 0.5},${cityLat - 0.5},${cityLng + 0.5},${cityLat + 0.5}`
         : '';
     const r = await mapboxFirst(`${name} bar, ${cityQuery(opts)}`, bbox);
-    if (r && nearCity(r[0], r[1])) return { lat: round6(r[0]), lng: round6(r[1]), method: 'name' };
-    if (r) {
+    // A name search that finds nothing often answers with the city's own
+    // place feature: the centre wearing a 'name' label (7 of the 10 name
+    // results in the 2026-09-15 backfill). Report it as the centre it is.
+    const isCentre =
+      r !== null && cityLat !== null && cityLng !== null && distanceKm(r[0], r[1], cityLat, cityLng) < 0.05;
+    if (r && !isCentre && nearCity(r[0], r[1])) return { lat: round6(r[0]), lng: round6(r[1]), method: 'name' };
+    if (r && !isCentre) {
       console.warn(
         `Geocode validation failed for "${name}" in ${city}: result (${r[0]}, ${r[1]}) is ${Math.round(distanceKm(r[0], r[1], cityLat!, cityLng!))}km from city center (max ${MAX_CITY_DISTANCE_KM}km). Using city center.`
       );
