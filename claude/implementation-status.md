@@ -1214,6 +1214,25 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue tasks 05, 06, 07: profile card grid, accolade-tail scan (stopped), The Pinnacle Guide built
+- 05 (04d541f): the profile info card is one grid in reading order; 60/40
+  text and stacked actions at 1100px and up, a wrapping actions row under
+  the tiles below, two per row on phones (border-box, the site is
+  content-box); Instagram, Call and Get Directions buttons; the reserve
+  button no longer gated on tier; claim prompt and ownership note in the
+  meta style under the buttons (the claim pill is demoted to a text link,
+  flagged for Roman). Verified at 390/768/1024/1180/1440 on four bars.
+- 06 STOPPED at its own checkpoint: 404 trailing accolade sentences on 352
+  rows (297 duplicate a stored accolade, 87 state a fact the accolades
+  lack, 35 compound). Removing ~300 sentences is Roman's call; the scan
+  is in claude/description-accolade-tails.json.
+- 07 (f161099): The Pinnacle Guide built on the file's relay of Roman's
+  decisions: `pinnacle` org, grade on the small line, PINNACLE constant,
+  forest green tiers, "awarded it N Pins" prose, 600/570/540 minus 12 a
+  year, announcement year with a basis note; 108 rows written by id;
+  spec updated; article mentions regenerated (+11, 0 removed). Kumiko's
+  3 Pins sits behind three higher scores (top-three rule).
+
 ## 2026-09-15 - Queue task 04: The Pinnacle Guide as an accolade org, STOPPED for Roman
 - The cloud session asked for a `pinnacle` org and a directory match. Done
   up to the decision: programme verified against the four criteria
