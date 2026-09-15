@@ -1113,3 +1113,33 @@ Running log of shipped work items and their merge commits. Newest first.
   Sips, Himkok, Line); article->profile links 1,388 in total; profiles
   with at most one inbound link stay at 37. On the 40-profile sample the
   median stays at 7.
+
+## 2026-09-15 - Multi-row names: the city has to sit with the name (6690064)
+- Roman approved five exclusions from the multi-row report
+  (employees-only-singapore x2, salmon-guru-dubai x3), added to
+  claude/article-mentions-excluded.txt with the sentence each came from.
+- THE RULE, built rather than noted: for a folded name shared by two or
+  more active rows (17 names, 39 rows), the sibling cities compete for
+  each mention and the nearest wins. Order: the article TITLE decides
+  when it names one of them (a city top ten belongs to that city's row);
+  otherwise the first sibling city AFTER the name within 100 characters
+  ("Salmon Guru, Madrid 64", "Salmon Guru – Madrid"); otherwise the
+  nearest before it ("Direct from Madrid, Salmon Guru"); otherwise the
+  same-sentence test. "Nearest in either direction" was tried first and
+  misread dense lists, where the previous entry's city touches our name.
+- RESULT against the reviewed map: the rule alone removes the five
+  approved pairs plus twelve more of the same shape and adds nothing.
+  Believed correct: salmon-guru-milan x4 (Madrid is the ranked bar),
+  floreria-atlantico-dc -> Bar World 100 (Giovannoni is Buenos Aires),
+  seed-library-nyc -> the London top ten and the 2024 Spirited nominees
+  (London), seed-library -> the New York top ten (NYC). FOR ROMAN, four
+  drops that may be genuine because the article is about the ORIGINAL
+  opening an outpost and the title names the outpost's city: bar-leone ->
+  bar-leone-shanghai-opens-this-november,
+  bar-leone-expands-with-second-location-in-shanghai and
+  negroni-week-2026-asia-pacific-guest-shifts; seed-library ->
+  mr-lyan-brings-seed-library-to-new-york-this-fall. A line in the
+  confirmed file restores any of them.
+- Map now 369 bars, 181 articles, 1,006 links, 24 held. Multi-row report
+  re-run on the final map: every outpost row carries only its own city's
+  articles.
