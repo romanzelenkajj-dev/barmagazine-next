@@ -1,4 +1,5 @@
 import { BarPlaceholder } from '@/components/BarPlaceholder';
+import { DirectoryBarCard } from '@/components/DirectoryBarCard';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBarBySlug, getBars } from '@/lib/supabase';
@@ -8,7 +9,7 @@ import { getSeoCities, typePageForType, TYPE_PAGES } from '@/lib/seo-cities';
 import { displayType, barTypeUnion } from '@/lib/bar-type';
 import type { Bar, MenuSection } from '@/lib/supabase';
 import { formatBarType, toUrlSlug } from '@/lib/utils';
-import { hasSlug, safeHref } from '@/lib/safe-slug';
+import { hasSlug } from '@/lib/safe-slug';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
 import { BarSectionChips } from '@/components/BarSectionChips';
@@ -639,26 +640,25 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         {nearby.length > 0 && (
           <div className="bar-v2-nearby">
             <h2>Nearby in {bar.city}</h2>
-            {/* The directory card, three across (Roman, 2026-09-15): photo or
-                the placeholder, name, "<place>, <distance>", up to three
-                accolade tiles. No description text. */}
+            {/* The directory card itself (DirectoryBarCard, shared with the
+                city pages; Roman, 2026-09-15): photo or placeholder, the
+                status pills, the name, one location line "<place>, <distance>".
+                No accolade tiles, no description. */}
             <div className="bar-v2-card-grid">
               {nearby.map(nb => (
-                <Link key={nb.slug} href={safeHref('/bars', nb.slug)} className="bar-v2-gcard">
-                  <div className="bar-v2-gcard-visual">
-                    {nb.photo ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={nb.photo} alt={nb.name} loading="lazy" />
-                    ) : (
-                      <BarPlaceholder name={nb.name} type={nb.type} />
-                    )}
-                  </div>
-                  <div className="bar-v2-gcard-body">
-                    <h3>{nb.name}</h3>
-                    <span className="bar-v2-gcard-meta">{[nb.street, nb.distance].filter(Boolean).join(', ')}</span>
-                    <AccoladeBadges accolades={nb.accolades} limit={3} />
-                  </div>
-                </Link>
+                <DirectoryBarCard
+                  key={nb.slug}
+                  bar={{
+                    slug: nb.slug,
+                    name: nb.name,
+                    photos: nb.photo ? [nb.photo] : null,
+                    type: nb.type,
+                    tier: nb.tier,
+                    wp_article_slug: nb.wpArticleSlug,
+                    accolades: nb.accolades,
+                  }}
+                  locationLine={[nb.street, nb.distance].filter(Boolean).join(', ')}
+                />
               ))}
             </div>
           </div>

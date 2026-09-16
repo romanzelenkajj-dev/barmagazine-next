@@ -36,6 +36,9 @@ export interface NearbyCandidate {
   accolades?: unknown;
   /** Picks the placeholder's glass. */
   type?: string | null;
+  /** The status pills on the card: TOP 10 by tier, Featured by tier or article. */
+  tier?: string | null;
+  wp_article_slug?: string | null;
 }
 
 export interface NearbyEntry {
@@ -53,6 +56,8 @@ export interface NearbyEntry {
   photo: string | null;
   accolades: unknown;
   type: string | null;
+  tier: string | null;
+  wpArticleSlug: string | null;
 }
 
 /** The neighborhood when stated, else the street line. */
@@ -133,5 +138,7 @@ export function nearestBars(
     photo: Array.isArray(b.photos) && typeof b.photos[0] === 'string' && b.photos[0] ? b.photos[0] : null,
     accolades: b.accolades ?? null,
     type: b.type ?? null,
+    tier: b.tier ?? null,
+    wpArticleSlug: b.wp_article_slug ?? null,
   }));
 }

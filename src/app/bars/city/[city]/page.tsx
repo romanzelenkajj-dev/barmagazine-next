@@ -1,14 +1,12 @@
-import { BarPlaceholder } from '@/components/BarPlaceholder';
-import { hasFiftyBest } from '@/lib/accolades';
-import { CardStatusPills } from '@/components/CardStatusPills';
+import { DirectoryBarCard } from '@/components/DirectoryBarCard';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getCityIndex, getBarsForCity } from '@/lib/city-index';
 import type { Bar } from '@/lib/supabase';
-import { subdivisionName, cityLabel, placeLine } from '@/lib/city-location';
+import { subdivisionName, cityLabel } from '@/lib/city-location';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
-import { hasSlug, safeHref } from '@/lib/safe-slug';
+import { hasSlug } from '@/lib/safe-slug';
 import { getCityIntro } from '@/lib/city-intros';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarDirectorySidebar';
 
@@ -342,42 +340,9 @@ function CityBarGrid({ bars }: { bars: Bar[] }) {
   return (
     <div className="directory-grid">
       {bars.filter(hasSlug).map(bar => (
-        <CityBarCard key={bar.id} bar={bar} />
+        <DirectoryBarCard key={bar.id} bar={bar} />
       ))}
     </div>
   );
 }
 
-function CityBarCard({ bar }: { bar: Bar }) {
-  const imageUrl = bar.photos?.[0] ?? null;
-  const isTop10 = bar.tier === 'top10';
-  const isFeatured = bar.tier === 'featured' || !!bar.wp_article_slug;
-
-  return (
-    <Link href={safeHref('/bars', bar.slug)} className="bar-dir-featured-card">
-      <div className="bar-dir-featured-visual">
-        {imageUrl
-          ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={imageUrl} alt={bar.name} loading="lazy" />
-          ) : (
-            <BarPlaceholder name={bar.name} type={bar.type} />
-          )
-        }
-        {/* Status sits on the photo, matching the profile hero. The body is
-            left for identity and credentials: name, location, accolades. */}
-        <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} />
-      </div>
-      <div className="bar-dir-featured-body">
-
-        <h3 className="bar-dir-featured-name">{bar.name}</h3>
-        <span className="bar-dir-featured-location">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
-          </svg>
-          {placeLine(bar)}
-        </span>
-      </div>
-    </Link>
-  );
-}
