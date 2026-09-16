@@ -1214,7 +1214,7 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
-## 2026-09-16 - Queue task 32: every article image renders the same box
+## 2026-09-16 - Queue task 32: every article image renders the same box (68c9d49)
 - Diagnosis: the bare publisher figure had a 16px bleed and the house
   radius; figure.wp-caption (WordPress-inserted) had no bleed on desktop,
   a 24px bleed on phones and a 12px radius; in the publisher's nested
