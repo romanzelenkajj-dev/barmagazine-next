@@ -1214,6 +1214,18 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 24: wave 5 (Haute Living hotel bars) PREPARED, insert awaiting Roman
+- "Claude outputs/haute-living-wave5-verified.md": 10 OPEN (round-robin-bar,
+  hmf, blind-duck, the-living-room-dewberry, z-bar, salon-salon,
+  tonga-room, hey-love, polo-lounge, alle-lounge-on-66), 2 HOLD
+  (bar-marmont: no venue-owned source; hard-shake: official page behind a
+  bot wall). One accolade: Hey Love, TOTC 2023 Best U.S. Hotel Bar winner.
+  Geocode dry run all by address (0.4 to 4.5 km), lint clean, slugs free,
+  Beverly Hills and Palm Beach will be new city pages. Nothing inserted:
+  new public pages are a publish under the queue guard; the command is in
+  reports/24. Wave tooling committed (d501b30): wave-file.mjs,
+  run-wave-geocode-dry.mjs, wave-insert.mjs (dry run by default).
+
 ## 2026-09-15 - Queue task 23 (urgent): sidebar blowout from the mentions row; footer gap (720117d)
 - Regression from 22: the non-wrapping mentions track gave the 3fr
   profile column a min-content width (1685px on Handshake Speakeasy, 14
