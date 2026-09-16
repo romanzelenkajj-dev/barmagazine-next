@@ -1214,6 +1214,20 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 19: profile Nearby and mentions as card grids (056706e)
+- Both blocks render the directory card three across (.bar-v2-card-grid /
+  .bar-v2-gcard: white, house radius, hairline, 16:10 image or the
+  BarPlaceholder, 12/16 body padding, 14px bold title, 12px meta). Two
+  columns 700 to 1099, one below 700; tracks fixed, so a lone card sits
+  left at one column's width.
+- Nearby: NEARBY_LIMIT 5 -> 6; NearbyEntry carries photo, accolades and
+  type; card = photo or placeholder, name, "<place>, <distance>", up to
+  three accolade tiles, no description. The old .bar-v2-near row CSS is
+  gone.
+- Mentions: the wrapper card and heading stay; each row is a card with
+  the article's featured image, the title (two-line clamp) and the date;
+  the anchor still wraps image + title only with the same href and text.
+
 ## 2026-09-15 - Queue task 18: /bars hero content on the page column's edge (fa6cc2a)
 - .directory-hero side padding 48 -> 24 (desktop: headline, subtitle and
   stat tiles at x=48, the search pill's content edge; were 72) and
