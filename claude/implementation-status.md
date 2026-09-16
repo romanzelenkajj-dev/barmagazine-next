@@ -1214,6 +1214,20 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 27: Torno Subito (Miami) added as a restaurant bar
+- torno-subito, id ea1e68d6-f1fa-44ee-b71b-eb6312153090, type Cocktail Bar
+  with subtype Restaurant Bar (the 1986 Steak House precedent), all values
+  from tornosubitomia.com read in the browser (script-rendered site):
+  191 NE 40th St, (305) 209-3100, info@, @tornosubitomia, Resy link, bar
+  hours Mon-Sat 12:30pm to close, two menu highlights (Negroni Balsamico,
+  Americano al Caffe). Description 118 words, no dashes, no residency
+  dates; the Floreria Atlantico residency (Sept 22 to 26) sits in
+  admin_notes (no specials column yet). Geocoded by address, state FL,
+  Miami city page revalidated, indexing queue +1. Article pairs: the
+  article is not on WordPress yet; a dated placeholder in
+  claude/article-mentions-confirmed.txt names the three pairs to add with
+  its slug. wave-insert.mjs now carries subtypes and reservation_url.
+
 ## 2026-09-16 - Queue task 26: country-by-type and US-state-by-type SEO pages
 - New routes /best-bars/country/<country>/<type> and
   /best-bars/us/<state>/<type> on the city-by-type template: intro (12

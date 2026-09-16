@@ -70,6 +70,8 @@ for (const b of blocks) {
     email: none(f.email) ? null : f.email,
     instagram: none(f.instagram) ? null : f.instagram,
     type: f.type || 'Cocktail Bar',
+    subtypes: none(f.subtypes) ? null : f.subtypes.split(',').map(x => x.trim()).filter(Boolean),
+    reservation_url: none(f.reservation_url) ? null : f.reservation_url,
     description: f.description,
     accolades: parseAccolades(f.accolade, none(f.accolade_source) ? null : f.accolade_source),
     is_active: true,

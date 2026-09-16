@@ -1432,6 +1432,15 @@
    "status": "pending",
    "date": null,
    "note": "task 26 region page; URL is https://barmagazine.com/best-bars/us/florida/cocktail-bars"
+  },
+  {
+   "slug": "torno-subito",
+   "city": "Miami",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 27, 2026-09-16"
   }
  ]
 }

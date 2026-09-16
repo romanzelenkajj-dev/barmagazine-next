@@ -290,3 +290,10 @@ bar-leone -> bar-leone-shanghai-opens-this-november
 bar-leone -> bar-leone-expands-with-second-location-in-shanghai
 bar-leone -> negroni-week-2026-asia-pacific-guest-shifts
 seed-library -> mr-lyan-brings-seed-library-to-new-york-this-fall
+
+# Torno Subito (Miami) residency article (queue task 27, 2026-09-16): the article
+# is not published yet (WP search empty on 2026-09-16). When it lands, add the
+# three pairs below with its slug so the rebuild links all three rows:
+#   torno-subito -> <article-slug>
+#   floreria-atlantico -> <article-slug>
+#   floreria-atlantico-dc -> <article-slug>
