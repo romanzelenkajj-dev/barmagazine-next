@@ -1214,6 +1214,22 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 32: every article image renders the same box
+- Diagnosis: the bare publisher figure had a 16px bleed and the house
+  radius; figure.wp-caption (WordPress-inserted) had no bleed on desktop,
+  a 24px bleed on phones and a 12px radius; in the publisher's nested
+  figure > p > figure.wp-caption both bleeds stacked (40px) and the
+  corners fell outside the viewport. Now one treatment in globals.css:
+  any figure or paragraph image bleeds 16px past the text column, carries
+  var(--radius), clips its image, caption below; nested figures are flush
+  inside the outer box; figure:empty renders nothing; on phones only the
+  galleries and the ad banner keep the 24px bleed. Torno Subito and
+  Margarita Mile: every image 18..372 at 390 and 64..901 at 1440.
+- Not done: the WordPress content edit (empty figure, en dashes in two
+  captions). No WP application password exists on this Mac (the publisher
+  app keeps it on Railway), so the post is untouched; the empty figure is
+  hidden by CSS instead, the captions still carry their dashes.
+
 ## 2026-09-16 - Queue task 31: article meta description no longer ends in "More" (86da0c0)
 - WordPress auto-excerpts end with a read-more link and stripHtml kept
   its text, so the description, og:description, twitter description and

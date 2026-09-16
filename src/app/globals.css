@@ -892,15 +892,33 @@ button {
   margin-bottom: 0;
 }
 
+/* ONE treatment for every article image, however it was inserted (Roman,
+   2026-09-16): the publisher's nested figure > p > figure.wp-caption, a
+   plain WordPress figure.wp-caption, a bare figure, or an img in a p all
+   render the same. The box bleeds 16px past the text column on both sides,
+   carries the house radius, and clips its image; the caption sits below in
+   the caption style. Nested figures: the outer box owns the bleed and the
+   radius, the inner one is flush. An empty figure (WordPress leaves one
+   behind) renders nothing. */
 .article-body figure {
   margin: 24px -16px 12px;
-  border-radius: 16px;
+  border-radius: var(--radius);
   overflow: hidden;
+}
+.article-body figure:empty { display: none; }
+.article-body figure figure {
+  margin: 0;
+  border-radius: 0;
+}
+.article-body figure > p {
+  margin: 0;
 }
 
 .article-body figure img {
   width: 100%;
   height: auto;
+  margin: 0;
+  border-radius: 0;
 }
 
 .article-body figcaption {
@@ -930,13 +948,14 @@ button {
   display: block;
 }
 
-/* Make standalone WP images fill the article width */
+/* A bare image in a paragraph gets the same box as a figure. */
 .article-body > p > img,
 .article-body > p > a > img {
-  width: 100%;
+  width: calc(100% + 32px);
+  max-width: none;
   height: auto;
-  border-radius: 12px;
-  margin: 8px 0;
+  border-radius: var(--radius);
+  margin: 24px -16px 12px;
 }
 
 .article-body img.alignnone {
@@ -951,19 +970,25 @@ button {
   margin-right: auto;
 }
 
-/* WP caption figures (wp-caption class) */
+/* WP caption figures (wp-caption class): the same box as any figure. The
+   !important width defeats WordPress's inline style="width: 1200px". */
 .article-body .wp-caption {
-  margin: 16px 0 8px;
-  max-width: 100% !important;
-  width: 100% !important;
-  border-radius: 12px;
+  margin: 24px -16px 12px;
+  max-width: none !important;
+  width: calc(100% + 32px) !important;
+  border-radius: var(--radius);
   overflow: hidden;
+}
+.article-body figure .wp-caption {
+  margin: 0;
+  width: 100% !important;
+  border-radius: 0;
 }
 
 .article-body .wp-caption img {
   width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 .article-body .wp-caption-text {
@@ -2497,12 +2522,17 @@ button {
      24px inner gutter to fill the article box width — so they're visibly larger than the
      text column. The outer side gutter is handled globally by the body padding (4px on
      mobile), which applies to every page (home, categories, bars, posts, footer). */
-  .article-body > p > img,
-  .article-body > p > a > img,
-  .article-body img.alignnone,
-  .article-body img.aligncenter,
-  .article-body img[data-large-file],
-  .article-body .wp-caption,
+  /* Images and figures keep the 16px bleed of the base rules on phones too
+     (task 32: the old 24px here stacked on the figure's 16px in the
+     publisher's nested structure and pushed the corners off screen). Only
+     the galleries and the ad banner bleed the full 24px. */
+  .article-body figure img,
+  .article-body .wp-caption img {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
   .article-body .wp-block-image,
   .article-body .gallery-clean,
   .article-body .wp-block-gallery,
@@ -2529,6 +2559,16 @@ button {
   .article-body .ad-banner,
   .article-body .ad-banner img {
     border-radius: 0;
+  }
+  .article-body > p > img,
+  .article-body > p > a > img,
+  .article-body > img.alignnone,
+  .article-body > img.aligncenter,
+  .article-body > p > img[data-large-file] {
+    margin-left: -16px;
+    margin-right: -16px;
+    width: calc(100% + 32px) !important;
+    max-width: none !important;
   }
 
   .article-body .gallery-clean-row {
