@@ -6121,6 +6121,11 @@ textarea.form-input {
 
 .bar-v2 {
   max-width: 100%;
+  /* A grid item's default min-width is auto, its min-content: the
+     non-wrapping mentions track (14 cards on Handshake Speakeasy) widened
+     the 3fr column to 1685px and pushed the sidebar off screen. Zero it
+     so the column can never grow past its track (task 23). */
+  min-width: 0;
 }
 
 /* Hero Photo — full width */
@@ -6543,11 +6548,12 @@ textarea.form-input {
    list follows the CTA banner (margin-bottom 2rem), and padding on top of
    that margin made 64px where every other section gap is 32 (Roman, 11d).
    A margin collapses into the CTA's; after the map or the mentions card
-   it supplies the same 32 on its own. */
+   it supplies the same 32 on its own. No padding or rule below: since 14
+   this is the last block of the column, and its 2rem plus a hairline sat
+   on top of the column-to-footer gap (49px where the gap is 16, task 23). */
 .bar-v2-nearby {
   margin-top: 2rem;
-  padding: 0 0 2rem;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0;
 }
 .bar-v2-nearby h2 {
   font-size: 1.2rem;
@@ -10529,6 +10535,7 @@ a.bar-v2-badge--subtype:hover {
    the muted meta style. The row is clickable through the anchor's
    stretched ::after so the anchor itself keeps title-only text. */
 .bar-v2-mentions {
+  min-width: 0;
   margin-top: var(--gap);
   padding: 2rem 2.5rem;
   background: var(--bg-card);
@@ -10609,9 +10616,17 @@ a.bar-v2-badge--subtype:hover {
   display: flex;
   gap: var(--gap);
   list-style: none;
-  margin: 0;
-  padding: 0;
+  max-width: 100%;
+  /* Always a scroll container, whether or not .is-scrollable is set, so
+     the row can never widen its column (task 23). The padding and the
+     negative margins leave room for the card's hover lift and shadow
+     inside the scroll box. */
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 4px 0 12px;
+  margin: -4px 0 -12px;
 }
+.bar-v2-mentions-track::-webkit-scrollbar { display: none; }
 .bar-v2-mentions-track > li {
   /* border-box: the card's 1px border must not push three thirds plus two
      gaps 6px past the row (preflight is off, so the default is content-box). */
@@ -10620,16 +10635,10 @@ a.bar-v2-badge--subtype:hover {
   min-width: 0;
 }
 .bar-v2-mentions-track.is-scrollable {
-  overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  /* Room for the card's hover lift and shadow inside the scroll box. */
-  padding: 4px 0 12px;
-  margin: -4px 0 -12px;
 }
-.bar-v2-mentions-track.is-scrollable::-webkit-scrollbar { display: none; }
 .bar-v2-mentions-track.is-scrollable > li { scroll-snap-align: start; }
 .bar-v2-mentions-track.is-scrollable:focus-visible {
   outline: 2px solid #1a1a1a;
