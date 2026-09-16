@@ -1214,6 +1214,20 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 21: nearby cards ARE the directory card (DirectoryBarCard, f87f2bd)
+- The city page's CityBarCard moved into src/components/DirectoryBarCard.tsx
+  (one optional prop, locationLine); the city page and the profile's
+  "Nearby in <city>" both render it, so the two cannot drift. Nearby
+  passes "<street or venue>, <distance>"; accolade tiles are gone from
+  the nearby cards (the status pills on the photo carry TOP 10, 50 Best,
+  Featured by the directory's rules). NearbyEntry carries tier and
+  wpArticleSlug for the pills. Every Lyaness card is 317px tall at 1440
+  (were 330 with uneven tile rows). The 19 mention cards are unchanged.
+- Indexing: the 16:30 scheduled run fired (next run 2026-09-16) but
+  wrote no log row and changed no queue item; row appended by hand
+  (4361fb3). Two silent unattended runs today, both most likely stuck on
+  tool-permission prompts; the interactive runs work.
+
 ## 2026-09-15 - Queue task 19: profile Nearby and mentions as card grids (056706e)
 - Both blocks render the directory card three across (.bar-v2-card-grid /
   .bar-v2-gcard: white, house radius, hairline, 16:10 image or the
