@@ -1214,6 +1214,15 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 28: mentions rebuilt for the Torno Subito article
+- Article tato-giovannoni-floreria-atlantico-torno-subito-miami live. Three
+  pairs added to claude/article-mentions-confirmed.txt with the quoted
+  sentences (torno-subito, floreria-atlantico-dc, floreria-atlantico);
+  scripts/build-article-mentions.mjs: 1021 -> 1024 pairs, exactly those
+  three added, none removed, Barcelona not linked (the article never
+  names it). The held list gained the article as a candidate for
+  behind-bar (Buenos Aires, generic name "Behind"), held, not linked.
+
 ## 2026-09-16 - Queue task 27: Torno Subito (Miami) added as a restaurant bar
 - torno-subito, id ea1e68d6-f1fa-44ee-b71b-eb6312153090, type Cocktail Bar
   with subtype Restaurant Bar (the 1986 Steak House precedent), all values

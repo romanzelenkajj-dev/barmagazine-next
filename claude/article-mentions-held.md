@@ -1,6 +1,6 @@
 # Article mentions held for a hand check
 
-Generated 2026-09-15T21:26:28.731Z by scripts/build-article-mentions.mjs.
+Generated 2026-09-16T21:58:33.016Z by scripts/build-article-mentions.mjs.
 These bar names are short or generic enough that a text match is not
 evidence of a mention. NONE of these are linked. Confirm each pair by
 reading the article, then either add the bar name to a per-article
@@ -11,7 +11,7 @@ allowlist in the script or leave it here.
 | abv | ABV | San Francisco | https://barmagazine.com/the-pontiac-hong-kong-neon-lit-menu |
 | amaro | Amaro | London | https://barmagazine.com/asia-cocktail-culture-the-bird-the-tiger-and-the-samurai<br>https://barmagazine.com/scarfes-bar-hosts-bar-leone-for-exclusive-london-takeover<br>https://barmagazine.com/mexican-bar-tour |
 | atlas | Atlas | Singapore | https://barmagazine.com/top-10-nominees-for-the-2024-spirited-awards |
-| behind-bar | Behind | Buenos Aires | https://barmagazine.com/wfa-online-continental-championship-2026<br>https://barmagazine.com/women-hospitality-miladys-new-york-june-2026<br>https://barmagazine.com/50-best-bars-scholarship-2026-line-athens-tres-monos-buenos-aires<br>https://barmagazine.com/1986-steak-house-miami-coconut-grove-tres-monos<br>https://barmagazine.com/6-women-shaping-latin-american-hospitality<br>https://barmagazine.com/50-best-signature-sessions-return-to-hong-kong<br>https://barmagazine.com/herbs-taverne-lands-in-sydney-with-psychedelic-negronis |
+| behind-bar | Behind | Buenos Aires | https://barmagazine.com/tato-giovannoni-floreria-atlantico-torno-subito-miami<br>https://barmagazine.com/wfa-online-continental-championship-2026<br>https://barmagazine.com/women-hospitality-miladys-new-york-june-2026<br>https://barmagazine.com/50-best-bars-scholarship-2026-line-athens-tres-monos-buenos-aires<br>https://barmagazine.com/1986-steak-house-miami-coconut-grove-tres-monos<br>https://barmagazine.com/6-women-shaping-latin-american-hospitality<br>https://barmagazine.com/50-best-signature-sessions-return-to-hong-kong<br>https://barmagazine.com/herbs-taverne-lands-in-sydney-with-psychedelic-negronis |
 | birds | Birds | New York | https://barmagazine.com/asia-cocktail-culture-the-bird-the-tiger-and-the-samurai |
 | coa-shanghai-1773995982 | COA | Shanghai | https://barmagazine.com/asias-50-best-bars-2026-wynn-macau-host-partner |
 | cobra | Cobra | Columbus | https://barmagazine.com/spirited-awards-2026-winners-tales-of-the-cocktail<br>https://barmagazine.com/top-10-nominees-for-the-2024-spirited-awards |

@@ -1,12 +1,12 @@
 {
- "generatedAt": "2026-09-15T21:26:28.731Z",
+ "generatedAt": "2026-09-16T21:58:33.016Z",
  "rule": "full bar name, whole-word, article text also names the bar's city; generic names held",
  "counts": {
-  "bars": 378,
+  "bars": 380,
   "articles": 182,
-  "links": 1021,
-  "confirmedPairs": 280,
-  "articleSideSkippedAlreadyLinked": 87,
+  "links": 1024,
+  "confirmedPairs": 283,
+  "articleSideSkippedAlreadyLinked": 90,
   "held": 26
  },
  "byBar": {
@@ -2564,10 +2564,24 @@
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2024/10/W50BB24-No.1-High-Res.jpg?fit=1200%2C800&ssl=1"
    },
    {
+    "slug": "tato-giovannoni-floreria-atlantico-torno-subito-miami",
+    "title": "Tato Giovannoni Takes Florería Atlántico to Torno Subito",
+    "date": "2026-09-16",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2026/09/01-florer-a-atl-ntico-torno-subito-miami-tato-giovannoni-jpg-e1789595521370.jpg?fit=799%2C1066&ssl=1"
+   },
+   {
     "slug": "worlds-50-best-bars-reveals-51-100-list-for-2025",
     "title": "World’s 50 Best Bars Reveals 51–100 List for 2025",
     "date": "2025-09-24",
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2025/09/TW50BB2025_Res_1080x1350_51-100pre_cover-e1758727064595.jpg?fit=1078%2C1292&ssl=1"
+   }
+  ],
+  "floreria-atlantico-dc": [
+   {
+    "slug": "tato-giovannoni-floreria-atlantico-torno-subito-miami",
+    "title": "Tato Giovannoni Takes Florería Atlántico to Torno Subito",
+    "date": "2026-09-16",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2026/09/01-florer-a-atl-ntico-torno-subito-miami-tato-giovannoni-jpg-e1789595521370.jpg?fit=799%2C1066&ssl=1"
    }
   ],
   "flying-dutchmen-cocktails": [
@@ -6366,6 +6380,14 @@
     "title": "Top 10 Nominees for the 2024 Spirited Awards",
     "date": "2024-05-30",
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2024/05/Top-10.jpeg?fit=800%2C811&ssl=1"
+   }
+  ],
+  "torno-subito": [
+   {
+    "slug": "tato-giovannoni-floreria-atlantico-torno-subito-miami",
+    "title": "Tato Giovannoni Takes Florería Atlántico to Torno Subito",
+    "date": "2026-09-16",
+    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2026/09/01-florer-a-atl-ntico-torno-subito-miami-tato-giovannoni-jpg-e1789595521370.jpg?fit=799%2C1066&ssl=1"
    }
   ],
   "tres-monos": [

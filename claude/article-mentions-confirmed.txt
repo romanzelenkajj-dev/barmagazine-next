@@ -291,9 +291,16 @@ bar-leone -> bar-leone-expands-with-second-location-in-shanghai
 bar-leone -> negroni-week-2026-asia-pacific-guest-shifts
 seed-library -> mr-lyan-brings-seed-library-to-new-york-this-fall
 
-# Torno Subito (Miami) residency article (queue task 27, 2026-09-16): the article
-# is not published yet (WP search empty on 2026-09-16). When it lands, add the
-# three pairs below with its slug so the rebuild links all three rows:
-#   torno-subito -> <article-slug>
-#   floreria-atlantico -> <article-slug>
-#   floreria-atlantico-dc -> <article-slug>
+# Torno Subito residency article (queue task 28, 2026-09-16), article
+# tato-giovannoni-floreria-atlantico-torno-subito-miami. Barcelona is not
+# mentioned in the article, so floreria-atlantico-barcelona stays unlinked.
+# torno-subito: "Tato Giovannoni brings the Georgetown outpost of Florería
+#   Atlántico to Torno Subito Miami at The Moore for a five-night residency"
+torno-subito -> tato-giovannoni-floreria-atlantico-torno-subito-miami
+# floreria-atlantico-dc: "Giovannoni will take over the bar for the full five
+#   nights with Florería Atlántico D.C."
+floreria-atlantico-dc -> tato-giovannoni-floreria-atlantico-torno-subito-miami
+# floreria-atlantico (Buenos Aires): "Hidden beneath a flower shop on Arroyo
+#   Street in Buenos Aires, Florería Atlántico opened in 2013 as Giovannoni's
+#   tribute to the immigrant communities that shaped Argentina."
+floreria-atlantico -> tato-giovannoni-floreria-atlantico-torno-subito-miami
