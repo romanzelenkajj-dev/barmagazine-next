@@ -8,6 +8,7 @@ import { ReadingProgress } from '@/components/ReadingProgress';
 import { upgradeGalleryImages, formatCardTitle } from '@/lib/utils';
 import { isNewsArticleCategory, truncateHeadline } from '@/lib/article-schema';
 import articleMentions from '@/lib/article-mentions.generated.json';
+import { ArticleBarsCarousel } from '@/components/ArticleBarsCarousel';
 import type { Metadata } from 'next';
 
 const SITE_URL = 'https://barmagazine.com';
@@ -274,17 +275,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
               text); generic names are held for a hand check and never
               appear here. The WP content itself is untouched. */}
           {barsInArticle.length > 0 && (
-            <div className="article-bars">
-              <h3>Bars in this article</h3>
-              <ul className="article-bars-list">
-                {barsInArticle.map(b => (
-                  <li key={b.slug}>
-                    <Link href={`/bars/${b.slug}`}>{b.name}</Link>
-                    <span className="article-bars-city">{b.city}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ArticleBarsCarousel slugs={barsInArticle.map(b => b.slug)} />
           )}
 
           {/* Author box */}

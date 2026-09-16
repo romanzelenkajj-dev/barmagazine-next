@@ -10724,15 +10724,22 @@ a.bar-v2-badge--subtype:hover {
 @media (max-width: 768px) {
   .bar-v2-mentions { padding: 1.5rem 1.25rem; }
 }
+/* "Bars in this article" (Roman, 2026-09-16): the profile's mentions
+   carousel with the directory card, under a hairline. The heading takes
+   the profile block heading (1.2rem, 600). Track, cards and arrows are the
+   .bar-v2-mentions-track rules; only the wrapper is styled here. */
 .article-bars {
   margin: 32px 0 0;
-  padding: 18px 20px;
-  border: 1px solid #E0D8D0;
-  border-radius: var(--radius, 8px);
-  background: var(--bg-card, #fff);
+  padding: 24px 0 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
 }
-.article-bars h3 { margin: 0 0 10px; font-size: 1rem; }
-.article-bars-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.article-bars-list a { font-weight: 600; color: var(--text-primary); text-decoration: none; }
-.article-bars-list a:hover { text-decoration: underline; }
-.article-bars-city { margin-left: 8px; font-size: 13px; color: var(--text-secondary, #5d5850); }
+.article-bars h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.article-bars .bar-v2-mentions-head { margin-bottom: 1rem; }
+/* The article body underlines its links; the cards are not body links. */
+.article-bars .bar-dir-featured-card,
+.article-bars .bar-dir-featured-card * { text-decoration: none; }

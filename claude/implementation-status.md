@@ -1214,6 +1214,22 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 30: "Bars in this article" as the card carousel
+- src/components/ArticleBarsCarousel.tsx (server): fetches the named
+  rows by slug, keeps the map's alphabetical order, renders the task-22
+  track (.bar-v2-mentions-track, three visible on desktop with the
+  MentionsArrows client buttons when more than three, halves on tablets,
+  85% with a peek on phones, static row for three or fewer) with the
+  directory card (DirectoryBarCard: photo or placeholder, pills, name,
+  "City, Country" line). Same hrefs as the old list (/bars/<slug>). The
+  outlined box is gone: hairline above, the profile-block heading size,
+  the article body's link underline overridden inside the cards. Renders
+  nothing without mentions or when no named row is active.
+- Note: the article side skips bars the WP body already links (the
+  build script's rule), so the Torno Subito article, whose body links all
+  three profiles, shows no block by design; its three pairs live on the
+  profiles.
+
 ## 2026-09-16 - Queue task 29: Bar Leone on the Negroni Week APAC article, multi-row audit
 - The guest shift is at Bar Leone Shanghai ("Berg then continues from
   Bangkok to Bar Leone Shanghai on September 24, the mainland outpost of
