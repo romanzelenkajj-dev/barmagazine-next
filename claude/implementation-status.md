@@ -1214,7 +1214,7 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
-## 2026-09-16 - Queue task 34: article image bottom corners (task 32 follow-up)
+## 2026-09-16 - Queue task 34: article image bottom corners (task 32 follow-up, 2ee9504)
 - The 32 rules put the radius on the figure and clipped it; a caption
   sits inside the figure under the image, so the box's rounded bottom ran
   below the caption and the image's own bottom corners stayed square.
