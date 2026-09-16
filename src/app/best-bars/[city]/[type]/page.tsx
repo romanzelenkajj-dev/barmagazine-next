@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import { displayType } from '@/lib/bar-type';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import { splitHighlight } from '@/lib/menu-highlight';
+import { getRegionCombos, regionHref } from '@/lib/seo-regions';
 import {
   getSeoCities,
   resolveSeoCity,
@@ -84,6 +85,11 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
   const year = new Date().getFullYear();
   const intro = composeTypeIntro(city, t, combo.count, bars[0]?.name ?? null, bars.length);
   const siblingTypes = city.typeSlugs.filter(x => x.slug !== t.slug);
+  const regionCombos = await getRegionCombos();
+  const countryCombo = regionCombos.find(c => c.region.kind === 'country' && c.region.country === city.country && c.type.slug === t.slug) ?? null;
+  const stateCombo = city.key.state
+    ? regionCombos.find(c => c.region.kind === 'us-state' && c.region.state === (city.key.state || '').toUpperCase() && c.type.slug === t.slug) ?? null
+    : null;
   const url = `${SITE_URL}/best-bars/${params.city}/${params.type}`;
 
   const itemListLd = {
@@ -139,6 +145,18 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
             <Link href={`/bars/city/${params.city}`} className="best-bars-hero-link">
               Browse every {city.city} bar
             </Link>
+            {/* Up the ladder (Roman, 2026-09-16): the state page and the
+                country page for this type, only where they exist. */}
+            {stateCombo && (
+              <Link href={regionHref(stateCombo.region, t.slug)} className="best-bars-hero-link">
+                Best {t.plural} in {stateCombo.region.displayName}
+              </Link>
+            )}
+            {countryCombo && (
+              <Link href={regionHref(countryCombo.region, t.slug)} className="best-bars-hero-link">
+                Best {t.plural} in {countryCombo.region.displayName}
+              </Link>
+            )}
           </div>
         </header>
 

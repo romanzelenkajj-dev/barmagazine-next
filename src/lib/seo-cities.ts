@@ -204,20 +204,23 @@ export async function getSeoCityBars(city: CityEntry, type?: string): Promise<Ba
   // so pages and thresholds can never disagree.
   const data = type ? (rows as Bar[]).filter(b => barHasType(b, type)) : (rows as Bar[]);
 
+  return sortSeoBars(data as Bar[]).slice(0, CITY_PAGE_MAX_BARS);
+}
+
+/** Best first: tier, then accolade standing, then photo, then name. Shared
+    by the city pages and the country and state pages (seo-regions.ts). */
+export function sortSeoBars(bars: Bar[]): Bar[] {
   const tierRank = (b: Bar) => (b.tier === 'top10' ? 0 : b.tier === 'featured' || b.tier === 'premium' ? 1 : 2);
   const hasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);
-  return (data as Bar[])
-    .slice()
-    .sort((a, b) => {
-      const t = tierRank(a) - tierRank(b);
-      if (t !== 0) return t;
-      const s = bestAccolade(b).score - bestAccolade(a).score;
-      if (s !== 0) return s;
-      const p = (hasPhoto(a) ? 0 : 1) - (hasPhoto(b) ? 0 : 1);
-      if (p !== 0) return p;
-      return a.name.localeCompare(b.name);
-    })
-    .slice(0, CITY_PAGE_MAX_BARS);
+  return bars.slice().sort((a, b) => {
+    const t = tierRank(a) - tierRank(b);
+    if (t !== 0) return t;
+    const s = bestAccolade(b).score - bestAccolade(a).score;
+    if (s !== 0) return s;
+    const p = (hasPhoto(a) ? 0 : 1) - (hasPhoto(b) ? 0 : 1);
+    if (p !== 0) return p;
+    return a.name.localeCompare(b.name);
+  });
 }
 
 // ---------------------------------------------------------------- composers

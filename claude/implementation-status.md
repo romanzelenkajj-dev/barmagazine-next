@@ -1214,6 +1214,28 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 26: country-by-type and US-state-by-type SEO pages
+- New routes /best-bars/country/<country>/<type> and
+  /best-bars/us/<state>/<type> on the city-by-type template: intro (12
+  hand-written in src/lib/region-intros.ts, the rest composed), the
+  directory card grid (DirectoryBarCard, no cap, the city pages' best-first
+  order), links down to the city-by-type pages inside the region, state
+  pages inside a country, sibling types, ItemList and Breadcrumb JSON-LD,
+  canonical, meta description with the LIVE count. Threshold
+  MIN_REGION_BARS = 6 (src/lib/seo-regions.ts); below it the page 404s
+  and is not in the sitemap. 52 country pages and 20 state pages at
+  launch, all in sitemap-bars with lastmod = newest member. City-by-type
+  pages link up to their state and country pages. sortSeoBars exported
+  from seo-cities so the three rungs sort identically.
+- Data: Bemelmans Bar, Carousel Bar & Lounge and Viceversa were typed
+  Cocktail Bar with no Hotel Bar subtype; subtype added by id (they are
+  hotel bars; the task's check list expects them on the US hotel-bars
+  page). King Cole Bar in the directory is the Mexico City room, not New
+  York's, so it is absent by design. New York, Texas and Florida hotel
+  bars are under the threshold (5, 4, 4), so those three of the twelve
+  requested intros have no page yet; the intros are in the file and light
+  up when the counts reach six.
+
 ## 2026-09-16 - Queue task 25: wave 5 INSERTED, 11 rows (Roman's go relayed in the task file)
 - Roman: Bar Marmont permanently closed (not inserted; "do not re-add"
   recorded in the wave file and claude/us-gap-analysis.md); Hard Shake

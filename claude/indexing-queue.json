@@ -1351,6 +1351,87 @@
    "status": "pending",
    "date": null,
    "note": "wave 5, 2026-09-16 (city page: URL is /bars/city/palm-beach)"
+  },
+  {
+   "slug": "../best-bars/country/united-states/hotel-bars",
+   "city": "United States",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 26 region page; URL is https://barmagazine.com/best-bars/country/united-states/hotel-bars"
+  },
+  {
+   "slug": "../best-bars/country/united-states/speakeasies",
+   "city": "United States",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 26 region page; URL is https://barmagazine.com/best-bars/country/united-states/speakeasies"
+  },
+  {
+   "slug": "../best-bars/country/united-states/rooftop-bars",
+   "city": "United States",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 26 region page; URL is https://barmagazine.com/best-bars/country/united-states/rooftop-bars"
+  },
+  {
+   "slug": "../best-bars/country/united-states/cocktail-bars",
+   "city": "United States",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 26 region page; URL is https://barmagazine.com/best-bars/country/united-states/cocktail-bars"
+  },
+  {
+   "slug": "../best-bars/us/california/hotel-bars",
+   "city": "California",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 26 region page; URL is https://barmagazine.com/best-bars/us/california/hotel-bars"
+  },
+  {
+   "slug": "../best-bars/us/california/cocktail-bars",
+   "city": "California",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 26 region page; URL is https://barmagazine.com/best-bars/us/california/cocktail-bars"
+  },
+  {
+   "slug": "../best-bars/us/new-york/cocktail-bars",
+   "city": "New York",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 26 region page; URL is https://barmagazine.com/best-bars/us/new-york/cocktail-bars"
+  },
+  {
+   "slug": "../best-bars/us/texas/cocktail-bars",
+   "city": "Texas",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 26 region page; URL is https://barmagazine.com/best-bars/us/texas/cocktail-bars"
+  },
+  {
+   "slug": "../best-bars/us/florida/cocktail-bars",
+   "city": "Florida",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 26 region page; URL is https://barmagazine.com/best-bars/us/florida/cocktail-bars"
   }
  ]
 }

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getAllActiveBars, getCountriesWithCounts } from '@/lib/supabase';
 import { getCityIndex } from '@/lib/city-index';
 import { getSeoCities } from '@/lib/seo-cities';
+import { getRegionCombos, regionHref } from '@/lib/seo-regions';
 import { getLiveAwardPrograms } from '@/lib/award-hubs';
 import { toUrlSlug } from '@/lib/utils';
 
@@ -40,13 +41,14 @@ export async function GET() {
   // Paginated: a single getBars({ perPage: 2000 }) silently returned 1,000
   // rows and left 247 active profiles out of the sitemap. The live deploy
   // check (seo-check sitemap-bars-count) asserts the count matches.
-  const [bars, countries, cityIndex, seoCities] = await Promise.all([
+  const [bars, countries, cityIndex, seoCities, regionCombos] = await Promise.all([
     getAllActiveBars<{ slug: string; tier: string | null; city: string; country: string; state: string | null; updated_at: string | null; created_at: string }>(
       'slug, tier, city, country, state, updated_at, created_at'
     ),
     getCountriesWithCounts(),
     getCityIndex(),
     getSeoCities(),
+    getRegionCombos(),
   ]);
   const awardPrograms = await getLiveAwardPrograms();
 
@@ -123,6 +125,18 @@ export async function GET() {
   </url>
 `;
     }
+  }
+
+  // Country-by-type and US-state-by-type pages (Roman, 2026-09-16): every
+  // combination clearing MIN_REGION_BARS, lastmod = the newest member.
+  for (const combo of regionCombos) {
+    xml += `  <url>
+    <loc>${SITE_URL}${regionHref(combo.region, combo.type.slug)}</loc>
+    <lastmod>${combo.newest ? new Date(combo.newest).toISOString() : new Date(directoryLastmod).toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
   }
 
   // Award hub pages
