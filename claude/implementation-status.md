@@ -1214,7 +1214,7 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
-## 2026-09-16 - Queue task 33: specials field, Part 2 (column added by Roman)
+## 2026-09-16 - Queue task 33: specials field, Part 2 (column added by Roman, 89d88ce)
 - bars.specials (text): owner-editable (OWNER_EDITABLE_FIELDS, trimmed by
   normalize, 240-character cap via specialsProblem, formatSpecials
   collapses to one line), "Happy hour and specials" textarea with the
