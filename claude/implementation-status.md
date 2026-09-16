@@ -1214,6 +1214,19 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 22: mentions block is one horizontal scroll-snap row (849a931)
+- .bar-v2-mentions-track: a flex row, cards one third of the width (two
+  halves to 1099px, 85% on phones so the next card peeks in), scroll-snap
+  x mandatory, overflow-x auto, scrollbar hidden, focusable (arrow keys
+  scroll it natively), all cards in the server HTML. Three or fewer
+  cards: a static row (stacked on phones), no overflow, no arrows.
+- MentionsArrows (client, arrows only): two 36px round buttons beside
+  the heading, one card per click with smooth behaviour, previous
+  disabled at the start, next when the last card is fully in view (not
+  at max scrollLeft, which mandatory snap may never reach); hidden below
+  1100px and with three or fewer cards. Cards are border-box so three
+  thirds plus two gaps fit the row exactly.
+
 ## 2026-09-15 - Queue task 21: nearby cards ARE the directory card (DirectoryBarCard, f87f2bd)
 - The city page's CityBarCard moved into src/components/DirectoryBarCard.tsx
   (one optional prop, locationLine); the city page and the profile's
