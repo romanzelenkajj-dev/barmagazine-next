@@ -1214,6 +1214,20 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-15 - Queue task 23 (urgent): sidebar blowout from the mentions row; footer gap (720117d)
+- Regression from 22: the non-wrapping mentions track gave the 3fr
+  profile column a min-content width (1685px on Handshake Speakeasy, 14
+  cards), the sidebar went off screen and the action buttons past the
+  right edge. Fix: .bar-v2 and .bar-v2-mentions min-width: 0, the track
+  max-width 100% and overflow-x auto unconditionally (the lift room
+  padding moved with it). Verified 1440 / 1000 / 390 on Handshake, Night
+  Hawk, Lyaness, Mirate: document width equals the viewport, columns
+  1032 / 344, arrows working.
+- Footer gap: the nearby block (last in the column since 14) still
+  carried padding-bottom 2rem and a hairline, so the last card sat 49px
+  above the footer where the column gap is 16. Both removed; the gap is
+  16 on profiles and stays 16 on /bars.
+
 ## 2026-09-15 - Queue task 22: mentions block is one horizontal scroll-snap row (849a931)
 - .bar-v2-mentions-track: a flex row, cards one third of the width (two
   halves to 1099px, 85% on phones so the next card peeks in), scroll-snap
