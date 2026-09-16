@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { stripReadMore } from '@/lib/read-more';
 import Link from 'next/link';
 import { formatCardTitle, cleanTitle } from '@/lib/utils';
 
@@ -117,7 +118,7 @@ export function HomeCategoryGrid({ initialPosts, categoryData, heroId }: Props) 
             const cat = getCategory(post);
             const imgUrl = getImgUrl(post, 'large');
             const formattedTitle = formatCardTitle(post.title.rendered, post.meta?.bold_title);
-            const excerpt = truncateAtWord(stripHtml(post.excerpt.rendered), 120);
+            const excerpt = truncateAtWord(stripReadMore(stripHtml(post.excerpt.rendered)), 120);
 
             if (isBleed) {
               return (

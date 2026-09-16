@@ -1214,6 +1214,18 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 31: article meta description no longer ends in "More"
+- WordPress auto-excerpts end with a read-more link and stripHtml kept
+  its text, so the description, og:description, twitter description and
+  the article JSON-LD ended "...2026. More". New src/lib/read-more.ts
+  stripReadMore() (end of string only: More, Read more, Continue reading,
+  with the ellipsis or bracket before it), and postDescription() in
+  wordpress.ts prefers All in One SEO's per-post description
+  (aioseo_meta_data.description, which the WP REST posts endpoint
+  exposes; no Yoast field) over the cleaned excerpt, truncated at a
+  word. The three card excerpts (ArticleCard, HomeCategoryGrid,
+  LoadMoreGrid) strip the marker too. 8 unit tests.
+
 ## 2026-09-16 - Queue task 30: "Bars in this article" as the card carousel (0bd3021)
 - src/components/ArticleBarsCarousel.tsx (server): fetches the named
   rows by slug, keeps the map's alphabetical order, renders the task-22

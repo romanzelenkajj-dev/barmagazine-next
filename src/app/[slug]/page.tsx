@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { format } from 'date-fns';
-import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, getPostTags, stripHtml, truncateAtWord, estimateReadTime, rewriteContentImageUrls, extractFaqPairs } from '@/lib/wordpress';
+import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getPostCategories, getPostAuthor, getPostTags, stripHtml, estimateReadTime, rewriteContentImageUrls, extractFaqPairs, postDescription } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
 import { ShareBar } from '@/components/ShareBar';
 import { ReadingProgress } from '@/components/ReadingProgress';
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const post = await getPostBySlug(params.slug);
   if (!post) return {};
   const title = stripHtml(post.title.rendered).replace(/\|/g, '').trim();
-  const description = truncateAtWord(stripHtml(post.excerpt.rendered), 160);
+  const description = postDescription(post);
   const heroImage = getFeaturedImageUrl(post, 'full');
   const categories = getPostCategories(post);
   const author = getPostAuthor(post);
@@ -114,7 +114,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     // A8: cap headline at 110 chars (Google NewsArticle requirement). The
     // titles in WP can run long; truncate at last word boundary.
     headline: truncateHeadline(stripHtml(post.title.rendered).replace(/\|/g, '').trim()),
-    description: truncateAtWord(stripHtml(post.excerpt.rendered), 160),
+    description: postDescription(post),
     image: heroImage || undefined,
     datePublished: post.date,
     dateModified: post.modified || post.date,

@@ -1,3 +1,4 @@
+import { stripReadMore } from './read-more';
 // WordPress.com public API — the site identifier for the WP.com REST API.
 // IMPORTANT: This staging domain is ONLY used as a site identifier in the API URL.
 // It must NEVER appear in rendered HTML. The sanitizeResponse() function below
@@ -67,6 +68,8 @@ export interface WPPost {
     bold_title?: string;
     [key: string]: unknown;
   };
+  /** All in One SEO's per-post fields, exposed by the WP REST posts endpoint. */
+  aioseo_meta_data?: { title?: string | null; description?: string | null } | null;
   _embedded?: {
     'wp:featuredmedia'?: WPMedia[];
     'wp:term'?: WPCategory[][];
@@ -396,6 +399,20 @@ export function stripHtml(html: string): string {
     .replace(/&#8230;/g, '…')
     .replace(/&#\d+;/g, '');
   return text;
+}
+
+export { stripReadMore } from './read-more';
+
+/**
+ * The description for an article's meta tags, Open Graph, Twitter card and
+ * JSON-LD: the SEO plugin's description when the post has one, else the
+ * excerpt with the read-more marker removed, truncated at a word.
+ */
+export function postDescription(post: Pick<WPPost, 'excerpt' | 'aioseo_meta_data'>, maxLen = 160): string {
+  const seo = post.aioseo_meta_data?.description;
+  const fromSeo = seo ? stripReadMore(stripHtml(seo)) : '';
+  const text = fromSeo || stripReadMore(stripHtml(post.excerpt?.rendered || ''));
+  return truncateAtWord(text, maxLen);
 }
 
 export function truncateAtWord(text: string, maxLen: number): string {

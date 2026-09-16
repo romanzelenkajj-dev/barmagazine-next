@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { format } from 'date-fns';
 import type { WPPost } from '@/lib/wordpress';
-import { getFeaturedImageUrl, getPostCategories, stripHtml, estimateReadTime } from '@/lib/wordpress';
+import { getFeaturedImageUrl, getPostCategories, stripHtml, stripReadMore, estimateReadTime } from '@/lib/wordpress';
 import { cleanTitle, formatCardTitle } from '@/lib/utils';
 
 export function ArticleCard({ post }: { post: WPPost }) {
   const imageUrl = getFeaturedImageUrl(post, 'medium_large') || getFeaturedImageUrl(post, 'large');
   const categories = getPostCategories(post);
   const categoryName = categories[0]?.name || 'Article';
-  const excerpt = stripHtml(post.excerpt.rendered);
+  const excerpt = stripReadMore(stripHtml(post.excerpt.rendered));
   const readTime = estimateReadTime(post.content.rendered);
 
   return (

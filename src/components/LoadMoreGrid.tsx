@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { stripReadMore } from '@/lib/read-more';
 import Link from 'next/link';
 import { cleanTitle, formatCardTitle } from '@/lib/utils';
 
@@ -117,7 +118,7 @@ export function LoadMoreGrid({
       <div className="article-grid">
         {posts.map(post => {
           const imageUrl = getImage(post);
-          const excerpt = truncate(strip(post.excerpt.rendered), 120);
+          const excerpt = truncate(stripReadMore(strip(post.excerpt.rendered)), 120);
 
           return (
             <Link key={post.id} href={`/${post.slug}`} className="article-card">

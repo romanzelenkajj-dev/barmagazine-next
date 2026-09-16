@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { TOP10_SLUG_RE, rankTop10Series, stripTitleMarkers } from './wordpress';
+import { TOP10_SLUG_RE, rankTop10Series, stripTitleMarkers, stripReadMore, postDescription, stripHtml } from './wordpress';
 
 const post = (slug: string, date: string, rendered: string) => ({
   slug,
@@ -114,5 +114,44 @@ describe('rankTop10Series', () => {
       featured: null,
       series: [],
     });
+  });
+});
+
+describe('stripReadMore', () => {
+  it('drops the trailing More after a sentence', () => {
+    expect(stripReadMore('a five-night residency, September 22-26, 2026. More')).toBe('a five-night residency, September 22-26, 2026.');
+  });
+  it('drops the marker with its ellipsis or bracket, any case', () => {
+    expect(stripReadMore('the story continues\u2026 More')).toBe('the story continues');
+    expect(stripReadMore('the story continues [\u2026] Read More')).toBe('the story continues');
+    expect(stripReadMore('the story continues... Continue reading')).toBe('the story continues');
+    expect(stripReadMore('the story continues [...] more')).toBe('the story continues');
+  });
+  it('leaves a sentence that merely ends with the word', () => {
+    expect(stripReadMore('we wanted to see more of it.')).toBe('we wanted to see more of it.');
+  });
+  it('touches the end only', () => {
+    expect(stripReadMore('More bars, more cities, more lists.')).toBe('More bars, more cities, more lists.');
+  });
+  it('is what stripHtml hands it from a WordPress excerpt', () => {
+    const excerpt = '<p>Take over Torno Subito, September 22-26, 2026. <a class="g1-link g1-link-more" href="https://x/">More</a></p>';
+    expect(stripReadMore(stripHtml(excerpt))).toBe('Take over Torno Subito, September 22-26, 2026.');
+  });
+});
+
+describe('postDescription', () => {
+  const excerpt = { rendered: '<p>From the excerpt, September 22-26, 2026. <a href="https://x/">More</a></p>' };
+  it('prefers the SEO plugin description when present', () => {
+    expect(postDescription({ excerpt, aioseo_meta_data: { description: 'From the plugin.' } })).toBe('From the plugin.');
+  });
+  it('falls back to the cleaned excerpt', () => {
+    expect(postDescription({ excerpt, aioseo_meta_data: { description: '' } })).toBe('From the excerpt, September 22-26, 2026.');
+    expect(postDescription({ excerpt })).toBe('From the excerpt, September 22-26, 2026.');
+  });
+  it('truncates at a word', () => {
+    const long = { rendered: '<p>' + 'word '.repeat(60) + 'end. More</p>' };
+    const d = postDescription({ excerpt: long });
+    expect(d.length).toBeLessThanOrEqual(161);
+    expect(d.endsWith('\u2026')).toBe(true);
   });
 });
