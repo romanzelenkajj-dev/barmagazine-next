@@ -69,6 +69,8 @@ export interface Bar {
   photo_credit: string | null;
   tier: 'free' | 'featured' | 'premium' | 'top10';
   opening_hours: string | null;
+  /** Happy hour and specials, one or two lines, owner-editable (2026-09-16). */
+  specials?: string | null;
   menu_url: string | null;
   menu_highlights: MenuHighlight[] | null;
   menu_sections: MenuSection[] | null;

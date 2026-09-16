@@ -6,6 +6,9 @@ import {
   OWNER_FORBIDDEN_FIELDS,
   isPaidTier,
   photoLimitForTier,
+  formatSpecials,
+  specialsProblem,
+  SPECIALS_MAX,
 } from './owner-fields';
 
 describe('owner-fields', () => {
@@ -105,5 +108,25 @@ describe('owner-fields', () => {
       expect(isPaidTier('premium')).toBe(true);
       expect(isPaidTier('free')).toBe(false);
     });
+  });
+});
+
+describe('specials (task 33)', () => {
+  it('is owner-editable', () => {
+    expect((OWNER_EDITABLE_FIELDS as readonly string[]).includes('specials')).toBe(true);
+    expect(filterOwnerFields({ specials: 'Happy hour 5 to 6pm' }).allowed).toEqual({ specials: 'Happy hour 5 to 6pm' });
+  });
+  it('formats to one line and null when empty', () => {
+    expect(formatSpecials('  Happy hour\n Tue to Sat  5 to 6pm ')).toBe('Happy hour Tue to Sat 5 to 6pm');
+    expect(formatSpecials('')).toBeNull();
+    expect(formatSpecials(null)).toBeNull();
+    expect(formatSpecials(42)).toBeNull();
+  });
+  it('accepts up to 240 characters and rejects more', () => {
+    expect(specialsProblem('x'.repeat(SPECIALS_MAX))).toBeNull();
+    expect(specialsProblem('x'.repeat(SPECIALS_MAX + 1))).toMatch(/240 characters/);
+    expect(specialsProblem('')).toBeNull();
+    expect(specialsProblem(null)).toBeNull();
+    expect(specialsProblem(7)).toMatch(/text/);
   });
 });

@@ -1214,6 +1214,17 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 33: specials field, Part 2 (column added by Roman)
+- bars.specials (text): owner-editable (OWNER_EDITABLE_FIELDS, trimmed by
+  normalize, 240-character cap via specialsProblem, formatSpecials
+  collapses to one line), "Happy hour and specials" textarea with the
+  helper on the owner edit form, its own "Specials" row in the admin
+  diff, PUBLIC_EDITORIAL_COLUMNS. Profile: a meta row with a tag icon
+  under the hours row, and a "Specials" block under Opening hours in
+  Plan Your Visit; not in the openingHours JSON-LD; not on cards.
+  Holiday: specials set, the Part 1 happy-hour sentence removed from the
+  description; Torno Subito: the residency line. 3 tests.
+
 ## 2026-09-16 - Queue task 32: every article image renders the same box (68c9d49)
 - Diagnosis: the bare publisher figure had a 16px bleed and the house
   radius; figure.wp-caption (WordPress-inserted) had no bleed on desktop,

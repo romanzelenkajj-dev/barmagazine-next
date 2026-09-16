@@ -46,6 +46,7 @@ const FIELD_LABEL: Record<string, string> = {
   reservation_url: 'Reservations link',
   menu_url: 'Menu link',
   opening_hours: 'Opening hours',
+  specials: 'Specials',
   photos: 'Photos',
 };
 

@@ -33,6 +33,7 @@ interface BarData {
   instagram: string;
   email: string;
   opening_hours: string;
+  specials: string;
   reservation_url: string;
   whatsapp: string;
   menu_url: string;
@@ -66,7 +67,7 @@ interface PendingSubmission {
 
 const EMPTY: FormState = {
   address: '', phone: '', email: '', website: '', instagram: '',
-  whatsapp: '', reservation_url: '', menu_url: '', opening_hours: '',
+  whatsapp: '', reservation_url: '', menu_url: '', opening_hours: '', specials: '',
 };
 
 export default function EditBarPage() {
@@ -333,6 +334,23 @@ export default function EditBarPage() {
               value={formData.opening_hours}
               onChange={e => setFormData({ ...formData, opening_hours: e.target.value })}
             />
+          </div>
+
+          <div className="add-bar-form-section">
+            <h2 className="owner-dash-section-title">Specials</h2>
+            <label className="form-label" htmlFor="f-specials">Happy hour and specials</label>
+            <textarea
+              id="f-specials"
+              className="form-input"
+              rows={2}
+              maxLength={240}
+              placeholder="Happy hour Tue to Sat 5 to 6pm, half-price martinis on Sundays."
+              value={formData.specials}
+              onChange={e => setFormData({ ...formData, specials: e.target.value })}
+            />
+            <p className="owner-dash-note" style={{ marginTop: 6 }}>
+              One or two lines, for example: Happy hour Tue to Sat 5 to 6pm, half-price martinis on Sundays. {formData.specials.length}/240
+            </p>
           </div>
 
           <button type="submit" className="add-bar-submit" disabled={saving || !hasChanges}>

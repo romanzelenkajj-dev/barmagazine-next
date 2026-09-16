@@ -22,6 +22,7 @@ export const OWNER_EDITABLE_FIELDS = [
   'instagram',
   'email',
   'opening_hours',
+  'specials',
   'reservation_url',
   'whatsapp',
   'menu_url',
@@ -54,6 +55,24 @@ export const OWNER_FORBIDDEN_FIELDS = [
 ] as const;
 
 export type OwnerEditableField = (typeof OWNER_EDITABLE_FIELDS)[number];
+
+/** The specials field: one or two lines, at most this many characters. */
+export const SPECIALS_MAX = 240;
+
+/** Collapse the whitespace of a specials value; null when empty. */
+export function formatSpecials(value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+  const s = value.replace(/\s+/g, ' ').trim();
+  return s ? s : null;
+}
+
+/** Why a submitted specials value is rejected, or null when it is fine. */
+export function specialsProblem(value: unknown): string | null {
+  if (value == null || value === '') return null;
+  if (typeof value !== 'string') return 'Specials must be text.';
+  if (formatSpecials(value)!.length > SPECIALS_MAX) return `Specials must be ${SPECIALS_MAX} characters or fewer.`;
+  return null;
+}
 
 /**
  * Photo entitlement per tier. Unpaid tiers (free, and the editorial top10

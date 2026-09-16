@@ -33,7 +33,7 @@ export const PRIVATE_BAR_COLUMNS = ['admin_notes'] as const;
  * Renders in the location label ("Portland, Maine") and decides the city
  * slug for same-name cities (portland-me). Public, and part of the address.
  */
-export const PUBLIC_EDITORIAL_COLUMNS = ['neighborhood', 'state'] as const;
+export const PUBLIC_EDITORIAL_COLUMNS = ['neighborhood', 'state', 'specials'] as const;
 
 export function stripPrivate<T extends Record<string, unknown>>(row: T): T {
   let out: Record<string, unknown> | null = null;

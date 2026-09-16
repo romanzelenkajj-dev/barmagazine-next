@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { verifyOwnerToken, noStoreFetch } from '@/lib/supabase-auth';
-import { filterOwnerFields } from '@/lib/owner-fields';
+import { filterOwnerFields, specialsProblem, formatSpecials } from '@/lib/owner-fields';
 import { menuUrlProblem } from '@/lib/menu-url';
 import { notifyOwnerSubmission } from '@/lib/notify';
 
@@ -103,7 +103,7 @@ export async function PUT(request: NextRequest) {
     // below can compare against live data.
     const { data: bar } = await supabase
       .from('bars')
-      .select('id, owner_id, name, slug, address, phone, website, instagram, email, opening_hours, reservation_url, whatsapp, menu_url, menu_sections, photos')
+      .select('id, owner_id, name, slug, address, phone, website, instagram, email, opening_hours, specials, reservation_url, whatsapp, menu_url, menu_sections, photos')
       .eq('id', bar_id)
       .eq('owner_id', owner.id)
       .single();
@@ -122,6 +122,13 @@ export async function PUT(request: NextRequest) {
     if (typeof allowed.menu_url === 'string') {
       const problem = menuUrlProblem(allowed.menu_url);
       if (problem) return NextResponse.json({ error: problem }, { status: 400 });
+    }
+
+    // Specials: one or two lines, 240 characters at most (Roman, task 33).
+    if ('specials' in allowed) {
+      const problem = specialsProblem(allowed.specials);
+      if (problem) return NextResponse.json({ error: problem }, { status: 400 });
+      allowed.specials = formatSpecials(allowed.specials);
     }
 
     if (Object.keys(allowed).length === 0) {

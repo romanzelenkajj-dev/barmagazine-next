@@ -11,6 +11,7 @@ import { displayType, barTypeUnion } from '@/lib/bar-type';
 import type { Bar, MenuSection } from '@/lib/supabase';
 import { formatBarType, toUrlSlug } from '@/lib/utils';
 import { hasSlug } from '@/lib/safe-slug';
+import { formatSpecials } from '@/lib/owner-fields';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
 import { BarSectionChips } from '@/components/BarSectionChips';
@@ -391,6 +392,12 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                   <span>{formatHoursForCountry((bar as Bar & { opening_hours?: string }).opening_hours, bar.country)}</span>
                 </div>
               )}
+              {formatSpecials(bar.specials) && (
+                <div className="bar-v2-detail bar-v2-detail--specials">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" /><line x1="7" y1="7" x2="7.01" y2="7" /></svg>
+                  <span>{formatSpecials(bar.specials)}</span>
+                </div>
+              )}
             </div>
             {/* Actions: the actionable duplicates of the meta rows above
                 (which stay for crawlers and copy-paste), LAST in the DOM so
@@ -519,6 +526,12 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 <div className="bar-v2-visit-block">
                   <span className="bar-v2-visit-label">Opening hours</span>
                   <span className="bar-v2-visit-value">{formatHoursForCountry(bar.opening_hours, bar.country)}</span>
+                </div>
+              )}
+              {formatSpecials(bar.specials) && (
+                <div className="bar-v2-visit-block">
+                  <span className="bar-v2-visit-label">Specials</span>
+                  <span className="bar-v2-visit-value">{formatSpecials(bar.specials)}</span>
                 </div>
               )}
               {bar.address && (
