@@ -288,7 +288,14 @@ zuma-hong-kong -> negroni-week-2026-asia-pacific-guest-shifts
 # an article about the ORIGINAL opening an outpost, so both rows belong.
 bar-leone -> bar-leone-shanghai-opens-this-november
 bar-leone -> bar-leone-expands-with-second-location-in-shanghai
-bar-leone -> negroni-week-2026-asia-pacific-guest-shifts
+# bar-leone (Hong Kong) -> negroni-week-2026-asia-pacific-guest-shifts REMOVED
+# 2026-09-16 (queue task 29): the guest shift is at the Shanghai room; the
+# Hong Kong bar is named only as context ("the mainland outpost of the Hong
+# Kong bar named the world's best in 2025"). Pair moved to the excluded list.
+# bar-leone-shanghai: "Berg then continues from Bangkok to Bar Leone Shanghai
+#   on September 24, the mainland outpost of the Hong Kong bar named the
+#   world's best in 2025, before finishing at Hope & Sesame in Guangzhou."
+bar-leone-shanghai -> negroni-week-2026-asia-pacific-guest-shifts
 seed-library -> mr-lyan-brings-seed-library-to-new-york-this-fall
 
 # Torno Subito residency article (queue task 28, 2026-09-16), article

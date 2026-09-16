@@ -1,6 +1,6 @@
 # Article mentions held for a hand check
 
-Generated 2026-09-16T21:58:33.016Z by scripts/build-article-mentions.mjs.
+Generated 2026-09-16T22:02:50.050Z by scripts/build-article-mentions.mjs.
 These bar names are short or generic enough that a text match is not
 evidence of a mention. NONE of these are linked. Confirm each pair by
 reading the article, then either add the bar name to a per-article

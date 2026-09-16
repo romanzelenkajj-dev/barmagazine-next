@@ -1,12 +1,12 @@
 {
- "generatedAt": "2026-09-16T21:58:33.016Z",
+ "generatedAt": "2026-09-16T22:02:50.050Z",
  "rule": "full bar name, whole-word, article text also names the bar's city; generic names held",
  "counts": {
   "bars": 380,
   "articles": 182,
-  "links": 1024,
+  "links": 1023,
   "confirmedPairs": 283,
-  "articleSideSkippedAlreadyLinked": 90,
+  "articleSideSkippedAlreadyLinked": 89,
   "held": 26
  },
  "byBar": {
@@ -778,12 +778,6 @@
     "title": "Medellín Cocktail Week 2026 Returns with World s Best Bars",
     "date": "2026-04-29",
     "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2026/04/02-medell-n-cocktail-week-2026-medellin-cocktail-week-2026-celebration-jpg-1.jpg?fit=1000%2C1500&ssl=1"
-   },
-   {
-    "slug": "negroni-week-2026-asia-pacific-guest-shifts",
-    "title": "Monica Berg and Giorgio Bargiani Headline Negroni Week 2026",
-    "date": "2026-09-14",
-    "image": "https://i0.wp.com/romanzelenka-wjgek.wpcomstaging.com/wp-content/uploads/2026/09/04-monica-berg-negroni-week-2026-jpg-e1789407160978.jpg?fit=1200%2C820&ssl=1"
    },
    {
     "slug": "montana-bar-to-open-in-hong-kong-in-summer-2025",

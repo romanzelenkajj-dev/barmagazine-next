@@ -1214,6 +1214,22 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 29: Bar Leone on the Negroni Week APAC article, multi-row audit
+- The guest shift is at Bar Leone Shanghai ("Berg then continues from
+  Bangkok to Bar Leone Shanghai on September 24, the mainland outpost of
+  the Hong Kong bar named the world's best in 2025"); the Hong Kong row
+  was linked by a hand-confirmed pair that read the context clause as a
+  mention. Removed: bar-leone -> negroni-week-2026-asia-pacific-guest-shifts
+  (now on the excluded list with the reason); confirmed with the sentence:
+  bar-leone-shanghai -> the same article. Regeneration 1024 -> 1023, that
+  one pair removed, none added.
+- Multi-row audit (Attaboy, Employees Only, Salmon Guru, Paradiso, Zuma,
+  Seed Library, Floreria Atlantico, The Living Room, Bar Leone), every
+  pair read against the sentences naming the bar: all rows match their
+  article's city except one to hold for Roman: seed-library (London) ->
+  seed-library-nyc-new-cocktail-menu-june-2026, an article about the New
+  York room's menu that names London only as the original. Not changed.
+
 ## 2026-09-16 - Queue task 28: mentions rebuilt for the Torno Subito article
 - Article tato-giovannoni-floreria-atlantico-torno-subito-miami live. Three
   pairs added to claude/article-mentions-confirmed.txt with the quoted

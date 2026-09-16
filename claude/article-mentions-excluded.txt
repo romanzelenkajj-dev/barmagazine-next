@@ -11,3 +11,4 @@ employees-only-singapore -> worlds-50-best-bars-reveals-51-100-list-for-2025    
 salmon-guru-dubai -> bar-world-100-2025-full-list-of-global-influencers               # "Diego Cabrera, Salmon Guru, Madrid"; Dubai only via Monin
 salmon-guru-dubai -> handshake-speakeasy-no-1-at-worlds-50-best-bars-2024             # the ranked Salmon Guru is Madrid
 salmon-guru-dubai -> worlds-50-best-bars-2025-bar-leone-tops-the-list                 # the ranked Salmon Guru is Madrid
+bar-leone -> negroni-week-2026-asia-pacific-guest-shifts   # 2026-09-16 (task 29): the shift is at Bar Leone Shanghai; the Hong Kong row is named as context only, same-sentence rule
