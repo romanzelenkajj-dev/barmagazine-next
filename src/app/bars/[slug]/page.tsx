@@ -1,5 +1,6 @@
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { DirectoryBarCard } from '@/components/DirectoryBarCard';
+import { MentionsArrows } from '@/components/MentionsArrows';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getBarBySlug, getBars } from '@/lib/supabase';
@@ -597,8 +598,21 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             renders for a bar with no confirmed mention. */}
         {mentionedIn.length > 0 && (
           <div className="bar-v2-mentions" id="mentions">
-            <h2>{bar.name} in BarMagazine</h2>
-            <ol className="bar-v2-mentions-list bar-v2-card-grid">
+            {/* One horizontal row (Roman, 2026-09-15): a scroll-snap track
+                that scrolls by touch, wheel and arrow keys with no JS; the
+                arrows are a small client component shown only with more
+                than three cards. Three or fewer: a static row. Every card
+                is in the server HTML. */}
+            <div className="bar-v2-mentions-head">
+              <h2>{bar.name} in BarMagazine</h2>
+              {mentionedIn.length > 3 && <MentionsArrows trackId="mentions-track" />}
+            </div>
+            <ol
+              id="mentions-track"
+              className={`bar-v2-mentions-list bar-v2-mentions-track${mentionedIn.length > 3 ? ' is-scrollable' : ''}`}
+              tabIndex={mentionedIn.length > 3 ? 0 : undefined}
+              aria-label={mentionedIn.length > 3 ? 'Articles, scroll sideways' : undefined}
+            >
               {mentionedIn.map(a => (
                 <li key={a.slug} className="bar-v2-mention bar-v2-gcard">
                   <Link href={`/${a.slug}`} className="bar-v2-mention-link">

@@ -10590,6 +10590,96 @@ a.bar-v2-badge--subtype:hover {
   transition: transform 0.6s var(--ease);
 }
 .bar-v2-gcard:hover .bar-v2-gcard-visual img { transform: scale(1.05); }
+/* The mentions row (Roman, 2026-09-15): one horizontal scroll-snap track.
+   Three cards fill the visible width on desktop, two on tablets, one at
+   85% on phones so the next card peeks in. With three or fewer cards
+   (.is-scrollable absent) it is a static row: no overflow, no peek, the
+   cards keep one third of the width on desktop and tablets and stack on
+   phones. The scrollbar is hidden; touch, wheel and the arrow keys (the
+   track is focusable) scroll it without JS. */
+.bar-v2-mentions-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+.bar-v2-mentions-head h2 { margin: 0; }
+.bar-v2-mentions-track {
+  display: flex;
+  gap: var(--gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.bar-v2-mentions-track > li {
+  /* border-box: the card's 1px border must not push three thirds plus two
+     gaps 6px past the row (preflight is off, so the default is content-box). */
+  box-sizing: border-box;
+  flex: 0 0 calc((100% - 2 * var(--gap)) / 3);
+  min-width: 0;
+}
+.bar-v2-mentions-track.is-scrollable {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* Room for the card's hover lift and shadow inside the scroll box. */
+  padding: 4px 0 12px;
+  margin: -4px 0 -12px;
+}
+.bar-v2-mentions-track.is-scrollable::-webkit-scrollbar { display: none; }
+.bar-v2-mentions-track.is-scrollable > li { scroll-snap-align: start; }
+.bar-v2-mentions-track.is-scrollable:focus-visible {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+@media (max-width: 1099px) {
+  .bar-v2-mentions-track > li { flex-basis: calc((100% - var(--gap)) / 2); }
+}
+@media (max-width: 699px) {
+  .bar-v2-mentions-track.is-scrollable > li { flex-basis: 85%; }
+  .bar-v2-mentions-track:not(.is-scrollable) { flex-direction: column; }
+  .bar-v2-mentions-track:not(.is-scrollable) > li { flex-basis: auto; }
+}
+
+/* Desktop arrows: two small round buttons in the house pill manner (white,
+   hairline, dark ink), beside the heading. Hidden below 1100px, where the
+   peek and the swipe are the affordance. */
+.bar-v2-mentions-arrows {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.bar-v2-mentions-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: #1a1a1a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+}
+.bar-v2-mentions-arrow:hover:not(:disabled) {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #fff;
+}
+.bar-v2-mentions-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+@media (max-width: 1099px) {
+  .bar-v2-mentions-arrows { display: none; }
+}
+
 /* The mentions card: the anchor stays "image + title" (display: contents
    puts both straight into the card's column) and the date sits outside
    it; the title's ::after makes the whole card the click target. */
