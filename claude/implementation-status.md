@@ -1214,6 +1214,24 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 25: wave 5 INSERTED, 11 rows (Roman's go relayed in the task file)
+- Roman: Bar Marmont permanently closed (not inserted; "do not re-add"
+  recorded in the wave file and claude/us-gap-analysis.md); Hard Shake
+  open per the Google Business panel, inserted with his values (hours per
+  the profile, noted in admin_notes). scripts/wave-insert.mjs --apply:
+  round-robin-bar, hmf, blind-duck, the-living-room-dewberry, z-bar,
+  salon-salon, tonga-room, hey-love, polo-lounge, alle-lounge-on-66,
+  hard-shake, all type Hotel Bar, tier free, venue in admin_notes.
+- Post-insert: state derived on all 11 (backfill-state: 456 US/CA rows, 0
+  changes); geocode re-run force dry: all 11 address method, 0 km moved;
+  audit:coords 10 (the task 16 holds, none from the wave);
+  audit:descriptions 0 hits over 1455 rows; audit:addresses 0. New city
+  pages /bars/city/beverly-hills and /bars/city/palm-beach live and in
+  the sitemap; Hey Love joins portland-or, The Living Room joins
+  charleston. Hey Love renders the Spirited tile and "Winner of Best U.S.
+  Hotel Bar at the 2023 Spirited Awards." 13 items appended to
+  claude/indexing-queue.json (11 profiles, 2 city pages).
+
 ## 2026-09-16 - Queue task 24: wave 5 (Haute Living hotel bars) PREPARED, insert awaiting Roman
 - "Claude outputs/haute-living-wave5-verified.md": 10 OPEN (round-robin-bar,
   hmf, blind-duck, the-living-room-dewberry, z-bar, salon-salon,

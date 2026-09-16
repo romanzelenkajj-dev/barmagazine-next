@@ -379,3 +379,6 @@ Hungry Eyes, Lilac Tiger, The Butterscotch Den, Bar Cecil.
 Donna's Houston unchanged = 66-68 depending on Cobra. No verification
 runs before Friday's sends; metro wave order unchanged (Chicago,
 New Orleans, Austin, Denver, Nashville, Dallas first).
+
+## DO NOT RE-ADD (closed venues, confirmed by Roman)
+- Bar Marmont, Chateau Marmont, Los Angeles: permanently closed (Roman, 2026-09-16, wave 5). Skip in every later wave.
