@@ -32,9 +32,20 @@ describe('nearby', () => {
     expect(nearestBars({ ...me, lat: null }, [mk({ id: 'a', slug: 'a', lat: 32.72, lng: -117.16 })])).toEqual([]);
   });
 
-  it('caps at five', () => {
+  it('caps at six, two rows of the card grid', () => {
     const many = Array.from({ length: 9 }, (_, i) => mk({ id: String(i), slug: `b${i}`, lat: 32.7157 + i * 0.001, lng: -117.1611 }));
-    expect(nearestBars(me, many)).toHaveLength(5);
+    expect(nearestBars(me, many)).toHaveLength(6);
+  });
+
+  it('carries the first photo, the accolades and the type for the card', () => {
+    const [e] = nearestBars(me, [
+      mk({ id: 'a', slug: 'a', lat: 32.72, lng: -117.16, photos: ['https://x/1.jpg', 'https://x/2.jpg'], accolades: [{ org: 'w50b' }], type: 'Cocktail Bar' }),
+    ]);
+    expect(e.photo).toBe('https://x/1.jpg');
+    expect(e.accolades).toEqual([{ org: 'w50b' }]);
+    expect(e.type).toBe('Cocktail Bar');
+    const [n] = nearestBars(me, [mk({ id: 'b', slug: 'b', lat: 32.72, lng: -117.16, photos: [] })]);
+    expect(n.photo).toBeNull();
   });
 
   it('uses miles for the United States and km elsewhere, matching the hours precedent', () => {

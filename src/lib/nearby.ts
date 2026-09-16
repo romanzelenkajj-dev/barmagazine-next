@@ -30,6 +30,12 @@ export interface NearbyCandidate {
   lng: number | null;
   short_excerpt: string | null;
   description: string | null;
+  /** First photo is the card image; the placeholder stands in otherwise. */
+  photos?: string[] | null;
+  /** Rendered as up to three tiles on the card. */
+  accolades?: unknown;
+  /** Picks the placeholder's glass. */
+  type?: string | null;
 }
 
 export interface NearbyEntry {
@@ -44,6 +50,9 @@ export interface NearbyEntry {
   street: string | null;
   distance: string;
   line: string | null;
+  photo: string | null;
+  accolades: unknown;
+  type: string | null;
 }
 
 /** The neighborhood when stated, else the street line. */
@@ -53,7 +62,8 @@ export function placeOf(b: Pick<NearbyCandidate, 'neighborhood' | 'address' | 'c
   return streetOf(b.address, b.city);
 }
 
-export const NEARBY_LIMIT = 5;
+/** Six, two full rows of the three-across card grid (Roman, 2026-09-15). */
+export const NEARBY_LIMIT = 6;
 
 /** The street line of an address: everything before the first comma. */
 export function streetOf(address: string | null | undefined, city: string): string | null {
@@ -120,5 +130,8 @@ export function nearestBars(
     street: placeOf(b),
     distance: distanceLabel(km, bar.country),
     line: lineOf(b.short_excerpt, b.description),
+    photo: Array.isArray(b.photos) && typeof b.photos[0] === 'string' && b.photos[0] ? b.photos[0] : null,
+    accolades: b.accolades ?? null,
+    type: b.type ?? null,
   }));
 }

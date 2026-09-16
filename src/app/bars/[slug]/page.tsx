@@ -597,14 +597,14 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         {mentionedIn.length > 0 && (
           <div className="bar-v2-mentions" id="mentions">
             <h2>{bar.name} in BarMagazine</h2>
-            <ol className="bar-v2-mentions-list">
+            <ol className="bar-v2-mentions-list bar-v2-card-grid">
               {mentionedIn.map(a => (
-                <li key={a.slug} className="bar-v2-mention">
+                <li key={a.slug} className="bar-v2-mention bar-v2-gcard">
                   <Link href={`/${a.slug}`} className="bar-v2-mention-link">
-                    <span className="bar-v2-mention-thumb">
+                    <span className="bar-v2-mention-thumb bar-v2-gcard-visual">
                       {a.image ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={a.image} alt="" loading="lazy" width="96" height="64" />
+                        <img src={a.image} alt="" loading="lazy" />
                       ) : null}
                     </span>
                     <span className="bar-v2-mention-title">{a.title}</span>
@@ -639,20 +639,28 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
         {nearby.length > 0 && (
           <div className="bar-v2-nearby">
             <h2>Nearby in {bar.city}</h2>
-            <ol className="bar-v2-near-list">
+            {/* The directory card, three across (Roman, 2026-09-15): photo or
+                the placeholder, name, "<place>, <distance>", up to three
+                accolade tiles. No description text. */}
+            <div className="bar-v2-card-grid">
               {nearby.map(nb => (
-                <li key={nb.slug} className="bar-v2-near">
-                  <div className="bar-v2-near-head">
-                    <Link href={safeHref('/bars', nb.slug)} className="bar-v2-near-name">{nb.name}</Link>
-                    <span className="bar-v2-near-meta">
-                      {nb.street && <span>{nb.street}</span>}
-                      <span className="bar-v2-near-distance">{nb.distance}</span>
-                    </span>
+                <Link key={nb.slug} href={safeHref('/bars', nb.slug)} className="bar-v2-gcard">
+                  <div className="bar-v2-gcard-visual">
+                    {nb.photo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={nb.photo} alt={nb.name} loading="lazy" />
+                    ) : (
+                      <BarPlaceholder name={nb.name} type={nb.type} />
+                    )}
                   </div>
-                  {nb.line && <p className="bar-v2-near-line">{nb.line}</p>}
-                </li>
+                  <div className="bar-v2-gcard-body">
+                    <h3>{nb.name}</h3>
+                    <span className="bar-v2-gcard-meta">{[nb.street, nb.distance].filter(Boolean).join(', ')}</span>
+                    <AccoladeBadges accolades={nb.accolades} limit={3} />
+                  </div>
+                </Link>
               ))}
-            </ol>
+            </div>
           </div>
         )}
 
