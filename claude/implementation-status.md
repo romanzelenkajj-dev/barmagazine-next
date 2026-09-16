@@ -1214,7 +1214,7 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
-## 2026-09-16 - Queue task 31: article meta description no longer ends in "More"
+## 2026-09-16 - Queue task 31: article meta description no longer ends in "More" (86da0c0)
 - WordPress auto-excerpts end with a read-more link and stripHtml kept
   its text, so the description, og:description, twitter description and
   the article JSON-LD ended "...2026. More". New src/lib/read-more.ts
