@@ -2,6 +2,7 @@
 
 import { asciiFold } from '@/lib/ascii-fold';
 import { hasFiftyBest } from '@/lib/accolades';
+import { meritBand } from '@/lib/city-levels';
 import { useState, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
@@ -48,15 +49,21 @@ function sortBars(
     const bHasArticle = b.wp_article_slug ? 1 : 0;
     if (aHasArticle !== bHasArticle) return bHasArticle - aHasArticle;
 
-    // 3. World's 50 Best
-    const aIs50Best = hasFiftyBest(a.accolades) ? 1 : 0;
-    const bIs50Best = hasFiftyBest(b.accolades) ? 1 : 0;
-    if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
+    // 3. Merit band, then photo INSIDE it, then the exact 50 Best test. A bar
+    // with an accolade never falls behind one without because of a photo; it
+    // falls behind another accolade holder that has one.
+    const mBand = meritBand(a) - meritBand(b);
+    if (mBand !== 0) return mBand;
 
     // 4. Bars with photos
     const aHasPhoto = (a.photos && a.photos.length > 0) ? 1 : 0;
     const bHasPhoto = (b.photos && b.photos.length > 0) ? 1 : 0;
     if (aHasPhoto !== bHasPhoto) return bHasPhoto - aHasPhoto;
+
+    // 5. World's 50 Best
+    const aIs50Best = hasFiftyBest(a.accolades) ? 1 : 0;
+    const bIs50Best = hasFiftyBest(b.accolades) ? 1 : 0;
+    if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
 
     // 5. Alphabetical
     return a.name.localeCompare(b.name);

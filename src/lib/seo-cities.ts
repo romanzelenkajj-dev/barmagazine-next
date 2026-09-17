@@ -5,6 +5,7 @@ import { renderableAccolades } from './accolades';
 import { buildCityEntries, CityIndex, type CityEntry } from './city-keys';
 import { getBarsForCity } from './city-index';
 import { closedLast } from './bar-status';
+import { meritBand } from './city-levels';
 import { MIN_CITY_BARS, MIN_TYPE_BARS } from './city-thresholds';
 
 /**
@@ -227,10 +228,17 @@ export function sortSeoBars(bars: Bar[]): Bar[] {
     if (c !== 0) return c;
     const t = tierRank(a) - tierRank(b);
     if (t !== 0) return t;
-    const s = bestAccolade(b).score - bestAccolade(a).score;
-    if (s !== 0) return s;
+    // Photos first INSIDE a band, never across one. 198 of 1,469 bars carry a
+    // photo, so a page ordered by exact accolade score alone came out mostly
+    // placeholders: four of the first nine on the California type page. A bar
+    // with an accolade still outranks one without; it is only reordered
+    // against its own peers, which is also the thing we want bars to act on.
+    const m = meritBand(a) - meritBand(b);
+    if (m !== 0) return m;
     const p = (hasPhoto(a) ? 0 : 1) - (hasPhoto(b) ? 0 : 1);
     if (p !== 0) return p;
+    const s = bestAccolade(b).score - bestAccolade(a).score;
+    if (s !== 0) return s;
     return a.name.localeCompare(b.name);
   });
 }

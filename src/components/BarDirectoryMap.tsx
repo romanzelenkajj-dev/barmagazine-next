@@ -5,6 +5,7 @@ import { displayType } from '@/lib/bar-type';
 import { hasFiftyBest } from '@/lib/accolades';
 import { CardStatusPills } from '@/components/CardStatusPills';
 import { statusPill } from '@/lib/bar-status';
+import { meritBand } from '@/lib/city-levels';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
@@ -818,7 +819,12 @@ export function BarDirectoryMapClient({
         const tA = tierRank(a);
         const tB = tierRank(b);
         if (tA !== tB) return tA - tB;
-        // 2. Photo within tier
+        // 2. Merit band, then photo INSIDE it. This had photo above 50 Best,
+        // which is photos before everything; a 50 Best bar without a photo
+        // fell behind a free bar with a snapshot. It now falls behind another
+        // 50 Best bar that has one.
+        const mA = meritBand(a) - meritBand(b);
+        if (mA !== 0) return mA;
         const pA = hasPhoto(a) ? 0 : 1;
         const pB = hasPhoto(b) ? 0 : 1;
         if (pA !== pB) return pA - pB;

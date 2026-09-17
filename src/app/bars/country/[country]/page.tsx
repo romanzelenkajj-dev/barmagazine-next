@@ -5,6 +5,7 @@ import { getBarsByCountry, getCountriesWithCounts } from '@/lib/supabase';
 import { getCityIndex } from '@/lib/city-index';
 import { createClient } from '@supabase/supabase-js';
 import type { Bar } from '@/lib/supabase';
+import { meritBand } from '@/lib/city-levels';
 import { toUrlSlug, fromUrlSlug, formatBarType } from '@/lib/utils';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarDirectorySidebar';
 import CountryBarGridClient from './CountryBarGridClient';
@@ -114,16 +115,23 @@ export default async function CountryPage({
     // DirectoryBarCard. This site was not in the task's list of five.
     const isFeatured = bar.tier === 'featured';
     const isTop10 = bar.tier === 'top10';
-    const hasPhoto = bar.photos && bar.photos.length > 0;
-    if (isFeatured && isTop10)  return hasPhoto ? 0 : 1;
-    if (isFeatured)             return hasPhoto ? 2 : 3;
-    if (isTop10)                return hasPhoto ? 4 : 5;
-    return hasPhoto ? 6 : 7;
+    if (isFeatured && isTop10)  return 0;
+    if (isFeatured)             return 1;
+    if (isTop10)                return 2;
+    return 3;
   };
 
+  // Tier, then merit band, then photo INSIDE the band, then name. The photo
+  // used to sit inside the tier bucket and above nothing else, so an accolade
+  // holder without a photo fell behind a free bar with one.
+  const photoRank = (bar: Bar) => (bar.photos && bar.photos.length > 0 ? 0 : 1);
   const sorted = [...bars].sort((a, b) => {
     const rankDiff = tierRank(a) - tierRank(b);
     if (rankDiff !== 0) return rankDiff;
+    const band = meritBand(a) - meritBand(b);
+    if (band !== 0) return band;
+    const photo = photoRank(a) - photoRank(b);
+    if (photo !== 0) return photo;
     return a.name.localeCompare(b.name);
   });
 

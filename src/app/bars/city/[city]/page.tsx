@@ -9,6 +9,7 @@ import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { hasSlug } from '@/lib/safe-slug';
 import { getCityIntro } from '@/lib/city-intros';
 import { isIndexableCity } from '@/lib/seo-cities';
+import { meritBand } from '@/lib/city-levels';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarDirectorySidebar';
 
 /**
@@ -156,28 +157,32 @@ export default async function CityPage({
   // "featured tier OR has an article", so the top slot the two paying bars buy
   // was being shared with 15 bars that pay nothing. Having an article is still
   // a ranking signal, one bucket lower and under its own name.
+  // The tier bucket only. Merit band and photo are separate keys below, so a
+  // photo reorders bars inside a band and never lifts one across it.
   const tierRank = (b: Bar) => {
     const isTop10 = b.tier === 'top10';
     const isPaid = b.tier === 'featured' || b.tier === 'premium';
     const hasArticle = !!b.wp_article_slug;
-    const p = !!(b.photos && b.photos.length > 0) ? 0 : 1; // 0 = has photo, 1 = no photo
     if (isTop10View) {
-      // Top 10 view: editorial first, then the paid tier.
-      if (isTop10)     return 0 + p;  // 0 or 1
-      if (isPaid)      return 2 + p;  // 2 or 3
-      if (hasArticle)  return 4 + p;  // 4 or 5
-      return 6 + p;                   // 6 or 7
+      if (isTop10)    return 0;
+      if (isPaid)     return 1;
+      if (hasArticle) return 2;
+      return 3;
     }
-    // Default view: the paid tier leads the regular list, which is the thing
-    // it buys.
-    if (isPaid)      return 0 + p;  // 0 or 1
-    if (isTop10)     return 2 + p;  // 2 or 3
-    if (hasArticle)  return 4 + p;  // 4 or 5
-    return 6 + p;                   // 6 or 7
+    // Default view: the paid tier leads the regular list, which is what it buys.
+    if (isPaid)     return 0;
+    if (isTop10)    return 1;
+    if (hasArticle) return 2;
+    return 3;
   };
+  const hasPhoto = (b: Bar) => (b.photos && b.photos.length > 0 ? 0 : 1);
   const sorted = [...bars].sort((a, b) => {
     const rankDiff = tierRank(a) - tierRank(b);
     if (rankDiff !== 0) return rankDiff;
+    const band = meritBand(a) - meritBand(b);
+    if (band !== 0) return band;
+    const photo = hasPhoto(a) - hasPhoto(b);
+    if (photo !== 0) return photo;
     return a.name.localeCompare(b.name);
   });
 

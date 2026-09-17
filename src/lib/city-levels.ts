@@ -145,3 +145,20 @@ export function level2BarsForType(
     sameAsCity,
   };
 }
+
+/**
+ * A coarse standing band, for "photos first among bars of comparable
+ * standing". Roman: "the 50 best photo-less bars will drop behind the 50 best
+ * bars with photos", not behind a free bar with a snapshot.
+ *
+ *   0  holds a renderable accolade
+ *   1  qualified only by a selective editorial source
+ *   2  everything else
+ *
+ * A bar never crosses a band because of a photo. Inside a band the photo
+ * decides, which is the only thing that changes.
+ */
+export function meritBand(bar: Bar): 0 | 1 | 2 {
+  if (renderableAccolades(bar.accolades).length > 0) return 0;
+  return strongestSource(bar.editorial_sources) ? 1 : 2;
+}
