@@ -106,3 +106,32 @@ export function level2Bars(bars: Bar[], fallback: (b: Bar[]) => Bar[]): Level2Re
   const filled = fallback(live).slice(0, LEVEL2_MIN);
   return { curated, rest, all: filled, fellBack: true };
 }
+
+/**
+ * The Level 2 list for one TYPE inside a city.
+ *
+ * Derived from the city's list and then filtered, never computed separately.
+ * Qualification is a property of the bar, not of the page, so the qualified
+ * bars of one type are always a subset of the city's and the counts cannot
+ * invert. They had: /best-bars/amsterdam listed five while
+ * /best-bars/amsterdam/cocktail-bars listed twelve, and the twelve contained
+ * all five.
+ */
+export function level2BarsForType(
+  cityBars: Bar[],
+  matchesType: (b: Bar) => boolean,
+  fallback: (b: Bar[]) => Bar[],
+): Level2Result & { sameAsCity: boolean } {
+  const city = level2Bars(cityBars, fallback);
+  const all = city.all.filter(matchesType);
+  const sameAsCity = all.length === city.all.length && city.all.length > 0;
+  return {
+    curated: city.curated.filter(matchesType),
+    rest: city.rest.filter(matchesType),
+    all,
+    // A type page inherits the city's fallback: if the city could not make a
+    // real selection, neither can a slice of it.
+    fellBack: city.fellBack,
+    sameAsCity,
+  };
+}

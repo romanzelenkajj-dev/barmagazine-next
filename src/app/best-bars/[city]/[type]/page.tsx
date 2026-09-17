@@ -2,6 +2,8 @@ import { HighlightedText } from '@/components/HighlightedText';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { notFound } from 'next/navigation';
+import { getBarsForCity } from '@/lib/city-index';
+import { level2BarsForType } from '@/lib/city-levels';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { displayType } from '@/lib/bar-type';
@@ -11,12 +13,12 @@ import { getRegionCombos, regionHref } from '@/lib/seo-regions';
 import {
   getSeoCities,
   resolveSeoCity,
-  getSeoCityBars,
   typePageBySlug,
   composeTypeIntro,
   composeTypeDescription,
   MIN_TYPE_BARS,
-  photosFirst,
+  sortSeoBars,
+  barHasType,
 } from '@/lib/seo-cities';
 
 /**
@@ -47,23 +49,42 @@ async function resolveCombo(citySlug: string, typeSlug: string) {
   return { city, t, count: entry.count };
 }
 
+/**
+ * The Level 2 list for this city and type, derived from the city's list so it
+ * is always a subset of it. Shared by the metadata and the page.
+ */
+async function level2ForCombo(combo: NonNullable<Awaited<ReturnType<typeof resolveCombo>>>) {
+  const all = await getBarsForCity(combo.city.key);
+  return level2BarsForType(all, b => barHasType(b, combo.t.type), sortSeoBars);
+}
+
 export async function generateMetadata({ params }: { params: { city: string; type: string } }): Promise<Metadata> {
   const combo = await resolveCombo(params.city, params.type);
   if (!combo) return {};
-  const bars = await getSeoCityBars(combo.city.key, combo.t.type);
+  const level = await level2ForCombo(combo);
+  const bars = level.all;
   const topName = bars[0]?.name ?? null;
   const year = new Date().getFullYear();
-  const title = `The Best ${combo.t.plural
+  const plural = combo.t.plural
     .split(' ')
     .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ')} in ${combo.city.city} (${year})`;
+    .join(' ');
+  // No number on a fallback page: the count would not mean a selection.
+  const title = level.fellBack
+    ? `The Best ${plural} in ${combo.city.city} (${year})`
+    : `The ${bars.length} Best ${plural} in ${combo.city.city} (${year})`;
   const description = composeTypeDescription(combo.city, combo.t, bars.length, topName);
   const url = `${SITE_URL}/best-bars/${params.city}/${params.type}`;
   return {
     title,
     description,
-    alternates: { canonical: url },
-    robots: { index: true, follow: true },
+    // When a type page holds exactly the city page's bars, it is a second URL
+    // for one set of bars competing with its own parent for neighbouring
+    // queries. Amsterdam is the case: all 14 of its bars are Cocktail Bar. The
+    // URL stays alive so no existing link breaks, but it points at the city
+    // page and leaves the sitemap.
+    alternates: { canonical: level.sameAsCity ? `${SITE_URL}/best-bars/${params.city}` : url },
+    robots: { index: !level.sameAsCity, follow: true },
     openGraph: {
       title: `${title} | BarMagazine`,
       description,
@@ -79,7 +100,8 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
   if (!combo) notFound();
 
   const { city, t } = combo;
-  const bars = photosFirst(await getSeoCityBars(city.key, t.type));
+  const level = await level2ForCombo(combo);
+  const bars = level.all;
   if (bars.length < MIN_TYPE_BARS) notFound();
 
   const year = new Date().getFullYear();
@@ -133,7 +155,10 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
       <div className="best-bars-page">
         <header className="best-bars-hero">
           <span className="best-bars-kicker">BarMagazine&rsquo;s pick &middot; {year}</span>
-          <h1>The {bars.length} Best {t.plural
+          {/* The H1 follows the same rule as the title: no number on a
+              fallback page. It used to read "The 5 Best Bars in Amsterdam"
+              above a title that correctly carried no number. */}
+          <h1>The {level.fellBack ? '' : `${bars.length} `}Best {t.plural
             .split(' ')
             .map(w => w.charAt(0).toUpperCase() + w.slice(1))
             .join(' ')} in {city.city}</h1>

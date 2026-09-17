@@ -141,7 +141,8 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
       <div className="best-bars-page">
         <header className="best-bars-hero">
           <span className="best-bars-kicker">BarMagazine&rsquo;s pick &middot; {year}</span>
-          <h1>The {bars.length} Best Bars in {match.city}</h1>
+          {/* No number on a fallback page, matching the title. */}
+          <h1>The {level.fellBack ? '' : `${bars.length} `}Best Bars in {match.city}</h1>
           <p className="best-bars-intro">{intro}</p>
           <div className="best-bars-hero-links">
             {editorial?.articleSlug && (

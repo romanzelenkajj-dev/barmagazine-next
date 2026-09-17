@@ -120,6 +120,12 @@ export async function GET() {
   </url>
 `;
     for (const t of c.typeSlugs) {
+      // A type page that holds every bar in the city is the city page under a
+      // second URL. Those pages stay live, canonical at the city page, and out
+      // of the sitemap, because advertising a URL we have told Google not to
+      // index is asking for a crawl we do not want. Amsterdam is the case: all
+      // of its bars are Cocktail Bar.
+      if (t.count >= c.count) continue;
       xml += `  <url>
     <loc>${SITE_URL}/best-bars/${c.slug}/${t.slug}</loc>
     <lastmod>${cityLastmod}</lastmod>
