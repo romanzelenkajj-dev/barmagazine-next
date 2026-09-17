@@ -95,18 +95,35 @@ describe('titleAccolade', () => {
 
 describe('barTitle', () => {
   it('uses the generic promise when there is no credential', () => {
-    expect(barTitle(bar())).toBe("Satan's Whiskers, London | Hours & Drinks | BarMagazine");
+    expect(barTitle(bar({ opening_hours: 'Tue-Sat 6pm-1am' })))
+      .toBe("Satan's Whiskers, London | Hours & Drinks | BarMagazine");
   });
   it('prefers the credential over the generic promise', () => {
     expect(barTitle(bar({ name: 'Connaught Bar', accolades: [acc({ rank: 1 })] })))
       .toContain("No. 1 on World's 50 Best");
   });
+  it('only promises what the row actually has', () => {
+    // A short enough name for the full promise to fit; a longer one shortens.
+    const withBoth = barTitle(bar({ name: 'Coa', city: 'Hong Kong', country: 'Hong Kong',
+      address: '12 Dean Street', opening_hours: 'Tue-Sat 6pm-1am' }));
+    expect(withBoth).toContain('Address, Hours & Drinks');
+    const hoursOnly = barTitle(bar({ opening_hours: 'Tue-Sat 6pm-1am' }));
+    expect(hoursOnly).toContain('Hours & Drinks');
+    expect(hoursOnly).not.toContain('Address');
+    const addressOnly = barTitle(bar({ address: '12 Dean Street, London' }));
+    expect(addressOnly).toContain('Address & Drinks');
+    expect(addressOnly).not.toContain('Hours');
+    const neither = barTitle(bar());
+    expect(neither).toBe("Satan's Whiskers, London | BarMagazine");
+  });
   it('does not repeat a city the name already carries', () => {
-    expect(barTitle(bar({ name: 'LPM Miami', city: 'Miami', country: 'United States', state: 'FL' })))
+    expect(barTitle(bar({ name: 'LPM Miami', city: 'Miami', country: 'United States', state: 'FL',
+      address: '1300 Brickell Bay Dr, Miami, FL', opening_hours: 'Mon-Fri 12pm-3pm' })))
       .toBe('LPM Miami | Address, Hours & Drinks | BarMagazine');
   });
   it('gives a short name the full promise', () => {
-    expect(barTitle(bar({ name: 'Coa', city: 'Hong Kong', country: 'Hong Kong' })))
+    expect(barTitle(bar({ name: 'Coa', city: 'Hong Kong', country: 'Hong Kong',
+      address: '6-10 Shin Hing Street, Central', opening_hours: 'Tue-Sun 6pm-1am' })))
       .toBe('Coa, Hong Kong | Address, Hours & Drinks | BarMagazine');
   });
   it('never exceeds the cap, even for the longest name we have', () => {
@@ -115,7 +132,7 @@ describe('barTitle', () => {
     expect(t).toContain('Cause Effect Cocktail Kitchen & Cape Brandy Bar');
   });
   it('has no dangling separator, comma or double space', () => {
-    for (const b of [bar(), bar({ name: 'Coa', city: 'Hong Kong', country: 'Hong Kong' })]) {
+    for (const b of [bar(), bar({ name: 'Coa', city: 'Hong Kong', country: 'Hong Kong', address: '6-10 Shin Hing Street' })]) {
       const t = barTitle(b);
       expect(t).not.toMatch(/\s{2}|,\s*\||\|\s*$|,\s*$/);
     }

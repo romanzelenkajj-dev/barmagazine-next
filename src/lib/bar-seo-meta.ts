@@ -269,9 +269,22 @@ export function barTitle(bar: BarMetaInput): string {
     }
   }
 
+  // The generic promise names only what the page can actually show. Promising
+  // "Address, Hours & Drinks" on a bar whose row has neither an address nor
+  // opening hours is the same empty snippet in a new costume, and it is the
+  // click we would lose trust on.
+  const has = {
+    address: !!streetAddress(bar.address),
+    hours: !!shortHours(bar.opening_hours, bar.country),
+  };
+  const generic = has.address && has.hours
+    ? ['Address, Hours & Drinks', 'Hours & Drinks']
+    : has.hours ? ['Hours & Drinks']
+    : has.address ? ['Address & Drinks']
+    : [];
+
   // The generic promise is worth LESS than the brand, so here the middle is
   // shortened first and the brand is kept.
-  const generic = ['Address, Hours & Drinks', 'Hours & Drinks'];
   for (const middle of generic) {
     if (fits(`${head} | ${middle} | ${BRAND}`)) return `${head} | ${middle} | ${BRAND}`;
   }
