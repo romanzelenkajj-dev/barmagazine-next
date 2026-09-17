@@ -36,7 +36,7 @@ const norm = (s) => String(s || '').normalize('NFKD').replace(/[̀-ͯ]/g, '')
 // Every active row, paged: PostgREST caps silently at 1000.
 const rows = [];
 for (let from = 0; ; from += 500) {
-  const res = await fetch(`${U}/rest/v1/bars?select=id,slug,name,city,country&is_active=eq.true&order=slug.asc`, {
+  const res = await fetch(`${U}/rest/v1/bars?select=id,slug,name,city,country,editorial_sources&is_active=eq.true&order=slug.asc`, {
     headers: { apikey: K, Authorization: `Bearer ${K}`, Range: `${from}-${from + 499}` },
   });
   const page = await res.json();
@@ -47,13 +47,26 @@ for (let from = 0; ; from += 500) {
 const bySlug = new Map(rows.map(r => [r.slug, r]));
 const byNameCity = new Map(rows.map(r => [`${norm(r.name)}|${norm(r.city)}`, r]));
 
-/** slug -> Map(sourceKey -> entry), so one source is recorded once per bar. */
+/**
+ * slug -> Map(sourceKey -> entry), so one source is recorded once per bar.
+ *
+ * Seeded from what the row ALREADY holds, which is what makes this
+ * repeatable: running it twice adds nothing, and an entry written by hand or
+ * by a later wave is never clobbered by a re-run.
+ */
 const found = new Map();
 function add(slug, entry) {
   if (!slug || !entry.source) return;
   if (!found.has(slug)) found.set(slug, new Map());
   const key = norm(entry.source);
   if (!found.get(slug).has(key)) found.get(slug).set(key, entry);
+}
+const existingCount = new Map();
+for (const r of rows) {
+  const have = Array.isArray(r.editorial_sources) ? r.editorial_sources : [];
+  if (!have.length) continue;
+  existingCount.set(r.slug, have.length);
+  for (const e of have) add(r.slug, e);
 }
 
 // ---------------------------------------------------------------------------
@@ -134,9 +147,12 @@ if (!APPLY) {
   process.exit(0);
 }
 
-let ok = 0, fail = 0;
+let ok = 0, fail = 0, unchanged = 0;
 for (const [slug, m] of found) {
   const row = bySlug.get(slug);
+  // Nothing new for this bar: skip the write entirely, so a re-run is free
+  // and leaves updated_at alone.
+  if ((existingCount.get(slug) || 0) === m.size) { unchanged++; continue; }
   const res = await fetch('https://barmagazine.com/api/admin/manage-bar', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-admin-secret': SECRET },
@@ -145,4 +161,4 @@ for (const [slug, m] of found) {
   if (res.ok) ok++; else { fail++; console.log(`  FAILED ${slug}: ${res.status} ${await res.text()}`); }
   await new Promise(r => setTimeout(r, 120));
 }
-console.log(`written ${ok}, failed ${fail}`);
+console.log(`written ${ok}, unchanged ${unchanged}, failed ${fail}`);
