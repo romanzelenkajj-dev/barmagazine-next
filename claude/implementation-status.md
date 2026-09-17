@@ -1214,6 +1214,30 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 38: batch 15 (Asia, India, Gulf) BUILT, not armed
+- outreach/batch15-w1.slugs and -w2.slugs, 12 bars each. Pool 349 active
+  rows; exclusions 254 no email, 52 already sent, 8 claimed, 11 corporate,
+  1 opted out. 75-bar harvest shortlist read by three researchers from
+  venue sites and Instagram bios only, 26 addresses found, none guessed.
+  Per country: Singapore 10, Hong Kong 6, UAE 4, Thailand 2, China 1,
+  Malaysia 1. Proposed Monday 2026-09-21 21:00 and 23:00 PT, awaiting
+  Roman. Nothing armed, no runner written.
+- GUARD GAP found: 18 bars carry hotel-brand or portfolio inboxes on
+  domains CORPORATE_DOMAINS does not list (waldorfastoria, andaz,
+  stregis, fourpoints, capellahotels, kempinski, raffles, mondrianhotels,
+  tajhotels, theleela, ihcltata, sukhothai, rwsentosa, tuguhotels). They
+  are excluded from batch 15 by hand; adding them to
+  scripts/send-upsell.mjs is a separate task for Roman's call.
+- The duplicate guard now also compares ADDRESSES against the 130 in the
+  previous send logs: the sent log is keyed by slug, so a second outpost
+  sharing one inbox (Bar Leone Shanghai on the Hong Kong address) would
+  otherwise have been a second email to the same mailbox.
+- Batch 14 w1 sent at 21:00:05 to The Hudson Rooms (Resend 01a0ad85).
+  The runner's "launchctl unload; rm -f" line never reached the rm,
+  because the unload kills the running job: the spent plist survived with
+  a past date and would have re-fired at next login. Removed by hand and
+  the w2 runner reordered to delete the plist first.
+
 ## 2026-09-16 - Queue task 37: card photo in the article carousel sat 16px low
 - The "Bars in this article" cards render inside .article-body, so the
   generic article-image rule (margin 16px 0 8px, radius) applied to the

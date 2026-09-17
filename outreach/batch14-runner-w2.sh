@@ -8,4 +8,8 @@ cd "$REPO" || exit 1
 echo "=== batch14-asia-enriched w2 live send $(date) ===" >> "$LOG"
 /usr/local/bin/node scripts/send-upsell.mjs --send --batch batch14-asia-enriched $(cat outreach/batch14-w2.slugs) >> "$LOG" 2>&1
 echo "=== batch14 w2 done $(date) ===" >> "$LOG"
-launchctl unload ~/Library/LaunchAgents/com.barmagazine.batch14-w2.plist >> "$LOG" 2>&1; rm -f ~/Library/LaunchAgents/com.barmagazine.batch14-w2.plist
+# Delete the plist FIRST: "launchctl unload" terminates this very job, so
+# anything after it on the line never runs (w1 proved it tonight) and a
+# leftover one-shot with a past date fires again at next login.
+rm -f ~/Library/LaunchAgents/com.barmagazine.batch14-w2.plist
+launchctl bootout gui/$(id -u)/com.barmagazine.batch14-w2 >> "$LOG" 2>&1 || true
