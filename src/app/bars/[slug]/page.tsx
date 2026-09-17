@@ -64,7 +64,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const socialDescription = bar.description || fallbackDescription(bar);
 
   return {
-    title,
+    // `absolute` bypasses the root layout's "%s | BarMagazine" template. The
+    // title ladder already decides whether the brand fits and where it goes,
+    // and letting the template append a second one both duplicated it and
+    // pushed every title past the 60 characters Google shows.
+    title: { absolute: title },
     description,
     alternates: { canonical: `${SITE_URL}/bars/${bar.slug}` },
     robots: { index: true, follow: true },

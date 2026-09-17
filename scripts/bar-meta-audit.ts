@@ -19,8 +19,10 @@ type Row = Parameters<typeof barTitle>[0] & {
 
 const bars: Row[] = JSON.parse(readFileSync('/tmp/claude-501/bars-dump.json', 'utf8'));
 
+// The root layout appends "%s | BarMagazine" to every title, so the old title
+// as SERVED carried the brand too. Compare like with like.
 const oldTitle = (b: Row) =>
-  `${b.name} | ${formatBarType(b.type)} in ${cityLabel(b.city, b.country, subdivisionName(b.state, b.country))}`;
+  `${b.name} | ${formatBarType(b.type)} in ${cityLabel(b.city, b.country, subdivisionName(b.state, b.country))} | BarMagazine`;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const oldDesc = (b: Row) => b.description || fallbackDescription(b as any);
 
