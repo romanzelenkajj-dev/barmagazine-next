@@ -24,6 +24,7 @@ import { HighlightedText } from '@/components/HighlightedText';
 import { awardStrings } from '@/lib/accolades';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { fallbackDescription } from '@/lib/bar-fallback';
+import { barTitle, barDescription } from '@/lib/bar-seo-meta';
 import { nearestBars } from '@/lib/nearby';
 import { credentialsLine } from '@/lib/accolade-sentences';
 import articleMentions from '@/lib/article-mentions.generated.json';
@@ -51,8 +52,16 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const bar = await getBarBySlug(params.slug);
   if (!bar) return {};
 
-  const title = `${bar.name} | ${formatBarType(bar.type)} in ${cityLabel(bar.city, bar.country, subdivisionName(bar.state, bar.country))}`;
-  const description = bar.description || fallbackDescription(bar);
+  // The SEARCH snippet and the SOCIAL card no longer share a string, because
+  // they do different jobs. Search gets the address, the hours and the
+  // credential (src/lib/bar-seo-meta.ts carries the Search Console numbers
+  // that prompted it); a link shared in a message keeps the old headline and
+  // the bar's own prose, because "| Address, Hours & Drinks | BarMagazine"
+  // reads as spam on a card that is already showing the photo.
+  const title = barTitle(bar);
+  const description = barDescription(bar);
+  const socialTitle = `${bar.name} | ${formatBarType(bar.type)} in ${cityLabel(bar.city, bar.country, subdivisionName(bar.state, bar.country))}`;
+  const socialDescription = bar.description || fallbackDescription(bar);
 
   return {
     title,
@@ -60,8 +69,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     alternates: { canonical: `${SITE_URL}/bars/${bar.slug}` },
     robots: { index: true, follow: true },
     openGraph: {
-      title,
-      description,
+      title: socialTitle,
+      description: socialDescription,
       type: 'website',
       url: `${SITE_URL}/bars/${bar.slug}`,
       siteName: 'BarMagazine',
@@ -69,8 +78,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: socialTitle,
+      description: socialDescription,
       images: bar.photos?.[0] ? [bar.photos[0].startsWith('/') ? `${SITE_URL}${bar.photos[0]}` : bar.photos[0]] : [`${SITE_URL}/og-bars.jpg`],
     },
   };
