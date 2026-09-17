@@ -1,23 +1,27 @@
 # Batch 16, and outreach performance to date
 
-_2026-09-17. Roman confirmed this send in chat. Three windows are armed on this
-Mac for today: 9:30, 11:30 and 13:30 PT._
+_2026-09-17. Roman confirmed this send in chat. He then asked for the 9:30
+window to go as soon as possible, so window 1 sent at 08:02 PT instead._
 
 ## Batch 16 at a glance
 
 | | |
 |---|---|
-| Recipients | 103 bars |
-| Windows | 35 at 9:30 PT, 35 at 11:30 PT, 33 at 13:30 PT |
-| Region split | Europe 53, Americas 50 |
+| Recipients | 113 bars |
+| Window 1 | 35 bars, **sent 08:02 PT, all 35 delivered to Resend, no failures** |
+| Window 2 | 35 bars, armed for 11:30 PT |
+| Window 3 | 43 bars, armed for 13:30 PT |
+| Region split | Europe 58, Americas 55 |
 | Countries | 24 |
-| Bars researched by hand for this batch | 267 |
-| Held after research, not emailed | 164 |
+| Bars researched by hand for this batch | 297 |
+| Held after research, not emailed | 184 |
 
-Europe fills the earliest window and the Americas the later ones. 9:30 PT is
-already 17:30 in London and 18:30 in Madrid, which is the end of a European
-bar's working afternoon, while it is only 12:30 in New York. Within each region
-the countries interleave, so no window is one country.
+Europe filled the earliest window and the Americas the later ones. 9:30 PT is
+already 17:30 in London and 18:30 in Madrid, the end of a European bar's
+working afternoon, while it is only 12:30 in New York. Within each region the
+countries interleave, so no window is one country. Window 3 is larger than the
+other two because the last research agent finished after the windows were
+armed and its ten bars were added there rather than left for another day.
 
 ## How the pool was built
 
@@ -33,19 +37,19 @@ Europe, then these removed before any research began:
 | Corporate or chain inbox on the row | 28 |
 | No email, no website and no Instagram | 9 |
 
-That left 435 bars worth researching. Ten researchers worked through 267 of
+That left 435 bars worth researching. Ten researchers worked through 297 of
 them, reading each bar's own website and, where there was none, its Instagram
 bio. Every address in the tables below was read off one of those two sources
 today, and the source URL is recorded beside it.
 
-## Why 164 were held
+## Why 184 were held
 
 | Reason | Bars |
 |---|---|
-| No address published on the site or in the Instagram bio | 91 |
-| Chain, hotel, group, agency or HR inbox rather than the bar | 36 |
+| No address published on the site or in the Instagram bio | 90 |
+| Chain, hotel, group, agency or HR inbox rather than the bar | 43 |
 | Address on the row, but not published anywhere today to confirm it | 33 |
-| Site or venue no longer matches our record | 3 |
+| Site or venue no longer matches our record | 17 |
 | Inbox already emailed, or shared with another bar in this batch | 1 |
 
 Ten of those holds were mine rather than a researcher's, after reading the
@@ -64,6 +68,12 @@ flags one row at a time:
 - **La Commune** sits on the Syndicat group domain, which was already emailed
   at `lesyndicat@` in an earlier batch.
 
+Four venues worth a look separately from this batch: **Uptown** in Buenos Aires
+now serves a TLS certificate for an unrelated events business, **A Bar Called
+Gemma** returns a hard 404, **Null Social Lab** returns 402 Payment Required
+though its Instagram shows current hours, and **Experimental Cocktail Club**
+now redirects to the group site.
+
 ## Guards that ran on this list
 
 - Every address was checked against optout.txt, parked.txt, sent-log.txt and
@@ -72,8 +82,8 @@ flags one row at a time:
   emailed in earlier batches. The sent log is keyed by slug, so two bars
   sharing one inbox would otherwise be a second email to the same mailbox.
 - Re-checked against the live database immediately before arming: none of the
-  103 has been claimed or deactivated since the pool was built.
-- 34 of the 103 rows had no address stored. The sender reads `bars.email`, so
+  113 had been claimed or deactivated since the pool was built.
+- 44 of the 113 rows had no address stored. The sender reads `bars.email`, so
   those were written to their rows by id through the admin API. Where a row
   already stored an address it was kept, even when research found a different
   one: Peaches & Cream, Swift and Reserve 101 keep their stored, more specific
@@ -84,15 +94,21 @@ flags one row at a time:
 Three one-shot launchd agents, the batch 14 pattern with the fix from that
 night: each runner deletes its own plist **before** unloading itself, because
 `launchctl unload` kills the running job and anything after it on the line
-never executes. That is what left a spent agent armed on 16 September.
+never executes. That is what left a spent agent armed on 16 September. This is
+now `outreach/arm-window.sh`, so future windows do not get hand-written.
 
-The Mac is held awake by `caffeinate` until 14:28 PT, past the last window.
-Each runner reads its slug file at fire time, appends to
+Window 1 was fired by hand at 08:02 after its 9:30 agent was disarmed, so it
+could not fire twice. The Mac is held awake by `caffeinate` until 14:28 PT,
+past the last window. Each runner reads its slug file at fire time, appends to
 `outreach/batch16-amer-eur-send.log`, and the sender writes every successful
 send to `outreach/sent-log.txt`.
 
+One consequence of sending window 1 early: it went out on the old email
+template. Windows 2 and 3 will carry the hardened one from task 40, reported
+separately.
 
-### Window 1, 9:30 PT (35 bars)
+
+### Window 1, sent 08:02 PT (35 bars)
 
 | Bar | City | Country | Address | Source |
 |---|---|---|---|---|
@@ -172,7 +188,7 @@ send to `outreach/sent-log.txt`.
 | Bar Chenin | Detroit | United States | info@barchenin.com | https://barchenin.com/ |
 | The Keefer Bar | Vancouver | Canada | info@thekeeferbar.com | https://thekeeferbar.com/contact/ |
 
-### Window 3, 13:30 PT (33 bars)
+### Window 3, 13:30 PT (43 bars)
 
 | Bar | City | Country | Address | Source |
 |---|---|---|---|---|
@@ -209,6 +225,16 @@ send to `outreach/sent-log.txt`.
 | Watch Hill Proper | Prospect | United States | watchhillproper@kbmbrands.com | https://www.watchhillproper.com/ |
 | Water Witch | Salt Lake City | United States | info@waterwitchbar.com | https://waterwitchbar.com/ |
 | Wild Child Wines | Lafayette | United States | wild@wildchildwines.com | https://wildchildwines.com/ |
+| Elysian Budapest | Budapest | Hungary | info@elysianbudapest.com | https://elysianbudapest.com |
+| Bar Pompette | Toronto | Canada | barpompette@pompette.ca | https://www.pompette.ca/barpompette |
+| Bar am Wasser | Zurich | Switzerland | info@baramwasser.ch | https://baramwasser.ch |
+| June on Cambie | Vancouver | Canada | info@juneoncambie.com | https://juneoncambie.com/contact/ |
+| BarMünster | Zurich | Switzerland | info@barmuenster.ch | https://barmuenster.ch |
+| Civil Works | Toronto | Canada | info@civilworks.ca | https://www.waterworksfoodhall.com/restaurants/civil-works |
+| Marea Cocktailbar | Zurich | Switzerland | info@marea.bar | https://marea.bar |
+| Prophecy | Vancouver | Canada | management@prophecybar.com | https://www.prophecybar.com |
+| Old Crow | Zurich | Switzerland | info@oldcrow.ch | https://oldcrow.ch |
+| Arca | Tulum | Mexico | contact@arcatulum.com | https://arcatulum.com |
 
 ### Held, not emailed
 
@@ -256,6 +282,26 @@ send to `outreach/sent-log.txt`.
 | Bar 1802 | France | address on record but unconfirmed: site live but both emails are Cloudflare-obfuscated ([email protected]), unreadable; IG bio shows no email |
 | Graft Wine Shop & Wine Bar | United States | address on record but unconfirmed: site live; homepage and /contact-us-1 print no email, contact form only |
 | Green Door | Germany | address on record but unconfirmed: site live; homepage and /de/kontakt/ print no email, contact form only |
+| Overstory | United States | site publishes no email (Resy/Tock links and inquiry forms only); Instagram bio readable but carries no address |
+| Bar Nouveau | France | no email on site (OpenTable link only, no mentions legales page); Instagram returned a login wall |
+| Sastrería Martinez | Peru | agency, group or portfolio inbox: FLAG: marketing/private-events inbox, only address printed on the bar's own domain |
+| Svanen | Norway | no email on site (booking link only); Instagram returned a login wall |
+| Stjärtilleriet | Sweden | agency, group or portfolio inbox: FLAG: parent restaurant (Restaurang Artilleriet) inbox, the only address the bar site prints |
+| Quattro Teste | Portugal | no website in record; Instagram bio readable but has no address (points to a linktr.ee) |
+| A Bar Called Gemma | Sweden | website returns HTTP 404 (dead); Instagram returned a login wall |
+| Ulysses | Portugal | no website in record; Instagram returned a login wall |
+| Santa Cocktail Club | Italy | agency, group or portfolio inbox: FLAG: group inbox, brand runs four Italian locations; address printed as data controller contact (Hotel Santa Maria Novella srl) |
+| Hiding in Plain Sight | Netherlands | site publishes no email (phone number only, no contact page); no Instagram handle in record |
+| Bandista | United States | home and /contact/ publish no address (signup form and phone only); venue sits inside Four Seasons Houston but uses its own domain |
+| Experimental Cocktail Club | France | agency, group or portfolio inbox: FLAG: group/portfolio site, experimentalcocktailclub.com 301-redirects to experimentalgroup.com; this address is the one listed for the Paris venu |
+| María Mezcal | Peru | site publishes no email (routes reservations to Instagram DM); Instagram bio readable but carries no address |
+| Null Social Lab | Serbia | website returns HTTP 402 Payment Required (not serving); Instagram bio readable but has no address |
+| Dry Martini by Javier de las Muelas | Spain | agency, group or portfolio inbox: FLAG: group/portfolio inbox on the Dry Martini Organization domain, the only address the Barcelona site prints |
+| Uptown | Argentina | domain no longer serves the bar: TLS certificate is issued for globaleventscrc.com, not uptownba.com |
+| Nottingham Forest | Italy | no email on the home page or /contatti (JS-rendered site returned little content); no Instagram handle in record |
+| Artesian | United Kingdom | chain or portfolio inbox (langhamhotels) |
+| Bar Fino | United States | home and /contact publish no address, contact page is a web form only |
+| Chandelier Bar | United States | chain domain |
 | Tayēr + Elementary | United Kingdom | venue-specific address on own domain; site states bar is TEMPORARILY CLOSED after a fire in the building |
 | Exímia | Brazil | no website; Instagram bio loaded but lists only address and rankings, no email |
 | The Bar in Front of the Bar | Greece | site live and on-brand, but home page and /get-in-touch print no email (address and socials only) |
