@@ -2842,6 +2842,51 @@
    "status": "pending",
    "date": "2026-09-17",
    "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "varadero-rum-and-cigar-house",
+   "city": "Bojnice",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 Slovakia wave"
+  },
+  {
+   "slug": "rio-restaurant-and-bar",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 Slovakia wave"
+  },
+  {
+   "slug": "freym-city-bistro-and-cocktail-bar",
+   "city": "Košice",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 Slovakia wave"
+  },
+  {
+   "slug": "zahir-nitra",
+   "city": "Nitra",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 Slovakia wave"
+  },
+  {
+   "slug": "phoenix-by-heaven",
+   "city": "Piešťany",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 Slovakia wave"
   }
  ]
 }

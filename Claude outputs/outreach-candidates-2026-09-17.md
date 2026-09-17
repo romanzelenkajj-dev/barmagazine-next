@@ -59,6 +59,11 @@ These are the right owners to ask for photos. Every city filled today clears the
 | lucky-star | Lucky Star | Atlanta | United States | info@luckystaratl.com |
 | ranger-station | Ranger Station | Atlanta | United States | info@rangerstationatl.com |
 | the-s-o-s-tiki-bar | The S.O.S. Tiki Bar | Decatur | United States | decatur@vicbrands.com |
+| varadero-rum-and-cigar-house | Varadero Rum & Cigar House | Bojnice | Slovakia | info@varaderorumacigarhouse.sk |
+| rio-restaurant-and-bar | Rio Restaurant & Bar | Bratislava | Slovakia | rio@riorestaurant.sk |
+| freym-city-bistro-and-cocktail-bar | FREYM | City bistro & Cocktail bar | Košice | Slovakia | info@freym.sk |
+| zahir-nitra | Záhir | Nitra | Slovakia | zahir@zahir.sk |
+| phoenix-by-heaven | Phoenix by Heaven | Piešťany | Slovakia | bar@phoenixbyheaven.sk |
 
 ## Excluded as a chain or group inbox
 
