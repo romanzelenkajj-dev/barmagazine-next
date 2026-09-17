@@ -66,6 +66,22 @@ describe('shortHours', () => {
   it('handles a single day and an open end', () => {
     expect(shortHours('Thursday 8pm till late', 'United States')).toBe('Open Thu from 8pm');
   });
+  it('reads a later clause when the first one has no time', () => {
+    expect(shortHours('Mon and Tue Closed; Wed to Fri 5:00 PM-12:00 AM; Sat 4:00 PM-12:00 AM', 'United States'))
+      .toBe('Open Wed to Fri, 5:00 pm to 12:00 am');
+    expect(shortHours('Mon-Wed Closed; Thu 17:00-01:00; Fri 17:00-02:00', 'Serbia'))
+      .toBe('Open Thu, 17:00 to 01:00');
+  });
+  it('reads past a label in front of the days', () => {
+    expect(shortHours('Cafe Hours: Sun-Sat 8am-5pm. Bar Hours: Tue 5pm-12am', 'United States'))
+      .toBe('Open Sun to Sat, 8am to 5pm');
+    expect(shortHours('Coffee: Wed-Fri 9am-3pm and 4pm-9pm', 'United States'))
+      .toBe('Open Wed to Fri, 9am to 3pm');
+  });
+  it('accepts thru and a comma between the days and the time', () => {
+    expect(shortHours('Mon thru Sat 5:30pm-2am', 'United States')).toBe('Open Mon to Sat, 5:30pm to 2am');
+    expect(shortHours('Wed-Sat, 6 PM-12 AM', 'United States')).toBe('Open Wed to Sat, 6 pm to 12 am');
+  });
   it('says nothing rather than guessing', () => {
     expect(shortHours('Evenings, daily', 'Italy')).toBe('');
     expect(shortHours('Tue-Sun evenings (booking by introduction)', 'Italy')).toBe('');

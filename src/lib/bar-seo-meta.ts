@@ -109,13 +109,31 @@ const DAY_CANON: Record<string, string> = {
 const DAY = '(?:Mondays?|Tuesdays?|Tues|Wednesdays?|Weds|Thursdays?|Thurs?|Fridays?|Saturdays?|Sundays?|Mon|Tue|Wed|Thu|Fri|Sat|Sun)';
 const TIME = '(?:\\d{1,2}(?:[:.]\\d{2})?\\s?(?:am|pm)|\\d{1,2}:\\d{2}|noon|midnight)';
 const OPEN_END = '(?:late night|late|midnight|close)';
-const SEP = '(?:\\s*[-–—]\\s*|\\s+(?:to|till|til|until)\\s+)';
+const SEP = '(?:\\s*[-–—]\\s*|\\s+(?:to|till|til|until|thru|through)\\s+)';
 
 const HOURS_RE = new RegExp(
   '^\\s*(?:(daily|every\\s?day)(?:\\s+' + DAY + SEP + DAY + ')?|(' + DAY + ')(?:' + SEP + '(' + DAY + '))?)' +
-  '\\s*:?\\s*(' + TIME + ')' + SEP + '(' + TIME + '|' + OPEN_END + ')',
+  '\\s*[:,]?\\s*(' + TIME + ')' + SEP + '(' + TIME + '|' + OPEN_END + ')',
   'i'
 );
+
+/**
+ * Venues put the useful clause second as often as first: "Mon and Tue Closed;
+ * Wed to Fri 5pm-12am", "Cafe Hours: Sun-Sat 8am-5pm. Bar Hours: Tue 5pm-12am",
+ * "Open 5:30pm-Final Seating 9:15pm, Wed-Sat". So the string is split into
+ * clauses and each is tried in turn, rather than anchoring on the first.
+ */
+function* hourClauses(text: string): Generator<string> {
+  for (const raw of text.split(/[;.]|(?<=\))\s+/)) {
+    const clause = raw.trim();
+    if (!clause) continue;
+    yield clause;
+    // "Bar Hours: Tue 5pm-12am" and "Coffee: Wed-Fri 9am-3pm" carry a label
+    // in front of the days. Drop a leading label, but never a day name.
+    const stripped = clause.replace(/^[A-Za-z][A-Za-z ]{0,20}:\s*/, '');
+    if (stripped !== clause) yield stripped;
+  }
+}
 
 const canonDay = (d: string) => DAY_CANON[d.toLowerCase().replace(/s$/, '')] ?? DAY_CANON[d.toLowerCase()] ?? '';
 
@@ -134,7 +152,11 @@ export function shortHours(
 ): string {
   const text = formatHoursForCountry(stored, country).replace(/\s+/g, ' ').trim();
   if (!text) return '';
-  const m = HOURS_RE.exec(text);
+  let m: RegExpExecArray | null = null;
+  for (const clause of hourClauses(text)) {
+    m = HOURS_RE.exec(clause);
+    if (m) break;
+  }
   if (!m) return '';
   const [, everyDay, dayFrom, dayTo, start, end] = m;
 
