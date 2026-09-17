@@ -3,14 +3,19 @@
 _2026-09-17. Roman confirmed this send in chat. He then asked for the 9:30
 window to go as soon as possible, so window 1 sent at 08:02 PT instead._
 
+**COMPLETE. All 113 emails sent across the three windows, every one accepted
+by Resend, none skipped by any guard. Each one-shot agent deleted its own
+plist and unloaded itself, so nothing is left armed.**
+
 ## Batch 16 at a glance
 
 | | |
 |---|---|
 | Recipients | 113 bars |
-| Window 1 | 35 bars, **sent 08:02 PT, all 35 delivered to Resend, no failures** |
-| Window 2 | 35 bars, armed for 11:30 PT |
-| Window 3 | 43 bars, armed for 13:30 PT |
+| Window 1 | 35 bars, **sent 08:02 PT** |
+| Window 2 | 35 bars, **sent 11:30 PT** |
+| Window 3 | 43 bars, **sent 13:30 PT** |
+| **Total** | **113 of 113 sent. No failures, no skips, no exclusions in any window.** |
 | Region split | Europe 58, Americas 55 |
 | Countries | 24 |
 | Bars researched by hand for this batch | 297 |
