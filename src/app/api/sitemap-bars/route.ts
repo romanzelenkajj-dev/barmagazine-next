@@ -30,6 +30,18 @@ export const dynamic = 'force-dynamic';
  */
 const PROFILE_TEMPLATE_CHANGED_AT = '2026-09-17T09:22:00-07:00'; // 3b02e69 live: the title and meta rewrite
 
+/**
+ * The best-bars city and type pages changed shape on 2026-09-17: task 53
+ * retitled roughly 70 of them ("The 23 Best Bars in London (2026)") and
+ * changed which bars they list, and task 57 reordered them.
+ *
+ * Their lastmod tracked the NEWEST BAR in the city, so a city whose bars had
+ * not changed reported an old date even though its title tag, the thing
+ * Google actually shows, had changed that morning. Same treatment as the
+ * profiles: the later of the city's own newest member and this constant.
+ */
+const CITY_PAGE_TEMPLATE_CHANGED_AT = '2026-09-17T13:25:00-07:00'; // 1c848d0 and 8d6e47b live
+
 /** A row's own lastmod: the later of its last write and the template change. */
 function rowLastmod(bar: { updated_at: string | null; created_at: string }): string {
   const own = new Date(bar.updated_at || bar.created_at).getTime();
@@ -111,7 +123,11 @@ export async function GET() {
   // thin-page threshold, plus its qualifying type-by-city sub-pages. Same
   // newest-member date as the city page: they render the same rows.
   for (const c of seoCities) {
-    const cityLastmod = newestByCity.get(c.slug) ?? new Date(directoryLastmod).toISOString();
+    const cityOwn = newestByCity.get(c.slug) ?? new Date(directoryLastmod).toISOString();
+    const cityLastmod = new Date(Math.max(
+      new Date(cityOwn).getTime(),
+      new Date(CITY_PAGE_TEMPLATE_CHANGED_AT).getTime(),
+    )).toISOString();
     xml += `  <url>
     <loc>${SITE_URL}/best-bars/${c.slug}</loc>
     <lastmod>${cityLastmod}</lastmod>
