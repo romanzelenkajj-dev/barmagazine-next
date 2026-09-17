@@ -233,6 +233,13 @@ export async function getBarBySlug(slug: string): Promise<Bar | null> {
   return stripPrivate(data) as Bar;
 }
 
+/**
+ * A style needs this many active bars to earn a chip in the directory's type
+ * filter. Matches MIN_REGION_BARS, which is the same judgement about when a
+ * slice of the directory is worth offering as its own thing.
+ */
+export const MIN_FILTERABLE_TYPE_BARS = 6;
+
 /** Get unique filter values */
 export async function getBarFilterOptions() {
   // Whole-directory read: paged, or the filter menus stop at bar 1,000.
@@ -247,12 +254,26 @@ export async function getBarFilterOptions() {
     // Union vocabulary: a style that exists only as a subtype (no bar has it
   // as primary type) must still be offered, since the filter matches the
   // union.
-  const typeSet = new Set<string>();
+  const typeCount = new Map<string, number>();
   data.forEach(b => {
-    if (b.type) typeSet.add(b.type);
-    (b.subtypes || []).forEach((st: string) => typeSet.add(st));
+    // A bar counts once per style even when it is both the primary type and a
+    // subtype, because the filter matches the union.
+    const styles = new Set<string>();
+    if (b.type) styles.add(b.type);
+    (b.subtypes || []).forEach((st: string) => styles.add(st));
+    styles.forEach(st => typeCount.set(st, (typeCount.get(st) || 0) + 1));
   });
-  const types = Array.from(typeSet).sort();
+  // A filter chip that returns one card is worse than no chip: it makes a
+  // directory of 1,469 bars look thin. Roman filtered to "Omakase Cocktail
+  // Bar" and got a single result. Below MIN_FILTERABLE_TYPE_BARS the style
+  // stays on the bar row and stays visible on its profile, because Hanashi
+  // genuinely is a Japanese cocktail bar and that is worth saying there. It
+  // simply is not worth a filter. Count-driven, so a style reappears on its
+  // own as it reaches the threshold and nothing needs maintaining.
+  const types = Array.from(typeCount.entries())
+    .filter(([, n]) => n >= MIN_FILTERABLE_TYPE_BARS)
+    .map(([t]) => t)
+    .sort();
 
   return { countries, cities, types };
 }
