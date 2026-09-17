@@ -64,7 +64,26 @@ These are the right owners to ask for photos. Every city filled today clears the
 | freym-city-bistro-and-cocktail-bar | FREYM | City bistro & Cocktail bar | Košice | Slovakia | info@freym.sk |
 | zahir-nitra | Záhir | Nitra | Slovakia | zahir@zahir.sk |
 | phoenix-by-heaven | Phoenix by Heaven | Piešťany | Slovakia | bar@phoenixbyheaven.sk |
-
+| las-almas-rotas | Las Almas Rotas | Dallas | United States | manager@lasalmasrotas.com |
+| bar-colette-dallas | Bar Colette | Dallas | United States | info@barcolette.com |
+| clifton-club | Clifton Club | Dallas | United States | info@cliftonclubdallas.com |
+| mister-charles | Mister Charles | Dallas | United States | reservations@themistercharles.com |
+| the-library-bar-dallas | The Library Bar | Dallas | United States | info.dallas@warwickhotels.com |
+| the-french-room-bar | The French Room Bar | Dallas | United States | reservations@thefrenchroom.com |
+| multnomah-whiskey-library | Multnomah Whiskey Library | Portland | United States | info@mwlpdx.com |
+| teardrop-lounge | Teardrop Lounge | Portland | United States | info@teardroplounge.com |
+| comala-portland | Comala | Portland | United States | olivia@republicapdx.com |
+| bible-club | Bible Club | Portland | United States | contact@pdxrevival.com |
+| hale-pele | Hale Pele | Portland | United States | info@halepele.com |
+| angel-face | Angel Face | Portland | United States | info@angelfaceportland.com |
+| bellwether-bar-portland | Bellwether Bar | Portland | United States | bellwetherbar@gmail.com |
+| arbor-hall | Arbor Hall | Portland | United States | arborhallpdx@gmail.com |
+| palomar-portland | Palomar | Portland | United States | info@barpalomar.com |
+| too-soon | Too Soon | Portland | United States | info@toosoonpdx.com |
+| creepy-s | Creepy's | Portland | United States | events@toothandnailpdx.com |
+| dear-sandy | Dear Sandy | Portland | United States | info@dearsandypdx.com |
+| panther-club | Panther Club | Portland | United States | info@pantherclubpdx.com |
+| driftwood-room | Driftwood Room | Portland | United States | info@hoteldeluxeportland.com |
 ## Excluded as a chain or group inbox
 
 - the-roof-skybar: theroofskybar@ihg.com
