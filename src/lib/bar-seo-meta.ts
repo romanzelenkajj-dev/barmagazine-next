@@ -123,16 +123,18 @@ const HOURS_RE = new RegExp(
  * "Open 5:30pm-Final Seating 9:15pm, Wed-Sat". So the string is split into
  * clauses and each is tried in turn, rather than anchoring on the first.
  */
-function* hourClauses(text: string): Generator<string> {
-  for (const raw of text.split(/[;.]|(?<=\))\s+/)) {
+function hourClauses(text: string): string[] {
+  const out: string[] = [];
+  for (const raw of text.split(/[;.]/)) {
     const clause = raw.trim();
     if (!clause) continue;
-    yield clause;
+    out.push(clause);
     // "Bar Hours: Tue 5pm-12am" and "Coffee: Wed-Fri 9am-3pm" carry a label
     // in front of the days. Drop a leading label, but never a day name.
     const stripped = clause.replace(/^[A-Za-z][A-Za-z ]{0,20}:\s*/, '');
-    if (stripped !== clause) yield stripped;
+    if (stripped !== clause) out.push(stripped);
   }
+  return out;
 }
 
 const canonDay = (d: string) => DAY_CANON[d.toLowerCase().replace(/s$/, '')] ?? DAY_CANON[d.toLowerCase()] ?? '';
