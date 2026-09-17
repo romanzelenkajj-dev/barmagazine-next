@@ -1214,7 +1214,7 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
-## 2026-09-16 - Queue task 35: every article image at the same phone inset
+## 2026-09-16 - Queue task 35: every article image at the same phone inset (3d7301a)
 - A bare image in a paragraph (the 1986 Steak House article, the older
   WordPress way) sat on the text column at 390 (34 to 356) while figures
   bled 16px (18 to 372): the ".article-body > p > img" child selectors
