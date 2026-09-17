@@ -2887,6 +2887,15 @@
    "status": "pending",
    "date": "2026-09-17",
    "reason": "new profile from the 2026-09-17 Slovakia wave"
+  },
+  {
+   "slug": "nuda-bar-bratislava",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "admitted under the wine bar rule correction, task 48"
   }
  ]
 }

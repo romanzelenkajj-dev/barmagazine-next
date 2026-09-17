@@ -4,9 +4,23 @@ Standing rule from Roman, 2026-09-14.
 
 ## The test is about venue TYPE, not quality
 
-We admit **cocktail-led rooms**. The test excludes nightclubs, wine bars
-and pure restaurants because of what they *are*, not because of how good
-they are.
+We admit **cocktail-led rooms**. The test excludes nightclubs and pure
+restaurants because of what they *are*, not because of how good they are.
+
+### Wine bars ARE admitted (Roman, 2026-09-17)
+
+An earlier version of this line listed wine bars among the exclusions. That
+was wrong and it cost us a listing before it was caught: NUDA in Bratislava
+was held on 2026-09-17 as "a wine bar rather than a cocktail-led room", and
+has since been inserted.
+
+- **In:** wine bars, listed with the **Wine Bar** subtype.
+- **Out:** breweries; distillery taprooms that are not cocktail bars; coffee
+  bars.
+
+A venue that leads on coffee and closes in the early evening is a cafe, and
+stays out, even when it pours cocktails. A venue that leads on wine and keeps
+bar hours is a wine bar, and goes in.
 
 **It is not a quality bar.** We do not remove or refuse a bar for being
 insufficiently prestigious. Great bars belong in the directory whether or
