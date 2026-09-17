@@ -98,6 +98,19 @@ export interface Bar {
   /** One sentence shown to readers on the profile notice. */
   status_note?: string | null;
   status_updated_at?: string | null;
+  /**
+   * Editorial listings that admitted this bar (bars.editorial_sources,
+   * 2026-09-17). An ADMISSION RECORD, never an accolade: not scored, not
+   * rendered as a tile. Array of {source, url, note, year}.
+   */
+  editorial_sources?: unknown;
+  /**
+   * Roman's override on a city's best-of list (bars.editorial_pick,
+   * 2026-09-17). Positive pins to the top in that order, -1 drops the bar off
+   * Level 2 while keeping it on Level 3, null lets the rule decide. Never
+   * rendered, never an accolade. See src/lib/city-levels.ts.
+   */
+  editorial_pick?: number | null;
   wp_article_slug: string | null;
   /**
    * Editorial award entries, pre-sorted by score descending, one per org_key.

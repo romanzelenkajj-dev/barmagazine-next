@@ -2,6 +2,7 @@ import { HighlightedText } from '@/components/HighlightedText';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { notFound } from 'next/navigation';
+import { level2Bars } from '@/lib/city-levels';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getBarsForCity } from '@/lib/city-index';
@@ -12,10 +13,9 @@ import { splitHighlight } from '@/lib/menu-highlight';
 import {
   getSeoCities,
   resolveSeoCity,
-  getSeoCityBars,
   composeCityIntro,
   composeCityDescription,
-  photosFirst,
+  sortSeoBars,
 } from '@/lib/seo-cities';
 
 /**
@@ -40,13 +40,30 @@ export async function generateStaticParams() {
   return cities.map(c => ({ city: c.slug }));
 }
 
+/**
+ * The Level 2 list for a city, shared by the metadata and the page so the
+ * number in the title and the length of the list can never disagree.
+ */
+async function level2ForCity(match: Awaited<ReturnType<typeof resolveSeoCity>>) {
+  const all = await getBarsForCity(match!.key);
+  return level2Bars(all, sortSeoBars);
+}
+
 export async function generateMetadata({ params }: { params: { city: string } }): Promise<Metadata> {
   const match = await resolveSeoCity(params.city);
   if (!match) return {};
   const year = new Date().getFullYear();
   // NOTE: no "| BarMagazine" suffix here — the root layout's title template
   // (`%s | BarMagazine`) appends it; including it here doubles the suffix.
-  const title = `The Best Bars in ${match.city} (${year})`;
+  // The real number when the list is a real selection. Level 2 targets the
+  // head term ("best bars in new york"); the Top 10 ARTICLE owns "top 10 bars
+  // in new york", so the two stop competing. When too few bars qualify and
+  // the page falls back, the number is left out, because it would not mean
+  // anything.
+  const level = await level2ForCity(match);
+  const title = level.fellBack
+    ? `The Best Bars in ${match.city} (${year})`
+    : `The ${level.all.length} Best Bars in ${match.city} (${year})`;
   const description = composeCityDescription(match);
   return {
     title,
@@ -70,10 +87,13 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
   // Cities with a curated top10 set keep exactly that set (the original 23
   // pages are unchanged in substance); everywhere else lists the ranked
   // best, capped, with the full dump one click away at /bars/city.
-  const curated = match.top10Count > 0 ? await getBarsForCity(match.key, { top10Only: true }) : [];
-  // Photos first, stable within each group: the page leads with its best
-  // visuals whichever path produced the list.
-  const bars = photosFirst(curated.length > 0 ? curated : await getSeoCityBars(match.key));
+  // Level 2: every bar that qualifies, however many that is, with the curated
+  // ten at the top in tier order. A bar that does not qualify has not fallen
+  // off the site, it is on Level 3 at /bars/city/<slug>. See
+  // src/lib/city-levels.ts for the qualification order and why a broad
+  // editorial source does not qualify a bar.
+  const level = await level2ForCity(match);
+  const bars = level.all;
   if (bars.length === 0) notFound();
 
   const year = new Date().getFullYear();
