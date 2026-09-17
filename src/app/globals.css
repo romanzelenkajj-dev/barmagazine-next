@@ -3640,6 +3640,38 @@ textarea.form-input {
    styled white-on-transparent for a photo overlay it no longer has, which made
    it invisible on white — the text was there and read by screen readers, but
    nobody could see it. Outlined ink instead, subordinate to TOP 10. */
+/* Status pill and profile notice (2026-09-17). NEW ELEMENTS ONLY: nothing
+   existing changes size, spacing or position. A closed bar keeps every other
+   pill it had, because it did not stop being a 50 Best bar. */
+.bar-dir-badge-pill--closed {
+  background: #8a2b2b;
+  color: #fff;
+}
+
+.bar-status-notice {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  border-left: 3px solid #8a2b2b;
+  background: #fbf1f1;
+  border-radius: 4px;
+  max-width: 640px;
+}
+.bar-status-notice__heading {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8a2b2b;
+}
+.bar-status-notice__body {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #3a3a3a;
+}
+
 .bar-dir-badge-pill--type {
   background: transparent;
   color: #6b6b6b;

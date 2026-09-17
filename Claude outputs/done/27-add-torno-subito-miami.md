@@ -1,0 +1,9 @@
+# Add Torno Subito (Miami) as a restaurant bar (Roman: article on the Florería Atlántico residency is publishing)
+
+Not in the directory (checked slugs; only the three Florería Atlántico rows exist). Admission under the restaurant-bar precedent (1986 Steak House): Massimo Bottura's Michelin-listed restaurant in the Miami Design District whose bar now runs a global bar residency series; the first is Florería Atlántico with Tato Giovannoni, Sept 22 to 26 2026, 5pm to 10pm, free entry (soulofmiami.org listing, and Agencia 22's release which Roman has).
+
+Verify and insert from the primary source https://tornosubitomia.com (and its menu page): name "Torno Subito", city Miami, state FL, address 191 NE 40th St, Miami, FL 33137 (confirm on the site), phone, hours, reservation URL, Instagram (confirm the handle on the site), website, type Restaurant Bar (subtype Italian if the taxonomy has it, else none), venue null, description 90 to 120 words primary-sourced (Bottura, Design District, the bar and its residency series in general terms; no dated sentence about the September residency in the description; put the residency dates in admin_notes and, if the specials column exists by then, in specials as "Florería Atlántico residency Sept 22 to 26, 5pm to 10pm"). No accolades (the Michelin listing is not a bar accolade). No dashes, no food negation. Geocode address-first, coordinates check, sitemap count, revalidate Miami city page, add to the indexing queue.
+
+Then: when the Torno Subito article is published on the site (Roman is publishing it through the publisher app this week), make sure the next article-mentions rebuild links the article to torno-subito, floreria-atlantico and floreria-atlantico-dc (distinctive names, automatic match; confirm in the report, and add the pairs to the confirmed allowlist so they survive regeneration).
+
+Report slug, id, the live profile URL and the checks.

@@ -4,6 +4,7 @@ import type { Bar } from './supabase';
 import { renderableAccolades } from './accolades';
 import { buildCityEntries, CityIndex, type CityEntry } from './city-keys';
 import { getBarsForCity } from './city-index';
+import { closedLast } from './bar-status';
 import { MIN_CITY_BARS, MIN_TYPE_BARS } from './city-thresholds';
 
 /**
@@ -218,6 +219,12 @@ export function sortSeoBars(bars: Bar[]): Bar[] {
   const tierRank = (b: Bar) => (b.tier === 'top10' ? 0 : b.tier === 'featured' || b.tier === 'premium' ? 1 : 2);
   const hasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);
   return bars.slice().sort((a, b) => {
+    // A closed bar sorts last, so a "best bars" list leads with places a
+    // reader can go tonight. Its accolade score is untouched: a bar that is
+    // shut did not stop being a 50 Best bar, it only stops being the first
+    // thing we recommend. Reads as 0 for every row until bars.status exists.
+    const c = closedLast(a) - closedLast(b);
+    if (c !== 0) return c;
     const t = tierRank(a) - tierRank(b);
     if (t !== 0) return t;
     const s = bestAccolade(b).score - bestAccolade(a).score;

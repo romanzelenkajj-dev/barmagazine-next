@@ -1,0 +1,9 @@
+# "Bars in this article" card photo sits low with a gap above it (diagnosed)
+
+Live on /negroni-week-2026-asia-pacific-guest-shifts at 1440: the Connaught Bar card shows a strip of card background above its photo and the photo is clipped at the bottom; the two placeholder cards beside it fill their frames.
+
+Cause (confirmed in src/app/globals.css): the block renders inside `.article-body`, so the generic article image rule at line ~947, `.article-body img { border-radius: 12px; margin: 16px 0 8px; max-width: 100%; height: auto; display: block; }`, applies to the card's `img` inside `.bar-dir-featured-visual`. `.bar-dir-featured-visual img` (line ~3551) wins on height because it is later, but it sets no margin, so the 16px top margin survives, pushes the image down inside the aspect-ratio box and the overflow hidden clips the bottom. The placeholders are divs, so they are unaffected.
+
+Fix: reset the card image inside the article body, e.g. `.article-body .bar-dir-featured-visual img { margin: 0; border-radius: 0; width: 100%; height: 100%; object-fit: cover; display: block; max-width: none; }`. Put it with the card rules, not in the article-image block, and add a short comment saying why. Do not weaken or change the generic `.article-body img` rules; article images must stay exactly as they are now.
+
+Check every card image that can appear inside `.article-body` (the carousel cards, and the pills overlay position on them) at 390, 768 and 1440 on that article and on the Torno Subito article: photo fills the 16:10 frame, corners rounded by the card, pills in the bottom-left of the photo, identical to the cards on /bars/city/london. Confirm the article's own photos are unchanged (same width, inset, radius, caption placement) before and after. Deploy and report the commit with a 1440 screenshot of the Connaught card.

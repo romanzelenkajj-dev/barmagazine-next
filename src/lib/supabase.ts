@@ -86,6 +86,18 @@ export interface Bar {
   owner_id: string | null;
   claimed_at: string | null;
   is_active: boolean;
+  /**
+   * open | temporarily_closed | permanently_closed (bars.status, 2026-09-17).
+   * Independent of is_active: a temporarily closed bar stays ACTIVE, keeps its
+   * profile, its accolades and its place in a curated Top 10, and carries a
+   * notice. Optional here because the column is added by a migration that runs
+   * in the Supabase SQL editor; every read defaults to 'open'.
+   * See src/lib/bar-status.ts.
+   */
+  status?: string | null;
+  /** One sentence shown to readers on the profile notice. */
+  status_note?: string | null;
+  status_updated_at?: string | null;
   wp_article_slug: string | null;
   /**
    * Editorial award entries, pre-sorted by score descending, one per org_key.

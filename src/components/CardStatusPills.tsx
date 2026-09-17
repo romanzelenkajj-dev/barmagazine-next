@@ -5,13 +5,19 @@
  * shows up to two awards. Sizing lives on .bar-dir-badge-pill in
  * globals.css - all variants share one box.
  */
-export function CardStatusPills({ top10, fiftyBest, featured, premium }: {
+export function CardStatusPills({ top10, fiftyBest, featured, premium, status }: {
   top10?: boolean;
   fiftyBest?: boolean;
   featured?: boolean;
   premium?: boolean;
+  /** "Temporarily closed" / "Permanently closed", from statusPill(). */
+  status?: string;
 }) {
   const pills: { key: string; label: string }[] = [];
+  // A closed bar keeps its award pills: it did not stop being a 50 Best bar.
+  // The status sits FIRST, because it is the thing that changes the reader's
+  // evening.
+  if (status) pills.push({ key: 'closed', label: status });
   const award =
     top10 ? { key: 'top10', label: '★ TOP 10' } :
     fiftyBest ? { key: '50best', label: '50 Best' } : null;

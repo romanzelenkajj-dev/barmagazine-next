@@ -4,6 +4,7 @@ import { asciiFold } from '@/lib/ascii-fold';
 import { displayType } from '@/lib/bar-type';
 import { hasFiftyBest } from '@/lib/accolades';
 import { CardStatusPills } from '@/components/CardStatusPills';
+import { statusPill } from '@/lib/bar-status';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
@@ -1104,7 +1105,7 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
             <BarPlaceholder name={bar.name} type={bar.type} />
           )
         }
-        <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} premium={isPremium} />
+        <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} premium={isPremium} status={statusPill(bar)} />
       </div>
       <div className="bar-dir-featured-body">
 

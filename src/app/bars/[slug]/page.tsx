@@ -25,6 +25,7 @@ import { awardStrings } from '@/lib/accolades';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { fallbackDescription } from '@/lib/bar-fallback';
 import { barTitle, barDescription } from '@/lib/bar-seo-meta';
+import { statusNotice } from '@/lib/bar-status';
 import { nearestBars } from '@/lib/nearby';
 import { credentialsLine } from '@/lib/accolade-sentences';
 import articleMentions from '@/lib/article-mentions.generated.json';
@@ -356,6 +357,17 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             two-column flex made of it at tablet widths (Roman, 2026-09-15). */}
         <div className="bar-v2-info">
             <h1>{bar.name}</h1>
+            {/* A closed bar keeps its page, its accolades and its badges; the
+                notice is the only thing added. See src/lib/bar-status.ts. */}
+            {(() => {
+              const notice = statusNotice(bar);
+              return notice ? (
+                <div className="bar-status-notice" role="status">
+                  <strong className="bar-status-notice__heading">{notice.heading}</strong>
+                  <span className="bar-status-notice__body">{notice.body}</span>
+                </div>
+              ) : null;
+            })()}
             {/* "Portland, Maine" / "Malaga, Spain": the label rule in
                 src/lib/city-location.ts, with the state from bars.state. */}
             <p className="bar-v2-place">{placeLabel}</p>

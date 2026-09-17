@@ -1,0 +1,12 @@
+# Article images on phones: bottom corners are square (regression from task 32)
+
+Roman, iPhone AND desktop (1440), Torno Subito and El Tequileño articles: images now have the right side padding and rounded top corners, but the bottom corners are square. Likely the radius went on the figure while the img (or the figcaption) overflows/overlaps the bottom edge, or the radius is applied to the img top only. Make all four corners rounded with the house radius on every article image (captioned and uncaptioned) at 390 and 1440. Standing layout rule; only the image corners change. Deploy and report with a 390 screenshot of the Tato Giovannoni photo and its caption.
+
+## Update from Roman
+It appears ONLY on the Torno Subito article (tato-giovannoni-floreria-atlantico-torno-subito-miami); older articles such as El Tequileño / drinks99 have all four corners rounded. So the cause is that post's HTML (the nested figure > p > figure structure and the empty figure that task 32 could not clean up), not the general CSS. Fix the CSS so that structure ALSO gets full rounding (the inner figure/img inside the outer wrapper), so any future post with the same markup renders right, and re-verify the older article is unchanged.
+
+## Also (Roman, desktop screenshot of the Negroni Week article): "Bars in this article" card photo not filling its frame
+On the article carousel (task 30), Connaught Bar's card shows a strip of the card's beige background above the photo and the photo's top corners are not clipped, while the placeholder cards next to it fill their 16:10 frame. The img in the article carousel card is being fitted (contain) instead of cover, or is missing height:100%. Make the article carousel card's image identical to the directory card's (.bar-dir-featured-visual: 16:10, object-fit cover, width and height 100%, overflow hidden with the top radius). Verify at 1440 and 390 on that article that the Connaught Bar card fills its frame exactly like the cards on /bars/city/london.
+
+## Correction from Roman
+The square bottom corners are NOT only on the Torno Subito post: also on "The Pontiac Hong Kong neon-lit cocktail menu" article (the-pontiac-hong-kong-neon-lit-menu) and likely others. So treat it as a general article-image CSS regression from task 32, not a per-post markup issue. Check at least five articles of different ages at 390 and 1440 (Torno Subito, The Pontiac, El Tequileño/drinks99, one from 2025, one Top 10 city article) and make every article image fully rounded on all four corners in all of them.

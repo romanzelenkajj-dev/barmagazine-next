@@ -1,0 +1,5 @@
+# Scan for descriptions that are dated news blurbs, report only
+
+Seen on Scarfes Bar (London): the description reads "Scarfes Bar will mark International Women's Month with a dedicated afternoon of talks and networking on Tuesday, March 10, bringing together influential women from across the global hospitality indust" (also truncated mid-word). That is an event announcement pasted as a description, not a description.
+
+Scan all active descriptions (paged) and flag rows where the description: opens with the bar name followed by "will", "is set to", "announces", "has announced", "is hosting", "hosts", "launches", "is launching"; or contains a weekday plus a date ("Tuesday, March 10"), "this month", "this week", "next week", "tonight"; or ends mid-word / without terminal punctuation; or is shorter than 40 words. Report the count per rule and the full list (slug, city, first 120 chars) in the report, with a proposed one-paragraph replacement for the first 10 as samples, sourced from the bar's own site/Instagram and marked with the source. Write nothing to the database in this task; Roman decides after seeing the list.

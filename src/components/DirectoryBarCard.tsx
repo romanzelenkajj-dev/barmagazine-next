@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { BarPlaceholder } from './BarPlaceholder';
 import { CardStatusPills } from './CardStatusPills';
+import { statusPill } from '@/lib/bar-status';
 import { hasFiftyBest } from '@/lib/accolades';
 import { placeLine } from '@/lib/city-location';
 import { safeHref } from '@/lib/safe-slug';
@@ -28,6 +29,8 @@ export interface DirectoryCardBar {
   city?: string;
   country?: string;
   state?: string | null;
+  /** Drives the "Temporarily closed" pill; absent reads as open. */
+  status?: string | null;
 }
 
 export function DirectoryBarCard({ bar, locationLine }: { bar: DirectoryCardBar; locationLine?: string | null }) {
@@ -51,7 +54,7 @@ export function DirectoryBarCard({ bar, locationLine }: { bar: DirectoryCardBar;
         }
         {/* Status sits on the photo, matching the profile hero. The body is
             left for identity: name and location. */}
-        <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} />
+        <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} status={statusPill(bar)} />
       </div>
       <div className="bar-dir-featured-body">
         <h3 className="bar-dir-featured-name">{bar.name}</h3>

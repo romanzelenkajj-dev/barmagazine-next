@@ -234,7 +234,7 @@ function textFor(bar) {
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 for (const slug of slugs) {
-  const res = await fetch(`${SUPA_URL}/rest/v1/bars?select=name,slug,email,owner_id&slug=eq.${encodeURIComponent(slug)}&is_active=eq.true`, {
+  const res = await fetch(`${SUPA_URL}/rest/v1/bars?select=*&slug=eq.${encodeURIComponent(slug)}&is_active=eq.true`, {
     headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` },
   });
   const rows = await res.json();
@@ -246,6 +246,15 @@ for (const slug of slugs) {
   if (bar.owner_id) { console.log(`CLAIMED ${slug}: owner on file, not sent`); continue; }
   if (PARKED.has(slug.toLowerCase())) {
     console.log(`PARKED ${slug}: editorial decision in outreach/parked.txt, not sent`);
+    continue;
+  }
+  // A closed bar is never emailed. bars.status is added by a migration
+  // (scripts/bar-status-migration.sql); until it exists every row reads as
+  // open and nothing changes. Checked before the opt-out and corporate tests
+  // so the log gives the most specific reason.
+  const barStatus = String(bar.status || 'open').trim().toLowerCase();
+  if (barStatus && barStatus !== 'open') {
+    console.log(`EXCLUDED ${slug}: status ${barStatus}, not emailing a closed bar`);
     continue;
   }
   if (OPTED_OUT.has(String(bar.email || '').trim().toLowerCase())) {
