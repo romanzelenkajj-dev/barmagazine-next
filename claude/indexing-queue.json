@@ -2167,6 +2167,681 @@
    "status": "pending",
    "date": null,
    "note": "task 27, 2026-09-16"
+  },
+  {
+   "slug": "buddy-buddy",
+   "city": "Atlanta",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "redacted-basement-drink-parlor",
+   "city": "Atlanta",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "little-spirit",
+   "city": "Atlanta",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "boccalupo-atlanta",
+   "city": "Atlanta",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "lucky-star",
+   "city": "Atlanta",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "the-james-room",
+   "city": "Atlanta",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "bar-margot-atlanta",
+   "city": "Atlanta",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "ranger-station",
+   "city": "Atlanta",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "the-rooftop-at-hotel-clermont",
+   "city": "Atlanta",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "anansi-cocktail-lounge",
+   "city": "Avondale Estates",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "the-half-blind-pig",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "baudelaire-bar-bratislava",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "bukowski-bar-bratislava",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "bukowski-2-0",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "juicy-bratislava",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "mezcalli-bratislava",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "ufo-watch-taste-groove",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "the-cuba-libre-rum-and-cigar-house",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "casa-del-havana",
+   "city": "Bratislava",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "the-s-o-s-tiki-bar",
+   "city": "Decatur",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "donkey-shoe",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "negroni-centrale",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "the-roof-skybar",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "panorama-sky-bar",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "lane-s-gin-bar",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "kita-koguta",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "zamieszanie-cocktail-bar",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "ether-rooftop-bar",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "b-heaven-rooftop-bar",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "victoria-lounge",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "monkey-love",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "loreta-bar-warsaw",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "josephine-bar-and-restaurant",
+   "city": "Belgrade",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "rakia-bar-belgrade",
+   "city": "Belgrade",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "elizabeth-belgrade",
+   "city": "Belgrade",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "angry-monk",
+   "city": "Belgrade",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "cooldown-budapest",
+   "city": "Budapest",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "high-note-skybar",
+   "city": "Budapest",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "hudson-bar-budapest",
+   "city": "Budapest",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "kaa-mixology",
+   "city": "Budapest",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "lilith-budapest",
+   "city": "Budapest",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "mitico-budapest",
+   "city": "Budapest",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "seven-cocktail-bar",
+   "city": "Budapest",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "szomszed-gyor",
+   "city": "Győr",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "ka-lavanda-bar",
+   "city": "Hvar",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "bylo-nebylo",
+   "city": "Liberec",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "abstract-lyon",
+   "city": "Lyon",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "contrast-lyon",
+   "city": "Lyon",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "l-antiquaire",
+   "city": "Lyon",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "aperture-montpellier",
+   "city": "Montpellier",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "le-quatrieme-tiers",
+   "city": "Montpellier",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "soeurs-carnage",
+   "city": "Nantes",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "saint-nice",
+   "city": "Nice",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "bonsoir-bonsoir",
+   "city": "Paris",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "mintiq-bar-porec",
+   "city": "Poreč",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "alcron-bar-prague",
+   "city": "Prague",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "tynska-bar-and-books",
+   "city": "Prague",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "bar-cobra-prague",
+   "city": "Prague",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "bonvivant-s-ctc",
+   "city": "Prague",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "bugsy-s-bar",
+   "city": "Prague",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "golden-eye",
+   "city": "Prague",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "hemingway-bar-prague",
+   "city": "Prague",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "savage-bar-prague",
+   "city": "Prague",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "mediterraneo-bar-rovinj",
+   "city": "Rovinj",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "bokamorra-pizzaurant-and-cocktails",
+   "city": "Split",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "mr-fogg",
+   "city": "Zagreb",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "tlen-cocktail-bar",
+   "city": "Gdańsk",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "toy-store",
+   "city": "Katowice",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "hedwig-s",
+   "city": "Kraków",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "hanashi-omakase-cocktail-bar",
+   "city": "Kraków",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "yoru-cocktail-bar",
+   "city": "Kraków",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "bar-vhs-warsaw",
+   "city": "Warsaw",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "rusty-rat",
+   "city": "Wrocław",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "t57-wroclaw",
+   "city": "Wrocław",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
+  },
+  {
+   "slug": "botanista-cocktail-bar",
+   "city": "Zielona Góra",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-17",
+   "reason": "new profile from the 2026-09-17 city coverage and BCA waves"
   }
  ]
 }
