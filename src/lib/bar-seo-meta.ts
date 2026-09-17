@@ -286,6 +286,28 @@ export function barTitle(bar: BarMetaInput): string {
 // ---------------------------------------------------------------------------
 
 /**
+ * Comparison key for "have we already said this": letters and digits only,
+ * with the placing words that differ between our phrasing and a venue's own
+ * ("no.", "#", "ranked") removed, so "No. 38 on World's 50 Best Bars 2025"
+ * and "#38 on World's 50 Best Bars 2025" come out identical.
+ */
+const sayKey = (s: string) =>
+  s.toLowerCase().replace(/\b(?:no|number|ranked|rank)\b/g, ' ')
+    .replace(/[^a-z0-9]+/g, ' ').trim();
+
+/**
+ * True when everything `fact` says has already been said. Only this
+ * direction: a fact that merely CONTAINS an earlier word is not a repeat, and
+ * testing that way would drop "Belgrade's first craft cocktail bar" purely
+ * because the lead already named Belgrade.
+ */
+function repeats(already: string, fact: string): boolean {
+  const f = sayKey(fact);
+  if (!f) return true;
+  return sayKey(already).includes(f);
+}
+
+/**
  * Cut to the cap without ever ending mid word: prefer the last sentence end,
  * then the last space. A stored field can be arbitrarily long (one address in
  * the directory is a full postal block), so nothing downstream may assume the
@@ -331,8 +353,11 @@ export function barDescription(bar: BarMetaInput): string {
   ].filter(Boolean);
 
   for (const fact of facts) {
-    // The excerpt usually names the neighbourhood itself; saying it twice in
-    // 160 characters reads like a machine wrote it.
+    // Facts overlap. Coa's excerpt is literally "#38 on World's 50 Best Bars
+    // 2025", which the credential sentence has already said, and an excerpt
+    // usually names the neighbourhood the neighbourhood sentence would. Said
+    // twice inside 160 characters it reads like a machine wrote it.
+    if (repeats(parts.join(' '), fact)) continue;
     if (bar.neighborhood && fact.startsWith('In the ') &&
         parts.join(' ').toLowerCase().includes(String(bar.neighborhood).toLowerCase())) continue;
     const next = tidy([...parts, fact].join(' '));

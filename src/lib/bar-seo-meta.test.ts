@@ -175,6 +175,24 @@ describe('barDescription', () => {
     expect(d).not.toContain('guitars on the walls and');
   });
 
+  it('does not say the same credential twice when the excerpt repeats it', () => {
+    const d = barDescription(bar({
+      city: 'Hong Kong', country: 'Hong Kong',
+      address: 'Shop A, LG/F Wah Shin House, 6-10 Shin Hing Street, Central',
+      accolades: [acc({ rank: 38 })],
+      short_excerpt: "#38 on World's 50 Best Bars 2025",
+    }));
+    expect(d.match(/50 Best Bars 2025/g)?.length).toBe(1);
+  });
+
+  it('keeps an excerpt that only shares a place name with the lead', () => {
+    const d = barDescription(bar({
+      city: 'Belgrade', country: 'Serbia',
+      short_excerpt: "Belgrade's first craft cocktail bar, on Cetinjska",
+    }));
+    expect(d).toContain("Belgrade's first craft cocktail bar");
+  });
+
   it('never exceeds the cap and never ends mid word', () => {
     for (const b of [full, bar({ address: 'A'.repeat(200) }), bar()]) {
       const d = barDescription(b);
