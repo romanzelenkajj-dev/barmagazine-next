@@ -8,6 +8,7 @@ import { subdivisionName, cityLabel } from '@/lib/city-location';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { hasSlug } from '@/lib/safe-slug';
 import { getCityIntro } from '@/lib/city-intros';
+import { isIndexableCity } from '@/lib/seo-cities';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarDirectorySidebar';
 
 /**
@@ -91,7 +92,11 @@ export async function generateMetadata({
     title,
     description,
     alternates: { canonical },
-    robots: { index: true, follow: true },
+    // A city with one or two bars is a thin page. It stays live and
+    // followable so a crawler still reaches the profiles through it, but it
+    // is not itself an index candidate until the city fills out. See
+    // MIN_INDEXABLE_CITY_BARS.
+    robots: { index: isIndexableCity(match.count), follow: true },
     openGraph: {
       title,
       description,

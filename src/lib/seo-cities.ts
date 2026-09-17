@@ -4,6 +4,7 @@ import type { Bar } from './supabase';
 import { renderableAccolades } from './accolades';
 import { buildCityEntries, CityIndex, type CityEntry } from './city-keys';
 import { getBarsForCity } from './city-index';
+import { MIN_CITY_BARS, MIN_TYPE_BARS } from './city-thresholds';
 
 /**
  * Data layer for the programmatic SEO surface: /best-bars/[city] and
@@ -20,8 +21,12 @@ import { getBarsForCity } from './city-index';
  * the city name swapped.
  */
 
-export const MIN_CITY_BARS = 5;
-export const MIN_TYPE_BARS = 4;
+// The thin-page thresholds live in a leaf module so the routes, the sitemap
+// and the tests can read them without pulling the Supabase client in. They
+// are re-exported here because every caller already imports from seo-cities.
+export {
+  MIN_CITY_BARS, MIN_TYPE_BARS, MIN_INDEXABLE_CITY_BARS, isIndexableCity,
+} from './city-thresholds';
 
 /** The five bar types that get type-by-city pages, with URL slugs. */
 export const TYPE_PAGES = [

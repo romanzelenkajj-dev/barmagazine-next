@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getAllActiveBars, getCountriesWithCounts } from '@/lib/supabase';
 import { getCityIndex } from '@/lib/city-index';
-import { getSeoCities } from '@/lib/seo-cities';
+import { getSeoCities, isIndexableCity } from '@/lib/seo-cities';
 import { getRegionCombos, regionHref } from '@/lib/seo-regions';
 import { getLiveAwardPrograms } from '@/lib/award-hubs';
 import { toUrlSlug } from '@/lib/utils';
@@ -93,8 +93,11 @@ export async function GET() {
 `;
   }
 
-  // City pages, one per city entry (same-name cities are separate entries)
-  for (const c of cityIndex.entries) {
+  // City pages, one per city entry (same-name cities are separate entries).
+  // A city under MIN_INDEXABLE_CITY_BARS is noindex on the page itself, so
+  // submitting it here would ask Google to crawl a URL we have told it not to
+  // index. The page stays live and linked; it is simply not advertised.
+  for (const c of cityIndex.entries.filter(e => isIndexableCity(e.count))) {
     xml += `  <url>
     <loc>${SITE_URL}/bars/city/${c.slug}</loc>
     <lastmod>${newestByCity.get(c.slug) ?? new Date(directoryLastmod).toISOString()}</lastmod>
