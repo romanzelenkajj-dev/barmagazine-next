@@ -205,15 +205,22 @@ const PARKED = loadParked();
 
 const FROM = 'Roman Zelenka <zelenka@barmagazine.com>';
 const SUBJ = (name) => `${name} is listed on BarMagazine`;
-const TMPL = "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#f4f2ee;padding:24px 0;\"><tr><td align=\"center\">\n<table role=\"presentation\" width=\"560\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:560px;max-width:100%;background:#ffffff;border:1px solid #e6e2da;font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;\">\n<tr><td style=\"background:#0a0a0a;padding:0;\" align=\"left\">\n  <img src=\"https://barmagazine.com/email/logo-black-bg.png\" alt=\"BarMagazine\" width=\"560\" height=\"78\" style=\"display:block;width:560px;height:78px;border:0;\">\n</td></tr>\n<tr><td style=\"padding:34px 32px 8px;\">\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">Hi {{BAR_NAME}} team,</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">I'm Roman Zelenka, the publisher of <b>BarMagazine</b>. {{BAR_NAME}} has a live profile in our Bar Directory, a curated guide to 1,200+ of the world's best cocktail bars, read by industry professionals and by cocktail lovers deciding where to drink next.</p>\n  <div style=\"margin:6px 0 22px;\"><!--[if mso]><v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"{{PROFILE_URL}}\" style=\"height:42px;v-text-anchor:middle;width:230px;\" arcsize=\"50%\" strokecolor=\"#0a0a0a\" fillcolor=\"#0a0a0a\"><w:anchorlock/><center style=\"color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;\">SEE YOUR PROFILE</center></v:roundrect><![endif]--><!--[if !mso]><!--><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td bgcolor=\"#0a0a0a\" style=\"background-color:#0a0a0a;border-radius:999px;padding:12px 26px;\"><a href=\"{{PROFILE_URL}}\" style=\"display:inline-block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;text-decoration:none;\">SEE YOUR PROFILE</a></td></tr></table><!--<![endif]--></div>\n  <p style=\"margin:6px 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6b6459;\">or open <a href=\"{{PROFILE_URL}}\" style=\"color:#8a6a24;\">barmagazine.com/bars/{{BAR_SLUG}}</a></p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Your listing is free, and stays free.</b> It already shows your address, opening hours, map location and links to your website and Instagram. Claiming it takes two minutes. Once verified, you can correct or update your details whenever you like.</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">One thing most listings are still missing is a photo. A listing with a photo is ranked above one without it on our city pages, and adding yours takes a minute once the bar is claimed. Reply to this email with your favorite shot of the bar and we'll add it to your profile, free.</p>\n  <div style=\"margin:6px 0 26px;\"><!--[if mso]><v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"{{CLAIM_URL}}\" style=\"height:42px;v-text-anchor:middle;width:290px;\" arcsize=\"50%\" strokecolor=\"#B08D3F\" fillcolor=\"#B08D3F\"><w:anchorlock/><center style=\"color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;\">CLAIM YOUR FREE LISTING</center></v:roundrect><![endif]--><!--[if !mso]><!--><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td bgcolor=\"#B08D3F\" style=\"background-color:#B08D3F;border-radius:999px;padding:12px 26px;\"><a href=\"{{CLAIM_URL}}\" style=\"display:inline-block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;text-decoration:none;\">CLAIM YOUR FREE LISTING</a></td></tr></table><!--<![endif]--></div>\n  <p style=\"margin:6px 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6b6459;\">or claim it at <a href=\"{{CLAIM_URL}}\" style=\"color:#8a6a24;\">barmagazine.com/claim-your-bar</a></p>\n  <p style=\"margin:0 0 6px;font-size:13px;font-family:Arial,Helvetica,sans-serif;letter-spacing:.1em;color:#B08D3F;\"><b>WANT YOUR PAGE TO DO MORE?</b></p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Featured</b> bars get their profile turned into a full landing page: your complete drinks menu, a photo gallery, and a featured article about your bar on BarMagazine.com. Many bars use it as their main website.</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Featured&nbsp;+&nbsp;Social</b> adds promotion to our Instagram audience of <a href=\"https://www.instagram.com/barmagazine\" style=\"color:#8a6a24;\">88,000+ organic followers</a> from the bar industry and cocktail scene: 2 posts or Reels a year, each amplified with 3 Stories.</p>\n  <p style=\"margin:0 0 24px;font-size:15px;line-height:1.7;\">See a Featured page live: <a href=\"https://barmagazine.com/bars/dangerous-water-palma-de-mallorca\" style=\"color:#8a6a24;\">Dangerous Water, Palma de Mallorca, Spain</a><br>\n  Plans &amp; pricing: <a href=\"https://barmagazine.com/feature-your-bar?bar={{BAR_SLUG}}#pricing\" style=\"color:#8a6a24;\">barmagazine.com/feature-your-bar</a></p>\n  <p style=\"margin:0 0 4px;font-size:16px;line-height:1.6;\">Cheers,<br><b>Roman Zelenka</b><br>Publisher, BarMagazine</p>\n</td></tr>\n<tr><td style=\"padding:16px 32px;border-top:1px solid #eee6d8;\">\n  <p style=\"margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#9a9284;\">BarMagazine &middot; The cocktail bar directory &middot; <a href=\"https://barmagazine.com/bars\" style=\"color:#9a9284;\">barmagazine.com/bars</a><br>You're receiving this one-time note because {{BAR_NAME}} is listed in our public directory. Reply and I'll update or remove the listing.<br>Don't want emails about your listing? Reply 'unsubscribe' and we won't email this address again.</p>\n</td></tr>\n</table></td></tr></table>";
+const TMPL = "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#f4f2ee;padding:24px 0;\"><tr><td align=\"center\">\n<table role=\"presentation\" width=\"560\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:560px;max-width:100%;background:#ffffff;border:1px solid #e6e2da;font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;\">\n<tr><td style=\"background:#0a0a0a;padding:0;\" align=\"left\">\n  <img src=\"https://barmagazine.com/email/logo-black-bg.png\" alt=\"BarMagazine\" width=\"560\" height=\"78\" style=\"display:block;width:560px;height:78px;border:0;\">\n</td></tr>\n<tr><td style=\"padding:34px 32px 8px;\">\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">Hi {{BAR_NAME}} team,</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">I'm Roman Zelenka, the publisher of <b>BarMagazine</b>. {{BAR_NAME}} has a live profile in our Bar Directory, a curated guide to 1,200+ of the world's best cocktail bars, read by industry professionals and by cocktail lovers deciding where to drink next.</p>\n  <div style=\"margin:6px 0 22px;\"><!--[if mso]><v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"{{PROFILE_URL}}\" style=\"height:42px;v-text-anchor:middle;width:230px;\" arcsize=\"50%\" strokecolor=\"#0a0a0a\" fillcolor=\"#0a0a0a\"><w:anchorlock/><center style=\"color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;\">SEE YOUR PROFILE</center></v:roundrect><![endif]--><!--[if !mso]><!--><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td bgcolor=\"#0a0a0a\" style=\"background-color:#0a0a0a;border-radius:999px;padding:12px 26px;\"><a href=\"{{PROFILE_URL}}\" style=\"display:inline-block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;text-decoration:none;\">SEE YOUR PROFILE</a></td></tr></table><!--<![endif]--></div>\n  <p style=\"margin:6px 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6b6459;\">or open <a href=\"{{PROFILE_URL}}\" style=\"color:#8a6a24;\">barmagazine.com/bars/{{BAR_SLUG}}</a></p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Your listing is free, and stays free.</b> It already shows your address, opening hours, map location and links to your website and Instagram. Claiming it takes two minutes. Once verified, you can correct or update your details whenever you like.</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">One thing most listings are still missing is a photo. A listing with a photo is ranked above one without it on our city pages, and adding yours takes a minute once the bar is claimed. Reply to this email with your favorite shot of the bar and we'll add it to your profile, free.</p>\n  <div style=\"margin:6px 0 26px;\"><!--[if mso]><v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"{{CLAIM_URL}}\" style=\"height:42px;v-text-anchor:middle;width:290px;\" arcsize=\"50%\" strokecolor=\"#B08D3F\" fillcolor=\"#B08D3F\"><w:anchorlock/><center style=\"color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;\">CLAIM YOUR FREE LISTING</center></v:roundrect><![endif]--><!--[if !mso]><!--><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td bgcolor=\"#B08D3F\" style=\"background-color:#B08D3F;border-radius:999px;padding:12px 26px;\"><a href=\"{{CLAIM_URL}}\" style=\"display:inline-block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;text-decoration:none;\">CLAIM YOUR FREE LISTING</a></td></tr></table><!--<![endif]--></div>\n  <p style=\"margin:6px 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6b6459;\">or claim it at <a href=\"{{CLAIM_URL}}\" style=\"color:#8a6a24;\">barmagazine.com/claim-your-bar</a></p>\n  <p style=\"margin:0 0 6px;font-size:13px;font-family:Arial,Helvetica,sans-serif;letter-spacing:.1em;color:#B08D3F;\"><b>WANT YOUR PAGE TO DO MORE?</b></p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Featured</b> bars get their profile turned into a full landing page: your complete drinks menu, a photo gallery, and a featured article about your bar on BarMagazine.com. Many bars use it as their main website.</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Featured&nbsp;+&nbsp;Social</b> adds promotion to our Instagram audience of <a href=\"https://www.instagram.com/barmagazine\" style=\"color:#8a6a24;\">88,000+ organic followers</a> from the bar industry and cocktail scene: 2 posts or Reels a year, each amplified with 3 Stories.</p>\n  <p style=\"margin:0 0 24px;font-size:15px;line-height:1.7;\">See a Featured page live: <a href=\"https://barmagazine.com/bars/dangerous-water-palma-de-mallorca\" style=\"color:#8a6a24;\">Dangerous Water, Palma de Mallorca, Spain</a><br>\n  Plans &amp; pricing: <a href=\"https://barmagazine.com/feature-your-bar?bar={{BAR_SLUG}}#pricing\" style=\"color:#8a6a24;\">barmagazine.com/feature-your-bar</a></p>\n  <p style=\"margin:0 0 4px;font-size:16px;line-height:1.6;\">Cheers,<br><b>Roman Zelenka</b><br>Publisher, BarMagazine</p>\n</td></tr>\n<tr><td style=\"padding:16px 32px;border-top:1px solid #eee6d8;\">\n  <p style=\"margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#9a9284;\">BarMagazine &middot; The cocktail bar directory &middot; <a href=\"https://barmagazine.com/bars\" style=\"color:#9a9284;\">barmagazine.com/bars</a><br>You're receiving this one-time note because {{BAR_NAME}} is listed in our public directory. Reply and I'll update or remove the listing.<br>Don't want emails about your listing? <a href=\"{{UNSUB_URL}}\" style=\"color:#9a9284;\">Unsubscribe here</a>, or reply 'unsubscribe' and we won't email this address again.</p>\n</td></tr>\n</table></td></tr></table>";
 
 const escapeHtml = (s) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/** One-click unsubscribe target for this recipient. See src/app/api/unsubscribe. */
+function unsubUrl(bar) {
+  const to = String(bar.email || '').trim();
+  return `https://barmagazine.com/api/unsubscribe?email=${encodeURIComponent(to)}&bar=${encodeURIComponent(bar.slug)}`;
+}
 function htmlFor(bar) {
   return TMPL
     .replaceAll('{{BAR_NAME}}', escapeHtml(bar.name))
     .replaceAll('{{PROFILE_URL}}', 'https://barmagazine.com/bars/' + bar.slug)
     .replaceAll('{{CLAIM_URL}}', 'https://barmagazine.com/claim-your-bar?bar=' + encodeURIComponent(bar.slug))
-    .replaceAll('{{BAR_SLUG}}', encodeURIComponent(bar.slug));
+    .replaceAll('{{BAR_SLUG}}', encodeURIComponent(bar.slug))
+    .replaceAll('{{UNSUB_URL}}', unsubUrl(bar));
 }
 function textFor(bar) {
   return [
@@ -227,8 +234,35 @@ function textFor(bar) {
     'Example: https://barmagazine.com/bars/dangerous-water-palma-de-mallorca',
     `Pricing: https://barmagazine.com/feature-your-bar?bar=${bar.slug}`, '',
     'Cheers,', 'Roman Zelenka', 'Publisher, BarMagazine', '',
-    "Don't want emails about your listing? Reply 'unsubscribe' and we won't email this address again."
-  ].join('\n');
+    "Don't want emails about your listing? Unsubscribe: {{UNSUB_URL}} , or reply 'unsubscribe' and we won't email this address again."
+  ].join('\n').replaceAll('{{UNSUB_URL}}', unsubUrl(bar));
+}
+
+/**
+ * Addresses that used the one-click unsubscribe. Separate from
+ * outreach/optout.txt, which stays the hand-maintained record with its
+ * reasons; an address in EITHER is never emailed. A missing table or a failed
+ * lookup reads as "not opted out", so a transient error cannot silently stop a
+ * batch, and the file remains the backstop.
+ */
+const OPTOUT_CACHE = new Map();
+async function optedOutInDb(email) {
+  const key = String(email || '').trim().toLowerCase();
+  if (!key) return false;
+  if (OPTOUT_CACHE.has(key)) return OPTOUT_CACHE.get(key);
+  let hit = false;
+  try {
+    const res = await fetch(
+      `${SUPA_URL}/rest/v1/email_optouts?select=email&email=eq.${encodeURIComponent(key)}&limit=1`,
+      { headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` } },
+    );
+    if (res.ok) {
+      const rows = await res.json();
+      hit = Array.isArray(rows) && rows.length > 0;
+    }
+  } catch { /* table absent or network blip: fall through to the file */ }
+  OPTOUT_CACHE.set(key, hit);
+  return hit;
 }
 
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
@@ -257,6 +291,14 @@ for (const slug of slugs) {
     console.log(`EXCLUDED ${slug}: status ${barStatus}, not emailing a closed bar`);
     continue;
   }
+  // The one-click unsubscribe writes to public.email_optouts, which
+  // outreach/optout.txt does not know about. Checked per address, and a
+  // missing table reads as "not opted out" so this is inert until the
+  // migration runs (scripts/email-optouts-migration.sql).
+  if (await optedOutInDb(bar.email)) {
+    console.log(`EXCLUDED ${slug}: ${bar.email} unsubscribed via the one-click link, never emailed again`);
+    continue;
+  }
   if (OPTED_OUT.has(String(bar.email || '').trim().toLowerCase())) {
     console.log(`EXCLUDED ${slug}: ${bar.email} opted out — never emailed again (no bypass)`);
     continue;
@@ -280,6 +322,13 @@ for (const slug of slugs) {
       subject: SUBJ(bar.name),
       html: htmlFor(bar),
       text: textFor(bar),
+      // RFC 8058 one-click. Mail providers check for these, and an easy
+      // unsubscribe is what keeps a recipient off the spam button, which is
+      // the thing that actually damages a sending domain.
+      headers: {
+        'List-Unsubscribe': `<${unsubUrl(bar)}>, <mailto:office@barmagazine.com?subject=unsubscribe>`,
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      },
     }),
   });
   const out = await r.json();
