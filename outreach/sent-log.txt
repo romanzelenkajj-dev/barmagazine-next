@@ -488,3 +488,6 @@ the-peach-crease-club	2026-09-15	batch13-metro1
 eleven11	2026-09-15	batch13-metro1
 white-limozeen	2026-09-15	batch13-metro1
 midnight-rambler	2026-09-15	batch13-metro1
+the-hudson-rooms	2026-09-17	batch14-asia-enriched
+smoke-bitters	2026-09-17	batch14-asia-enriched
+barc	2026-09-17	batch14-asia-enriched
