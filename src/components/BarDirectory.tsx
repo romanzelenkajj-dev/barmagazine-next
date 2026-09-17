@@ -1,6 +1,7 @@
 'use client';
 
 import { asciiFold } from '@/lib/ascii-fold';
+import { hasFiftyBest } from '@/lib/accolades';
 import { useState, useMemo, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
@@ -26,21 +27,8 @@ const ITEMS_PER_PAGE = 24;
 const LIST_PER_PAGE = 40;
 
 // World's 50 Best Bars 2025 — used as a ranking signal
-const FIFTY_BEST_2025 = new Set([
-  'Bar Leone', 'Handshake Speakeasy', 'Sips', 'Paradiso',
-  'Tayēr + Elementary', 'The Connaught Bar', 'Moebius Milano', 'Line',
-  'Jigger & Pony', 'Tres Monos', 'Alquímico', 'Superbueno',
-  'Lady Bee', 'Himkok', 'Bar Us', 'Zest', 'Bar Nouveau',
-  'Benfiddich', "Caretaker's Cottage", 'The Cambridge Public House',
-  "Satan's Whiskers", 'Locale Firenze', 'Tlecān', 'Tan Tan',
-  'Mirror Bar', 'CoChinChina', 'Baba au Rum', 'Nouvelle Vague',
-  'Hope & Sesame', 'Danico', 'Scarfes Bar', 'Svanen',
-  'Sastrería Martinez', 'Panda & Sons', 'Röda Huset', 'Mimi Kakushi',
-  'Salmon Guru', 'Coa', 'Sip & Guzzle', 'Drink Kong',
-  'Double Chicken Please', 'Maybe Sammy', '1930', 'Jewel of the South',
-  'Virtù', 'Overstory', 'The Bar in Front of the Bar', 'The Bellwood',
-  'BKK Social Club', 'Nutmeg & Clove',
-]);
+// The 50 Best test reads the stored accolades, never a hardcoded name list;
+// see the note in BarDirectoryMap.tsx. This file carried its own copy.
 
 // Sort bars with geo-targeting: nearby bars first, then articles, 50 Best, photos
 function sortBars(
@@ -61,8 +49,8 @@ function sortBars(
     if (aHasArticle !== bHasArticle) return bHasArticle - aHasArticle;
 
     // 3. World's 50 Best
-    const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
-    const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+    const aIs50Best = hasFiftyBest(a.accolades) ? 1 : 0;
+    const bIs50Best = hasFiftyBest(b.accolades) ? 1 : 0;
     if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
 
     // 4. Bars with photos

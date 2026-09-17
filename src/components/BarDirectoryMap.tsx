@@ -32,21 +32,11 @@ const FEATURED_PER_PAGE = 12;
 const PHOTO_PER_PAGE = 24;
 const LIST_PER_PAGE = 60;
 
-const FIFTY_BEST_2025 = new Set([
-  'Bar Leone', 'Handshake Speakeasy', 'Sips', 'Paradiso',
-  'Tayēr + Elementary', 'The Connaught Bar', 'Moebius Milano', 'Line',
-  'Jigger & Pony', 'Tres Monos', 'Alquímico', 'Superbueno',
-  'Lady Bee', 'Himkok', 'Bar Us', 'Zest', 'Bar Nouveau',
-  'Benfiddich', "Caretaker's Cottage", 'The Cambridge Public House',
-  "Satan's Whiskers", 'Locale Firenze', 'Tlecān', 'Tan Tan',
-  'Mirror Bar', 'CoChinChina', 'Baba au Rum', 'Nouvelle Vague',
-  'Hope & Sesame', 'Danico', 'Scarfes Bar', 'Svanen',
-  'Sastrería Martinez', 'Panda & Sons', 'Röda Huset', 'Mimi Kakushi',
-  'Salmon Guru', 'Coa', 'Sip & Guzzle', 'Drink Kong',
-  'Double Chicken Please', 'Maybe Sammy', '1930', 'Jewel of the South',
-  'Virtù', 'Overstory', 'The Bar in Front of the Bar', 'The Bellwood',
-  'BKK Social Club', 'Nutmeg & Clove',
-]);
+// The 50 Best test reads the stored accolades, never a hardcoded name list.
+// A name list and the card badge disagreed: the badge renders from
+// hasFiftyBest(bar.accolades), so a bar whose name was spelled differently, or
+// which entered from a regional 50 Best list, showed the badge and did not
+// sort as one. hasFiftyBest covers w50b, a50b, e50b and na50b.
 
 /**
  * Sort bars by geo proximity first, then by editorial quality signals.
@@ -58,8 +48,8 @@ function sortByGeo(bars: Bar[], geoCity = '', geoCountryCode = '', geoContinent 
     const bGeo = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
     if (aGeo !== bGeo) return bGeo - aGeo;
     // Within same geo score: 50 Best first, then alphabetical
-    const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
-    const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+    const aIs50Best = hasFiftyBest(a.accolades) ? 1 : 0;
+    const bIs50Best = hasFiftyBest(b.accolades) ? 1 : 0;
     if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
     return a.name.localeCompare(b.name);
   });
@@ -131,8 +121,8 @@ function sortByGPS(
     const distA = haversineKm(userLat, userLng, a.lat!, a.lng!);
     const distB = haversineKm(userLat, userLng, b.lat!, b.lng!);
     if (Math.abs(distA - distB) > 0.5) return distA - distB;
-    const fiftyA = FIFTY_BEST_2025.has(a.name) ? 0 : 1;
-    const fiftyB = FIFTY_BEST_2025.has(b.name) ? 0 : 1;
+    const fiftyA = hasFiftyBest(a.accolades) ? 0 : 1;
+    const fiftyB = hasFiftyBest(b.accolades) ? 0 : 1;
     if (fiftyA !== fiftyB) return fiftyA - fiftyB;
     return a.name.localeCompare(b.name);
   });
@@ -142,8 +132,8 @@ function sortByGPS(
     const aGeo = getGeoScore(a, geoCity, geoCountryCode, geoContinent);
     const bGeo = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
     if (aGeo !== bGeo) return bGeo - aGeo;
-    const fiftyA = FIFTY_BEST_2025.has(a.name) ? 0 : 1;
-    const fiftyB = FIFTY_BEST_2025.has(b.name) ? 0 : 1;
+    const fiftyA = hasFiftyBest(a.accolades) ? 0 : 1;
+    const fiftyB = hasFiftyBest(b.accolades) ? 0 : 1;
     if (fiftyA !== fiftyB) return fiftyA - fiftyB;
     return a.name.localeCompare(b.name);
   });
@@ -571,6 +561,29 @@ export function BarDirectoryMapClient({
     setNearMode(new URLSearchParams(window.location.search).has('near'));
   }, []);
 
+  // Once the visitor names a place, near-me mode stops deciding the order.
+  // MODE D runs BEFORE the MODE A location branch, so without this a visitor
+  // who arrived from "Find bars near me" and then filtered to a city kept
+  // proximity ordering, and beyond the 80 km radius MODE D sorts on raw
+  // distance alone. Filtering to Bratislava from Carlsbad therefore returned
+  // the city in arbitrary distance order with photo, accolade and tier all
+  // ignored, burying Mirror Bar below three photo-less bars.
+  //
+  // `near` is dropped from the URL at the same time so a refresh cannot
+  // resurrect it. Written as an effect rather than in each setter because the
+  // filters are set from several places (dropdowns, chips, the typeahead) and
+  // one of them would eventually be missed.
+  useEffect(() => {
+    if (!nearMode) return;
+    if (!(cityFilter || countryFilter || debouncedSearch.trim())) return;
+    setNearMode(false);
+    const url = new URL(window.location.href);
+    if (url.searchParams.has('near')) {
+      url.searchParams.delete('near');
+      window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+    }
+  }, [nearMode, cityFilter, countryFilter, debouncedSearch]);
+
   // GPS-based sorting state
   const [userLat, setUserLat] = useState<number | null>(null);
   const [userLng, setUserLng] = useState<number | null>(null);
@@ -805,8 +818,8 @@ export function BarDirectoryMapClient({
         const pB = hasPhoto(b) ? 0 : 1;
         if (pA !== pB) return pA - pB;
         // 3. 50 Best
-        const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
-        const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+        const aIs50Best = hasFiftyBest(a.accolades) ? 1 : 0;
+        const bIs50Best = hasFiftyBest(b.accolades) ? 1 : 0;
         if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
         // 4. Alphabetical
         return a.name.localeCompare(b.name);
@@ -819,8 +832,8 @@ export function BarDirectoryMapClient({
         const rankA = tierRank(a);
         const rankB = tierRank(b);
         if (rankA !== rankB) return rankA - rankB;
-        const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
-        const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+        const aIs50Best = hasFiftyBest(a.accolades) ? 1 : 0;
+        const bIs50Best = hasFiftyBest(b.accolades) ? 1 : 0;
         if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
         return a.name.localeCompare(b.name);
       });
@@ -842,8 +855,8 @@ export function BarDirectoryMapClient({
       const tB = tierRank(b);
       if (tA !== tB) return tA - tB;
       // 4. 50 Best
-      const aIs50Best = FIFTY_BEST_2025.has(a.name) ? 1 : 0;
-      const bIs50Best = FIFTY_BEST_2025.has(b.name) ? 1 : 0;
+      const aIs50Best = hasFiftyBest(a.accolades) ? 1 : 0;
+      const bIs50Best = hasFiftyBest(b.accolades) ? 1 : 0;
       if (aIs50Best !== bIs50Best) return bIs50Best - aIs50Best;
       // 5. Alphabetical
       return a.name.localeCompare(b.name);
