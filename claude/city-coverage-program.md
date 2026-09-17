@@ -88,6 +88,31 @@ already held. The first BCA run matched 11 of 91 that way, including a bar
 whose name had changed since we listed it, which a name match would have
 duplicated.
 
+## Reading an Instagram-only venue
+
+Half the bars in the mid-tier cities this programme targets have no website at
+all, and a researcher who cannot read Instagram will hold them all. That is
+what happened to the first Polish run on 2026-09-17: 5 of 18 verified, with
+eight holds that were purely "no website". A second pass using these
+techniques returned 11 of 18.
+
+A plain fetch of instagram.com returns only the logged-out shell, and the
+profile API returns 401. What works, logged out:
+
+- **`meta[name="description"]`** carries the complete, untruncated bio, and it
+  survives both the age gate and the restricted-profile wall, where everything
+  else returns nothing.
+- **The alt text of the grid images** contains each post's date, which settles
+  whether a bar is currently trading. Scroll the profile first: a plain read
+  returns only the profile and highlight images. Logged out the grid caps at
+  12 posts. The alt text also transcribes text inside images, which is how one
+  researcher read two venues' own hours posters.
+- **`instagram.com/p/<id>/embed/captioned/`** returns a full post caption
+  logged out. Zahir in Nitra is listed only because of this: its own site is a
+  "coming soon" placeholder and the address came from the bar's own caption.
+
+Use the Browser pane for all three, not a plain fetch.
+
 ## The admission rule still governs
 
 See `claude/admission-rule.md`. We admit cocktail-led rooms. The test is about
