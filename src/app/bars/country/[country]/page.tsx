@@ -110,7 +110,9 @@ export default async function CountryPage({
 
   // Sort: Featured+Top10 first, then featured, then top10, then with photo, then no photo
   const tierRank = (bar: Bar): number => {
-    const isFeatured = bar.tier === 'featured' || !!bar.wp_article_slug;
+    // Featured is the PAID subscription and nothing else; see the note in
+    // DirectoryBarCard. This site was not in the task's list of five.
+    const isFeatured = bar.tier === 'featured';
     const isTop10 = bar.tier === 'top10';
     const hasPhoto = bar.photos && bar.photos.length > 0;
     if (isFeatured && isTop10)  return hasPhoto ? 0 : 1;

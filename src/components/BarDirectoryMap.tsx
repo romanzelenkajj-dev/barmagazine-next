@@ -755,10 +755,14 @@ export function BarDirectoryMapClient({
   const allFiltered = useMemo(() => {
     const hasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);
 
+    // Paid, editorial pick, article, rest. This had it backwards: any bar with
+    // an article outranked top10, featured and premium, which all shared 1. So
+    // an article we wrote for free beat the tier two bars pay for.
     const tierRank = (b: Bar): number => {
-      if (b.wp_article_slug) return 0;                                    // Featured with article
-      if (b.tier === 'top10' || b.tier === 'premium' || b.tier === 'featured') return 1; // Priority tiers
-      return 2;                                                           // Free
+      if (b.tier === 'featured' || b.tier === 'premium') return 0;        // the paid tier
+      if (b.tier === 'top10') return 1;                                   // our editorial pick
+      if (b.wp_article_slug) return 2;                                    // we wrote about it
+      return 3;                                                           // everything else
     };
 
     const hasGeoSignal = !!(geoCity || geoCountryCode);
@@ -1093,9 +1097,13 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] || null;
   const isPremium = bar.tier === 'premium';
   const isTop10 = bar.tier === 'top10';
-  // Match the rest of the directory (city/country/profile pages): a bar is
-  // "Featured" when its tier is 'featured' OR it has a linked article.
-  const isFeatured = bar.tier === 'featured' || !!bar.wp_article_slug;
+  // Featured is the PAID subscription and nothing else. This used to read
+  // `tier === 'featured' || wp_article_slug`, which put the badge on every
+  // bar we had written about: 15 bars wearing a badge two bars pay for, two
+  // of them showing Top 10 and Featured side by side as though our editorial
+  // picks were advertising. Having an article is a real editorial signal and
+  // still ranks, under its own name.
+  const isFeatured = bar.tier === 'featured';
   return (
     <Link href={`/bars/${bar.slug}`} className="bar-dir-featured-card">
       <div className="bar-dir-featured-visual">

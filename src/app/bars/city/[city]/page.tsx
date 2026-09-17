@@ -152,23 +152,28 @@ export default async function CityPage({
   //   4 — Bars without photos
   // Within every tier, bars with photos rank above bars without photos.
   // 8 buckets total (0–7), alphabetical within each bucket.
+  // Paid, editorial pick, article, everything else. `isFeatured` used to mean
+  // "featured tier OR has an article", so the top slot the two paying bars buy
+  // was being shared with 15 bars that pay nothing. Having an article is still
+  // a ranking signal, one bucket lower and under its own name.
   const tierRank = (b: Bar) => {
     const isTop10 = b.tier === 'top10';
-    const isFeatured = b.tier === 'featured' || !!b.wp_article_slug;
+    const isPaid = b.tier === 'featured' || b.tier === 'premium';
+    const hasArticle = !!b.wp_article_slug;
     const p = !!(b.photos && b.photos.length > 0) ? 0 : 1; // 0 = has photo, 1 = no photo
     if (isTop10View) {
-      // Top 10 view: editorial first
-      if (isTop10 && isFeatured) return 0 + p;  // 0 or 1
-      if (isTop10)               return 2 + p;  // 2 or 3
-      if (isFeatured)            return 4 + p;  // 4 or 5
-      return 6 + p;                             // 6 or 7
-    } else {
-      // Default view: paid (featured) first
-      if (isTop10 && isFeatured) return 0 + p;  // 0 or 1
-      if (isFeatured)            return 2 + p;  // 2 or 3
-      if (isTop10)               return 4 + p;  // 4 or 5
-      return 6 + p;                             // 6 or 7
+      // Top 10 view: editorial first, then the paid tier.
+      if (isTop10)     return 0 + p;  // 0 or 1
+      if (isPaid)      return 2 + p;  // 2 or 3
+      if (hasArticle)  return 4 + p;  // 4 or 5
+      return 6 + p;                   // 6 or 7
     }
+    // Default view: the paid tier leads the regular list, which is the thing
+    // it buys.
+    if (isPaid)      return 0 + p;  // 0 or 1
+    if (isTop10)     return 2 + p;  // 2 or 3
+    if (hasArticle)  return 4 + p;  // 4 or 5
+    return 6 + p;                   // 6 or 7
   };
   const sorted = [...bars].sort((a, b) => {
     const rankDiff = tierRank(a) - tierRank(b);

@@ -18,7 +18,13 @@ const PAGE_SIZE = 12;
 function CountryBarCard({ bar }: { bar: Bar }) {
   const imageUrl = bar.photos?.[0] ?? null;
   const isTop10 = bar.tier === 'top10';
-  const isFeatured = bar.tier === 'featured' || !!bar.wp_article_slug;
+  // Featured is the PAID subscription and nothing else. This used to read
+  // `tier === 'featured' || wp_article_slug`, which put the badge on every
+  // bar we had written about: 15 bars wearing a badge two bars pay for, two
+  // of them showing Top 10 and Featured side by side as though our editorial
+  // picks were advertising. Having an article is a real editorial signal and
+  // still ranks, under its own name.
+  const isFeatured = bar.tier === 'featured';
 
   return (
     <Link href={safeHref('/bars', bar.slug)} className="bar-dir-featured-card">

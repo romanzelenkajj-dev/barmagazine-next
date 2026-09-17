@@ -314,10 +314,11 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
             </div>
           )}
           {/* All badges overlaid at bottom-left of hero photo */}
-          {(isTop10 || isFeatured || isPremium || bar.wp_article_slug || bar.type || subtypeTags.length > 0) && (
+          {(isTop10 || isFeatured || isPremium || bar.type || subtypeTags.length > 0) && (
             <div className="bar-v2-hero-badges">
               {isTop10 && <span className="bar-v2-badge bar-v2-badge--top10">★ TOP 10</span>}
-              {(isFeatured || isPremium || bar.wp_article_slug) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
+              {/* Featured is the PAID subscription. It used to include wp_article_slug, which badged every bar we had written about. */}
+              {(isFeatured || isPremium) && <span className="bar-v2-badge bar-v2-badge--featured">{isPremium ? 'Premium' : 'Featured'}</span>}
               {leadType && <span className="bar-v2-badge bar-v2-badge--type">{leadType}</span>}
               {subtypeTags.map(tag =>
                 tag.href ? (
