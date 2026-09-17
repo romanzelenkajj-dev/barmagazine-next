@@ -28,7 +28,7 @@ export const dynamic = 'force-dynamic';
  * a reader would see on every profile; a bumped date on an unchanged page
  * is the same lie in the other direction.
  */
-const PROFILE_TEMPLATE_CHANGED_AT = '2026-09-14T19:36:00-07:00'; // deploy of b1b306b
+const PROFILE_TEMPLATE_CHANGED_AT = '2026-09-17T09:22:00-07:00'; // 3b02e69 live: the title and meta rewrite
 
 /** A row's own lastmod: the later of its last write and the template change. */
 function rowLastmod(bar: { updated_at: string | null; created_at: string }): string {
