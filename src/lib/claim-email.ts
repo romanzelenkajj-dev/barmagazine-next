@@ -54,8 +54,8 @@ export function claimEmailHtml({ barName, actionLink }: Omit<ClaimLinkEmail, 'de
   const href = escapeHtml(actionLink);
   return `
     <div style="font-family:Inter,system-ui,sans-serif;max-width:560px;margin:0 auto;color:#1A1A1A;font-size:15px;line-height:1.6;">
-      <div style="margin:0 0 26px;background:#0a0a0a;padding:16px 20px;">
-        <a href="https://barmagazine.com"><img src="https://barmagazine.com/logo-white.png" alt="BarMagazine" width="150" style="width:150px;height:auto;border:0;display:block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-weight:bold;" /></a>
+      <div style="margin:0 0 26px;background:#0a0a0a;padding:0;">
+        <a href="https://barmagazine.com"><img src="https://barmagazine.com/email/logo-black-bg-claim.png" alt="BarMagazine" width="560" height="55" style="width:560px;max-width:100%;height:auto;border:0;display:block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-weight:bold;" /></a>
       </div>
       <p>
         You asked to claim <strong>${bar}</strong> on BarMagazine, the global
@@ -67,6 +67,7 @@ export function claimEmailHtml({ barName, actionLink }: Omit<ClaimLinkEmail, 'de
       </p>
       <div style="margin:28px 0;">
         ${emailCta(href, `Confirm and claim ${bar}`)}
+        <p style="margin:6px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6B6B6B;">or open <a href="${href}" style="color:#8a6a24;word-break:break-all;">this confirmation link</a></p>
       </div>
       <p>
         Once confirmed you can keep your opening hours, contact details, menu and
@@ -167,12 +168,13 @@ export async function sendLoginLinkEmail(
       subject: 'Your BarMagazine owner dashboard sign-in link',
       html: `
         <div style="font-family:Inter,system-ui,sans-serif;max-width:560px;margin:0 auto;color:#1A1A1A;font-size:15px;line-height:1.6;">
-          <div style="margin:0 0 26px;background:#0a0a0a;padding:16px 20px;">
-            <a href="https://barmagazine.com"><img src="https://barmagazine.com/logo-white.png" alt="BarMagazine" width="150" style="width:150px;height:auto;border:0;display:block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-weight:bold;" /></a>
+          <div style="margin:0 0 26px;background:#0a0a0a;padding:0;">
+            <a href="https://barmagazine.com"><img src="https://barmagazine.com/email/logo-black-bg-claim.png" alt="BarMagazine" width="560" height="55" style="width:560px;max-width:100%;height:auto;border:0;display:block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-weight:bold;" /></a>
           </div>
           <p>You asked to sign in to your BarMagazine owner dashboard.</p>
           <div style="margin:28px 0;">
             ${emailCta(escapeHtml(link), 'Open my dashboard')}
+            <p style="margin:6px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6B6B6B;">or open <a href="${escapeHtml(link)}" style="color:#8a6a24;word-break:break-all;">this sign-in link</a></p>
           </div>
           <p>The button opens a page where you confirm the sign-in with one click.</p>
           <p style="color:#6B6B6B;">
