@@ -123,15 +123,25 @@ export function level2BarsForType(
   fallback: (b: Bar[]) => Bar[],
 ): Level2Result & { sameAsCity: boolean } {
   const city = level2Bars(cityBars, fallback);
-  const all = city.all.filter(matchesType);
-  const sameAsCity = all.length === city.all.length && city.all.length > 0;
+  const ofType = cityBars.filter(b => matchesType(b) && !isDropped(b));
+  let all = city.all.filter(matchesType);
+  // The page's EXISTENCE still keys on how many bars of the type the city has
+  // (MIN_TYPE_BARS, unchanged). Only its SELECTION is the qualified subset. An
+  // earlier version returned the subset alone, which 404'd Warsaw's rooftop
+  // and hotel pages: they hold five and seven bars, but too few of those
+  // qualify, and a live page must not vanish because the rule tightened.
+  let fellBack = city.fellBack;
+  if (all.length < LEVEL2_MIN) {
+    all = fallback(ofType).slice(0, LEVEL2_MIN);
+    fellBack = true;
+  }
+  const sameAsCity = all.length === city.all.length
+    && city.all.every(b => matchesType(b)) && city.all.length > 0;
   return {
     curated: city.curated.filter(matchesType),
     rest: city.rest.filter(matchesType),
     all,
-    // A type page inherits the city's fallback: if the city could not make a
-    // real selection, neither can a slice of it.
-    fellBack: city.fellBack,
+    fellBack,
     sameAsCity,
   };
 }
