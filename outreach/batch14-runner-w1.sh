@@ -1,6 +1,6 @@
 #!/bin/bash
-# One-shot runner for batch 14 window w1 (armed 2026-09-15 for Thursday
-# 2026-09-17, 21:00 PT). Asia and India rows from the enrichment apply.
+# One-shot runner for batch 14 window w1 (armed 2026-09-15, moved 2026-09-16 on Roman's go to Wednesday
+# 2026-09-16, 21:00 PT). Asia and India rows from the enrichment apply.
 set -u
 REPO="/Users/romanzelenka/barmagazine-next"
 LOG="$REPO/outreach/batch14-send.log"

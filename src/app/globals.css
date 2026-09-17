@@ -3555,6 +3555,23 @@ textarea.form-input {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* The "Bars in this article" carousel renders these cards inside
+   .article-body, where the generic article-image rules give every img a
+   16px top margin and a radius. The rule above wins on height but sets no
+   margin, so the photo was pushed 16px down inside the aspect-ratio box
+   and clipped at the bottom (Roman, task 37). Reset the card image here,
+   with the card rules; the article's own images keep their rules
+   untouched. */
+.article-body .bar-dir-featured-visual img {
+  margin: 0;
+  border-radius: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .bar-dir-featured-card:hover .bar-dir-featured-visual img {
   transform: scale(1.05);
 }

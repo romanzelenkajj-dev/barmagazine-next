@@ -1214,6 +1214,32 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 37: card photo in the article carousel sat 16px low
+- The "Bars in this article" cards render inside .article-body, so the
+  generic article-image rule (margin 16px 0 8px, radius) applied to the
+  card img; .bar-dir-featured-visual img wins on height but sets no
+  margin, so the photo was pushed 16px down inside the 16:10 box and
+  clipped at the bottom (placeholders are divs, unaffected). New
+  .article-body .bar-dir-featured-visual img resets margin, radius,
+  width, max-width, height, object-fit and display, placed with the card
+  rules; the generic article-image rules are untouched. Connaught card
+  now topGap 0, radius 0, image fills 248x155, pills 10px from the left
+  and bottom, identical to /bars/city/london. Checked at 390, 768 and
+  1440 on the Negroni Week and Torno Subito articles; the articles' own
+  photos unchanged (80 to 885 at 1440, 18 to 372 at 390, radius 24).
+
+## 2026-09-16 - Batch 14 moved to Wednesday night on Roman's go (chat, 20:42 PT)
+- Roman in chat: "yes for the batch 14 move". Both launchd agents
+  unloaded, StartCalendarInterval Day 17 -> 16, reloaded and verified:
+  com.barmagazine.batch14-w1 2026-09-16 21:00 (the-hudson-rooms),
+  com.barmagazine.batch14-w2 23:00 (smoke-bitters, barc). Runner header
+  dates updated; slug lists, batch name batch14-asia-enriched, template
+  and send script untouched; net-preflight still runs inside
+  send-upsell. caffeinate started (pid 92991) to hold the Mac awake to
+  about 23:52 PT. Reason for the move: a Thursday 21:00 PT send lands
+  Friday morning in Asia and India; Wednesday 21:00 lands Thursday
+  midday in Tokyo and Thursday morning in Mumbai.
+
 ## 2026-09-16 - Queue task 35: every article image at the same phone inset (3d7301a)
 - A bare image in a paragraph (the 1986 Steak House article, the older
   WordPress way) sat on the text column at 390 (34 to 356) while figures
