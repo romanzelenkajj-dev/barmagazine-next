@@ -952,14 +952,18 @@ button {
   display: block;
 }
 
-/* A bare image in a paragraph gets the same box as a figure. */
-.article-body > p > img,
-.article-body > p > a > img {
-  width: calc(100% + 32px);
-  max-width: none;
+/* A bare image in a paragraph. The article HTML sits in a wrapper div
+   inside .article-body, so the old ">" child selectors never matched and
+   these images kept the text column on phones while figures bled 16px
+   (task 35). Descendant selectors now; on desktop the column width stays,
+   the phone block below gives them the figure's 16px bleed. The figure
+   rules further down win for an image inside a figure. */
+.article-body p > img,
+.article-body p > a > img {
+  width: 100%;
   height: auto;
   border-radius: var(--radius);
-  margin: 24px -16px 12px;
+  margin: 16px 0 8px;
 }
 
 .article-body img.alignnone {
@@ -2531,13 +2535,6 @@ button {
      (task 32: the old 24px here stacked on the figure's 16px in the
      publisher's nested structure and pushed the corners off screen). Only
      the galleries and the ad banner bleed the full 24px. */
-  .article-body figure img,
-  .article-body .wp-caption img {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
   .article-body .wp-block-image,
   .article-body .gallery-clean,
   .article-body .wp-block-gallery,
@@ -2565,15 +2562,30 @@ button {
   .article-body .ad-banner img {
     border-radius: 0;
   }
-  .article-body > p > img,
-  .article-body > p > a > img,
-  .article-body > img.alignnone,
-  .article-body > img.aligncenter,
-  .article-body > p > img[data-large-file] {
+  .article-body p > img,
+  .article-body p > a > img,
+  .article-body img.alignnone,
+  .article-body img.aligncenter,
+  .article-body img[data-large-file] {
     margin-left: -16px;
     margin-right: -16px;
     width: calc(100% + 32px) !important;
     max-width: none !important;
+  }
+  /* ...but never an image inside a figure: the figure owns the bleed. The
+     class and attribute variants are listed so this outranks the
+     img.alignnone / img[data-large-file] rules above (a figure's own
+     alignnone image ran 32px past its box otherwise). */
+  .article-body figure img,
+  .article-body figure img.alignnone,
+  .article-body figure img.aligncenter,
+  .article-body figure img[data-large-file],
+  .article-body .wp-caption img,
+  .article-body .gallery-clean img {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .article-body .gallery-clean-row {

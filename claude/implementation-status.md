@@ -1214,6 +1214,18 @@ Running log of shipped work items and their merge commits. Newest first.
   parked. The "outreach status doc" with a PR-agency track lives in the
   claude.ai project, not the repo; Roman updated it himself.
 
+## 2026-09-16 - Queue task 35: every article image at the same phone inset
+- A bare image in a paragraph (the 1986 Steak House article, the older
+  WordPress way) sat on the text column at 390 (34 to 356) while figures
+  bled 16px (18 to 372): the ".article-body > p > img" child selectors
+  never matched, because the article HTML lives in a wrapper div inside
+  .article-body. Descendant selectors now; on phones a paragraph image
+  gets the figure's 16px bleed, on desktop it keeps the column width and
+  its 16/8 vertical margins. The phone override for images inside a
+  figure lists the alignnone and data-large-file variants so a figure's
+  own image never bleeds twice. 1986, Torno Subito, The Pontiac, Margarita
+  Mile and the World's 50 Best 2025 article all at 18 to 372 at 390.
+
 ## 2026-09-16 - Queue task 34: article image bottom corners (task 32 follow-up, 2ee9504)
 - The 32 rules put the radius on the figure and clipped it; a caption
   sits inside the figure under the image, so the box's rounded bottom ran
