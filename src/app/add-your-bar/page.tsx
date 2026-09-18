@@ -6,6 +6,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { BarSearchTypeahead } from '@/components/BarSearchTypeahead';
 import { SUBMISSION_HELP } from '@/lib/house-style';
+import { planLabel } from '@/lib/plan-pricing';
 
 // Stripe payment links by currency
 /**
@@ -537,8 +538,13 @@ function AddYourBarForm() {
                     onChange={(e) => setSelectedPlan(e.target.value)}
                   >
                     {!upgradeBar && <option value="free">Listed (Free)</option>}
-                    <option value="featured">Featured ({currency === 'EUR' ? '€19.50' : '$19.50'}/mo &mdash; 50% off first year)</option>
-                    <option value="featured_social">Featured + Social ({currency === 'EUR' ? '€39.50' : '$39.50'}/mo &mdash; 50% off first year)</option>
+                    {/* Full price leads, promotion second. Leading with
+                        $19.50 made it the reference price, so the standard
+                        rate read later as a rise rather than the promotion
+                        reading now as a saving. Figures live in
+                        lib/plan-pricing.ts. */}
+                    <option value="featured">{planLabel('featured', currency)}</option>
+                    <option value="featured_social">{planLabel('featured_social', currency)}</option>
                   </select>
                   <span className="form-hint">
                     {isPaidPlan
