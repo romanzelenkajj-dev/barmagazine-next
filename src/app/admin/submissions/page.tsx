@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { DescriptionReview, type DescriptionChoice } from '@/components/DescriptionReview';
 
 interface Submission {
   id: string;
@@ -34,6 +35,12 @@ export default function AdminSubmissionsPage() {
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<'pending' | 'approved' | 'rejected'>('pending');
   const [actionLoading, setActionLoading] = useState<string | null>(null);
+  /**
+   * Which description each submission will publish, keyed by submission id.
+   * Absent means nothing was chosen and Approve sends the owner's text as
+   * submitted, which is exactly what it did before this panel existed.
+   */
+  const [descChoice, setDescChoice] = useState<Record<string, DescriptionChoice>>({});
 
   const fetchSubmissions = async (status: string, secret: string) => {
     setLoading(true);
@@ -89,10 +96,19 @@ export default function AdminSubmissionsPage() {
     if (!adminSecret) return;
     setActionLoading(id);
     try {
+      const chosen = descChoice[id];
       await fetch('/api/admin/submissions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret },
-        body: JSON.stringify({ action, submissionId: id }),
+        body: JSON.stringify({
+          action,
+          submissionId: id,
+          // Only sent when the reviewer picked something other than the
+          // owner's own words. The submission row keeps the original either way.
+          ...(action === 'approve' && chosen && chosen.source !== 'owner' && chosen.text.trim()
+            ? { description: chosen.text }
+            : {}),
+        }),
       });
       fetchSubmissions(tab, adminSecret);
     } catch (_e) {
@@ -209,7 +225,17 @@ export default function AdminSubmissionsPage() {
                 </div>
               )}
 
-              {s.description && (
+              {s.description && tab === 'pending' && (
+                <DescriptionReview
+                  description={s.description}
+                  barName={s.name}
+                  choice={descChoice[s.id]}
+                  disabled={actionLoading === s.id}
+                  onChange={choice => setDescChoice(prev => ({ ...prev, [s.id]: choice }))}
+                />
+              )}
+
+              {s.description && tab !== 'pending' && (
                 <p style={{ fontSize: 14, color: '#666', lineHeight: 1.5, margin: '0 0 12px', borderTop: '1px solid rgba(0,0,0,0.05)', paddingTop: 12 }}>
                   {s.description}
                 </p>

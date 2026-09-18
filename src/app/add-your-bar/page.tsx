@@ -5,6 +5,7 @@ import { downscaleImage, blobToDataUrl, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAG
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { BarSearchTypeahead } from '@/components/BarSearchTypeahead';
+import { SUBMISSION_HELP } from '@/lib/house-style';
 
 // Stripe payment links by currency
 /**
@@ -627,8 +628,11 @@ function AddYourBarForm() {
                 <h2>About Your Bar</h2>
                 <div className="form-group">
                   <label className="form-label">Description</label>
-                  <textarea name="description" className="form-input" rows={4} placeholder="Tell us about your bar — concept, specialty cocktails, atmosphere..." />
-                  <span className="form-hint">A good description helps us feature your bar effectively.</span>
+                  <textarea name="description" className="form-input" rows={4} placeholder="What the bar is, what you pour, when you are open..." />
+                  {/* Most of the rewriting work disappears if the text arrives
+                      closer to the target, and saying we edit removes the
+                      surprise when the owner sees the published version. */}
+                  <span className="form-hint">{SUBMISSION_HELP}</span>
                 </div>
               </div>
               )}

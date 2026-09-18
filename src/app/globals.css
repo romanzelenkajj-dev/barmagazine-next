@@ -11196,3 +11196,14 @@ a.bar-v2-badge--subtype:hover {
     font-size: 14px;
   }
 }
+/* Admin review: the owner's description beside the house-style rewrite.
+   Two columns where there is room, stacked on a phone. Uses the existing
+   768 breakpoint; no new breakpoint is introduced. */
+.desc-review-grid {
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 768px) {
+  .desc-review-grid {
+    grid-template-columns: 1fr;
+  }
+}

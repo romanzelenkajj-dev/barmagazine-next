@@ -82,6 +82,19 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json();
   const { action, submissionId } = body;
+  /**
+   * The description the reviewer chose to publish, when it is not the
+   * owner's own words. The review screen offers a house-style rewrite
+   * alongside the original and sends whichever was picked.
+   *
+   * The submission row is NEVER updated with this: bar_submissions keeps the
+   * owner's original for good, so we can always show them what they sent.
+   * This only decides what goes onto the bar.
+   */
+  const descriptionOverride: string | undefined =
+    typeof body.description === 'string' && body.description.trim()
+      ? body.description.trim()
+      : undefined;
   const supabase = getServiceClient();
 
   if (action === 'approve') {
@@ -186,6 +199,8 @@ export async function POST(request: NextRequest) {
     for (const f of ['address', 'website', 'instagram', 'phone', 'email', 'description'] as const) {
       if (submission[f]) fields[f] = submission[f];
     }
+    // The reviewer's choice wins over the submitted text, and only here.
+    if (descriptionOverride) fields.description = descriptionOverride;
 
     let bar: Record<string, unknown> | null = null;
 
