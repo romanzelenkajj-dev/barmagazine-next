@@ -96,9 +96,44 @@ function regionFromLanguage(): string {
  * ordering. Language is only a fallback, and kilometres is the default,
  * because most of the world uses them.
  */
-function formatDistance(km: number, countryCode?: string): string {
+/**
+ * One decision for both the unit and the threshold below, so they cannot
+ * disagree about who the visitor is.
+ */
+function usesImperial(countryCode?: string): boolean {
   const region = String(countryCode || regionFromLanguage() || '').toUpperCase();
-  if (IMPERIAL_COUNTRIES.has(region)) {
+  return IMPERIAL_COUNTRIES.has(region);
+}
+
+/**
+ * Whether a distance is worth printing on a card.
+ *
+ * WHY NOT ALWAYS. In Bratislava the number is useful: a card reading 2.1 km is
+ * something a visitor can act on. In Carlsbad the nearest bars are 21 miles
+ * out and a wall of cards reading 800 mi makes the directory look empty, which
+ * is a statement about our coverage rather than about the bar. Roman: "maybe
+ * we just keep it without the distance for now. But then again, in some cities
+ * like Bratislava, it might work." Both halves are right, so the card shows it
+ * only when it means something and the banner says it once when it does not.
+ *
+ * THIRTY IN THE VISITOR'S OWN UNIT, not one converted into the other: 30 miles
+ * for a visitor on miles, 30 km for a visitor on kilometres. A converted
+ * threshold would put an odd 48 in front of somebody. It also gives US
+ * visitors a slightly wider net, which matches how much further they drive.
+ *
+ * Nothing has to be switched on later: as cities fill in, distances start
+ * appearing on their own.
+ */
+const CARD_DISTANCE_LIMIT = 30;
+
+function showsDistanceOnCard(km: number, countryCode?: string): boolean {
+  if (!Number.isFinite(km)) return false;
+  const value = usesImperial(countryCode) ? km * 0.621371 : km;
+  return value < CARD_DISTANCE_LIMIT;
+}
+
+function formatDistance(km: number, countryCode?: string): string {
+  if (usesImperial(countryCode)) {
     const mi = km * 0.621371;
     return `${mi < 10 ? mi.toFixed(1) : Math.round(mi)} mi`;
   }
@@ -1367,7 +1402,7 @@ function FeaturedBarCard({ bar, distanceKm, countryCode }: { bar: Bar; distanceK
           )
         }
         <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} premium={isPremium} status={statusPill(bar)} />
-        {typeof distanceKm === 'number' && distanceKm < 99999 && (
+        {typeof distanceKm === 'number' && showsDistanceOnCard(distanceKm, countryCode) && (
           <span className="bar-dir-distance-pill">{formatDistance(distanceKm, countryCode)}</span>
         )}
       </div>
