@@ -7,16 +7,25 @@ import Link from 'next/link';
 import { BarSearchTypeahead } from '@/components/BarSearchTypeahead';
 
 // Stripe payment links by currency
-const STRIPE_LINKS: Record<string, Record<string, string>> = {
-  featured: {
-    EUR: 'https://buy.stripe.com/4gM28r1TSaCz9CYfOLaAw00',
-    USD: 'https://buy.stripe.com/cNieVdbuseSPeXi463aAw03',
-  },
-  featured_social: {
-    EUR: 'https://buy.stripe.com/7sYeVd2XWaCzdTe5a7aAw01',
-    USD: 'https://buy.stripe.com/14A28r564cKH7uQ31ZaAw02',
-  },
-};
+/**
+ * The raw Stripe payment links used to live here as a checkout fallback and
+ * behind the two sidebar tier buttons. They are gone, deliberately.
+ *
+ * They carried no coupon, so they charged $468 and $948 against the $234 and
+ * $474 every other surface of the site promises. The fallback ran whenever
+ * /api/create-checkout did not return a url, which includes a 401 from a
+ * protected deployment, a Stripe timeout or a bad deploy, and it ran silently:
+ * the 401 path never threw, so it did not even log. A fallback that doubles
+ * the price is worse than no fallback.
+ *
+ * Every route to checkout now goes through /api/create-checkout, which applies
+ * the coupon. On failure the customer stays on the page and is told, rather
+ * than being sent somewhere expensive without being told anything.
+ *
+ * This also removed the currency-conversion exposure: the EUR link rendered as
+ * $558.81 to a US browser, at Stripe's 1.1940 rate plus a 4% fee. There is no
+ * link left to render.
+ */
 
 const PLAN_LABELS: Record<string, string> = {
   free: 'Free Listing',
@@ -87,6 +96,8 @@ function AddYourBarForm() {
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  /** Which sidebar tier button is mid-request, so it can say so. */
+  const [tierLoading, setTierLoading] = useState<'featured' | 'featured_social' | null>(null);
   const [error, setError] = useState('');
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
@@ -146,6 +157,49 @@ function AddYourBarForm() {
     setPhotoFile(null);
     setPhotoPreview(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
+  }
+
+  /**
+   * The one way to checkout. Returns false on failure, having told the
+   * customer, and navigates on success.
+   *
+   * A non-2xx or a body without a url is a failure and is treated as one. The
+   * old code only caught thrown errors, so a 401 from a protected deployment
+   * came back as parseable JSON with no url, fell past the catch, and sent the
+   * customer to a full-price payment link without a word in the console.
+   */
+  async function goToCheckout(plan: string, barName: string, email: string): Promise<boolean> {
+    setError('');
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plan, currency, barName, email }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.ok && body && typeof body.url === 'string' && body.url) {
+        window.location.href = body.url;
+        return true;
+      }
+      console.error('[checkout] no session', { status: res.status, body });
+    } catch (err) {
+      console.error('[checkout] request failed', err);
+    }
+    setError(
+      'We could not open the secure payment page just now. Nothing has been charged. '
+      + 'Please try again in a moment, or email office@barmagazine.com and we will send you a payment link.',
+    );
+    return false;
+  }
+
+  /** The sidebar tier buttons. Same path as the form, so same price. */
+  async function handleTierClick(plan: 'featured' | 'featured_social') {
+    setTierLoading(plan);
+    const ok = await goToCheckout(plan, upgradeBar ? upgradeBar.name : '', '');
+    if (!ok) {
+      setTierLoading(null);
+      document.getElementById('add-bar-checkout-error')?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -217,31 +271,16 @@ function AddYourBarForm() {
       if (result.success) {
         // If paid plan, create Stripe Checkout Session with coupon applied
         if (plan !== 'free') {
-          try {
-            const checkoutRes = await fetch('/api/create-checkout', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                plan,
-                currency,
-                barName: upgradeBar ? upgradeBar.name : (data.get('barName') as string || ''),
-                email: data.get('contactEmail') as string || '',
-              }),
-            });
-            const checkoutData = await checkoutRes.json();
-            if (checkoutData.url) {
-              window.location.href = checkoutData.url;
-              return;
-            }
-          } catch (checkoutErr) {
-            console.error('Checkout session error:', checkoutErr);
-          }
-          // Fallback to payment links if checkout session fails
-          if (STRIPE_LINKS[plan]) {
-            const stripeUrl = STRIPE_LINKS[plan][currency] || STRIPE_LINKS[plan]['USD'];
-            window.location.href = stripeUrl;
-            return;
-          }
+          const ok = await goToCheckout(
+            plan,
+            upgradeBar ? upgradeBar.name : (data.get('barName') as string || ''),
+            data.get('contactEmail') as string || '',
+          );
+          // goToCheckout navigates on success. If it returns, it failed and has
+          // already set the error, so stop rather than fall through to a
+          // success state or, as before, to a full-price link.
+          if (!ok) { setSubmitting(false); return; }
+          return;
         }
         // Free plan: show success message
         setSubmitted(true);
@@ -288,6 +327,21 @@ function AddYourBarForm() {
             <h2>Submission Received</h2>
             <p>Thank you for submitting your bar. Our team will review it and get in touch at the email you provided.</p>
           </div>
+
+          {/* The tier buttons live in the post-submission view, where the form
+              and its error block no longer exist, so the failure needs saying
+              here too. Without this a failed checkout left the button dead and
+              silent, which is the same class of problem as the old full-price
+              fallback: the customer is told nothing. */}
+          {error && (
+            <div className="add-bar-error" id="add-bar-checkout-error">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4M12 16h.01" />
+              </svg>
+              {error}
+            </div>
+          )}
 
           {/* Pricing Tiers — only show for free plan submissions */}
           <div className="add-bar-tiers">
@@ -352,7 +406,14 @@ function AddYourBarForm() {
                     Unlimited profile updates
                   </li>
                 </ul>
-                <a href={STRIPE_LINKS.featured[currency] || STRIPE_LINKS.featured.USD} className="add-bar-tier-btn">Get Featured</a>
+                <button
+                  type="button"
+                  className="add-bar-tier-btn"
+                  disabled={tierLoading !== null}
+                  onClick={() => handleTierClick('featured')}
+                >
+                  {tierLoading === 'featured' ? 'Opening checkout\u2026' : 'Get Featured'}
+                </button>
               </div>
 
               {/* Featured + Social */}
@@ -378,7 +439,14 @@ function AddYourBarForm() {
                     Cross-promotion collab
                   </li>
                 </ul>
-                <a href={STRIPE_LINKS.featured_social[currency] || STRIPE_LINKS.featured_social.USD} className="add-bar-tier-btn add-bar-tier-btn--premium">Get Started</a>
+                <button
+                  type="button"
+                  className="add-bar-tier-btn add-bar-tier-btn--premium"
+                  disabled={tierLoading !== null}
+                  onClick={() => handleTierClick('featured_social')}
+                >
+                  {tierLoading === 'featured_social' ? 'Opening checkout\u2026' : 'Get Started'}
+                </button>
               </div>
             </div>
           </div>
@@ -566,7 +634,7 @@ function AddYourBarForm() {
               )}
 
               {error && (
-                <div className="add-bar-error">
+                <div className="add-bar-error" id="add-bar-checkout-error">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="12" cy="12" r="10" />
                     <path d="M12 8v4M12 16h.01" />
