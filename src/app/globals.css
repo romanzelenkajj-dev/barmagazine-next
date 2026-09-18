@@ -2795,8 +2795,8 @@ textarea.form-input {
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
-  padding: 20px 20px;
-  gap: 10px;
+  padding: 18px 20px;
+  gap: 8px;
 }
 
 /* Group heading + desc together */
@@ -2822,7 +2822,7 @@ textarea.form-input {
 }
 
 .bars-sidebar-promo-title {
-  font-size: 26px;
+  font-size: 23px;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -2835,9 +2835,9 @@ textarea.form-input {
 }
 
 .bars-sidebar-promo-desc {
-  font-size: 13px;
+  font-size: 12.5px;
   color: rgba(255,255,255,0.65);
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -2847,7 +2847,7 @@ textarea.form-input {
   color: #1a1a1a;
   font-size: 13px;
   font-weight: 600;
-  padding: 11px 22px;
+  padding: 10px 20px;
   border-radius: 100px;
   text-decoration: none;
   width: fit-content;
@@ -3228,8 +3228,11 @@ textarea.form-input {
      the subtitle and the stat tiles start on the same x as the text in
      the search box beneath (48px from the column edge); 72px before
      (Roman, 2026-09-15). The vertical 48px is unchanged. */
-  padding: 48px 24px;
-  min-height: 285px;
+  /* Tightened 2026-09-17 (task 64): on a directory page the bars are the
+     product, and the hero was pushing the first card row off the fold.
+     Content is unchanged; this is padding and type scale only. */
+  padding: 34px 24px;
+  min-height: 228px;
 }
 
 /* Photo background */
@@ -3245,6 +3248,11 @@ textarea.form-input {
   object-fit: cover;
   object-position: center 30%;
   display: block;
+  /* Mirrored so the lit bottle shelves sit right and the calmer, darker
+     side falls under the headline. Done here rather than by shipping a
+     second file: the original asset stays as it is and reverting is this
+     one line. Safe to mirror, there is no legible text in the frame. */
+  transform: scaleX(-1);
 }
 
 /* Dark gradient overlay so text is readable */
@@ -3252,12 +3260,26 @@ textarea.form-input {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.95) 0%,
-    rgba(0, 0, 0, 0.75) 40%,
-    rgba(0, 0, 0, 0.55) 100%
-  );
+  /* Two layers. The horizontal one is the scrim that actually guarantees
+     legibility: the crop moves with viewport width, so at some widths the
+     calm area slides out of frame and the headline lands back on the
+     bottles. Strongest at the text edge, gone by the middle of the frame,
+     so the mirrored bottle shelves on the right stay visible. The vertical
+     layer is the original, eased off so the two do not compound to black. */
+  background:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.78) 0%,
+      rgba(0, 0, 0, 0.62) 28%,
+      rgba(0, 0, 0, 0.22) 58%,
+      rgba(0, 0, 0, 0) 82%
+    ),
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.55) 40%,
+      rgba(0, 0, 0, 0.35) 100%
+    );
   z-index: 1;
   pointer-events: none;
 }
@@ -3286,7 +3308,7 @@ textarea.form-input {
   padding: 6px 14px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 100px;
-  margin-bottom: 16px;
+  margin-bottom: 11px;
 }
 
 /* Hide the divider */
@@ -3295,17 +3317,17 @@ textarea.form-input {
 }
 
 .directory-hero h1 {
-  font-size: clamp(32px, 4vw, 42px);
+  font-size: clamp(27px, 3.1vw, 35px);
   font-weight: 500;
   letter-spacing: -0.02em;
   color: #fff;
-  margin-bottom: 12px;
+  margin-bottom: 9px;
   line-height: 1.12;
 }
 
 .directory-hero p {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 13.5px;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.65);
   max-width: 460px;
   margin-bottom: 0;
@@ -4342,6 +4364,11 @@ textarea.form-input {
        the page gutter (10px) plus the filters' padding (16px): the
        headline starts on the search box's left edge, 26px. */
     padding: 36px 26px;
+    /* The phone hero is min-height driven, not content driven: 285 + 72px of
+       padding is the 357px it has today. Task 64 lowered the desktop floor to
+       228 and said explicitly not to change mobile height, so the old floor is
+       pinned here. */
+    min-height: 285px;
   }
 
   .directory-hero h1 {
@@ -4352,8 +4379,32 @@ textarea.form-input {
     display: none;
   }
 
+  /* Task 64 tightened the hero for DESKTOP only: "Do not change the height
+     on mobile. Roman has looked at the phone view and it is right as it
+     stands." These restore the pre-task values for every property that
+     would otherwise inherit the desktop tightening down here, so the phone
+     hero stays pixel-identical. Inside the existing 768 breakpoint, so no
+     new breakpoint is introduced. */
+  .directory-hero-badge {
+    margin-bottom: 16px;
+  }
+
+  .directory-hero h1 {
+    margin-bottom: 12px;
+  }
+
+  .directory-hero p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .directory-hero-stat strong {
+    font-size: 22px;
+  }
+
   .directory-hero-stats {
     gap: 6px;
+    margin-top: 18px;
   }
 
   .directory-hero-stat {
@@ -8271,7 +8322,7 @@ textarea.form-input {
 .directory-hero-stats {
   display: flex;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 13px;
 }
 
 .directory-hero-stats .directory-hero-stat {
@@ -8287,12 +8338,12 @@ textarea.form-input {
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 16px;
-  padding: 10px 18px;
+  padding: 8px 16px;
   color: #fff;
 }
 
 .directory-hero-stat strong {
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 800;
   line-height: 1.1;
 }
@@ -8574,6 +8625,15 @@ textarea.form-input {
 
   .directory-hero-stat strong {
     font-size: 18px;
+  }
+}
+
+/* Task 64: the desktop hero tightening above must not reach the phone, and
+   the base rule for these sits later in the file than the 768 block, so the
+   restore has to be here to win the cascade. */
+@media (max-width: 768px) {
+  .directory-hero-stats {
+    margin-top: 18px;
   }
 }
 
