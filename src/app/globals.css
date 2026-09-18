@@ -6954,7 +6954,20 @@ textarea.form-input {
    selector on that page.
    ========================================================================= */
 
+/* The maroon reads at 1.70:1 on the near-black hero, which is why it was hard
+   to read: 4.5:1 is the threshold. The brand already has a gold, so these are
+   the existing #B08D3F / #C9A96A family rather than a third colour.
+   Two of them, because one gold cannot serve both backgrounds: #C9A96A is
+   7.76:1 on the hero black but only 2.2:1 on white, and #8A6A24 is 5.04:1 on
+   white. Background decides which.
+   --accent is redefined HERE ONLY. It is a global token used by the welcome
+   email, the admin screens, the map pins, the bar profile and the directory
+   FEATURED badge, and none of those move. */
 .feature-page {
+  --accent: #8A6A24;
+  --feature-gold-dark-bg: #C9A96A;
+  --feature-ink: #1A1A1A;
+
   background: var(--bg-page);
   color: var(--text-primary);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -7034,14 +7047,15 @@ textarea.form-input {
 .feature-btn:hover { transform: translateY(-1px); }
 
 .feature-btn-primary {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
+  background: var(--feature-gold-dark-bg);
+  color: var(--feature-ink);
+  border-color: var(--feature-gold-dark-bg);
+  font-weight: 700;
 }
 .feature-btn-primary:hover {
-  background: #5e1717;
-  border-color: #5e1717;
-  color: #fff;
+  background: #DCC08A;
+  border-color: #DCC08A;
+  color: var(--feature-ink);
 }
 
 .feature-btn-dark {
@@ -7134,7 +7148,12 @@ textarea.form-input {
   max-width: 900px;
 }
 
-.feature-accent { color: var(--accent); }
+.feature-accent,
+.feature-hero .feature-eyebrow,
+.feature-dark .feature-eyebrow,
+.feature-final .feature-eyebrow {
+  color: var(--feature-gold-dark-bg);
+}
 
 .feature-hero-sub {
   font-size: 18px;
@@ -7363,8 +7382,8 @@ textarea.form-input {
 
 .feature-promo-banner {
   display: inline-block;
-  background: linear-gradient(135deg, var(--accent) 0%, #5e1717 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--feature-gold-dark-bg) 0%, #A8873C 100%);
+  color: var(--feature-ink);
   padding: 12px 24px;
   border-radius: 100px;
   font-size: 14px;
@@ -7402,9 +7421,10 @@ textarea.form-input {
 }
 
 .feature-tier-featured {
-  border-color: var(--accent);
-  box-shadow: 0 12px 40px rgba(123,30,30,0.12);
-  transform: translateY(-8px);
+  border-color: var(--feature-gold-dark-bg);
+  border-width: 2px;
+  box-shadow: 0 18px 50px rgba(26, 26, 26, 0.16);
+  transform: translateY(-12px);
 }
 
 .feature-badge {
@@ -7412,8 +7432,8 @@ textarea.form-input {
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--accent);
-  color: #fff;
+  background: var(--feature-gold-dark-bg);
+  color: var(--feature-ink);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -7451,11 +7471,27 @@ textarea.form-input {
   color: var(--text-secondary);
 }
 
+/* The annual commitment used to sit at 13px grey under a 36px monthly figure,
+   so the real number arrived at the checkout rather than on the card. Same
+   price, same terms, stated at a weight nobody can miss. */
 .feature-billed {
-  font-size: 13px;
-  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-primary);
   margin-bottom: 10px;
   min-height: 18px;
+}
+
+.feature-billed-total {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.feature-billed-was {
+  color: var(--text-tertiary);
+  text-decoration: line-through;
 }
 
 .feature-save {
@@ -10991,3 +11027,48 @@ a.bar-v2-badge--subtype:hover {
 /* The article body underlines its links; the cards are not body links. */
 .article-bars .bar-dir-featured-card,
 .article-bars .bar-dir-featured-card * { text-decoration: none; }
+
+/* Proof block on /feature-your-bar. The empty state is visibly a placeholder
+   so it can never be mistaken for a real quote, and it only renders in
+   development until PROOF_QUOTES carries actual words. */
+.feature-proof-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.feature-proof {
+  margin: 0;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+}
+.feature-proof blockquote {
+  margin: 0 0 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+.feature-proof figcaption {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.feature-proof figcaption a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.feature-proof--empty {
+  border-style: dashed;
+  background: transparent;
+}
+.feature-proof--empty blockquote {
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+@media (max-width: 768px) {
+  .feature-proof-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
