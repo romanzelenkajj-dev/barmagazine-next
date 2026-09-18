@@ -65,11 +65,36 @@ function nearBand(km: number): number {
  * that use them for road distance, kilometres everywhere else. One decimal
  * while the number is small, none once it is not.
  */
-function formatDistance(km: number, locale?: string): string {
-  const loc = locale || (typeof navigator !== 'undefined' ? navigator.language : 'en-US');
-  const region = (loc.split('-')[1] || '').toUpperCase();
-  const imperial = region === 'US' || region === 'GB' || region === 'LR' || region === 'MM';
-  if (imperial) {
+/**
+ * The places that use miles for road distance. GB genuinely does.
+ */
+const IMPERIAL_COUNTRIES = new Set(['US', 'GB', 'LR', 'MM']);
+
+/** The region subtag of the browser's language, or '' when there is none. */
+function regionFromLanguage(): string {
+  if (typeof navigator === 'undefined') return '';
+  return (navigator.language || '').split('-')[1] || '';
+}
+
+/**
+ * A distance in the unit the visitor's COUNTRY uses.
+ *
+ * WHY NOT navigator.language. It is a language preference, not a location. A
+ * Slovak bartender with their browser in US English, which is common, was
+ * getting miles while standing in Bratislava. The old code also defaulted to
+ * 'en-US' when navigator was absent, so anything server-side resolved to
+ * miles, and a browser reporting plain 'en' or 'de' with no region subtag
+ * produced an empty region and fell through to kilometres by accident rather
+ * than by design.
+ *
+ * `geoCountryCode` is the visitor's country from their IP, which the near-me
+ * feature already sorts on, so the unit now comes from the same signal as the
+ * ordering. Language is only a fallback, and kilometres is the default,
+ * because most of the world uses them.
+ */
+function formatDistance(km: number, countryCode?: string): string {
+  const region = String(countryCode || regionFromLanguage() || '').toUpperCase();
+  if (IMPERIAL_COUNTRIES.has(region)) {
     const mi = km * 0.621371;
     return `${mi < 10 ? mi.toFixed(1) : Math.round(mi)} mi`;
   }
@@ -1161,7 +1186,7 @@ export function BarDirectoryMapClient({
             <circle cx="12" cy="10" r="3" />
           </svg>
           {hasPreciseLocation
-            ? `No bars within ${formatDistance(NEAR_LIMIT_KM)} of you. Showing the closest, starting about ${formatDistance(nearestKm as number)} away.`
+            ? `The nearest bars we list are ${formatDistance(nearestKm as number, geoCountryCode)} away.`
             : 'We could not pin down where you are. These are ordered by our best guess at what is closest to you.'}
         </div>
       )}
@@ -1189,18 +1214,20 @@ export function BarDirectoryMapClient({
             </div>
           ) : (
             <div className="dir-section">
-              {/* Near mode is otherwise invisible — without this strip the
-                  distance sort and the default sort are indistinguishable,
-                  and nobody can tell whether the button worked. */}
-              {nearMode && (
-                <p className="dir-near-note">
-                  Closest first. Bars a similar distance away are ranked by quality, so nothing far off leads{userLat === null ? ', and turning on location makes the distances exact' : ''}.
-                </p>
-              )}
+              {/* The banner that used to sit here is gone (Roman, 2026-09-18):
+                  "this sentence doesn't look good there, and I don't think
+                  it's necessary". It explained the ranking to someone who had
+                  not asked, and once every card carries its own distance it
+                  told the reader nothing they could not already see. The
+                  near-me control shows the mode is on and gives a way out, so
+                  nothing is lost. The one line that survives is the
+                  beyond-the-radius notice above, which is the only fact the
+                  cards cannot convey on their own: a card reading 340 km does
+                  not tell you that is the best we have rather than a mistake. */}
               {/* ══ UNIFIED GRID: all bars, same card design, sorted by tier then proximity ══ */}
               <div className="directory-featured-grid">
                 {allFiltered.slice(0, gridVisible).map(bar => (
-                  <FeaturedBarCard key={bar.id} bar={bar} distanceKm={nearMode && hasPreciseLocation ? getDistKm(bar) : null} />
+                  <FeaturedBarCard key={bar.id} bar={bar} distanceKm={nearMode && hasPreciseLocation ? getDistKm(bar) : null} countryCode={geoCountryCode} />
                 ))}
               </div>
 
@@ -1249,7 +1276,7 @@ export function BarDirectoryMapClient({
 /* ─── Card Components ─── */
 
 
-function FeaturedBarCard({ bar, distanceKm }: { bar: Bar; distanceKm?: number | null }) {
+function FeaturedBarCard({ bar, distanceKm, countryCode }: { bar: Bar; distanceKm?: number | null; countryCode?: string }) {
   const imageUrl = bar.photos?.[0] || null;
   const isPremium = bar.tier === 'premium';
   const isTop10 = bar.tier === 'top10';
@@ -1271,7 +1298,7 @@ function FeaturedBarCard({ bar, distanceKm }: { bar: Bar; distanceKm?: number | 
         }
         <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} premium={isPremium} status={statusPill(bar)} />
         {typeof distanceKm === 'number' && distanceKm < 99999 && (
-          <span className="bar-dir-distance-pill">{formatDistance(distanceKm)}</span>
+          <span className="bar-dir-distance-pill">{formatDistance(distanceKm, countryCode)}</span>
         )}
       </div>
       <div className="bar-dir-featured-body">
