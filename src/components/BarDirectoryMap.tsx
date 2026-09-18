@@ -1093,7 +1093,11 @@ export function BarDirectoryMapClient({
           <p>Handpicked cocktail bars, speakeasies, and world-renowned destinations.</p>
           <div className="directory-hero-stats">
             <div className="directory-hero-stat">
-              <strong>{totalBars ? `${totalBars.toLocaleString()}+` : '1,000+'}</strong>
+              {/* Pinned to en-US like every other count on the site. Without
+                  the argument the separator follows the browser, so a German
+                  visitor saw 1.506+ where everyone else saw 1,506+. This is
+                  the one call site that was left to the browser. */}
+              <strong>{totalBars ? `${totalBars.toLocaleString('en-US')}+` : '1,000+'}</strong>
               <span>bars</span>
             </div>
             <div className="directory-hero-stat">
