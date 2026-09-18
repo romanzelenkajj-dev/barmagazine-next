@@ -31,6 +31,50 @@ interface Props {
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
 const FEATURED_PER_PAGE = 12;
+/**
+ * Near-me distance bands, in km. Quality competes ONLY between bars that are
+ * realistically equally reachable; between bands, closer always wins.
+ *
+ * WHY BANDS AND NOT ONE RADIUS. This was a single 80 km boundary with tier,
+ * then photo, then distance inside it. Roman, looking at it from Carlsbad:
+ * "if somebody is looking for the best bars near them, they don't want to
+ * drive 50 miles to get to the bar." He is right. Under one 80 km band a
+ * featured bar 35 miles away outranked a good one two miles away on tier
+ * alone, which is not near me in any useful sense.
+ *
+ * The boundaries are chosen by how you would actually get there rather than
+ * by round numbers: 5 km is walking or a short hop, 5 to 15 km is a normal
+ * ride across a city, 15 to 40 km is a deliberate trip out. Past 40 km
+ * nothing is "near", so quality stops competing entirely and it is pure
+ * distance, which is what the old code did past 80.
+ */
+const NEAR_BANDS_KM = [5, 15, 40];
+/** Past the last band nothing counts as near. What the near-me notice reports against. */
+const NEAR_LIMIT_KM = NEAR_BANDS_KM[NEAR_BANDS_KM.length - 1];
+
+/** Which band a distance falls in. Lower is closer; NEAR_BANDS_KM.length means "beyond". */
+function nearBand(km: number): number {
+  for (let i = 0; i < NEAR_BANDS_KM.length; i++) {
+    if (km <= NEAR_BANDS_KM[i]) return i;
+  }
+  return NEAR_BANDS_KM.length;
+}
+
+/**
+ * A distance as the visitor's own locale would write it. Miles for the places
+ * that use them for road distance, kilometres everywhere else. One decimal
+ * while the number is small, none once it is not.
+ */
+function formatDistance(km: number, locale?: string): string {
+  const loc = locale || (typeof navigator !== 'undefined' ? navigator.language : 'en-US');
+  const region = (loc.split('-')[1] || '').toUpperCase();
+  const imperial = region === 'US' || region === 'GB' || region === 'LR' || region === 'MM';
+  if (imperial) {
+    const mi = km * 0.621371;
+    return `${mi < 10 ? mi.toFixed(1) : Math.round(mi)} mi`;
+  }
+  return `${km < 10 ? km.toFixed(1) : Math.round(km)} km`;
+}
 const PHOTO_PER_PAGE = 24;
 const LIST_PER_PAGE = 60;
 
@@ -753,6 +797,20 @@ export function BarDirectoryMapClient({
   //
   // MODE C — No filter, no geo:
   //   Strict tier order, then alphabetical
+  // Distance to a bar, GPS when we have it and the IP-geo score converted to
+  // rough km when we do not. Lifted out of the sort memo so the near-me notice
+  // measures distance the same way MODE D orders by it; two copies would drift
+  // and the notice would eventually contradict the list under it.
+  const getDistKm = useCallback((b: Bar): number => {
+    if (userLat !== null && userLng !== null) {
+      return (b.lat != null && b.lng != null)
+        ? haversineKm(userLat, userLng, b.lat, b.lng)
+        : 99999;
+    }
+    const score = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
+    return Math.max(0, (1000 - score) * 20);
+  }, [userLat, userLng, geoCity, geoCountryCode, geoContinent]);
+
   const allFiltered = useMemo(() => {
     const hasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);
 
@@ -769,34 +827,25 @@ export function BarDirectoryMapClient({
     const hasGeoSignal = !!(geoCity || geoCountryCode);
     const hasLocationFilter = !!(cityFilter || countryFilter);
 
-    const getDistKm = (b: Bar): number => {
-      if (userLat !== null && userLng !== null) {
-        return (b.lat != null && b.lng != null)
-          ? haversineKm(userLat, userLng, b.lat, b.lng)
-          : 99999;
-      }
-      const score = getGeoScore(b, geoCity, geoCountryCode, geoContinent);
-      return Math.max(0, (1000 - score) * 20);
-    };
-
-    // MODE D: "Find bars near me" — proximity is the hard boundary, quality
-    // ranks inside it. Everything within ~50 miles comes first (best bars
-    // leading: tier, then photo, then distance); only then the rest of the
-    // world, by plain distance. A top-10 bar 3,000 miles away never outranks
-    // a photo-less bar in the visitor's own city. GPS when granted; the
-    // IP-geo score converts to real-ish km when the visitor's city is known,
-    // and to "far" buckets when only country/continent match — which lands
-    // those bars outside the radius, exactly where they belong.
+    // MODE D: "Find bars near me". Distance decides the band, quality decides
+    // the order inside it, and a closer band always wins. So a great bar in
+    // the next town never outranks a decent one the visitor can walk to, and
+    // within one walkable band the better bar still leads. GPS when granted;
+    // the IP-geo score converts to real-ish km when the visitor's city is
+    // known, and to "far" buckets when only country or continent match, which
+    // lands those bars past the last band, exactly where they belong.
     if (nearMode) {
-      const NEAR_RADIUS_KM = 80; // ~50 miles
       return [...filtered].sort((a, b) => {
         const dA = getDistKm(a);
         const dB = getDistKm(b);
-        const nearA = dA <= NEAR_RADIUS_KM ? 0 : 1;
-        const nearB = dB <= NEAR_RADIUS_KM ? 0 : 1;
-        if (nearA !== nearB) return nearA - nearB;
-        if (nearA === 0) {
-          // Inside the radius: the directory's quality order, distance last.
+        const bandA = nearBand(dA);
+        const bandB = nearBand(dB);
+        // Between bands, closer wins outright. Nothing about a bar's quality
+        // competes with being reachable.
+        if (bandA !== bandB) return bandA - bandB;
+        if (bandA < NEAR_BANDS_KM.length) {
+          // Inside one band the bars are comparably reachable, so the
+          // directory's usual quality order applies, distance last.
           const tA = tierRank(a);
           const tB = tierRank(b);
           if (tA !== tB) return tA - tB;
@@ -806,7 +855,7 @@ export function BarDirectoryMapClient({
           if (dA !== dB) return dA - dB;
           return a.name.localeCompare(b.name);
         }
-        // Beyond the radius: nothing beats being closer.
+        // Past the last band nothing is near, so nothing beats being closer.
         if (dA !== dB) return dA - dB;
         return a.name.localeCompare(b.name);
       });
@@ -872,7 +921,72 @@ export function BarDirectoryMapClient({
       // 5. Alphabetical
       return a.name.localeCompare(b.name);
     });
-  }, [filtered, cityFilter, countryFilter, geoCity, geoCountryCode, geoContinent, userLat, userLng, nearMode]);
+    // geoContinent, userLat and userLng are not listed: they are getDistKm's
+    // own dependencies now, so a change to any of them gives this memo a new
+    // getDistKm and it recomputes anyway.
+  }, [filtered, cityFilter, countryFilter, geoCity, geoCountryCode, nearMode, getDistKm]);
+
+  /**
+   * How far the closest bar actually is, in near-me mode only.
+   *
+   * We list bars in 218 cities, so plenty of visitors have nothing genuinely
+   * near them. MODE D already falls through to plain distance past the radius
+   * so the grid is never empty, but without this the page presents a bar 3,000
+   * km away as though it were local. The list is already distance-ordered, so
+   * the head of it is the nearest; the loop is a guard for the case where the
+   * first entry has no coordinates.
+   */
+  const nearestKm = useMemo(() => {
+    if (!nearMode || allFiltered.length === 0) return null;
+    let min = Infinity;
+    const limit = Math.min(allFiltered.length, 50);
+    for (let i = 0; i < limit; i++) {
+      const d = getDistKm(allFiltered[i]);
+      if (d < min) min = d;
+    }
+    return Number.isFinite(min) ? min : null;
+  }, [nearMode, allFiltered, getDistKm]);
+
+  /** True only when we can say something honest: nothing inside the radius. */
+  const nothingNearby = nearestKm !== null && nearestKm > NEAR_LIMIT_KM && nearestKm < 99999;
+
+  /**
+   * Whether the distance is a measurement or an artifact.
+   *
+   * Without GPS, getDistKm converts the IP-geo score with (1000 - score) * 20,
+   * so a visitor we cannot place at all comes out at "20000 km". That is a
+   * scoring bucket wearing a kilometre label, and printing it as a distance
+   * would be exactly the dishonesty this notice exists to remove. With no
+   * coordinates the notice says what it actually knows and quotes no number.
+   */
+  const hasPreciseLocation = userLat !== null && userLng !== null;
+
+  /**
+   * Turn near-me on or off. The control has no state of its own: it renders
+   * from nearMode, so the existing effect that drops the mode when a city or
+   * country filter is applied clears the control at the same time.
+   */
+  const toggleNearMe = useCallback(() => {
+    const url = new URL(window.location.href);
+    const commit = () => window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+    if (nearMode) {
+      setNearMode(false);
+      if (url.searchParams.has('near')) { url.searchParams.delete('near'); commit(); }
+      return;
+    }
+    setNearMode(true);
+    url.searchParams.set('near', 'me');
+    commit();
+    // Asked for at the moment of the click, which is when the visitor has
+    // actually asked to be located.
+    if (userLat === null && userLng === null && typeof navigator !== 'undefined' && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => { setUserLat(pos.coords.latitude); setUserLng(pos.coords.longitude); },
+        () => { /* denied: the IP-geo score still orders the list */ },
+        { timeout: 8000, maximumAge: 300000 },
+      );
+    }
+  }, [nearMode, userLat, userLng]);
 
   const activeFilters: { label: string; clear: () => void }[] = [];
   if (countryFilter) activeFilters.push({ label: countryFilter, clear: () => { setCountryFilter(''); setCityFilter(''); } });
@@ -946,6 +1060,27 @@ export function BarDirectoryMapClient({
             <option value="">All Types</option>
             {types.map(t => <option key={t} value={t}>{t}</option>)}
           </select>
+          {/* Near-me is a STATE of this page, not a link to another one, so it
+              belongs in the filter row rather than in the NearMeBar strip. A
+              visitor landing on /bars from a search result had no way into
+              MODE D at all, and no way out of it but editing the URL. */}
+          <button
+            type="button"
+            className={`directory-near-btn${nearMode ? ' active' : ''}`}
+            onClick={toggleNearMe}
+            aria-pressed={nearMode}
+            aria-label={nearMode ? 'Turn off near me' : 'Show bars near me'}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+            </svg>
+            Near me
+            {nearMode && (
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            )}
+          </button>
           <div className="directory-view-toggle">
             <button className={`directory-view-btn ${viewMode === 'grid' ? 'active' : ''}`} onClick={() => setViewMode('grid')} aria-label="Grid view">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -1016,6 +1151,21 @@ export function BarDirectoryMapClient({
         )}
       </div>
 
+      {/* We list bars in 218 cities, so a lot of visitors have nothing genuinely
+          near them. Rather than present a bar 3,000 km away as though it were
+          local, say what the page is actually showing. */}
+      {nearMode && nothingNearby && (
+        <div className="dir-near-notice">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          {hasPreciseLocation
+            ? `No bars within ${formatDistance(NEAR_LIMIT_KM)} of you. Showing the closest, starting about ${formatDistance(nearestKm as number)} away.`
+            : 'We could not pin down where you are. These are ordered by our best guess at what is closest to you.'}
+        </div>
+      )}
+
       {/* ═══ MAP VIEW ═══ */}
       {viewMode === 'map' && <DirectoryMap bars={mapBarsLoaded ? filteredMapBars : allFiltered} geoCity={geoCity} geoCountryCode={geoCountryCode} userLat={userLat} userLng={userLng} countryFilter={countryFilter} cityFilter={cityFilter} />}
 
@@ -1044,13 +1194,13 @@ export function BarDirectoryMapClient({
                   and nobody can tell whether the button worked. */}
               {nearMode && (
                 <p className="dir-near-note">
-                  Sorted by distance — bars within ~50 miles first{userLat === null ? ' (enable location for exact distances)' : ''}.
+                  Closest first. Bars a similar distance away are ranked by quality, so nothing far off leads{userLat === null ? ', and turning on location makes the distances exact' : ''}.
                 </p>
               )}
               {/* ══ UNIFIED GRID: all bars, same card design, sorted by tier then proximity ══ */}
               <div className="directory-featured-grid">
                 {allFiltered.slice(0, gridVisible).map(bar => (
-                  <FeaturedBarCard key={bar.id} bar={bar} />
+                  <FeaturedBarCard key={bar.id} bar={bar} distanceKm={nearMode && hasPreciseLocation ? getDistKm(bar) : null} />
                 ))}
               </div>
 
@@ -1099,7 +1249,7 @@ export function BarDirectoryMapClient({
 /* ─── Card Components ─── */
 
 
-function FeaturedBarCard({ bar }: { bar: Bar }) {
+function FeaturedBarCard({ bar, distanceKm }: { bar: Bar; distanceKm?: number | null }) {
   const imageUrl = bar.photos?.[0] || null;
   const isPremium = bar.tier === 'premium';
   const isTop10 = bar.tier === 'top10';
@@ -1120,6 +1270,9 @@ function FeaturedBarCard({ bar }: { bar: Bar }) {
           )
         }
         <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} premium={isPremium} status={statusPill(bar)} />
+        {typeof distanceKm === 'number' && distanceKm < 99999 && (
+          <span className="bar-dir-distance-pill">{formatDistance(distanceKm)}</span>
+        )}
       </div>
       <div className="bar-dir-featured-body">
 

@@ -6179,6 +6179,56 @@ textarea.form-input {
   background: rgba(0,0,0,0.04);
 }
 
+/* Near-me control: same pill language as the view toggle, sitting beside it.
+   It carries no state of its own, it renders from nearMode, so the effect that
+   drops the mode when a city or country filter is applied clears this too. */
+.directory-near-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 100px;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+/* The toggle carries margin-left:auto to sit hard right. With two auto margins
+   the free space splits between them and the pair drifts apart, so the button
+   takes the auto margin and the toggle follows it on the row's own 8px gap. */
+.directory-near-btn + .directory-view-toggle {
+  margin-left: 0;
+}
+.directory-near-btn.active {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #f5f0eb;
+}
+.directory-near-btn:hover:not(.active) {
+  background: rgba(0,0,0,0.04);
+}
+
+/* Said only when the nearest bar is outside the radius. */
+.dir-near-notice {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin: 0 0 10px;
+}
+.dir-near-notice svg {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
 /* Mapbox popup overrides */
 .bar-map-popup .mapboxgl-popup-content {
   background: #2a2520 !important;
@@ -6239,6 +6289,15 @@ textarea.form-input {
     width: 100%;
     margin-left: 0;
     margin-top: 8px;
+  }
+  .directory-near-btn {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+  .directory-near-btn + .directory-view-toggle {
+    margin-left: 0;
   }
   .directory-view-btn {
     flex: 1;
@@ -10045,6 +10104,29 @@ textarea.form-input {
 
    The 50 Best corner badge that used to sit here is gone: the accolade tile
    below says the same thing, with a year and a citation behind it. */
+/* Near-me distance, overlaid top right of the card photo. Absolutely
+   positioned on purpose: the status pills own the bottom left, and an
+   overlay cannot change the card's height or body layout at any width,
+   which the task required. Shown only in near-me mode. */
+.bar-dir-distance-pill {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 4px 9px;
+  border-radius: 100px;
+  line-height: 1;
+  color: #fff;
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
 .bar-dir-visual-pills {
   position: absolute;
   left: 10px;
