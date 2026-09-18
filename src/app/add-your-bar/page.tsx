@@ -5,6 +5,8 @@ import { downscaleImage, blobToDataUrl, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAG
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { BarSearchTypeahead } from '@/components/BarSearchTypeahead';
+import { SUBMISSION_HELP } from '@/lib/house-style';
+import { planLabel } from '@/lib/plan-pricing';
 
 // Stripe payment links by currency
 /**
@@ -536,8 +538,13 @@ function AddYourBarForm() {
                     onChange={(e) => setSelectedPlan(e.target.value)}
                   >
                     {!upgradeBar && <option value="free">Listed (Free)</option>}
-                    <option value="featured">Featured ({currency === 'EUR' ? '€19.50' : '$19.50'}/mo &mdash; 50% off first year)</option>
-                    <option value="featured_social">Featured + Social ({currency === 'EUR' ? '€39.50' : '$39.50'}/mo &mdash; 50% off first year)</option>
+                    {/* Full price leads, promotion second. Leading with
+                        $19.50 made it the reference price, so the standard
+                        rate read later as a rise rather than the promotion
+                        reading now as a saving. Figures live in
+                        lib/plan-pricing.ts. */}
+                    <option value="featured">{planLabel('featured', currency)}</option>
+                    <option value="featured_social">{planLabel('featured_social', currency)}</option>
                   </select>
                   <span className="form-hint">
                     {isPaidPlan
@@ -552,7 +559,7 @@ function AddYourBarForm() {
               {!upgradeBar && (
               <div className="add-bar-form-section">
                 <h2>Interior Photo</h2>
-                <p className="add-bar-photo-hint">Your profile photo should show the room &mdash; an interior shot is what makes readers want to visit. Drink and detail photos belong in the photo gallery, part of Featured. Logos and graphics can&apos;t be used. JPG, PNG, or WebP, max 5MB.</p>
+                <p className="add-bar-photo-hint">Your profile photo should show the room: an interior shot is what makes readers want to visit. Drink and detail photos belong in the photo gallery, part of Featured. Logos and graphics can&apos;t be used. JPG, PNG, or WebP, max 5MB.</p>
                 <div className="add-bar-photo-upload">
                   {photoPreview ? (
                     <div className="add-bar-photo-preview">
@@ -627,8 +634,11 @@ function AddYourBarForm() {
                 <h2>About Your Bar</h2>
                 <div className="form-group">
                   <label className="form-label">Description</label>
-                  <textarea name="description" className="form-input" rows={4} placeholder="Tell us about your bar — concept, specialty cocktails, atmosphere..." />
-                  <span className="form-hint">A good description helps us feature your bar effectively.</span>
+                  <textarea name="description" className="form-input" rows={4} placeholder="What the bar is, what you pour, when you are open..." />
+                  {/* Most of the rewriting work disappears if the text arrives
+                      closer to the target, and saying we edit removes the
+                      surprise when the owner sees the published version. */}
+                  <span className="form-hint">{SUBMISSION_HELP}</span>
                 </div>
               </div>
               )}
