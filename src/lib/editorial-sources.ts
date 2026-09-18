@@ -34,7 +34,14 @@ const SELECTIVE_NAMES = [
   // directory with a headline, not the World's 50 Best Bars.
   "world's 50 best", "asia's 50 best", "europe's 50 best", "north america's 50 best",
   'james beard', 'spirited awards', 'tales of the cocktail',
-  'imbibe 75', 'punch', 'esquire', 'speed rack',
+  // Bare "imbibe", not just Imbibe 75 (Roman, 2026-09-18): Imbibe is a
+  // national cocktail magazine, and a city guide from it is a guide with a
+  // standard rather than a listing, which is the test above. Checked before
+  // adding: across the 217 rows that carry editorial_sources the only
+  // existing Imbibe string is "Imbibe 75", which already qualified, so this
+  // newly qualifies the seven Louisville bars admitted by An Imbiber's Guide
+  // and nothing else.
+  'imbibe', 'punch', 'esquire', 'speed rack',
   'bartenders choice', "bartenders' choice",
   'best of warsaw', 'best of the best',
 ];
