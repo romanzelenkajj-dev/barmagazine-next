@@ -58,6 +58,28 @@ interface PendingClaim {
   barSlug: string | null;
 }
 
+/**
+ * The bars that actually pay, shown on the post-claim panel as "your page
+ * could look like this". Photos are each bar's own first profile photo, read
+ * from the directory on 2026-09-18; a real screenshot of the page is not
+ * practical to generate and inventing one is not an option. If either bar
+ * changes its lead photo, update the URL here.
+ */
+const FEATURED_EXAMPLES = [
+  {
+    slug: 'the-loft',
+    name: 'The Loft',
+    city: 'Santiago',
+    photo: 'https://bqtwpfpxqoykxjluirvp.supabase.co/storage/v1/object/public/bar-photos/submissions/the-loft-1779154064934.jpg',
+  },
+  {
+    slug: 'dangerous-water-palma-de-mallorca',
+    name: 'Dangerous Water',
+    city: 'Palma de Mallorca',
+    photo: '/images/bars/dangerous-water/interior-arch.jpg',
+  },
+];
+
 export default function OwnerDashboardPage() {
   const router = useRouter();
   const [bars, setBars] = useState<Bar[]>([]);
@@ -224,19 +246,29 @@ export default function OwnerDashboardPage() {
             </button>
           </div>
           {(claimedBar.tier === 'free' || claimedBar.tier === 'top10') && (
-            <div className="owner-dash-upsell" style={{ marginTop: 16 }}>
+            <div className="owner-dash-upsell claim-offer-panel" style={{ marginTop: 16 }}>
               <p className="claim-offer-kicker">WHILE YOU&apos;RE HERE</p>
               <h2 className="owner-dash-upsell-title">Make this page your bar&apos;s website</h2>
               <p className="claim-offer-intro">
-                Most owners never need more than the free profile. Featured is for the
-                ones who want the page working for them:
+                This is what a Featured page looks like.
               </p>
-              <ul className="owner-dash-upsell-list">
-                <li>Your full drinks menu and a photo gallery, published on your page</li>
-                <li>A feature article about your bar in the magazine</li>
-                <li>Featured + Social adds promotion to our 88,000+ Instagram audience</li>
-              </ul>
-              <Link href={`/feature-your-bar?bar=${claimedBar.slug}#pricing`} className="feature-btn feature-btn-primary">
+              {/* Show, do not list. Three bullets describing a page read as fine
+                  print; two real Featured pages make the same point in one look.
+                  These are the bars that actually pay. */}
+              <div className="claim-offer-proof">
+                {FEATURED_EXAMPLES.map(ex => (
+                  <Link key={ex.slug} href={`/bars/${ex.slug}`} className="claim-offer-example">
+                    <span className="claim-offer-example-shot">
+                      <img src={ex.photo} alt={`${ex.name}, ${ex.city}`} loading="lazy" />
+                    </span>
+                    <span className="claim-offer-example-name">{ex.name}</span>
+                    <span className="claim-offer-example-city">{ex.city}</span>
+                  </Link>
+                ))}
+              </div>
+              {/* No price here, deliberately. The pricing page carries the
+                  numbers, so a change to them is one page and not two. */}
+              <Link href={`/feature-your-bar?bar=${claimedBar.slug}#pricing`} className="feature-btn claim-offer-cta">
                 See Featured plans
               </Link>
               <p className="claim-offer-fineprint">Your free profile stays free either way.</p>

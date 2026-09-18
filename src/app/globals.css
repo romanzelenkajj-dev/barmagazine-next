@@ -10991,3 +10991,127 @@ a.bar-v2-badge--subtype:hover {
 /* The article body underlines its links; the cards are not body links. */
 .article-bars .bar-dir-featured-card,
 .article-bars .bar-dir-featured-card * { text-decoration: none; }
+/* ===== Post-claim Featured panel (task 68) =====
+   The pale pink panel with a maroon eyebrow and a small button read as a
+   footnote at the highest-intent moment we get: a bar has just verified
+   ownership and is looking at its own name. This gives it the weight it
+   should have had, in the same gold as /feature-your-bar so the two pages
+   agree.
+   Dark ground rather than another tint: it is the one thing on a page of
+   white cards that cannot be mistaken for a footnote, and the gold that was
+   unreadable on the old pink is 7.76:1 here.
+   Scoped to .claim-offer-panel. The global --accent maroon is untouched. */
+.claim-offer-panel {
+  background: #1A1A1A;
+  color: #fff;
+  padding: 28px 30px;
+}
+
+.claim-offer-panel .claim-offer-kicker {
+  color: #C9A96A;
+  font-size: 12px;
+}
+
+.claim-offer-panel .owner-dash-upsell-title {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.claim-offer-panel .claim-offer-intro {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 16px;
+  margin: 0 0 18px;
+}
+
+.claim-offer-panel .claim-offer-fineprint {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+}
+
+/* The two paying bars. */
+.claim-offer-proof {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.claim-offer-example {
+  display: block;
+  text-decoration: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding-bottom: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.claim-offer-example:hover {
+  border-color: #C9A96A;
+  transform: translateY(-2px);
+}
+
+.claim-offer-example-shot {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #2a2520;
+}
+
+.claim-offer-example-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.claim-offer-example-name {
+  display: block;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 10px 14px 0;
+}
+
+.claim-offer-example-city {
+  display: block;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  margin: 2px 14px 0;
+}
+
+/* Same base .feature-btn as "Go to your dashboard", so the sizes match. */
+.claim-offer-cta {
+  background: #C9A96A;
+  color: #1A1A1A;
+  border-color: #C9A96A;
+  font-weight: 700;
+}
+
+.claim-offer-cta:hover {
+  background: #DCC08A;
+  border-color: #DCC08A;
+  color: #1A1A1A;
+}
+
+@media (max-width: 768px) {
+  /* One column would push the bar list below the fold, which the panel must
+     not do, so the two examples stay side by side and shrink instead. */
+  .claim-offer-panel {
+    padding: 22px 20px;
+  }
+  .claim-offer-panel .owner-dash-upsell-title {
+    font-size: 21px;
+  }
+  .claim-offer-panel .claim-offer-intro {
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+  .claim-offer-example-name {
+    font-size: 14px;
+  }
+}
