@@ -53,8 +53,9 @@ const FEATURED_PER_PAGE = 12;
  * distance, which is what the old code did past 80.
  */
 const NEAR_BANDS_KM = [5, 15, 40];
-/** Past the last band nothing counts as near. What the near-me notice reports against. */
-const NEAR_LIMIT_KM = NEAR_BANDS_KM[NEAR_BANDS_KM.length - 1];
+// NEAR_LIMIT_KM used to live here as the banner's own threshold. It is gone on
+// purpose: the banner is now derived from whether any card can show a distance,
+// so there is no second number to drift away from the first.
 
 /** Which band a distance falls in. Lower is closer; NEAR_BANDS_KM.length means "beyond". */
 function nearBand(km: number): number {
@@ -1057,9 +1058,6 @@ export function BarDirectoryMapClient({
     return Number.isFinite(min) ? min : null;
   }, [nearMode, allFiltered, getDistKm]);
 
-  /** True only when we can say something honest: nothing inside the radius. */
-  const nothingNearby = nearestKm !== null && nearestKm > NEAR_LIMIT_KM && nearestKm < 99999;
-
   /**
    * Whether the distance is a measurement or an artifact.
    *
@@ -1070,6 +1068,25 @@ export function BarDirectoryMapClient({
    * coordinates the notice says what it actually knows and quotes no number.
    */
   const hasPreciseLocation = userLat !== null && userLng !== null;
+
+  /**
+   * The banner speaks exactly when no card can.
+   *
+   * It is DERIVED from the card rule rather than carrying a threshold of its
+   * own. It used to key off the 80 km near-me radius while the cards keyed off
+   * 30 in the visitor's unit, and between those two numbers sat a band where a
+   * visitor saw a list of bars with no distances and no reason given: nearest
+   * bar 45 km away, every card silent, banner silent too. Two numbers drift
+   * apart the moment either is tuned, which is how that gap appeared. One
+   * number now, and the banner is its complement.
+   *
+   * The list is distance-ordered, so if the nearest bar cannot show a distance
+   * then none of them can.
+   */
+  const noCardShowsDistance =
+    nearestKm === null
+    || !hasPreciseLocation
+    || !showsDistanceOnCard(nearestKm, geoCountryCode);
 
   /**
    * Turn near-me on or off. The control has no state of its own: it renders
@@ -1282,16 +1299,16 @@ export function BarDirectoryMapClient({
       </div>
 
       {/* We list bars in 218 cities, so a lot of visitors have nothing genuinely
-          near them. Rather than present a bar 3,000 km away as though it were
-          local, say what the page is actually showing. */}
-      {nearMode && nothingNearby && (
+          near them. When no card can show a distance, this says it once rather
+          than leaving the reader to wonder why the numbers vanished. */}
+      {nearMode && noCardShowsDistance && (
         <div className="dir-near-notice">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
             <circle cx="12" cy="10" r="3" />
           </svg>
-          {hasPreciseLocation
-            ? `The nearest bars we list are ${formatDistance(nearestKm as number, geoCountryCode)} away.`
+          {hasPreciseLocation && nearestKm !== null && nearestKm < 99999
+            ? `The nearest bars we list are ${formatDistance(nearestKm, geoCountryCode)} away.`
             : 'We could not pin down where you are. These are ordered by our best guess at what is closest to you.'}
         </div>
       )}
