@@ -28,6 +28,24 @@ import {
  * Stripe code lives in this file; the wiring is the existing code path.
  */
 
+/**
+ * Words from bars that actually pay. Two do: the-loft in Santiago and
+ * dangerous-water-palma-de-mallorca.
+ *
+ * DELIBERATELY EMPTY. Nothing here is written for them and nothing is
+ * invented: a testimonial a bar did not say is the one thing this page
+ * must not carry. Fill `quote` in when Roman has their words, and the
+ * section starts rendering for visitors on its own.
+ *
+ * While the quotes are empty the section renders only in development, so
+ * the block can be reviewed in the layout without shipping an empty box
+ * to a page whose whole problem is that it does not convert.
+ */
+const PROOF_QUOTES: { slug: string; bar: string; city: string; quote: string }[] = [
+  { slug: 'the-loft', bar: 'The Loft', city: 'Santiago', quote: '' },
+  { slug: 'dangerous-water-palma-de-mallorca', bar: 'Dangerous Water', city: 'Palma de Mallorca', quote: '' },
+];
+
 const SITE_URL = 'https://barmagazine.com';
 const PAGE_URL = `${SITE_URL}/feature-your-bar`;
 const OG_IMAGE = `${SITE_URL}/og-image.png`;
@@ -183,7 +201,7 @@ function jsonLdBlocks(currency: Currency) {
         name: "What if my bar doesn't have a website?",
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "Your Featured page can be your website. It carries everything a bar site needs — your full menu with prices, a photo gallery, your story, opening hours, a reserve button, one-tap WhatsApp and Google Maps directions — on one reliable link for your Instagram bio and Google Business Profile. Menu changes? Send us a photo of the new list and we update it the same week.",
+          text: "Your Featured page can be your website. It carries everything a bar site needs: your full menu with prices, a photo gallery, your story, opening hours, a reserve button, one-tap WhatsApp and Google Maps directions, all on one reliable link for your Instagram bio and Google Business Profile. Menu changes? Send us a photo of the new list and we update it the same week.",
         },
       },
       {
@@ -268,7 +286,7 @@ export default async function FeatureYourBarPage({
             </h1>
             <p className="feature-hero-sub">
               A feature article, an SEO-optimized profile that ranks on Google,
-              and coverage across our channels — plus a profile page complete
+              and coverage across our channels, plus a profile page complete
               enough to <strong>be your bar&apos;s website</strong>: full menu,
               photo gallery, reservations and one-tap directions. Go live in
               days, all self-serve.
@@ -371,7 +389,7 @@ export default async function FeatureYourBarPage({
               <div className="feature-feat">
                 <h3>Your full menu, online</h3>
                 <p>
-                  We publish your complete drinks menu on your profile — typeset
+                  We publish your complete drinks menu on your profile, typeset
                   beautifully, indexed by Google. Send a photo of a new list and
                   we update it the same week.
                 </p>
@@ -382,7 +400,7 @@ export default async function FeatureYourBarPage({
                 <h3>One link for everything</h3>
                 <p>
                   Your menu, gallery, story and booking details on one fast
-                  page — the link for your Instagram bio and Google Business
+                  page, the link for your Instagram bio and Google Business
                   Profile.
                 </p>
               </div>
@@ -413,12 +431,12 @@ export default async function FeatureYourBarPage({
                 Your Featured page can <em>be</em> your website
               </h2>
               <p className="feature-sec-intro">
-                Many great bars run on Instagram alone — or on a site nobody
+                Many great bars run on Instagram alone, or on a site nobody
                 updates. A Featured profile gives you everything a bar website
                 should have, maintained for you: your story, your full menu
                 with prices, a photo gallery, opening hours, WhatsApp and
                 reservation buttons, and directions. One reliable link for your
-                Instagram bio and Google Business profile — and when your menu
+                Instagram bio and Google Business profile, and when your menu
                 changes, we update the page, no web designer required.
               </p>
               <a
@@ -559,7 +577,7 @@ export default async function FeatureYourBarPage({
 
               {/* Featured */}
               {/* id="featured-tier" is the scroll target for the final
-                  "Feature my bar now" CTA at the bottom of the page —
+                  "Feature my bar now" CTA at the bottom of the page,
                   before this anchor it landed on #pricing which scrolled
                   to the section title, putting the Free Listed tier
                   first on screen. Jumping straight to Featured surfaces
@@ -577,7 +595,8 @@ export default async function FeatureYourBarPage({
                   <span className="feature-per">/mo</span>
                 </div>
                 <div className="feature-billed">
-                  Billed annually {sym}468 → <strong>{sym}234/year</strong>
+                  <strong className="feature-billed-total">{sym}234</strong> billed annually.
+                  One payment covers twelve months. <span className="feature-billed-was">{sym}468</span>
                 </div>
                 <span className="feature-save">Save {sym}234 in year one</span>
                 <p className="feature-tag">
@@ -609,7 +628,8 @@ export default async function FeatureYourBarPage({
                   <span className="feature-per">/mo</span>
                 </div>
                 <div className="feature-billed">
-                  Billed annually {sym}948 → <strong>{sym}474/year</strong>
+                  <strong className="feature-billed-total">{sym}474</strong> billed annually.
+                  One payment covers twelve months. <span className="feature-billed-was">{sym}948</span>
                 </div>
                 <span className="feature-save">Save {sym}474 in year one</span>
                 <p className="feature-tag">
@@ -623,7 +643,7 @@ export default async function FeatureYourBarPage({
                   <li>Cross-promotion collab</li>
                 </ul>
                 <a
-                  className="feature-btn feature-btn-outline"
+                  className="feature-btn feature-btn-dark"
                   href={`/add-your-bar?plan=featured_social${barSuffix}`}
                 >
                   Get Started · 50% Off
@@ -639,6 +659,31 @@ export default async function FeatureYourBarPage({
             </p>
           </div>
         </section>
+
+        {/* ============= PROOF =============
+            One short quote from each paying bar. See PROOF_QUOTES. */}
+        {(PROOF_QUOTES.some(q => q.quote) || process.env.NODE_ENV === 'development') && (
+          <section className="feature-section">
+            <div className="feature-wrap">
+              <div className="feature-sec-head">
+                <span className="feature-eyebrow">From bars that pay</span>
+                <h2 className="feature-sec-title">What Featured bars say</h2>
+              </div>
+              <div className="feature-proof-grid">
+                {PROOF_QUOTES.map(q => (
+                  <figure key={q.slug} className={`feature-proof${q.quote ? '' : ' feature-proof--empty'}`}>
+                    {q.quote
+                      ? <blockquote>{q.quote}</blockquote>
+                      : <blockquote aria-hidden="true">Placeholder. Awaiting one short quote from this owner. Nothing is written for them.</blockquote>}
+                    <figcaption>
+                      <a href={`/bars/${q.slug}`}>{q.bar}</a>, {q.city}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* ============= FAQ ============= */}
         <section className="feature-section">
@@ -691,9 +736,9 @@ export default async function FeatureYourBarPage({
                 <summary>What if my bar doesn&apos;t have a website?</summary>
                 <p>
                   Your Featured page can be your website. It carries everything
-                  a bar site needs — your full menu with prices, a photo
+                  a bar site needs: your full menu with prices, a photo
                   gallery, your story, opening hours, a reserve button, one-tap
-                  WhatsApp and Google Maps directions — on one reliable link
+                  WhatsApp and Google Maps directions, all on one reliable link
                   for your Instagram bio and Google Business Profile. Menu
                   changes? Send us a photo of the new list and we update it the
                   same week.
