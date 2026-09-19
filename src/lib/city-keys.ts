@@ -1,5 +1,11 @@
 import { toUrlSlug } from './utils';
 import { usesSubdivision } from './city-location';
+import { bareCity, cityBase } from './city-base';
+import { rollupTarget, metroDisplayName } from './metro-rollup';
+
+// The fold moved to a leaf so metro-rollup can use it without a cycle; these
+// re-exports keep every existing `from './city-keys'` import working.
+export { bareCity, cityBase };
 
 /**
  * City slugs that survive same-name cities.
@@ -68,16 +74,6 @@ export function countryCode(country: string): string {
   return (COUNTRY_ISO[country] || toUrlSlug(country)).toLowerCase();
 }
 
-/** The city string without a qualifier ("Portland, Maine" -> "Portland"). */
-export function bareCity(city: string): string {
-  return (city || '').split(',')[0].trim();
-}
-
-/** The folded city name that groups spellings: "Kraków" and "Krakow" are one. */
-export function cityBase(city: string): string {
-  return toUrlSlug(bareCity(city));
-}
-
 function normState(s: unknown): string | null {
   return typeof s === 'string' && s.trim() ? s.trim().toUpperCase() : null;
 }
@@ -88,7 +84,13 @@ export function buildCityEntries(rows: CityRow[]): CityEntry[] {
   const groups = new Map<string, Map<string, CityRow[]>>();
   for (const r of rows) {
     if (!r.city || !r.country) continue;
-    const base = cityBase(r.city);
+    // An area folds into its metro HERE and nowhere else, so bars.city keeps
+    // saying "Beverly Hills" and the fold is undone by deleting a line from
+    // METRO_ROLLUP. The raw string survives in the entry's cityStrings, which
+    // is what getBarsForCity queries on, so the metro page picks the row up
+    // without anything being written to the database. See metro-rollup.ts.
+    const rolled = rollupTarget(r);
+    const base = rolled ? rolled.metroBase : cityBase(r.city);
     if (!base) continue;
     let byCountry = groups.get(base);
     if (!byCountry) {
@@ -112,7 +114,13 @@ export function buildCityEntries(rows: CityRow[]): CityEntry[] {
       const byState = new Map<string, CityRow[]>();
       const nulls: CityRow[] = [];
       for (const r of list) {
-        const s = normState(r.state);
+        // A rolled row is grouped under its METRO's state, not its own, so a
+        // metro that straddles a state line stays one entry. Shawnee is in
+        // KS and Kansas City is filed under MO; without this the base splits
+        // into kansas-city-ks and kansas-city-mo and the rollup achieves the
+        // exact opposite of its purpose.
+        const rolledTo = rollupTarget(r);
+        const s = rolledTo ? rolledTo.metroState : normState(r.state);
         if (!s) nulls.push(r);
         else {
           const l = byState.get(s);
@@ -142,13 +150,18 @@ export function buildCityEntries(rows: CityRow[]): CityEntry[] {
         else if ((countriesInGroup.get(k.country) || 0) > 1 && k.state) slug = `${base}-${k.state.toLowerCase()}`;
         else slug = `${base}-${countryCode(k.country)}`;
       }
-      // Display string: the most common spelling, first seen on a tie.
+      // Display string: the most common spelling, first seen on a tie. A
+      // metro overrides the count, because a rolled-in area with more bars
+      // than the metro itself would otherwise rename the entry after the
+      // suburb: one Kansas City bar beside two in Shawnee must still read
+      // "Kansas City".
       const spellings = new Map<string, number>();
       for (const r of k.rows) {
         const s = bareCity(r.city);
         spellings.set(s, (spellings.get(s) || 0) + 1);
       }
-      const city = Array.from(spellings.entries()).sort((a, b) => b[1] - a[1])[0][0];
+      const city = metroDisplayName(base, k.country)
+        ?? Array.from(spellings.entries()).sort((a, b) => b[1] - a[1])[0][0];
       entries.push({
         slug,
         city,
@@ -188,10 +201,16 @@ export class CityIndex {
 
   /** The entry a row belongs to; null for a row whose city is not in the index. */
   forRow(row: CityRow): CityEntry | null {
-    const list = this.byBaseCountry.get(`${cityBase(row.city)}|${row.country}`);
+    // Rolled rows must resolve to their metro's entry, not to an entry named
+    // after themselves that no longer exists. Without this, slugFor(Dante
+    // Beverly Hills) would fall back to "beverly-hills" and link to a 404.
+    const rolled = rollupTarget(row);
+    const base = rolled ? rolled.metroBase : cityBase(row.city);
+    const list = this.byBaseCountry.get(`${base}|${row.country}`);
     if (!list || list.length === 0) return null;
     if (list.length === 1) return list[0];
-    const s = normState(row.state);
+    // Same substitution as in the grouping pass, for the same reason.
+    const s = rolled ? rolled.metroState : normState(row.state);
     return list.find(e => e.state === s) ?? list.find(e => e.absorbsNullState) ?? list[0];
   }
 

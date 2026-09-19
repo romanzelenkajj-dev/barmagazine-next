@@ -1,6 +1,7 @@
 'use client';
 
 import { asciiFold } from '@/lib/ascii-fold';
+import { metroCityOf, searchTermsOf } from '@/lib/metro-rollup';
 import { displayType } from '@/lib/bar-type';
 import { hasFiftyBest } from '@/lib/accolades';
 import { CardStatusPills } from '@/components/CardStatusPills';
@@ -750,8 +751,10 @@ export function BarDirectoryMapClient({
   }, [isFetchingMore, hasMoreFromServer, serverPage, allBars.length, totalBars]);
 
   const availableCities = useMemo(() => {
-    if (!countryFilter) return cities;
-    return Array.from(new Set(allBars.filter(b => b.country === countryFilter).map(b => b.city))).sort();
+    // Metros only. This is the shortening Roman asked for first: an area
+    // like Beverly Hills no longer gets a line of its own here.
+    if (!countryFilter) return Array.from(new Set(cities.map(c => c))).sort();
+    return Array.from(new Set(allBars.filter(b => b.country === countryFilter).map(b => metroCityOf(b)))).sort();
   }, [countryFilter, allBars, cities]);
 
   const isFiltering = !!(search || countryFilter || cityFilter || typeFilter);
@@ -760,9 +763,14 @@ export function BarDirectoryMapClient({
   const filtered = useMemo(() => {
     return allBars.filter(bar => {
       const q = asciiFold(search);
-      const matchSearch = !search || asciiFold(bar.name).includes(q) || asciiFold(bar.city).includes(q) || asciiFold(bar.country).includes(q);
+      // Location matching goes through the metro rollup, not bar.city: the
+      // dropdown says "Los Angeles" while Polo Lounge still says "Beverly
+      // Hills", and searching "Beverly Hills" has to find it either way.
+      const matchSearch = !search || asciiFold(bar.name).includes(q)
+        || searchTermsOf(bar).some(t => asciiFold(t).includes(q))
+        || asciiFold(bar.country).includes(q);
       const matchCountry = !countryFilter || bar.country === countryFilter;
-      const matchCity = !cityFilter || bar.city === cityFilter;
+      const matchCity = !cityFilter || metroCityOf(bar) === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);
       return matchSearch && matchCountry && matchCity && matchType;
     });
@@ -774,9 +782,14 @@ export function BarDirectoryMapClient({
   const filteredMapBars = useMemo(() => {
     return mapBars.filter(bar => {
       const q = asciiFold(search);
-      const matchSearch = !search || asciiFold(bar.name).includes(q) || asciiFold(bar.city).includes(q) || asciiFold(bar.country).includes(q);
+      // Location matching goes through the metro rollup, not bar.city: the
+      // dropdown says "Los Angeles" while Polo Lounge still says "Beverly
+      // Hills", and searching "Beverly Hills" has to find it either way.
+      const matchSearch = !search || asciiFold(bar.name).includes(q)
+        || searchTermsOf(bar).some(t => asciiFold(t).includes(q))
+        || asciiFold(bar.country).includes(q);
       const matchCountry = !countryFilter || bar.country === countryFilter;
-      const matchCity = !cityFilter || bar.city === cityFilter;
+      const matchCity = !cityFilter || metroCityOf(bar) === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);
       return matchSearch && matchCountry && matchCity && matchType;
     });

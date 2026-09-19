@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import { stripPrivate, stripPrivateAll } from './private-columns';
 import { searchOrFilter } from './ascii-fold';
 import type { Accolade } from './accolades';
+import { metroCityOf } from './metro-rollup';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -243,14 +244,17 @@ export const MIN_FILTERABLE_TYPE_BARS = 6;
 /** Get unique filter values */
 export async function getBarFilterOptions() {
   // Whole-directory read: paged, or the filter menus stop at bar 1,000.
-  const data = await getAllActiveBars<{ country: string; city: string; type: string | null; subtypes: string[] | null }>(
-    'country, city, type, subtypes'
+  // `state` is selected because the metro rollup is keyed on it: Decatur,
+  // Georgia folds into Atlanta and Decatur, Illinois must not.
+  const data = await getAllActiveBars<{ country: string; city: string; state: string | null; type: string | null; subtypes: string[] | null }>(
+    'country, city, state, type, subtypes'
   );
 
   if (!data) return { countries: [], cities: [], types: [] };
 
   const countries = Array.from(new Set(data.map(b => b.country).filter(Boolean))).sort();
-  const cities = Array.from(new Set(data.map(b => b.city).filter(Boolean))).sort();
+  // Metros only, so an area does not take a line in the dropdown of its own.
+  const cities = Array.from(new Set(data.map(b => metroCityOf(b)).filter(Boolean))).sort();
     // Union vocabulary: a style that exists only as a subtype (no bar has it
   // as primary type) must still be offered, since the filter matches the
   // union.
