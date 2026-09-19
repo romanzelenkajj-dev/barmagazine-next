@@ -19,16 +19,23 @@ const COUNTRY_CODE_MAP: Record<string, string> = {
   CL: 'Chile', UY: 'Uruguay', EC: 'Ecuador', PA: 'Panama', CR: 'Costa Rica',
   JM: 'Jamaica', CU: 'Cuba', PR: 'Puerto Rico', TT: 'Trinidad and Tobago',
   NZ: 'New Zealand', CA: 'Canada', RU: 'Russia', UA: 'Ukraine',
+  // Added 2026-09-19 (task 82). These twelve carry 34 active bars between
+  // them and were absent from both maps below, so every one of their bars
+  // fell out of any continent-scoped feature silently, with no error to
+  // notice. Serbia alone is 17 bars.
+  RS: 'Serbia', MO: 'Macau', LK: 'Sri Lanka', NP: 'Nepal', KY: 'Cayman Islands',
+  IS: 'Iceland', BS: 'Bahamas', GH: 'Ghana', KG: 'Kyrgyz Republic', AL: 'Albania',
+  KH: 'Cambodia', BA: 'Bosnia and Herzegovina',
 };
 
 // Continent code → array of ISO country codes in that continent
 const CONTINENT_COUNTRIES: Record<string, string[]> = {
-  NA: ['US', 'CA', 'MX', 'PA', 'CR', 'JM', 'CU', 'PR', 'TT'],
+  NA: ['US', 'CA', 'MX', 'PA', 'CR', 'JM', 'CU', 'PR', 'TT', 'KY', 'BS'],
   SA: ['BR', 'AR', 'CO', 'PE', 'CL', 'UY', 'EC'],
-  EU: ['GB', 'ES', 'IT', 'FR', 'DE', 'AT', 'SE', 'NO', 'DK', 'FI', 'NL', 'BE', 'PT', 'CH', 'IE', 'PL', 'CZ', 'HU', 'RO', 'HR', 'SK', 'GR', 'TR', 'UA', 'RU'],
-  AS: ['CN', 'JP', 'SG', 'HK', 'TH', 'IN', 'AE', 'KR', 'MY', 'PH', 'VN', 'TW', 'ID', 'IL', 'LB', 'QA', 'SA', 'BH'],
+  EU: ['GB', 'ES', 'IT', 'FR', 'DE', 'AT', 'SE', 'NO', 'DK', 'FI', 'NL', 'BE', 'PT', 'CH', 'IE', 'PL', 'CZ', 'HU', 'RO', 'HR', 'SK', 'GR', 'TR', 'UA', 'RU', 'RS', 'IS', 'AL', 'BA'],
+  AS: ['CN', 'JP', 'SG', 'HK', 'TH', 'IN', 'AE', 'KR', 'MY', 'PH', 'VN', 'TW', 'ID', 'IL', 'LB', 'QA', 'SA', 'BH', 'MO', 'LK', 'NP', 'KG', 'KH'],
   OC: ['AU', 'NZ'],
-  AF: ['ZA', 'NG', 'KE', 'EG', 'MA'],
+  AF: ['ZA', 'NG', 'KE', 'EG', 'MA', 'GH'],
 };
 
 

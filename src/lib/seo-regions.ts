@@ -2,6 +2,7 @@ import { supabase } from './supabase';
 import type { Bar } from './supabase';
 import { subdivisionName } from './city-location';
 import { toUrlSlug } from './utils';
+import { getContinentCountryNames } from './geo';
 import { TYPE_PAGES, type TypePage, barHasType, sortSeoBars, type SeoCity } from './seo-cities';
 
 /**
@@ -20,7 +21,47 @@ import { TYPE_PAGES, type TypePage, barHasType, sortSeoBars, type SeoCity } from
 
 export const MIN_REGION_BARS = 6;
 
-export type RegionKind = 'country' | 'us-state';
+export type RegionKind = 'country' | 'us-state' | 'continent';
+
+/**
+ * The continent rung (task 82). URL shape /best-bars/continent/<c>/<type>,
+ * chosen to sit in the same family as the two rungs above: the type stays
+ * last everywhere so one component renders all three, and the `continent`
+ * segment cannot collide with a city slug the way a bare /<type>/<place>
+ * would.
+ *
+ * COCKTAIL BAR IS DELIBERATELY EXCLUDED HERE. `type` is 'Cocktail Bar' on
+ * 1,445 of 1,540 bars, so it is the default rather than a classification;
+ * at city and country scale that still describes a real set, but "the best
+ * cocktail bars in Europe" would be a 479-bar page that means nothing and
+ * competes with every country page under it. The other five types are real
+ * classifications and make real pages.
+ */
+export const CONTINENTS: { code: string; slug: string; name: string }[] = [
+  { code: 'EU', slug: 'europe', name: 'Europe' },
+  { code: 'AS', slug: 'asia', name: 'Asia' },
+  { code: 'NA', slug: 'north-america', name: 'North America' },
+  { code: 'SA', slug: 'south-america', name: 'South America' },
+  { code: 'OC', slug: 'oceania', name: 'Oceania' },
+  { code: 'AF', slug: 'africa', name: 'Africa' },
+];
+
+/** Country name -> continent code, built once from the geo.ts map. */
+const COUNTRY_TO_CONTINENT: Record<string, string> = (() => {
+  const out: Record<string, string> = {};
+  for (const c of CONTINENTS) {
+    for (const name of getContinentCountryNames(c.code)) out[name] = c.code;
+  }
+  return out;
+})();
+
+export function continentRegion(country: string): Region | null {
+  const code = COUNTRY_TO_CONTINENT[country];
+  if (!code) return null;
+  const c = CONTINENTS.find(x => x.code === code);
+  if (!c) return null;
+  return { kind: 'continent', slug: c.slug, name: c.name, displayName: c.name, country, state: null };
+}
 
 export interface Region {
   kind: RegionKind;
@@ -71,13 +112,30 @@ export function stateRegion(code: string): Region | null {
   return { kind: 'us-state', slug: toUrlSlug(name), name, displayName: name, country: 'United States', state: code.toUpperCase() };
 }
 
+/**
+ * Every bars.country value a region covers.
+ *
+ * For country and us-state that is the single stored country. For a
+ * CONTINENT it is every country on it, which is the whole point: a continent
+ * Region carries an arbitrary one of its countries in `country` (whichever
+ * row built it), so reading `region.country` for a continent would silently
+ * return one country's bars and call it Europe.
+ */
+export function regionCountries(region: Region): string[] {
+  if (region.kind !== 'continent') return [region.country];
+  const c = CONTINENTS.find(x => x.slug === region.slug);
+  return c ? getContinentCountryNames(c.code) : [region.country];
+}
+
 export function regionHref(region: Region, typeSlug: string): string {
+  if (region.kind === 'continent') return `/best-bars/continent/${region.slug}/${typeSlug}`;
   return region.kind === 'country'
     ? `/best-bars/country/${region.slug}/${typeSlug}`
     : `/best-bars/us/${region.slug}/${typeSlug}`;
 }
 
 export function regionIntroKey(region: Region, typeSlug: string): string {
+  if (region.kind === 'continent') return `continent:${region.slug}:${typeSlug}`;
   return region.kind === 'country' ? `country:${region.slug}:${typeSlug}` : `us:${region.slug}:${typeSlug}`;
 }
 
@@ -115,10 +173,14 @@ export async function getRegionCombos(): Promise<RegionCombo[]> {
     if (!r.country) continue;
     const c = countryRegion(r.country);
     const s = r.country === 'United States' && r.state ? stateRegion(r.state) : null;
+    const cont = continentRegion(r.country);
     for (const t of TYPE_PAGES) {
       if (!barHasType({ type: r.type, subtypes: r.subtypes }, t.type)) continue;
       bump(c, t, r.updated_at ?? null);
       if (s) bump(s, t, r.updated_at ?? null);
+      // Cocktail Bar is the default on 94% of rows, so it makes no continent
+      // page; see the CONTINENTS comment above.
+      if (cont && t.type !== 'Cocktail Bar') bump(cont, t, r.updated_at ?? null);
     }
   }
   return Array.from(acc.values())
@@ -140,7 +202,7 @@ export async function getRegionBars(combo: RegionCombo): Promise<Bar[]> {
       .from('bars')
       .select('id, slug, name, city, country, state, type, subtypes, tier, accolades, photos, wp_article_slug, address, short_excerpt, updated_at')
       .eq('is_active', true)
-      .eq('country', combo.region.country)
+      .in('country', regionCountries(combo.region))
       .range(from, from + PAGE - 1);
     if (combo.region.state) q = q.eq('state', combo.region.state);
     const { data, error } = await q;
@@ -155,7 +217,8 @@ export async function getRegionBars(combo: RegionCombo): Promise<Bar[]> {
 /** The city-by-type pages that exist inside this region for this type. */
 export function regionCityTypeLinks(cities: SeoCity[], combo: RegionCombo): { slug: string; city: string; count: number }[] {
   return cities
-    .filter(c => c.country === combo.region.country && (!combo.region.state || (c.key.state || '').toUpperCase() === combo.region.state))
+    .filter(c => regionCountries(combo.region).includes(c.country)
+      && (!combo.region.state || (c.key.state || '').toUpperCase() === combo.region.state))
     .flatMap(c => {
       const t = c.typeSlugs.find(x => x.slug === combo.type.slug);
       return t ? [{ slug: c.slug, city: c.city, count: t.count }] : [];
