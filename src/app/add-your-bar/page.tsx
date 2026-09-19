@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { BarSearchTypeahead } from '@/components/BarSearchTypeahead';
 import { SUBMISSION_HELP } from '@/lib/house-style';
 import { planLabel } from '@/lib/plan-pricing';
+import { HoursInput } from '@/components/HoursInput';
+import { emptyWeek, generateHoursString, type StructuredHours } from '@/lib/structured-hours';
 
 // Stripe payment links by currency
 /**
@@ -77,6 +79,8 @@ function AddYourBarForm() {
   const [upgradeResolving, setUpgradeResolving] = useState(!!barParam);
   // The "Already listed?" finder above the new-bar form.
   const [findQuery, setFindQuery] = useState('');
+  /** Structured opening hours. The display string is generated from this. */
+  const [hours, setHours] = useState<StructuredHours>(() => emptyWeek());
 
   useEffect(() => {
     if (!barParam) { setUpgradeBar(null); setUpgradeResolving(false); return; }
@@ -258,6 +262,11 @@ function AddYourBarForm() {
           email: data.get('contactEmail') as string,
           phone: (data.get('phone') as string) || undefined,
           description: (data.get('description') as string) || undefined,
+          // Both: the structure for "Open now" and the schema markup later,
+          // and the display string generated from it so nothing downstream has
+          // to know about the new column yet.
+          opening_hours_structured: hours,
+          opening_hours: generateHoursString(hours) || undefined,
           contact_name: (data.get('contactName') as string) || undefined,
           preferred_plan: plan,
           photo: photoBase64,
@@ -632,6 +641,10 @@ function AddYourBarForm() {
               {!upgradeBar && (
               <div className="add-bar-form-section">
                 <h2>About Your Bar</h2>
+                <div className="form-group">
+                  <label className="form-label">Opening hours</label>
+                  <HoursInput value={hours} onChange={setHours} />
+                </div>
                 <div className="form-group">
                   <label className="form-label">Description</label>
                   <textarea name="description" className="form-input" rows={4} placeholder="What the bar is, what you pour, when you are open..." />
