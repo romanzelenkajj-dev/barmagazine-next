@@ -11207,3 +11207,130 @@ a.bar-v2-badge--subtype:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Structured opening hours input (task 69) =====
+   Seven day rows on the owner form. The phone is the constraint: two time
+   inputs plus a closed toggle per row is a lot of width, so the row is a grid
+   that gives the times the space and drops the day name to three letters
+   below 560px. Uses existing breakpoints only. */
+.hours-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hours-input-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.hours-copy-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #8a6a24;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.hours-row {
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.hours-row--closed .hours-day {
+  color: var(--text-tertiary);
+}
+
+.hours-day {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.hours-day-short { display: none; }
+
+.hours-times {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.hours-time {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 9px 10px;
+  font-size: 14px;
+}
+
+.hours-to {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.hours-next-day {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8a6a24;
+  background: #f7f1e4;
+  border-radius: 100px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.hours-closed-note {
+  font-size: 13.5px;
+  color: var(--text-tertiary);
+}
+
+.hours-closed-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hours-preview {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+@media (max-width: 560px) {
+  .hours-row {
+    grid-template-columns: 44px 1fr;
+    row-gap: 4px;
+  }
+  .hours-day-long { display: none; }
+  .hours-day-short { display: inline; }
+  /* The toggle moves under the times rather than fighting them for width. */
+  .hours-closed-toggle {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .hours-next-day {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}
