@@ -33,3 +33,19 @@ export const MIN_INDEXABLE_CITY_BARS = 4;
 export function isIndexableCity(count: number): boolean {
   return count >= MIN_INDEXABLE_CITY_BARS;
 }
+
+/**
+ * A metro needs this many active bars to appear in the directory's city
+ * dropdown by default (Roman, 2026-09-19).
+ *
+ * The list was 217 long and 95 of those cities had a single bar, almost none
+ * of them a suburb of anything: Tirana, Sarajevo, Nairobi, Reykjavik, capital
+ * cities with one bar each. Folding suburbs into their metros only took it to
+ * 207, so the rollup was never the lever for this. At three the list is 91.
+ *
+ * NOTHING IS HIDDEN. The dropdown carries an "All cities" escape that expands
+ * it to every metro, so a one-bar city is one click away rather than absent,
+ * and the city page, the search and the sitemap are all untouched by this
+ * number. It governs the default length of one menu.
+ */
+export const MIN_DROPDOWN_CITY_BARS = 3;
