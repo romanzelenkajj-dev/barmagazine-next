@@ -1,6 +1,7 @@
 'use client';
 
 import { asciiFold } from '@/lib/ascii-fold';
+import { metroCityOf, searchTermsOf } from '@/lib/metro-rollup';
 import { displayType } from '@/lib/bar-type';
 import { hasFiftyBest } from '@/lib/accolades';
 import { CardStatusPills } from '@/components/CardStatusPills';
@@ -22,7 +23,10 @@ interface Props {
   totalCountries?: number;
   totalCities?: number;
   countries: string[];
+  /** Every metro, for the "All cities" escape. */
   cities: string[];
+  /** Metros with at least MIN_DROPDOWN_CITY_BARS bars: the default list. */
+  commonCities?: string[];
   types: string[];
   geoCity?: string;
   geoCountryCode?: string;
@@ -75,6 +79,13 @@ function formatDistance(km: number, locale?: string): string {
   }
   return `${km < 10 ? km.toFixed(1) : Math.round(km)} km`;
 }
+/**
+ * The value of the city dropdown's escape option. Not a city, and never sent
+ * to the server: onChange intercepts it and expands the list instead.
+ * Prefixed so it cannot collide with a real city name.
+ */
+const SHOW_ALL_CITIES = '__show_all_cities__';
+
 const PHOTO_PER_PAGE = 24;
 const LIST_PER_PAGE = 60;
 
@@ -582,12 +593,14 @@ export function BarDirectoryMapClient({
   totalCities,
   countries,
   cities,
+  commonCities,
   types,
   geoCity = '',
   geoCountryCode = '',
   geoContinent = '',
 }: Props) {
   const [search, setSearch] = useState('');
+  const [showAllCities, setShowAllCities] = useState(false);
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [countryFilter, setCountryFilter] = useState('');
   const [cityFilter, setCityFilter] = useState('');
@@ -749,10 +762,37 @@ export function BarDirectoryMapClient({
     }
   }, [isFetchingMore, hasMoreFromServer, serverPage, allBars.length, totalBars]);
 
+  /**
+   * The city dropdown.
+   *
+   * Two shortenings, and they do different jobs. Metros only, so an area like
+   * Beverly Hills no longer takes a line of its own: that took 217 to 207.
+   * Then only metros carrying at least MIN_DROPDOWN_CITY_BARS bars, which
+   * takes it to 91 and is the change that actually makes the menu usable.
+   *
+   * NOTHING IS HIDDEN. Choosing "All cities" expands to every metro, and the
+   * currently selected city is always listed even when it is below the
+   * threshold, so a filter set from a link or from All cities never shows a
+   * dropdown that disagrees with the list under it.
+   */
   const availableCities = useMemo(() => {
-    if (!countryFilter) return cities;
-    return Array.from(new Set(allBars.filter(b => b.country === countryFilter).map(b => b.city))).sort();
-  }, [countryFilter, allBars, cities]);
+    const inCountry = countryFilter
+      ? Array.from(new Set(allBars.filter(b => b.country === countryFilter).map(b => metroCityOf(b)))).sort()
+      : null;
+    // A country filter is already a short list, so the threshold does not
+    // apply on top of it; picking France should show all of France.
+    if (inCountry) return inCountry;
+    if (showAllCities || !commonCities || commonCities.length === 0) {
+      return Array.from(new Set(cities)).sort();
+    }
+    const short = commonCities.slice();
+    if (cityFilter && !short.includes(cityFilter)) short.push(cityFilter);
+    return short.sort();
+  }, [countryFilter, allBars, cities, commonCities, showAllCities, cityFilter]);
+
+  /** True when the escape would actually reveal something. */
+  const hasHiddenCities =
+    !countryFilter && !showAllCities && !!commonCities && cities.length > availableCities.length;
 
   const isFiltering = !!(search || countryFilter || cityFilter || typeFilter);
 
@@ -760,9 +800,14 @@ export function BarDirectoryMapClient({
   const filtered = useMemo(() => {
     return allBars.filter(bar => {
       const q = asciiFold(search);
-      const matchSearch = !search || asciiFold(bar.name).includes(q) || asciiFold(bar.city).includes(q) || asciiFold(bar.country).includes(q);
+      // Location matching goes through the metro rollup, not bar.city: the
+      // dropdown says "Los Angeles" while Polo Lounge still says "Beverly
+      // Hills", and searching "Beverly Hills" has to find it either way.
+      const matchSearch = !search || asciiFold(bar.name).includes(q)
+        || searchTermsOf(bar).some(t => asciiFold(t).includes(q))
+        || asciiFold(bar.country).includes(q);
       const matchCountry = !countryFilter || bar.country === countryFilter;
-      const matchCity = !cityFilter || bar.city === cityFilter;
+      const matchCity = !cityFilter || metroCityOf(bar) === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);
       return matchSearch && matchCountry && matchCity && matchType;
     });
@@ -774,9 +819,14 @@ export function BarDirectoryMapClient({
   const filteredMapBars = useMemo(() => {
     return mapBars.filter(bar => {
       const q = asciiFold(search);
-      const matchSearch = !search || asciiFold(bar.name).includes(q) || asciiFold(bar.city).includes(q) || asciiFold(bar.country).includes(q);
+      // Location matching goes through the metro rollup, not bar.city: the
+      // dropdown says "Los Angeles" while Polo Lounge still says "Beverly
+      // Hills", and searching "Beverly Hills" has to find it either way.
+      const matchSearch = !search || asciiFold(bar.name).includes(q)
+        || searchTermsOf(bar).some(t => asciiFold(t).includes(q))
+        || asciiFold(bar.country).includes(q);
       const matchCountry = !countryFilter || bar.country === countryFilter;
-      const matchCity = !cityFilter || bar.city === cityFilter;
+      const matchCity = !cityFilter || metroCityOf(bar) === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);
       return matchSearch && matchCountry && matchCity && matchType;
     });
@@ -1052,9 +1102,25 @@ export function BarDirectoryMapClient({
             <option value="">All Countries</option>
             {countries.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
-          <select value={cityFilter} onChange={e => { setCityFilter(e.target.value); resetPagination(); }}>
+          <select
+            value={cityFilter}
+            onChange={e => {
+              // The escape is an option rather than a separate control so it
+              // sits where someone already is when the city they want is not
+              // in the list. It expands the menu; it never filters, so the
+              // selection stays put.
+              if (e.target.value === SHOW_ALL_CITIES) { setShowAllCities(true); return; }
+              setCityFilter(e.target.value);
+              resetPagination();
+            }}
+          >
             <option value="">All Cities</option>
             {availableCities.map(c => <option key={c} value={c}>{c}</option>)}
+            {hasHiddenCities && (
+              <option value={SHOW_ALL_CITIES}>
+                Show all {cities.length} cities...
+              </option>
+            )}
           </select>
           <select value={typeFilter} onChange={e => { setTypeFilter(e.target.value); resetPagination(); }}>
             <option value="">All Types</option>
