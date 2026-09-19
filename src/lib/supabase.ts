@@ -3,6 +3,7 @@ import { stripPrivate, stripPrivateAll } from './private-columns';
 import { searchOrFilter } from './ascii-fold';
 import type { Accolade } from './accolades';
 import { metroCityOf, cityStringsForMetro } from './metro-rollup';
+import { MIN_DROPDOWN_CITY_BARS } from './city-thresholds';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -257,6 +258,8 @@ export async function getBarBySlug(slug: string): Promise<Bar | null> {
  */
 export const MIN_FILTERABLE_TYPE_BARS = 6;
 
+
+
 /** Get unique filter values */
 export async function getBarFilterOptions() {
   // Whole-directory read: paged, or the filter menus stop at bar 1,000.
@@ -266,11 +269,19 @@ export async function getBarFilterOptions() {
     'country, city, state, type, subtypes'
   );
 
-  if (!data) return { countries: [], cities: [], types: [] };
+  if (!data) return { countries: [], cities: [], commonCities: [], types: [] };
 
   const countries = Array.from(new Set(data.map(b => b.country).filter(Boolean))).sort();
   // Metros only, so an area does not take a line in the dropdown of its own.
-  const cities = Array.from(new Set(data.map(b => metroCityOf(b)).filter(Boolean))).sort();
+  const cityCount = new Map<string, number>();
+  for (const b of data) {
+    const m = metroCityOf(b);
+    if (m) cityCount.set(m, (cityCount.get(m) || 0) + 1);
+  }
+  const cities = Array.from(cityCount.keys()).sort();
+  // The default dropdown: metros carrying at least MIN_DROPDOWN_CITY_BARS.
+  // `cities` still holds every metro, for the "All cities" escape.
+  const commonCities = cities.filter(c => (cityCount.get(c) || 0) >= MIN_DROPDOWN_CITY_BARS);
     // Union vocabulary: a style that exists only as a subtype (no bar has it
   // as primary type) must still be offered, since the filter matches the
   // union.
@@ -295,7 +306,7 @@ export async function getBarFilterOptions() {
     .map(([t]) => t)
     .sort();
 
-  return { countries, cities, types };
+  return { countries, cities, commonCities, types };
 }
 
 /** Get cities for a specific country */

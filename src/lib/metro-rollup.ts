@@ -54,9 +54,15 @@ export interface MetroRollup {
  */
 export const METRO_ROLLUP: MetroRollup[] = [
   // Los Angeles County. Beverly Hills and Santa Monica are enclosed by or
-  // directly adjacent to the city; Long Beach is a real city of its own but
-  // sits in the Los Angeles-Long Beach-Anaheim metro and carries one bar.
-  { metro: 'Los Angeles', country: 'United States', state: 'CA', areas: ['Beverly Hills', 'Santa Monica', 'Long Beach'] },
+  // directly adjacent to the city.
+  //
+  // LONG BEACH IS DELIBERATELY NOT HERE (Roman, 2026-09-19). It sits in the
+  // Los Angeles-Long Beach-Anaheim metro and carries one bar, which is the
+  // case for folding it; it is also a city of 460,000 with its own port,
+  // downtown and identity, which is the case against. Same judgement as
+  // Oakland: size and self-identity beat metro membership. Baby Gee keeps
+  // its own Long Beach entry.
+  { metro: 'Los Angeles', country: 'United States', state: 'CA', areas: ['Beverly Hills', 'Santa Monica'] },
 
   // DeKalb County, inside the Atlanta metro. Avondale Estates borders Decatur.
   { metro: 'Atlanta', country: 'United States', state: 'GA', areas: ['Decatur', 'Avondale Estates'] },
