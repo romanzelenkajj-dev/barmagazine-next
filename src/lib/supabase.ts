@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import { stripPrivate, stripPrivateAll } from './private-columns';
 import { searchOrFilter } from './ascii-fold';
 import type { Accolade } from './accolades';
-import { metroCityOf } from './metro-rollup';
+import { metroCityOf, cityStringsForMetro } from './metro-rollup';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -167,7 +167,12 @@ export async function getBars(filters?: {
     query = query.eq('country', filters.country);
   }
   if (filters?.city) {
-    query = query.eq('city', filters.city);
+    // The dropdown offers METROS, so a selection has to ask for every raw
+    // city string that metro covers. `.eq('city', 'Los Angeles')` would drop
+    // the Beverly Hills, Santa Monica and Long Beach rows at the server, and
+    // no amount of client-side matching gets them back. For a city with no
+    // areas this is a one-element `in`, which behaves as the `eq` did.
+    query = query.in('city', cityStringsForMetro(filters.city));
   }
   if (filters?.type) {
     // Union with the curated subtypes array: a bar typed Cocktail Bar but
@@ -180,7 +185,18 @@ export async function getBars(filters?: {
     // Accent-insensitive: match the folded query against the generated
     // name_ascii/city_ascii columns so "muzsa" finds "Múzsa". searchOrFilter
     // also keeps a raw clause for names the generated columns fold wrongly.
-    query = query.or(searchOrFilter(filters.search, ['country']));
+    // `neighborhood` is searched too (task 79): it is where an area lives for
+    // a bar that sits inside its own metro, so without it "North Loop" and
+    // "Deep Ellum" match nothing and the 149 bars carrying an area stay
+    // unreachable. This is the SERVER gate: the directory re-fetches from
+    // here whenever a search term is set, so a client-side match on a row the
+    // server never returned cannot rescue it.
+    //
+    // There is no `neighborhood_ascii` generated column, so this clause
+    // matches raw text and does NOT accent-fold: "Stare Mesto" will not find
+    // "Staré Mesto", though typing the accents will. Adding that column is a
+    // migration, which this task does not do.
+    query = query.or(searchOrFilter(filters.search, ['country', 'neighborhood']));
   }
   if (filters?.tier) {
     query = query.eq('tier', filters.tier);

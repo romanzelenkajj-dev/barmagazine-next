@@ -144,6 +144,27 @@ export function metroCityOf(bar: { city?: string | null; country?: string | null
   return rollupTarget(bar)?.metro ?? (bar.city || '');
 }
 
+/**
+ * Every raw `bars.city` value that a metro selection should return.
+ *
+ * The city filter is applied SERVER side as `.eq('city', ...)`, so filtering
+ * on "Los Angeles" alone drops the Beverly Hills, Santa Monica and Long Beach
+ * rows before the client ever sees them. The dropdown offers the metro, so
+ * the query has to ask for the metro's whole set.
+ */
+export function cityStringsForMetro(metro: string): string[] {
+  const out = [metro];
+  for (let i = 0; i < METRO_ROLLUP.length; i += 1) {
+    const r = METRO_ROLLUP[i];
+    if (cityBase(r.metro) !== cityBase(metro)) continue;
+    for (let j = 0; j < r.areas.length; j += 1) {
+      const a = r.areas[j];
+      out.push(typeof a === 'string' ? a : a.name);
+    }
+  }
+  return out;
+}
+
 /** Every string the free-text search should match a bar on for location. */
 export function searchTermsOf(bar: { city?: string | null; country?: string | null; state?: string | null; neighborhood?: string | null }): string[] {
   const metro = metroCityOf(bar);
