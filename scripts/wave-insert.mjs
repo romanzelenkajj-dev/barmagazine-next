@@ -52,6 +52,36 @@ function parseAccolades(line, source) {
 
 const none = v => !v || /^none\b/i.test(v);
 
+/**
+ * "name | url; name | url" -> the stored bars.editorial_sources shape.
+ *
+ * This is what admitted the bar, and it is NEVER an accolade: nothing here is
+ * written to bars.accolades, scored by bestAccolade or rendered as a tile. It
+ * feeds level2Reason, which only counts a source that made a real SELECTION.
+ *
+ * The first entry is the admitting source; any others are corroboration.
+ */
+function parseEditorialSources(line) {
+  if (none(line)) return null;
+  const out = [];
+  for (const part of String(line).split(';')) {
+    const [rawName, rawUrl] = part.split('|');
+    const source = (rawName || '').trim();
+    if (!source) continue;
+    const url = (rawUrl || '').trim() || null;
+    // A year is recorded only when the source names one itself. Guessing the
+    // current year would date a list that never claimed to be annual.
+    const m = source.match(/\b(19|20)\d{2}\b/);
+    out.push({
+      source,
+      url,
+      note: out.length === 0 ? 'admitting source' : 'also listed',
+      year: m ? Number(m[0]) : null,
+    });
+  }
+  return out.length ? out : null;
+}
+
 const blocks = parseWaveFile(path.resolve(root, file)).filter(b => !only || only.has(b.slug));
 let created = 0;
 for (const b of blocks) {
@@ -74,6 +104,7 @@ for (const b of blocks) {
     reservation_url: none(f.reservation_url) ? null : f.reservation_url,
     description: f.description,
     accolades: parseAccolades(f.accolade, none(f.accolade_source) ? null : f.accolade_source),
+    editorial_sources: parseEditorialSources(f.editorial_sources),
     is_active: true,
     tier: 'free',
     admin_notes: none(f.venue) ? null : `Venue: ${f.venue}. Source: ${f.source || 'venue site'}.`,

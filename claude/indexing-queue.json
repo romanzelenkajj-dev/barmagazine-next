@@ -1,5 +1,5 @@
 {
- "built": "2026-09-17",
+ "built": "2026-09-18",
  "order": "the task 41 zero-click cohort first, by impressions desc (these already rank and only need the rewritten snippet recrawled), then the previous backlog: TOP 10 first, then accolade count desc, then city",
  "daily": 10,
  "items": [
@@ -127,7 +127,7 @@
    "date": "2026-09-17",
    "reason": "zero-click at position 5 to 15 after the 2026-09-17 title rewrite",
    "impressions": 220,
-   "position": 9.0
+   "position": 9
   },
   {
    "slug": "fix-me-a-drink",
@@ -336,7 +336,7 @@
    "date": "2026-09-17",
    "reason": "zero-click at position 5 to 15 after the 2026-09-17 title rewrite",
    "impressions": 70,
-   "position": 11.0
+   "position": 11
   },
   {
    "slug": "mecenas",
@@ -3148,6 +3148,294 @@
    "status": "pending",
    "date": "2026-09-17",
    "reason": "new profile from the US city fill, task 47"
+  },
+  {
+   "slug": "hell-or-high-water",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "tartan-house",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "moondog-louisville",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "the-bar-at-fort-nelson",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "proof-on-main",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "bar-grale-louisville",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "bardo-lounge-and-supper-club",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "nouvelle-bar-and-bottle",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "north-of-bourbon",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "oeste-oakland",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "seven-cocktails-bourbon",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "nosso-oakland",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "the-merryweather",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "13-orphans",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "lucy-blue",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "public-domain",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "volstead-s-emporium",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "drexl-oakland",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "flora-room",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "the-sidecar-at-the-tap",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "the-cabana-club",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "parlour-minneapolis",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "monte-carlo",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "st-genevieve",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "pikok-lounge",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "char-bar-minneapolis",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "company-bar-minneapolis",
+   "city": "Minneapolis",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "bar-shiru-oakland",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "sobre-mesa",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "moonglow-oakland",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "north-light",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "clio-s-books",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "odin-oakland",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "low-bar-oakland",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "snail-bar-oakland",
+   "city": "Oakland",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
+  },
+  {
+   "slug": "yachtsea-louisville",
+   "city": "Louisville",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-18"
   }
  ]
 }

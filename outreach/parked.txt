@@ -65,3 +65,4 @@ aldo-sohm-wine-bar          # form only
 # KEEPS recorded for the record (not parked): the-bar-at-willett (venue-specific
 # inbox on the distillery domain), watch-hill-proper (venue-named on the operator
 # domain), barr-hill-cocktail-bar (single-property distillery inbox).
+tayer-elementary            # temporarily closed since May 2026 (fire); confirmed on their own site and in the trade press 17 Sep 2026 that they will not reopen in 2026
