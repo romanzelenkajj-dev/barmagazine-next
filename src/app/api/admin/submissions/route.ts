@@ -83,18 +83,33 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const { action, submissionId } = body;
   /**
-   * The description the reviewer chose to publish, when it is not the
-   * owner's own words. The review screen offers a house-style rewrite
-   * alongside the original and sends whichever was picked.
+   * Values the reviewer corrected before approving.
    *
-   * The submission row is NEVER updated with this: bar_submissions keeps the
-   * owner's original for good, so we can always show them what they sent.
+   * Task 66 did this for the description alone. The review screen had
+   * Approve & publish or Reject and nothing in between, so a submission that
+   * was right except for one badly formatted field had to be rejected whole.
+   * Every field a submission can carry is editable now.
+   *
+   * The submission row is NEVER updated from this: bar_submissions keeps what
+   * the owner sent, for good, so we can always show them their own words.
    * This only decides what goes onto the bar.
    */
-  const descriptionOverride: string | undefined =
-    typeof body.description === 'string' && body.description.trim()
-      ? body.description.trim()
-      : undefined;
+  const EDITABLE = [
+    'name', 'city', 'country', 'type', 'address', 'website',
+    'instagram', 'phone', 'email', 'description', 'opening_hours',
+  ] as const;
+
+  const overrides: Record<string, string> = {};
+  const rawOverrides = (body && typeof body.overrides === 'object' && body.overrides) || {};
+  for (const f of EDITABLE) {
+    const v = rawOverrides[f];
+    if (typeof v === 'string' && v.trim()) overrides[f] = v.trim();
+  }
+  // Task 66 sent the description at the top level. Kept so an older client
+  // cannot silently stop overriding.
+  if (typeof body.description === 'string' && body.description.trim()) {
+    overrides.description = body.description.trim();
+  }
   const supabase = getServiceClient();
 
   if (action === 'approve') {
@@ -199,8 +214,8 @@ export async function POST(request: NextRequest) {
     for (const f of ['address', 'website', 'instagram', 'phone', 'email', 'description'] as const) {
       if (submission[f]) fields[f] = submission[f];
     }
-    // The reviewer's choice wins over the submitted text, and only here.
-    if (descriptionOverride) fields.description = descriptionOverride;
+    // The reviewer's corrections win over the submitted values, and only here.
+    for (const [k, v] of Object.entries(overrides)) fields[k] = v;
 
     let bar: Record<string, unknown> | null = null;
 

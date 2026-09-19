@@ -138,6 +138,28 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true, status: 'rejected' });
     }
 
+    /**
+     * Quietly shelved, not judged.
+     *
+     * Owners often send several photos when we want one. Approving one and
+     * rejecting the rest marks good photos as rejected, which is wrong in the
+     * record and, on the owner's own dashboard, reads as a verdict on their
+     * work. Reject stays for a submission that is actually wrong.
+     *
+     * No publish, no reject flow, no owner notification, and submitted_data is
+     * left intact so a photo passed over today can still be used later. The
+     * owner API already filters archived rows out (api/owner/bars), so this is
+     * invisible to them rather than visible-and-negative. The status and the
+     * admin tab already existed; only the action and the button were missing.
+     */
+    if (action === 'archive') {
+      await supabase
+        .from('owner_submissions')
+        .update({ status: 'archived', admin_notes: notes || null, reviewed_at: now })
+        .eq('id', sub.id);
+      return NextResponse.json({ success: true, status: 'archived' });
+    }
+
     if (action !== 'approve') {
       return NextResponse.json({ error: 'Unknown action' }, { status: 400 });
     }

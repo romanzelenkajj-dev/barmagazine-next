@@ -318,6 +318,18 @@ export default function AdminOwnerEditsPage() {
                   >
                     {busy === sub.id ? 'Working…' : 'Approve & publish'}
                   </button>
+                  {/* Between publish and reject: shelve it without telling the
+                      owner their photo was refused. The owner API hides
+                      archived rows, so this is invisible to them rather than
+                      visible and negative. */}
+                  <button
+                    className="feature-btn feature-btn-outline"
+                    disabled={busy === sub.id}
+                    onClick={() => act('archive', sub.id)}
+                    title="Shelve quietly. No publish, no rejection on the owner's dashboard, photos kept."
+                  >
+                    Archive
+                  </button>
                   <button
                     className="feature-btn feature-btn-outline"
                     disabled={busy === sub.id}

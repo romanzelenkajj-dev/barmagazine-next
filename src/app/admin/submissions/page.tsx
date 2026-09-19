@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { DescriptionReview, type DescriptionChoice } from '@/components/DescriptionReview';
+import { EditableSubmissionFields, type FieldKey } from '@/components/EditableSubmissionFields';
 
 interface Submission {
   id: string;
@@ -16,6 +17,8 @@ interface Submission {
   email?: string;
   phone?: string;
   description?: string;
+  /** Not a column on bar_submissions today. See the task 69 report. */
+  opening_hours?: string;
   contact_name?: string;
   status?: string;
   created_at: string;
@@ -41,6 +44,8 @@ export default function AdminSubmissionsPage() {
    * submitted, which is exactly what it did before this panel existed.
    */
   const [descChoice, setDescChoice] = useState<Record<string, DescriptionChoice>>({});
+  /** Per-submission field corrections, keyed by submission id then field. */
+  const [fieldEdits, setFieldEdits] = useState<Record<string, Partial<Record<FieldKey, string>>>>({});
 
   const fetchSubmissions = async (status: string, secret: string) => {
     setLoading(true);
@@ -97,17 +102,20 @@ export default function AdminSubmissionsPage() {
     setActionLoading(id);
     try {
       const chosen = descChoice[id];
+      // Field corrections, plus the description if a rewrite was picked. The
+      // submission row keeps the owner's original either way; this only
+      // decides what goes onto the bar.
+      const overrides: Record<string, string> = { ...(fieldEdits[id] || {}) } as Record<string, string>;
+      if (chosen && chosen.source !== 'owner' && chosen.text.trim()) {
+        overrides.description = chosen.text;
+      }
       await fetch('/api/admin/submissions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret },
         body: JSON.stringify({
           action,
           submissionId: id,
-          // Only sent when the reviewer picked something other than the
-          // owner's own words. The submission row keeps the original either way.
-          ...(action === 'approve' && chosen && chosen.source !== 'owner' && chosen.text.trim()
-            ? { description: chosen.text }
-            : {}),
+          ...(action === 'approve' && Object.keys(overrides).length ? { overrides } : {}),
         }),
       });
       fetchSubmissions(tab, adminSecret);
@@ -223,6 +231,21 @@ export default function AdminSubmissionsPage() {
                     <img src={s.photo_url} alt="Submitted photo" loading="lazy" />
                   </a>
                 </div>
+              )}
+
+              {tab === 'pending' && (
+                <EditableSubmissionFields
+                  values={{
+                    name: s.name, city: s.city, country: s.country, type: s.type,
+                    address: s.address, opening_hours: s.opening_hours,
+                    website: s.website, instagram: s.instagram, phone: s.phone, email: s.email,
+                  }}
+                  edits={fieldEdits[s.id] || {}}
+                  disabled={actionLoading === s.id}
+                  onChange={(key, value) =>
+                    setFieldEdits(prev => ({ ...prev, [s.id]: { ...(prev[s.id] || {}), [key]: value } }))
+                  }
+                />
               )}
 
               {s.description && tab === 'pending' && (
