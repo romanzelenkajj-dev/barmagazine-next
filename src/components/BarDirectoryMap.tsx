@@ -49,8 +49,9 @@ const FEATURED_PER_PAGE = 12;
  * distance, which is what the old code did past 80.
  */
 const NEAR_BANDS_KM = [5, 15, 40];
-/** Past the last band nothing counts as near. What the near-me notice reports against. */
-const NEAR_LIMIT_KM = NEAR_BANDS_KM[NEAR_BANDS_KM.length - 1];
+// NEAR_LIMIT_KM used to live here as the banner's own threshold. It is gone on
+// purpose: the banner is now derived from whether any card can show a distance,
+// so there is no second number to drift away from the first.
 
 /** Which band a distance falls in. Lower is closer; NEAR_BANDS_KM.length means "beyond". */
 function nearBand(km: number): number {
@@ -65,11 +66,71 @@ function nearBand(km: number): number {
  * that use them for road distance, kilometres everywhere else. One decimal
  * while the number is small, none once it is not.
  */
-function formatDistance(km: number, locale?: string): string {
-  const loc = locale || (typeof navigator !== 'undefined' ? navigator.language : 'en-US');
-  const region = (loc.split('-')[1] || '').toUpperCase();
-  const imperial = region === 'US' || region === 'GB' || region === 'LR' || region === 'MM';
-  if (imperial) {
+/**
+ * The places that use miles for road distance. GB genuinely does.
+ */
+const IMPERIAL_COUNTRIES = new Set(['US', 'GB', 'LR', 'MM']);
+
+/** The region subtag of the browser's language, or '' when there is none. */
+function regionFromLanguage(): string {
+  if (typeof navigator === 'undefined') return '';
+  return (navigator.language || '').split('-')[1] || '';
+}
+
+/**
+ * A distance in the unit the visitor's COUNTRY uses.
+ *
+ * WHY NOT navigator.language. It is a language preference, not a location. A
+ * Slovak bartender with their browser in US English, which is common, was
+ * getting miles while standing in Bratislava. The old code also defaulted to
+ * 'en-US' when navigator was absent, so anything server-side resolved to
+ * miles, and a browser reporting plain 'en' or 'de' with no region subtag
+ * produced an empty region and fell through to kilometres by accident rather
+ * than by design.
+ *
+ * `geoCountryCode` is the visitor's country from their IP, which the near-me
+ * feature already sorts on, so the unit now comes from the same signal as the
+ * ordering. Language is only a fallback, and kilometres is the default,
+ * because most of the world uses them.
+ */
+/**
+ * One decision for both the unit and the threshold below, so they cannot
+ * disagree about who the visitor is.
+ */
+function usesImperial(countryCode?: string): boolean {
+  const region = String(countryCode || regionFromLanguage() || '').toUpperCase();
+  return IMPERIAL_COUNTRIES.has(region);
+}
+
+/**
+ * Whether a distance is worth printing on a card.
+ *
+ * WHY NOT ALWAYS. In Bratislava the number is useful: a card reading 2.1 km is
+ * something a visitor can act on. In Carlsbad the nearest bars are 21 miles
+ * out and a wall of cards reading 800 mi makes the directory look empty, which
+ * is a statement about our coverage rather than about the bar. Roman: "maybe
+ * we just keep it without the distance for now. But then again, in some cities
+ * like Bratislava, it might work." Both halves are right, so the card shows it
+ * only when it means something and the banner says it once when it does not.
+ *
+ * THIRTY IN THE VISITOR'S OWN UNIT, not one converted into the other: 30 miles
+ * for a visitor on miles, 30 km for a visitor on kilometres. A converted
+ * threshold would put an odd 48 in front of somebody. It also gives US
+ * visitors a slightly wider net, which matches how much further they drive.
+ *
+ * Nothing has to be switched on later: as cities fill in, distances start
+ * appearing on their own.
+ */
+const CARD_DISTANCE_LIMIT = 30;
+
+function showsDistanceOnCard(km: number, countryCode?: string): boolean {
+  if (!Number.isFinite(km)) return false;
+  const value = usesImperial(countryCode) ? km * 0.621371 : km;
+  return value < CARD_DISTANCE_LIMIT;
+}
+
+function formatDistance(km: number, countryCode?: string): string {
+  if (usesImperial(countryCode)) {
     const mi = km * 0.621371;
     return `${mi < 10 ? mi.toFixed(1) : Math.round(mi)} mi`;
   }
@@ -947,9 +1008,6 @@ export function BarDirectoryMapClient({
     return Number.isFinite(min) ? min : null;
   }, [nearMode, allFiltered, getDistKm]);
 
-  /** True only when we can say something honest: nothing inside the radius. */
-  const nothingNearby = nearestKm !== null && nearestKm > NEAR_LIMIT_KM && nearestKm < 99999;
-
   /**
    * Whether the distance is a measurement or an artifact.
    *
@@ -960,6 +1018,25 @@ export function BarDirectoryMapClient({
    * coordinates the notice says what it actually knows and quotes no number.
    */
   const hasPreciseLocation = userLat !== null && userLng !== null;
+
+  /**
+   * The banner speaks exactly when no card can.
+   *
+   * It is DERIVED from the card rule rather than carrying a threshold of its
+   * own. It used to key off the 80 km near-me radius while the cards keyed off
+   * 30 in the visitor's unit, and between those two numbers sat a band where a
+   * visitor saw a list of bars with no distances and no reason given: nearest
+   * bar 45 km away, every card silent, banner silent too. Two numbers drift
+   * apart the moment either is tuned, which is how that gap appeared. One
+   * number now, and the banner is its complement.
+   *
+   * The list is distance-ordered, so if the nearest bar cannot show a distance
+   * then none of them can.
+   */
+  const noCardShowsDistance =
+    nearestKm === null
+    || !hasPreciseLocation
+    || !showsDistanceOnCard(nearestKm, geoCountryCode);
 
   /**
    * Turn near-me on or off. The control has no state of its own: it renders
@@ -1018,7 +1095,11 @@ export function BarDirectoryMapClient({
           <p>Handpicked cocktail bars, speakeasies, and world-renowned destinations.</p>
           <div className="directory-hero-stats">
             <div className="directory-hero-stat">
-              <strong>{totalBars ? `${totalBars.toLocaleString()}+` : '1,000+'}</strong>
+              {/* Pinned to en-US like every other count on the site. Without
+                  the argument the separator follows the browser, so a German
+                  visitor saw 1.506+ where everyone else saw 1,506+. This is
+                  the one call site that was left to the browser. */}
+              <strong>{totalBars ? `${totalBars.toLocaleString('en-US')}+` : '1,000+'}</strong>
               <span>bars</span>
             </div>
             <div className="directory-hero-stat">
@@ -1152,16 +1233,16 @@ export function BarDirectoryMapClient({
       </div>
 
       {/* We list bars in 218 cities, so a lot of visitors have nothing genuinely
-          near them. Rather than present a bar 3,000 km away as though it were
-          local, say what the page is actually showing. */}
-      {nearMode && nothingNearby && (
+          near them. When no card can show a distance, this says it once rather
+          than leaving the reader to wonder why the numbers vanished. */}
+      {nearMode && noCardShowsDistance && (
         <div className="dir-near-notice">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
             <circle cx="12" cy="10" r="3" />
           </svg>
-          {hasPreciseLocation
-            ? `No bars within ${formatDistance(NEAR_LIMIT_KM)} of you. Showing the closest, starting about ${formatDistance(nearestKm as number)} away.`
+          {hasPreciseLocation && nearestKm !== null && nearestKm < 99999
+            ? `The nearest bars we list are ${formatDistance(nearestKm, geoCountryCode)} away.`
             : 'We could not pin down where you are. These are ordered by our best guess at what is closest to you.'}
         </div>
       )}
@@ -1189,18 +1270,20 @@ export function BarDirectoryMapClient({
             </div>
           ) : (
             <div className="dir-section">
-              {/* Near mode is otherwise invisible — without this strip the
-                  distance sort and the default sort are indistinguishable,
-                  and nobody can tell whether the button worked. */}
-              {nearMode && (
-                <p className="dir-near-note">
-                  Closest first. Bars a similar distance away are ranked by quality, so nothing far off leads{userLat === null ? ', and turning on location makes the distances exact' : ''}.
-                </p>
-              )}
+              {/* The banner that used to sit here is gone (Roman, 2026-09-18):
+                  "this sentence doesn't look good there, and I don't think
+                  it's necessary". It explained the ranking to someone who had
+                  not asked, and once every card carries its own distance it
+                  told the reader nothing they could not already see. The
+                  near-me control shows the mode is on and gives a way out, so
+                  nothing is lost. The one line that survives is the
+                  beyond-the-radius notice above, which is the only fact the
+                  cards cannot convey on their own: a card reading 340 km does
+                  not tell you that is the best we have rather than a mistake. */}
               {/* ══ UNIFIED GRID: all bars, same card design, sorted by tier then proximity ══ */}
               <div className="directory-featured-grid">
                 {allFiltered.slice(0, gridVisible).map(bar => (
-                  <FeaturedBarCard key={bar.id} bar={bar} distanceKm={nearMode && hasPreciseLocation ? getDistKm(bar) : null} />
+                  <FeaturedBarCard key={bar.id} bar={bar} distanceKm={nearMode && hasPreciseLocation ? getDistKm(bar) : null} countryCode={geoCountryCode} />
                 ))}
               </div>
 
@@ -1249,7 +1332,7 @@ export function BarDirectoryMapClient({
 /* ─── Card Components ─── */
 
 
-function FeaturedBarCard({ bar, distanceKm }: { bar: Bar; distanceKm?: number | null }) {
+function FeaturedBarCard({ bar, distanceKm, countryCode }: { bar: Bar; distanceKm?: number | null; countryCode?: string }) {
   const imageUrl = bar.photos?.[0] || null;
   const isPremium = bar.tier === 'premium';
   const isTop10 = bar.tier === 'top10';
@@ -1270,8 +1353,8 @@ function FeaturedBarCard({ bar, distanceKm }: { bar: Bar; distanceKm?: number | 
           )
         }
         <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} premium={isPremium} status={statusPill(bar)} />
-        {typeof distanceKm === 'number' && distanceKm < 99999 && (
-          <span className="bar-dir-distance-pill">{formatDistance(distanceKm)}</span>
+        {typeof distanceKm === 'number' && showsDistanceOnCard(distanceKm, countryCode) && (
+          <span className="bar-dir-distance-pill">{formatDistance(distanceKm, countryCode)}</span>
         )}
       </div>
       <div className="bar-dir-featured-body">
