@@ -27,12 +27,12 @@
  * future categories before they get curated copy).
  */
 export const CATEGORY_DESCRIPTIONS: Record<string, string> = {
-  bars: "Discover the world's best cocktail bars, speakeasies, and hotel venues — reviewed and curated by BarMagazine for industry pros and serious drinkers.",
-  people: "Bartender profiles, owner interviews, and industry voices from BarMagazine — the people building the world's most influential cocktail and bar scenes.",
-  cocktails: "Cocktail recipes, mixology trends, and signature drinks from BarMagazine — featuring techniques and inspiration from leading bartenders worldwide.",
-  awards: "World's 50 Best Bars, Tales of the Cocktail Spirited Awards, and global cocktail competitions — full coverage of bar industry honors from BarMagazine.",
-  brands: 'Spirits launches, distillery profiles, and brand stories from BarMagazine — covering whiskey, gin, mezcal, rum, and the bottles shaping bar programs.',
-  events: "Cocktail weeks, bar shows, and industry gatherings — BarMagazine's coverage of the events shaping the global bar and spirits calendar.",
+  bars: "Discover the world's best cocktail bars, speakeasies, and hotel venues, reviewed and curated by BarMagazine for industry pros and serious drinkers.",
+  people: "Bartender profiles, owner interviews, and industry voices from BarMagazine: the people building the world's most influential cocktail and bar scenes.",
+  cocktails: "Cocktail recipes, mixology trends, and signature drinks from BarMagazine, featuring techniques and inspiration from leading bartenders worldwide.",
+  awards: "World's 50 Best Bars, Tales of the Cocktail Spirited Awards, and global cocktail competitions: full coverage of bar industry honors from BarMagazine.",
+  brands: 'Spirits launches, distillery profiles, and brand stories from BarMagazine, covering whiskey, gin, mezcal, rum, and the bottles shaping bar programs.',
+  events: "Cocktail weeks, bar shows, and industry gatherings: BarMagazine's coverage of the events shaping the global bar and spirits calendar.",
 };
 
 /**

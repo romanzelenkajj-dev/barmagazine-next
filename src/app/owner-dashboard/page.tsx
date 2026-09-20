@@ -284,7 +284,7 @@ export default function OwnerDashboardPage() {
             <div key={claim.id} className="add-bar-form-card">
               <p>
                 Your claim of <strong>{claim.barName}</strong> is one step from done.
-                You&apos;re signed in with the address the claim used, so you can finish it here —
+                You&apos;re signed in with the address the claim used, so you can finish it here.
                 no email link needed.
               </p>
               <p style={{ marginTop: 16 }}>
@@ -308,7 +308,7 @@ export default function OwnerDashboardPage() {
             <h2 className="owner-dash-section-title">No bars yet</h2>
             <p>
               Once you&apos;ve claimed a bar it appears here.{' '}
-              <Link href="/claim-your-bar" className="feature-link">Claim your bar</Link> — it&apos;s free.
+              <Link href="/claim-your-bar" className="feature-link">Claim your bar</Link>. It&apos;s free.
             </p>
           </div>
         ) : (

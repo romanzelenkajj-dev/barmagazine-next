@@ -56,19 +56,19 @@ export const WELCOME_EMAIL_HTML = `<!DOCTYPE html>
           <h2>What to expect</h2>
           <div class="expect-item">
             <div class="expect-dot"></div>
-            <p><strong>Bar profiles &amp; spotlights</strong> — In-depth features on the world's most influential bars</p>
+            <p><strong>Bar profiles &amp; spotlights</strong>: in-depth features on the world's most influential bars</p>
           </div>
           <div class="expect-item">
             <div class="expect-dot"></div>
-            <p><strong>Industry news &amp; awards</strong> — Coverage of competitions, openings, and the people shaping the industry</p>
+            <p><strong>Industry news &amp; awards</strong>: coverage of competitions, openings, and the people shaping the industry</p>
           </div>
           <div class="expect-item">
             <div class="expect-dot"></div>
-            <p><strong>Cocktail culture</strong> — Trends, techniques, and the stories behind the drinks</p>
+            <p><strong>Cocktail culture</strong>: trends, techniques, and the stories behind the drinks</p>
           </div>
           <div class="expect-item">
             <div class="expect-dot"></div>
-            <p><strong>Bar directory</strong> — Discover and explore exceptional bars around the world</p>
+            <p><strong>Bar directory</strong>: discover and explore exceptional bars around the world</p>
           </div>
         </div>
         <p>In the meantime, explore the latest from the bar world on our website.</p>

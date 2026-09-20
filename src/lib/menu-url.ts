@@ -72,10 +72,10 @@ export function isSocialMediaUrl(raw: string): boolean {
 }
 
 export const SEARCH_URL_MESSAGE =
-  'That link is a search or maps results page. Please link your menu page directly — the page that shows your drinks.';
+  'That link is a search or maps results page. Please link your menu page directly: the page that shows your drinks.';
 
 export const SOCIAL_URL_MESSAGE =
-  'Please link your menu page — your Instagram is already on your profile.';
+  'Please link your menu page: your Instagram is already on your profile.';
 
 /**
  * One verdict for a proposed menu link: the message to show, or null when the

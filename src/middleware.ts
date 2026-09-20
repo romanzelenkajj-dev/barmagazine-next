@@ -43,7 +43,7 @@ import { CURRENCY_COOKIE, currencyFromCountry } from '@/lib/geo-currency';
  * scope and can wrap this when designed.
  */
 function serveGone(): NextResponse {
-  return new NextResponse('Gone — this page is no longer available.', {
+  return new NextResponse('Gone. This page is no longer available.', {
     status: 410,
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
   });
