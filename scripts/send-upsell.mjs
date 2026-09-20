@@ -271,6 +271,61 @@ async function optedOutInDb(email) {
 
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
+/**
+ * PRE-FLIGHT: refuse to start when too much of the list has no address.
+ *
+ * WHY THIS EXISTS. Batch 15 was armed with 22 bars and 19 of them had no
+ * email. The loop below logged `SKIP <slug>: no email on file` to STDERR and
+ * carried on, so the run exited clean, the launchd log looked normal, and
+ * three emails went out where twenty-two were intended. Nobody would have
+ * noticed until the reply rate came in wrong a week later.
+ *
+ * A batch that silently reaches a seventh of its targets is not a batch that
+ * succeeded with some skips. It is a batch that failed, and it should say so
+ * before it sends anything rather than after.
+ *
+ * The threshold is deliberately generous: a couple of missing addresses in a
+ * wave is ordinary and should not block a send. A fifth of the list missing
+ * means the list was built wrong.
+ */
+const MAX_MISSING_SHARE = 0.2;
+
+{
+  const missing = [];
+  const ready = [];
+  for (const slug of slugs) {
+    const res = await fetch(`${SUPA_URL}/rest/v1/bars?select=slug,name,email&slug=eq.${encodeURIComponent(slug)}&is_active=eq.true`, {
+      headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` },
+    });
+    const rows = res.ok ? await res.json() : [];
+    if (!rows.length) { missing.push({ slug, name: '(not found or inactive)' }); continue; }
+    if (!String(rows[0].email || '').trim()) missing.push({ slug, name: rows[0].name });
+    else ready.push(slug);
+  }
+
+  // STDOUT, not stderr. The skipped names are the most useful thing this
+  // script can print and they were going to the one stream nobody reads.
+  if (missing.length) {
+    console.log(`\n${missing.length} of ${slugs.length} have no email on file and cannot be sent:`);
+    for (const m of missing) console.log(`   - ${m.slug}  (${m.name})`);
+    console.log('');
+  }
+
+  const share = slugs.length ? missing.length / slugs.length : 0;
+  if (share > MAX_MISSING_SHARE) {
+    console.log(
+      `REFUSING TO SEND. ${missing.length} of ${slugs.length} targets (${Math.round(share * 100)}%) have no address, ` +
+      `over the ${Math.round(MAX_MISSING_SHARE * 100)}% limit.\n` +
+      `This would have sent ${ready.length} emails while looking like it sent ${slugs.length}.\n` +
+      `Harvest the addresses listed above, or narrow the slug list to the ones that are ready, then run again.`
+    );
+    process.exit(2);
+  }
+  if (missing.length) {
+    console.log(`Continuing: ${Math.round(share * 100)}% missing is within the ${Math.round(MAX_MISSING_SHARE * 100)}% limit. ${ready.length} will be sent.`);
+  }
+}
+
 for (const slug of slugs) {
   const res = await fetch(`${SUPA_URL}/rest/v1/bars?select=*&slug=eq.${encodeURIComponent(slug)}&is_active=eq.true`, {
     headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` },
@@ -313,7 +368,9 @@ for (const slug of slugs) {
     continue;
   }
   const to = overrideTo || bar.email;
-  if (!to) { console.error(`SKIP ${slug}: no email on file`); continue; }
+  // stdout as well as stderr: the pre-flight above should already have
+  // caught this, so reaching here at all is worth seeing in the normal log.
+  if (!to) { console.log(`SKIP ${slug}: no email on file`); continue; }
   if (!overrideTo && !live) { console.log(`DRY RUN would send: ${bar.name} -> ${to}`); continue; }
 
   const r = await fetch('https://api.resend.com/emails', {
