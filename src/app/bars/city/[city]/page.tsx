@@ -69,7 +69,6 @@ export async function generateMetadata({
 
   const cityName = match.city;
   const countryName = match.country;
-  const currentYear = new Date().getFullYear();
   // A same-name city carries its qualifier in the title too, or the two
   // Portlands would share one title. Everything else keeps the bare name.
   const titleName = match.qualified ? cityLabel(cityName, countryName, subdivisionName(match.state, countryName)) : cityName;
@@ -81,12 +80,23 @@ export async function generateMetadata({
   // removes the singular/plural branch ("The 1 best cocktail bars in
   // Detroit"). The live count still belongs in on-page copy, which
   // regenerates with the data.
+  // NO "BEST BARS IN X" AND NO TYPE PHRASE HERE (task 83). This page was
+  // claiming both of its siblings' phrases at once: the title said "Best
+  // Cocktail Bars in Bangkok", which is /best-bars/bangkok/cocktail-bars at
+  // position 7.3, and the H1 said "Best Bars in Bangkok", which is
+  // /best-bars/bangkok. Google consolidated the three onto this one, the
+  // weakest of them, and ranked it at 38.6 for 0.7% CTR while the pages
+  // built to win those phrases earned nothing.
+  //
+  // What this page actually is: the bars WE hold in a city, all of them,
+  // which is a directory and not a selection. The copy says that and stops
+  // competing.
   const description =
-    `The best cocktail bars in ${cityLabel(cityName, countryName, subdivisionName(match.state, countryName))}, ` +
-    `curated by BarMagazine for ${currentYear}. Speakeasies, hotel bars and ` +
-    `neighborhood rooms, with addresses, hours and signature serves.`;
+    `The bars BarMagazine lists in ${cityLabel(cityName, countryName, subdivisionName(match.state, countryName))}: ` +
+    `addresses, opening hours, signature serves and the awards each one holds. ` +
+    `Browse the full city directory.`;
 
-  const title = `Best Cocktail Bars in ${titleName}`;
+  const title = `${titleName} Bar Directory`;
   const canonical = `${SITE_URL}/bars/city/${params.city}`;
 
   return {
@@ -209,8 +219,10 @@ export default async function CityPage({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `Best Bars in ${headingName}`,
-    description: `Curated list of the best bars in ${locationLabel} by BarMagazine.`,
+    // Same rule as the title and the H1: the structured data is what Google
+    // reads, so leaving the old phrase here would undo the change.
+    name: `${headingName} Bar Directory`,
+    description: `The bars BarMagazine lists in ${locationLabel}.`,
     url: `${SITE_URL}/bars/city/${params.city}`,
     numberOfItems: bars.length,
     itemListElement: sorted.slice(0, 50).map((bar, i) => ({
@@ -266,13 +278,18 @@ export default async function CityPage({
             <img src={sorted.find(b => b.photos?.[0])?.photos?.[0] || '/images/directory-hero.jpg'} alt="" />
           </div>
           <div className="directory-hero-inner">
-            <h1>Best Bars in {headingName}</h1>
+            <h1>{headingName} Bar Directory</h1>
+            {/* The live count sits here, in on-page copy that regenerates on
+                the 300s revalidate, and NOT in the title or meta description:
+                Google holds those for weeks, so a cached number is stale more
+                often than it is right. That rule predates task 83 (see the
+                comment in generateMetadata) and this keeps to it. */}
             {cityIntro ? (
               <p>{cityIntro}</p>
             ) : (
               <p>
-                Explore the best bars in {locationLabel}, handpicked by the
-                BarMagazine editorial team.
+                Browse the {bars.length} bars BarMagazine lists in {locationLabel},
+                with addresses, opening hours and signature serves.
                 {types.length > 0 && (
                   <>
                     {' '}Our curated list covers {types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}
