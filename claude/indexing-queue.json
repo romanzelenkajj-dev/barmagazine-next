@@ -3724,6 +3724,14 @@
    "accolades": 0,
    "status": "pending",
    "date": "2026-09-19"
+  },
+  {
+   "slug": "bible-club-osaka",
+   "city": "Osaka",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": "2026-09-20"
   }
  ]
 }
