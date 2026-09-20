@@ -10429,14 +10429,6 @@ textarea.form-input {
   color: var(--text-secondary);
 }
 
-/* Near-mode indicator above the directory grid — proof the distance sort is
-   active, since the grid itself looks identical under any ordering. */
-.dir-near-note {
-  margin: 0 0 14px;
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
 /* ── /add-your-bar: upgrade-mode identity + "already listed?" finder ────── */
 
 /* The locked bar identity shown instead of name/city/address inputs when the

@@ -119,11 +119,14 @@ describe('no em dash reaches a reader', () => {
     // An allowlist entry that no longer needs to be there is how a guard
     // rots. If the em dash is gone, or the file is, the entry should go too.
     const stale: string[] = [];
-    for (const [file, reason] of ALLOWED) {
-      if (!fs.existsSync(file)) { stale.push(`${file} no longer exists (reason was: ${reason})`); continue; }
+    // forEach, not for...of: this tsconfig predates downlevelIteration and
+    // TS2802 rejects iterating a Map. vitest transpiles happily, `tsc` does
+    // not, and the build runs tsc.
+    ALLOWED.forEach((reason, file) => {
+      if (!fs.existsSync(file)) { stale.push(`${file} no longer exists (reason was: ${reason})`); return; }
       const body = stripComments(fs.readFileSync(file, 'utf8'));
       if (!body.includes(EM_DASH)) stale.push(`${file} no longer contains one (reason was: ${reason})`);
-    }
+    });
     expect(stale, `Stale ALLOWED entries, remove them:\n${stale.join('\n')}\n`).toEqual([]);
   });
 });
