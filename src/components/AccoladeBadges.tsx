@@ -35,8 +35,8 @@ export function AccoladeBadges({
           // here too, for every org: unexposed on the tile face, present on
           // hover (Roman, 2026-09-14). The source keeps every tile traceable
           // to its citation.
-          title={[`${tile.org} ${tile.year}`, tile.rank != null ? `No. ${tile.rank}` : null, tile.title, tile.source].filter(Boolean).join(' — ')}
-          aria-label={[`${tile.org} ${tile.year}`, tile.rank != null ? `No. ${tile.rank}` : null, tile.title].filter(Boolean).join(' — ')}
+          title={[`${tile.org} ${tile.year}`, tile.rank != null ? `No. ${tile.rank}` : null, tile.title, tile.source].filter(Boolean).join(', ')}
+          aria-label={[`${tile.org} ${tile.year}`, tile.rank != null ? `No. ${tile.rank}` : null, tile.title].filter(Boolean).join(', ')}
         >
           {/* jbf is a two-line tile (empty region); the flex centering
               keeps its lines vertically balanced. */}
