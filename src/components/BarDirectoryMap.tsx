@@ -1359,7 +1359,7 @@ export function BarDirectoryMapClient({
                   <div className="directory-inline-cta-inner">
                     <div className="directory-inline-cta-text">
                       <h3>Get featured in BarMagazine</h3>
-                      <p>From a free listing to a full feature article — get your bar in front of the world&apos;s bar professionals.</p>
+                      <p>From a free listing to a full feature article: get your bar in front of the world&apos;s bar professionals.</p>
                     </div>
                     <Link href="/feature-your-bar" className="directory-inline-cta-btn">
                       List Your Bar

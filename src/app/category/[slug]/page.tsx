@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   // Fallback covers any future category before its curated copy lands.
   const description =
     CATEGORY_DESCRIPTIONS[params.slug.toLowerCase()] ??
-    `Browse ${category.name} articles on BarMagazine — the latest in cocktail culture, bar news, and spirits.`;
+    `Browse ${category.name} articles on BarMagazine: the latest in cocktail culture, bar news, and spirits.`;
   return {
     title: category.name,
     description,
@@ -60,7 +60,7 @@ export default async function CategoryPage({
   const itemListLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `${category.name} — BarMagazine`,
+    name: `${category.name}, BarMagazine`,
     url: `https://barmagazine.com/category/${params.slug}`,
     numberOfItems: result.data.length,
     itemListElement: (
