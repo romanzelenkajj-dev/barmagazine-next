@@ -91,6 +91,7 @@ export default async function BarsPage() {
         totalCities={stats.totalCities}
         countries={filters.countries}
         cities={filters.cities}
+        commonCities={filters.commonCities}
         types={filters.types}
         geoCity={decodeURIComponent(geoCity)}
         geoCountryCode={geoCountryCode}

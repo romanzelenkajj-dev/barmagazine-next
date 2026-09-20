@@ -1,8 +1,10 @@
 import { DirectoryBarCard } from '@/components/DirectoryBarCard';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getCityIndex, getBarsForCity } from '@/lib/city-index';
+import { retiredAreaSlugTarget } from '@/lib/metro-rollup';
+import { cityBase } from '@/lib/city-base';
 import type { Bar } from '@/lib/supabase';
 import { subdivisionName, cityLabel } from '@/lib/city-location';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
@@ -130,7 +132,21 @@ export default async function CityPage({
 }) {
   const index = await getCityIndex();
   const match = index.resolve(params.city);
-  if (!match) notFound();
+  if (!match) {
+    // A city that became an area keeps its URL alive: /bars/city/beverly-hills
+    // now lands on the Los Angeles page rather than 404ing. Permanent,
+    // because the move is permanent. See metro-rollup.ts.
+    const retired = retiredAreaSlugTarget(params.city);
+    if (retired) {
+      const metro = index.entries.find(
+        e => cityBase(e.city) === retired.metroBase
+          && e.country === retired.country
+          && (!e.qualified || e.state === retired.metroState)
+      );
+      if (metro) permanentRedirect(`/bars/city/${metro.slug}`);
+    }
+    notFound();
+  }
 
   const cityName = match.city;
   const countryName = match.country;
