@@ -45,6 +45,15 @@ export type MapAccolade = {
   year: number;
   score: number;
   title: string | null;
+  /**
+   * REQUIRED, not optional padding. isRenderable() in accolades.ts rejects
+   * any entry without a non-empty source, so an accolade trimmed of it
+   * renders nothing: hasFiftyBest() returns false and the 50 Best pill
+   * silently disappears from every near-me card while the same bar shows one
+   * in normal browsing. Dropping it to save bytes is what this field exists
+   * to stop someone doing again.
+   */
+  source: string;
 };
 
 export async function GET() {
@@ -84,6 +93,7 @@ export async function GET() {
             year: Number(a.year ?? 0),
             score: Number(a.score ?? 0),
             title: a.title == null ? null : String(a.title),
+            source: String(a.source ?? ''),
           }))
         : null,
     }));

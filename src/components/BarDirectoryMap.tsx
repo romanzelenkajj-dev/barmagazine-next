@@ -3,7 +3,7 @@
 import { asciiFold } from '@/lib/ascii-fold';
 import { metroCityOf, searchTermsOf } from '@/lib/metro-rollup';
 import { displayType } from '@/lib/bar-type';
-import { hasFiftyBest } from '@/lib/accolades';
+import { hasFiftyBest, renderableAccolades } from '@/lib/accolades';
 import { CardStatusPills } from '@/components/CardStatusPills';
 import { statusPill } from '@/lib/bar-status';
 import { meritBand } from '@/lib/city-levels';
@@ -153,6 +153,24 @@ type MapBarPayload = {
   lat: number | null; lng: number | null; photo: string | null;
   subtypes?: string[] | null; accolades?: unknown;
 };
+
+/**
+ * The best renderable accolade's score, 0 when a bar holds none.
+ *
+ * Mirrors bestAccolade() in seo-cities.ts, which is private to that module
+ * and pulls the Supabase client in with it, so it cannot be imported into a
+ * client component. Only the score is needed here; the award wording is not.
+ */
+function bestScore(bar: { accolades?: unknown }): number {
+  const entries = renderableAccolades(bar.accolades);
+  if (entries.length === 0) return 0;
+  let top = 0;
+  for (let i = 0; i < entries.length; i += 1) {
+    const s = entries[i].score ?? 0;
+    if (s > top) top = s;
+  }
+  return top;
+}
 
 const SHOW_ALL_CITIES = '__show_all_cities__';
 
@@ -1036,6 +1054,19 @@ export function BarDirectoryMapClient({
           const tA = tierRank(a);
           const tB = tierRank(b);
           if (tA !== tB) return tA - tB;
+          // ACCOLADES BEFORE PHOTO (Roman, 2026-09-20). All sixteen
+          // Bratislava bars sit inside 600m, so they are one band and every
+          // one is free tier with or without a photo. Without this term
+          // distance broke the tie and Mirror Bar, No. 25 on the World's 50
+          // Best with two more awards behind it, sat third behind two bars
+          // holding nothing, on eighty metres.
+          //
+          // Same ordering the city pages use: the best renderable accolade's
+          // score, highest first. Renderable is the point, since an entry the
+          // badge would not draw should not move the list either.
+          const sA = bestScore(a);
+          const sB = bestScore(b);
+          if (sA !== sB) return sB - sA;
           const pA = hasPhoto(a) ? 0 : 1;
           const pB = hasPhoto(b) ? 0 : 1;
           if (pA !== pB) return pA - pB;
