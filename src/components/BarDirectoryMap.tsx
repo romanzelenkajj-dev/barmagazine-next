@@ -145,6 +145,15 @@ function formatDistance(km: number, countryCode?: string): string {
  * to the server: onChange intercepts it and expands the list instead.
  * Prefixed so it cannot collide with a real city name.
  */
+/** The row shape /api/bars/map returns. Kept local so this file does not
+    import a route module. */
+type MapBarPayload = {
+  id: string; name: string; slug: string; city: string; country: string;
+  state?: string | null; type: string; tier: string;
+  lat: number | null; lng: number | null; photo: string | null;
+  subtypes?: string[] | null; accolades?: unknown;
+};
+
 const SHOW_ALL_CITIES = '__show_all_cities__';
 
 const PHOTO_PER_PAGE = 24;
@@ -704,6 +713,71 @@ export function BarDirectoryMapClient({
     }
   }, [nearMode, cityFilter, countryFilter, debouncedSearch]);
 
+  /**
+   * Every active bar with coordinates, fetched once and shared by the map and
+   * by near-me.
+   *
+   * WHY NEAR-ME NEEDS IT (task 87). `initialBars` is 226 rows: the top 200 of
+   * 230 top10, both featured bars, and 24 of the 110 free-with-photo bars,
+   * chosen globally with no reference to the visitor. Sorting THAT by distance
+   * returns the nearest bars in a global sample, not the nearest bars we list.
+   * From Bratislava it gave one local bar and then Prague and Italy, while
+   * Mirror Bar, 500m away with three accolades, was not in the payload at all
+   * because it lost a 24-slot lottery against 110 candidates.
+   *
+   * Raising the 24 would make that rarer and leave the bug. Near-me has to see
+   * every bar with coordinates or it is guessing.
+   */
+  const toBar = useCallback((b: MapBarPayload): Bar => ({
+    ...b,
+    // The route types tier as a plain string; Bar narrows it to the four
+    // known values. The column is constrained in the database, so this is a
+    // widening the type system cannot see rather than an assumption.
+    tier: b.tier as Bar['tier'],
+    state: b.state ?? null,
+    region: null, address: null, website: null, instagram: null,
+    phone: null, email: null, description: null, short_excerpt: null, subtypes: b.subtypes ?? null,
+    photos: b.photo ? [b.photo] : [],
+    accolades: (b.accolades ?? null) as Bar['accolades'],
+    featured_until: null, is_verified: false, is_active: true,
+    wp_article_slug: null, created_at: '', updated_at: '',
+    // The remaining Bar fields the card never reads on the directory grid.
+    // Spelled out rather than cast, so adding a required column to Bar breaks
+    // the build here instead of shipping an undefined at runtime.
+    photo_credit: null, opening_hours: null, menu_url: null,
+    menu_highlights: null, menu_sections: null, reservation_url: null,
+    whatsapp: null, owner_id: null, claimed_at: null,
+  }), []);
+
+  /**
+   * Near-me fetches the whole directory the first time it is switched on.
+   *
+   * LAZY ON PURPOSE. This is ~478 KB of JSON, about 30 KB over the wire once
+   * gzipped, and most visitors never press the button. It fires on the press,
+   * not on page load, so a phone that only browses pays nothing. The endpoint
+   * is cached 10 minutes at the edge and shared with the map view, so a
+   * visitor who uses both pays once.
+   */
+  const [nearBars, setNearBars] = useState<Bar[] | null>(null);
+  // A REF, NOT STATE, for the in-flight flag. As state it belongs in the
+  // effect's dependency array, and then setting it re-runs the effect, whose
+  // cleanup cancels the fetch that set it. The request completes and its
+  // result is thrown away, so near-me silently keeps the 226-row sample.
+  const nearFetchStarted = useRef(false);
+
+  useEffect(() => {
+    if (!nearMode || nearFetchStarted.current) return;
+    nearFetchStarted.current = true;
+    fetch('/api/bars/map')
+      .then(r => (r.ok ? r.json() : null))
+      .then(data => { if (data) setNearBars((data.bars || []).map(toBar)); })
+      .catch(e => {
+        // Leave the sample in place and let the visitor retry by toggling.
+        nearFetchStarted.current = false;
+        console.error('near-me: failed to load the directory', e);
+      });
+  }, [nearMode, toBar]);
+
   // GPS-based sorting state
   const [userLat, setUserLat] = useState<number | null>(null);
   const [userLng, setUserLng] = useState<number | null>(null);
@@ -735,6 +809,7 @@ export function BarDirectoryMapClient({
   const [mapBars, setMapBars] = useState<Bar[]>([]);
   const [mapBarsLoaded, setMapBarsLoaded] = useState(false);
 
+
   const openMapView = useCallback(async () => {
     setViewMode('map');
     if (mapBarsLoaded) return; // already fetched
@@ -742,16 +817,7 @@ export function BarDirectoryMapClient({
       const res = await fetch('/api/bars/map');
       if (res.ok) {
         const data = await res.json();
-        // Convert MapBar shape to Bar shape (fill missing fields with defaults)
-        const bars: Bar[] = (data.bars || []).map((b: { id: string; name: string; slug: string; city: string; country: string; state?: string | null; type: string; tier: string; lat: number | null; lng: number | null; photo: string | null; subtypes?: string[] | null }) => ({
-          ...b,
-          state: b.state ?? null,
-          region: null, address: null, website: null, instagram: null,
-          phone: null, email: null, description: null, short_excerpt: null, subtypes: b.subtypes ?? null,
-          photos: b.photo ? [b.photo] : [],
-          featured_until: null, is_verified: false, is_active: true,
-          wp_article_slug: null, created_at: '', updated_at: '',
-        }));
+        const bars: Bar[] = (data.bars || []).map(toBar);
         // Apply geo sorting so closest bars appear first on the map too
         const sorted = userLat !== null && userLng !== null
           ? sortByGPS(bars, userLat, userLng, geoCity, geoCountryCode, geoContinent)
@@ -762,7 +828,7 @@ export function BarDirectoryMapClient({
     } catch (e) {
       console.error('Failed to load map bars', e);
     }
-  }, [mapBarsLoaded, geoCity, geoCountryCode, geoContinent, userLat, userLng]);
+  }, [mapBarsLoaded, geoCity, geoCountryCode, geoContinent, userLat, userLng, toBar]);
 
   // Server-side pagination state
   const [allBars, setAllBars] = useState<Bar[]>(initialBars);
@@ -859,7 +925,17 @@ export function BarDirectoryMapClient({
 
   // Filter bars first
   const filtered = useMemo(() => {
-    return allBars.filter(bar => {
+    /**
+     * Near-me sorts the WHOLE directory, not the 226-row initial payload.
+     *
+     * An effect above drops nearMode the moment a city, country or search
+     * filter is set, so in near-me these predicates are all inert and the
+     * source can be swapped safely. Until the fetch lands, nearBars is null
+     * and the existing 226 are used, so the button responds immediately and
+     * the list deepens a moment later rather than blocking on the network.
+     */
+    const source = nearMode && nearBars ? nearBars : allBars;
+    return source.filter(bar => {
       const q = asciiFold(search);
       // Location matching goes through the metro rollup, not bar.city: the
       // dropdown says "Los Angeles" while Polo Lounge still says "Beverly
@@ -872,7 +948,7 @@ export function BarDirectoryMapClient({
       const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);
       return matchSearch && matchCountry && matchCity && matchType;
     });
-  }, [search, countryFilter, cityFilter, typeFilter, allBars]);
+  }, [search, countryFilter, cityFilter, typeFilter, allBars, nearMode, nearBars]);
 
   // Apply the same filters to the map-only bar dataset so that when a
   // country/city/type filter is active, the map shows only matching bars

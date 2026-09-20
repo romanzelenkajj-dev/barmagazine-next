@@ -21,6 +21,30 @@ export type MapBar = {
   lat: number | null;
   lng: number | null;
   photo: string | null; // first photo only, for popup thumbnail
+  /**
+   * Trimmed accolades. The query already selected these and the projection
+   * threw them away, so the cost is in the response, not the database.
+   *
+   * Near-me needs them (task 87): it now orders the WHOLE directory rather
+   * than a 226-bar sample, and a card built from this payload has to render
+   * the same badges as one built from getBars(), or the same page shows two
+   * qualities of card. Only the fields bestAccolade, hasFiftyBest and the
+   * badge renderer read are kept.
+   *
+   * Null for the 1,066 bars with none, rather than an empty array, so the
+   * common case costs 18 bytes.
+   */
+  accolades: MapAccolade[] | null;
+};
+
+export type MapAccolade = {
+  org: string;
+  org_key: string;
+  kind: string;
+  rank: number | null;
+  year: number;
+  score: number;
+  title: string | null;
 };
 
 export async function GET() {
@@ -51,6 +75,17 @@ export async function GET() {
       lat: b.lat,
       lng: b.lng,
       photo: Array.isArray(b.photos) && b.photos.length > 0 ? b.photos[0] : null,
+      accolades: Array.isArray(b.accolades) && b.accolades.length
+        ? (b.accolades as Record<string, unknown>[]).map(a => ({
+            org: String(a.org ?? ''),
+            org_key: String(a.org_key ?? ''),
+            kind: String(a.kind ?? ''),
+            rank: a.rank == null ? null : Number(a.rank),
+            year: Number(a.year ?? 0),
+            score: Number(a.score ?? 0),
+            title: a.title == null ? null : String(a.title),
+          }))
+        : null,
     }));
 
     return NextResponse.json(
