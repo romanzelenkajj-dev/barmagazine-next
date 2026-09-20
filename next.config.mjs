@@ -81,6 +81,10 @@ const nextConfig = {
         ['black-swan-lab', 'black-swan-budapest'],
         ['the-carousel-bar', 'carousel-bar-lounge'],
         ['zig-zag-cafe-seattle', 'zig-zag-cafe'],
+        // Not a duplicate listing but a sub-venue: Hudson Bar was the Hudson
+        // private room INSIDE Hotsy Totsy, same address and same website,
+        // listed as a bar of its own. Same treatment as a duplicate.
+        ['hudson-bar-budapest', 'hotsy-totsy'],
       ].map(([from, to]) => ({
         source: `/bars/${from}`,
         destination: `/bars/${to}`,

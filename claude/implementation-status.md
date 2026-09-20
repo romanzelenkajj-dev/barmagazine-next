@@ -2,6 +2,32 @@
 
 Running log of shipped work items and their merge commits. Newest first.
 
+## 2026-09-19 - Hudson Bar merged into Hotsy Totsy (Budapest)
+
+- **Approved:** Roman, in chat, 2026-09-19, under the merge standard.
+- **What it was:** `hudson-bar-budapest` was not a duplicate listing but a
+  SUB-VENUE. hotsytotsy.hu's own venue page calls it the "Hudson private
+  room ... tucked away from the main flow of the bar", and our own
+  description already said "a bar within a bar, tucked away inside Hotsy
+  Totsy". Both rows carried the same address (Sip utca 24) and the same
+  website. Budapest's bar count therefore included a private room, and a
+  reader could be sent to it as though it were a venue.
+- **Found by:** the task 83 section 2 subtype pass, while checking whether
+  Hudson Bar should be tagged Speakeasy. It should not; it is not a bar.
+- **Kept row:** `hotsy-totsy` (the venue). It had the phone, the photo
+  credit, the venue Instagram and fuller hours.
+- **Carried across:** the `editorial_sources` entry (Bartenders' Choice
+  Awards bars to watch), which only the losing row held, annotated to say
+  the recognition named the Hudson room inside this venue rather than
+  silently reattributing it. One sentence about the Hudson private room
+  appended to the kept description, so the information survives the merge.
+- **Redirect:** `['hudson-bar-budapest', 'hotsy-totsy']` in the
+  merged-bar-slugs map in `next.config.mjs`, same commit (STANDARD STEP).
+- **FK checks before delete:** `bar_claims` 0 rows, `owner_submissions` 0
+  rows. `bar_submissions` and `bar_owners` have no `bar_id` column.
+- **Deleted:** the `hudson-bar-budapest` row, after the redirect shipped.
+  Budapest 19 bars -> 18.
+
 ## 2026-09-08 - Claim flow visual redesign
 
 - **Merge commit:** `e154cf1` (branch `claim-redesign`, deleted after merge)
