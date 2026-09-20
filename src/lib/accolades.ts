@@ -349,9 +349,9 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
 export function awardStrings(accolades: unknown): string[] {
   return renderableAccolades(accolades).map(entry =>
     entry.rank != null
-      ? `${entry.org} ${entry.year} — No. ${entry.rank}`
+      ? `${entry.org} ${entry.year}, No. ${entry.rank}`
       : entry.title
-        ? `${entry.org} ${entry.year} — ${entry.title}`
+        ? `${entry.org} ${entry.year}, ${entry.title}`
         : `${entry.org} ${entry.year}`
   );
 }

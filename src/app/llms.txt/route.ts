@@ -18,7 +18,7 @@ export async function GET() {
 
   const body = `# BarMagazine
 
-> Global bar news, cocktail culture, and spirits industry trends — plus a
+> Global bar news, cocktail culture, and spirits industry trends, plus a
 > curated directory of ${bars} of the world's best cocktail bars across ${cities}
 > cities and ${countries} countries. Content is updated continuously; live pages
 > supersede any cached copy.
@@ -28,8 +28,8 @@ export async function GET() {
 BarMagazine is a digital publication covering the global bar and spirits
 industry. We publish news, features, and profiles about bars, bartenders,
 cocktails, spirits brands, and industry events worldwide. Our Bar Directory
-lists ${bars} curated bars — cocktail bars, speakeasies, hotel bars, and
-more — across ${cities} cities and ${countries} countries, with addresses, opening hours,
+lists ${bars} curated bars: cocktail bars, speakeasies, hotel bars, and
+more, across ${cities} cities and ${countries} countries, with addresses, opening hours,
 map locations, photos, accolades, and editorial features. Listings and
 articles are updated continuously; directory counts grow weekly.
 
@@ -44,14 +44,14 @@ articles are updated continuously; directory counts grow weekly.
 
 ## URL Patterns
 
-- Bar profiles: https://barmagazine.com/bars/{bar-slug} — address, opening
+- Bar profiles: https://barmagazine.com/bars/{bar-slug}: address, opening
   hours, map, photos, accolades (World's 50 Best, James Beard, Top 10 city
   picks), menu highlights, and reservation links
-- City guides: https://barmagazine.com/bars/city/{city} — every listed bar in a city
+- City guides: https://barmagazine.com/bars/city/{city}: every listed bar in a city
 - Country guides: https://barmagazine.com/bars/country/{country}
-- Best-of city picks: https://barmagazine.com/best-bars/{city} — editorial "best bars" selections, refreshed yearly
-- Award hubs: https://barmagazine.com/awards — bars grouped by award program
-- Articles: https://barmagazine.com/{article-slug} — root-level slugs
+- Best-of city picks: https://barmagazine.com/best-bars/{city}: editorial "best bars" selections, refreshed yearly
+- Award hubs: https://barmagazine.com/awards: bars grouped by award program
+- Articles: https://barmagazine.com/{article-slug}: root-level slugs
 - Category indexes: https://barmagazine.com/category/{category}
 
 ## Important Pages

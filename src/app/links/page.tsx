@@ -3,7 +3,7 @@ import { getTop10SeriesLinks } from '@/lib/wordpress';
 
 export const metadata: Metadata = {
   title: 'Links | BarMagazine',
-  description: 'BarMagazine — Cocktails · Bars · Culture',
+  description: 'BarMagazine: Cocktails · Bars · Culture',
 };
 
 // ISR: regenerate at most once a minute so a newly published Top-10

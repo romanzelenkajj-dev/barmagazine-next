@@ -288,7 +288,7 @@ describe('accolades', () => {
   describe('awardStrings', () => {
     it('includes rank for machines even though the tile hides it', () => {
       expect(awardStrings([make({ rank: 8 })])).toEqual([
-        "World's 50 Best Bars 2025 — No. 8",
+        "World's 50 Best Bars 2025, No. 8",
       ]);
     });
 
@@ -304,7 +304,7 @@ describe('accolades', () => {
             year: 2026,
           }),
         ])
-      ).toEqual(["Tales of the Cocktail Spirited Awards 2026 — World's Best Bar"]);
+      ).toEqual(["Tales of the Cocktail Spirited Awards 2026, World's Best Bar"]);
     });
 
     it('excludes entries that could not be substantiated', () => {
