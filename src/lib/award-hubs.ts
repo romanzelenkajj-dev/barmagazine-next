@@ -53,6 +53,17 @@ export function programBySlug(slug: string): AwardProgram | null {
   return AWARD_PROGRAMS.find(p => p.slug === slug) ?? null;
 }
 
+/**
+ * A bar on an award hub, shaped so it can be handed straight to
+ * DirectoryBarCard.
+ *
+ * WHY THE EXTRA FIELDS. The select used to fetch name, slug, city, country,
+ * state and accolades, so the hub COULD NOT show a photo, a placeholder, a
+ * tier chip or a type even though the same bar carries all of them on every
+ * city guide. The page was not choosing to look like a database dump; it had
+ * nothing else to render. These are the fields DirectoryCardBar reads, and
+ * nothing beyond them.
+ */
 export interface HonoredBar {
   name: string;
   slug: string;
@@ -60,6 +71,14 @@ export interface HonoredBar {
   country: string;
   /** bars.state, for the place line ("Nashville, Tennessee"). */
   state: string | null;
+  photos: string[] | null;
+  type: string | null;
+  tier: string | null;
+  wp_article_slug: string | null;
+  /** Drives the "Temporarily closed" pill on the card. */
+  status: string | null;
+  /** Every renderable accolade the bar holds, for the card's badges. */
+  accolades: unknown;
   entry: Accolade;
 }
 
@@ -76,11 +95,15 @@ export async function getProgramYears(program: AwardProgram): Promise<YearGroup[
   // cap would silently drop the newest accolade-holding bars as the
   // directory grows.
   const PAGE = 1000;
-  const data: { name: string; slug: string; city: string; country: string; state: string | null; accolades: unknown }[] = [];
+  const data: {
+    name: string; slug: string; city: string; country: string; state: string | null;
+    photos: string[] | null; type: string | null; tier: string | null;
+    wp_article_slug: string | null; status: string | null; accolades: unknown;
+  }[] = [];
   for (let from = 0; ; from += PAGE) {
     const { data: page, error } = await supabase
       .from('bars')
-      .select('name, slug, city, country, state, accolades')
+      .select('name, slug, city, country, state, photos, type, tier, wp_article_slug, status, accolades')
       .eq('is_active', true)
       .not('accolades', 'is', null)
       .range(from, from + PAGE - 1);
@@ -95,7 +118,12 @@ export async function getProgramYears(program: AwardProgram): Promise<YearGroup[
   for (const bar of data) {
     for (const entry of renderableAccolades(bar.accolades)) {
       if (program.orgKeys.includes(entry.org_key)) {
-        rows.push({ name: bar.name, slug: bar.slug, city: bar.city, country: bar.country, state: bar.state ?? null, entry });
+        rows.push({
+          name: bar.name, slug: bar.slug, city: bar.city, country: bar.country,
+          state: bar.state ?? null, photos: bar.photos ?? null, type: bar.type ?? null,
+          tier: bar.tier ?? null, wp_article_slug: bar.wp_article_slug ?? null,
+          status: bar.status ?? null, accolades: bar.accolades, entry,
+        });
       }
     }
   }
@@ -106,6 +134,22 @@ export async function getProgramYears(program: AwardProgram): Promise<YearGroup[
     if (!byYear.has(y)) byYear.set(y, []);
     byYear.get(y)!.push(r);
   }
+
+  /**
+   * Winners, then nominees, then everything else; rank where the program has
+   * one; name last.
+   *
+   * The page used to lean on the section order alone, which was alphabetical
+   * by category label, so Bartenders' Choice opened on "Best Cocktail Bar
+   * (Croatia)" for no reason a reader could see. This is the order the brief
+   * asks for, and it holds inside a section as well as across one.
+   */
+  const kindRank = (r: HonoredBar): number =>
+    r.entry.kind === 'winner' ? 0 : r.entry.kind === 'nominee' ? 1 : 2;
+  const byMerit = (a: HonoredBar, b: HonoredBar): number =>
+    kindRank(a) - kindRank(b)
+    || (a.entry.rank ?? 9999) - (b.entry.rank ?? 9999)
+    || a.name.localeCompare(b.name);
 
   const sectionLabel = (r: HonoredBar): string => {
     if (r.entry.kind === 'winner' || r.entry.kind === 'nominee') {
@@ -135,9 +179,7 @@ export async function getProgramYears(program: AwardProgram): Promise<YearGroup[
           })
           .map(([label, sectionBars]) => ({
             label,
-            bars: sectionBars.sort(
-              (a, b) => (a.entry.rank ?? 999) - (b.entry.rank ?? 999) || a.name.localeCompare(b.name)
-            ),
+            bars: sectionBars.sort(byMerit),
           })),
       };
     });

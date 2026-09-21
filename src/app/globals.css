@@ -10753,6 +10753,11 @@ textarea.form-input {
   margin: 0 0 8px;
 }
 
+/* KEPT, BUT NO LONGER USED BY /awards/[program]. The hub pages now draw
+   DirectoryBarCard in a .directory-grid, the same card every city guide uses.
+   These two rules stay because /awards (the index) still draws its list of
+   programs with them, and deleting them would break a page this task was not
+   asked to touch. */
 .awards-bar-list {
   list-style: none;
   margin: 0;
@@ -10776,6 +10781,17 @@ textarea.form-input {
 
 .awards-bar-link:hover { border-color: var(--text-primary); }
 .awards-bar-link span { font-size: 13px; color: var(--text-secondary); }
+
+/* The award hub's one addition to the card: why this bar is on this page.
+   It sits INSIDE the cell rather than as a heading above it, so it travels
+   with the bar when the grid reflows. */
+.awards-card-kicker {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+}
 
 .awards-program-list { margin-top: 24px; }
 
