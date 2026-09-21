@@ -15,6 +15,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseWaveFile, loadEnv } from './wave-file.mjs';
 import { venueTypeConcern, holdMessage } from '../src/lib/venue-type-guard.mjs';
+import { rowCopyViolation } from '../src/lib/hidden-sources.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -93,6 +94,8 @@ const held = [];
 const centroids = [];
 /** Rows that got no coordinates at all. */
 const noCoords = [];
+/** Rows refused for naming a research source in visitor copy. */
+const refusedCopy = [];
 for (const b of blocks) {
   const f = b.fields;
   if (/^HOLD/i.test(f.status || '')) { console.log(`SKIP ${b.slug}: ${f.status}`); continue; }
@@ -118,6 +121,23 @@ for (const b of blocks) {
     tier: 'free',
     admin_notes: none(f.venue) ? null : `Venue: ${f.venue}. Source: ${f.source || 'venue site'}.`,
   };
+  // HIDDEN-SOURCE GUARD. Falstaff is a research source and its name must
+  // never reach a reader. This REFUSES rather than holds, because unlike a
+  // venue type there is nothing for a person to rule on: the word is simply
+  // not allowed in visitor copy, and the fix is to reword the sentence.
+  //
+  // It exists because the rule was already broken twice, both times by a
+  // description written from a page that quoted the guide's score. Writing a
+  // hundred descriptions from such pages is exactly when attention fails.
+  const leak = rowCopyViolation(payload);
+  if (leak) {
+    console.log(`REFUSED ${b.slug}: ${leak.what} in \`${leak.field}\`.`);
+    console.log(`         "${leak.matched}"`);
+    console.log('         Reword it. This is not a hold and there is no override.');
+    refusedCopy.push(`${b.slug} (${leak.field}: ${leak.what})`);
+    continue;
+  }
+
   // VENUE-TYPE GUARD. An award is not an admission rule: a James Beard
   // "Outstanding Bar" listing put a coffee roaster and a brewery into the
   // directory. Held for a person to rule on, never dropped, and the reason is
@@ -142,6 +162,11 @@ for (const b of blocks) {
 console.log(apply ? `created ${created} of ${blocks.length}` : `dry run: ${printed} of ${blocks.length} payload(s) printed, nothing written`);
 // LOUD FAILURE. A wave that placed every bar on its city centre used to print
 // exactly what a good wave prints. These two blocks are the difference.
+if (refusedCopy.length) {
+  console.log(`\n${refusedCopy.length} row(s) REFUSED for visitor copy that names a research source:`);
+  refusedCopy.forEach(s => console.log(`  ${s}`));
+  console.log('Nothing was written for these. Reword and re-run.');
+}
 if (centroids.length) {
   console.log(`\n${centroids.length} of ${created} row(s) got only a CITY CENTRE, not an address:`);
   centroids.forEach(s => console.log(`  ${s}`));
