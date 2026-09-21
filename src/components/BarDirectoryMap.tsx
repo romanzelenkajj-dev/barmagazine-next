@@ -12,6 +12,8 @@ import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react'
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { getGeoScore } from '@/lib/geo';
+import { isCityCentre } from '@/lib/geocode';
+import { NEAR_BANDS_KM, nearBand, compareBandAndPrecision } from '@/lib/near-order';
 import { formatBarType } from '@/lib/utils';
 import { placeLine } from '@/lib/city-location';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from './BarDirectorySidebar';
@@ -52,18 +54,14 @@ const FEATURED_PER_PAGE = 12;
  * nothing is "near", so quality stops competing entirely and it is pure
  * distance, which is what the old code did past 80.
  */
-const NEAR_BANDS_KM = [5, 15, 40];
+// NEAR_BANDS_KM, nearBand and the measurable-before-approximate rule now live
+// in lib/near-order.ts so the ordering can be tested without a browser. Both
+// edge cases Roman asked about are absent from the live data and could only be
+// pinned in a test.
+//
 // NEAR_LIMIT_KM used to live here as the banner's own threshold. It is gone on
 // purpose: the banner is now derived from whether any card can show a distance,
 // so there is no second number to drift away from the first.
-
-/** Which band a distance falls in. Lower is closer; NEAR_BANDS_KM.length means "beyond". */
-function nearBand(km: number): number {
-  for (let i = 0; i < NEAR_BANDS_KM.length; i++) {
-    if (km <= NEAR_BANDS_KM[i]) return i;
-  }
-  return NEAR_BANDS_KM.length;
-}
 
 /**
  * A distance as the visitor's own locale would write it. Miles for the places
@@ -1018,6 +1016,26 @@ export function BarDirectoryMapClient({
     return Math.max(0, (1000 - score) * 20);
   }, [userLat, userLng, geoCity, geoCountryCode, geoContinent]);
 
+  /**
+   * A city-centre point is USELESS FOR STREET DISTANCE AND PERFECTLY GOOD FOR
+   * KNOWING WHICH CITY A BAR IS IN (Roman, 2026-09-21).
+   *
+   * The first version of this excluded such rows from distance entirely, which
+   * put Teens of Thailand behind a Melbourne bar for a visitor standing in
+   * Bangkok. Correct about the metres, useless to the reader.
+   *
+   * So the point IS used, for the one thing it is good for: it bands the row
+   * with its own city, which is exactly where the bar is. Two things then keep
+   * it honest:
+   *   - inside a band, every measurable bar outranks every approximate one, so
+   *     a city-centre row lands directly after the bars we can actually place;
+   *   - the card shows NO distance, because the number would be fiction.
+   *
+   * ONLY 'city-centre' counts as approximate. NULL predates the column and
+   * behaves exactly as it always has.
+   */
+  const isApprox = useCallback((b: Bar): boolean => isCityCentre(b.geo_method), []);
+
   const allFiltered = useMemo(() => {
     const hasPhoto = (b: Bar) => !!(b.photos && b.photos.length > 0);
 
@@ -1046,10 +1064,10 @@ export function BarDirectoryMapClient({
         const dA = getDistKm(a);
         const dB = getDistKm(b);
         const bandA = nearBand(dA);
-        const bandB = nearBand(dB);
-        // Between bands, closer wins outright. Nothing about a bar's quality
-        // competes with being reachable.
-        if (bandA !== bandB) return bandA - bandB;
+        // Band first, then a measurable bar ahead of an approximate one. Both
+        // rules live in lib/near-order.ts and are tested there.
+        const precedence = compareBandAndPrecision(dA, isApprox(a), dB, isApprox(b));
+        if (precedence !== 0) return precedence;
         if (bandA < NEAR_BANDS_KM.length) {
           // Inside one band the bars are comparably reachable, so the
           // directory's usual quality order applies, distance last.
@@ -1144,7 +1162,7 @@ export function BarDirectoryMapClient({
     // geoContinent, userLat and userLng are not listed: they are getDistKm's
     // own dependencies now, so a change to any of them gives this memo a new
     // getDistKm and it recomputes anyway.
-  }, [filtered, cityFilter, countryFilter, geoCity, geoCountryCode, nearMode, getDistKm]);
+  }, [filtered, cityFilter, countryFilter, geoCity, geoCountryCode, nearMode, getDistKm, isApprox]);
 
   /**
    * How far the closest bar actually is, in near-me mode only.
@@ -1161,11 +1179,17 @@ export function BarDirectoryMapClient({
     let min = Infinity;
     const limit = Math.min(allFiltered.length, 50);
     for (let i = 0; i < limit; i++) {
+      // Skip approximate rows. This number decides whether the banner speaks,
+      // and the banner speaks when no CARD can show a distance. An approximate
+      // row never shows one, so letting its city-centre distance in here would
+      // silence the banner on exactly the case it exists for: a visitor whose
+      // only nearby bars are ones we cannot place.
+      if (isApprox(allFiltered[i])) continue;
       const d = getDistKm(allFiltered[i]);
       if (d < min) min = d;
     }
     return Number.isFinite(min) ? min : null;
-  }, [nearMode, allFiltered, getDistKm]);
+  }, [nearMode, allFiltered, getDistKm, isApprox]);
 
   /**
    * Whether the distance is a measurement or an artifact.
@@ -1458,7 +1482,7 @@ export function BarDirectoryMapClient({
               {/* ══ UNIFIED GRID: all bars, same card design, sorted by tier then proximity ══ */}
               <div className="directory-featured-grid">
                 {allFiltered.slice(0, gridVisible).map(bar => (
-                  <FeaturedBarCard key={bar.id} bar={bar} distanceKm={nearMode && hasPreciseLocation ? getDistKm(bar) : null} countryCode={geoCountryCode} />
+                  <FeaturedBarCard key={bar.id} bar={bar} distanceKm={nearMode && hasPreciseLocation && !isApprox(bar) ? getDistKm(bar) : null} countryCode={geoCountryCode} />
                 ))}
               </div>
 

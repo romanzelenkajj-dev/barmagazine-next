@@ -53,6 +53,14 @@ export interface Bar {
   neighborhood?: string | null;
   lat: number | null;
   lng: number | null;
+  /**
+   * How lat/lng were produced: address | name | osm | manual | city-centre.
+   * NULL means UNKNOWN and predates the column; it is NOT a quality claim, so
+   * nothing may read NULL as "exact". Only 'city-centre' is special: that
+   * point is the middle of the city, not the bar, and near-me refuses to
+   * measure a distance from it. See isCityCentre() in lib/geocode.
+   */
+  geo_method?: string | null;
   type: string;
   website: string | null;
   instagram: string | null;

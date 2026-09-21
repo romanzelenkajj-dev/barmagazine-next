@@ -102,9 +102,11 @@ async function osm(query) {
 const rows = JSON.parse(fs.readFileSync(file, 'utf8'));
 const results = [];
 let precise = 0, refused = 0;
+/** Named, not just counted: a number alone is not visible in a long log. */
+const refusedSlugs = [];
 
 for (const b of rows) {
-  if (!b.address) { console.log(`  SKIP  ${b.slug}: no address to geocode`); refused++; continue; }
+  if (!b.address) { console.log(`  SKIP  ${b.slug}: no address to geocode`); refused++; refusedSlugs.push(`${b.slug} (no address)`); continue; }
   const q = `${b.address}, ${b.city}, ${b.country}`;
   let hit = await mapbox(q);
   let note = '';
@@ -144,6 +146,7 @@ for (const b of rows) {
   if (!hit) {
     console.log(`  REFUSE ${b.slug.padEnd(30)} ${note || 'no result from either source'}`);
     refused++;
+    refusedSlugs.push(`${b.slug} (${note || 'no result from either source'})`);
     await sleep(300);
     continue;
   }
@@ -153,9 +156,18 @@ for (const b of rows) {
   results.push({ ...b, newLat: hit.lat, newLng: hit.lng, source: hit.source, label: hit.label });
   precise++;
   if (APPLY) {
+    // geo_method travels with the point. This script has TWO sources, so it
+    // records which one won: Mapbox address-or-poi is 'address', Nominatim is
+    // 'osm'. Neither is ever 'city-centre' here, because a coarse result is
+    // refused above rather than stored.
+    const geoMethod = hit.source === 'osm' ? 'osm' : 'address';
     const p = await fetch(`${U}/rest/v1/bars?slug=eq.${encodeURIComponent(b.slug)}`, {
       method: 'PATCH', headers: H,
-      body: JSON.stringify({ lat: Number(hit.lat.toFixed(6)), lng: Number(hit.lng.toFixed(6)) }),
+      body: JSON.stringify({
+        lat: Number(hit.lat.toFixed(6)),
+        lng: Number(hit.lng.toFixed(6)),
+        geo_method: geoMethod,
+      }),
     });
     if (!p.ok) console.log(`         WRITE FAILED ${p.status} ${(await p.text()).slice(0, 120)}`);
   }
@@ -164,3 +176,11 @@ for (const b of rows) {
 
 fs.writeFileSync('/tmp/regeocode-results.json', JSON.stringify(results, null, 1));
 console.log(`\n${APPLY ? 'applied' : 'dry run'}: ${precise} precise, ${refused} refused and left as they were`);
+// LOUD FAILURE. A run that resolved nothing used to print the same shape as a
+// run that resolved everything, and the only difference was a number nobody
+// read. Name the rows, on stdout, so a bad run cannot look like a clean one.
+if (refusedSlugs.length) {
+  console.log(`\n${refusedSlugs.length} row(s) NOT geocoded and left exactly as they were:`);
+  refusedSlugs.forEach(s => console.log(`  ${s}`));
+  console.log('None of these got a city centre written to them. They keep whatever they had.');
+}

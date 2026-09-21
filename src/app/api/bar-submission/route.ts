@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { boundedNoStoreFetch } from '@/lib/bounded-fetch';
 import { escapeHtml } from '@/lib/notify';
 import { MAIL_FROM, MAIL_REPLY_TO } from '@/lib/mail';
-import { geocodeBar } from '@/lib/geocode';
+import { geocodeBarDetailed } from '@/lib/geocode';
 import { normalizeBarFields } from '@/lib/normalize';
 
 // Server-side Supabase client with service role key (bypasses RLS)
@@ -181,7 +181,7 @@ export async function POST(request: Request) {
     // already has coordinates, and `notes` is needed for the slug instead.
     const coords = upgradeSlug
       ? null
-      : await geocodeBar({
+      : await geocodeBarDetailed({
           name: data.name,
           address: data.address,
           city: data.city,
@@ -202,8 +202,11 @@ export async function POST(request: Request) {
       contact_name: data.contact_name || null,
       photo_url: photoUrl || null,
       preferred_plan: data.preferred_plan || 'free',
-      // Note: lat/lng stored in notes for future use — bar_submissions table doesn't have geo columns
-      ...(coords && { notes: `geo:${coords.lat},${coords.lng}` }),
+      // Note: lat/lng stored in notes for future use — bar_submissions table
+      // doesn't have geo columns. The METHOD is recorded alongside, because
+      // "geo:13.75,100.49" on its own cannot be told apart from a real
+      // address hit, and here it is usually the Bangkok city centre.
+      ...(coords && { notes: `geo:${coords.lat},${coords.lng},${coords.method}` }),
       ...(upgradeSlug && { notes: `upgrade:${upgradeSlug}` }),
     };
 
