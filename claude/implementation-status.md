@@ -2252,3 +2252,33 @@ duplicate. The live bar has always been `svanen`.
 - **PROCESS:** `npm run verify` (`scripts/verify.sh`) is the single gate.
   `set -euo pipefail`, and it prints its own short summary so there is no
   reason to pipe it to `tail`, which is how a failing test got pushed.
+
+## 2026-09-21 — task 90: geo_method, the validation hole, the stacked bars
+
+- **nearCity() refused to validate when it could not.** It returned TRUE with
+  no city centre, so step 2 returned Mapbox's answer unchecked. Now returns
+  false, every step falls through, and the function returns null. PR #71.
+- **Write paths storing geo_method:** geocode-bars, manage-bar (and so the
+  wave insert), submissions (both branches), bar-submission (in the note),
+  regeocode-stacked ('osm' or 'address'). `geocodeBar()` DELETED: it dropped
+  the method and all four callers lost it.
+- **Backfill proved, not assumed.** The regeocode log is from the run that
+  proposed four wrong points, so it is not evidence. Asked OSM for each
+  address and compared: 10 matched at 0m and got 'osm'; 10 stayed NULL.
+  coa-shanghai came back 482m off and stays NULL.
+- **The 33 stacked: 23 of them have NO ADDRESS** and are now honestly
+  'city-centre'. The labelling script refuses any row that has an address.
+  Las Vegas x3 is a real building (3708 Las Vegas Blvd, 2m from its geocode,
+  7.4km from the city centre), labelled 'address'. The 7 with addresses were
+  fixed via OSM: four Ginza bars are exact venue matches, three Jakarta bars
+  are street centroids on the street in their own address.
+- **Near-me:** getDistKm returns Infinity for city-centre, so the row sorts
+  past every band and shows no distance. ONLY city-centre; NULL unchanged.
+  TRADE-OFF REPORTED, not decided: a Bangkok city-centre bar now ranks behind
+  Melbourne for a visitor in Bangkok. Report 96 proposes ranking by city match
+  instead, and waits for Roman.
+- **Coa Shanghai: address is CORRECT.** Three sources put it at 580 Fuxing Rd
+  (M), Huangpu; Jing'an/Jiaozhou Road was the pre-2024 site, cleared for a
+  municipal renewal project. Nothing changed.
+- **No coordinate is implausible for its country**: the only three rows far
+  from their country median are in Hawaii, and reverse-geocode to the US.
