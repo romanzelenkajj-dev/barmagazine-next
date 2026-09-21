@@ -2282,3 +2282,32 @@ duplicate. The live bar has always been `svanen`.
   municipal renewal project. Nothing changed.
 - **No coordinate is implausible for its country**: the only three rows far
   from their country median are in Hawaii, and reverse-geocode to the US.
+
+## 2026-09-21 — task 86 Falstaff: dry run, plus a live copy violation fixed
+
+- **Split: 64 listed / 115 not**, after dropping the 10 non-bar rows. My own
+  earlier 61/118 was also wrong: the directory changed under it (28 merges,
+  22 deletions, several renames since 20 September). All six of Roman's
+  threshold predictions reproduce exactly, which is the real cross-check.
+- Reproduced the loose matcher to find the divergence. It claims 3 of my 115
+  are listed: Bar Cock/Solange and Bar Seibert/Seiberts are its errors;
+  **Sky Bar & Restaurant was MINE** (my core-name test stripped "bar" and
+  "restaurant" and left "sky", under my own length floor). Now counted.
+- Hand-check: of 10 containment-only matches, 8 are the same bar and **2 are
+  not**: Anonymous Shrink's Office is not AnonymouS Bar, and bird : downtown
+  is not our Bird (Falstaff's Bird Uptown is Gl. Kongevej, Frederiksberg,
+  our exact row).
+- The named near-duplicates could not have mismatched: **we hold neither Eden
+  Bar, neither Jahreszeiten Bar and no Woods.**
+- **Threshold cities, VERIFIED against each venue's own site:** Munich 7,
+  Cologne 5, Hamburg 4, Basel 4, Helsinki 2. All five cross MIN_CITY_BARS on
+  verified rows alone; Basel and Hamburg cross with no margin. 8 held, 7 of
+  them because Falstaff lists no website.
+- **"Falstaff" WAS in user-facing copy.** Two live descriptions named it and
+  one carried its points: seiberts-bar ("98 points") and tur-7. Both fixed;
+  Seiberts keeps its Mixology line, Tür 7 loses a claim whose only source was
+  Falstaff. Re-checked: 0 rows across every text column of `bars`.
+- `editorial-sources.ts` keeps 'falstaff' in SELECTIVE_NAMES, which is the
+  mechanism Roman asked for. Verified it never renders: level2Reason builds a
+  label from it and **nothing reads that label**, only `.rank`.
+- NOTHING INSERTED. Waiting on Roman.
