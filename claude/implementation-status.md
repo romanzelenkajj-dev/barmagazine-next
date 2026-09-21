@@ -2152,3 +2152,29 @@ Running log of shipped work items and their merge commits. Newest first.
   config version 3. Plain fetches from the Mac unchanged (200 on home,
   a profile, robots.txt). Both rules and the ASN note recorded in
   data-checks.md.
+
+## 2026-09-20 — Häktet name, Svanen slug, token-wise search
+
+- **Häktet Vänster**: `bars.name` for `haktet-vanster` changed from "Vänster"
+  to **"Vänster at Häktet"**. Their site (haktet.se/vaenster) has Häktet as
+  the venue and Vänster as one of five rooms, and never writes the two words
+  as one string; "<Room> at <Venue>" is the directory's existing convention
+  (23 rows). Searching "haktet" returned nothing before, because
+  `searchOrFilter` matches name and city only and never the slug.
+- Scanned all 1,641 rows for the same shape. **Häktet was the only one.**
+  Five other leading-word gaps checked against the venues' own sites: all had
+  the correct name and an over-decorated slug.
+- **Svanen**: slug `svanen-stockholm` -> **`svanen-oslo`**, 301 added to the
+  merged-bar-slugs map in next.config.mjs in the same commit (STANDARD STEP).
+  The row's city already said Oslo and its own site is svanenoslo.no; only the
+  slug was wrong. Its **coordinates were also Stockholm's**, 417 km from its
+  Karl Johans gate address, so they were re-geocoded to 59.912419, 10.744666
+  (Mapbox, `address` granularity). No bar_claims or owner_submissions rows
+  reference it. Row stays inactive; nothing else changed.
+- **Token-wise search** (preview/93-token-wise-search): `searchOrFilters()`
+  returns one `.or()` per word and PostgREST ANDs them, so every word must
+  match but in any order and in any column. Verified against the live API that
+  repeated `or=` params AND (a control pair returns 0 rows, not a union).
+  Measured across the directory: of 1,154 active bars with a multi-word name,
+  typing that bar's own words in reverse order found **5 before and 1,154
+  after**. A 994-query sweep found **0 rows that matched before and not after**.

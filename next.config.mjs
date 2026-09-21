@@ -85,6 +85,12 @@ const nextConfig = {
         // private room INSIDE Hotsy Totsy, same address and same website,
         // listed as a bar of its own. Same treatment as a duplicate.
         ['hudson-bar-budapest', 'hotsy-totsy'],
+        // Not a merge either, but a corrected slug: this bar is in OSLO, not
+        // Stockholm. Its own site (svanenoslo.no) and Falstaff's four-glass
+        // list both place it on Karl Johans gate, and the row's city column
+        // already said Oslo. Only the slug was wrong. Same treatment, because
+        // the old URL was live.
+        ['svanen-stockholm', 'svanen-oslo'],
       ].map(([from, to]) => ({
         source: `/bars/${from}`,
         destination: `/bars/${to}`,
