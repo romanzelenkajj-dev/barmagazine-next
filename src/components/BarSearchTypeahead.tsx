@@ -37,6 +37,7 @@ export function BarSearchTypeahead({
   placeholder = 'Search bars, cities, countries...',
   onSelect,
   footer,
+  onNoResults,
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -50,6 +51,10 @@ export function BarSearchTypeahead({
       points it at /add-your-bar). Shown under results AND in the empty
       state, so "no match" is never a dead end. */
   footer?: { label: string; href: string };
+  /** Fired when a settled search returns nothing, with the query that found
+      nothing. Optional on purpose: this component is shared, and only the
+      claim flow is being measured (task 91). No analytics import here. */
+  onNoResults?: (query: string) => void;
 }) {
   const router = useRouter();
   const [hits, setHits] = useState<Hit[]>([]);
@@ -97,6 +102,9 @@ export function BarSearchTypeahead({
         .limit(40);
       if (ticket.current !== mine) return; // a newer query superseded this one
       const found = error ? [] : rankSearchHits(q, (data as Hit[]) || []).slice(0, 7);
+      // A settled search that found nothing. Not fired on an error, which is
+      // a different fault and would otherwise be counted as a missing bar.
+      if (!error && found.length === 0 && q.trim().length >= 2 && onNoResults) onNoResults(q.trim());
       setHits(found);
       setOpen(true);
       setActive(-1);

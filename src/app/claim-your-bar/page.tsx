@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+import { gaEvent, CLAIM_EVENTS } from '@/lib/ga-event';
+import { Suspense, useEffect, useState, useRef } from 'react';
 import { BarSearchTypeahead } from '@/components/BarSearchTypeahead';
 
 /**
@@ -73,6 +74,39 @@ function ClaimYourBar() {
   // neutral pending card, never a flash of the search/steps state.
   const [prefillSettled, setPrefillSettled] = useState(false);
 
+  /**
+   * THE DENOMINATOR (task 91). One event per arrival, carrying whether the
+   * link brought a bar with it. 176 people reach this page in a week and 29
+   * submit; this is the half of that ratio nobody was measuring, and it has
+   * to live in GA4 beside the others or the ratio compares two populations.
+   *
+   * `bar_in_link` is the ?bar= slug being PRESENT, not it resolving: a link
+   * that arrives stripped of its parameter is a link problem, and a slug
+   * that arrives but fails to resolve is a data problem. They need telling
+   * apart, so the resolution outcome is reported separately below.
+   */
+  const viewSent = useRef(false);
+  /**
+   * EXACTLY ONCE PER ARRIVAL. This is the denominator, so double-counting it
+   * would understate the funnel and be invisible in the result.
+   *
+   * With no ?bar= there is nothing to wait for, so it fires on mount. With a
+   * ?bar= it waits for the lookup, so the one event it does send can carry
+   * whether the slug resolved. A link arriving stripped of its parameter is
+   * a link problem; a slug arriving and failing to resolve is a data
+   * problem, and the two need telling apart.
+   */
+  function sendPageView(params: { bar_in_link: boolean; resolved?: boolean }) {
+    if (viewSent.current) return;
+    viewSent.current = true;
+    gaEvent(CLAIM_EVENTS.pageView, params);
+  }
+  useEffect(() => {
+    if (prefillSlug) return; // deferred to the lookup below
+    sendPageView({ bar_in_link: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prefillSlug]);
+
   useEffect(() => {
     if (!prefillSlug) return;
     let cancelled = false;
@@ -82,11 +116,13 @@ function ClaimYourBar() {
         const data = await res.json();
         const hit = (data.bars || [])[0];
         if (cancelled) return;
-        if (hit) setSelected(hit);
-        else setPrefillSettled(true); // bad/inactive slug: landing, no error
+        if (hit) { setSelected(hit); sendPageView({ bar_in_link: true, resolved: true }); }
+        else { setPrefillSettled(true); sendPageView({ bar_in_link: true, resolved: false }); }
       } catch {
-        // Lookup failed; the visitor can still find the bar by search.
-        if (!cancelled) setPrefillSettled(true);
+        // Lookup failed; the visitor can still find the bar by search. The
+        // arrival still counts, or a run of failed lookups would quietly
+        // shrink the denominator.
+        if (!cancelled) { setPrefillSettled(true); sendPageView({ bar_in_link: true, resolved: false }); }
       }
     })();
     return () => { cancelled = true; };
@@ -122,6 +158,10 @@ function ClaimYourBar() {
   async function submitClaim(e: React.FormEvent) {
     e.preventDefault();
     if (!selected) return;
+    // Fires on every attempt, before the network call, so a submit that
+    // fails still counts as an attempt. Nothing from the form is sent: no
+    // email, no name, no role.
+    gaEvent(CLAIM_EVENTS.submitAttempt, {});
     setSubmitting(true);
     setError('');
     try {
@@ -133,12 +173,15 @@ function ClaimYourBar() {
       const data = await res.json();
       if (!res.ok) {
         setError(data.error || 'Something went wrong');
+        gaEvent(CLAIM_EVENTS.submitResult, { outcome: 'error', status: res.status });
         return;
       }
+      gaEvent(CLAIM_EVENTS.submitResult, { outcome: 'ok' });
       setDone(true);
       setProofClaimId(data.requiresProof ? data.claimId ?? null : null);
     } catch {
       setError('Network error. Please try again.');
+      gaEvent(CLAIM_EVENTS.submitResult, { outcome: 'network_error' });
     } finally {
       setSubmitting(false);
     }
@@ -337,6 +380,7 @@ function ClaimYourBar() {
               <BarSearchTypeahead
                 value={query}
                 onChange={setQuery}
+                onNoResults={q => gaEvent(CLAIM_EVENTS.searchNoResults, { query: q })}
                 onClear={() => setQuery('')}
                 placeholder="Find your bar by name or city..."
                 onSelect={selectBySlug}
