@@ -1,0 +1,1703 @@
+[
+{
+"name": "Cadierbaren",
+"url": "https://www.falstaff.com/en/bars/cadierbaren",
+"city": "Stockholm",
+"country": "Sweden",
+"glasses": 4,
+"points": 100,
+"kind": "bars"
+},
+{
+"name": "HIMKOK Storgata Destilleri",
+"url": "https://www.falstaff.com/en/bars/himkok-1",
+"city": "Oslo",
+"country": "Norway",
+"glasses": 4,
+"points": 100,
+"kind": "bars"
+},
+{
+"name": "Le Hibou at Bank Hotel",
+"url": "https://www.falstaff.com/en/bars/hibou-at-bank-hotel",
+"city": "Stockholm",
+"country": "Sweden",
+"glasses": 4,
+"points": 99,
+"kind": "bars"
+},
+{
+"name": "Velvet",
+"url": "https://www.falstaff.com/en/bars/velvet",
+"city": "Berlin",
+"country": "Germany",
+"glasses": 4,
+"points": 98,
+"kind": "bars"
+},
+{
+"name": "Seiberts",
+"url": "https://www.falstaff.com/en/bars/seiberts",
+"city": "Cologne",
+"country": "Germany",
+"glasses": 4,
+"points": 98,
+"kind": "bars"
+},
+{
+"name": "Svanen",
+"url": "https://www.falstaff.com/en/bars/svanen",
+"city": "Oslo",
+"country": "Norway",
+"glasses": 4,
+"points": 98,
+"kind": "bars"
+},
+{
+"name": "Forbina",
+"url": "https://www.falstaff.com/en/bars/forbina",
+"city": "Prague",
+"country": "Czech Republic",
+"glasses": 4,
+"points": 98,
+"kind": "bars"
+},
+{
+"name": "Hemingway Bar",
+"url": "https://www.falstaff.com/en/bars/hemingway-bar",
+"city": "Prague",
+"country": "Czech Republic",
+"glasses": 4,
+"points": 98,
+"kind": "bars"
+},
+{
+"name": "Mirror Cocktail Bar",
+"url": "https://www.falstaff.com/en/bars/mirror-cocktail-bar",
+"city": "Bratislava",
+"country": "Slovakia",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "Bar am Wasser",
+"url": "https://www.falstaff.com/en/bars/bar-am-wasser",
+"city": "Zurich",
+"country": "Switzerland",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "Bar Mate",
+"url": "https://www.falstaff.com/en/bars/bar-mate",
+"city": "Helsinki",
+"country": "Finland",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "Britannia bar",
+"url": "https://www.falstaff.com/en/bars/britannia-bar",
+"city": "Trondheim",
+"country": "Norway",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "Kronenhalle Bar",
+"url": "https://www.falstaff.com/en/bars/kronenhalle-bar",
+"city": "Zurich",
+"country": "Switzerland",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "Old Crow",
+"url": "https://www.falstaff.com/en/bars/old-crow",
+"city": "Zurich",
+"country": "Switzerland",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "Othilia",
+"url": "https://www.falstaff.com/en/bars/othilia",
+"city": "Stockholm",
+"country": "Sweden",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "Pier 42",
+"url": "https://www.falstaff.com/en/bars/pier-42-1",
+"city": "Oslo",
+"country": "Norway",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "Ruby",
+"url": "https://www.falstaff.com/en/bars/ruby-1",
+"city": "Copenhagen",
+"country": "Denmark",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "The Firm",
+"url": "https://www.falstaff.com/en/bars/the-firm",
+"city": "Helsinki",
+"country": "Finland",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "Alcron Bar",
+"url": "https://www.falstaff.com/en/bars/alcron-bar",
+"city": "Prague",
+"country": "Czech Republic",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "W LOUNGE",
+"url": "https://www.falstaff.com/en/bars/w-lounge",
+"city": "Rome",
+"country": "Italy",
+"glasses": 4,
+"points": 97,
+"kind": "bars"
+},
+{
+"name": "The Tiny Cup",
+"url": "https://www.falstaff.com/en/bars/the-tiny-cup",
+"kind": "bars",
+"city": "Frankfurt am Main",
+"country": "Germany",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Les Fleurs du Mal",
+"url": "https://www.falstaff.com/en/bars/les-fleurs-du-mal",
+"kind": "bars",
+"city": "Munich",
+"country": "Germany",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Schumann's Bar am Hofgarten",
+"url": "https://www.falstaff.com/en/bars/schumanns-bar-am-hofgarten",
+"kind": "bars",
+"city": "Munich",
+"country": "Germany",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Bar Bruno",
+"url": "https://www.falstaff.com/en/bars/bar-bruno",
+"kind": "bars",
+"city": "Göteborg",
+"country": "Sweden",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Bar Les Trois Rois",
+"url": "https://www.falstaff.com/en/bars/bar-les-trois-rois",
+"kind": "bars",
+"city": "Basel",
+"country": "Switzerland",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "bird : downtown",
+"url": "https://www.falstaff.com/en/bars/bird-downtown-1",
+"kind": "bars",
+"city": "Copenhagen",
+"country": "Denmark",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Bird Uptown",
+"url": "https://www.falstaff.com/en/bars/bird",
+"kind": "bars",
+"city": "Copenhagen",
+"country": "Denmark",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Canvas Bar & Lounge The Dolder Grand",
+"url": "https://www.falstaff.com/en/bars/dolder-grand-bar-im-the-dolder-grand",
+"kind": "bars",
+"city": "Zurich",
+"country": "Switzerland",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Dino's Apothecary Bar",
+"url": "https://www.falstaff.com/en/bars/dinos-apothecary-bar",
+"kind": "bars",
+"city": "Vienna",
+"country": "Austria",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Duck and Cover",
+"url": "https://www.falstaff.com/en/bars/duck-and-cover-1",
+"kind": "bars",
+"city": "Copenhagen",
+"country": "Denmark",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "IGNIV by Andreas Caminada",
+"url": "https://www.falstaff.com/en/restaurants/igniv-im-hotel-marktgasse-zuerich",
+"kind": "restaurants",
+"city": "Zurich",
+"country": "Switzerland",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Jigger & Spoon",
+"url": "https://www.falstaff.com/en/bars/jigger-spoon",
+"kind": "bars",
+"city": "Stuttgart",
+"country": "Germany",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Kupoli",
+"url": "https://www.falstaff.com/en/bars/kupoli",
+"kind": "bars",
+"city": "Helsinki",
+"country": "Finland",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Le Lion Bar de Paris",
+"url": "https://www.falstaff.com/en/bars/le-lion-bar-de-paris",
+"kind": "bars",
+"city": "Hamburg",
+"country": "Germany",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Little Link",
+"url": "https://www.falstaff.com/en/bars/little-link",
+"kind": "bars",
+"city": "Cologne",
+"country": "Germany",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Lobby Lounge & Bar im Hotel Adlon Kempinski Berlin",
+"url": "https://www.falstaff.com/en/bars/lobby-lounge-bar-im-hotel-adlon-kempinski-berlin",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Puzzle Bar",
+"url": "https://www.falstaff.com/en/bars/puzzle-bar",
+"kind": "bars",
+"city": "Hamburg",
+"country": "Germany",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Sky Bar & Restaurant",
+"url": "https://www.falstaff.com/en/bars/sky-bar-restaurant",
+"kind": "bars",
+"city": "Bratislava",
+"country": "Slovakia",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Stjärtilleriet",
+"url": "https://www.falstaff.com/en/bars/stjaertilleriet",
+"kind": "bars",
+"city": "Stockholm",
+"country": "Sweden",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Suderman",
+"url": "https://www.falstaff.com/en/bars/suderman",
+"kind": "bars",
+"city": "Cologne",
+"country": "Germany",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "TATA Cocktail Bar",
+"url": "https://www.falstaff.com/en/bars/tata-cocktail-bar",
+"kind": "bars",
+"city": "Copenhagen",
+"country": "Denmark",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Tjoget",
+"url": "https://www.falstaff.com/en/bars/tjoget",
+"kind": "bars",
+"city": "Stockholm",
+"country": "Sweden",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Toddy Tapper",
+"url": "https://www.falstaff.com/en/bars/toddy-tapper",
+"kind": "bars",
+"city": "Cologne",
+"country": "Germany",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Tür 7",
+"url": "https://www.falstaff.com/en/bars/tuer-7",
+"kind": "bars",
+"city": "Vienna",
+"country": "Austria",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Victory",
+"url": "https://www.falstaff.com/en/bars/victory",
+"kind": "bars",
+"city": "Copenhagen",
+"country": "Denmark",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Widder Bar",
+"url": "https://www.falstaff.com/en/bars/widder-bar-im-widder-hotel",
+"kind": "bars",
+"city": "Zurich",
+"country": "Switzerland",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Sips",
+"url": "https://www.falstaff.com/en/bars/sips",
+"kind": "bars",
+"city": "Barcelona",
+"country": "Spain",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Terraza Verbena Rooftop",
+"url": "https://www.falstaff.com/en/bars/terraza-verbena-rooftop",
+"kind": "bars",
+"city": "Barcelona",
+"country": "Spain",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Bad Company 1920",
+"url": "https://www.falstaff.com/en/bars/bad-company-1920",
+"kind": "bars",
+"city": "Madrid",
+"country": "Spain",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Rudi's Marbella Club",
+"url": "https://www.falstaff.com/en/bars/rudis-marbella-club",
+"kind": "bars",
+"city": "Marbella",
+"country": "Spain",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "The Monkey Bar",
+"url": "https://www.falstaff.com/en/bars/the-monkey-bar",
+"kind": "bars",
+"city": "Prague",
+"country": "Czech Republic",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Baba au rum",
+"url": "https://www.falstaff.com/en/bars/baba-au-rum",
+"kind": "bars",
+"city": "Athens",
+"country": "Greece",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Drink Kong",
+"url": "https://www.falstaff.com/en/bars/drink-kong",
+"kind": "bars",
+"city": "Rome",
+"country": "Italy",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Satan's Whiskers",
+"url": "https://www.falstaff.com/en/bars/satans-whiskers",
+"kind": "bars",
+"city": "London",
+"country": "United Kingdom",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "The Clumsies",
+"url": "https://www.falstaff.com/en/bars/the-clumsies",
+"kind": "bars",
+"city": "Athens",
+"country": "Greece",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "The Connaught Bar",
+"url": "https://www.falstaff.com/en/bars/the-connaught-bar",
+"kind": "bars",
+"city": "London",
+"country": "United Kingdom",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "The Fumoir Bar at Claridge's",
+"url": "https://www.falstaff.com/en/bars/the-fumoir-bar-at-claridges",
+"kind": "bars",
+"city": "London",
+"country": "United Kingdom",
+"glasses": 4,
+"points": 96
+},
+{
+"name": "Eatrenalin",
+"url": "https://www.falstaff.com/en/bars/eatrenalin",
+"kind": "bars",
+"city": "Rust",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Herbarium Bar",
+"url": "https://www.falstaff.com/en/bars/herbarium-bar",
+"kind": "bars",
+"city": "Göttingen",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Jahreszeiten Bar",
+"url": "https://www.falstaff.com/en/bars/jahreszeiten-bar-im-fairmont-hotel-vier-jahreszeiten",
+"kind": "bars",
+"city": "Hamburg",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Josef Cocktailbar",
+"url": "https://www.falstaff.com/en/bars/josef-cocktailbar",
+"kind": "bars",
+"city": "Vienna",
+"country": "Austria",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Spiritus",
+"url": "https://www.falstaff.com/en/bars/spiritus",
+"kind": "bars",
+"city": "Mainz",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "The Bank Bar im Park Hyatt",
+"url": "https://www.falstaff.com/en/bars/the-bank-bar-im-park-hyatt",
+"kind": "bars",
+"city": "Vienna",
+"country": "Austria",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Al Salam",
+"url": "https://www.falstaff.com/en/restaurants/al-salam-cologne",
+"kind": "restaurants",
+"city": "Cologne",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "American Bar Hotel Château Gütsch",
+"url": "https://www.falstaff.com/en/bars/bar-im-hotel-guetsch",
+"kind": "bars",
+"city": "Lucerne",
+"country": "Switzerland",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Atelier Classic Bar",
+"url": "https://www.falstaff.com/en/bars/atelier-classic-bar",
+"kind": "bars",
+"city": "Thun",
+"country": "Switzerland",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Balderdash",
+"url": "https://www.falstaff.com/en/bars/balderdash",
+"kind": "bars",
+"city": "Copenhagen",
+"country": "Denmark",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Bar 1705 im Kempinski",
+"url": "https://www.falstaff.com/en/bars/bar-1705",
+"kind": "bars",
+"city": "Dresden",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Bar Martinelli",
+"url": "https://www.falstaff.com/en/bars/bar-martinelli",
+"kind": "bars",
+"city": "Heidelberg",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Bartista",
+"url": "https://www.falstaff.com/en/bars/bartista",
+"kind": "bars",
+"city": "Tübingen",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Buck & Breck",
+"url": "https://www.falstaff.com/en/bars/buck-and-breck",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Burdock",
+"url": "https://www.falstaff.com/en/bars/burdock",
+"kind": "bars",
+"city": "Salzburg",
+"country": "Austria",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "CAAA by Pietro Catalano",
+"url": "https://www.falstaff.com/en/restaurants/caaa-by-pietro-catalano-lucerne",
+"kind": "restaurants",
+"city": "Lucerne",
+"country": "Switzerland",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Chedi Bar & Living Room",
+"url": "https://www.falstaff.com/en/bars/chedi-bar-living-room",
+"kind": "bars",
+"city": "Andermatt",
+"country": "Switzerland",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "COLLAB Bar",
+"url": "https://www.falstaff.com/en/bars/collab-bar",
+"kind": "bars",
+"city": "Hamburg",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Das Werk 8",
+"url": "https://www.falstaff.com/en/bars/werk-8",
+"kind": "bars",
+"city": "Basel",
+"country": "Switzerland",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Einstein Bar",
+"url": "https://www.falstaff.com/en/bars/einstein-bar",
+"kind": "bars",
+"city": "St. Gallen",
+"country": "Switzerland",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Espier Bar",
+"url": "https://www.falstaff.com/en/bars/espier-bar",
+"kind": "bars",
+"city": "Stavanger",
+"country": "Norway",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Gensyn Bar",
+"url": "https://www.falstaff.com/en/bars/gensyn-bar",
+"kind": "bars",
+"city": "Frederiksberg",
+"country": "Denmark",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Gondolen",
+"url": "https://www.falstaff.com/en/restaurants/eriks-gondolen-stockholm",
+"kind": "restaurants",
+"city": "Stockholm",
+"country": "Sweden",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Ihro",
+"url": "https://www.falstaff.com/en/bars/ihro",
+"kind": "bars",
+"city": "Mannheim",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Imperii Bar",
+"url": "https://www.falstaff.com/en/bars/imperii-bar",
+"kind": "bars",
+"city": "Leipzig",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Jahreszeiten Bar Munich",
+"url": "https://www.falstaff.com/en/bars/jahreszeiten-bar-im-hotel-vier-jahreszeiten-kempinski",
+"kind": "bars",
+"city": "Munich",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Lakeview Bar & Cigar Lounge",
+"url": "https://www.falstaff.com/en/bars/lakeview-bar-cigar-lounge",
+"kind": "bars",
+"city": "Obbürgen",
+"country": "Switzerland",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "MO Bar Mandarin Oriental Geneva",
+"url": "https://www.falstaff.com/en/bars/mo-bar-im-mandarin-oriental-geneva",
+"kind": "bars",
+"city": "Geneva",
+"country": "Switzerland",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "moloko+",
+"url": "https://www.falstaff.com/en/bars/moloko",
+"kind": "bars",
+"city": "Frankfurt am Main",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Nu",
+"url": "https://www.falstaff.com/en/bars/nu",
+"kind": "bars",
+"city": "Odense",
+"country": "Denmark",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Ona Mor Bar Köln",
+"url": "https://www.falstaff.com/en/bars/ona-mor-bar-koeln",
+"kind": "bars",
+"city": "Cologne",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Röda Huset Cocktailbar",
+"url": "https://www.falstaff.com/en/bars/roeda-huset-cocktailbar",
+"kind": "bars",
+"city": "Stockholm",
+"country": "Sweden",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Sieferle & KØ Bar",
+"url": "https://www.falstaff.com/en/bars/sieferle-ko-bar",
+"kind": "bars",
+"city": "Mannheim",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Tales Bar",
+"url": "https://www.falstaff.com/en/bars/tales-bar",
+"kind": "bars",
+"city": "Zurich",
+"country": "Switzerland",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "The Curtain Club",
+"url": "https://www.falstaff.com/en/bars/the-curtain-club",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "The Door Liquid Kitchen & Highballs",
+"url": "https://www.falstaff.com/en/bars/the-door-liquid-kitchen-highballs",
+"kind": "bars",
+"city": "Karlsruhe",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "The Sign Lounge",
+"url": "https://www.falstaff.com/en/bars/the-sign-lounge",
+"kind": "bars",
+"city": "Vienna",
+"country": "Austria",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Wax On",
+"url": "https://www.falstaff.com/en/bars/waxon",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Yaldy",
+"url": "https://www.falstaff.com/en/bars/yaldy",
+"kind": "bars",
+"city": "Frankfurt am Main",
+"country": "Germany",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Delano Cocktailbar",
+"url": "https://www.falstaff.com/en/bars/delano-cocktailbar",
+"kind": "bars",
+"city": "Nice",
+"country": "France",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Dry Martini Bar",
+"url": "https://www.falstaff.com/en/bars/dry-martini-bar",
+"kind": "bars",
+"city": "Barcelona",
+"country": "Spain",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "La Santoría",
+"url": "https://www.falstaff.com/en/bars/la-santoria",
+"kind": "bars",
+"city": "Madrid",
+"country": "Spain",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Les Bars du Negresco",
+"url": "https://www.falstaff.com/en/bars/les-bars-du-negresco",
+"kind": "bars",
+"city": "Nice",
+"country": "France",
+"glasses": 4,
+"points": 95
+},
+{
+"name": "Oleander Bar im Brenners Park-Hotel & Spa",
+"url": "https://www.falstaff.com/en/bars/oleander-bar-im-brenners-park-hotel-spa",
+"kind": "bars",
+"city": "Baden-Baden",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Truth & Dare",
+"url": "https://www.falstaff.com/en/bars/truth-dare",
+"kind": "bars",
+"city": "Vienna",
+"country": "Austria",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Bambou Speakeasy",
+"url": "https://www.falstaff.com/en/bars/bambou-bar-speakeasy",
+"kind": "bars",
+"city": "Geneva",
+"country": "Switzerland",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Bar Afterglow",
+"url": "https://www.falstaff.com/en/bars/bar-afterglow",
+"kind": "bars",
+"city": "Stockholm",
+"country": "Sweden",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Bar Deco",
+"url": "https://www.falstaff.com/en/bars/bar-deco",
+"kind": "bars",
+"city": "Copenhagen",
+"country": "Denmark",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Bar Montez",
+"url": "https://www.falstaff.com/en/bars/bar-montez",
+"kind": "bars",
+"city": "Munich",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Bardem",
+"url": "https://www.falstaff.com/en/bars/bardem",
+"kind": "bars",
+"city": "Helsinki",
+"country": "Finland",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Becketts Kopf",
+"url": "https://www.falstaff.com/en/bars/becketts-kopf",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Call Soul Breaking Bar",
+"url": "https://www.falstaff.com/en/bars/call-soul-breaking-bar",
+"kind": "bars",
+"city": "Munich",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Charles Bar",
+"url": "https://www.falstaff.com/en/bars/charles-bar",
+"kind": "bars",
+"city": "Lutherstadt Wittenberg",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Chihuahua Julep",
+"url": "https://www.falstaff.com/en/bars/chihuahua-julep",
+"kind": "bars",
+"city": "Helsinki",
+"country": "Finland",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Clockers",
+"url": "https://www.falstaff.com/en/spiritproducer/clockers",
+"kind": "spiritproducer",
+"city": "Hamburg",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Curfew",
+"url": "https://www.falstaff.com/en/bars/curfew",
+"kind": "bars",
+"city": "Copenhagen",
+"country": "Denmark",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Die Goldene Bar",
+"url": "https://www.falstaff.com/en/bars/die-goldene-bar",
+"kind": "bars",
+"city": "Munich",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Eden Bar Zurich",
+"url": "https://www.falstaff.com/en/bars/eden-bar-1",
+"kind": "bars",
+"city": "Zurich",
+"country": "Switzerland",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Englhof Cocktailbar",
+"url": "https://www.falstaff.com/en/bars/englhof-cocktailbar",
+"kind": "bars",
+"city": "Zell am Ziller",
+"country": "Austria",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Fontenay Bar",
+"url": "https://www.falstaff.com/en/bars/fontenay-bar",
+"kind": "bars",
+"city": "Hamburg",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Fritz & Felix Bar",
+"url": "https://www.falstaff.com/en/bars/fritz-felix-bar",
+"kind": "bars",
+"city": "Baden-Baden",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Green Door Bar",
+"url": "https://www.falstaff.com/en/bars/green-door-bar",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Hanky Panky",
+"url": "https://www.falstaff.com/en/bars/hanky-panky-1",
+"kind": "bars",
+"city": "Stuttgart",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Herz Cocktailbar",
+"url": "https://www.falstaff.com/en/bars/herz",
+"kind": "bars",
+"city": "Basel",
+"country": "Switzerland",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Krass Böser Wolf",
+"url": "https://www.falstaff.com/en/bars/krass-boeser-wolf",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Lamm Bar",
+"url": "https://www.falstaff.com/en/bars/lamm-bar",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Le Jardin",
+"url": "https://www.falstaff.com/en/bars/le-jardin",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Le Verre à Monique",
+"url": "https://www.falstaff.com/en/bars/le-verre-a-monique",
+"kind": "bars",
+"city": "Geneva",
+"country": "Switzerland",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Lidkoeb",
+"url": "https://www.falstaff.com/en/bars/lidkoeb",
+"kind": "bars",
+"city": "Copenhagen",
+"country": "Denmark",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Limonadier",
+"url": "https://www.falstaff.com/en/bars/limonadier",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Martini Bar im Grill",
+"url": "https://www.falstaff.com/en/bars/martini-bar-im-grill-in-hamburg",
+"kind": "bars",
+"city": "Hamburg",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Mondhuegel Bar",
+"url": "https://www.falstaff.com/en/bars/mondhuegel-bar-markthalle-neun",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Nimb Cocktailbar",
+"url": "https://www.falstaff.com/en/bars/nimb-bar",
+"kind": "bars",
+"city": "Copenhagen",
+"country": "Denmark",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Old Fashioned",
+"url": "https://www.falstaff.com/en/bars/old-fashioned",
+"kind": "bars",
+"city": "Bratislava",
+"country": "Slovakia",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "One Trick Pony",
+"url": "https://www.falstaff.com/en/restaurants/one-trick-pony-freiburg",
+"kind": "restaurants",
+"city": "Freiburg im Breisgau",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Pino's Bar",
+"url": "https://www.falstaff.com/en/bars/pinos-bar",
+"kind": "bars",
+"city": "Heidelberg",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Provocateur Bar",
+"url": "https://www.falstaff.com/en/bars/provocateur-bar",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Punky Panda",
+"url": "https://www.falstaff.com/en/restaurants/punky-panda-cocktailbar-ramen-cologne",
+"kind": "restaurants",
+"city": "Cologne",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Rivage Café im Beau-Rivage Genève",
+"url": "https://www.falstaff.com/en/bars/albertines-im-beau-rivage-geneve",
+"kind": "bars",
+"city": "Geneva",
+"country": "Switzerland",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Schoellmanns Bar & Küche",
+"url": "https://www.falstaff.com/en/bars/schoellmanns-bar-kueche",
+"kind": "bars",
+"city": "Offenburg",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Squarebar",
+"url": "https://www.falstaff.com/en/bars/squarebar",
+"kind": "bars",
+"city": "Düsseldorf",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "The Chug Club",
+"url": "https://www.falstaff.com/en/bars/the-chug-club",
+"kind": "bars",
+"city": "Hamburg",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Weißes Roß Bar",
+"url": "https://www.falstaff.com/en/bars/weisses-ross-bar",
+"kind": "bars",
+"city": "Stuttgart",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Woods Cologne",
+"url": "https://www.falstaff.com/en/bars/woods",
+"kind": "bars",
+"city": "Cologne",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Zephyr",
+"url": "https://www.falstaff.com/en/bars/zephyr",
+"kind": "bars",
+"city": "Munich",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Zest and Spice",
+"url": "https://www.falstaff.com/en/bars/zest-and-spice",
+"kind": "bars",
+"city": "Cologne",
+"country": "Germany",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Paradiso",
+"url": "https://www.falstaff.com/en/bars/paradiso",
+"kind": "bars",
+"city": "Barcelona",
+"country": "Spain",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "100 Maneiras",
+"url": "https://www.falstaff.com/en/bars/100-maneiras",
+"kind": "bars",
+"city": "Lisbon",
+"country": "Portugal",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Anonymous Shrink's Office",
+"url": "https://www.falstaff.com/en/bars/anonymous-shrinks-office",
+"kind": "bars",
+"city": "Prague",
+"country": "Czech Republic",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Bar Cock",
+"url": "https://www.falstaff.com/en/bars/bar-cock",
+"kind": "bars",
+"city": "Madrid",
+"country": "Spain",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Cinco Lounge",
+"url": "https://www.falstaff.com/en/bars/cinco-lounge",
+"kind": "bars",
+"city": "Lisbon",
+"country": "Portugal",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Speakeasy The Pharmacy",
+"url": "https://www.falstaff.com/en/bars/speakeasy-the-pharmacy",
+"kind": "bars",
+"city": "Málaga",
+"country": "Spain",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "American Bar",
+"url": "https://www.falstaff.com/en/bars/american-bar",
+"kind": "bars",
+"city": "London",
+"country": "United Kingdom",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Barro Negro",
+"url": "https://www.falstaff.com/en/bars/barro-negro",
+"kind": "bars",
+"city": "Athens",
+"country": "Greece",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "CV distiller",
+"url": "https://www.falstaff.com/en/bars/cv-distiller",
+"kind": "bars",
+"city": "Athens",
+"country": "Greece",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Freni e Frizioni",
+"url": "https://www.falstaff.com/en/bars/freni-e-frizioni",
+"kind": "bars",
+"city": "Rome",
+"country": "Italy",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Jerry Thomas Speakeasy",
+"url": "https://www.falstaff.com/en/bars/jerry-thomas",
+"kind": "bars",
+"city": "Rome",
+"country": "Italy",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Line",
+"url": "https://www.falstaff.com/en/bars/line-athens",
+"kind": "bars",
+"city": "Athens",
+"country": "Greece",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Lyaness",
+"url": "https://www.falstaff.com/en/bars/lyaness",
+"kind": "bars",
+"city": "London",
+"country": "United Kingdom",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "The Bar In Front Of The Bar",
+"url": "https://www.falstaff.com/en/bars/the-bar-in-front-of-the-bar",
+"kind": "bars",
+"city": "Athens",
+"country": "Greece",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "Woda Ognista",
+"url": "https://www.falstaff.com/en/bars/woda-ognista",
+"kind": "bars",
+"city": "Warsaw",
+"country": "Poland",
+"points": 94,
+"glasses": 3
+},
+{
+"name": "D-bar im Ritz-Carlton Hotel Vienna",
+"url": "https://www.falstaff.com/en/bars/d-bar-im-ritz-carlton-hotel-vienna",
+"kind": "bars",
+"city": "Vienna",
+"country": "Austria",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Fabios",
+"url": "https://www.falstaff.com/en/bars/fabios",
+"kind": "bars",
+"city": "Vienna",
+"country": "Austria",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "George Bar & Grill",
+"url": "https://www.falstaff.com/en/restaurants/george-bar-grill-zuerich",
+"kind": "restaurants",
+"city": "Zurich",
+"country": "Switzerland",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Kombo",
+"url": "https://www.falstaff.com/en/bars/kombo",
+"kind": "bars",
+"city": "Trondheim",
+"country": "Norway",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Stollen 1930",
+"url": "https://www.falstaff.com/en/bars/stollen-1930",
+"kind": "bars",
+"city": "Kufstein",
+"country": "Austria",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "The Chapel",
+"url": "https://www.falstaff.com/en/bars/the-chapel",
+"kind": "bars",
+"city": "Vienna",
+"country": "Austria",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "20hundra5",
+"url": "https://www.falstaff.com/en/bars/20hundra5",
+"kind": "bars",
+"city": "Stockholm",
+"country": "Sweden",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Bā Nomu",
+"url": "https://www.falstaff.com/en/bars/ba-nomu",
+"kind": "bars",
+"city": "Hamburg",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Baltazar",
+"url": "https://www.falstaff.com/en/bars/baltazar",
+"kind": "bars",
+"city": "Basel",
+"country": "Switzerland",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Bar 63",
+"url": "https://www.falstaff.com/en/bars/bar-63",
+"kind": "bars",
+"city": "Zurich",
+"country": "Switzerland",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Bar Iris im Hyatt Regency Zurich Airport",
+"url": "https://www.falstaff.com/en/bars/bar-iris-im-hyatt-regency-zurich-airport",
+"kind": "bars",
+"city": "Zurich",
+"country": "Switzerland",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Bar Pani",
+"url": "https://www.falstaff.com/en/bars/bar-pani",
+"kind": "bars",
+"city": "Vienna",
+"country": "Austria",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Bar Seibert",
+"url": "https://www.falstaff.com/en/bars/bar-seibert",
+"kind": "bars",
+"city": "Kassel",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "BAR Beau-Rivage Palace",
+"url": "https://www.falstaff.com/en/bars/bar-im-beau-rivage-palace",
+"kind": "bars",
+"city": "Lausanne",
+"country": "Switzerland",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Barroom München",
+"url": "https://www.falstaff.com/en/bars/barroom-muenchen",
+"kind": "bars",
+"city": "Munich",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Bruder",
+"url": "https://www.falstaff.com/en/restaurants/bruder-wien",
+"kind": "restaurants",
+"city": "Vienna",
+"country": "Austria",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Carlton Bar & Lobby",
+"url": "https://www.falstaff.com/en/bars/carlton-bar-lobby-im-carlton-hotel-st-moritz",
+"kind": "bars",
+"city": "Saint Moritz",
+"country": "Switzerland",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Clouds Bar",
+"url": "https://www.falstaff.com/en/bars/clouds-bar",
+"kind": "bars",
+"city": "Zurich",
+"country": "Switzerland",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "DaCaio im Hotel The George",
+"url": "https://www.falstaff.com/en/restaurants/dacaio-im-hotel-the-george-hamburg",
+"kind": "restaurants",
+"city": "Hamburg",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Das schwarze Schaf",
+"url": "https://www.falstaff.com/en/bars/das-schwarze-schaf",
+"kind": "bars",
+"city": "Bamberg",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Den Grimme Ælling",
+"url": "https://www.falstaff.com/en/bars/den-grimme-aelling",
+"kind": "bars",
+"city": "Oslo",
+"country": "Norway",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Die Blume von Hawaii",
+"url": "https://www.falstaff.com/en/bars/die-blume-von-hawaii",
+"kind": "bars",
+"city": "Nuremberg",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Dr. Zhivago Bar",
+"url": "https://www.falstaff.com/en/bars/dr-zhivago-bar",
+"kind": "bars",
+"city": "Zurich",
+"country": "Switzerland",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Dunlin",
+"url": "https://www.falstaff.com/en/bars/dunlin",
+"kind": "bars",
+"city": "Innsbruck",
+"country": "Austria",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Eden Bar Hotel Eden Roc",
+"url": "https://www.falstaff.com/en/bars/eden-bar-im-hotel-eden-roc",
+"kind": "bars",
+"city": "Ascona",
+"country": "Switzerland",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Ernst Fuchs",
+"url": "https://www.falstaff.com/en/bars/ernst-fuchs",
+"kind": "bars",
+"city": "Graz",
+"country": "Austria",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "FABELEI Cocktailbar",
+"url": "https://www.falstaff.com/en/bars/fabelei-cocktailbar",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Fairytale Bar",
+"url": "https://www.falstaff.com/en/bars/fairytale-bar",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Falk's Bar im Hotel Bayerischer Hof",
+"url": "https://www.falstaff.com/en/bars/falks-bar",
+"kind": "bars",
+"city": "Munich",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Friesenvierzig",
+"url": "https://www.falstaff.com/en/bars/friesen-barkultur",
+"kind": "bars",
+"city": "Cologne",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+},
+{
+"name": "Galander Charlottenburg",
+"url": "https://www.falstaff.com/en/bars/galander-cocktailbar-charlottenburg",
+"kind": "bars",
+"city": "Berlin",
+"country": "Germany",
+"points": 93,
+"glasses": 3
+}
+]

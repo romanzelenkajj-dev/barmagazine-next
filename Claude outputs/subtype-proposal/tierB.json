@@ -1,0 +1,658 @@
+[
+ {
+  "slug": "1862-dry-bar",
+  "name": "1862 Dry Bar",
+  "city": "Madrid",
+  "country": "Spain",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "878-bar",
+  "name": "878 Bar",
+  "city": "Buenos Aires",
+  "country": "Argentina",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "alma-prague",
+  "name": "Alma Prague",
+  "city": "Prague",
+  "country": "Czech Republic",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "almanac-philadelphia",
+  "name": "Almanac",
+  "city": "Philadelphia",
+  "country": "United States",
+  "state": "PA",
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "amazonia-dc",
+  "name": "Amazonia",
+  "city": "Washington DC",
+  "country": "United States",
+  "state": "DC",
+  "existing": [
+   "Rooftop Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "angelita",
+  "name": "Angelita",
+  "city": "Madrid",
+  "country": "Spain",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Wine Bar",
+   "Restaurant Bar"
+  ]
+ },
+ {
+  "slug": "apotheke-nyc",
+  "name": "Apothéke Chinatown",
+  "city": "New York",
+  "country": "United States",
+  "state": "NY",
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "arca",
+  "name": "Arca",
+  "city": "Tulum",
+  "country": "Mexico",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Restaurant Bar"
+  ]
+ },
+ {
+  "slug": "artesian",
+  "name": "Artesian",
+  "city": "London",
+  "country": "United Kingdom",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "bar-flores",
+  "name": "Bar Flores",
+  "city": "Los Angeles",
+  "country": "United States",
+  "state": "CA",
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "bar-kabawa",
+  "name": "Bar Kabawa",
+  "city": "New York",
+  "country": "United States",
+  "state": "NY",
+  "existing": [],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "bathtub-gin-seattle",
+  "name": "Bathtub Gin & Co.",
+  "city": "Seattle",
+  "country": "United States",
+  "state": "WA",
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "cabinet-8",
+  "name": "Cabinet 8",
+  "city": "Kuala Lumpur",
+  "country": "Malaysia",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "carrie-nation-boston",
+  "name": "Carrie Nation Cocktail Club",
+  "city": "Boston",
+  "country": "United States",
+  "state": "MA",
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "champagne-bar-at-four-seasons-surf-club",
+  "name": "Champagne Bar at Four Seasons Surf Club",
+  "city": "Miami",
+  "country": "United States",
+  "state": "FL",
+  "existing": [],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "cleaver",
+  "name": "Cleaver",
+  "city": "Las Vegas",
+  "country": "United States",
+  "state": "NV",
+  "existing": [],
+  "add": [
+   "Restaurant Bar"
+  ]
+ },
+ {
+  "slug": "codigo-86",
+  "name": "Código 86",
+  "city": "Quito",
+  "country": "Ecuador",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "connaught-bar",
+  "name": "Connaught Bar",
+  "city": "London",
+  "country": "United Kingdom",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "copperbay",
+  "name": "CopperBay",
+  "city": "Paris",
+  "country": "France",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "d-still",
+  "name": "D.still",
+  "city": "Seoul",
+  "country": "South Korea",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "danico",
+  "name": "Danico",
+  "city": "Paris",
+  "country": "France",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Restaurant Bar"
+  ]
+ },
+ {
+  "slug": "deux-freres",
+  "name": "Deux Frères",
+  "city": "Sydney",
+  "country": "Australia",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "diller-room",
+  "name": "The Diller Room",
+  "city": "Seattle",
+  "country": "United States",
+  "state": "WA",
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "dos-arcos",
+  "name": "Bar dos Arcos",
+  "city": "São Paulo",
+  "country": "Brazil",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "drinc-cocktail-conversation",
+  "name": "drinc. Cocktail & Conversation",
+  "city": "Milan",
+  "country": "Italy",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "dry-martini-by-javier-de-las-muelas",
+  "name": "Dry Martini by Javier de las Muelas",
+  "city": "Barcelona",
+  "country": "Spain",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "dry-martini-sorrento",
+  "name": "Dry Martini",
+  "city": "Sorrento",
+  "country": "Italy",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Rooftop Bar"
+  ]
+ },
+ {
+  "slug": "eau-de-vie",
+  "name": "Eau de Vie",
+  "city": "Melbourne",
+  "country": "Australia",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "floreria-atlantico-dc",
+  "name": "Florería Atlántico",
+  "city": "Washington DC",
+  "country": "United States",
+  "state": "DC",
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "form-matter",
+  "name": "Form + Matter",
+  "city": "Mexico City",
+  "country": "Mexico",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "french-75",
+  "name": "French 75",
+  "city": "New Orleans",
+  "country": "United States",
+  "state": "LA",
+  "existing": [],
+  "add": [
+   "Restaurant Bar"
+  ]
+ },
+ {
+  "slug": "furtivo-speakeasy",
+  "name": "Furtivo Speakeasy",
+  "city": "San Juan",
+  "country": "Puerto Rico",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "handshake-speakeasy",
+  "name": "Handshake Speakeasy",
+  "city": "Mexico City",
+  "country": "Mexico",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "hero-bar",
+  "name": "Hero Bar",
+  "city": "Nairobi",
+  "country": "Kenya",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "hop-sing-laundromat-philadelphia",
+  "name": "Hop Sing Laundromat",
+  "city": "Philadelphia",
+  "country": "United States",
+  "state": "PA",
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "hotel-bar-tampa",
+  "name": "Hotel Bar",
+  "city": "Tampa",
+  "country": "United States",
+  "state": "FL",
+  "existing": [],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "hudson-bar-budapest",
+  "name": "Hudson Bar",
+  "city": "Budapest",
+  "country": "Hungary",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "kumiko",
+  "name": "Kumiko",
+  "city": "Chicago",
+  "country": "United States",
+  "state": "IL",
+  "existing": [],
+  "add": [
+   "Restaurant Bar"
+  ]
+ },
+ {
+  "slug": "la-punta-expendio-de-agave",
+  "name": "La Punta Expendio de Agave",
+  "city": "Rome",
+  "country": "Italy",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "le-mary-celeste",
+  "name": "Le Mary Celeste",
+  "city": "Paris",
+  "country": "France",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Restaurant Bar"
+  ]
+ },
+ {
+  "slug": "little-rituals",
+  "name": "Little Rituals",
+  "city": "Phoenix",
+  "country": "United States",
+  "state": "AZ",
+  "existing": [],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "lovo-cocktail-bar-madrid",
+  "name": "Lovo Bar",
+  "city": "Madrid",
+  "country": "Spain",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "mag-cafe",
+  "name": "Mag i Navigli",
+  "city": "Milan",
+  "country": "Italy",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "mintiq-bar-porec",
+  "name": "MintiQ Bar",
+  "city": "Poreč",
+  "country": "Croatia",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "monkey-mash",
+  "name": "Monkey Mash",
+  "city": "Lisbon",
+  "country": "Portugal",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "morro-fi",
+  "name": "Morro Fi",
+  "city": "Barcelona",
+  "country": "Spain",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "shakerato",
+  "name": "Shakerato",
+  "city": "Amsterdam",
+  "country": "Netherlands",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "side-hustle",
+  "name": "Side Hustle",
+  "city": "London",
+  "country": "United Kingdom",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "sober-company",
+  "name": "Sober Company",
+  "city": "Shanghai",
+  "country": "China",
+  "state": null,
+  "existing": [
+   "Speakeasy"
+  ],
+  "add": [
+   "Restaurant Bar"
+  ]
+ },
+ {
+  "slug": "sobrio-by-mezcal-speakeasy",
+  "name": "Sobrio by Mezcal Speakeasy",
+  "city": "Oaxaca",
+  "country": "Mexico",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Tiki Bar"
+  ]
+ },
+ {
+  "slug": "spare-room",
+  "name": "Spare Room",
+  "city": "Los Angeles",
+  "country": "United States",
+  "state": "CA",
+  "existing": [],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "t57-wroclaw",
+  "name": "T57",
+  "city": "Wrocław",
+  "country": "Poland",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "techo",
+  "name": "Techo Mezcaleria & Agave Bar",
+  "city": "Austin",
+  "country": "United States",
+  "state": "TX",
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "the-blind-pig-speakeasy",
+  "name": "The Blind Pig Speakeasy",
+  "city": "Dublin",
+  "country": "Ireland",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "tikehau-lounge",
+  "name": "Tikehau Lounge",
+  "city": "Kihei",
+  "country": "United States",
+  "state": "HI",
+  "existing": [],
+  "add": [
+   "Tiki Bar"
+  ]
+ },
+ {
+  "slug": "tiki-bar-athens",
+  "name": "Tiki Bar Athens",
+  "city": "Athens",
+  "country": "Greece",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Tiki Bar"
+  ]
+ },
+ {
+  "slug": "walrus-and-carpenter-seattle",
+  "name": "The Walrus and the Carpenter",
+  "city": "Seattle",
+  "country": "United States",
+  "state": "WA",
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ }
+]

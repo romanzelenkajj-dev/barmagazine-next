@@ -1,0 +1,465 @@
+[
+ {
+  "slug": "1q1",
+  "name": "1Q1",
+  "city": "Bengaluru",
+  "country": "India",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "amma-don",
+  "name": "Amma Don",
+  "city": "Reykjavík",
+  "country": "Iceland",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "bar-chenin",
+  "name": "Bar Chenin",
+  "city": "Detroit",
+  "country": "United States",
+  "state": "MI",
+  "existing": [
+   "Hotel Bar"
+  ],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "bar-liberty",
+  "name": "Bar Liberty",
+  "city": "Melbourne",
+  "country": "Australia",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "barc",
+  "name": "Barc",
+  "city": "Kathmandu",
+  "country": "Nepal",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "bartholomew",
+  "name": "Bartholomew",
+  "city": "Vancouver",
+  "country": "Canada",
+  "state": "BC",
+  "existing": [],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "blind-duck",
+  "name": "The Blind Duck",
+  "city": "Boston",
+  "country": "United States",
+  "state": "MA",
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "canopy-lounge-rooftop-bar-kl",
+  "name": "Canopy Lounge by Tigerbay",
+  "city": "Kuala Lumpur",
+  "country": "Malaysia",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Rooftop Bar"
+  ]
+ },
+ {
+  "slug": "catbird",
+  "name": "Catbird",
+  "city": "Dallas",
+  "country": "United States",
+  "state": "TX",
+  "existing": [
+   "Hotel Bar"
+  ],
+  "add": [
+   "Rooftop Bar"
+  ]
+ },
+ {
+  "slug": "cavana",
+  "name": "Cavaña",
+  "city": "San Francisco",
+  "country": "United States",
+  "state": "CA",
+  "existing": [
+   "Hotel Bar"
+  ],
+  "add": [
+   "Rooftop Bar"
+  ]
+ },
+ {
+  "slug": "cilim-bar",
+  "name": "Ćilim Bar",
+  "city": "Belgrade",
+  "country": "Serbia",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "cooldown-budapest",
+  "name": "Cooldown Budapest",
+  "city": "Budapest",
+  "country": "Hungary",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "don-woods-say-when",
+  "name": "Don Woods' Say When",
+  "city": "Phoenix",
+  "country": "United States",
+  "state": "AZ",
+  "existing": [],
+  "add": [
+   "Rooftop Bar"
+  ]
+ },
+ {
+  "slug": "find-the-locker-room",
+  "name": "Find The Locker Room",
+  "city": "Bangkok",
+  "country": "Thailand",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "florattica-rooftop-london",
+  "name": "Florattica Rooftop London",
+  "city": "London",
+  "country": "United Kingdom",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Rooftop Bar"
+  ]
+ },
+ {
+  "slug": "forbina-bar",
+  "name": "Forbína Bar",
+  "city": "Prague",
+  "country": "Czech Republic",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "harbour-bar",
+  "name": "Harbour Bar",
+  "city": "Mumbai",
+  "country": "India",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "hecate-bar-boston",
+  "name": "Hecate",
+  "city": "Boston",
+  "country": "United States",
+  "state": "MA",
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "hey-love",
+  "name": "Hey Love",
+  "city": "Portland",
+  "country": "United States",
+  "state": "OR",
+  "existing": [],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "juniper-bar",
+  "name": "Juniper Bar",
+  "city": "New Delhi",
+  "country": "India",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "l-antiquario",
+  "name": "L'Antiquario",
+  "city": "Naples",
+  "country": "Italy",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "lagniappe",
+  "name": "Lagniappe",
+  "city": "Miami",
+  "country": "United States",
+  "state": "FL",
+  "existing": [],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "lubna",
+  "name": "Lubna",
+  "city": "Milan",
+  "country": "Italy",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Restaurant Bar"
+  ]
+ },
+ {
+  "slug": "mamba-negra",
+  "name": "Mamba Negra",
+  "city": "Medellín",
+  "country": "Colombia",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Rooftop Bar"
+  ]
+ },
+ {
+  "slug": "masque",
+  "name": "Masque",
+  "city": "Mumbai",
+  "country": "India",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Restaurant Bar"
+  ]
+ },
+ {
+  "slug": "plumette",
+  "name": "Plumette",
+  "city": "Brussels",
+  "country": "Belgium",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "rabbit-hole",
+  "name": "Rabbit Hole",
+  "city": "Bangkok",
+  "country": "Thailand",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "sager-wilde",
+  "name": "Sager & Wilde",
+  "city": "London",
+  "country": "United Kingdom",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "septime-la-cave",
+  "name": "Septime La Cave",
+  "city": "Paris",
+  "country": "France",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Wine Bar"
+  ]
+ },
+ {
+  "slug": "the-best-kept-secret",
+  "name": "The Best Kept Secret",
+  "city": "St. Clair Shores",
+  "country": "United States",
+  "state": "MI",
+  "existing": [],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "the-hudson-rooms",
+  "name": "The Hudson Rooms",
+  "city": "Hanoi",
+  "country": "Vietnam",
+  "state": null,
+  "existing": [],
+  "add": [
+   "Rooftop Bar"
+  ]
+ },
+ {
+  "slug": "the-living-room",
+  "name": "The Living Room",
+  "city": "New Delhi",
+  "country": "India",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "the-living-room-dewberry",
+  "name": "The Living Room",
+  "city": "Charleston",
+  "country": "United States",
+  "state": "SC",
+  "existing": [],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "tonga-room",
+  "name": "Tonga Room & Hurricane Bar",
+  "city": "San Francisco",
+  "country": "United States",
+  "state": "CA",
+  "existing": [],
+  "add": [
+   "Tiki Bar"
+  ]
+ },
+ {
+  "slug": "trillby-chadwick",
+  "name": "Trillby & Chadwick",
+  "city": "Helsinki",
+  "country": "Finland",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "white-limozeen",
+  "name": "White Limozeen",
+  "city": "Nashville",
+  "country": "United States",
+  "state": "TN",
+  "existing": [
+   "Hotel Bar"
+  ],
+  "add": [
+   "Rooftop Bar"
+  ]
+ },
+ {
+  "slug": "williams-and-graham-denver",
+  "name": "Williams & Graham",
+  "city": "Denver",
+  "country": "United States",
+  "state": "CO",
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Speakeasy"
+  ]
+ },
+ {
+  "slug": "yoi",
+  "name": "YOI",
+  "city": "Kyoto",
+  "country": "Japan",
+  "state": null,
+  "existing": [
+   "Cocktail Bar"
+  ],
+  "add": [
+   "Hotel Bar"
+  ]
+ },
+ {
+  "slug": "z-bar",
+  "name": "Z Bar",
+  "city": "Chicago",
+  "country": "United States",
+  "state": "IL",
+  "existing": [],
+  "add": [
+   "Rooftop Bar"
+  ]
+ }
+]
