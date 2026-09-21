@@ -418,7 +418,11 @@ const nextConfig = {
       { source: '/bars/junglebird', destination: '/bars/jungle-bird', permanent: true },
       { source: '/bars/manhattan-bar', destination: '/bars/manhattan', permanent: true },
       { source: '/bars/zest-seoul', destination: '/bars/zest', permanent: true },
-      { source: '/bars/coa-shanghai', destination: '/bars/coa', permanent: true },
+      // REMOVED 2026-09-21: /bars/coa-shanghai -> /bars/coa. Coa Shanghai is
+      // NOT the Hong Kong bar. It is a separate venue at 580 Fuxing Zhong Lu
+      // with its own Asia's 50 Best ranking, and it now holds that slug, so
+      // this rule would have 301'd its live profile to another city. The
+      // redirect-chain test caught it.
       { source: '/bars/the-connaught-bar', destination: '/bars/connaught-bar', permanent: true },
 
       // WP infrastructure catch-all — these paths never existed on the Next.js
