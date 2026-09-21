@@ -24,6 +24,21 @@ cd "$(dirname "$0")/.."
 
 fail() { echo ""; echo "VERIFY FAILED: $1"; exit 1; }
 
+# A DEV SERVER IS SERVING THE SAME .next/ THIS BUILD WOULD OVERWRITE.
+#
+# `next build` rewrites .next while `next dev` is reading it, and the running
+# server then dies with "Cannot find module './1590.js'" on every request. It
+# looks like a code fault and is not one. Refuse instead, because the recovery
+# (stop the server, delete .next, restart) is annoying enough to be worth
+# never needing.
+if lsof -nP -iTCP:3000 -sTCP:LISTEN >/dev/null 2>&1; then
+  echo "VERIFY REFUSED: something is listening on port 3000, almost certainly"
+  echo "the dev server. 'next build' would overwrite the .next/ directory it is"
+  echo "serving from and break it until you delete .next and restart."
+  echo "Stop the preview server first, then run this again."
+  exit 1
+fi
+
 echo "1/3  unit tests"
 # No pipe: vitest's own exit code decides, and its output is already terse on
 # success. On failure you want the full output anyway.
