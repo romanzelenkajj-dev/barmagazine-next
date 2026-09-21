@@ -63,6 +63,30 @@ export function searchTierMulti(hit: RankableHit, foldedQuery: string): number {
   return Math.min(whole, worst);
 }
 
+/**
+ * Every word of the query appears in at least one of these strings.
+ *
+ * The CLIENT-SIDE half of the rule `searchOrFilters` applies in the database.
+ * The directory filters again in the browser over the rows the server
+ * returned, and while that second filter still tested the whole query as one
+ * contiguous string it discarded exactly the rows the new server query had
+ * just gone and found: the typeahead offered "Gold Bar at EDITION" for "tokyo
+ * edition" while the grid behind it read 0 bars found. Unit tests and a
+ * direct API check both passed while that was true; only driving the page
+ * showed it.
+ *
+ * Both halves have to agree, so both read this.
+ */
+export function matchesAllWords(query: unknown, haystacks: (string | null | undefined)[]): boolean {
+  const fq = asciiFold(query);
+  if (!fq) return true;
+  const folded = haystacks.map(asciiFold);
+  return fq
+    .split(/\s+/)
+    .filter(Boolean)
+    .every(word => folded.some(h => h.includes(word)));
+}
+
 export function rankSearchHits<T extends RankableHit>(query: unknown, hits: T[]): T[] {
   const fq = asciiFold(query);
   if (!fq) return hits;

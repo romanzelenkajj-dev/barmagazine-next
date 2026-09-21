@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { rankSearchHits } from './search-rank';
+import { rankSearchHits, matchesAllWords } from './search-rank';
 
 const bar = (name: string, city: string) => ({ name, city });
 
@@ -65,6 +65,21 @@ describe('rankSearchHits', () => {
       // beat a name that merely contains both words apart.
       const hits = [bar('The Nightjar Bar', 'London'), bar('Bar Nouveau', 'Paris')];
       expect(rankSearchHits('bar n', hits)[0].name).toBe('Bar Nouveau');
+    });
+
+    it('matches the client filter to the server filter', () => {
+      // The bug this exists to stop: the grid read "0 bars found" for
+      // "tokyo edition" while the typeahead above it offered the right bar,
+      // because the client re-filtered on the whole string.
+      const terms = ['Gold Bar at EDITION', 'Japan', 'Tokyo'];
+      expect(matchesAllWords('tokyo edition', terms)).toBe(true);
+      expect(matchesAllWords('edition gold', terms)).toBe(true);
+      // All words required: one miss rejects the row.
+      expect(matchesAllWords('tokyo edition speakeasy', terms)).toBe(false);
+      // An empty query filters nothing out.
+      expect(matchesAllWords('', terms)).toBe(true);
+      // Accent-insensitive on both sides, and null entries are tolerated.
+      expect(matchesAllWords('vanster haktet', ['Vänster at Häktet', null])).toBe(true);
     });
 
     it('is unchanged for a single-word query', () => {

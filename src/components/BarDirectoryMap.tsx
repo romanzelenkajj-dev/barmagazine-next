@@ -1,6 +1,6 @@
 'use client';
 
-import { asciiFold } from '@/lib/ascii-fold';
+import { matchesAllWords } from '@/lib/search-rank';
 import { metroCityOf, searchTermsOf } from '@/lib/metro-rollup';
 import { displayType } from '@/lib/bar-type';
 import { hasFiftyBest, renderableAccolades } from '@/lib/accolades';
@@ -954,13 +954,14 @@ export function BarDirectoryMapClient({
      */
     const source = nearMode && nearBars ? nearBars : allBars;
     return source.filter(bar => {
-      const q = asciiFold(search);
       // Location matching goes through the metro rollup, not bar.city: the
       // dropdown says "Los Angeles" while Polo Lounge still says "Beverly
       // Hills", and searching "Beverly Hills" has to find it either way.
-      const matchSearch = !search || asciiFold(bar.name).includes(q)
-        || searchTermsOf(bar).some(t => asciiFold(t).includes(q))
-        || asciiFold(bar.country).includes(q);
+      //
+      // matchesAllWords, not a contiguous includes(): this must agree with
+      // the server filter in searchOrFilters, or it silently throws away the
+      // rows that query just found.
+      const matchSearch = matchesAllWords(search, [bar.name, bar.country, ...searchTermsOf(bar)]);
       const matchCountry = !countryFilter || bar.country === countryFilter;
       const matchCity = !cityFilter || metroCityOf(bar) === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);
@@ -973,13 +974,14 @@ export function BarDirectoryMapClient({
   // and can zoom to their bounds.
   const filteredMapBars = useMemo(() => {
     return mapBars.filter(bar => {
-      const q = asciiFold(search);
       // Location matching goes through the metro rollup, not bar.city: the
       // dropdown says "Los Angeles" while Polo Lounge still says "Beverly
       // Hills", and searching "Beverly Hills" has to find it either way.
-      const matchSearch = !search || asciiFold(bar.name).includes(q)
-        || searchTermsOf(bar).some(t => asciiFold(t).includes(q))
-        || asciiFold(bar.country).includes(q);
+      //
+      // matchesAllWords, not a contiguous includes(): this must agree with
+      // the server filter in searchOrFilters, or it silently throws away the
+      // rows that query just found.
+      const matchSearch = matchesAllWords(search, [bar.name, bar.country, ...searchTermsOf(bar)]);
       const matchCountry = !countryFilter || bar.country === countryFilter;
       const matchCity = !cityFilter || metroCityOf(bar) === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);
