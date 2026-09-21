@@ -1,0 +1,35 @@
+# Bars with no photo, for the next photo nudge.
+#
+# Started 2026-09-21 because Roman asked for Big Bar (Los Angeles) to be
+# noted. Big Bar is the first line below.
+#
+# THE NUMBER THAT MATTERS, AND IT IS NOT ENCOURAGING: 1,441 of 1,646 active
+# bars have no photo, which is 88%. Of those, 699 have an email on file, so a
+# nudge can actually reach fewer than half of them. A photo nudge is therefore
+# a campaign, not a list of names, and picking a city at a time is the only
+# version of it that gets finished.
+#
+# Los Angeles is seeded here because that is where the request came from.
+# "(email)" means we can reach them; the rest need an address first.
+#
+# One slug per line. Format: slug<TAB>city<TAB>has-email
+
+big-bar	Los Angeles	email
+bar-benjamin	Los Angeles	email
+bar-flores	Los Angeles	email
+bar-henry-los-angeles	Los Angeles	email
+capri-club	Los Angeles	email
+everson-royce-bar-los-angeles	Los Angeles	email
+kato	Los Angeles	email
+lucia	Los Angeles	email
+spare-room	Los Angeles	email
+the-normandie-club	Los Angeles	email
+the-roger-room	Los Angeles	email
+
+# No email, so unreachable until one is harvested:
+bar-lis	Los Angeles	no-email
+bar-next-door	Los Angeles	no-email
+damn-i-miss-paris	Los Angeles	no-email
+dan-sung-sa	Los Angeles	no-email
+real-charmer	Los Angeles	no-email
+the-rosegold-saloon-los-angeles	Los Angeles	no-email
