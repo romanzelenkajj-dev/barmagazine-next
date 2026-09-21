@@ -2178,3 +2178,34 @@ Running log of shipped work items and their merge commits. Newest first.
   Measured across the directory: of 1,154 active bars with a multi-word name,
   typing that bar's own words in reverse order found **5 before and 1,154
   after**. A 994-query sweep found **0 rows that matched before and not after**.
+
+## 2026-09-21 — the inactive rows: Svanen undone and redone, 23 merges
+
+**Roman's correction: check `is_active` before working on a row.** I renamed
+and re-geocoded `svanen-stockholm` without checking, and it was a dead
+duplicate. The live bar has always been `svanen`.
+
+- **Root cause of "inactive and open":** `bars.status` was added long after
+  these rows were hidden and defaulted every existing row to `open`. The two
+  markers were never meant to agree, so the contradiction is an artefact.
+- **Svanen redone:** `svanen-stockholm` and `svanen-oslo` both 301 to `svanen`.
+  The dead row's `menu_url` and `menu_highlights` were carried across (the
+  only two fields the live row lacked), FK-checked, then hard-deleted. The
+  live row already held the correct Oslo coordinates, 59.912419/10.744666.
+- **23 duplicates merged** under merge standard v2, each verified as one bar
+  by a **matching address**, not by name alone. Accolades were carried across
+  by union, not replace: Selva (North America's 50 Best #43) and Cloakroom
+  (#56) each held a listing their live twin lacked and would have lost it.
+- **Deliberately NOT carried:** `rekabar`'s website, which is `letsumai.com`,
+  a restaurant-reservation SaaS rather than the bar's own site.
+- **Deliberately NOT merged: `beaufort-bar`.** Its own description calls it
+  "The Savoy's second bar", and its URL is `/beaufort-bar` against the
+  American Bar's `/american-bar`. Same hotel, same address, two different
+  famous bars. Name-and-address evidence was not proof here.
+- **"Same coordinates" was rejected as duplicate evidence.** 13 city-centroid
+  points cover 64 bars (the task 90 stacking), so a shared point means both
+  rows fell back to the same city centre. A first pass using it paired Bar
+  Agricole with ABV and five Shanghai bars with Flair.
+- **Coa Shanghai renamed** `coa-shanghai-1773995982` -> `coa-shanghai` with a
+  301. Not a merge: it is a real second venue with its own Asia's 50 Best
+  ranking.

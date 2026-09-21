@@ -85,12 +85,50 @@ const nextConfig = {
         // private room INSIDE Hotsy Totsy, same address and same website,
         // listed as a bar of its own. Same treatment as a duplicate.
         ['hudson-bar-budapest', 'hotsy-totsy'],
-        // Not a merge either, but a corrected slug: this bar is in OSLO, not
-        // Stockholm. Its own site (svanenoslo.no) and Falstaff's four-glass
-        // list both place it on Karl Johans gate, and the row's city column
-        // already said Oslo. Only the slug was wrong. Same treatment, because
-        // the old URL was live.
-        ['svanen-stockholm', 'svanen-oslo'],
+        // Svanen, Oslo. BOTH of these were duplicate rows from the 20 March
+        // wave, deactivated back when duplicates were hidden rather than
+        // deleted. The live bar has always been `svanen`, created 18 March.
+        // I renamed the dead row svanen-stockholm -> svanen-oslo before
+        // checking is_active, so both slugs have to land on the live one.
+        ['svanen-stockholm', 'svanen'],
+        ['svanen-oslo', 'svanen'],
+        // ---- The 20 March wave duplicates (merged 2026-09-21) ----
+        // `status` was added to bars long after these rows were hidden and
+        // defaulted every existing row to 'open', which is why they read as
+        // "inactive and open" and looked like a hidden-bar bug. They are
+        // pre-merge-standard-v2 duplicates, from the era when a duplicate was
+        // deactivated rather than deleted. Each verified as one bar by a
+        // matching ADDRESS, not by name alone, before deleting.
+        ['28-hongkong-street', '28-hong-kong-street'],
+        ['bar-878', '878-bar'],
+        ['bar-le-mal-necessaire', 'le-mal-necessaire'],
+        ['bar-les-ambassadeurs', 'les-ambassadeurs'],
+        ['cane-and-table', 'cane-table'],
+        ['cloakroom', 'the-cloakroom'],
+        ['customs-house-bar', 'customs-house-bar-sydney'],
+        ['dangerous-water', 'dangerous-water-palma-de-mallorca'],
+        ['dry-martini', 'dry-martini-by-javier-de-las-muelas'],
+        ['duck-and-cover-cocktailbar', 'duck-and-cover'],
+        ['gucci-bar', 'gucci-giardino'],
+        ['hanky-panky-cocktail-bar', 'hanky-panky'],
+        ['high-five', 'bar-high-five'],
+        ['mother-cocktail-bar', 'mother'],
+        ['nouveau-vague', 'bar-nouveau'],
+        ['rekabar', 'reka-bar'],
+        ['rita-cocktails', 'rita'],
+        ['the-7-jokers-cocktail-bar', 'the-7-jokers'],
+        ['to-infinity-and-beyond', 'to-infinity-beyond'],
+        ['viajante87', 'viajante-87'],
+        // Not a spelling duplicate but a CITY CONTAMINATION: the row named a
+        // city the bar has no branch in. Confirmed against each venue's own
+        // site, which lists one location only.
+        ['d-bespoke', 'd-bespoke-singapore'],
+        ['sastreria-martinez', 'sastrer-a-martinez'],
+        // Coa Shanghai is NOT a duplicate of Coa Hong Kong: different city,
+        // different address, its own Asia's 50 Best ranking. The timestamp
+        // suffix is what the insert appends on a slug collision, so this is
+        // a corrected slug on a real bar, not a merge.
+        ['coa-shanghai-1773995982', 'coa-shanghai'],
       ].map(([from, to]) => ({
         source: `/bars/${from}`,
         destination: `/bars/${to}`,
