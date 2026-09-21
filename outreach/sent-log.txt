@@ -604,3 +604,13 @@ marea-cocktailbar	2026-09-17	batch16-amer-eur
 prophecy	2026-09-17	batch16-amer-eur
 old-crow	2026-09-17	batch16-amer-eur
 arca	2026-09-17	batch16-amer-eur
+pony-up	2026-09-21	batch15-asia
+bourkes	2026-09-21	batch15-asia
+penicillin	2026-09-21	batch15-asia
+atlas	2026-09-21	batch15-asia
+fura	2026-09-21	batch15-asia
+live-twice	2026-09-21	batch15-asia
+native	2026-09-21	batch15-asia
+offtrack	2026-09-21	batch15-asia
+1920	2026-09-21	batch15-asia
+lpm-dubai	2026-09-21	batch15-asia
