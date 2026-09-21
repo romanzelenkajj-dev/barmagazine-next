@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
-import { asciiFold, searchOrFilter } from '@/lib/ascii-fold';
+import { asciiFold, searchOrFilters } from '@/lib/ascii-fold';
 import { rankSearchHits } from '@/lib/search-rank';
 
 interface Hit {
@@ -93,13 +93,14 @@ export function BarSearchTypeahead({
       // alphabetically, which buried name-prefix hits ("Ori" filled all 7
       // slots with Balmori/Gorilla/Mori before Origin Bar). rankSearchHits
       // puts name-starts first, then word-starts, contains, city matches.
-      const { data, error } = await supabase
+      // One `.or()` per word of the query, which PostgREST ANDs: the words may
+      // arrive in any order and may land in different columns.
+      let sel = supabase
         .from('bars')
         .select('slug, name, city')
-        .eq('is_active', true)
-        .or(searchOrFilter(q))
-        .order('name')
-        .limit(40);
+        .eq('is_active', true);
+      searchOrFilters(q).forEach(filter => { sel = sel.or(filter); });
+      const { data, error } = await sel.order('name').limit(40);
       if (ticket.current !== mine) return; // a newer query superseded this one
       const found = error ? [] : rankSearchHits(q, (data as Hit[]) || []).slice(0, 7);
       // A settled search that found nothing. Not fired on an error, which is
