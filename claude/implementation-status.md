@@ -2209,3 +2209,46 @@ duplicate. The live bar has always been `svanen`.
 - **Coa Shanghai renamed** `coa-shanghai-1773995982` -> `coa-shanghai` with a
   301. Not a merge: it is a real second venue with its own Asia's 50 Best
   ranking.
+
+## 2026-09-21 (later) — the 72 inactive rows resolved
+
+- **A, closed (18):** twelve dated-and-sourced set to `permanently_closed`.
+  The five "unverified" were checked first: **Analogue Initiative** (domain is
+  a dead Wix error), **The Honey Moon** (domain lapsed, now redirects to an
+  unrelated charity) and **Little Cooler** (its own Instagram bio reads "POP UP
+  HAS ENDED") are closed; **Berlin Bar** has no dated source either way and was
+  LEFT ALONE; **Oriental Elixir is OPEN**, its own Oddle reservation page takes
+  bookings at 294 River Valley Road, so it moved to the reinstate pile.
+  **The Wise King** set to `temporarily_closed` and re-activated, per the rule
+  that a temporarily closed bar keeps its profile.
+- **B, contaminated (23):** **21 of 23 had no address at all**, so the
+  "relocate instead of delete" test could not even be applied to them.
+  Snapshot written to `Claude outputs/snapshots/`, then 22 deleted.
+  **Radio Bar was relocated, not deleted:** its address really was Albanian
+  (Rruga Ismail Qemali 29) and it is a real Blloku cocktail bar open since
+  2009, in a city we already list. Now live with address, coordinates,
+  description and hours.
+  The Bar in Front of the Bar (Athens) and Victor Audio Bar (Buenos Aires)
+  were already live in the correct city, so those rows were pure duplicates.
+- **C, excluded types (2):** left inactive, and the guard is built. See
+  `src/lib/venue-type-guard.mjs`, wired into `scripts/wave-insert.mjs`. It
+  HOLDS the row and prints why; it never drops it. `--allow-venue-type`
+  overrides after a person decides.
+- **D:** the five remaining duplicates merged, each confirmed by an identical
+  address (Harry's Bar at 5 Rue Daunou, and four others).
+- **E:** **Beaufort Bar reinstated** after checking The Savoy's own page, which
+  now lists "Tuesday - Saturday 5pm - Late"; its stored hours said temporarily
+  closed AND contained an em dash. Of the four known names, **Tippling Club**
+  (closed 31 Dec 2024), **Scout** (11 Jul 2021) and **Bar Agricole** (Jul 2024,
+  will not reopen) are all closed and were moved to A. **Café Pacifico** could
+  not be verified as a cocktail bar and stays hidden. 19 stubs remain.
+- **COA:** both rows now carry the brand form from the bar's own site, `COA`,
+  with the city telling them apart. Shanghai's address (580 Fuxing Zhong Lu)
+  was VERIFIED CURRENT by two sources; Jing'an was the pre-2024 site, so the
+  address was not stale but the description was, and it now describes the
+  four-floor Middle Fuxing Road venue. Coordinates left alone: Mapbox returns
+  a city centroid for that address, and the stored point is 215 m from Speak
+  Low across the street, which is right.
+- **PROCESS:** `npm run verify` (`scripts/verify.sh`) is the single gate.
+  `set -euo pipefail`, and it prints its own short summary so there is no
+  reason to pipe it to `tail`, which is how a failing test got pushed.

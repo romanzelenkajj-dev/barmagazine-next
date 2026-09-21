@@ -14,14 +14,16 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseWaveFile, loadEnv } from './wave-file.mjs';
+import { venueTypeConcern, holdMessage } from '../src/lib/venue-type-guard.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
 const file = args.find(a => !a.startsWith('--'));
 const apply = args.includes('--apply');
+const allowVenueType = args.includes('--allow-venue-type');
 const onlyIdx = args.indexOf('--only');
 const only = onlyIdx >= 0 ? new Set(args[onlyIdx + 1].split(',')) : null;
-if (!file) { console.error('usage: node scripts/wave-insert.mjs <wave file> [--apply]'); process.exit(2); }
+if (!file) { console.error('usage: node scripts/wave-insert.mjs <wave file> [--apply] [--allow-venue-type]'); process.exit(2); }
 
 const { ADMIN_SECRET } = loadEnv(path.join(root, '.env.vercel'), ['ADMIN_SECRET']);
 const BASE = process.env.BASE_URL || 'https://barmagazine.com';
@@ -84,6 +86,9 @@ function parseEditorialSources(line) {
 
 const blocks = parseWaveFile(path.resolve(root, file)).filter(b => !only || only.has(b.slug));
 let created = 0;
+let printed = 0;
+/** Rows a person has to rule on. Printed again at the end so they cannot scroll away. */
+const held = [];
 for (const b of blocks) {
   const f = b.fields;
   if (/^HOLD/i.test(f.status || '')) { console.log(`SKIP ${b.slug}: ${f.status}`); continue; }
@@ -109,7 +114,14 @@ for (const b of blocks) {
     tier: 'free',
     admin_notes: none(f.venue) ? null : `Venue: ${f.venue}. Source: ${f.source || 'venue site'}.`,
   };
-  if (!apply) { console.log(JSON.stringify(payload, null, 1)); continue; }
+  // VENUE-TYPE GUARD. An award is not an admission rule: a James Beard
+  // "Outstanding Bar" listing put a coffee roaster and a brewery into the
+  // directory. Held for a person to rule on, never dropped, and the reason is
+  // printed to stdout where it is visible.
+  const concern = allowVenueType ? null : venueTypeConcern(payload);
+  if (concern) { console.log(holdMessage(b.slug, concern, payload)); held.push(b.slug); continue; }
+
+  if (!apply) { console.log(JSON.stringify(payload, null, 1)); printed++; continue; }
   const res = await fetch(`${BASE}/api/admin/manage-bar`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-admin-secret': ADMIN_SECRET },
@@ -121,4 +133,9 @@ for (const b of blocks) {
   created++;
   console.log(`created ${b.slug} id=${row.id} state=${row.state} lat=${row.lat} lng=${row.lng}`);
 }
-console.log(apply ? `created ${created} of ${blocks.length}` : `dry run: ${blocks.length} payload(s) printed, nothing written`);
+console.log(apply ? `created ${created} of ${blocks.length}` : `dry run: ${printed} of ${blocks.length} payload(s) printed, nothing written`);
+if (held.length) {
+  console.log(`\n${held.length} row(s) HELD for review, not inserted and not dropped:`);
+  held.forEach(s => console.log(`  ${s}`));
+  console.log('Re-run with --allow-venue-type once you have decided they are bars we list.');
+}
