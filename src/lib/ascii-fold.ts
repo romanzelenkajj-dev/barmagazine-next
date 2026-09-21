@@ -52,11 +52,14 @@ export function foldQueryForIlike(query: unknown, maxLength = 80): string {
 }
 
 /**
- * Build the PostgREST `.or()` filter for a bar search.
+ * Build the PostgREST `.or()` filter for ONE word of a bar search.
  *
  * Matches the folded query against the generated columns and the raw query
  * against the originals, so a name the generated columns fold incorrectly is
  * still reachable by typing it as written.
+ *
+ * Callers should use `searchOrFilters` rather than this. It stays exported
+ * because it is what a single-word search needs and what the tests pin.
  */
 export function searchOrFilter(query: unknown, extraColumns: string[] = []): string {
   const folded = foldQueryForIlike(query);
@@ -67,4 +70,44 @@ export function searchOrFilter(query: unknown, extraColumns: string[] = []): str
   }
   for (const col of extraColumns) clauses.push(`${col}.ilike.%${raw || folded}%`);
   return clauses.join(',');
+}
+
+/**
+ * How many words of a query are turned into filters. Beyond this they are
+ * ignored, because each word costs a scan and nobody identifies a bar with a
+ * seventh word. A long query is still capped to 80 characters first.
+ */
+export const MAX_QUERY_WORDS = 6;
+
+/** The words of a query, trimmed, capped and with empties dropped. */
+export function searchQueryWords(query: unknown, maxLength = 80): string[] {
+  if (typeof query !== 'string') return [];
+  return query.trim().slice(0, maxLength).split(/\s+/).filter(Boolean).slice(0, MAX_QUERY_WORDS);
+}
+
+/**
+ * Build the filters for a bar search: EVERY word must match, in ANY order.
+ *
+ * WHY THIS IS A LIST AND NOT ONE STRING. A single `ilike` is a contiguous
+ * substring test, so "haktet vanster" could never find a bar stored as
+ * "Vänster at Häktet", and neither could "gold bar edition" find "Gold Bar at
+ * EDITION". Every multi-word name typed in the wrong order failed the same
+ * way, silently, and `claim_search_no_results` exists to count exactly that.
+ *
+ * Each returned string is a separate `.or()`. PostgREST ANDs top-level
+ * filters, so applying them in turn gives "every word matches something",
+ * while each word on its own may land in the name or the city. Building one
+ * nested `and(or(...),or(...))` string would do the same thing with far more
+ * quoting to get wrong.
+ *
+ * THIS ONLY EVER WIDENS THE RESULT SET. A contiguous match implies every word
+ * is present, so anything the old single filter returned is still returned.
+ * Nothing that used to be findable stops being findable.
+ */
+export function searchOrFilters(query: unknown, extraColumns: string[] = []): string[] {
+  const words = searchQueryWords(query);
+  // One word, or none: the exact filter the old code built, character for
+  // character. A single-word search cannot change behaviour.
+  if (words.length < 2) return [searchOrFilter(query, extraColumns)];
+  return words.map(word => searchOrFilter(word, extraColumns));
 }

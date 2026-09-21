@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { stripPrivate, stripPrivateAll } from './private-columns';
-import { searchOrFilter } from './ascii-fold';
+import { searchOrFilters } from './ascii-fold';
 import type { Accolade } from './accolades';
 import { metroCityOf, cityStringsForMetro } from './metro-rollup';
 import { MIN_DROPDOWN_CITY_BARS } from './city-thresholds';
@@ -197,7 +197,14 @@ export async function getBars(filters?: {
     // matches raw text and does NOT accent-fold: "Stare Mesto" will not find
     // "Staré Mesto", though typing the accents will. Adding that column is a
     // migration, which this task does not do.
-    query = query.or(searchOrFilter(filters.search, ['country', 'neighborhood']));
+    //
+    // One `.or()` per word, ANDed by PostgREST: every word must match, in any
+    // order, each in whichever column happens to hold it. That is what makes
+    // "warsaw gin" find Lane's Gin Bar in Warsaw, with the two words in
+    // different columns.
+    searchOrFilters(filters.search, ['country', 'neighborhood']).forEach(filter => {
+      query = query.or(filter);
+    });
   }
   if (filters?.tier) {
     query = query.eq('tier', filters.tier);

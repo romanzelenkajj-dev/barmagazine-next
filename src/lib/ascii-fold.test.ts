@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { asciiFold, foldQueryForIlike, searchOrFilter } from './ascii-fold';
+import {
+  asciiFold,
+  foldQueryForIlike,
+  searchOrFilter,
+  searchOrFilters,
+  MAX_QUERY_WORDS,
+} from './ascii-fold';
 
 describe('ascii-fold', () => {
   describe('asciiFold', () => {
@@ -68,6 +74,53 @@ describe('ascii-fold', () => {
 
     it('appends extra columns when asked', () => {
       expect(searchOrFilter('spain', ['country'])).toContain('country.ilike.%spain%');
+    });
+  });
+
+  describe('searchOrFilters', () => {
+    it('leaves a single-word query byte for byte as it was', () => {
+      // The whole safety argument for this change: one word cannot behave
+      // differently, so nothing that worked before can regress.
+      expect(searchOrFilters('lyaness')).toEqual([searchOrFilter('lyaness')]);
+      expect(searchOrFilters('spain', ['country'])).toEqual([searchOrFilter('spain', ['country'])]);
+    });
+
+    it('returns one filter per word, so PostgREST ANDs them', () => {
+      const f = searchOrFilters('haktet vanster');
+      expect(f).toHaveLength(2);
+      expect(f[0]).toContain('name_ascii.ilike.%haktet%');
+      expect(f[1]).toContain('name_ascii.ilike.%vanster%');
+    });
+
+    it('lets one word match the name and another the city', () => {
+      // "warsaw gin" is Lane's Gin Bar in Warsaw: one word per column, which
+      // a single contiguous ilike can never do.
+      const f = searchOrFilters('warsaw gin');
+      expect(f[0]).toContain('city_ascii.ilike.%warsaw%');
+      expect(f[1]).toContain('name_ascii.ilike.%gin%');
+    });
+
+    it('folds and escapes every word, not just the first', () => {
+      const f = searchOrFilters('bar Múzsa');
+      expect(f[1]).toContain('name_ascii.ilike.%muzsa%');
+      // The accented word keeps its raw clause too.
+      expect(f[1]).toContain('name.ilike.%Múzsa%');
+      // A comma inside a word would otherwise split the or() list.
+      expect(searchOrFilters('nik,s co')[0]).toContain('\\,');
+    });
+
+    it('caps the word count so a pasted paragraph cannot fan out', () => {
+      expect(searchOrFilters('a b c d e f g h i j')).toHaveLength(MAX_QUERY_WORDS);
+    });
+
+    it('collapses runs of whitespace rather than building empty filters', () => {
+      expect(searchOrFilters('  gold    bar  ')).toHaveLength(2);
+    });
+
+    it('passes extra columns to every word', () => {
+      const f = searchOrFilters('deep ellum', ['neighborhood']);
+      expect(f[0]).toContain('neighborhood.ilike.%deep%');
+      expect(f[1]).toContain('neighborhood.ilike.%ellum%');
     });
   });
 });

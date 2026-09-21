@@ -1,8 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase-auth';
-import { searchOrFilter } from '@/lib/ascii-fold';
+import { searchOrFilters } from '@/lib/ascii-fold';
 
 export const dynamic = 'force-dynamic';
+
+interface Row {
+  slug: string;
+  name: string;
+  city: string;
+  country: string;
+  owner_id: string | null;
+}
+
+/** The one public shape both lookups return, so they cannot drift apart. */
+function respond(data: Row[] | null, error: { message: string } | null) {
+  if (error) {
+    console.error('[claim/search]', error.message);
+    return NextResponse.json({ bars: [] });
+  }
+  return NextResponse.json({
+    bars: (data || []).map(b => ({
+      slug: b.slug,
+      name: b.name,
+      city: b.city,
+      country: b.country,
+      claimed: !!b.owner_id,
+    })),
+  });
+}
 
 /**
  * Bar lookup for the claim page.
@@ -32,29 +57,25 @@ export async function GET(request: NextRequest) {
       .select('slug, name, city, country, owner_id')
       .eq('is_active', true);
 
-    const { data, error } = slug
-      ? await base.eq('slug', slug).limit(1)
-      : await base
-          // Accent-insensitive via the generated *_ascii columns, so an owner
-          // searching "muzsa" finds "Múzsa". Wildcards are escaped inside.
-          .or(searchOrFilter(q))
-          .order('name')
-          .limit(20);
-
-    if (error) {
-      console.error('[claim/search]', error.message);
-      return NextResponse.json({ bars: [] });
+    // NOT a ternary over a shared `base`: supabase-js filter builders mutate
+    // and return themselves, so applying the search filters to `base` would
+    // leave them on the slug lookup too when both params arrive.
+    if (slug) {
+      const { data, error } = await base.eq('slug', slug).limit(1);
+      return respond(data as Row[] | null, error);
     }
 
-    return NextResponse.json({
-      bars: (data || []).map(b => ({
-        slug: b.slug,
-        name: b.name,
-        city: b.city,
-        country: b.country,
-        claimed: !!b.owner_id,
-      })),
-    });
+    // Accent-insensitive via the generated *_ascii columns, so an owner
+    // searching "muzsa" finds "Múzsa". Wildcards are escaped inside.
+    //
+    // One `.or()` per word, which PostgREST ANDs together: every word must
+    // match, in any order. An owner typing their venue and their room in the
+    // order the sign outside uses is the case this serves, and it is the one
+    // the search used to answer with nothing at all.
+    let search = base;
+    searchOrFilters(q).forEach(filter => { search = search.or(filter); });
+    const { data, error } = await search.order('name').limit(20);
+    return respond(data as Row[] | null, error);
   } catch {
     return NextResponse.json({ bars: [] });
   }
