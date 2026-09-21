@@ -89,6 +89,10 @@ let created = 0;
 let printed = 0;
 /** Rows a person has to rule on. Printed again at the end so they cannot scroll away. */
 const held = [];
+/** Rows the geocoder could only place at the city centre, named not counted. */
+const centroids = [];
+/** Rows that got no coordinates at all. */
+const noCoords = [];
 for (const b of blocks) {
   const f = b.fields;
   if (/^HOLD/i.test(f.status || '')) { console.log(`SKIP ${b.slug}: ${f.status}`); continue; }
@@ -131,9 +135,23 @@ for (const b of blocks) {
   const row = d.created?.[0];
   if (!res.ok || !row) { console.error(`FAILED ${b.slug}: ${res.status} ${JSON.stringify(d).slice(0, 200)}`); continue; }
   created++;
-  console.log(`created ${b.slug} id=${row.id} state=${row.state} lat=${row.lat} lng=${row.lng}`);
+  console.log(`created ${b.slug} id=${row.id} state=${row.state} lat=${row.lat} lng=${row.lng} geo=${row.geo_method ?? 'none'}`);
+  if (row.geo_method === 'city-centre') centroids.push(`${b.slug} (${f.city})`);
+  if (row.lat == null || row.lng == null) noCoords.push(`${b.slug} (${f.city})`);
 }
 console.log(apply ? `created ${created} of ${blocks.length}` : `dry run: ${printed} of ${blocks.length} payload(s) printed, nothing written`);
+// LOUD FAILURE. A wave that placed every bar on its city centre used to print
+// exactly what a good wave prints. These two blocks are the difference.
+if (centroids.length) {
+  console.log(`\n${centroids.length} of ${created} row(s) got only a CITY CENTRE, not an address:`);
+  centroids.forEach(s => console.log(`  ${s}`));
+  console.log('These are not locations. They sit at the middle of the city and are');
+  console.log('excluded from near-me distance until someone fixes them.');
+}
+if (noCoords.length) {
+  console.log(`\n${noCoords.length} row(s) got NO coordinates at all:`);
+  noCoords.forEach(s => console.log(`  ${s}`));
+}
 if (held.length) {
   console.log(`\n${held.length} row(s) HELD for review, not inserted and not dropped:`);
   held.forEach(s => console.log(`  ${s}`));

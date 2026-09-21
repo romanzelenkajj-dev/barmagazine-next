@@ -101,7 +101,27 @@ export function addressQuery(opts: { address: string; city: string; country: str
   return parts.join(', ');
 }
 
-export type GeocodeMethod = 'address' | 'name' | 'city-centre';
+/**
+ * How a row's coordinates were produced. Mirrors the CHECK constraint on
+ * bars.geo_method exactly: ('address','name','osm','manual','city-centre').
+ *
+ * NULL in the column means UNKNOWN and predates the column. It does NOT mean
+ * exact, and nothing may treat it as a quality signal.
+ *
+ * `osm` and `manual` never come out of this module: OpenStreetMap is a second
+ * source used by scripts/regeocode-stacked.mjs, and `manual` is a point a
+ * person set and checked.
+ */
+export type GeoMethod = 'address' | 'name' | 'osm' | 'manual' | 'city-centre';
+
+/** The subset `geocodeBarDetailed` can return. */
+export type GeocodeMethod = Extract<GeoMethod, 'address' | 'name' | 'city-centre'>;
+
+/**
+ * A city-centre point is the one method that is NOT a location: it says
+ * "somewhere in this city". Anything ranking by distance has to know.
+ */
+export const isCityCentre = (m: string | null | undefined): boolean => m === 'city-centre';
 
 export interface GeocodeResult {
   lat: number;
@@ -161,8 +181,21 @@ export async function geocodeBarDetailed(opts: {
       // Fall through: no centre means no distance check, not a failure.
     }
   }
+  // NO CENTRE MEANS NO RESULT, NOT A FREE PASS.
+  //
+  // This used to return TRUE when the centre was unknown, so step 2 handed
+  // back the raw Mapbox answer with no check at all. That is how a shortened
+  // Jakarta query matched a real address in New Delhi and three bars were
+  // written 5,000km from their city. The check that exists to catch a wrong
+  // answer switched itself off exactly when it had nothing to compare
+  // against, which is when a wrong answer is most likely.
+  //
+  // Refusing here makes every step fall through to `centre()`, which is also
+  // null without a centre, so the function returns null and the caller leaves
+  // the coordinates alone. Unknown beats confidently wrong.
+  const haveCentre = cityLat !== null && cityLng !== null;
   const nearCity = (lat: number, lng: number): boolean =>
-    cityLat === null || cityLng === null || distanceKm(lat, lng, cityLat, cityLng) <= MAX_CITY_DISTANCE_KM;
+    haveCentre && distanceKm(lat, lng, cityLat as number, cityLng as number) <= MAX_CITY_DISTANCE_KM;
   const centre = (): GeocodeResult | null =>
     cityLat !== null && cityLng !== null ? { lat: round6(cityLat), lng: round6(cityLng), method: 'city-centre' } : null;
 
@@ -171,9 +204,13 @@ export async function geocodeBarDetailed(opts: {
     try {
       const r = await mapboxFirst(addressQuery({ address, city, country }));
       if (r && nearCity(r[0], r[1])) return { lat: round6(r[0]), lng: round6(r[1]), method: 'address' };
-      if (r) {
+      if (r && !haveCentre) {
         console.warn(
-          `Geocode: address result for "${name}" (${address}) is ${Math.round(distanceKm(r[0], r[1], cityLat!, cityLng!))}km from ${cityQuery(opts)}; trying the name search.`
+          `Geocode REFUSED for "${name}" (${address}): ${cityQuery(opts)} did not resolve, so there is nothing to validate the address result against.`
+        );
+      } else if (r) {
+        console.warn(
+          `Geocode: address result for "${name}" (${address}) is ${Math.round(distanceKm(r[0], r[1], cityLat as number, cityLng as number))}km from ${cityQuery(opts)}; trying the name search.`
         );
       }
     } catch {
@@ -194,9 +231,9 @@ export async function geocodeBarDetailed(opts: {
     const isCentre =
       r !== null && cityLat !== null && cityLng !== null && distanceKm(r[0], r[1], cityLat, cityLng) < 0.05;
     if (r && !isCentre && nearCity(r[0], r[1])) return { lat: round6(r[0]), lng: round6(r[1]), method: 'name' };
-    if (r && !isCentre) {
+    if (r && !isCentre && haveCentre) {
       console.warn(
-        `Geocode validation failed for "${name}" in ${city}: result (${r[0]}, ${r[1]}) is ${Math.round(distanceKm(r[0], r[1], cityLat!, cityLng!))}km from city center (max ${MAX_CITY_DISTANCE_KM}km). Using city center.`
+        `Geocode validation failed for "${name}" in ${city}: result (${r[0]}, ${r[1]}) is ${Math.round(distanceKm(r[0], r[1], cityLat as number, cityLng as number))}km from city center (max ${MAX_CITY_DISTANCE_KM}km). Using city center.`
       );
     }
   } catch {
@@ -207,16 +244,11 @@ export async function geocodeBarDetailed(opts: {
   return centre();
 }
 
-/**
- * Geocode a bar's location with validation.
- * Returns { lat, lng } or null if geocoding fails.
- */
-export async function geocodeBar(opts: {
-  name: string;
-  address?: string | null;
-  city: string;
-  country: string;
-}): Promise<{ lat: number; lng: number } | null> {
-  const r = await geocodeBarDetailed(opts);
-  return r ? { lat: r.lat, lng: r.lng } : null;
-}
+// `geocodeBar` USED TO LIVE HERE and returned { lat, lng }, dropping the
+// method on the floor. Every one of its four callers then wrote a point with
+// no record of whether it was a street address or the city centre, which is
+// the whole reason bars.geo_method had to be added and backfilled by hand.
+//
+// It is deleted rather than deprecated on purpose: an exported convenience
+// that quietly discards the one field that matters is how the bug comes back.
+// Use geocodeBarDetailed and store `method` with the coordinates.

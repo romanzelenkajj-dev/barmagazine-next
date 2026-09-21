@@ -12,6 +12,7 @@ import React, { useState, useMemo, useRef, useCallback, useEffect } from 'react'
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { getGeoScore } from '@/lib/geo';
+import { isCityCentre } from '@/lib/geocode';
 import { formatBarType } from '@/lib/utils';
 import { placeLine } from '@/lib/city-location';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from './BarDirectorySidebar';
@@ -1009,6 +1010,18 @@ export function BarDirectoryMapClient({
   // measures distance the same way MODE D orders by it; two copies would drift
   // and the notice would eventually contradict the list under it.
   const getDistKm = useCallback((b: Bar): number => {
+    // A CITY-CENTRE POINT HAS NO DISTANCE.
+    //
+    // It is the middle of the city, written by the geocoder when it could not
+    // resolve the address. Measuring from it yields a confident "0.4 km" for a
+    // bar that could be anywhere in Bangkok, and the visitor cannot tell the
+    // difference. Infinity puts the row past every band, so it lands after all
+    // the distance-ranked bars, and the card renders no distance at all.
+    //
+    // ONLY 'city-centre' is excluded. NULL means the row predates the column
+    // and behaves exactly as before, so nothing regresses ahead of the
+    // backfill.
+    if (isCityCentre(b.geo_method)) return Number.POSITIVE_INFINITY;
     if (userLat !== null && userLng !== null) {
       return (b.lat != null && b.lng != null)
         ? haversineKm(userLat, userLng, b.lat, b.lng)

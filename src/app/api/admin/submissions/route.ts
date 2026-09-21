@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { noStoreFetch } from '@/lib/supabase-auth';
 import { NextRequest, NextResponse } from 'next/server';
-import { geocodeBar } from '@/lib/geocode';
+import { geocodeBarDetailed } from '@/lib/geocode';
 import { normalizeBarFields } from '@/lib/normalize';
 import { flagBarName } from '@/lib/bar-name';
 import { revalidateBarPages } from '@/lib/revalidate-bars';
@@ -192,9 +192,9 @@ export async function POST(request: NextRequest) {
 
     // Geocode only when we don't already have trusted coordinates —
     // an existing listing's coords beat a fresh (possibly wrong) geocode.
-    let coords: { lat: number; lng: number } | null = null;
+    let coords: { lat: number; lng: number; method: string } | null = null;
     if (!existing || existing.lat == null || existing.lng == null) {
-      coords = await geocodeBar({
+      coords = await geocodeBarDetailed({
         name: submission.name,
         address: submission.address,
         city: submission.city,
@@ -235,7 +235,7 @@ export async function POST(request: NextRequest) {
           // Only ever upgrade the tier; a later free re-submission must not
           // downgrade a paying bar.
           ...(tier !== 'free' && { tier }),
-          ...(coords && { lat: coords.lat, lng: coords.lng }),
+          ...(coords && { lat: coords.lat, lng: coords.lng, geo_method: coords.method }),
         })
         .eq('id', existing.id)
         .select()
@@ -254,7 +254,7 @@ export async function POST(request: NextRequest) {
         photos: barPhotos,
         tier: tier,
         is_active: true,
-        ...(coords && { lat: coords.lat, lng: coords.lng }),
+        ...(coords && { lat: coords.lat, lng: coords.lng, geo_method: coords.method }),
       };
       const { data: inserted, error: insertError } = await supabase
         .from('bars')

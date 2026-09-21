@@ -119,7 +119,10 @@ export async function POST(request: NextRequest) {
     }
     const { error: updateError } = await supabase
       .from('bars')
-      .update({ lat: r.lat, lng: r.lng, updated_at: new Date().toISOString() })
+      // geo_method travels WITH the coordinates, always. A point stored
+      // without its method is indistinguishable from the pre-column rows that
+      // are NULL, and NULL means unknown, not exact.
+      .update({ lat: r.lat, lng: r.lng, geo_method: r.method, updated_at: new Date().toISOString() })
       .eq('id', bar.id);
     if (updateError) {
       results.push({ ...base, status: `error: ${updateError.message}` });

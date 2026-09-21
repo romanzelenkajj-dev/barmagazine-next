@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { noStoreFetch } from '@/lib/supabase-auth';
 import { NextRequest, NextResponse } from 'next/server';
-import { geocodeBar, stateHint } from '@/lib/geocode';
+import { geocodeBarDetailed, stateHint } from '@/lib/geocode';
 import { usesSubdivision } from '@/lib/city-location';
 import { normalizeBarFields } from '@/lib/normalize';
 import { flagBarName } from '@/lib/bar-name';
@@ -122,14 +122,17 @@ export async function POST(request: NextRequest) {
       if (s && /^[A-Za-z]{2}$/.test(s)) insertData = { ...insertData, state: s.toUpperCase() };
     }
     if (!insertData.lat && !insertData.lng && insertData.name && insertData.city && insertData.country) {
-      const coords = await geocodeBar({
+      const coords = await geocodeBarDetailed({
         name: insertData.name,
         address: insertData.address || null,
         city: insertData.city,
         country: insertData.country,
       });
+      // geo_method is stored WITH the point. A city-centre fallback that
+      // arrives unlabelled is the bug this column exists to end: it looks
+      // exactly like a street-accurate point to everything downstream.
       if (coords) {
-        insertData = { ...insertData, lat: coords.lat, lng: coords.lng };
+        insertData = { ...insertData, lat: coords.lat, lng: coords.lng, geo_method: coords.method };
       }
     }
     // Directory noise ("Kura Stockholm", "Alenka Cocktail bar Prague") most

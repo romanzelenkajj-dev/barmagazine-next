@@ -20,6 +20,13 @@ export type MapBar = {
   tier: string;
   lat: number | null;
   lng: number | null;
+  /**
+   * REQUIRED for near-me, not padding. A 'city-centre' point is the middle of
+   * the city, not the bar: near-me must not measure a distance from it, and
+   * without this field on the payload it cannot tell. NULL means unknown and
+   * is treated exactly as before. See isCityCentre() in lib/geocode.
+   */
+  geo_method: string | null;
   photo: string | null; // first photo only, for popup thumbnail
   /**
    * Trimmed accolades. The query already selected these and the projection
@@ -64,9 +71,9 @@ export async function GET() {
     // applied after the pages are joined.
     const all = await getAllActiveBars<{
       id: string; name: string; slug: string; city: string; country: string; state: string | null; type: string;
-      subtypes: string[] | null; tier: string; lat: number | null; lng: number | null;
+      subtypes: string[] | null; tier: string; lat: number | null; lng: number | null; geo_method: string | null;
       photos: string[] | null; accolades: unknown;
-    }>('id, name, slug, city, country, state, type, subtypes, tier, lat, lng, photos, accolades');
+    }>('id, name, slug, city, country, state, type, subtypes, tier, lat, lng, geo_method, photos, accolades');
     const data = all
       .filter(b => b.lat != null && b.lng != null)
       .sort((a, b) => a.tier.localeCompare(b.tier) || a.name.localeCompare(b.name));
@@ -83,6 +90,7 @@ export async function GET() {
       tier: b.tier,
       lat: b.lat,
       lng: b.lng,
+      geo_method: b.geo_method ?? null,
       photo: Array.isArray(b.photos) && b.photos.length > 0 ? b.photos[0] : null,
       accolades: Array.isArray(b.accolades) && b.accolades.length
         ? (b.accolades as Record<string, unknown>[]).map(a => ({

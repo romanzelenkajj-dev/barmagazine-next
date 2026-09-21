@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { distanceKm, MAX_CITY_DISTANCE_KM, stateHint, bareCity, cityQuery, addressQuery } from './geocode';
 
 describe('geocode queries: the address first, the state where derivable', () => {
@@ -72,5 +72,65 @@ describe('geocode validation distance', () => {
         MAX_CITY_DISTANCE_KM
       );
     });
+  });
+});
+
+describe('the validation switch-off, closed', () => {
+  // geocodeBarDetailed reads MAPBOX_TOKEN at MODULE LOAD and returns null
+  // without one. The first version of these tests passed for exactly that
+  // reason rather than because of the fix, so the token is set and the module
+  // re-imported fresh inside every case.
+  const load = async () => {
+    process.env.NEXT_PUBLIC_MAPBOX_TOKEN = 'test-token';
+    vi.resetModules();
+    return import('./geocode');
+  };
+  const withFetch = async (handler: (url: string) => unknown, fn: () => Promise<unknown>) => {
+    const real = globalThis.fetch;
+    globalThis.fetch = (async (u: RequestInfo | URL) => ({
+      json: async () => handler(String(u)),
+    })) as unknown as typeof fetch;
+    try { return await fn(); } finally { globalThis.fetch = real; }
+  };
+  const feature = (lat: number, lng: number) => ({ features: [{ center: [lng, lat] }] });
+  const isCityQuery = (u: string) => !/Senopati/i.test(u) && !/\bbar,/i.test(u);
+
+  it('proves the stub is actually reached', async () => {
+    // Without this, every case below could pass on a null return.
+    const { geocodeBarDetailed } = await load();
+    const out = await withFetch(() => feature(-6.2088, 106.8456), () =>
+      geocodeBarDetailed({ name: 'Somewhere', address: 'Jl. Senopati No. 79', city: 'Jakarta', country: 'Indonesia' }));
+    expect(out).not.toBeNull();
+  });
+
+  it('REFUSES when the city itself does not resolve, instead of trusting the address', async () => {
+    // The Jakarta case: the city query finds nothing, and the address query
+    // returns a real address 5,000km away. Nothing validates it, so the only
+    // honest answer is none.
+    const { geocodeBarDetailed } = await load();
+    const out = await withFetch(
+      url => (isCityQuery(decodeURIComponent(url))
+        ? { features: [] }                 // the city does not resolve
+        : feature(28.6139, 77.2090)),      // New Delhi, 5,000km off
+      () => geocodeBarDetailed({ name: 'Somewhere', address: 'Jl. Senopati No. 79', city: 'Jakarta', country: 'Indonesia' }),
+    );
+    expect(out).toBeNull();
+  });
+
+  it('still accepts an address result when the centre IS known and it is close', async () => {
+    const { geocodeBarDetailed } = await load();
+    const out = await withFetch(() => feature(-6.2297, 106.8095), () =>
+      geocodeBarDetailed({ name: 'Somewhere', address: 'Jl. Senopati No. 79', city: 'Jakarta', country: 'Indonesia' }));
+    expect(out).toMatchObject({ method: 'address' });
+  });
+
+  it('falls back to the centre, labelled as the centre, when the address is far off', async () => {
+    const { geocodeBarDetailed } = await load();
+    const out = await withFetch(url => {
+      const u = decodeURIComponent(url);
+      if (isCityQuery(u)) return feature(-6.2088, 106.8456);   // Jakarta centre
+      return feature(28.6139, 77.2090);                        // far away
+    }, () => geocodeBarDetailed({ name: 'Somewhere', address: 'Jl. Senopati No. 79', city: 'Jakarta', country: 'Indonesia' }));
+    expect(out).toMatchObject({ method: 'city-centre' });
   });
 });
