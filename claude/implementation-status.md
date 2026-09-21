@@ -2311,3 +2311,29 @@ duplicate. The live bar has always been `svanen`.
   mechanism Roman asked for. Verified it never renders: level2Reason builds a
   label from it and **nothing reads that label**, only `.rank`.
 - NOTHING INSERTED. Waiting on Roman.
+
+## 2026-09-21 — task 97: the 33 without an exact location
+
+- **33 -> 6.** 25 bars got a real point, 2 stay city-centre honestly, 3 still
+  have no coordinates, and 3 were removed as the wrong venue type.
+- **THE SAME VALIDATION HOLE, IN A NEW PLACE.** A row with NO stored point has
+  nothing for the distance check to compare against, so the first run sent
+  **CMYK (Changsha) to Kaohsiung** and **Door No. 4 (Grand Cayman) to
+  Australia**: "388 Zhongshan West Road" and "The Grove" exist in many places.
+  Added a city-centre check for rows with no stored point. It caught both
+  ("960km from Changsha", "15,784km from Grand Cayman") and neither was
+  written.
+- **NOT BARS, deactivated with the reason in admin_notes:** Byg Brewski
+  Brewing Company (brewery), Prankster (its own Instagram calls it a food and
+  brewery campus, and it is in Gurgaon not Delhi), Masque (Prateek Sadhu's
+  tasting-menu restaurant, on Asia's 50 Best RESTAURANTS).
+- **Juniper Bar is TEMPORARILY CLOSED**, on Hyatt's own page, and absent from
+  the Andaz Delhi dining list. Active with a notice, per the rule.
+- **Flagged, not changed:** cocktails-dreams is a real cocktail bar but in
+  GURUGRAM, not New Delhi; tesouro cannot be placed in Mumbai at all (the only
+  Tesouro found is @tesouro.goa); miss-t has its address now but a directory
+  lists it closed and it has no channel of its own.
+- **Beogradski Koktel Klub's stored Instagram is dead** ("Profile isn't
+  available"). Address found elsewhere: Uzun Mirkova 7.
+- Every centroid stack from task 90 is now gone. The only point carrying 3+
+  bars is 3708 Las Vegas Blvd, which is one building.
