@@ -368,6 +368,7 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
       // > world view.
       // NOTE: bars-bounding-box must NOT take priority over GPS / IP, otherwise the
       // global "all bars" set yields a degenerate midpoint (~lng 15, lat 10 — Africa).
+      const hasLocationFilter = !!(cityFilter || countryFilter);
       const activeCityKey = cityFilter.toLowerCase();
       const activeCityCoords = CITY_COORDS_MAP[activeCityKey];
       const activeCountryCode = countryFilter ? COUNTRY_NAME_TO_CODE[countryFilter.toLowerCase()] : null;
@@ -384,16 +385,31 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
         barsCenter = [(Math.min(...lngs) + Math.max(...lngs)) / 2, (Math.min(...lats) + Math.max(...lats)) / 2];
         barsZoom = 9;
       }
-      const initialCenter: [number, number] = activeCityCoords
-        ? activeCityCoords
+      // WHEN A LOCATION FILTER IS ACTIVE, THE FILTERED BARS ARE THE ANSWER.
+      //
+      // `bars` is already the filtered set, so its bounding box IS the city or
+      // country the visitor asked for. It outranks GPS and IP, which say where
+      // the visitor is rather than where they asked to look, and unlike
+      // CITY_COORDS_MAP it needs no table to be kept up to date.
+      //
+      // That table holds 32 cities. 66 of the 98 cities with three or more
+      // bars are missing from it, so picking Macau, Bratislava, Munich,
+      // Copenhagen or Melbourne and then opening the map put the visitor on
+      // their OWN city instead: a Londoner filtering to Macau got London. The
+      // table stays as a fallback and is deliberately NOT extended by hand.
+      const filterCenter = hasLocationFilter ? barsCenter : null;
+      const initialCenter: [number, number] = filterCenter
+        ? filterCenter
+        : activeCityCoords ? activeCityCoords
         : activeCountryCenter ? [activeCountryCenter[0], activeCountryCenter[1]]
         : (userLat != null && userLng != null) ? [userLng, userLat]
         : cityCoords ? cityCoords
         : countryCenter ? [countryCenter[0], countryCenter[1]]
         : barsCenter ? barsCenter
         : [-98.5, 39.5];
-      const initialZoom = activeCityCoords
-        ? 11
+      const initialZoom = filterCenter
+        ? barsZoom
+        : activeCityCoords ? 11
         : activeCountryCenter ? activeCountryCenter[2]
         : (userLat != null && userLng != null) ? 9
         : cityCoords ? 9
@@ -548,19 +564,43 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
     source.setData(geojson);
 
     // Fit the map to the filtered set of bars whenever filters change.
-    // Skip the very first render so we respect the initial IP/GPS-based
-    // center that was set when the map was created.
-    if (isInitialBarsRender.current) {
+    //
+    // THE FIRST RUN IS SKIPPED ONLY WHEN THERE IS NOTHING TO FIT TO.
+    //
+    // It used to be skipped unconditionally, to respect the IP/GPS centre the
+    // map was created with. But when a city filter is ALREADY active as the
+    // map mounts, that skipped run is the one that should have zoomed to the
+    // city, and if /api/bars/map resolves before the map's 'load' event there
+    // is no later run to do it. The map then sat over Europe while the list
+    // under it showed five bars in Macau. Switching to Map first appeared to
+    // work only because the later filter change triggered a fresh run.
+    //
+    // The initial centre knows about a city filter only through
+    // CITY_COORDS_MAP, which holds 32 cities; 66 of the 98 cities with three
+    // or more bars are missing from it, so this was most of the dropdown
+    // rather than one awkward city. That table stays as a fallback and is NOT
+    // extended by hand: fitting to the bars we actually hold needs no table.
+    const hasLocationFilter = !!(cityFilter || countryFilter);
+    const firstRun = isInitialBarsRender.current;
+    if (firstRun) {
       isInitialBarsRender.current = false;
-      return;
+      // No location filter: the IP/GPS start is correct, leave it alone.
+      if (!hasLocationFilter) return;
     }
+    // Only a LOCATION filter justifies moving the map. A type filter narrows
+    // the set without saying anything about where the visitor wants to look.
+    if (!hasLocationFilter) return;
+    // On the first run the map is still showing its initial centre and the
+    // visitor has not seen it, so move instantly. Flying across the globe
+    // from a centre they never asked for is animation for its own sake.
+    const duration = firstRun ? 0 : 1200;
     if (validBars.length === 0) {
       // No bars with coordinates — try to fly to the filtered country center
       if (countryFilter) {
         const code = COUNTRY_NAME_TO_CODE[countryFilter.toLowerCase()];
         const center = code ? COUNTRY_CENTER[code] : null;
         if (center) {
-          mapRef.current.flyTo({ center: [center[0], center[1]], zoom: center[2], duration: 1200, essential: true });
+          mapRef.current.flyTo({ center: [center[0], center[1]], zoom: center[2], duration, essential: true });
         }
       }
       return;
@@ -569,16 +609,13 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
       mapRef.current.flyTo({
         center: [validBars[0].lng!, validBars[0].lat!],
         zoom: 14,
-        duration: 1200,
+        duration,
         essential: true,
       });
       return;
     }
-    // Only auto-fit when the user has narrowed the set with a filter. Without a filter
-    // the global bar set spans the whole world; fitBounds would zoom out to a centroid
-    // near (lng 0, lat ~8) and override the initial GPS/IP-based center.
-    const hasLocationFilter = !!(cityFilter || countryFilter);
-    if (!hasLocationFilter) return;
+    // Without a location filter the global set spans the world and fitBounds
+    // would zoom out to a centroid near (lng 0, lat ~8). Guarded above.
     const lngs = validBars.map(b => b.lng!);
     const lats = validBars.map(b => b.lat!);
     const minLng = Math.min(...lngs);
@@ -587,7 +624,7 @@ function DirectoryMap({ bars, geoCity = '', geoCountryCode = '', userLat = null,
     const maxLat = Math.max(...lats);
     mapRef.current.fitBounds(
       [[minLng, minLat], [maxLng, maxLat]],
-      { padding: 60, maxZoom: 14, duration: 1200, essential: true }
+      { padding: 60, maxZoom: 14, duration, essential: true }
     );
   }, [bars, mapLoaded, cityFilter, countryFilter]);
 
