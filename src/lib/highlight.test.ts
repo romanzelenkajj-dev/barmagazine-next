@@ -73,6 +73,35 @@ describe('highlightSegments', () => {
     expect(boldParts('No.5 on the 50 Best list')).toEqual(['No.5']);
   });
 
+  it('REGRESSION buddy-buddy: a drinks menu is not a ranking context', () => {
+    // "cocktail list" used to satisfy the context test on the bare word
+    // "list", and "Aging Partiers #3" went bold as if it were a placing.
+    const text =
+      "The cocktail list runs to house originals such as Adelita's Song, built on agave gin, " +
+      'and Aging Partiers #3, an americano riff using house aperitivo and Greek vermouth.';
+    expect(boldParts(text)).toEqual([]);
+  });
+
+  it('never bolds a #N that directly follows a capitalised word, even in a ranking sentence', () => {
+    // The name test guards the number, not the sentence: "ranked" makes this
+    // a ranking sentence, and the drink still stays plain while the real
+    // placing bolds.
+    expect(boldParts('Ranked #7 globally, it pours Aging Partiers #3 every night')).toEqual(['#7']);
+    expect(boldParts('Studio #2 is the back room; the bar is ranked #40 globally')).toEqual(['#40']);
+  });
+
+  it('never bolds the digits of an HTML entity, and "Named #1" is a rank', () => {
+    expect(boldParts('ranked No. 2 in &#8220;The World&#8217;s 50 Best Bars&#8221;')).toEqual(['No. 2']);
+    // The award phrase bolds on its own, as it always has; the assertion is
+    // that "#1" is in there despite the capital N in front of it.
+    expect(boldParts("Named #1 on the World's 50 Best Bars")).toEqual(['#1', "World's 50 Best Bars"]);
+  });
+
+  it('"50 Best list" still qualifies through "50 Best", not through "list"', () => {
+    expect(boldParts('No.5 on the 50 Best list')).toEqual(['No.5']);
+    expect(boldParts('on the list at #3')).toEqual([]);
+  });
+
   it('leaves bare numbers alone outside ranking context', () => {
     expect(boldParts('seats 40 guests at No. 12 Main Street')).toEqual([]);
     expect(boldParts('find it at #7 Rue de la Paix')).toEqual([]);

@@ -104,10 +104,29 @@ const RANK_RE = /\bNo\.\s?\d+|#\d+/g;
 // A sentence is a ranking context when it names a list phrase or talks about
 // ranking. "50 Best" alone counts too — the full phrases don't cover
 // wordings like "on the 50 Best list".
+//
+// The bare word "list" is NOT a context (task 104). "The cocktail list runs
+// to … Aging Partiers #3" is a drinks menu, and it bolded a drink's name as
+// if it were a placing. "on the 50 Best list" still qualifies through
+// "50 Best"; a ranking sentence that says only "list" and nothing else about
+// ranking is rare enough to lose.
 const RANK_CONTEXT_RE = new RegExp(
-  `\\b(?:globally|ranked|list|50\\s?Best|${PHRASES.map(escapeRe).join('|')})\\b`,
+  `\\b(?:globally|ranked|50\\s?Best|${PHRASES.map(escapeRe).join('|')})\\b`,
   'i'
 );
+
+// A "#N" that directly follows a capitalised word is part of a name (Aging
+// Partiers #3, Studio #2), not a placing. Rankings are written "ranked #93",
+// "at #12", "No. 4 on …": the word before the number is lowercase, unless it
+// opens the sentence ("Ranked #7 globally"), which is why the few words that
+// introduce a rank are exempt. Applied to "#N" only; "No. N" never appears
+// as a name suffix in this directory, and "Bars No. 12" is a real ranking.
+const CAPITALISED_WORD_BEFORE_RE = /(?:^|\s)([A-Z][\w'&.-]*)\s+$/;
+const RANK_LEAD_WORDS = /^(?:Ranked|Rated|Placed|Listed|Named|Number|Position|Currently|Now|At)$/;
+function followsAName(before: string): boolean {
+  const m = CAPITALISED_WORD_BEFORE_RE.exec(before);
+  return !!m && !RANK_LEAD_WORDS.test(m[1]);
+}
 
 // Sentence ends: [.!?] then whitespace then a capital or quote. No
 // lookbehind (old Safari throws at parse time), and crucially "No. 12"
@@ -188,6 +207,13 @@ export function highlightSegments(text: string): Segment[] {
     const body = text.slice(sentence.start, sentence.end);
     if (!RANK_CONTEXT_RE.test(body)) continue;
     for (const m of Array.from(body.matchAll(RANK_RE))) {
+      if (m[0].startsWith('#')) {
+        const before = body.slice(0, m.index!);
+        // "&#8220;" is a stored HTML entity, not a placing. The data is
+        // decoded now, but text sourced from WordPress can bring them back.
+        if (before.endsWith('&')) continue;
+        if (followsAName(before)) continue;
+      }
       spans.push({
         start: sentence.start + m.index!,
         end: sentence.start + m.index! + m[0].length,
