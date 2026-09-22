@@ -3,6 +3,10 @@
 # Started 2026-09-21 because Roman asked for Big Bar (Los Angeles) to be
 # noted. Big Bar is the first line below.
 #
+# SCHEDULED: wave 2 goes out the week of 2026-10-05 (Roman, 2026-09-21).
+# Moved off the week of 09-28 so it does not collide with batch 19, which
+# runs Tue 09-29 through Thu 10-01. Nothing here has been sent.
+#
 # THE NUMBER THAT MATTERS, AND IT IS NOT ENCOURAGING: 1,441 of 1,646 active
 # bars have no photo, which is 88%. Of those, 699 have an email on file, so a
 # nudge can actually reach fewer than half of them. A photo nudge is therefore
