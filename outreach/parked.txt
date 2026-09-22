@@ -66,3 +66,89 @@ aldo-sohm-wine-bar          # form only
 # inbox on the distillery domain), watch-hill-proper (venue-named on the operator
 # domain), barr-hill-cocktail-bar (single-property distillery inbox).
 tayer-elementary            # temporarily closed since May 2026 (fire); confirmed on their own site and in the trade press 17 Sep 2026 that they will not reopen in 2026
+#
+# 2026-09-21, batch 18 eyeball (task 99). 44 of 132 candidates parked.
+# Hotel, restaurant-group and agency inboxes, plus four addresses that
+# belong to a different venue entirely. The email is recorded on each row
+# for editorial use; it is the SENDING that is parked, not the address.
+#
+customs-house-bar-sydney             # Marriott corporate staff address, not a venue inbox  [robert.battley@marriotthotels.com]
+isabel-lounge                        # Hilton events department  [eventos.copa@hilton.com]
+flair                                # Ritz-Carlton reservations desk  [restaurantrsvn.pudong@ritzcarlton.com]
+ralph-s-bar                          # Ralph Lauren corporate staff address  [Cecilia.Yang@RalphLauren.com]
+the-long-bar-at-the-waldorf-astoria  # Waldorf Astoria F&B department  [shawa.fb@waldorfastoria.com]
+tiao                                 # Mandarin Oriental group; MO declined the partnership (see optout.txt)  [moqnm-reservations@mohg.com]
+bar-josephine                        # Mandarin Oriental group; MO declined the partnership (see optout.txt)  [molut-barjosephine@mohg.com]
+the-aubrey                           # Mandarin Oriental group; MO declined the partnership (see optout.txt)  [mohkg-aubrey@mohg.com]
+mandarin-garden                      # Mandarin Oriental group; MO declined the partnership (see optout.txt)  [momln-mandaringarden@mohg.com]
+mo-bar                               # Mandarin Oriental group; MO declined the partnership (see optout.txt)  [mosin-dining@mohg.com]
+cafe-de-la-paix                      # IHG group domain, not the bar's own listed domain  [cafedelapaixparis@ihg.com]
+the-curtain-club                     # Ritz-Carlton Berlin corporate alias  [network.berlin@ritzcarlton.com]
+house-of-nomad                       # Taj/IHCL group reservations inbox  [reservations.mumbai@ihcltata.com]
+juniper-bar-andaz-delhi              # Andaz restaurants department; the bar is also temporarily closed  [Andaz.delhi.restaurants@andaz.com]
+the-st-regis-bar-jakarta             # St Regis dining department  [dine.stregisjakarta@stregis.com]
+canes-tales                          # Waldorf Astoria staff address  [Dominic.Dijkstra@waldorfastoria.com]
+the-bar-at-the-ritz-carlton-tokyo    # Ritz-Carlton restaurant sales  [rc.tyorz.restaurant.sales@ritzcarlton.com]
+the-roof-skybar                      # IHG group domain, not the bar's own listed domain  [theroofskybar@ihg.com]
+republic-bar                         # Ritz-Carlton group domain  [rc.sinrz.republic@ritzcarlton.com]
+the-bar-at-15-stamford               # Kempinski group domain  [restaurant.15stamford@kempinski.com]
+guldbaren                            # Nobis Hotel general reservations, the-cruise-room class  [reservations@nobishotel.com]
+bar-sathorn                          # W Hotels group domain  [thehouseonsathorn@whotels.com]
+the-speakeasy-rooftop-bar-bangkok    # automated Marriott inbox  [auto.bkkhm.information@marriott.com]
+level-43-sky-lounge                  # Four Points group domain  [fp.dxbsf.fpdubai@fourpoints.com]
+beaufort-bar                         # Fairmont general inbox for the Savoy  [savoy@fairmont.com]
+spy-bar                              # Raffles group domain  [undercover.london@raffles.com]
+the-library-bar-london               # Lanesborough hotel dining department  [dining@lanesborough.com]
+salon-salon                          # Hyatt guest services  [MSYUM-Guest.Services@hyatt.com]
+mamba-negra                          # The Hacienda group customer-service inbox  [servicioalcliente.mamba@thehacienda.com.co]
+barmini-dc                           # Jose Andres group concierge, not the venue  [concierge@joseandres.com]
+fonda-del-barrio                     # Alt Strategies agency, named account person  [mark@altstrategies.com]
+false-idol                           # shared CH Projects group inbox, five bars behind one address  [info@ch-projects.com]
+noble-experiment                     # shared CH Projects group inbox, five bars behind one address  [info@ch-projects.com]
+polite-provisions                    # shared CH Projects group inbox, five bars behind one address  [info@ch-projects.com]
+raised-by-wolves                     # shared CH Projects group inbox, five bars behind one address  [info@ch-projects.com]
+young-blood                          # shared CH Projects group inbox, five bars behind one address  [info@ch-projects.com]
+char-bar-minneapolis                 # address belongs to a different venue (Butcher and the Boar)  [info@butcherandtheboarmpls.com]
+side-hustle-lounge                   # address belongs to a different venue (Mootz Pizza)  [managers@mootzpizza.com]
+moonglow-oakland                     # booking inbox of a different venue (Gold Palm)  [booking@goldpalmoakland.com]
+the-sidecar-at-the-tap               # parent brewery staff address (Town Hall Brewery)  [tjhaliburton@townhallbrewery.com]
+lyaness                              # venue alias on the hotel's domain, not the bar's own listed domain  [lyaness@seacontainerslondon.com]
+gold-bar                             # venue alias on the Edition hotels domain  [goldbar@editionhotels.com]
+gucci-giardino                       # venue alias on the Gucci corporate domain  [giardino@gucci.com]
+la-commune                           # venue alias on a sibling group domain, not the bar's own  [lacommune@syndicatcocktailclub.com]
+#
+# 2026-09-21, batch 18 eyeball, SECOND PASS (task 99).
+# Found by listing the email DOMAIN of every remaining candidate rather than
+# comparing it to the website. The first pass compared the two and cleared
+# anything that matched, which is exactly wrong for a hotel bar whose listed
+# website IS the group site: tajhotels.com matching tajhotels.com read as
+# "the venue own domain". 24 group inboxes cleared that check.
+#
+bar-artemisia                              # Rocco Forte group inbox  [bar.savoy@roccofortehotels.com]
+bemelmans-bar                              # Rosewood group; send-upsell already blocks this domain as partner track  [bemelmansbar@rosewoodhotels.com]
+blind-spot-london                          # Morgans Originals group reservations  [smlreservations@morgansoriginals.com]
+bulgari-bar                                # Bulgari hotels group dining  [dine.roma@bulgarihotels.com]
+de-tiger-bar-a-far-east-speakeasy          # Tugu hotels group inbox  [houseoftugu@tuguhotels.com]
+deck-lounge-bar                            # Pestana group reservations  [reservas.br@pestana.com]
+donovan                                    # Rocco Forte group inbox  [thedonovanbar@roccofortehotels.com]
+ekspedisjonshallen                         # Sommerro House hotel inbox  [eh@sommerrohouse.com]
+horatio                                    # Resorts World Sentosa dining department  [dining@rwsentosa.com]
+jungle-ballroom                            # Mondrian group inbox  [jungleballroom@mondrianhotels.com]
+les-ambassadeurs                           # Rosewood group; send-upsell already blocks this domain as partner track  [crillon@rosewoodhotels.com]
+long-bar-raffles                           # Raffles group inbox  [singapore@raffles.com]
+rooftop-the-social-hub-florence-lavagnini  # The Social Hub group, city-level inbox  [florence@thesocialhub.co]
+sora                                       # Rosewood group; send-upsell already blocks this domain as partner track  [phnompenh.fnbreservation@rosewoodhotels.com]
+stravinskij-bar                            # Rocco Forte group inbox  [fb.derussie@roccofortehotels.com]
+the-blue-bar                               # Taj group inbox  [tphbluebar.del@tajhotels.com]
+the-cadier-bar                             # Grand Hotel Stockholm general inbox  [info@grandhotel.se]
+the-library-bar                            # Leela hotel reservations  [restaurantreservation.tlpnd@theleela.com]
+the-mansion-bar                            # Rosewood group; send-upsell already blocks this domain as partner track  [mansion.restaurant@rosewoodhotels.com]
+the-pineapple-room                         # Capella group inbox  [thepineappleroom.singapore@capellahotels.com]
+the-punch-room-at-edition                  # Edition group reservations  [reservations.bcn@editionhotels.com]
+the-zuk-bar                                # Sukhothai hotel F&B admin  [FBAdminShanghai@sukhothai.com]
+yoi                                        # Capella group inbox  [mario.lapietra@capellahotels.com]
+zapote-bar-playa-del-carmen                # Rosewood group; send-upsell already blocks this domain as partner track  [mayakoba.restaurantreservations@rosewoodhotels.com]
+#
+# 2026-09-21, batch 18 dry run (task 99): events-only inbox on the venue's own
+# domain. Same call as crown-shy on 2026-09-15.
+tan-tan                            # eventos.grupo@, an events desk rather than the bar  [eventos.grupo@tantan.com.br]
