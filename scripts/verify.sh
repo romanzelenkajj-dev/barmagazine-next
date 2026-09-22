@@ -45,6 +45,12 @@ echo "1/3  unit tests"
 npx vitest run || fail "tests"
 
 echo ""
+echo "1b/3 award claims: descriptions must agree with accolade records"
+# A description that names an award the records do not back, or a year the
+# records do not hold, is a profile arguing with itself (task 102). Live read,
+# paged; fails the gate on the first disagreement.
+node scripts/audit-award-claims.mjs --quiet
+
 echo "2/3  type check and build"
 # `next build` prints "Compiled successfully" BEFORE type-checking, so its
 # own success line proves nothing. Capture the output, then decide on the
