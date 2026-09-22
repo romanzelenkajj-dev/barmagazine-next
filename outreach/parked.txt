@@ -199,3 +199,8 @@ saikindo                 # fourseasons group or hotel inbox  [info@fourseasons.c
 firefly                  # kempinski group or hotel inbox  [foodandbeverage.sindhorn@kempinski.com]
 modernhaus               # Union Group Jakarta operator inbox, shared by two bars  [info@uniongroupjakarta.com]
 the-cocktail-club        # Union Group Jakarta operator inbox, shared by two bars  [info@uniongroupjakarta.com]
+#
+# 2026-09-21, batch 19 eyeball (task 99). Caught by reading the wave lists
+# after the automated filters had passed them.
+ernst-fuchs-bar-graz       # reception@ at the Palais-Hotel Erzherzog Johann, a hotel front desk on the hotel's domain  [reception@erzherzog-johann.com]
+othilia-stockholm          # gdpr@ at Operakallaren, a privacy mailbox at a DIFFERENT venue  [gdpr@operakallaren.se]
