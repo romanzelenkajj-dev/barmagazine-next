@@ -165,3 +165,88 @@ after it. One correction: the directory has **1,646** active bars, not 1,642.
 # Not done, deliberately
 
 Batch 18 is not armed and nothing has been sent. The five held harvest addresses are not stored.
+
+---
+
+# Round two (2026-09-21 evening)
+
+## PR #73 merged
+
+Conflicted on `outreach/parked.txt` first, because the outreach commits existed twice: once
+cherry-picked onto `main` and once on the branch. Resolved by taking main's side, re-verified
+(450 tests, 832 pages), then merged.
+
+## Batch 18 armed: 64 will send, not 66
+
+The four are unparked with the reason written into `parked.txt`, as that file requires.
+
+**Two of them still will not send, and it is not parked.txt.** `gold-bar` and `gucci-giardino`
+match `CORPORATE_DOMAINS` in `send-upsell.mjs`, a separate hard guard marked "partner track,
+not blasted (no bypass)". `editionhotels` and `gucci` were added to it by the Europe wave 1
+screen. I left it alone: it encodes partner relationships, it is explicitly no-bypass, and
+widening it quietly to satisfy a parked.txt decision is exactly the kind of thing it exists to
+stop. **Lyaness and La Commune do send.**
+
+**Gold Bar is in Tokyo**, which fits neither window. I put it in the Europe window, where it
+would have gone out at 22:30 JST, which is at least open hours for a bar. Moot while the
+corporate guard holds it.
+
+| Window | Bars | Fires |
+|---|---|---|
+| batch18-europe | 21 | Mon 2026-09-28 06:30 PT (15:30 CEST) |
+| batch18-americas | 43 | Mon 2026-09-28 09:00 PT (12:00 ET) |
+
+Both armed with the retry runner, verified loaded, `runs = 0`. Dry run clean, node exit 0.
+
+One observation, not a change: 06:30 PT puts Europe at 15:30 local, where the batch 17 Europe
+window used 00:30 PT for a 09:30 CEST landing. Armed as instructed.
+
+## The five held addresses
+
+| Bar | Address | What it actually is | Done |
+|---|---|---|---|
+| **Suderman** (Cologne) | `06info@sudermanbar.de` | **My bug, not their typo.** The Impressum carries BOTH `06info@` and a clean `info@sudermanbar.de`; a phone digit was glued to the front and my picker chose the wrong one of the two. | **Stored** `info@sudermanbar.de`, and the picker now prefers the shorter address at equal source rank |
+| **Mad Souls & Spirits** (Florence) | `neri.fante@gmail.con` | **Their typo, twice, in their own JSON-LD.** `.con` is not a top-level domain. `.com` is near-certain but it is still me inventing an address, and a wrong guess mails a stranger. | **Held.** Say the word and I will store the `.com` |
+| **Santa Cocktail Club** (Florence) | `info@santacocktailclub.com` | The operator's single inbox, from the privacy page. | **Held.** Recommend storing on Florence only |
+| **Santa Cocktail Club** (Venice) | `info@santacocktailclub.com` | Same inbox as Florence. Storing both mails one person twice in a batch. | **Held.** Recommend leaving without an address |
+| **Monkey Bar** (New Delhi) | `resume@olivebarandkitchen.com` | A recruitment inbox, found on the operator's `/career.html`. Same class as press@ and events@. | **Parked** |
+
+## Harvest pass 2: the 378 outside the eight countries
+
+**211 had a website. 71 venue addresses found, 69 stored, 18 bars parked.**
+
+| | |
+|---|---|
+| Outside the eight | 378 |
+| Had a site to crawl | 211 |
+| Venue address found | 71 (34%) |
+| Stored | 69 |
+| Parked as group inboxes | 18 |
+| No website at all | 167 |
+
+Stored, top countries: Switzerland 17, Australia 9, Austria 7, South Africa 5, UAE 5, Hong Kong
+4, Denmark 3, then ones and twos across 14 more.
+
+**`guest.historian@fourseasons.com` was the only published address for EIGHT different Four
+Seasons bars** (Avra, Caprice, Nautilus, Bar Trigona, Fifty Mils, One-Ninety, Charles H, BKK
+Social Club). One global corporate alias standing in for eight venues on four continents is the
+clearest evidence yet that a hotel bar page frequently carries no address of its own.
+
+Two fixes, both from reading the list rather than trusting the labels:
+
+- **`.co` is Colombia's top-level domain, not a typo.** My "suspect TLD" check flagged El Barón
+  (Cartagena) and Nautilus. Both rescued and stored.
+- The shorter of two addresses wins at equal source rank, which is the Suderman fix above.
+
+## Batch 19: built, dry-run, NOT armed
+
+179 candidates: **Europe 105, Americas 49, Asia 25**. One excluded automatically as temporarily
+closed, so **178 would send**. Dry run clean on all three windows, node exit 0, no refusals, no
+crashes, no missing addresses.
+
+Not armed. No batch 19 launchd agent exists.
+
+## Skipped as instructed
+
+The Instagram pass. 167 bars outside the eight countries have no website at all and stay
+unreachable.
