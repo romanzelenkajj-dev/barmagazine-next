@@ -876,17 +876,21 @@ button {
   color: var(--text-primary);
 }
 
+/* The beige box carries the quote on its own. The accent rule down the left
+   edge is gone, so the radius now closes on all four corners instead of the
+   two the border left open. */
 .article-body blockquote {
-  border-left: 3px solid var(--accent);
   padding: 20px 28px;
   margin: 32px 0;
   background: var(--bg-card-warm);
-  border-radius: 0 var(--radius) var(--radius) 0;
+  border-radius: var(--radius);
 }
 
 .article-body blockquote p {
   font-size: 17px;
-  font-style: italic;
+  /* Upright. Italic across a full paragraph of quoted speech is harder to
+     read than it is decorative, and the box already marks it as a quote. */
+  font-style: normal;
   color: var(--text-primary);
   line-height: 1.7;
   margin-bottom: 0;
@@ -3149,12 +3153,12 @@ textarea.form-input {
   transform: scale(1.05);
 }
 
-/* TOP 10 section header accent */
+/* TOP 10 section header accent. The gold rule down the left edge is gone with
+   the rest of them; the gradient wash and the gold icon still mark it. */
 .dir-section-header--top10 {
   background: linear-gradient(90deg, rgba(201,168,76,0.12) 0%, transparent 100%);
-  border-left: 3px solid #C9A84C;
   padding-left: 14px;
-  border-radius: 0 8px 8px 0;
+  border-radius: 8px;
 }
 
 .dir-section-header--top10 .dir-section-header-icon {
@@ -3670,15 +3674,19 @@ textarea.form-input {
   color: #fff;
 }
 
+/* Closure notice. The 3px red left rule is gone with the rest of the
+   left-border callouts; a hairline of the same red all the way round keeps it
+   reading as a warning rather than as a tinted paragraph, since this one is
+   the only callout on the site that carries a fact a visitor can act on. */
 .bar-status-notice {
   display: flex;
   flex-direction: column;
   gap: 2px;
   margin: 10px 0 0;
   padding: 10px 14px;
-  border-left: 3px solid #8a2b2b;
+  border: 1px solid rgba(138, 43, 43, 0.35);
   background: #fbf1f1;
-  border-radius: 4px;
+  border-radius: 6px;
   max-width: 640px;
 }
 .bar-status-notice__heading {
@@ -3703,7 +3711,12 @@ textarea.form-input {
 .bar-dir-featured-name {
   /* Bigger since the accolade tiles left the card: the name now carries the
      card, and 18px in a ~250px content box left the block looking thin. */
-  font-size: 21px;
+  /* Held in a custom property so the --long step below can be derived from it
+     rather than hard-coded. A literal 17px looked right at this size and then
+     stayed 17px in the tablet band where the base drops to 16, making the
+     "one size down" variant LARGER than the size it steps down from. */
+  --card-name-size: 21px;
+  font-size: var(--card-name-size);
   /* Tailwind preflight is disabled, so the browser's default h3 margin of 1em
      applies — which scales WITH font-size. Raising the name to 21px silently
      raised the gap above it to 21px too. */
@@ -3713,6 +3726,37 @@ textarea.form-input {
   color: #1a1a1a;
   margin-bottom: 6px;
   letter-spacing: -0.015em;
+
+  /* THE NAME AREA IS ALWAYS TWO LINES TALL.
+     Cards stretch to the tallest in the row, but that only levels the card
+     edges: a one-line name still pushed its location line up while the
+     two-line name next to it pushed its own down, so the row read as ragged
+     inside. Reserving two lines puts every location line on the same
+     baseline. A name longer than two lines is clamped rather than allowed to
+     grow the box; .bar-dir-featured-name--long below buys it the room.
+
+     The height is a fixed length, NOT `calc(2em * ...)`: em resolves against
+     each rule's own font-size, so the smaller --long variant quietly got a
+     shorter box and pushed its location line 9px up, which is the exact
+     raggedness this is here to remove. */
+  --card-name-box: 51px; /* 2 lines at 21px / 1.22 */
+  min-height: var(--card-name-box);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* "BOP (Bartenders of Pony)" has an 11-character token; without this it
+     sets its own minimum width and overflows the card rather than wrapping. */
+  overflow-wrap: anywhere;
+}
+
+/* One step down for names that do not fit two lines at the normal size. The
+   component decides this at render from the name itself, so the size is
+   settled in the HTML and the card never reflows in front of the reader.
+   It inherits --card-name-box, so it occupies the same two-line slot. */
+.bar-dir-featured-name--long {
+  font-size: calc(var(--card-name-size) * 0.81); /* 21px -> 17px, 16px -> 13px */
+  line-height: 1.25;
 }
 
 .bar-dir-featured-location {
@@ -10228,7 +10272,10 @@ textarea.form-input {
    sizes are right again. */
 @media (min-width: 769px) and (max-width: 1024px) {
   .bar-dir-featured-name {
-    font-size: 16px;
+    /* The size and the two-line slot follow each other down. Not a new
+       breakpoint: this band already existed and already restyled the name. */
+    --card-name-size: 16px;
+    --card-name-box: 39px; /* 2 lines at 16px / 1.22 */
   }
 
   .bar-dir-featured-location {
@@ -10497,7 +10544,9 @@ textarea.form-input {
 }
 
 /* Compact upsell strip under the dashboard header - one sentence and a
-   button, same border-left card language as the full offer card. */
+   button, same card language as the full offer card. (The rule itself sets
+   no border; the comment used to say "border-left card language", which no
+   longer describes anything on the site.) */
 .owner-upsell-strip {
   display: flex;
   align-items: center;
@@ -10722,14 +10771,21 @@ textarea.form-input {
 
 /* ── Award hub pages ────────────────────────────────────────────────────── */
 
+/* A footnote, not a callout. It used to be a gold-bordered card, which gave a
+   standing disclaimer the same visual weight as the results it qualifies. It
+   now reads as what it is: a quiet line under the intro, separated by a
+   hairline rather than by a colour. */
 .awards-integrity {
-  margin: 16px 0 0;
-  padding: 12px 16px;
-  border-left: 3px solid #B08D3F;
-  background: var(--bg-card);
-  border-radius: 8px;
-  font-size: 14px;
+  margin: 18px auto 0;
+  padding: 14px 16px 0;
+  border-top: 1px solid var(--border);
+  background: none;
+  border-radius: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
   color: var(--text-secondary);
+  max-width: 620px;
 }
 
 .awards-year {
@@ -10753,6 +10809,11 @@ textarea.form-input {
   margin: 0 0 8px;
 }
 
+/* KEPT, BUT NO LONGER USED BY /awards/[program]. The hub pages now draw
+   DirectoryBarCard in a .directory-grid, the same card every city guide uses.
+   These two rules stay because /awards (the index) still draws its list of
+   programs with them, and deleting them would break a page this task was not
+   asked to touch. */
 .awards-bar-list {
   list-style: none;
   margin: 0;
@@ -10776,6 +10837,30 @@ textarea.form-input {
 
 .awards-bar-link:hover { border-color: var(--text-primary); }
 .awards-bar-link span { font-size: 13px; color: var(--text-secondary); }
+
+/* The hub wraps each card so the kicker can sit in the cell. That wrapper is
+   the grid item, so IT was the thing being stretched to the row height while
+   the card inside kept its natural height and floated. Make the wrapper a
+   column and let the card fill it. */
+.awards-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.awards-card > .bar-dir-featured-card {
+  flex: 1;
+}
+
+/* The award hub's one addition to the card: why this bar is on this page.
+   It sits INSIDE the cell rather than as a heading above it, so it travels
+   with the bar when the grid reflows. */
+.awards-card-kicker {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+}
 
 .awards-program-list { margin-top: 24px; }
 
