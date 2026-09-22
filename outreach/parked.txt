@@ -214,3 +214,12 @@ georges-at-the-cove-level2           # Alt Strategies, no further outreach  [inf
 shibuya-nights-at-cloak-petal        # Alt Strategies, no further outreach  [info@cloakandpetal.com]
 the-smoking-gun                      # Alt Strategies, no further outreach  [randy@thesmokinggunsd.com]
 andra-hem-philadelphia               # owner in contact, no cold email  [alison@andrahem.com]
+#
+# 2026-09-22, batch 20 eyeball (task 106). The four inboxes task 105b flagged
+# on insert, read against the venue's own site and the domain the address
+# sits on. Same rule as batch 18: a hotel front desk or a group inbox is not
+# the bar, even when the bar's own page publishes it.
+blooms-baltimore                     # info@ at Hotel Ulysses, the hotel's general inbox, not the bar's  [info@hotelulysses.com]
+the-roof-at-the-durham               # info@ at The Durham Hotel, the hotel's general inbox, not the bar's  [info@thedurham.com]
+society-lounge-cleveland             # events@ at Hangry Brands, the operating group's events desk on a different domain  [events@hangry-brands.com]
+flower-on-freeman-cleveland          # mc@ at Luxe Cleveland, a person at the group's other venue on a different domain  [mc@luxecleveland.com]
