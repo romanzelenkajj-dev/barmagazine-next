@@ -16,6 +16,11 @@
 # Los Angeles is seeded here because that is where the request came from.
 # "(email)" means we can reach them; the rest need an address first.
 #
+# EXCLUDED FROM EVERY NUDGE WAVE (Roman, 2026-09-22): the Alt Strategies venues.
+# The agency added photos and declined Featured; nothing further goes to them.
+#   fonda-del-barrio, georges-at-the-cove-level2, shibuya-nights-at-cloak-petal,
+#   the-smoking-gun. All four are in parked.txt, which the builders read first.
+#
 # One slug per line. Format: slug<TAB>city<TAB>has-email
 
 big-bar	Los Angeles	email

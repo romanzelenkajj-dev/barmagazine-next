@@ -46,6 +46,25 @@ Status: **no approach made.** All nine are parked, and `fourseasons` is already 
 
 ---
 
+## Alt Strategies (San Diego agency): CLOSED
+
+**Closed 2026-09-22 (Roman).** Mark Rogoff's hospitality agency represents several San Diego
+venues. Outcome of the relationship: **they added photos to their bars' listings and declined
+Featured.** No further outreach of any kind, including the photo nudge.
+
+| Bar | Address on file | Contacted |
+|---|---|---|
+| Fonda del Barrio | mark@altstrategies.com | never; the only address is the agency's |
+| Georges at the Cove | info@georgesatthecove.com | yes, earlier batch |
+| Cloak & Petal (Shibuya Nights) | info@cloakandpetal.com | yes, earlier batch |
+| The Smoking Gun | randy@thesmokinggunsd.com | yes, earlier batch |
+
+All four parked with the reason "Alt Strategies, no further outreach". `altstrategies` is
+already in `CORPORATE_DOMAINS`, which only covered the first; the other three use their own
+domains, which is why parked.txt rather than the send guard is what closes this.
+
+---
+
 ## Groups parked but not yet tracked as relationships
 
 These have bars in the directory reachable only through a group inbox. They are parked and
@@ -58,4 +77,4 @@ Rocco Forte (3), Capella (2), Marriott and its brands (W, St Regis, Edition, Fou
 Sheraton, Westin), Hilton and Waldorf Astoria, Hyatt and Andaz, IHG, Kempinski (2), Taj,
 The Leela, Raffles, Bulgari, Pestana, Tugu, Shangri-La, Sukhothai, Accor, NH Hotels,
 Morgans Originals, The Social Hub, Oberoi, Union Group Jakarta (2), CH Projects (5 San Diego
-bars behind one inbox), Alt Strategies, Jose Andres group, Farmily Group.
+bars behind one inbox), Jose Andres group, Farmily Group.

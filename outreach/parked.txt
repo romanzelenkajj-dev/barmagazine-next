@@ -102,7 +102,7 @@ the-library-bar-london               # Lanesborough hotel dining department  [di
 salon-salon                          # Hyatt guest services  [MSYUM-Guest.Services@hyatt.com]
 mamba-negra                          # The Hacienda group customer-service inbox  [servicioalcliente.mamba@thehacienda.com.co]
 barmini-dc                           # Jose Andres group concierge, not the venue  [concierge@joseandres.com]
-fonda-del-barrio                     # Alt Strategies agency, named account person  [mark@altstrategies.com]
+fonda-del-barrio                     # Alt Strategies, no further outreach  [mark@altstrategies.com]
 false-idol                           # shared CH Projects group inbox, five bars behind one address  [info@ch-projects.com]
 noble-experiment                     # shared CH Projects group inbox, five bars behind one address  [info@ch-projects.com]
 polite-provisions                    # shared CH Projects group inbox, five bars behind one address  [info@ch-projects.com]
@@ -204,3 +204,12 @@ the-cocktail-club        # Union Group Jakarta operator inbox, shared by two bar
 # after the automated filters had passed them.
 ernst-fuchs-bar-graz       # reception@ at the Palais-Hotel Erzherzog Johann, a hotel front desk on the hotel's domain  [reception@erzherzog-johann.com]
 othilia-stockholm          # gdpr@ at Operakallaren, a privacy mailbox at a DIFFERENT venue  [gdpr@operakallaren.se]
+#
+# 2026-09-22, Roman: Alt Strategies is done. They added photos and declined
+# Featured, so the relationship is closed rather than pending. Every venue that
+# routes through altstrategies.com or is on the agency's published client list
+# is parked with one reason. Three of these were mailed in earlier batches
+# (batches 11 to 17); parking stops the follow-ups and the photo nudge.
+georges-at-the-cove-level2           # Alt Strategies, no further outreach  [info@georgesatthecove.com]
+shibuya-nights-at-cloak-petal        # Alt Strategies, no further outreach  [info@cloakandpetal.com]
+the-smoking-gun                      # Alt Strategies, no further outreach  [randy@thesmokinggunsd.com]
