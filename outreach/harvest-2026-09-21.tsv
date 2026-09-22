@@ -1,0 +1,929 @@
+slug	name	country	city	email	kind	reason	source	url
+bar-bello	Bar Bello	Canada	Montreal	ciao@barbellomtl.com	venue	the venue's own domain	json-ld	https://www.barbellomtl.com/
+atwater-cocktail-club	Atwater Cocktail Club	Canada	Montreal	info@atwatercocktailclub.com	venue	the venue's own domain	json-ld	https://www.atwatercocktailclub.com/
+atwater-cocktail-club	Atwater Cocktail Club	Canada	Montreal	groupes@barroco.ca	offsite	off-domain (barroco.ca)	form-config	https://www.atwatercocktailclub.com/
+bar-bisou-bisou	Bar Bisou Bisou	Canada	Montreal	info@barbisoubisou.com	venue	the venue's own domain	form-config	https://www.barbisoubisou.com/
+bar-mordecai	Bar Mordecai	Canada	Toronto	hello@barmordecai.com	venue	the venue's own domain	page-text	https://www.barmordecai.com/
+bar-banane	Bar Banane	Canada	Toronto	info@barbanane.ca	venue	the venue's own domain	json-ld	https://www.barbanane.ca/
+bar-maaya-toronto	Bar Maaya	Canada	Toronto	gmsmentertainmentoffice@gmail.com	venue	free mailbox published on the venue's own site	form-config	https://barmaaya.com/
+milky-way-cocktail-bar	Milky Way Cocktail Bar	Canada	Montreal	info@milkywaycocktails.com	venue	the venue's own domain	page-text	https://milkywaycocktails.com/
+the-cloakroom	The Cloakroom	Canada	Montreal	info@cloakroombarmtl.com	venue	the venue's own domain	json-ld	https://cloakroombarmtl.com/
+the-coldroom	The Coldroom	Canada	Montreal	info@thecoldroommtl.com	venue	the venue's own domain	json-ld	https://thecoldroommtl.com/
+civil-liberties	Civil Liberties	Canada	Toronto	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.civillibertiesbar.com/
+barchef	BarChef	Canada	Toronto	info@barchef.com	venue	the venue's own domain	json-ld	https://barchef.com/contact
+suite-115	Suite 115	Canada	Toronto	contact@suite115.ca	venue	the venue's own domain	page-text	https://www.suite115.ca/
+no-vacancy	No Vacancy	Canada	Toronto	%20events@goodnightcocktailclub.com	offsite	off-domain (goodnightcocktailclub.com)	form-config	https://www.novacancybar.ca/about
+no-vacancy	No Vacancy	Canada	Toronto	info.nv@novacancyto.ca	offsite	off-domain (novacancyto.ca)	page-text	https://www.novacancybar.ca/contact
+bartholomew	Bartholomew	Canada	Vancouver	info@bartholomewbar.com	venue	the venue's own domain	form-config	https://bartholomewbar.com/
+key-party	Key Party	Canada	Vancouver	info@narrowgroup.ca	venue	the venue's own domain	form-config	https://narrowgroup.ca/project/key-party/
+mount-pleasant-vintage-provisions	Mount Pleasant Vintage & Provisions	Canada	Vancouver	findus@mtpleasant.bar	venue	the venue's own domain	json-ld	https://www.mtpleasant.bar/yvr/home
+the-boxcar-cocktail-bar	The Boxcar Cocktail Bar	Canada	Vancouver	info@boxcarvacnouver.com	offsite	off-domain (boxcarvacnouver.com)	form-config	https://boxcarvancouver.com/
+the-boxcar-cocktail-bar	The Boxcar Cocktail Bar	Canada	Vancouver	info@boxcarvancouver.com	venue	the venue's own domain	page-text	https://boxcarvancouver.com/
+the-boxcar-cocktail-bar	The Boxcar Cocktail Bar	Canada	Vancouver	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://boxcarvancouver.com/
+the-boxcar-cocktail-bar	The Boxcar Cocktail Bar	Canada	Vancouver	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://boxcarvancouver.com/
+the-boxcar-cocktail-bar	The Boxcar Cocktail Bar	Canada	Vancouver	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://boxcarvancouver.com/
+uva-wine-cocktail-bar	Uva Wine & Cocktail Bar	Canada	Vancouver	info@uvavancouver.com	venue	the venue's own domain	form-config	https://uvavancouver.com/
+uva-wine-cocktail-bar	Uva Wine & Cocktail Bar	Canada	Vancouver	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://uvavancouver.com/
+uva-wine-cocktail-bar	Uva Wine & Cocktail Bar	Canada	Vancouver	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://uvavancouver.com/
+bootlegger-cocktail-bar-cuisine-montreal	Bootlegger Cocktail Bar & Cuisine Montréal	Canada	Montreal	information@barbootlegger.com	venue	the venue's own domain	form-config	https://barbootlegger.com/contact
+bootlegger-cocktail-bar-cuisine-montreal	Bootlegger Cocktail Bar & Cuisine Montréal	Canada	Montreal	marketing@barbootlegger.com	role	departmental mailbox (marketing@)	form-config	https://barbootlegger.com/contact
+bootlegger-cocktail-bar-cuisine-montreal	Bootlegger Cocktail Bar & Cuisine Montréal	Canada	Montreal	booking@barbootlegger.com	venue	the venue's own domain	form-config	https://barbootlegger.com/contact
+fairytale-bar-berlin	Fairytale Bar	Germany	Berlin	reservierung@fairytale.bar	venue	the venue's own domain	form-config	https://www.fairytale.bar/
+galander-charlottenburg-berlin	Galander Charlottenburg	Germany	Berlin	info@galander.berlin	venue	the venue's own domain	form-config	https://www.galander.berlin/galander-bar-charlottenburg/
+fabelei-berlin	FABELEI	Germany	Berlin	hello@fabelei.com	venue	the venue's own domain	json-ld	https://www.fabelei.com/
+krass-boser-wolf-berlin	Krass Böser Wolf	Germany	Berlin	info@krassboeserwolf.de	venue	the venue's own domain	form-config	https://www.krassboeserwolf.de/
+le-jardin-berlin	Le Jardin	Germany	Berlin	hello@lejardin-bar.de	venue	the venue's own domain	page-text	http://lejardin-bar.de/
+little-link-cologne	Little Link	Germany	Cologne	bar@littlelink.de	venue	the venue's own domain	json-ld	https://www.littlelink.de/
+friesenvierzig-cologne	Friesenvierzig	Germany	Cologne	info@friesen-bar.com	venue	the venue's own domain	form-config	https://www.friesen-bar.com/
+bar-raval	Bar Raval	Canada	Toronto	sup@thisisbarraval.com	venue	the venue's own domain	form-config	https://www.thisisbarraval.com/info
+bar-raval	Bar Raval	Canada	Toronto	nsup@thisisbarraval.com	venue	the venue's own domain	page-text	https://www.thisisbarraval.com/info
+suderman-cologne	Suderman	Germany	Cologne	06info@sudermanbar.de	venue	the venue's own domain	page-text	https://www.sudermanbar.de/impressum
+suderman-cologne	Suderman	Germany	Cologne	info@sudermanbar.de	venue	the venue's own domain	page-text	https://www.sudermanbar.de/impressum
+woods-cologne	Woods	Germany	Cologne	info@woods-cologne.de	venue	the venue's own domain	form-config	https://www.woods-cologne.de/
+ona-mor-cologne	Ona Mor	Germany	Cologne	drink@onamor.de	venue	the venue's own domain	json-ld	https://www.onamor.de/
+moloko-frankfurt-am-main	moloko+	Germany	Frankfurt am Main	hallo@moloko-am-meer.com	venue	the venue's own domain	cloudflare-obfuscated	https://www.moloko-am-meer.com/
+the-tiny-cup-frankfurt-am-main	The Tiny Cup	Germany	Frankfurt am Main	info@thetinycup.de	venue	the venue's own domain	form-config	https://www.thetinycup.de/
+squarebar-dusseldorf	Squarebar	Germany	Düsseldorf	info@squarebar.online	venue	the venue's own domain	cloudflare-obfuscated	https://www.squarebar.online/about
+library-bar-toronto	Library Bar	Canada	Toronto	ryh.restaurantreservations@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.fairmont.com/en/hotels/toronto/fairmont-royal-york/dining/librarybar.bar.html
+library-bar-toronto	Library Bar	Canada	Toronto	ryh.royalservice@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.fairmont.com/en/hotels/toronto/fairmont-royal-york/dining/librarybar.bar.html
+ba-nomu-hamburg	Bā Nomu	Germany	Hamburg	mail@nomu-hamburg.de	venue	the venue's own domain	form-config	https://nomu-hamburg.de/
+le-mal-necessaire	Le Mal Nécessaire	Canada	Montreal	cv@lemalnecessaire.com	venue	the venue's own domain	cloudflare-obfuscated	https://lemalnecessaire.com/contact
+collab-bar-hamburg	COLLAB Bar	Germany	Hamburg	hello@collab-bar.de	venue	the venue's own domain	json-ld	https://www.collab-bar.de/
+yaldy-frankfurt-am-main	Yaldy	Germany	Frankfurt am Main	info@yaldy.bar	venue	the venue's own domain	page-text	https://www.yaldy.bar/impressum
+fontenay-bar-hamburg	Fontenay Bar	Germany	Hamburg	info@thefontenay.com	venue	the venue's own domain	json-ld	https://www.thefontenay.com/
+jahreszeiten-bar-hamburg	Jahreszeiten Bar	Germany	Hamburg	hamburg@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.fairmont.com/en/hotels/hamburg/fairmont-hotel-vier-jahreszeiten/dining/jahreszeiten-bar.bar.html
+toddy-tapper-cologne	Toddy Tapper	Germany	Cologne	info@domainname.com	offsite	off-domain (domainname.com)	form-config	https://www.toddytapperbar.de/
+toddy-tapper-cologne	Toddy Tapper	Germany	Cologne	bar@toddytapper.de	offsite	off-domain (toddytapper.de)	page-text	https://www.toddytapperbar.de/
+herbarium-bar-gottingen	Herbarium Bar	Germany	Göttingen	meeting@freigeist-friends.com	offsite	off-domain (freigeist-friends.com)	form-config	https://www.freigeist-hotels.de/de/freigeist-hotels/freigeist-goettingen-innenstadt/essen-trinken/herbarium-bar/
+herbarium-bar-gottingen	Herbarium Bar	Germany	Göttingen	events@freigeist-friends.com	offsite	off-domain (freigeist-friends.com)	form-config	https://www.freigeist-hotels.de/de/freigeist-hotels/freigeist-goettingen-innenstadt/essen-trinken/herbarium-bar/
+herbarium-bar-gottingen	Herbarium Bar	Germany	Göttingen	info@freigeist-goettingen.de	offsite	off-domain (freigeist-goettingen.de)	page-text	https://www.freigeist-hotels.de/de/freigeist-hotels/freigeist-goettingen-innenstadt/essen-trinken/herbarium-bar/
+herbarium-bar-gottingen	Herbarium Bar	Germany	Göttingen	info@unikateur.com	offsite	off-domain (unikateur.com)	form-config	https://www.freigeist-hotels.de/impressum
+herbarium-bar-gottingen	Herbarium Bar	Germany	Göttingen	rs@die-schneiderei-berlin.de	offsite	off-domain (die-schneiderei-berlin.de)	form-config	https://www.freigeist-hotels.de/impressum
+herbarium-bar-gottingen	Herbarium Bar	Germany	Göttingen	office@freigeist-friends.com	offsite	off-domain (freigeist-friends.com)	form-config	https://www.freigeist-hotels.de/impressum
+the-chug-club-hamburg	The Chug Club	Germany	Hamburg	chug@thechugclub.bar	venue	the venue's own domain	form-config	https://thechugclub.bar/
+the-door-karlsruhe	The Door	Germany	Karlsruhe	info@the-door.bar	venue	the venue's own domain	page-text	https://www.the-door.bar/
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	hamburg@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/grill.html
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	grill.hvj@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/grill.html
+charles-bar-lutherstadt-wittenberg	Charles Bar	Germany	Lutherstadt Wittenberg	martin@charlesbar.de	venue	the venue's own domain	form-config	https://www.charlesbar.de/
+ihro-mannheim	Ihro	Germany	Mannheim	prost@ihro-bar.de	venue	the venue's own domain	form-config	https://www.ihro-bar.de/
+ihro-mannheim	Ihro	Germany	Mannheim	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.ihro-bar.de/
+spiritus-mainz	Spiritus	Germany	Mainz	info@spiritus-mainz.de	venue	the venue's own domain	form-config	https://www.spiritus-mainz.de/
+barroom-munich	Barroom	Germany	Munich	info@barroom-muenchen.de	venue	the venue's own domain	form-config	https://www.barroom-muenchen.de/impressum
+bar-montez-munich	Bar Montez	Germany	Munich	info@rosewoodhotelgroup.com	offsite	off-domain (rosewoodhotelgroup.com)	page-text	https://www.rosewoodhotels.com/contact
+sieferle-ko-bar-mannheim	Sieferle & KØ Bar	Germany	Mannheim	info@hagestolzbar.de	offsite	off-domain (hagestolzbar.de)	form-config	https://www.sieferleundko.de/
+sieferle-ko-bar-mannheim	Sieferle & KØ Bar	Germany	Mannheim	info@codepoetry.de	offsite	off-domain (codepoetry.de)	page-text	https://www.sieferleundko.de/
+die-goldene-bar-munich	Die Goldene Bar	Germany	Munich	mail@goldenebar.de	venue	the venue's own domain	form-config	https://www.goldenebar.de/
+hanky-panky-stuttgart	Hanky Panky	Germany	Stuttgart	hanky.panky.stuttgart@gmail.com	venue	free mailbox published on the venue's own site	form-config	https://www.hanky-panky.net/
+hanky-panky-stuttgart	Hanky Panky	Germany	Stuttgart	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.hanky-panky.net/
+hanky-panky-stuttgart	Hanky Panky	Germany	Stuttgart	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.hanky-panky.net/
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	hotel.adlon@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	meetings.adlon@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	restaurants.adlon@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	lorenz.adlon@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	reservations.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	info.development@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	pr.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	info.residences@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	contact@discoveryloyalty.com	offsite	off-domain (discoveryloyalty.com)	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	data.privacy@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/privacy-policy
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.frankfurt@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.london@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	kempinski@tm-russia.ru	offsite	off-domain (tm-russia.ru)	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.usa@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.dubai@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.china@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.india@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.sea@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	bar1705.dresden@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	reservations.taschenbergpalais@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	reservations.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	info.development@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	pr.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	info.residences@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	contact@discoveryloyalty.com	offsite	off-domain (discoveryloyalty.com)	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	data.privacy@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/privacy-policy
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.frankfurt@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.london@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	kempinski@tm-russia.ru	offsite	off-domain (tm-russia.ru)	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.usa@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.dubai@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.china@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.india@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.sea@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jigger-spoon-stuttgart	Jigger & Spoon	Germany	Stuttgart	info@jiggerandspoon.de	venue	the venue's own domain	form-config	https://jiggerandspoon.de/
+weisses-ross-bar-stuttgart	Weisses Ross Bar	Germany	Stuttgart	info@buntes-pferd.de	venue	the venue's own domain	form-config	https://buntes-pferd.de/
+bartista-tubingen	Bartista	Germany	Tübingen	info@bartista.de	venue	the venue's own domain	form-config	https://www.bartista.de/
+pino-s-bar-heidelberg	Pino's Bar	Germany	Heidelberg	959@959heidelberg.com	venue	the venue's own domain	form-config	https://www.959heidelberg.com/impressum
+prost-brew-pub	Prost Brew Pub	India	Bengaluru	info@prost.in	venue	the venue's own domain	form-config	https://www.prost.in/bangalore.html
+copitas	Copitas	India	Bengaluru	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+copitas	Copitas	India	Bengaluru	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+copitas	Copitas	India	Bengaluru	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+copitas	Copitas	India	Bengaluru	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+copitas	Copitas	India	Bengaluru	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+bob-s-bar	Bob's Bar	India	Bengaluru	grievance.officer@bygventures.in	offsite	off-domain (bygventures.in)	page-text	https://bobsbar.in/privacy
+aer-mumbai	AER	India	Mumbai	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+aer-mumbai	AER	India	Mumbai	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+aer-mumbai	AER	India	Mumbai	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+aer-mumbai	AER	India	Mumbai	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+aer-mumbai	AER	India	Mumbai	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+eau-bar	Eau Bar	India	Mumbai	generalmanager.vindhyavilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	reservations@oberoigroup.com	offsite	off-domain (oberoigroup.com)	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.amarvilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.bali@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	reservation.tobi@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.bengaluru@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.cecil@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.sukhvilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	reservations.tosv@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.delhi@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.gurgaon@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.rajvilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	reservations.nailafort@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.kolkata@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.lombok@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	reservation.toli@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.marrakech@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	reservations.marrakech@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.mauritius@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	reservations.mauritius@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.mumbai@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.philae@oberoihotels.coms	offsite	off-domain (oberoihotels.coms)	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.sahlhasheesh@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	reservations.tosh@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.udaivilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.vanyavilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.wildflowerhall@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	generalmanager.zahra@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	reservations.zahra@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	lmhkg-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mohkg-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mosin-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mobkk-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mowfj-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mogzh-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mojkt-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mokul-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	momac-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mosan-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mopud-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	moszn-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	motpe-sales@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	motyo-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	monyc-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mobos-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mocan-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	momia-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mostg-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mowas-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	reservations@emiratespalace.ae	offsite	off-domain (emiratespalace.ae)	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mobcn-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mobod-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	modoh-info@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mogva-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mocmo-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	molon-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mrmad-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	momln-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	momuc-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mopar-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	mocna-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	moist-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	molzn-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	momay-info@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	moprg-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+eau-bar	Eau Bar	India	Mumbai	moryd-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.vindhyavilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	reservations@oberoigroup.com	offsite	off-domain (oberoigroup.com)	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.amarvilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.bali@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	reservation.tobi@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.bengaluru@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.cecil@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.sukhvilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	reservations.tosv@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.delhi@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.gurgaon@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.rajvilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	reservations.nailafort@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.kolkata@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.lombok@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	reservation.toli@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.marrakech@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	reservations.marrakech@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.mauritius@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	reservations.mauritius@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.mumbai@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.philae@oberoihotels.coms	offsite	off-domain (oberoihotels.coms)	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.sahlhasheesh@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	reservations.tosh@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.udaivilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.vanyavilas@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.wildflowerhall@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	generalmanager.zahra@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	reservations.zahra@oberoihotels.com	venue	the venue's own domain	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	lmhkg-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mohkg-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mosin-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mobkk-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mowfj-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mogzh-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mojkt-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mokul-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	momac-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mosan-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mopud-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	moszn-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	motpe-sales@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	motyo-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	monyc-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mobos-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mocan-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	momia-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mostg-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mowas-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	reservations@emiratespalace.ae	offsite	off-domain (emiratespalace.ae)	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mobcn-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mobod-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	modoh-info@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mogva-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mocmo-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	molon-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mrmad-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	momln-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	momuc-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mopar-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	mocna-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	moist-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	molzn-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	momay-info@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	moprg-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+cirrus-9	Cirrus 9	India	New Delhi	moryd-reservations@mohg.com	group	mohg group or hotel inbox	page-text	https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/
+harbour-bar	Harbour Bar	India	Mumbai	reservations@ihcltata.com	group	ihcltata group or hotel inbox	form-config	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	contacttaj@tajhotels.com	group	tajhotels group or hotel inbox	form-config	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	overview@tajhotels.com	group	tajhotels group or hotel inbox	form-config	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	reservations.mumbai@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	tmhsales.bom@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajmumbai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	jivaspamahal.mumbai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	meetings@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	tmhbqt.bom@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	tmhconcierge.bom@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	tmhfb.bom@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants
+harbour-bar	Harbour Bar	India	Mumbai	booksjc.london@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	thepierre.ny@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	exotica.goa@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	fortaguada.goa@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	holidayvillage.goa@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	palace.delhi@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	booktaj51.london@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	lakepalace.udaipur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.tcdgheritage@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.tcdghorizon@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.exoticadubai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	rambagh.jaipur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.karnataka@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	exotica.andamans@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.hyderabad@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	coromandel.chennai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tajgm.yeshwantpur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tajganges.varanasi@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.amritsar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	fatehprakash.udaipur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	falaknuma.hyderabad@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tmhconcierge.del@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	umaidbhawan.jodhpur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jaimahal.jaipur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	citycentre.gurugram@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	bengal.calcutta@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.campton@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.connemara@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	bookmahal.lucknow@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	res.capetown@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.newtown@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	harimahal.jodhpur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ushakiran.gwalior@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.gorbandh@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.amer@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.aravali@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tajsafaris@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	taj.bangalore@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	bekal.kerala@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	bookings.bentota@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	taj.chandigarh@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.chiakutir@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.patna@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	clubhouse.chennai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tajcoralreef@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.corbett@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.tthdxb@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	exotica.maldives@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.fishcove@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.gandhinagar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.kovalam@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.malabar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.agra@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.jltdubai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.kumarakom@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.lakefront@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.coorg@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.jaipur@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	nadesar.varanasi@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.rishikesh@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.samudra@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sawaimanmahal.jaipur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	banquetsales.taalkutir@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.guraskutir@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.ahmedabad@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.cochinairport@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.theog@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.tirupati@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.wayanad@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.twmchennai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	twmresv.mumbai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	gateway.calicut@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	taj.damdama@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.gangtey@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.lalitbagh@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.dalview@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	themaharajaslodge.ranthambore@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.puri@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.palacelucknow@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.alibaug@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.surajkund@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.dehradun@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.parobhutan@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.tadoba@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.pushkar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.bushlodge@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.deviratn@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.frankfurt@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.gangakutir@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	customercare@tataneu.com	offsite	off-domain (tataneu.com)	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	thechambers@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	timelessweddings@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	epicure@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	kirti.dhingra@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	development@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	investorrelations@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	careers@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	investorrelations@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	events.london@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.london@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	thepierreconcierge.ny@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tlesales.bom@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajlandsend@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.landsend@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tleconcierge.bom@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	saloni.chopra@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	bosco.noronha@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.texgoa@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspaexotica.goa@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	laxmanrao.phalke@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.northgoa@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	northgoagroups.taj@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.worldtowers@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sales.santacruz@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.santacruz@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.tajsantacruz@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	cateringsales.santacruz@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	concierge.santacruz@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sujit.samant@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.delhincr@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	prateek.paul@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajpalace@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.tajpalace@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tphconcierge.del@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.lakepalace@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	lakepalace.sales@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.lakepalace@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	rahul.bhati@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sunil.r@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tajcidadedegoa@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tcdghorizon@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.trccgoa@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ms.mathur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	events.exoticadubai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.palmdubai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.rambagh@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	vikrant.gorle@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.rambaghpalace@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	rbpconcierge.jai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	groups.dubai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ruth.goodwin@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	cateringsales.mgroad@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajmgroad@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	travel.mgroad@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ashish.dattani@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.texandamans@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.andamans@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	gajendra.p@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	aathira.s@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	twebqt.bang@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.westend@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.westend@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tkhresv.hyd@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tkhsales.hyd@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tkhchambers.hyd@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tkhcs.hyd@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tkhspa.hyd@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tkhencounters.hyd@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.coromandel@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	anish.mohan@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	rubandass.s@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.yeshwantpur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspavivanta.yeshwantpur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	praveen.patil@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	yeshwantpur.bengaluru@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	shanika.jhunjhunwala@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	prarthna.batra@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ankit.bakuli@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sarthak1@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	saji.thachery@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	richhpal.yadav@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tghconcierge.ben@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	manasvee.pushkarna@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.swarna@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.amritsar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ranjeet.kumar1@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	fpp.sales@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.fatehprakash@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	navina.rajak@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	vijay.shrikent@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	elbin.bennyeapen@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.falaknuma@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ramanathan.rajendran@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	anmol.pancholy@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	raju.vilasakavi@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	gouri.kalra@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	rahul.shukla1@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	mahal.delhi@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	aditya.bagai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.mahaldelhi@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	bhumika.sain@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	meena.bishnoi@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.umaidbhawan@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.umaidbhawan@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	umaibhawan.jodhpur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tanmay.choudhary@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.jaimahal@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.jaimahal@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	kalvinder.kaur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sanket.chugh@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tccgurugram@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	travel.tccg@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tbhbqt.cal@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	saduf.jahan@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	meeta.tilak@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tbhhealthclub.cal@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	suzette.covell@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.connemara@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	dm.connemara@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	alpana.singh@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	mahal.lucknow@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.capetown@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tcckolkata@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	dm.newtown@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	thmsales@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	yogesh.kaushal@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajgwalior@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.ushakiran@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	rajesh.singh3@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ukpsales.gwa@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.ushakiran@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajamer@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	cateringsales.amer@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	shivya.bhandow@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sales.chennai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	dm.amer@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sumit.banerji@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sahil.k1@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	udaipur.aravali@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.aravali@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	dm.aravali@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sachin.tevatiya@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sayan.banerji@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajbangalore@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	spa.tajblr@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	concierge.tajblr@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	bt.fo@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	aparna.ajith@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajbekal@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.bekal@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sales.bentota@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.cphj@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	lakshay3@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	j.deepak@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.chiakutir@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	vinod.nair@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.clubhouse@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspaclubhouse.chennai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	prem.k@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ramendra.singh@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.chennai@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.coralreef@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspataj.coralreef@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sales.maldives@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tomar.abhishek@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajcorbett@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.corbett@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	vijaya.krishna@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tdhcs1.hyd@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	radha.iyer@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.krishna@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajdubai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jetren.salado@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.texmaldives@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspaexotica.maldives@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.fishermanscove@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	banquets.fishcove@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	siddharth.sundram@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sankar.esakkimuthu@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	paridhi.ranka@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	vinay.manohar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	taj.gandhinagar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajgandhinagar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	kumar.amrendra@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.greencove@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspavivanta.kovalam@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	leelabackwater@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	malabar.cochin@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.malabar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	mail@kumbalanghivillagetours.com	offsite	off-domain (kumbalanghivillagetours.com)	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	pratik.rout@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	aboli.talwar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	k.sunil2@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	yash.nigam@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	tccbanquets.agra@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	kumaran.rajendran@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.jltdubai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.kumarakom@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.lakefront@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellness.lakefront@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	priti.thakur@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajmadikeri@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.coorg@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	fo.mk@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservations.sawairanthambore@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellness.sawairanthambore@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ms.frontoffice@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.nadesar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jivaspa.nadesar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	pg.fo@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajrishikesh@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.taalkutir@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ttkdm@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.guraskutir@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajskyline@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.thetrees@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	concierge.thetrees@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tajtheog@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sandeep.makroo@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sales.theog@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sumanth.shetty@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	banquets.tirupati@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.tirupati@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscirclespa.wayanad@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.wayanad@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.twmchennai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.twmmumbai@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	twmfb.bom@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	twmfo.bom@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	weddings@gateway-hotels.com	offsite	off-domain (gateway-hotels.com)	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	vinayak.kumar@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	hitesh.ameta@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	rana.virender@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sales.lalitbagh@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	leadgen@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reservation.dalview@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	frontoffice.sawaimadhopur@seleqtionshotels.com	offsite	off-domain (seleqtionshotels.com)	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	jwellnesscircle.puri@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	saloni.chopra@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	reception.puri@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	biswas.jayanta@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	gaurav.c@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	salini.ghoshal@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	rahularun.kotekar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	dm.palacelucknow@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sales.alibaug@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	gupta.divya@ihcltata.com	group	ihcltata group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	booktaj.surajkund@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	ankush.sen@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sales.pushkar@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sales.deviratn@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sriesthi.gupta@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	sales.frankfurt@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+harbour-bar	Harbour Bar	India	Mumbai	concierge.frankfurt@tajhotels.com	group	tajhotels group or hotel inbox	page-text	https://www.tajhotels.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	reservations@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/the-leela-palace-bengaluru/restaurants/the-library-bar
+library-bar	The Library Bar	India	Bengaluru	privacy@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/privacy-policy
+library-bar	The Library Bar	India	Bengaluru	reservations.tlcg@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	cs@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.gujarat@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.bangalore@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.tlpc@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.hyderabad@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	iso.france@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	joann@hiddendoorwaystravel.com	offsite	off-domain (hiddendoorwaystravel.com)	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	kallie@van-isacker.com	offsite	off-domain (van-isacker.com)	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	ttc1@thetravelcollection.me	offsite	off-domain (thetravelcollection.me)	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	reservations.mmcc@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	gm.gandhinagar@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	investorrelations@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.ahmedabad@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.tlpb@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.kolkata@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.kochi@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.mumbai@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.delhi@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.pune@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	priyash.parmar@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/careers
+library-bar	The Library Bar	India	Bengaluru	careers@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/careers
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	reservations.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	info.development@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	pr.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	info.residences@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	contact@discoveryloyalty.com	offsite	off-domain (discoveryloyalty.com)	page-text	https://www.kempinski.com/
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	data.privacy@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/privacy-policy
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.frankfurt@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.london@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	kempinski@tm-russia.ru	offsite	off-domain (tm-russia.ru)	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.usa@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.dubai@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.china@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.india@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.sea@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+barrier	Barrier	Italy	Bergamo	barrier.men.srl@gmail.com	venue	free mailbox published on the venue's own site	form-config	https://www.barbarrier.com/
+barrier	Barrier	Italy	Bergamo	barriermensrl@gmail.com	venue	free mailbox published on the venue's own site	form-config	https://www.barbarrier.com/
+barrier	Barrier	Italy	Bergamo	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.barbarrier.com/
+barrier	Barrier	Italy	Bergamo	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.barbarrier.com/
+sidecar	Sidecar	India	New Delhi	sidecarindia@gmail.com	venue	free mailbox published on the venue's own site	cloudflare-obfuscated	https://www.sidecarindia.com/contact
+mad-souls-spirits	Mad - Souls & Spirits	Italy	Florence	neri.fante@gmail.con	venue	free mailbox published on the venue's own site	json-ld	https://madsoulsspirits.eatbu.com/
+atrium-bar	Atrium Bar	Italy	Florence	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+atrium-bar	Atrium Bar	Italy	Florence	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+atrium-bar	Atrium Bar	Italy	Florence	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+atrium-bar	Atrium Bar	Italy	Florence	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+atrium-bar	Atrium Bar	Italy	Florence	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+santa-cocktail-club	Santa Cocktail Club	Italy	Florence	info@santacocktailclub.com	venue	the venue's own domain	page-text	https://santacocktailclub.com/privacy
+giacosa	Giacosa	Italy	Florence	acquisti@valenza-group.com	offsite	off-domain (valenza-group.com)	form-config	https://giacosafirenze.com/privacy-policy
+1930	1930	Italy	Milan	backdoor43@farmilygroup.com	venue	the venue's own domain	form-config	https://www.farmilygroup.com/locali
+1930	1930	Italy	Milan	direzione@farmilygroup.com	venue	the venue's own domain	form-config	https://www.farmilygroup.com/locali
+1930	1930	Italy	Milan	defaultemail@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://www.farmilygroup.com/locali
+1930	1930	Italy	Milan	1930cocktailbar@farmilygroup.com	venue	the venue's own domain	page-text	https://www.farmilygroup.com/locali
+1930	1930	Italy	Milan	mag@farmilygroup.com	venue	the venue's own domain	page-text	https://www.farmilygroup.com/locali
+1930	1930	Italy	Milan	iter@farmilygroup.com	venue	the venue's own domain	page-text	https://www.farmilygroup.com/locali
+1930	1930	Italy	Milan	info.milano@tripstillery.com	offsite	off-domain (tripstillery.com)	page-text	https://www.farmilygroup.com/locali
+1930	1930	Italy	Milan	abt.candido@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://www.farmilygroup.com/locali
+1930	1930	Italy	Milan	loris@farmilygroup.com	venue	the venue's own domain	page-text	https://www.farmilygroup.com/locali
+mag-cafe	Mag i Navigli	Italy	Milan	backdoor43@farmilygroup.com	venue	the venue's own domain	form-config	https://www.farmilygroup.com/locali/mag
+mag-cafe	Mag i Navigli	Italy	Milan	direzione@farmilygroup.com	venue	the venue's own domain	form-config	https://www.farmilygroup.com/locali/mag
+mag-cafe	Mag i Navigli	Italy	Milan	defaultemail@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://www.farmilygroup.com/locali/mag
+mag-cafe	Mag i Navigli	Italy	Milan	1930cocktailbar@farmilygroup.com	venue	the venue's own domain	page-text	https://www.farmilygroup.com/locali/mag
+mag-cafe	Mag i Navigli	Italy	Milan	mag@farmilygroup.com	venue	the venue's own domain	page-text	https://www.farmilygroup.com/locali/mag
+mag-cafe	Mag i Navigli	Italy	Milan	iter@farmilygroup.com	venue	the venue's own domain	page-text	https://www.farmilygroup.com/locali/mag
+mag-cafe	Mag i Navigli	Italy	Milan	info.milano@tripstillery.com	offsite	off-domain (tripstillery.com)	page-text	https://www.farmilygroup.com/locali/mag
+mag-cafe	Mag i Navigli	Italy	Milan	abt.candido@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://www.farmilygroup.com/locali/mag
+mag-cafe	Mag i Navigli	Italy	Milan	loris@farmilygroup.com	venue	the venue's own domain	page-text	https://www.farmilygroup.com/locali/mag
+call-soul-munich	Call Soul	Germany	Munich	better@callsoul.de	offsite	off-domain (callsoul.de)	page-text	https://www.callsoul-breakingbar.de/
+call-soul-munich	Call Soul	Germany	Munich	xperience@callsoul.de	offsite	off-domain (callsoul.de)	page-text	https://www.callsoul-breakingbar.de/impressum
+sly-granny	Sly Granny	India	New Delhi	careers@azurehospitality.com	role	departmental mailbox (careers@)	form-config	https://slygranny.in/contact
+sly-granny	Sly Granny	India	New Delhi	marketing@azurehospitality.com	role	departmental mailbox (marketing@)	form-config	https://slygranny.in/contact
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	matthieu.b@experimentalcocktailclub.com	venue	the venue's own domain	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	reservation@chinatownecc.com	offsite	off-domain (chinatownecc.com)	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	reservation@experimentalcocktailclubnyc.com	offsite	off-domain (experimentalcocktailclubnyc.com)	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	ecc@palazzoexperimental.com	offsite	off-domain (palazzoexperimental.com)	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	bar@experimentalchalet.com	offsite	off-domain (experimentalchalet.com)	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	stay@cowleymanor.com	offsite	off-domain (cowleymanor.com)	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	adriatica@palazzoexperimental.com	offsite	off-domain (palazzoexperimental.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	amanda@plagebijou.com	offsite	off-domain (plagebijou.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	matt@cowleymanor.com	offsite	off-domain (cowleymanor.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	eventsibiza@expegroup.com	offsite	off-domain (expegroup.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	info@experimentalchalet.com	offsite	off-domain (experimentalchalet.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	ukevents@expegroup.com	offsite	off-domain (expegroup.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	olimpia.n@expegroup.com	offsite	off-domain (expegroup.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	experimental@experimental.com	offsite	off-domain (experimental.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	mathieu.c@experimentalchaletvaldisere.com	offsite	off-domain (experimentalchaletvaldisere.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	reservation@experimentalchalet.com	offsite	off-domain (experimentalchalet.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	event@experimentalmarais.com	offsite	off-domain (experimentalmarais.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	reservation@grandpigalle.com	offsite	off-domain (grandpigalle.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	events@grandsboulevardshotel.com	offsite	off-domain (grandsboulevardshotel.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	eat@henriettahotel.com	offsite	off-domain (henriettahotel.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	sales@reginaexperimental.com	offsite	off-domain (reginaexperimental.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	aaron@compagnienyc.com	offsite	off-domain (compagnienyc.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	mirna@expegroup.com	offsite	off-domain (expegroup.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	events@stereocoventgarden.com	offsite	off-domain (stereocoventgarden.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club-venice	Experimental Cocktail Club Venice	Italy	Venice	events@venue.com	offsite	off-domain (venue.com)	page-text	https://experimentalcocktailclub.com/
+santa-cocktail-club-venezia	Santa Cocktail Club - Venezia	Italy	Venice	info@santacocktailclub.com	venue	the venue's own domain	page-text	https://santacocktailclub.com/privacy
+bar-high-five	Bar High Five	Japan	Tokyo	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.barhighfive.com/
+bar-libre	Bar Libre	Japan	Tokyo	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://en.bar-libre.jp/
+bar-libre	Bar Libre	Japan	Tokyo	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://en.bar-libre.jp/
+liquid-factory	Liquid Factory	Japan	Tokyo	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.liquidworks-jpn.com/liquid-factory
+liquid-factory	Liquid Factory	Japan	Tokyo	keita@liquidworks-jpn.com	venue	the venue's own domain	form-config	https://www.liquidworks-jpn.com/privacy-policy
+star-bar	Star Bar	Japan	Tokyo	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.starbar.jp/
+virtu	Virtù	Japan	Tokyo	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/privacy
+virtu	Virtù	Japan	Tokyo	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/privacy
+virtu	Virtù	Japan	Tokyo	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://fourseasons.com/privacy
+virtu	Virtù	Japan	Tokyo	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://fourseasons.com/privacy
+virtu	Virtù	Japan	Tokyo	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/legal
+the-peak-bar	The Peak Lounge & Bar	Japan	Tokyo	tyoph.restaurant@hyatt.com	group	hyatt group or hotel inbox	form-config	https://restaurants.tokyo.park.hyatt.co.jp/en/peaklounge/
+bees-bar-by-narisawa	BEES BAR by NARISAWA	Japan	Tokyo	info@company.com	offsite	off-domain (company.com)	page-text	https://www.beesbar-narisawa-en.com/
+kyara	Kyara	Spain	Barcelona	kyara.barcelona@slshotels.com	offsite	off-domain (slshotels.com)	form-config	https://kyarabarcelona.com/
+marlowe-bar	Marlowe Bar	Spain	Barcelona	usuario@dominio.com	offsite	off-domain (dominio.com)	page-text	https://marlowe.bar/
+terraza-verbena-barcelona	Terraza Verbena	Spain	Barcelona	reservasrestaurantes@monumenthotel.com	venue	the venue's own domain	form-config	https://www.monumenthotel.com/es/gastronomia-verbena-terrace/
+terraza-verbena-barcelona	Terraza Verbena	Spain	Barcelona	info@monumenthotel.com	venue	the venue's own domain	form-config	https://www.monumenthotel.com/es/gastronomia-verbena-terrace/
+the-alchemix	The Alchemix	Spain	Barcelona	info@thealchemix.com	venue	the venue's own domain	form-config	https://thealchemix.com/
+bar-cock-madrid	Bar Cock	Spain	Madrid	joseastiarraga@barcock.com	venue	the venue's own domain	form-config	https://www.barcock.com/privacy-policy
+bar-cock-madrid	Bar Cock	Spain	Madrid	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.barcock.com/privacy-policy
+bar-cock-madrid	Bar Cock	Spain	Madrid	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.barcock.com/privacy-policy
+bar-cock-madrid	Bar Cock	Spain	Madrid	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.barcock.com/privacy-policy
+angelita	Angelita	Spain	Madrid	comunicacion@amargueria.com	offsite	off-domain (amargueria.com)	form-config	https://madrid-angelita.es/press
+momus	Momus	Spain	Madrid	hola@momusbar.com	venue	the venue's own domain	page-text	https://momusbar.com/
+rudi-s-marbella	Rudi's	Spain	Marbella	rgpd@marbellaclub.com	venue	the venue's own domain	page-text	https://www.marbellaclub.com/privacy-policy
+the-milk-thistle	The Milk Thistle	United Kingdom	Bristol	mel@milkthistlebristol.com	venue	the venue's own domain	cloudflare-obfuscated	https://milkthistlebristol.com/
+the-milk-thistle	The Milk Thistle	United Kingdom	Bristol	info@milkthistlebristol.com	venue	the venue's own domain	cloudflare-obfuscated	https://milkthistlebristol.com/
+lab-22	Lab 22	United Kingdom	Cardiff	info@lab22cardiff.com	venue	the venue's own domain	page-text	https://lab22cardiff.com/contact
+martinez	Martínez	Spain	Barcelona	info@martinezbarcelona.com	venue	the venue's own domain	page-text	https://martinezbarcelona.com/aviso-legal
+martinez	Martínez	Spain	Barcelona	responsable@martinezbarcelona.com	venue	the venue's own domain	page-text	https://martinezbarcelona.com/aviso-legal
+connaught-bar	Connaught Bar	United Kingdom	London	info@the-connaught.co.uk	venue	the venue's own domain	form-config	https://the-connaught.co.uk/
+dukes	Dukes	United Kingdom	London	info@dukeshotel.com	venue	the venue's own domain	form-config	https://www.dukeshotel.com/dukesbar.html
+dukes	Dukes	United Kingdom	London	dukes@dovetail-agency.co.uk	offsite	off-domain (dovetail-agency.co.uk)	form-config	https://www.dukeshotel.com/dukesbar.html
+equal-parts	Equal Parts	United Kingdom	London	hello@equalpartslondon.com	venue	the venue's own domain	form-config	https://equalpartslondon.com/contact
+equal-parts	Equal Parts	United Kingdom	London	events@equalpartslondon.com	venue	the venue's own domain	form-config	https://equalpartslondon.com/contact
+equal-parts	Equal Parts	United Kingdom	London	equalparts@lx-comms.com	offsite	off-domain (lx-comms.com)	form-config	https://equalpartslondon.com/contact
+equal-parts	Equal Parts	United Kingdom	London	jobs@equalpartslondon.com	role	departmental mailbox (jobs@)	form-config	https://equalpartslondon.com/contact
+homeboy-bar	Homeboy Bar	United Kingdom	London	info@homeboybar.com	venue	the venue's own domain	form-config	https://homeboybar.com/
+flipdog	FlipDog	United Kingdom	London	bar.flipdog@gmail.com	venue	free mailbox published on the venue's own site	json-ld	https://flipdog.uk/
+planta-baja-cocktail-bar	Planta Baja Cocktail Bar	Spain	Madrid	support@readymag.com	offsite	off-domain (readymag.com)	page-text	https://plantabajamadrid.com/
+planta-baja-cocktail-bar	Planta Baja Cocktail Bar	Spain	Madrid	hello@readymag.com	offsite	off-domain (readymag.com)	page-text	https://plantabajamadrid.com/
+planta-baja-cocktail-bar	Planta Baja Cocktail Bar	Spain	Madrid	edu@readymag.com	offsite	off-domain (readymag.com)	page-text	https://plantabajamadrid.com/
+planta-baja-cocktail-bar	Planta Baja Cocktail Bar	Spain	Madrid	no-reply@readymag.com	role	departmental mailbox (no-reply@)	page-text	https://plantabajamadrid.com/
+kol-mezcaleria	Kol Mezcalería	United Kingdom	London	contact@kolrestaurant.com	venue	the venue's own domain	page-text	https://kolrestaurant.com/
+lounge-bohemia	Lounge Bohemia	United Kingdom	London	mail@loungebohemia.com	venue	the venue's own domain	form-config	https://loungebohemia.com/
+laki-kane	Laki Kane	United Kingdom	London	jon@readytocreate.co	offsite	off-domain (readytocreate.co)	json-ld	https://lakikane.com/
+laki-kane	Laki Kane	United Kingdom	London	escape@lakikane.com	venue	the venue's own domain	form-config	https://lakikane.com/
+seed-library	Seed Library	United Kingdom	London	reservations@seedlibraryshoreditch.com	venue	the venue's own domain	form-config	https://www.seedlibraryshoreditch.com/
+seed-library	Seed Library	United Kingdom	London	press@onehundredshoreditch.com	role	departmental mailbox (press@)	form-config	https://www.seedlibraryshoreditch.com/
+sager-wilde	Sager & Wilde	United Kingdom	London	hello@sagerandwilde.com	venue	the venue's own domain	form-config	https://www.sagerandwilde.com/contact
+sager-wilde	Sager & Wilde	United Kingdom	London	jobs@sagerandwilde.com	role	departmental mailbox (jobs@)	form-config	https://www.sagerandwilde.com/contact
+sager-wilde	Sager & Wilde	United Kingdom	London	sager-wilde@lx-comms.com	offsite	off-domain (lx-comms.com)	form-config	https://www.sagerandwilde.com/contact
+the-bar-with-no-name	The Bar With No Name	United Kingdom	London	drinks@69colebrookerow.com	venue	the venue's own domain	json-ld	https://www.69colebrookerow.com/
+the-cocktail-trading-company	The Cocktail Trading Company	United Kingdom	London	bookings@thecocktailtradingco.com	venue	the venue's own domain	form-config	https://thecocktailtradingco.com/
+the-fumoir-london	The Fumoir	United Kingdom	London	info@claridges.co.uk	venue	the venue's own domain	page-text	https://www.claridges.co.uk/
+the-fumoir-london	The Fumoir	United Kingdom	London	%20info@claridges.co.uk	venue	the venue's own domain	page-text	https://www.claridges.co.uk/
+the-american-bar	The American Bar	United Kingdom	London	svy.ird2@fairmont.com	group	fairmont group or hotel inbox	json-ld	https://www.thesavoylondon.com/restaurants-and-bars/american-bar
+the-american-bar	The American Bar	United Kingdom	London	savoy@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.thesavoylondon.com/restaurants-and-bars/american-bar
+the-american-bar	The American Bar	United Kingdom	London	svy.reservations@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.thesavoylondon.com/restaurants-and-bars/american-bar
+the-american-bar	The American Bar	United Kingdom	London	svy.events@fairmont.com	group	fairmont group or hotel inbox	page-text	https://www.thesavoylondon.com/restaurants-and-bars/american-bar
+head-tales	Head & Tales	United Kingdom	Edinburgh	info@signaturepubs.co.uk	offsite	off-domain (signaturepubs.co.uk)	cloudflare-obfuscated	https://headsandtalesbar.com/privacy
+the-little-scarlet-door	The Little Scarlet Door	United Kingdom	London	lost.property@thelittlescarletdoor.co.uk	venue	the venue's own domain	form-config	https://thelittlescarletdoor.co.uk/faq
+three-sheets-soho	Three Sheets Soho	United Kingdom	London	dalston@threesheets-bar.com	venue	the venue's own domain	form-config	https://threesheets-bar.com/
+three-sheets-soho	Three Sheets Soho	United Kingdom	London	soho@threesheets-bar.com	venue	the venue's own domain	form-config	https://threesheets-bar.com/
+three-sheets-soho	Three Sheets Soho	United Kingdom	London	info@threesheets-bar.com	venue	the venue's own domain	form-config	https://threesheets-bar.com/
+the-little-violet-door	The Little Violet Door	United Kingdom	London	jessica@thelittlevioletdoor.co.uk	venue	the venue's own domain	page-text	https://thelittlevioletdoor.co.uk/faq
+side-hustle	Side Hustle	United Kingdom	London	dataprotectionoffice@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	ca_privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	info@esin.av.tr	offsite	off-domain (esin.av.tr)	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	china_privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	brand.jeong@conradhotels.com	offsite	off-domain (conradhotels.com)	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	brad.jeong@conradhotels.com	offsite	off-domain (conradhotels.com)	page-text	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	breakingnews@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/press
+the-sun-tavern	The Sun Tavern	United Kingdom	London	info@thesuntavern.co.uk	venue	the venue's own domain	page-text	https://www.thesuntavern.co.uk/privacy-policy
+atlas-bar	Atlas Bar	United Kingdom	Manchester	enquiries@atlasbarmanchester.com	venue	the venue's own domain	form-config	https://atlasbarmanchester.com/
+zuma-london	Zuma	United Kingdom	London	info@zumarestaurant.com	venue	the venue's own domain	cloudflare-obfuscated	https://www.zumarestaurant.com/en/london
+waeska	Waeska	United Kingdom	London	yopo@themandrake.com	venue	the venue's own domain	cloudflare-obfuscated	https://themandrake.com/waeska-bar
+waeska	Waeska	United Kingdom	London	enquiries@themandrake.com	venue	the venue's own domain	cloudflare-obfuscated	https://themandrake.com/waeska-bar
+waeska	Waeska	United Kingdom	London	rsvp@themandrake.com	venue	the venue's own domain	cloudflare-obfuscated	https://themandrake.com/waeska-bar
+waeska	Waeska	United Kingdom	London	events@themandrake.com	venue	the venue's own domain	page-text	https://themandrake.com/waeska-bar
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	restaurants.london@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/en-gb/london/restaurants-bars/velvet-by-salvatore-calabrese/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	london@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/en-gb/london/restaurants-bars/velvet-by-salvatore-calabrese/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	contact@ghadiscovery.com	offsite	off-domain (ghadiscovery.com)	form-config	https://www.corinthia.com/privacy-policy
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	dpo@corinthia.com	group	corinthia group or hotel inbox	page-text	https://www.corinthia.com/privacy-policy
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	reservations.newyork@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	brussels@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	bucharest@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	budapest@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	lisbon@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	reservations.stpetersburg@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	sananton@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	stgeorges@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	reservations.tripoli@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	sandra.raileanu@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	andrea.marton@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	luna.vanmeerbeeck@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	maria.galante@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	julia.pimentel@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	matthewjames.smith@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	paola.polidori@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	carrie.demarte@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+happy-accidents	Happy Accidents	United States	Albuquerque	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happyaccidentsbar.com/privacy-policy
+happy-accidents	Happy Accidents	United States	Albuquerque	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happyaccidentsbar.com/privacy-policy
+happy-accidents	Happy Accidents	United States	Albuquerque	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happyaccidentsbar.com/privacy-policy
+himitsu	Himitsu	United States	Atlanta	ninfo@umiatlanta.com	venue	the venue's own domain	page-text	https://umiatlanta.com/himitsu
+himitsu	Himitsu	United States	Atlanta	info@umiatlanta.com	venue	the venue's own domain	page-text	https://umiatlanta.com/himitsu
+himitsu	Himitsu	United States	Atlanta	support@readymag.com	offsite	off-domain (readymag.com)	page-text	https://umiatlanta.com/himitsu
+himitsu	Himitsu	United States	Atlanta	hello@readymag.com	offsite	off-domain (readymag.com)	page-text	https://umiatlanta.com/himitsu
+himitsu	Himitsu	United States	Atlanta	edu@readymag.com	offsite	off-domain (readymag.com)	page-text	https://umiatlanta.com/himitsu
+himitsu	Himitsu	United States	Atlanta	no-reply@readymag.com	role	departmental mailbox (no-reply@)	page-text	https://umiatlanta.com/himitsu
+the-rooftop-at-hotel-clermont	The Rooftop at Hotel Clermont	United States	Atlanta	pr@oliverhospitality.com	role	departmental mailbox (pr@)	page-text	https://www.hotelclermont.com/press
+the-rooftop-at-hotel-clermont	The Rooftop at Hotel Clermont	United States	Atlanta	heythere@hotelclermont.com	venue	the venue's own domain	form-config	https://www.hotelclermont.com/accessibility
+bar-margot-atlanta	Bar Margot	United States	Atlanta	info@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.barmargotatl.com/private-events
+artesian	Artesian	United Kingdom	London	tllon.artesian@langhamhotels.com	group	langhamhotels group or hotel inbox	form-config	https://www.artesian-bar.co.uk/
+extra-dirty-cocktail-club-boston	Extra Dirty	United States	Boston	info@extradirtynorthend.com	venue	the venue's own domain	page-text	https://www.extradirtynorthend.com/contact
+daiquiris-and-daisies-boston	Daiquiris & Daisies	United States	Boston	events@highstreetplace.com	venue	the venue's own domain	form-config	https://www.highstreetplace.com/private-events
+daiquiris-and-daisies-boston	Daiquiris & Daisies	United States	Boston	press@highstreetplace.com	role	departmental mailbox (press@)	form-config	https://www.highstreetplace.com/private-events
+daiquiris-and-daisies-boston	Daiquiris & Daisies	United States	Boston	leasing@highstreetplace.com	venue	the venue's own domain	form-config	https://www.highstreetplace.com/private-events
+bogies-place-boston	Bogie's Place	United States	Boston	bina@monacreative.co	offsite	off-domain (monacreative.co)	page-text	https://www.bogiesplace.com/press
+gus-sip-dip	Gus' Sip & Dip	United States	Chicago	gussipanddipcs@lettuce.com	offsite	off-domain (lettuce.com)	page-text	https://gussipanddip.com/
+gus-sip-dip	Gus' Sip & Dip	United States	Chicago	contactforms@lettuce.com	offsite	off-domain (lettuce.com)	page-text	https://gussipanddip.com/
+the-wig-shop-boston	The Wig Shop	United States	Boston	bina@monacreative.co	offsite	off-domain (monacreative.co)	page-text	https://wigshopboston.com/press
+sexy-fish	Sexy Fish	United Kingdom	London	privacy@caprice-holdings.co.uk	role	departmental mailbox (privacy@)	form-config	https://sexyfish.com/privacy
+sexy-fish	Sexy Fish	United Kingdom	London	chrecruitment@caprice-holdings.co.uk	offsite	off-domain (caprice-holdings.co.uk)	form-config	https://sexyfish.com/careers
+sexy-fish	Sexy Fish	United Kingdom	London	people@caprice-holdings.co.uk	offsite	off-domain (caprice-holdings.co.uk)	form-config	https://sexyfish.com/careers
+kittys-cosmopolitan-club	Kitty's Cosmopolitan Club	United States	Chicago	cryingtigercs@lettuce.com	offsite	off-domain (lettuce.com)	page-text	https://kittyscosmopolitanclub.com/
+kittys-cosmopolitan-club	Kitty's Cosmopolitan Club	United States	Chicago	contactforms@lettuce.com	offsite	off-domain (lettuce.com)	page-text	https://kittyscosmopolitanclub.com/
+queen-mary-tavern	Queen Mary Tavern	United States	Chicago	media@heislerhospitality.com	role	departmental mailbox (media@)	page-text	https://queenmarytavern.com/contact-us
+bgc-denver	B&GC	United States	Denver	halcyon@traveloutlook.com	offsite	off-domain (traveloutlook.com)	form-config	https://www.halcyonhotelcherrycreek.com/
+bgc-denver	B&GC	United States	Denver	sales@halcyonhotelcherrycreek.com	venue	the venue's own domain	form-config	https://www.halcyonhotelcherrycreek.com/
+dry-martini-by-javier-de-las-muelas	Dry Martini by Javier de las Muelas	Spain	Barcelona	reservas@drymartiniorg.com	offsite	off-domain (drymartiniorg.com)	form-config	https://drymartinibarcelona.com/
+dry-martini-by-javier-de-las-muelas	Dry Martini by Javier de las Muelas	Spain	Barcelona	drymartini@drymartiniorg.com	offsite	off-domain (drymartiniorg.com)	page-text	https://drymartinibarcelona.com/aviso-legal
+candy-bar-detroit	Candy Bar	United States	Detroit	info@hotelneptune.com	offsite	off-domain (hotelneptune.com)	cloudflare-obfuscated	https://ash.world/contact
+candy-bar-detroit	Candy Bar	United States	Detroit	info@hotelpeterandpaul.com	offsite	off-domain (hotelpeterandpaul.com)	cloudflare-obfuscated	https://ash.world/contact
+candy-bar-detroit	Candy Bar	United States	Detroit	info@thesirenhotel.com	offsite	off-domain (thesirenhotel.com)	cloudflare-obfuscated	https://ash.world/contact
+candy-bar-detroit	Candy Bar	United States	Detroit	info@hotelulysses.com	offsite	off-domain (hotelulysses.com)	cloudflare-obfuscated	https://ash.world/contact
+candy-bar-detroit	Candy Bar	United States	Detroit	info@shenandoahmansions.com	offsite	off-domain (shenandoahmansions.com)	cloudflare-obfuscated	https://ash.world/contact
+candy-bar-detroit	Candy Bar	United States	Detroit	souvenirs@ash.world	venue	the venue's own domain	cloudflare-obfuscated	https://ash.world/contact
+candy-bar-detroit	Candy Bar	United States	Detroit	press@ash.world	role	departmental mailbox (press@)	cloudflare-obfuscated	https://ash.world/contact
+candy-bar-detroit	Candy Bar	United States	Detroit	info@ash.world	venue	the venue's own domain	cloudflare-obfuscated	https://ash.world/contact
+sugar-house	Sugar House	United States	Detroit	info@sugarhousedetroit.com	venue	the venue's own domain	form-config	https://sugarhousedetroit.com/privacy
+anvil	Anvil Bar & Refuge	United States	Houston	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://anvilhouston.com/
+percheron-rooftop-bar	Percheron Rooftop Bar	United States	Kansas City	percheron@crossroadshotelkc.com	venue	the venue's own domain	cloudflare-obfuscated	https://crossroadshotelkc.com/food-and-drink/percheron-rooftop-bar/
+percheron-rooftop-bar	Percheron Rooftop Bar	United States	Kansas City	info@crossroadshotelkc.com	venue	the venue's own domain	cloudflare-obfuscated	https://crossroadshotelkc.com/food-and-drink/percheron-rooftop-bar/
+goat-and-rabbit	Goat & Rabbit	United States	Kansas City	gandrkc@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://www.gandrkc.com/contact-us
+refuge	Refuge	United States	Houston	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://refugehouston.com/
+swordfish-tom-s	Swordfish Tom's	United States	Kansas City	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.swordfishtoms.com/
+swordfish-tom-s	Swordfish Tom's	United States	Kansas City	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.swordfishtoms.com/
+swordfish-tom-s	Swordfish Tom's	United States	Kansas City	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.swordfishtoms.com/
+bandista	Bandista	United States	Houston	info@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.bandistahouston.com/private-events
+the-rosegold-saloon-los-angeles	The Rosegold Saloon	United States	Los Angeles	info@therosegoldsaloon.com	venue	the venue's own domain	page-text	https://therosegoldsaloon.com/
+hard-shake	Hard Shake	United States	Las Vegas	dataprotectionoffice@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	ca_privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	info@esin.av.tr	offsite	off-domain (esin.av.tr)	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	china_privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	brand.jeong@conradhotels.com	offsite	off-domain (conradhotels.com)	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	brad.jeong@conradhotels.com	offsite	off-domain (conradhotels.com)	page-text	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	breakingnews@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/press
+blackbird-ordinary	Blackbird Ordinary	United States	Miami	info@blackbirdordinarymiami.com	venue	the venue's own domain	cloudflare-obfuscated	https://blackbirdordinarymiami.com/
+blackbird-ordinary	Blackbird Ordinary	United States	Miami	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://blackbirdordinarymiami.com/
+lagniappe	Lagniappe	United States	Miami	music@lagniappehouse.com	venue	the venue's own domain	cloudflare-obfuscated	https://lagniappehouse.com/
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/privacy
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/privacy
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://fourseasons.com/privacy
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://fourseasons.com/privacy
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/legal
+the-broken-shaker	The Broken Shaker	United States	Miami	teams@authentic.nyc	offsite	off-domain (authentic.nyc)	json-ld	https://brokenshaker.com/
+the-broken-shaker	The Broken Shaker	United States	Miami	legal@thefreehand.com	role	departmental mailbox (legal@)	page-text	https://brokenshaker.com/privacy-policy
+the-broken-shaker	The Broken Shaker	United States	Miami	atlegal@thefreehand.com	offsite	off-domain (thefreehand.com)	page-text	https://brokenshaker.com/privacy-policy
+mama-tried-miami	Mama Tried	United States	Miami	support@readymag.com	offsite	off-domain (readymag.com)	page-text	https://www.mamatriedmiami.com/
+mama-tried-miami	Mama Tried	United States	Miami	hello@readymag.com	offsite	off-domain (readymag.com)	page-text	https://www.mamatriedmiami.com/
+mama-tried-miami	Mama Tried	United States	Miami	edu@readymag.com	offsite	off-domain (readymag.com)	page-text	https://www.mamatriedmiami.com/
+mama-tried-miami	Mama Tried	United States	Miami	no-reply@readymag.com	role	departmental mailbox (no-reply@)	page-text	https://www.mamatriedmiami.com/
+public-domain	Public Domain	United States	Minneapolis	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.publicdomainmpls.com/
+public-domain	Public Domain	United States	Minneapolis	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.publicdomainmpls.com/
+carousel-bar-lounge	Carousel Bar & Lounge	United States	New Orleans	info@hotelmonteleone.com	venue	the venue's own domain	cloudflare-obfuscated	https://hotelmonteleone.com/
+st-genevieve	St. Genevieve	United States	Minneapolis	stginquiry@gmail.com	venue	free mailbox published on the venue's own site	form-config	https://www.stgmpls.com/press
+manolito	Manolito	United States	New Orleans	info@manolitonola.com	venue	the venue's own domain	page-text	https://www.manolitonola.com/privacy-policy
+high-grace-nola	High Grace NOLA	United States	New Orleans	eben@eyebytes.com	offsite	off-domain (eyebytes.com)	page-text	https://highgracenola.com/
+revel-cafe-bar	Revel Cafe & Bar	United States	New Orleans	micah@micahrich.com	offsite	off-domain (micahrich.com)	page-text	https://revelcafeandbar.com/
+the-will-the-way	The Will & The Way	United States	New Orleans	hello@thewillandtheway.com	venue	the venue's own domain	page-text	https://thewillandtheway.com/privacy-policy
+the-will-the-way	The Will & The Way	United States	New Orleans	info@thewillandtheway.com	venue	the venue's own domain	page-text	https://thewillandtheway.com/privacy-policy
+cane-table	Cane & Table	United States	New Orleans	lisa@curenola.com	offsite	off-domain (curenola.com)	page-text	https://caneandtablenola.com/press
+amor-y-amargo	Amor y Amargo	United States	New York	speakup@overthrowhospitality.com	offsite	off-domain (overthrowhospitality.com)	page-text	https://www.amoryamargo.com/
+dear-irving	Dear Irving	United States	New York	hanna@hannaleecommunications.com	offsite	off-domain (hannaleecommunications.com)	page-text	https://www.dearirving.com/press
+chandelier-bar	Chandelier Bar	United States	New Orleans	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+chandelier-bar	Chandelier Bar	United States	New Orleans	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+chandelier-bar	Chandelier Bar	United States	New Orleans	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+chandelier-bar	Chandelier Bar	United States	New Orleans	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+chandelier-bar	Chandelier Bar	United States	New Orleans	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+the-roost-bar	The Roost Bar at Brennan's	United States	New Orleans	simone@simonesez.com	offsite	off-domain (simonesez.com)	form-config	https://www.brennansneworleans.com/contact-us
+pdt	PDT	United States	New York	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://pdtnyc.com/
+pdt	PDT	United States	New York	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://pdtnyc.com/
+the-portrait-bar	The Portrait Bar	United States	New York	annesophie@thefifthavenuehospitality.com	offsite	off-domain (thefifthavenuehospitality.com)	form-config	https://www.theportraitbar.com/private-events
+sir-henrys	Sir Henry's	United States	New York	info@pmacshospitality.com	offsite	off-domain (pmacshospitality.com)	form-config	https://sirhenrysnyc.com/accessibility
+happy-medium	Happy Medium	United States	San Diego	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happymediumsd.com/press
+happy-medium	Happy Medium	United States	San Diego	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happymediumsd.com/press
+happy-medium	Happy Medium	United States	San Diego	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happymediumsd.com/press
+royal-boucherie	Royal Boucherie	United States	Philadelphia	james@punchmedia.biz	offsite	off-domain (punchmedia.biz)	page-text	https://www.royalboucherie.com/press
+mandarin-heights	Mandarin Heights	United States	Tampa	jobs@seedandfeedhospitality.com	role	departmental mailbox (jobs@)	form-config	http://www.mandarinheights.com/
+off-the-record-dc	Off the Record	United States	Washington DC	sales@hayadams.com	venue	the venue's own domain	form-config	https://hayadams.com/
+edge-rooftop-cocktail-lounge	EDGE Rooftop Cocktail Lounge	United States	Tampa	services@mainsailhotels.com	offsite	off-domain (mainsailhotels.com)	cloudflare-obfuscated	https://www.epicureanhotel.com/privacy
+edge-rooftop-cocktail-lounge	EDGE Rooftop Cocktail Lounge	United States	Tampa	reservations@epicureanhotel.com	venue	the venue's own domain	cloudflare-obfuscated	https://www.epicureanhotel.com/contact
+edge-rooftop-cocktail-lounge	EDGE Rooftop Cocktail Lounge	United States	Tampa	sales@epicureanhotel.com	venue	the venue's own domain	cloudflare-obfuscated	https://www.epicureanhotel.com/contact
+floreria-atlantico-dc	Florería Atlántico	United States	Washington DC	info@atlantisgeorgetown.com	offsite	off-domain (atlantisgeorgetown.com)	form-config	https://www.floreriaatlanticodc.com/
+floreria-atlantico-dc	Florería Atlántico	United States	Washington DC	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.floreriaatlanticodc.com/
+floreria-atlantico-dc	Florería Atlántico	United States	Washington DC	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.floreriaatlanticodc.com/
+m-bird	M.Bird	United States	Tampa	info@threeoakstampa.com	offsite	off-domain (threeoakstampa.com)	page-text	https://www.mbirdtampa.com/privacy-policy
+round-robin-bar	Round Robin Bar	United States	Washington DC	privacyoffice@ihg.com	group	ihg group or hotel inbox	form-config	https://washington.intercontinental.com/privacy
+round-robin-bar	Round Robin Bar	United States	Washington DC	willardsales@ihg.com	group	ihg group or hotel inbox	form-config	https://washington.intercontinental.com/contact
+round-robin-bar	Round Robin Bar	United States	Washington DC	willardmedia@ihg.com	group	ihg group or hotel inbox	json-ld	https://washington.intercontinental.com/press
+round-robin-bar	Round Robin Bar	United States	Washington DC	washington@ihg.com	group	ihg group or hotel inbox	form-config	https://washington.intercontinental.com/accessibility

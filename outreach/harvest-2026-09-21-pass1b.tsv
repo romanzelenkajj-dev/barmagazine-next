@@ -1,0 +1,469 @@
+slug	name	country	city	email	kind	reason	source	url
+civil-liberties	Civil Liberties	Canada	Toronto	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.civillibertiesbar.com/
+no-vacancy	No Vacancy	Canada	Toronto	%20events@goodnightcocktailclub.com	offsite	off-domain (goodnightcocktailclub.com)	form-config	https://www.novacancybar.ca/
+no-vacancy	No Vacancy	Canada	Toronto	info.nv@novacancyto.ca	offsite	off-domain (novacancyto.ca)	page-text	https://www.novacancybar.ca/contact
+library-bar-toronto	Library Bar	Canada	Toronto	ryh.restaurantreservations@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.fairmont.com/en/hotels/toronto/fairmont-royal-york/dining/librarybar.bar.html
+library-bar-toronto	Library Bar	Canada	Toronto	ryh.royalservice@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.fairmont.com/en/hotels/toronto/fairmont-royal-york/dining/librarybar.bar.html
+library-bar-toronto	Library Bar	Canada	Toronto	ryhbellcaptains@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.fairmont.com/en/hotels/toronto/fairmont-royal-york/location-contact.html
+jahreszeiten-bar-hamburg	Jahreszeiten Bar	Germany	Hamburg	hamburg@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.fairmont.com/en/hotels/hamburg/fairmont-hotel-vier-jahreszeiten/dining/jahreszeiten-bar.bar.html
+jahreszeiten-bar-hamburg	Jahreszeiten Bar	Germany	Hamburg	reservations@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.fairmont.com/en/web-accessibility.html
+toddy-tapper-cologne	Toddy Tapper	Germany	Cologne	bar@toddytapper.de	offsite	off-domain (toddytapper.de)	form-config	https://www.toddytapperbar.de/contact-us
+toddy-tapper-cologne	Toddy Tapper	Germany	Cologne	info@domainname.com	offsite	off-domain (domainname.com)	form-config	https://www.toddytapperbar.de/contact-us
+sieferle-ko-bar-mannheim	Sieferle & KØ Bar	Germany	Mannheim	info@hagestolzbar.de	offsite	off-domain (hagestolzbar.de)	form-config	https://www.sieferleundko.de/
+sieferle-ko-bar-mannheim	Sieferle & KØ Bar	Germany	Mannheim	info@codepoetry.de	offsite	off-domain (codepoetry.de)	page-text	https://www.sieferleundko.de/
+bar-seibert-kassel	Bar Seibert	Germany	Kassel	info@barseibert.de	venue	the venue's own domain	page-text	https://www.barseibert.de/Jobs/index.html
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	hotel.adlon@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	meetings.adlon@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	restaurants.adlon@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	lorenz.adlon@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	reservations.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	info.development@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	pr.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	info.residences@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	contact@discoveryloyalty.com	offsite	off-domain (discoveryloyalty.com)	page-text	https://www.kempinski.com/de/hotel-adlon
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	data.privacy@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/privacy-policy
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.frankfurt@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.london@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	kempinski@tm-russia.ru	offsite	off-domain (tm-russia.ru)	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.usa@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.dubai@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.china@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.india@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+lobby-lounge-bar-berlin	Lobby Lounge & Bar	Germany	Berlin	gso.sea@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	bar1705.dresden@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	reservations.taschenbergpalais@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	reservations.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	info.development@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	pr.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	info.residences@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	contact@discoveryloyalty.com	offsite	off-domain (discoveryloyalty.com)	page-text	https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705
+bar-1705-dresden	Bar 1705	Germany	Dresden	data.privacy@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/datenschutz
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.frankfurt@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.london@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	kempinski@tm-russia.ru	offsite	off-domain (tm-russia.ru)	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.usa@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.dubai@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.china@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.india@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+bar-1705-dresden	Bar 1705	Germany	Dresden	gso.sea@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	hamburg@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/grill.html
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	grill.hvj@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/grill.html
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	events.hvj@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/meetings-events.html
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	sales.hvj@fairmont.com	group	fairmont group or hotel inbox	page-text	https://hvj.de/en/contact.html
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	jan-peer.lehfeldt@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/contact-person.html
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	anna.ziegler@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/contact-person.html
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	sebastian.imrecke@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/contact-person.html
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	claudia.krueger@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/contact-person.html
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	annamarie.lienenlueke@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/contact-person.html
+martini-bar-hamburg	Martini Bar	Germany	Hamburg	hvj.careers@fairmont.com	group	fairmont group or hotel inbox	form-config	https://hvj.de/en/careers.html
+bar-montez-munich	Bar Montez	Germany	Munich	info@rosewoodhotelgroup.com	offsite	off-domain (rosewoodhotelgroup.com)	page-text	https://www.rosewoodhotels.com/contact
+bar-montez-munich	Bar Montez	Germany	Munich	newzealand.groupsreservations@rosewoodhotels.com	group	rosewoodhotels group or hotel inbox	form-config	https://www.rosewoodhotels.com/en/events/wedding
+die-blume-von-hawaii-nuremberg	Die Blume von Hawaii	Germany	Nuremberg	info@blumevonhawaii.com	venue	the venue's own domain	page-text	http://blumevonhawaii.com/impressum.html
+copitas	Copitas	India	Bengaluru	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+copitas	Copitas	India	Bengaluru	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+copitas	Copitas	India	Bengaluru	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+copitas	Copitas	India	Bengaluru	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+copitas	Copitas	India	Bengaluru	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+aer-mumbai	AER	India	Mumbai	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+aer-mumbai	AER	India	Mumbai	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+aer-mumbai	AER	India	Mumbai	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+aer-mumbai	AER	India	Mumbai	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+aer-mumbai	AER	India	Mumbai	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+aer-mumbai	AER	India	Mumbai	aer.mumbai@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/mumbai/contact-us/
+bob-s-bar	Bob's Bar	India	Bengaluru	grievance.officer@bygventures.in	offsite	off-domain (bygventures.in)	page-text	https://bobsbar.in/privacy
+bombay-cocktail-bar	Bombay Cocktail Bar	India	Mumbai	sdhruvin12@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://bcb-bombaycocktailbar.com/policies/privacy-policy
+library-bar	The Library Bar	India	Bengaluru	reservations@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/the-leela-palace-bengaluru/restaurants/the-library-bar
+library-bar	The Library Bar	India	Bengaluru	privacy@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/privacy-policy
+library-bar	The Library Bar	India	Bengaluru	reservations.tlcg@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	cs@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.gujarat@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.bangalore@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.tlpc@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.hyderabad@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	iso.france@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	joann@hiddendoorwaystravel.com	offsite	off-domain (hiddendoorwaystravel.com)	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	kallie@van-isacker.com	offsite	off-domain (van-isacker.com)	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	ttc1@thetravelcollection.me	offsite	off-domain (thetravelcollection.me)	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	reservations.mmcc@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	gm.gandhinagar@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	investorrelations@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.ahmedabad@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.tlpb@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.kolkata@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.kochi@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.mumbai@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.delhi@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	rso.pune@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/contact-us
+library-bar	The Library Bar	India	Bengaluru	priyash.parmar@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/careers
+library-bar	The Library Bar	India	Bengaluru	careers@theleela.com	group	theleela group or hotel inbox	page-text	https://www.theleela.com/careers
+library-bar	The Library Bar	India	Bengaluru	cs.moonburg@theleela.com	group	theleela group or hotel inbox	form-config	https://www.theleela.com/investor-relations
+library-bar	The Library Bar	India	Bengaluru	compliancectl-mumbai@ctltrustee.com	offsite	off-domain (ctltrustee.com)	form-config	https://www.theleela.com/investor-relations
+monkey-bar	Monkey Bar	India	New Delhi	resume@olivebarandkitchen.com	venue	the venue's own domain	cloudflare-obfuscated	https://olivebarandkitchen.com/career.html
+atrium-bar	Atrium Bar	Italy	Florence	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+atrium-bar	Atrium Bar	Italy	Florence	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+atrium-bar	Atrium Bar	Italy	Florence	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+atrium-bar	Atrium Bar	Italy	Florence	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+atrium-bar	Atrium Bar	Italy	Florence	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	reservations.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	info.development@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	pr.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	info.residences@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	contact@discoveryloyalty.com	offsite	off-domain (discoveryloyalty.com)	page-text	https://www.kempinski.com/
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	data.privacy@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/privacy-policy
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.frankfurt@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.london@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	kempinski@tm-russia.ru	offsite	off-domain (tm-russia.ru)	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.usa@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.dubai@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.china@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.india@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+jahreszeiten-bar-munich	Jahreszeiten Bar	Germany	Munich	gso.sea@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+giacosa	Giacosa	Italy	Florence	acquisti@valenza-group.com	offsite	off-domain (valenza-group.com)	form-config	https://giacosafirenze.com/privacy-policy
+sly-granny	Sly Granny	India	New Delhi	careers@azurehospitality.com	role	departmental mailbox (careers@)	form-config	https://slygranny.in/contact
+sly-granny	Sly Granny	India	New Delhi	marketing@azurehospitality.com	role	departmental mailbox (marketing@)	form-config	https://slygranny.in/contact
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	fb.milano@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/milan/meetings-and-events/meeting-experience
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	francesca.stancanelli@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	sofia.sachet@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	gaia.carbone@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	samantha.xiong@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	priscila.viana@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	angelica.carrara@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	giulia.longo@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	roxane.germain@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	pietro.favaro@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	lisa.wang@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	tomoko.fujishiro@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	michelle.jovina@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	yoni.pramiari@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	constance.vanheule@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	kazuya.matsuo@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	bulgari@pr-propagandagem.ru	offsite	off-domain (pr-propagandagem.ru)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	gozdem@kimiz.com.tr	offsite	off-domain (kimiz.com.tr)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	bvlgari@perowneinternational.com	offsite	off-domain (perowneinternational.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	maggie@lindagaunt.com	offsite	off-domain (lindagaunt.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+the-bulgari-bar	The Bvlgari Bar	Italy	Milan	accessibility@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/accessibility-statement
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.rome@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/rome/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.rome@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/rome/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	concierge.rome@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/rome/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	sales.rome@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/rome/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	theromeedition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/rome/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eh.romeb.hostess@marriott.com	group	marriott group or hotel inbox	page-text	https://www.editionhotels.com/rome/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eh.romeb.events@editionhotels.com	group	editionhotels group or hotel inbox	page-text	https://www.editionhotels.com/rome/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	kimberley.brown@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	concierge.auh@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.auh@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eunice.fernando@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	fatima.elguassir@marriott.com	group	marriott group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	careers.auh@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.bcn@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.bcn@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	thebarcelonaedition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	xxx@xxlcomunicacion.com	offsite	off-domain (xxlcomunicacion.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	jose-maria.conceiro@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	sales.bcn@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	events.bcn@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	careers.bcn@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.bod@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.bod@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	thebodrumedition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	ezgi.almangoush@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eylul.gurce@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	careers.bod@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	concierge.capetown@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eh.dlueb.reservations@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eh.dlueb.ge@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eh.dlueb.concierge@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	ryan.liu@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eh.dlueb.marcom@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	guest.dxb@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservation.dxb@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	concierge.dxb@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	restaurantreservation.dxb@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	jivesh.sehgal@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reception.dxb@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	events.dxb@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.jed@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	concierge.jed@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	sales.jed@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	dine.jed@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	frontoffice.jed@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	theroof.jed@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.jed@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.como@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	guestexperience.como@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	thelakecomoedition@dlx.co	offsite	off-domain (dlx.co)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	thelakecomoedition@smith-petersen.com	offsite	off-domain (smith-petersen.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.london@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	concierge.london@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	thelondonedition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	edition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	walid.saighi@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	dan.drake@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	stephanie.harrell@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	victoria.sullivan@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eh.loneb.events@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.mad@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.mad@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	themadridedition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	marketing.mad@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	events.mad@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.miamibeach@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	concierge.mia@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	themiamibeachedition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	paul.cookley@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	leisuresales.mia@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	nyeditioninfo@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	newyorkedition@ledecompany.com	offsite	off-domain (ledecompany.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	clocktower.events@starr-restaurant.com	offsite	off-domain (starr-restaurant.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	meghan.frost@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	mary.cole@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	gabrielle.harrison@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.rek@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	guestrelations.rek@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reykjavikedition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	ninna.haflidadottir@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	sales.rek@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	careers.rek@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.rivieramaya@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.rivieramaya@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	ed.cunek.ge.staff@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	groupsales.rivieramaya@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	transientsales.rivieramaya@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	cateringsales.rivieramaya@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	rivieramayaedition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	predition@lenom-pr.com	offsite	off-domain (lenom-pr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	kitchenkanai@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	soolbeachclub@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	kiiskanai@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eh.syxeb.reservation@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eh.syxeb.dm@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	allunga.shang@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	sophia.s.wang@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	gery.bai@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	jane.wu@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.sha@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.sha@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	careers.sha@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eva.wy.li@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	sammie.liu@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.sgedition@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	concierge.sgedition@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	events.sgedition@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	marketing.sgedition@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	sales.sgedition@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eh.tpaeb.frontofhouse@marriott.com	group	marriott group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	careers.tpa@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	tampaedition@foxglovecommunications.com	offsite	off-domain (foxglovecommunications.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	sales.tpa@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	groupsales.tpa@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	eventsales.tpa@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.tmsq@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.tse@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	sales.tmsq@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	rachel.mcguirl@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	nycteleads@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.ginza@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.ginza@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	edition@hirao-inc.com	offsite	off-domain (hirao-inc.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	thetokyoedition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	tomoko.matsumoto@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	soo.oftana@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	gorka.zubiete@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.tokyo@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.tokyo@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	diningreservations.tokyo@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	info.weho@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	reservations.weho@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	wehoedition@purplepr.com	offsite	off-domain (purplepr.com)	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	sales.weho@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	marketing.weho@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	weho.catering@editionhotels.com	group	editionhotels group or hotel inbox	form-config	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	mbeditionsales@editionhotels.com	group	editionhotels group or hotel inbox	page-text	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	beverage@editionhotels.com	group	editionhotels group or hotel inbox	page-text	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	timessquareedition@ledecompany.com	offsite	off-domain (ledecompany.com)	page-text	https://www.editionhotels.com/contact/
+punch-room-at-edition-rome	Punch Room	Italy	Rome	diningreservations.ginza@editionhotels.com	group	editionhotels group or hotel inbox	page-text	https://www.editionhotels.com/contact/
+call-soul-munich	Call Soul	Germany	Munich	better@callsoul.de	offsite	off-domain (callsoul.de)	page-text	https://www.callsoul-breakingbar.de/
+call-soul-munich	Call Soul	Germany	Munich	xperience@callsoul.de	offsite	off-domain (callsoul.de)	page-text	https://www.callsoul-breakingbar.de/impressum
+bar-high-five	Bar High Five	Japan	Tokyo	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.barhighfive.com/
+bar-libre	Bar Libre	Japan	Tokyo	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://en.bar-libre.jp/
+bar-libre	Bar Libre	Japan	Tokyo	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://en.bar-libre.jp/
+bar-livet	BAR LIVET	Japan	Tokyo	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.royalmile.tokyo/contactus
+bar-livet	BAR LIVET	Japan	Tokyo	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.royalmile.tokyo/contactus
+bar-livet	BAR LIVET	Japan	Tokyo	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.royalmile.tokyo/contactus
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	francesca.stancanelli@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	sofia.sachet@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	gaia.carbone@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	samantha.xiong@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	priscila.viana@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	angelica.carrara@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	giulia.longo@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	roxane.germain@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	pietro.favaro@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	lisa.wang@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	tomoko.fujishiro@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	michelle.jovina@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	yoni.pramiari@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	constance.vanheule@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	kazuya.matsuo@bulgarihotels.com	group	bulgarihotels group or hotel inbox	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	bulgari@pr-propagandagem.ru	offsite	off-domain (pr-propagandagem.ru)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	gozdem@kimiz.com.tr	offsite	off-domain (kimiz.com.tr)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	bvlgari@perowneinternational.com	offsite	off-domain (perowneinternational.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	maggie@lindagaunt.com	offsite	off-domain (lindagaunt.com)	form-config	https://www.bulgarihotels.com/en_US/meta/press-offices
+bulgari-ginza-bar	Bvlgari Ginza Bar	Japan	Tokyo	accessibility@bulgari.com	offsite	off-domain (bulgari.com)	form-config	https://www.bulgarihotels.com/en_US/meta/accessibility-statement
+bees-bar-by-narisawa	BEES BAR by NARISAWA	Japan	Tokyo	info@company.com	offsite	off-domain (company.com)	page-text	https://www.beesbar-narisawa-en.com/
+star-bar	Star Bar	Japan	Tokyo	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.starbar.jp/
+virtu	Virtù	Japan	Tokyo	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/privacy
+virtu	Virtù	Japan	Tokyo	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/privacy
+virtu	Virtù	Japan	Tokyo	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://fourseasons.com/privacy
+virtu	Virtù	Japan	Tokyo	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://fourseasons.com/privacy
+virtu	Virtù	Japan	Tokyo	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/legal
+virtu	Virtù	Japan	Tokyo	contactus.otemachi@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/otemachi/contact-us/
+kyara	Kyara	Spain	Barcelona	kyara.barcelona@slshotels.com	offsite	off-domain (slshotels.com)	form-config	https://kyarabarcelona.com/
+marlowe-bar	Marlowe Bar	Spain	Barcelona	usuario@dominio.com	offsite	off-domain (dominio.com)	page-text	https://marlowe.bar/
+the-peak-bar	The Peak Lounge & Bar	Japan	Tokyo	tyoph.restaurant@hyatt.com	group	hyatt group or hotel inbox	form-config	https://restaurants.tokyo.park.hyatt.co.jp/en/peaklounge/
+angelita	Angelita	Spain	Madrid	comunicacion@amargueria.com	offsite	off-domain (amargueria.com)	form-config	https://madrid-angelita.es/press
+nauticus-bar	Nauticus	United Kingdom	Edinburgh	info@nauticusbar.co.uk	venue	the venue's own domain	form-config	https://www.nauticusbar.co.uk/privacy-policy.html
+planta-baja-cocktail-bar	Planta Baja Cocktail Bar	Spain	Madrid	support@readymag.com	offsite	off-domain (readymag.com)	page-text	https://plantabajamadrid.com/
+planta-baja-cocktail-bar	Planta Baja Cocktail Bar	Spain	Madrid	hello@readymag.com	offsite	off-domain (readymag.com)	page-text	https://plantabajamadrid.com/
+planta-baja-cocktail-bar	Planta Baja Cocktail Bar	Spain	Madrid	edu@readymag.com	offsite	off-domain (readymag.com)	page-text	https://plantabajamadrid.com/
+planta-baja-cocktail-bar	Planta Baja Cocktail Bar	Spain	Madrid	no-reply@readymag.com	role	departmental mailbox (no-reply@)	page-text	https://plantabajamadrid.com/
+the-american-bar	The American Bar	United Kingdom	London	svy.ird2@fairmont.com	group	fairmont group or hotel inbox	json-ld	https://www.thesavoylondon.com/restaurants-and-bars/american-bar
+the-american-bar	The American Bar	United Kingdom	London	savoy@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.thesavoylondon.com/restaurants-and-bars/american-bar
+the-american-bar	The American Bar	United Kingdom	London	svy.reservations@fairmont.com	group	fairmont group or hotel inbox	form-config	https://www.thesavoylondon.com/restaurants-and-bars/american-bar
+the-american-bar	The American Bar	United Kingdom	London	svy.events@fairmont.com	group	fairmont group or hotel inbox	page-text	https://www.thesavoylondon.com/restaurants-and-bars/american-bar
+side-hustle	Side Hustle	United Kingdom	London	dataprotectionoffice@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	ca_privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	info@esin.av.tr	offsite	off-domain (esin.av.tr)	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	china_privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	brand.jeong@conradhotels.com	offsite	off-domain (conradhotels.com)	form-config	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	brad.jeong@conradhotels.com	offsite	off-domain (conradhotels.com)	page-text	https://www.hilton.com/privacy
+side-hustle	Side Hustle	United Kingdom	London	breakingnews@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/press
+happy-accidents	Happy Accidents	United States	Albuquerque	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happyaccidentsbar.com/privacy-policy
+happy-accidents	Happy Accidents	United States	Albuquerque	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happyaccidentsbar.com/privacy-policy
+happy-accidents	Happy Accidents	United States	Albuquerque	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happyaccidentsbar.com/privacy-policy
+head-tales	Head & Tales	United Kingdom	Edinburgh	info@signaturepubs.co.uk	offsite	off-domain (signaturepubs.co.uk)	cloudflare-obfuscated	https://headsandtalesbar.com/privacy
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	restaurants.london@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/en-gb/london/restaurants-bars/velvet-by-salvatore-calabrese/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	london@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/en-gb/london/restaurants-bars/velvet-by-salvatore-calabrese/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	contact@ghadiscovery.com	offsite	off-domain (ghadiscovery.com)	form-config	https://www.corinthia.com/privacy-policy
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	dpo@corinthia.com	group	corinthia group or hotel inbox	page-text	https://www.corinthia.com/privacy-policy
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	reservations.newyork@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	brussels@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	bucharest@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	budapest@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	lisbon@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	reservations.stpetersburg@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	sananton@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	stgeorges@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	reservations.tripoli@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/contact-us
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	sandra.raileanu@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	andrea.marton@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	luna.vanmeerbeeck@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	maria.galante@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	julia.pimentel@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	matthewjames.smith@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	paola.polidori@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	carrie.demarte@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/press
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	hello@kerridgesbarandgrill.co.uk	offsite	off-domain (kerridgesbarandgrill.co.uk)	form-config	https://www.corinthia.com/en-gb/london/contact-us/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	pr@tomkerridge.com	role	departmental mailbox (pr@)	form-config	https://www.corinthia.com/en-gb/london/contact-us/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	reservations.london@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/en-gb/london/contact-us/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	events.london@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/en-gb/london/contact-us/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	espalife.london@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/en-gb/london/contact-us/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	daniel.galvin@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/en-gb/london/contact-us/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	pr.london@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/en-gb/london/contact-us/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	recruitment.london@corinthia.com	group	corinthia group or hotel inbox	form-config	https://www.corinthia.com/en-gb/london/contact-us/
+velvet-by-salvatore-calabrese	Velvet by Salvatore Calabrese	United Kingdom	London	biome.london@corinthia.com	group	corinthia group or hotel inbox	page-text	https://www.corinthia.com/en-gb/london/contact-us/
+bar-margot-atlanta	Bar Margot	United States	Atlanta	info@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.barmargotatl.com/private-events
+bogies-place-boston	Bogie's Place	United States	Boston	bina@monacreative.co	offsite	off-domain (monacreative.co)	page-text	https://www.bogiesplace.com/press
+gus-sip-dip	Gus' Sip & Dip	United States	Chicago	gussipanddipcs@lettuce.com	offsite	off-domain (lettuce.com)	page-text	https://gussipanddip.com/
+gus-sip-dip	Gus' Sip & Dip	United States	Chicago	contactforms@lettuce.com	offsite	off-domain (lettuce.com)	page-text	https://gussipanddip.com/
+the-wig-shop-boston	The Wig Shop	United States	Boston	bina@monacreative.co	offsite	off-domain (monacreative.co)	page-text	https://wigshopboston.com/press
+queen-mary-tavern	Queen Mary Tavern	United States	Chicago	media@heislerhospitality.com	role	departmental mailbox (media@)	page-text	https://queenmarytavern.com/contact-us
+kittys-cosmopolitan-club	Kitty's Cosmopolitan Club	United States	Chicago	cryingtigercs@lettuce.com	offsite	off-domain (lettuce.com)	page-text	https://kittyscosmopolitanclub.com/
+kittys-cosmopolitan-club	Kitty's Cosmopolitan Club	United States	Chicago	contactforms@lettuce.com	offsite	off-domain (lettuce.com)	page-text	https://kittyscosmopolitanclub.com/
+artesian	Artesian	United Kingdom	London	tllon.artesian@langhamhotels.com	group	langhamhotels group or hotel inbox	form-config	https://www.artesian-bar.co.uk/
+artesian	Artesian	United Kingdom	London	lorenza.pezzetta@langhamhotels.com	group	langhamhotels group or hotel inbox	form-config	https://www.artesian-bar.co.uk/private-hire
+sexy-fish	Sexy Fish	United Kingdom	London	privacy@caprice-holdings.co.uk	role	departmental mailbox (privacy@)	form-config	https://sexyfish.com/privacy
+sexy-fish	Sexy Fish	United Kingdom	London	chrecruitment@caprice-holdings.co.uk	offsite	off-domain (caprice-holdings.co.uk)	form-config	https://sexyfish.com/careers
+sexy-fish	Sexy Fish	United Kingdom	London	people@caprice-holdings.co.uk	offsite	off-domain (caprice-holdings.co.uk)	form-config	https://sexyfish.com/careers
+anvil	Anvil Bar & Refuge	United States	Houston	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://anvilhouston.com/
+refuge	Refuge	United States	Houston	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://refugehouston.com/
+bandista	Bandista	United States	Houston	info@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.bandistahouston.com/private-events
+doberman-drawing-room	Doberman Drawing Room	United States	Las Vegas	events@cornerbarmgmt.com	offsite	off-domain (cornerbarmgmt.com)	form-config	https://dobermandtlv.com/private-events
+ghost-donkey	Ghost Donkey	United States	Las Vegas	marion@avroko.com	offsite	off-domain (avroko.com)	form-config	https://ghostdonkey.com/about-us
+hard-shake	Hard Shake	United States	Las Vegas	dataprotectionoffice@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	ca_privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	info@esin.av.tr	offsite	off-domain (esin.av.tr)	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	china_privacy@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	brand.jeong@conradhotels.com	offsite	off-domain (conradhotels.com)	form-config	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	brad.jeong@conradhotels.com	offsite	off-domain (conradhotels.com)	page-text	https://www.hilton.com/privacy
+hard-shake	Hard Shake	United States	Las Vegas	breakingnews@hilton.com	group	hilton group or hotel inbox	form-config	https://www.hilton.com/press
+the-chandelier	The Chandelier	United States	Las Vegas	resortservices@cosmopolitanlasvegas.com	venue	the venue's own domain	form-config	https://cosmopolitanlasvegas.com/en/contact.html
+the-chandelier	The Chandelier	United States	Las Vegas	concierge@cosmopolitanlasvegas.com	venue	the venue's own domain	form-config	https://cosmopolitanlasvegas.com/en/contact.html
+the-chandelier	The Chandelier	United States	Las Vegas	travelagents@cosmopolitanlasvegas.com	venue	the venue's own domain	form-config	https://cosmopolitanlasvegas.com/en/contact.html
+the-chandelier	The Chandelier	United States	Las Vegas	entertainmentmanagement@cosmopolitanlasvegas.com	venue	the venue's own domain	form-config	https://cosmopolitanlasvegas.com/en/contact.html
+the-chandelier	The Chandelier	United States	Las Vegas	community@cosmopolitanlasvegas.com	venue	the venue's own domain	form-config	https://cosmopolitanlasvegas.com/en/contact.html
+the-chandelier	The Chandelier	United States	Las Vegas	publicrelations@mgmresorts.com	offsite	off-domain (mgmresorts.com)	form-config	https://cosmopolitanlasvegas.com/en/contact.html
+the-chandelier	The Chandelier	United States	Las Vegas	webrequests@cosmopolitanlasvegas.com	venue	the venue's own domain	form-config	https://cosmopolitanlasvegas.com/en/contact.html
+dry-martini-by-javier-de-las-muelas	Dry Martini by Javier de las Muelas	Spain	Barcelona	reservas@drymartiniorg.com	offsite	off-domain (drymartiniorg.com)	form-config	https://drymartinibarcelona.com/
+dry-martini-by-javier-de-las-muelas	Dry Martini by Javier de las Muelas	Spain	Barcelona	drymartini@drymartiniorg.com	offsite	off-domain (drymartiniorg.com)	page-text	https://drymartinibarcelona.com/aviso-legal
+bar-next-door	Bar Next Door	United States	Los Angeles	events@barnextdoor.com	venue	the venue's own domain	page-text	https://barnextdoor.com/owners-lounge
+proof-on-main	Proof on Main	United States	Louisville	lou.sales@21chotels.com	offsite	off-domain (21chotels.com)	form-config	https://proofonmain.com/private-dining/private-dining-room/
+mama-tried-miami	Mama Tried	United States	Miami	support@readymag.com	offsite	off-domain (readymag.com)	page-text	https://www.mamatriedmiami.com/
+mama-tried-miami	Mama Tried	United States	Miami	hello@readymag.com	offsite	off-domain (readymag.com)	page-text	https://www.mamatriedmiami.com/
+mama-tried-miami	Mama Tried	United States	Miami	edu@readymag.com	offsite	off-domain (readymag.com)	page-text	https://www.mamatriedmiami.com/
+mama-tried-miami	Mama Tried	United States	Miami	no-reply@readymag.com	role	departmental mailbox (no-reply@)	page-text	https://www.mamatriedmiami.com/
+the-broken-shaker	The Broken Shaker	United States	Miami	teams@authentic.nyc	offsite	off-domain (authentic.nyc)	json-ld	https://brokenshaker.com/
+the-broken-shaker	The Broken Shaker	United States	Miami	legal@thefreehand.com	role	departmental mailbox (legal@)	page-text	https://brokenshaker.com/privacy-policy
+the-broken-shaker	The Broken Shaker	United States	Miami	atlegal@thefreehand.com	offsite	off-domain (thefreehand.com)	page-text	https://brokenshaker.com/privacy-policy
+the-broken-shaker	The Broken Shaker	United States	Miami	kelyn@authentic.nyc	offsite	off-domain (authentic.nyc)	form-config	https://brokenshaker.com/private-events-new-york/
+the-broken-shaker	The Broken Shaker	United States	Miami	events.losangeles@thefreehand.com	offsite	off-domain (thefreehand.com)	form-config	https://brokenshaker.com/private-events-la/
+the-broken-shaker	The Broken Shaker	United States	Miami	events.miami@thefreehand.com	offsite	off-domain (thefreehand.com)	form-config	https://brokenshaker.com/private-events-miami/
+the-broken-shaker	The Broken Shaker	United States	Miami	events.chicago@thefreehand.com	offsite	off-domain (thefreehand.com)	form-config	https://brokenshaker.com/private-events-chicago/
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/privacy
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/privacy
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://fourseasons.com/privacy
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://fourseasons.com/privacy
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://fourseasons.com/legal
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	fourseasonsjet@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privatejet/
+champagne-bar-at-four-seasons-surf-club	Champagne Bar at Four Seasons Surf Club	United States	Miami	contact@fourseasonsjet.com	offsite	off-domain (fourseasonsjet.com)	form-config	https://www.fourseasons.com/privatejet/campaigns/upcoming-departures/
+public-domain	Public Domain	United States	Minneapolis	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.publicdomainmpls.com/
+public-domain	Public Domain	United States	Minneapolis	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.publicdomainmpls.com/
+public-domain	Public Domain	United States	Minneapolis	info@publicdomainmpls.com	venue	the venue's own domain	page-text	https://www.publicdomainmpls.com/blank
+chandelier-bar	Chandelier Bar	United States	New Orleans	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+chandelier-bar	Chandelier Bar	United States	New Orleans	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+chandelier-bar	Chandelier Bar	United States	New Orleans	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+chandelier-bar	Chandelier Bar	United States	New Orleans	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+chandelier-bar	Chandelier Bar	United States	New Orleans	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+amor-y-amargo	Amor y Amargo	United States	New York	speakup@overthrowhospitality.com	offsite	off-domain (overthrowhospitality.com)	page-text	https://www.amoryamargo.com/
+amor-y-amargo	Amor y Amargo	United States	New York	speakup@revolutionhospitality.com	offsite	off-domain (revolutionhospitality.com)	page-text	https://www.amoryamargo.com/pages/privacy
+the-roost-bar	The Roost Bar at Brennan's	United States	New Orleans	simone@simonesez.com	offsite	off-domain (simonesez.com)	form-config	https://www.brennansneworleans.com/contact-us
+pdt	PDT	United States	New York	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://pdtnyc.com/
+pdt	PDT	United States	New York	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://pdtnyc.com/
+the-portrait-bar	The Portrait Bar	United States	New York	annesophie@thefifthavenuehospitality.com	offsite	off-domain (thefifthavenuehospitality.com)	form-config	https://www.theportraitbar.com/private-events
+sir-henrys	Sir Henry's	United States	New York	info@pmacshospitality.com	offsite	off-domain (pmacshospitality.com)	form-config	https://sirhenrysnyc.com/accessibility
+sir-henrys	Sir Henry's	United States	New York	info@sirhenrysnyc.com	venue	the venue's own domain	form-config	https://sirhenrysnyc.com/cookie-privacy/
+sir-henrys	Sir Henry's	United States	New York	info@sirhenrysnyc.com.for	offsite	off-domain (sirhenrysnyc.com.for)	page-text	https://sirhenrysnyc.com/cookie-privacy/
+royal-boucherie	Royal Boucherie	United States	Philadelphia	james@punchmedia.biz	offsite	off-domain (punchmedia.biz)	page-text	https://www.royalboucherie.com/press
+happy-medium	Happy Medium	United States	San Diego	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happymediumsd.com/
+happy-medium	Happy Medium	United States	San Diego	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happymediumsd.com/
+happy-medium	Happy Medium	United States	San Diego	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://happymediumsd.com/
+needle-and-thread-seattle	Needle and Thread	United States	Seattle	contact@tavernlaw.com	venue	the venue's own domain	json-ld	https://tavernlaw.com/needle-thread
+needle-and-thread-seattle	Needle and Thread	United States	Seattle	info@tavernlaw.com	venue	the venue's own domain	json-ld	https://tavernlaw.com/needle-thread
+alter-ego	Alter Ego	United States	Tampa	matt@properhousegroup.com	offsite	off-domain (properhousegroup.com)	form-config	https://www.alteregotampa.com/
+alter-ego	Alter Ego	United States	Tampa	alterego@properhousegroup.com	offsite	off-domain (properhousegroup.com)	form-config	https://www.alteregotampa.com/contact
+alter-ego	Alter Ego	United States	Tampa	chon@properhousegroup.com	offsite	off-domain (properhousegroup.com)	form-config	https://www.alteregotampa.com/accessibility
+wild-child-shawnee	Wild Child	United States	Shawnee	kyle@wildchildkc.com	venue	the venue's own domain	form-config	https://www.wildchildkc.com/private-parties
+hotel-bar-tampa	Hotel Bar	United States	Tampa	brittanynrosen@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://www.hotelbartampa.com/contact
+bar-terroir-tampa	Bar Terroir	United States	Tampa	reservations@barterroir.co	venue	the venue's own domain	form-config	https://www.barterroir.co/private-dining
+jekyll-tampa	Jekyll	United States	Tampa	info@threeoakstampa.com	offsite	off-domain (threeoakstampa.com)	form-config	https://www.jekyllhydepark.com/sms-privacy-policy/
+mandarin-heights	Mandarin Heights	United States	Tampa	jobs@seedandfeedhospitality.com	role	departmental mailbox (jobs@)	form-config	http://www.mandarinheights.com/
+floreria-atlantico-dc	Florería Atlántico	United States	Washington DC	info@atlantisgeorgetown.com	offsite	off-domain (atlantisgeorgetown.com)	form-config	https://www.floreriaatlanticodc.com/
+floreria-atlantico-dc	Florería Atlántico	United States	Washington DC	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.floreriaatlanticodc.com/
+floreria-atlantico-dc	Florería Atlántico	United States	Washington DC	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.floreriaatlanticodc.com/
+m-bird	M.Bird	United States	Tampa	info@threeoakstampa.com	offsite	off-domain (threeoakstampa.com)	page-text	https://www.mbirdtampa.com/privacy-policy
+round-robin-bar	Round Robin Bar	United States	Washington DC	privacyoffice@ihg.com	group	ihg group or hotel inbox	form-config	https://washington.intercontinental.com/privacy
+round-robin-bar	Round Robin Bar	United States	Washington DC	willardsales@ihg.com	group	ihg group or hotel inbox	form-config	https://washington.intercontinental.com/contact
+round-robin-bar	Round Robin Bar	United States	Washington DC	willardmedia@ihg.com	group	ihg group or hotel inbox	json-ld	https://washington.intercontinental.com/press
+round-robin-bar	Round Robin Bar	United States	Washington DC	washington@ihg.com	group	ihg group or hotel inbox	form-config	https://washington.intercontinental.com/accessibility

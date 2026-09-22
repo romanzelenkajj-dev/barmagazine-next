@@ -152,3 +152,15 @@ zapote-bar-playa-del-carmen                # Rosewood group; send-upsell already
 # 2026-09-21, batch 18 dry run (task 99): events-only inbox on the venue's own
 # domain. Same call as crown-shy on 2026-09-15.
 tan-tan                            # eventos.grupo@, an events desk rather than the bar  [eventos.grupo@tantan.com.br]
+#
+# 2026-09-21, harvest pass 1 (task 99). Group inboxes the crawler classed
+# as venue addresses because they sit on the domain the bar lists as its own
+# website. Found by reading the 120 results rather than trusting the label.
+#
+key-party                  # hotel or operator group inbox the crawler class list missed  [info@narrowgroup.ca]
+fontenay-bar-hamburg       # hotel or operator group inbox the crawler class list missed  [info@thefontenay.com]
+eau-bar                    # hotel or operator group inbox the crawler class list missed  [generalmanager.vindhyavilas@oberoihotels.com]
+cirrus-9                   # hotel or operator group inbox the crawler class list missed  [generalmanager.vindhyavilas@oberoihotels.com]
+1930                       # hotel or operator group inbox the crawler class list missed  [backdoor43@farmilygroup.com]
+mag-cafe                   # hotel or operator group inbox the crawler class list missed  [backdoor43@farmilygroup.com]
+terraza-verbena-barcelona  # hotel or operator group inbox the crawler class list missed  [reservasrestaurantes@monumenthotel.com]
