@@ -181,14 +181,59 @@ function siteUrl(website) {
   try { return new URL(w.startsWith('http') ? w : `https://${w}`); } catch { return null; }
 }
 
+/**
+ * Links the site itself offers, filtered to the kinds of page that pay off.
+ *
+ * GUESSING PATHS IS NOT ENOUGH, and the first full run proved it: 67 of 117
+ * United States sites returned 200 with a full page and yielded nothing,
+ * because the pages that carry an address are named by the venue, not by
+ * convention. /private-events-chicago and /the-bamboo-room are not in any
+ * list of guesses. Batch 10 said the productive pages were private events,
+ * press, FAQ and legal notices; it did not say those pages sit at tidy URLs.
+ */
+const LINK_HINT = /(contact|about|impressum|kontakt|privacy|datenschutz|legal|mentions|aviso|private|event|press|media|faq|career|job|accessib|info|reserve|book|hire|group)/i;
+
+function discoverLinks(html, base, max = 10) {
+  const out = [];
+  const seen = new Set();
+  for (const m of html.matchAll(/<a[^>]+href=["']([^"'#]+)["'][^>]*>([\s\S]{0,120}?)<\/a>/gi)) {
+    const href = m[1];
+    const label = m[2].replace(/<[^>]*>/g, ' ');
+    if (!LINK_HINT.test(href) && !LINK_HINT.test(label)) continue;
+    let url;
+    try { url = new URL(href, base.origin); } catch { continue; }
+    if (url.hostname.replace(/^www\./, '') !== base.hostname.replace(/^www\./, '')) continue;
+    if (/\.(pdf|jpg|jpeg|png|gif|svg|webp|zip|mp4|webm)$/i.test(url.pathname)) continue;
+    const key = url.pathname.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(url.href);
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
 async function harvestBar(bar) {
   const base = siteUrl(bar.website);
   if (!base) return { bar, tried: 0, results: [] };
   const host = base.hostname;
   const seen = new Map();
   let tried = 0;
+  let discovered = [];
 
-  for (const path of PATHS) {
+  for (const path of PATHS.concat(['__DISCOVERED__'])) {
+    if (path === '__DISCOVERED__') {
+      for (const url of discovered) {
+        if ([...seen.values()].some(v => v.cls.kind === 'venue')) break;
+        const html = await get(url);
+        tried++;
+        if (!html) continue;
+        for (const [email, where] of extract(html)) {
+          if (!seen.has(email)) seen.set(email, { where, url, cls: classify(email, host) });
+        }
+      }
+      break;
+    }
     // Stop as soon as a venue address is in hand; the remaining paths only
     // cost politeness and time.
     if ([...seen.values()].some(v => v.cls.kind === 'venue')) break;
@@ -196,6 +241,7 @@ async function harvestBar(bar) {
     const html = await get(url);
     tried++;
     if (!html) continue;
+    if (path === '' && !discovered.length) discovered = discoverLinks(html, base);
     for (const [email, where] of extract(html)) {
       if (seen.has(email)) continue;
       seen.set(email, { where, url, cls: classify(email, host) });
