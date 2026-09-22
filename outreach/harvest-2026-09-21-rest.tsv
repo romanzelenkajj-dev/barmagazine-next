@@ -1,0 +1,297 @@
+slug	name	country	city	email	kind	reason	source	url
+backroom-bar	Backroom Bar	Argentina	Buenos Aires	rrhh@backroom-bar.com	venue	the venue's own domain	form-config	https://backroom-bar.com/
+byrdi	Byrdi	Australia	Melbourne	luke@byrdi.com.au	venue	the venue's own domain	form-config	https://byrdi.com.au/
+bar-planet	Bar Planet	Australia	Sydney	more@muchogroup.com.au	venue	the venue's own domain	json-ld	https://barplanet.com.au/
+bar-planet	Bar Planet	Australia	Sydney	more@barplanet.com.au	venue	the venue's own domain	json-ld	https://barplanet.com.au/
+bar-americano	Bar Americano	Australia	Melbourne	matt@trinktank.com	offsite	off-domain (trinktank.com)	json-ld	https://www.baramericano.com/
+deadwax	Deadwax	Australia	Sydney	enquiries@deadwaxbar.com.au	venue	the venue's own domain	form-config	https://deadwaxbar.com.au/
+dean-nancy-on-22	Dean & Nancy on 22	Australia	Sydney	cocktails@deanandnancyon22.com.au	venue	the venue's own domain	form-config	https://deanandnancyon22.com.au/
+maybe-sammy	Maybe Sammy	Australia	Sydney	cocktails@maybesammy.com	venue	the venue's own domain	json-ld	https://maybesammy.com/
+old-love-s	Old Love's	Australia	Sydney	seeyou@oldloves.sydney	venue	the venue's own domain	json-ld	https://www.oldloves.sydney/
+eau-de-vie	Eau de Vie	Australia	Melbourne	sydney@thesanderson.com.au	venue	the venue's own domain	cloudflare-obfuscated	https://eaudevie.com.au/melbourne/
+eau-de-vie	Eau de Vie	Australia	Melbourne	melbourne@eaudevie.com.au	venue	the venue's own domain	cloudflare-obfuscated	https://eaudevie.com.au/melbourne/
+the-waratah	The Waratah	Australia	Sydney	gday@thewaratahsydney.com	venue	the venue's own domain	form-config	https://thewaratahsydney.com/
+pleasure-club	Pleasure Club	Australia	Sydney	pleasureclubbar@oddculture.group	offsite	off-domain (oddculture.group)	page-text	https://alwaysapleasure.club/
+ernst-fuchs-bar-graz	Ernst Fuchs Bar	Austria	Graz	reception@erzherzog-johann.com	venue	the venue's own domain	form-config	https://www.erzherzog-johann.com/ernst-fuchs-bar/
+el-primo-sanchez	El Primo Sanchez	Australia	Sydney	hello@elprimosanchez.com	offsite	off-domain (elprimosanchez.com)	json-ld	https://elprimosanchezsydney.com/
+bar-pani-vienna	Bar Pani	Austria	Vienna	bar@barpani.com	venue	the venue's own domain	form-config	https://www.barpani.com/
+bar-pani-vienna	Bar Pani	Austria	Vienna	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.barpani.com/
+deux-freres	Deux Frères	Australia	Sydney	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://deuxfreres.com.au/
+deux-freres	Deux Frères	Australia	Sydney	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://deuxfreres.com.au/
+burdock-salzburg	Burdock	Austria	Salzburg	office@burdock.at	venue	the venue's own domain	form-config	https://www.burdock.at/
+the-sign-lounge-vienna	The Sign Lounge	Austria	Vienna	office@thesignlounge.at	venue	the venue's own domain	form-config	https://www.thesignlounge.at/
+the-sign-lounge-vienna	The Sign Lounge	Austria	Vienna	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.thesignlounge.at/
+the-sign-lounge-vienna	The Sign Lounge	Austria	Vienna	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.thesignlounge.at/
+tigra-disco-pantera	Tigra + Disco Pantera	Australia	Sydney	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://bartigra.com.au/
+the-chapel-vienna	The Chapel	Austria	Vienna	speakeasy@thechapel.at	venue	the venue's own domain	json-ld	https://www.thechapel.at/
+the-chapel-vienna	The Chapel	Austria	Vienna	dpo-google@google.com	offsite	off-domain (google.com)	json-ld	https://www.thechapel.at/
+the-chapel-vienna	The Chapel	Austria	Vienna	support@trustindex.io	offsite	off-domain (trustindex.io)	json-ld	https://www.thechapel.at/
+englhof-cocktailbar-zell-am-ziller	Englhof Cocktailbar	Austria	Zell am Ziller	info@englhof.at	venue	the venue's own domain	json-ld	https://www.englhof.at/
+the-baxter-inn	The Baxter Inn	Australia	Sydney	events@swillhouse.com	venue	the venue's own domain	form-config	https://swillhouse.com/privacy-policy
+dino-s-apothecary-bar-vienna	Dino's Apothecary Bar	Austria	Vienna	info@dinos.at	venue	the venue's own domain	form-config	https://www.dinos.at/
+el-baron-cafe	El Baron Cafe	Colombia	Cartagena	cafe@elbaron.co	venue	the venue's own domain	json-ld	https://elbaron.co/
+el-baron-cafe	El Baron Cafe	Colombia	Cartagena	usuario@dominio.com	offsite	off-domain (dominio.com)	page-text	https://elbaron.co/
+la-sala-de-laura	La Sala de Laura	Colombia	Bogotá	reservas@restauranteleo.com	offsite	off-domain (restauranteleo.com)	page-text	https://lasaladelaura.com/
+sky-leme-rooftop-lounge	Sky Leme	Brazil	Rio de Janeiro	hb205-re@accor.com	group	accor group or hotel inbox	json-ld	https://all.accor.com/hotel/B205/index.en.shtml
+sky-leme-rooftop-lounge	Sky Leme	Brazil	Rio de Janeiro	assistance.reservation@accor.com	group	accor group or hotel inbox	page-text	https://all.accor.com/web-accessibility/index.en.shtml
+sky-leme-rooftop-lounge	Sky Leme	Brazil	Rio de Janeiro	referent.accessibilite@accor.com	group	accor group or hotel inbox	page-text	https://all.accor.com/web-accessibility/index.en.shtml
+sky-leme-rooftop-lounge	Sky Leme	Brazil	Rio de Janeiro	thalassa@accor-customercare.com	offsite	off-domain (accor-customercare.com)	page-text	https://all.accor.com/information/legal/internet-sales-conditions.en.shtml
+sky-leme-rooftop-lounge	Sky Leme	Brazil	Rio de Janeiro	data.privacy@adagio-city.com	offsite	off-domain (adagio-city.com)	form-config	https://all.accor.com/information/legal/adagio-sales-conditions.en.shtml
+sky-leme-rooftop-lounge	Sky Leme	Brazil	Rio de Janeiro	contact.adagio@adagio-city.com	offsite	off-domain (adagio-city.com)	page-text	https://all.accor.com/information/legal/adagio-sales-conditions.en.shtml
+sky-leme-rooftop-lounge	Sky Leme	Brazil	Rio de Janeiro	data.privacy@accor.com	group	accor group or hotel inbox	form-config	https://all.accor.com/information/legal/data-protection.en.shtml
+sky-leme-rooftop-lounge	Sky Leme	Brazil	Rio de Janeiro	privacy.au@accor.com	group	accor group or hotel inbox	form-config	https://all.accor.com/information/legal/data-protection.en.shtml
+sky-leme-rooftop-lounge	Sky Leme	Brazil	Rio de Janeiro	china.dataprivacy.team@accor.com	group	accor group or hotel inbox	form-config	https://all.accor.com/information/legal/data-protection.en.shtml
+nautilus	Nautilus	Colombia	Cartagena	contact@nautilusrestaurante.co	venue	the venue's own domain	cloudflare-obfuscated	https://nautilusrestaurante.co/aviso-legal
+alenka-cocktail-bar-prague	Alenka Cocktail Bar	Czech Republic	Prague	info@thealice.cz	offsite	off-domain (thealice.cz)	form-config	https://alenkacocktailbar.cz/
+alenka-cocktail-bar-prague	Alenka Cocktail Bar	Czech Republic	Prague	info@mysite.com	offsite	off-domain (mysite.com)	form-config	https://alenkacocktailbar.cz/
+alenka-cocktail-bar-prague	Alenka Cocktail Bar	Czech Republic	Prague	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://alenkacocktailbar.cz/
+alenka-cocktail-bar-prague	Alenka Cocktail Bar	Czech Republic	Prague	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://alenkacocktailbar.cz/
+alenka-cocktail-bar-prague	Alenka Cocktail Bar	Czech Republic	Prague	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://alenkacocktailbar.cz/
+the-monkey-bar-prague	The Monkey Bar	Czech Republic	Prague	hello@monkeybarprague.com	venue	the venue's own domain	form-config	https://monkeybarprague.com/
+bird-downtown-copenhagen	Bird Downtown	Denmark	Copenhagen	tricks@birdcph.dk	venue	the venue's own domain	page-text	https://birdcph.dk/
+nimb-bar-copenhagen	Nimb Bar	Denmark	Copenhagen	restaurantbooking@nimb.dk	venue	the venue's own domain	json-ld	https://www.nimb.dk/restaurant-bar/nimb-bar
+nimb-bar-copenhagen	Nimb Bar	Denmark	Copenhagen	concierge@nimb.dk	venue	the venue's own domain	form-config	https://www.nimb.dk/restaurant-bar/nimb-bar
+nu-odense	Nu	Denmark	Odense	kontakt@bar-nu.dk	venue	the venue's own domain	page-text	https://www.bar-nu.dk/
+bardem-helsinki	Bardem	Finland	Helsinki	hello@bardem.fi	venue	the venue's own domain	page-text	https://www.bardem.fi/
+the-firm-helsinki	The Firm	Finland	Helsinki	info@thebullandthefirm.fi	venue	the venue's own domain	form-config	https://thebullandthefirm.fi/
+the-firm-helsinki	The Firm	Finland	Helsinki	yhteydenotto@esimerkki.fi	offsite	off-domain (esimerkki.fi)	page-text	https://thebullandthefirm.fi/
+minus-one-bar	Minus One Bar	Czech Republic	Prague	w.prague.bf.reservations@whotels.com	group	whotels group or hotel inbox	json-ld	https://minusone.wprague.com/
+kupoli-helsinki	Kupoli	Finland	Helsinki	kupolibar@nh-hotels.com	group	nh-hotels group or hotel inbox	form-config	https://www.kupolibar.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	matthieu.b@experimentalcocktailclub.com	venue	the venue's own domain	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	reservation@chinatownecc.com	offsite	off-domain (chinatownecc.com)	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	reservation@experimentalcocktailclubnyc.com	offsite	off-domain (experimentalcocktailclubnyc.com)	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	ecc@palazzoexperimental.com	offsite	off-domain (palazzoexperimental.com)	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	bar@experimentalchalet.com	offsite	off-domain (experimentalchalet.com)	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	stay@cowleymanor.com	offsite	off-domain (cowleymanor.com)	form-config	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	adriatica@palazzoexperimental.com	offsite	off-domain (palazzoexperimental.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	amanda@plagebijou.com	offsite	off-domain (plagebijou.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	matt@cowleymanor.com	offsite	off-domain (cowleymanor.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	eventsibiza@expegroup.com	offsite	off-domain (expegroup.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	info@experimentalchalet.com	offsite	off-domain (experimentalchalet.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	ukevents@expegroup.com	offsite	off-domain (expegroup.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	olimpia.n@expegroup.com	offsite	off-domain (expegroup.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	experimental@experimental.com	offsite	off-domain (experimental.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	mathieu.c@experimentalchaletvaldisere.com	offsite	off-domain (experimentalchaletvaldisere.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	reservation@experimentalchalet.com	offsite	off-domain (experimentalchalet.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	event@experimentalmarais.com	offsite	off-domain (experimentalmarais.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	reservation@grandpigalle.com	offsite	off-domain (grandpigalle.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	events@grandsboulevardshotel.com	offsite	off-domain (grandsboulevardshotel.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	eat@henriettahotel.com	offsite	off-domain (henriettahotel.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	sales@reginaexperimental.com	offsite	off-domain (reginaexperimental.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	aaron@compagnienyc.com	offsite	off-domain (compagnienyc.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	mirna@expegroup.com	offsite	off-domain (expegroup.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	events@stereocoventgarden.com	offsite	off-domain (stereocoventgarden.com)	page-text	https://experimentalcocktailclub.com/
+experimental-cocktail-club	Experimental Cocktail Club	France	Paris	events@venue.com	offsite	off-domain (venue.com)	page-text	https://experimentalcocktailclub.com/
+symbiose	Symbiose	France	Bordeaux	contact@symbiose-bordeaux.fr	offsite	off-domain (symbiose-bordeaux.fr)	cloudflare-obfuscated	https://symbiose-bordeaux.com/
+front-back	Front/Back	Ghana	Accra	reservations@frontbackaccra.com	venue	the venue's own domain	form-config	https://frontbackaccra.com/
+front-back	Front/Back	Ghana	Accra	info@frontbackaccra.com	venue	the venue's own domain	page-text	https://frontbackaccra.com/
+little-red-door	Little Red Door	France	Paris	abc@xyz.com	offsite	off-domain (xyz.com)	page-text	https://lrdparis.com/
+barro-negro	Barro Negro	Greece	Athens	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://barronegroathens.com/
+avra-bar	Avra Bar	Greece	Athens	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+avra-bar	Avra Bar	Greece	Athens	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+avra-bar	Avra Bar	Greece	Athens	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+avra-bar	Avra Bar	Greece	Athens	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+avra-bar	Avra Bar	Greece	Athens	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+avra-bar	Avra Bar	Greece	Athens	reservations.athens@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/athens/contact-us/
+avra-bar	Avra Bar	Greece	Athens	concierge.athens@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/athens/contact-us/
+avra-bar	Avra Bar	Greece	Athens	fourseasonsjet@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privatejet/
+avra-bar	Avra Bar	Greece	Athens	shaunella.gaspar@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal/accessibility-policy/
+jin-bo-law	Jin Bo Law	Hong Kong	Hong Kong	events.kaitak@dorsetthotels.com	venue	the venue's own domain	form-config	https://www.dorsetthotels.com/dorsett-kai-tak/dining/jin-bo-law.html
+jin-bo-law	Jin Bo Law	Hong Kong	Hong Kong	info.kaitak@dorsetthotels.com	venue	the venue's own domain	form-config	https://www.dorsetthotels.com/dorsett-kai-tak/dining/jin-bo-law.html
+the-bar-in-front-of-the-bar	The Bar in Front of the Bar	Greece	Athens	info@dodgerblue-wallaby-526743.hostingersite.com	offsite	off-domain (dodgerblue-wallaby-526743.hostingersite.com)	page-text	https://thebarinfrontofthebar.gr/about
+socio	Socio	Hong Kong	Hong Kong	sociohkofficial@gmail.com	venue	free mailbox published on the venue's own site	json-ld	https://sociohk.com/
+caprice-bar	Caprice Bar	Hong Kong	Hong Kong	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+caprice-bar	Caprice Bar	Hong Kong	Hong Kong	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+caprice-bar	Caprice Bar	Hong Kong	Hong Kong	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+caprice-bar	Caprice Bar	Hong Kong	Hong Kong	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+caprice-bar	Caprice Bar	Hong Kong	Hong Kong	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+caprice-bar	Caprice Bar	Hong Kong	Hong Kong	res.hongkong@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/hongkong/contact-us/
+caprice-bar	Caprice Bar	Hong Kong	Hong Kong	dining.hkg@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/hongkong/contact-us/
+caprice-bar	Caprice Bar	Hong Kong	Hong Kong	spa.hkg@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/hongkong/contact-us/
+caprice-bar	Caprice Bar	Hong Kong	Hong Kong	cakeshop.hongkong@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/hongkong/contact-us/
+caprice-bar	Caprice Bar	Hong Kong	Hong Kong	argobar.hongkong@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/hongkong/meetings-and-events/events/
+the-diplomat	The Diplomat	Hong Kong	Hong Kong	info@thediplomat.hk	venue	the venue's own domain	page-text	https://thediplomat.hk/
+the-pontiac	The Pontiac	Hong Kong	Hong Kong	info@wearethepontiac.com	offsite	off-domain (wearethepontiac.com)	form-config	https://thepontiac.com/
+the-pontiac	The Pontiac	Hong Kong	Hong Kong	info@thepontiac.com	venue	the venue's own domain	form-config	https://thepontiac.com/
+the-pontiac	The Pontiac	Hong Kong	Hong Kong	nfo@wearethepontiac.com	offsite	off-domain (wearethepontiac.com)	page-text	https://thepontiac.com/
+the-pontiac	The Pontiac	Hong Kong	Hong Kong	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://thepontiac.com/
+the-pontiac	The Pontiac	Hong Kong	Hong Kong	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://thepontiac.com/
+darkside	Darkside	Hong Kong	Hong Kong	info@rosewoodhotelgroup.com	offsite	off-domain (rosewoodhotelgroup.com)	page-text	https://rosewoodhotels.com/contact
+darkside	Darkside	Hong Kong	Hong Kong	newzealand.groupsreservations@rosewoodhotels.com	group	rosewoodhotels group or hotel inbox	form-config	https://rosewoodhotels.com/en/events/wedding
+1920-lounge-dining	1920 Lounge & Dining	Indonesia	Jakarta	info@1920lounge.com	venue	the venue's own domain	json-ld	https://1920lounge.com/
+modernhaus	Modernhaus	Indonesia	Jakarta	info@uniongroupjakarta.com	venue	the venue's own domain	json-ld	https://uniongroupjakarta.com/brands/modernhaus/modernhaus-senopati
+carrots-bar	Carrots Bar	Indonesia	Jakarta	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.bar-carrots.com/
+carrots-bar	Carrots Bar	Indonesia	Jakarta	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.bar-carrots.com/
+carrots-bar	Carrots Bar	Indonesia	Jakarta	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.bar-carrots.com/
+carrots-bar	Carrots Bar	Indonesia	Jakarta	admin@wearecarrots.com	offsite	off-domain (wearecarrots.com)	form-config	https://www.bar-carrots.com/faq
+the-cocktail-club	The Cocktail Club	Indonesia	Jakarta	info@uniongroupjakarta.com	venue	the venue's own domain	json-ld	https://uniongroupjakarta.com/brands/the-cocktail-club/the-cocktail-club-senopati
+pony-and-plume	Pony & Plume	Macau	Macau	reservation@galaxymacau.com	venue	the venue's own domain	page-text	https://www.galaxymacau.com/dining/restaurants/pony-plume/
+nautilus-bar	Nautilus Bar	Indonesia	Jakarta	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+nautilus-bar	Nautilus Bar	Indonesia	Jakarta	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+nautilus-bar	Nautilus Bar	Indonesia	Jakarta	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+nautilus-bar	Nautilus Bar	Indonesia	Jakarta	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+nautilus-bar	Nautilus Bar	Indonesia	Jakarta	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+bar-trigona	Bar Trigona	Malaysia	Kuala Lumpur	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+bar-trigona	Bar Trigona	Malaysia	Kuala Lumpur	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+bar-trigona	Bar Trigona	Malaysia	Kuala Lumpur	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+bar-trigona	Bar Trigona	Malaysia	Kuala Lumpur	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+bar-trigona	Bar Trigona	Malaysia	Kuala Lumpur	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+bar-trigona	Bar Trigona	Malaysia	Kuala Lumpur	res.kualalumpur@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/kualalumpur/contact-us/
+bar-trigona	Bar Trigona	Malaysia	Kuala Lumpur	diningreservations.kualalumpur@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/kualalumpur/contact-us/
+bar-trigona	Bar Trigona	Malaysia	Kuala Lumpur	spa.kualalumpur@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/kualalumpur/contact-us/
+mecenas	Mecenas	Mexico	Guadalajara	usuario@dominio.com	offsite	off-domain (dominio.com)	page-text	https://www.mecenasbar.com/
+the-st-regis-bar	The St. Regis Bar	Macau	Macau	diningreservations.macao@stregis.com	group	stregis group or hotel inbox	json-ld	https://www.thestregisbarmacao.com/
+cafe-arixi	Café Arixi	Mexico	Mexico City	usuario@dominio.com	offsite	off-domain (dominio.com)	page-text	https://cafearixi.com/
+fifty-mils	Fifty Mils	Mexico	Mexico City	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+fifty-mils	Fifty Mils	Mexico	Mexico City	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+fifty-mils	Fifty Mils	Mexico	Mexico City	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+fifty-mils	Fifty Mils	Mexico	Mexico City	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+fifty-mils	Fifty Mils	Mexico	Mexico City	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+hanky-panky	Hanky Panky	Mexico	Mexico City	usuario@dominio.com	offsite	off-domain (dominio.com)	page-text	https://hankypanky.mx/
+amord3-bar-emocional	AMORD3	Mexico	Oaxaca	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.cozana.com.mx/amord3
+amord3-bar-emocional	AMORD3	Mexico	Oaxaca	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.cozana.com.mx/amord3
+amord3-bar-emocional	AMORD3	Mexico	Oaxaca	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.cozana.com.mx/amord3
+amord3-bar-emocional	AMORD3	Mexico	Oaxaca	derechosarco@grupocozana.com	offsite	off-domain (grupocozana.com)	form-config	https://www.cozana.com.mx/privacidad
+selva-oaxaca-cocktail-bar	Selva Oaxaca Cocktail Bar	Mexico	Oaxaca	usuario@dominio.com	offsite	off-domain (dominio.com)	page-text	https://selvaoaxaca.com/
+selva-oaxaca-cocktail-bar	Selva Oaxaca Cocktail Bar	Mexico	Oaxaca	rsvp.selva@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://selvaoaxaca.com/about
+selva-oaxaca-cocktail-bar	Selva Oaxaca Cocktail Bar	Mexico	Oaxaca	mydrink@artcocktailclub.com	offsite	off-domain (artcocktailclub.com)	page-text	https://selvaoaxaca.com/about
+bar-twentyseven	Bar TwentySeven	Netherlands	Amsterdam	info@defaulthotel.com	offsite	off-domain (defaulthotel.com)	form-config	https://bartwentyseven.com/
+bar-twentyseven	Bar TwentySeven	Netherlands	Amsterdam	info@hoteltwentyseven.com	offsite	off-domain (hoteltwentyseven.com)	page-text	https://bartwentyseven.com/privacy-policy
+svanen	Svanen	Norway	Oslo	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://svanenoslo.no/
+super-lyan	Super Lyan	Netherlands	Amsterdam	superlyan@kimptondewitthotel.com	offsite	off-domain (kimptondewitthotel.com)	form-config	https://superlyan.com/
+super-lyan	Super Lyan	Netherlands	Amsterdam	press@kimptondewitthotel.com	role	departmental mailbox (press@)	form-config	https://superlyan.com/
+sastrer-a-martinez	Sastrería Martinez	Peru	Lima	%20marketing@sastreriamartinez.com	venue	the venue's own domain	form-config	https://www.sastreriamartinez.com/
+100-maneiras-lisbon	100 Maneiras	Portugal	Lisbon	press@100maneiras.com	role	departmental mailbox (press@)	form-config	https://100maneiras.com/bar-de-cocktails/
+100-maneiras-lisbon	100 Maneiras	Portugal	Lisbon	info@restaurante100maneiras.com	offsite	off-domain (restaurante100maneiras.com)	page-text	https://100maneiras.com/bar-de-cocktails/
+100-maneiras-lisbon	100 Maneiras	Portugal	Lisbon	info@100maneiras.com	venue	the venue's own domain	page-text	https://100maneiras.com/bar-de-cocktails/
+maria-mezcal	María Mezcal	Peru	Lima	contacto@mariamezcal.com	offsite	off-domain (mariamezcal.com)	json-ld	https://mariamezcalbar.com/
+wing-lei-bar	Wing Lei Bar	Macau	Macau	dataprotection@wynnmacau.com	offsite	off-domain (wynnmacau.com)	page-text	https://www.wynnresortsmacau.com/en/wynn-palace/dining/wing-lei-bar
+wing-lei-bar	Wing Lei Bar	Macau	Macau	inquiries@wynnpalace.com	offsite	off-domain (wynnpalace.com)	json-ld	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	roomreservations@wynnpalace.com	offsite	off-domain (wynnpalace.com)	json-ld	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	hotelsales@wynnpalace.com	offsite	off-domain (wynnpalace.com)	json-ld	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	events@wynnpalace.com	offsite	off-domain (wynnpalace.com)	json-ld	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	inquiries@wynnmacau.com	offsite	off-domain (wynnmacau.com)	json-ld	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	roomreservations@wynnmacau.com	offsite	off-domain (wynnmacau.com)	json-ld	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	hotelsales@wynnmacau.com	offsite	off-domain (wynnmacau.com)	json-ld	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	spareservations@wynnmacau.com	offsite	off-domain (wynnmacau.com)	json-ld	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	+inquiries@wynnpalace.com	offsite	off-domain (wynnpalace.com)	form-config	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	+roomreservations@wynnpalace.com	offsite	off-domain (wynnpalace.com)	form-config	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	+hotelsales@wynnpalace.com	offsite	off-domain (wynnpalace.com)	form-config	https://www.wynnresortsmacau.com/contact-us
+wing-lei-bar	Wing Lei Bar	Macau	Macau	+events@wynnpalace.com	offsite	off-domain (wynnpalace.com)	form-config	https://www.wynnresortsmacau.com/contact-us
+espier-bar-stavanger	Espier Bar	Norway	Stavanger	%20espier@strawberry.no	offsite	off-domain (strawberry.no)	form-config	https://www.espier.no/
+espier-bar-stavanger	Espier Bar	Norway	Stavanger	espier@strawberry.no	offsite	off-domain (strawberry.no)	page-text	https://www.espier.no/
+ce-la-vi	Ce La Vi	Singapore	Singapore	events-sg@celavi.com	venue	the venue's own domain	cloudflare-obfuscated	https://sg.celavi.com/
+night-hawk	Night Hawk	Singapore	Singapore	hello@nighthawkbar.sg	offsite	off-domain (nighthawkbar.sg)	page-text	https://nighthawk.sg/
+fable	Fable	South Africa	Cape Town	info@fablecocktailbar.capetown	venue	the venue's own domain	form-config	https://fablecocktailbar.capetown/
+lobster-bar	Lobster Bar and Grill	Hong Kong	Hong Kong	hongkong@shangri-la.com	group	shangri-la group or hotel inbox	page-text	https://www.shangri-la.com/en/hongkong/islandshangrila/dining/bars-lounges/lobster-bar-and-grill/
+lobster-bar	Lobster Bar and Grill	Hong Kong	Hong Kong	enquiry.ir@shangri-la.com	group	shangri-la group or hotel inbox	form-config	https://www.shangri-la.com/group/investors/
+lobster-bar	Lobster Bar and Grill	Hong Kong	Hong Kong	jeffrey.tsang@shangri-la.com	group	shangri-la group or hotel inbox	form-config	https://www.shangri-la.com/group/investors/
+one-ninety	One-Ninety Bar	Singapore	Singapore	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+one-ninety	One-Ninety Bar	Singapore	Singapore	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+one-ninety	One-Ninety Bar	Singapore	Singapore	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+one-ninety	One-Ninety Bar	Singapore	Singapore	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+one-ninety	One-Ninety Bar	Singapore	Singapore	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+the-dark-horse	The Dark Horse	South Africa	Cape Town	info@darkhorsebar.co.za	venue	the venue's own domain	form-config	https://darkhorsebar.co.za/
+the-dark-horse	The Dark Horse	South Africa	Cape Town	info@blacksheeprestaurant.co.za	venue	the venue's own domain	form-config	https://darkhorsebar.co.za/
+the-gin-bar	The Gin Bar	South Africa	Cape Town	hello@theginbar.co.za	venue	the venue's own domain	form-config	https://theginbar.co.za/
+the-gin-bar	The Gin Bar	South Africa	Cape Town	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://theginbar.co.za/
+the-gin-bar	The Gin Bar	South Africa	Cape Town	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://theginbar.co.za/
+sin-tax	Sin + Tax	South Africa	Johannesburg	awe@sintaxbar.com	venue	the venue's own domain	form-config	https://sintaxbar.com/
+bar-bruno-goteborg	Bar Bruno	Sweden	Göteborg	hello@barbruno.se	venue	the venue's own domain	form-config	https://barbruno.se/
+talking-to-strangers	Talking To Strangers	South Africa	Cape Town	info@talkingtostrangersbar.com	offsite	off-domain (talkingtostrangersbar.com)	form-config	https://cocktailbarcapetowntalkingtostrangers.capetown/
+talking-to-strangers	Talking To Strangers	South Africa	Cape Town	nick@talkingtostrangersbar.com	offsite	off-domain (talkingtostrangersbar.com)	page-text	https://cocktailbarcapetowntalkingtostrangers.capetown/?page_id=126
+charles-h	Charles H	South Korea	Seoul	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+charles-h	Charles H	South Korea	Seoul	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+charles-h	Charles H	South Korea	Seoul	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+charles-h	Charles H	South Korea	Seoul	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+charles-h	Charles H	South Korea	Seoul	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+charles-h	Charles H	South Korea	Seoul	fourseasonsjet@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privatejet/
+charles-h	Charles H	South Korea	Seoul	shaunella.gaspar@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal/accessibility-policy/
+the-house-of-machines	The House of Machines	South Africa	Cape Town	orders@thehouseofmachines.com	venue	the venue's own domain	form-config	https://thehouseofmachines.com/privacy
+bar-hommage	Hommage	Sweden	Stockholm	bokning@delikatessenbistrobar.se	offsite	off-domain (delikatessenbistrobar.se)	form-config	https://hommage.se/
+eden-bar-ascona	Eden Bar	Switzerland	Ascona	info@edenroc.ch	venue	the venue's own domain	form-config	https://www.edenroc.ch/
+bar-les-trois-rois-basel	Bar Les Trois Rois	Switzerland	Basel	info@lestroisrois.com	venue	the venue's own domain	cloudflare-obfuscated	https://www.lestroisrois.com/
+bar-les-trois-rois-basel	Bar Les Trois Rois	Switzerland	Basel	reservation@lestroisrois.com	venue	the venue's own domain	page-text	https://www.lestroisrois.com/
+stjartilleriet	Stjärtilleriet	Sweden	Stockholm	info@restaurangartilleriet.se	offsite	off-domain (restaurangartilleriet.se)	form-config	https://stjartilleriet.se/
+othilia-stockholm	Othilia	Sweden	Stockholm	contact@barothilia.se	offsite	off-domain (barothilia.se)	form-config	https://operakallaren.se/othilia
+othilia-stockholm	Othilia	Sweden	Stockholm	frida.thornberg@nobis.se	offsite	off-domain (nobis.se)	form-config	https://operakallaren.se/othilia
+othilia-stockholm	Othilia	Sweden	Stockholm	gdpr@operakallaren.se	venue	the venue's own domain	page-text	https://operakallaren.se/privacy
+herz-basel	Herz	Switzerland	Basel	welcome@herzbasel.com	venue	the venue's own domain	form-config	https://www.herzbasel.com/
+herz-basel	Herz	Switzerland	Basel	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.herzbasel.com/
+herz-basel	Herz	Switzerland	Basel	18d2f96d279149989b95faf0a4b41882@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.herzbasel.com/
+herz-basel	Herz	Switzerland	Basel	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.herzbasel.com/
+herz-basel	Herz	Switzerland	Basel	e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.herzbasel.com/
+le-verre-a-monique-geneva	Le Verre à Monique	Switzerland	Geneva	monique@verreamonique.ch	venue	the venue's own domain	form-config	https://www.verreamonique.ch/
+le-verre-a-monique-geneva	Le Verre à Monique	Switzerland	Geneva	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://www.verreamonique.ch/
+american-bar-chateau-gutsch-lucerne	American Bar Château Gütsch	Switzerland	Lucerne	info@chateau-guetsch.ch	venue	the venue's own domain	form-config	https://www.chateau-guetsch.ch/
+das-werk-8-basel	Das Werk 8	Switzerland	Basel	reservation@werkacht.ch	venue	the venue's own domain	form-config	https://www.werkacht.ch/
+bar-beau-rivage-palace-lausanne	Bar Beau-Rivage Palace	Switzerland	Lausanne	pic@brp.ch	venue	the venue's own domain	form-config	https://www.brp.ch/
+bar-beau-rivage-palace-lausanne	Bar Beau-Rivage Palace	Switzerland	Lausanne	cafe@brp.ch	venue	the venue's own domain	form-config	https://www.brp.ch/
+bar-beau-rivage-palace-lausanne	Bar Beau-Rivage Palace	Switzerland	Lausanne	kaigan@brp.ch	venue	the venue's own domain	form-config	https://www.brp.ch/
+bar-beau-rivage-palace-lausanne	Bar Beau-Rivage Palace	Switzerland	Lausanne	laterrasse@brp.ch	venue	the venue's own domain	form-config	https://www.brp.ch/
+bar-beau-rivage-palace-lausanne	Bar Beau-Rivage Palace	Switzerland	Lausanne	info@brp.ch	venue	the venue's own domain	form-config	https://www.brp.ch/
+lakeview-bar-cigar-lounge-obburgen	Lakeview Bar & Cigar Lounge	Switzerland	Obbürgen	information@burgenstockresort.com	venue	the venue's own domain	form-config	https://burgenstockresort.com/de/dining/lakeview-bar-und-cigar-lounge
+einstein-bar-st-gallen	Einstein Bar	Switzerland	St. Gallen	info@einstein.ch	venue	the venue's own domain	json-ld	https://www.einstein.ch/
+carlton-bar-lobby-saint-moritz	Carlton Bar & Lobby	Switzerland	Saint Moritz	info@carlton-stmoritz.ch	venue	the venue's own domain	form-config	https://www.carlton-stmoritz.ch/
+chedi-bar-living-room-andermatt	Chedi Bar & Living Room	Switzerland	Andermatt	reservations@chediandermatt.com	offsite	off-domain (chediandermatt.com)	cloudflare-obfuscated	https://www.thechediandermatt.com/
+chedi-bar-living-room-andermatt	Chedi Bar & Living Room	Switzerland	Andermatt	info@chediandermatt.com	offsite	off-domain (chediandermatt.com)	cloudflare-obfuscated	https://www.thechediandermatt.com/
+chedi-bar-living-room-andermatt	Chedi Bar & Living Room	Switzerland	Andermatt	concierge@chediandermatt.com	offsite	off-domain (chediandermatt.com)	json-ld	https://www.thechediandermatt.com/faq
+chedi-bar-living-room-andermatt	Chedi Bar & Living Room	Switzerland	Andermatt	hr@chediandermatt.com	role	departmental mailbox (hr@)	cloudflare-obfuscated	https://www.thechediandermatt.com/careers
+chedi-bar-living-room-andermatt	Chedi Bar & Living Room	Switzerland	Andermatt	events@chediandermatt.com	offsite	off-domain (chediandermatt.com)	cloudflare-obfuscated	https://www.thechediandermatt.com/meetings-events
+atelier-classic-bar-thun	Atelier Classic Bar	Switzerland	Thun	trinken@bar-atelier.ch	venue	the venue's own domain	form-config	https://www.bar-atelier.ch/
+canvas-bar-lounge-zurich	Canvas Bar & Lounge	Switzerland	Zurich	info@thedoldergrand.com	venue	the venue's own domain	form-config	https://www.thedoldergrand.com/
+bar-63-zurich	Bar 63	Switzerland	Zurich	info@bar63.ch	venue	the venue's own domain	page-text	https://www.bar63.ch/
+eden-bar-zurich	Eden Bar	Switzerland	Zurich	info@lareserve-zurich.com	venue	the venue's own domain	cloudflare-obfuscated	https://www.lareserve-zurich.com/
+dr-zhivago-zurich	Dr. Zhivago	Switzerland	Zurich	info@drzhivago.com	venue	the venue's own domain	form-config	https://www.drzhivago.com/about-us
+widder-bar	Widder Bar	Switzerland	Zurich	home@widderhotel.com	venue	the venue's own domain	cloudflare-obfuscated	https://www.widderhotel.com/en/eat-drink/widder-bar/
+widder-bar	Widder Bar	Switzerland	Zurich	reservations@widderhotel.com	venue	the venue's own domain	page-text	https://www.widderhotel.com/en/eat-drink/widder-bar/
+otro-cocktailbar-zrich	OTRO - Cocktailbar Zürich	Switzerland	Zurich	mail@otro.bar	venue	the venue's own domain	form-config	https://otro.bar/
+otro-cocktailbar-zrich	OTRO - Cocktailbar Zürich	Switzerland	Zurich	beispiel@mail.de	venue	free mailbox published on the venue's own site	page-text	https://otro.bar/
+ml-bkk	mL BKK	Thailand	Bangkok	hello@mlbkk.com	venue	the venue's own domain	form-config	https://mlbkk.com/
+rabbit-hole	Rabbit Hole	Thailand	Bangkok	info@rabbitholebkk.com	venue	the venue's own domain	form-config	https://rabbitholebkk.com/rabbitholegallery
+bkk-social-club	BKK Social Club	Thailand	Bangkok	guest.historian@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+bkk-social-club	BKK Social Club	Thailand	Bangkok	privacy.officer@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/privacy
+bkk-social-club	BKK Social Club	Thailand	Bangkok	info@privcom.gc.ca	offsite	off-domain (privcom.gc.ca)	page-text	https://www.fourseasons.com/privacy
+bkk-social-club	BKK Social Club	Thailand	Bangkok	ksadpo@fourseasons.com	group	fourseasons group or hotel inbox	page-text	https://www.fourseasons.com/privacy
+bkk-social-club	BKK Social Club	Thailand	Bangkok	copyright@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/legal
+bkk-social-club	BKK Social Club	Thailand	Bangkok	reservations.bangkok@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/bangkok/contact-us/
+bkk-social-club	BKK Social Club	Thailand	Bangkok	restaurantreservations.bangkok@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/bangkok/contact-us/
+bkk-social-club	BKK Social Club	Thailand	Bangkok	wellness.bangkok@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/bangkok/contact-us/
+bkk-social-club	BKK Social Club	Thailand	Bangkok	festive.bangkok@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.fourseasons.com/bangkok/contact-us/
+posino-taipei	Posino Taipei	Taiwan	Taipei	+claude-user@anthropic.com	offsite	off-domain (anthropic.com)	page-text	http://posino.webnode.tw/
+blind-tiger	Blind Tiger	United Arab Emirates	Dubai	jumeirahone@jumeirah.com	group	jumeirah group or hotel inbox	page-text	https://jumeirah.com/
+blind-tiger	Blind Tiger	United Arab Emirates	Dubai	contact@jumeirah.com	group	jumeirah group or hotel inbox	page-text	https://jumeirah.com/
+blind-tiger	Blind Tiger	United Arab Emirates	Dubai	reservations.jmh@jumeirah.com	group	jumeirah group or hotel inbox	page-text	https://jumeirah.com/
+blind-tiger	Blind Tiger	United Arab Emirates	Dubai	partner@agency.com	offsite	off-domain (agency.com)	page-text	https://jumeirah.com/
+blind-tiger	Blind Tiger	United Arab Emirates	Dubai	reservations@jumeirah.com	group	jumeirah group or hotel inbox	page-text	https://jumeirah.com/
+blind-tiger	Blind Tiger	United Arab Emirates	Dubai	xxxxxx@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://jumeirah.com/
+blind-tiger	Blind Tiger	United Arab Emirates	Dubai	sirius@jumeirah.sirius.com	group	jumeirah group or hotel inbox	page-text	https://jumeirah.com/
+blind-tiger	Blind Tiger	United Arab Emirates	Dubai	njumeirahone@jumeirah.com	group	jumeirah group or hotel inbox	page-text	https://jumeirah.com/
+clap-ongaku	Clap / Ongaku	United Arab Emirates	Dubai	info@claprestaurant.com	venue	the venue's own domain	page-text	https://claprestaurant.com/privacy
+amelia	Amelia	United Arab Emirates	Dubai	marketing@amelialounge.com	role	departmental mailbox (marketing@)	form-config	https://amelialounge.com/privacy
+amelia	Amelia	United Arab Emirates	Dubai	ameliaearhart@amelialounge.com	venue	the venue's own domain	page-text	https://amelialounge.com/contact
+saikindo	Saikindō	United Arab Emirates	Abu Dhabi	info@fourseasons.com	group	fourseasons group or hotel inbox	form-config	https://www.saikindo.com/private-events
+salmon-guru-dubai	Salmon Guru	United Arab Emirates	Dubai	info@salmonguru.es	venue	the venue's own domain	form-config	https://salmonguru.es/
+salmon-guru-dubai	Salmon Guru	United Arab Emirates	Dubai	eventos@salmonguru.es	venue	the venue's own domain	form-config	https://salmonguru.es/
+honeycomb-hi-fi	Honeycomb Hi-Fi	United Arab Emirates	Dubai	reservations@honeycombhifi.com	venue	the venue's own domain	page-text	https://honeycombhifi.com/
+85b-cocktail-bar	85B Cocktail Bar	Vietnam	Ho Chi Minh City	605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://85bcocktailbar.wixsite.com/saigon
+85b-cocktail-bar	85B Cocktail Bar	Vietnam	Ho Chi Minh City	88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com	offsite	off-domain (sentry-next.wixpress.com)	page-text	https://85bcocktailbar.wixsite.com/saigon
+85b-cocktail-bar	85B Cocktail Bar	Vietnam	Ho Chi Minh City	85bcocktailbar@gmail.com	venue	free mailbox published on the venue's own site	page-text	https://85bcocktailbar.wixsite.com/saigon/book-online
+paradiso-dubai	Paradiso	United Arab Emirates	Dubai	lopd@pacha.com	offsite	off-domain (pacha.com)	page-text	https://paradisodubai.com/privacy-policy
+paradiso-dubai	Paradiso	United Arab Emirates	Dubai	dpo@fiveglobalholdings.com	role	departmental mailbox (dpo@)	page-text	https://paradisodubai.com/privacy-policy
+firefly	Firefly	Thailand	Bangkok	foodandbeverage.sindhorn@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/en/sindhorn-hotel/restaurants-bars/firefly-bar
+firefly	Firefly	Thailand	Bangkok	info.sindhorn@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/en/sindhorn-hotel/restaurants-bars/firefly-bar
+firefly	Firefly	Thailand	Bangkok	reservations.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/en/sindhorn-hotel/restaurants-bars/firefly-bar
+firefly	Firefly	Thailand	Bangkok	info.development@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/en/sindhorn-hotel/restaurants-bars/firefly-bar
+firefly	Firefly	Thailand	Bangkok	pr.corporate@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/en/sindhorn-hotel/restaurants-bars/firefly-bar
+firefly	Firefly	Thailand	Bangkok	info.residences@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/en/sindhorn-hotel/restaurants-bars/firefly-bar
+firefly	Firefly	Thailand	Bangkok	contact@discoveryloyalty.com	offsite	off-domain (discoveryloyalty.com)	page-text	https://www.kempinski.com/en/sindhorn-hotel/restaurants-bars/firefly-bar
+firefly	Firefly	Thailand	Bangkok	data.privacy@kempinski.com	group	kempinski group or hotel inbox	cloudflare-obfuscated	https://www.kempinski.com/privacy-policy
+firefly	Firefly	Thailand	Bangkok	gso.frankfurt@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+firefly	Firefly	Thailand	Bangkok	gso.london@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+firefly	Firefly	Thailand	Bangkok	kempinski@tm-russia.ru	offsite	off-domain (tm-russia.ru)	page-text	https://www.kempinski.com/contact-us
+firefly	Firefly	Thailand	Bangkok	gso.usa@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+firefly	Firefly	Thailand	Bangkok	gso.dubai@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+firefly	Firefly	Thailand	Bangkok	gso.china@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+firefly	Firefly	Thailand	Bangkok	gso.india@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us
+firefly	Firefly	Thailand	Bangkok	gso.sea@kempinski.com	group	kempinski group or hotel inbox	page-text	https://www.kempinski.com/contact-us

@@ -171,3 +171,31 @@ terraza-verbena-barcelona  # hotel or operator group inbox the crawler class lis
 #   gucci-giardino   giardino@gucci.com
 #   la-commune       lacommune@syndicatcocktailclub.com
 #
+#
+# 2026-09-21, harvest pass 1 held list (task 99): recruitment mailbox, the
+# press@/events@ class. Found on the group's /career.html page.
+monkey-bar                 # resume@, a recruitment inbox at the operator (Olive Bar & Kitchen)  [resume@olivebarandkitchen.com]
+#
+# 2026-09-21, harvest pass 2 (task 99), the 378 outside the eight countries.
+# Bars whose only published address is a chain inbox. Note guest.historian@
+# fourseasons.com, one global corporate alias standing in for eight different
+# bars: proof that a hotel bar page often has no address of its own at all.
+#
+sky-leme-rooftop-lounge  # accor group or hotel inbox  [hb205-re@accor.com]
+minus-one-bar            # whotels group or hotel inbox  [w.prague.bf.reservations@whotels.com]
+kupoli-helsinki          # nh-hotels group or hotel inbox  [kupolibar@nh-hotels.com]
+avra-bar                 # fourseasons group or hotel inbox  [guest.historian@fourseasons.com]
+caprice-bar              # fourseasons group or hotel inbox  [guest.historian@fourseasons.com]
+darkside                 # rosewoodhotels group or hotel inbox  [newzealand.groupsreservations@rosewoodhotels.com]
+nautilus-bar             # fourseasons group or hotel inbox  [guest.historian@fourseasons.com]
+bar-trigona              # fourseasons group or hotel inbox  [guest.historian@fourseasons.com]
+the-st-regis-bar         # stregis group or hotel inbox  [diningreservations.macao@stregis.com]
+fifty-mils               # fourseasons group or hotel inbox  [guest.historian@fourseasons.com]
+lobster-bar              # shangri-la group or hotel inbox  [hongkong@shangri-la.com]
+one-ninety               # fourseasons group or hotel inbox  [guest.historian@fourseasons.com]
+charles-h                # fourseasons group or hotel inbox  [guest.historian@fourseasons.com]
+bkk-social-club          # fourseasons group or hotel inbox  [guest.historian@fourseasons.com]
+saikindo                 # fourseasons group or hotel inbox  [info@fourseasons.com]
+firefly                  # kempinski group or hotel inbox  [foodandbeverage.sindhorn@kempinski.com]
+modernhaus               # Union Group Jakarta operator inbox, shared by two bars  [info@uniongroupjakarta.com]
+the-cocktail-club        # Union Group Jakarta operator inbox, shared by two bars  [info@uniongroupjakarta.com]

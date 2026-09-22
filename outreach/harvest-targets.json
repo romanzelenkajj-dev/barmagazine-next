@@ -672,66 +672,6 @@
     "website": null
   },
   {
-    "slug": "atwater-cocktail-club",
-    "name": "Atwater Cocktail Club",
-    "email": null,
-    "city": "Montreal",
-    "country": "Canada",
-    "state": "QC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.atwatercocktailclub.com"
-  },
-  {
-    "slug": "bar-bello",
-    "name": "Bar Bello",
-    "email": null,
-    "city": "Montreal",
-    "country": "Canada",
-    "state": "QC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.barbellomtl.com"
-  },
-  {
-    "slug": "bar-bisou-bisou",
-    "name": "Bar Bisou Bisou",
-    "email": null,
-    "city": "Montreal",
-    "country": "Canada",
-    "state": "QC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.barbisoubisou.com"
-  },
-  {
-    "slug": "bootlegger-cocktail-bar-cuisine-montreal",
-    "name": "Bootlegger Cocktail Bar & Cuisine Montréal",
-    "email": null,
-    "city": "Montreal",
-    "country": "Canada",
-    "state": "QC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://barbootlegger.com"
-  },
-  {
-    "slug": "le-mal-necessaire",
-    "name": "Le Mal Nécessaire",
-    "email": null,
-    "city": "Montreal",
-    "country": "Canada",
-    "state": "QC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://lemalnecessaire.com"
-  },
-  {
     "slug": "linfme-tittle-tattle-cocktail-bar",
     "name": "L'infâme Tittle Tattle - Cocktail Bar",
     "email": null,
@@ -742,102 +682,6 @@
     "owner_id": null,
     "tier": "free",
     "website": null
-  },
-  {
-    "slug": "milky-way-cocktail-bar",
-    "name": "Milky Way Cocktail Bar",
-    "email": null,
-    "city": "Montreal",
-    "country": "Canada",
-    "state": "QC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://milkywaycocktails.com"
-  },
-  {
-    "slug": "the-cloakroom",
-    "name": "The Cloakroom",
-    "email": null,
-    "city": "Montreal",
-    "country": "Canada",
-    "state": "QC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://cloakroombarmtl.com"
-  },
-  {
-    "slug": "the-coldroom",
-    "name": "The Coldroom",
-    "email": null,
-    "city": "Montreal",
-    "country": "Canada",
-    "state": "QC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://thecoldroommtl.com"
-  },
-  {
-    "slug": "bar-banane",
-    "name": "Bar Banane",
-    "email": null,
-    "city": "Toronto",
-    "country": "Canada",
-    "state": "ON",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.barbanane.ca"
-  },
-  {
-    "slug": "bar-maaya-toronto",
-    "name": "Bar Maaya",
-    "email": null,
-    "city": "Toronto",
-    "country": "Canada",
-    "state": "ON",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://barmaaya.com"
-  },
-  {
-    "slug": "bar-mordecai",
-    "name": "Bar Mordecai",
-    "email": null,
-    "city": "Toronto",
-    "country": "Canada",
-    "state": "ON",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.barmordecai.com"
-  },
-  {
-    "slug": "bar-raval",
-    "name": "Bar Raval",
-    "email": null,
-    "city": "Toronto",
-    "country": "Canada",
-    "state": "ON",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.thisisbarraval.com"
-  },
-  {
-    "slug": "barchef",
-    "name": "BarChef",
-    "email": null,
-    "city": "Toronto",
-    "country": "Canada",
-    "state": "ON",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://barchef.com"
   },
   {
     "slug": "civil-liberties",
@@ -900,18 +744,6 @@
     "website": "https://www.sliceoflifebar.com"
   },
   {
-    "slug": "suite-115",
-    "name": "Suite 115",
-    "email": null,
-    "city": "Toronto",
-    "country": "Canada",
-    "state": "ON",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.suite115.ca"
-  },
-  {
     "slug": "bagheera",
     "name": "Bagheera",
     "email": null,
@@ -922,30 +754,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.bagheera.bar"
-  },
-  {
-    "slug": "bartholomew",
-    "name": "Bartholomew",
-    "email": null,
-    "city": "Vancouver",
-    "country": "Canada",
-    "state": "BC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://bartholomewbar.com"
-  },
-  {
-    "slug": "key-party",
-    "name": "Key Party",
-    "email": null,
-    "city": "Vancouver",
-    "country": "Canada",
-    "state": "BC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://narrowgroup.ca/project/key-party/"
   },
   {
     "slug": "laowai",
@@ -960,18 +768,6 @@
     "website": "https://laowai.ca"
   },
   {
-    "slug": "mount-pleasant-vintage-provisions",
-    "name": "Mount Pleasant Vintage & Provisions",
-    "email": null,
-    "city": "Vancouver",
-    "country": "Canada",
-    "state": "BC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.mtpleasant.bar/yvr/home"
-  },
-  {
     "slug": "the-515-bar",
     "name": "The 515 Bar",
     "email": null,
@@ -982,30 +778,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://the515bar.ca"
-  },
-  {
-    "slug": "the-boxcar-cocktail-bar",
-    "name": "The Boxcar Cocktail Bar",
-    "email": null,
-    "city": "Vancouver",
-    "country": "Canada",
-    "state": "BC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://boxcarvancouver.com"
-  },
-  {
-    "slug": "uva-wine-cocktail-bar",
-    "name": "Uva Wine & Cocktail Bar",
-    "email": null,
-    "city": "Vancouver",
-    "country": "Canada",
-    "state": "BC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://uvavancouver.com"
   },
   {
     "slug": "humboldt-bar",
@@ -1728,54 +1500,6 @@
     "website": "https://www.dasschwarzeschafbamberg.de/"
   },
   {
-    "slug": "fabelei-berlin",
-    "name": "FABELEI",
-    "email": null,
-    "city": "Berlin",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.fabelei.com"
-  },
-  {
-    "slug": "fairytale-bar-berlin",
-    "name": "Fairytale Bar",
-    "email": null,
-    "city": "Berlin",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.fairytale.bar"
-  },
-  {
-    "slug": "galander-charlottenburg-berlin",
-    "name": "Galander Charlottenburg",
-    "email": null,
-    "city": "Berlin",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.galander.berlin/galander-bar-charlottenburg/"
-  },
-  {
-    "slug": "krass-boser-wolf-berlin",
-    "name": "Krass Böser Wolf",
-    "email": null,
-    "city": "Berlin",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.krassboeserwolf.de/"
-  },
-  {
     "slug": "lamm-bar-berlin",
     "name": "Lamm Bar",
     "email": null,
@@ -1786,18 +1510,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "http://www.lammbar.de/"
-  },
-  {
-    "slug": "le-jardin-berlin",
-    "name": "Le Jardin",
-    "email": null,
-    "city": "Berlin",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "http://lejardin-bar.de/"
   },
   {
     "slug": "lobby-lounge-bar-berlin",
@@ -1836,42 +1548,6 @@
     "website": null
   },
   {
-    "slug": "friesenvierzig-cologne",
-    "name": "Friesenvierzig",
-    "email": null,
-    "city": "Cologne",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.friesen-bar.com"
-  },
-  {
-    "slug": "little-link-cologne",
-    "name": "Little Link",
-    "email": null,
-    "city": "Cologne",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.littlelink.de"
-  },
-  {
-    "slug": "ona-mor-cologne",
-    "name": "Ona Mor",
-    "email": null,
-    "city": "Cologne",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.onamor.de"
-  },
-  {
     "slug": "suderman-cologne",
     "name": "Suderman",
     "email": null,
@@ -1894,18 +1570,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.toddytapperbar.de"
-  },
-  {
-    "slug": "woods-cologne",
-    "name": "Woods",
-    "email": null,
-    "city": "Cologne",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.woods-cologne.de"
   },
   {
     "slug": "zest-and-spice-cologne",
@@ -1932,54 +1596,6 @@
     "website": "https://www.kempinski.com/de/hotel-taschenbergpalais/restaurants-bars/bar-1705"
   },
   {
-    "slug": "squarebar-dusseldorf",
-    "name": "Squarebar",
-    "email": null,
-    "city": "Düsseldorf",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.squarebar.online/"
-  },
-  {
-    "slug": "moloko-frankfurt-am-main",
-    "name": "moloko+",
-    "email": null,
-    "city": "Frankfurt am Main",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.moloko-am-meer.com"
-  },
-  {
-    "slug": "the-tiny-cup-frankfurt-am-main",
-    "name": "The Tiny Cup",
-    "email": null,
-    "city": "Frankfurt am Main",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.thetinycup.de"
-  },
-  {
-    "slug": "yaldy-frankfurt-am-main",
-    "name": "Yaldy",
-    "email": null,
-    "city": "Frankfurt am Main",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.yaldy.bar"
-  },
-  {
     "slug": "herbarium-bar-gottingen",
     "name": "Herbarium Bar",
     "email": null,
@@ -1990,42 +1606,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.freigeist-hotels.de/de/freigeist-hotels/freigeist-goettingen-innenstadt/essen-trinken/herbarium-bar/"
-  },
-  {
-    "slug": "ba-nomu-hamburg",
-    "name": "Bā Nomu",
-    "email": null,
-    "city": "Hamburg",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://nomu-hamburg.de"
-  },
-  {
-    "slug": "collab-bar-hamburg",
-    "name": "COLLAB Bar",
-    "email": null,
-    "city": "Hamburg",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.collab-bar.de"
-  },
-  {
-    "slug": "fontenay-bar-hamburg",
-    "name": "Fontenay Bar",
-    "email": null,
-    "city": "Hamburg",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.thefontenay.com"
   },
   {
     "slug": "jahreszeiten-bar-hamburg",
@@ -2064,18 +1644,6 @@
     "website": "https://puzzle-bar.de"
   },
   {
-    "slug": "the-chug-club-hamburg",
-    "name": "The Chug Club",
-    "email": null,
-    "city": "Hamburg",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://thechugclub.bar"
-  },
-  {
     "slug": "bar-martinelli-heidelberg",
     "name": "Bar Martinelli",
     "email": null,
@@ -2088,42 +1656,6 @@
     "website": "https://www.barmartinelli.com/"
   },
   {
-    "slug": "pino-s-bar-heidelberg",
-    "name": "Pino's Bar",
-    "email": null,
-    "city": "Heidelberg",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.959heidelberg.com"
-  },
-  {
-    "slug": "the-door-karlsruhe",
-    "name": "The Door",
-    "email": null,
-    "city": "Karlsruhe",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.the-door.bar"
-  },
-  {
-    "slug": "bar-seibert-kassel",
-    "name": "Bar Seibert",
-    "email": null,
-    "city": "Kassel",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.barseibert.de"
-  },
-  {
     "slug": "imperii-bar-leipzig",
     "name": "Imperii Bar",
     "email": null,
@@ -2134,42 +1666,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.imperii.de"
-  },
-  {
-    "slug": "charles-bar-lutherstadt-wittenberg",
-    "name": "Charles Bar",
-    "email": null,
-    "city": "Lutherstadt Wittenberg",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.charlesbar.de"
-  },
-  {
-    "slug": "spiritus-mainz",
-    "name": "Spiritus",
-    "email": null,
-    "city": "Mainz",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.spiritus-mainz.de/"
-  },
-  {
-    "slug": "ihro-mannheim",
-    "name": "Ihro",
-    "email": null,
-    "city": "Mannheim",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.ihro-bar.de/"
   },
   {
     "slug": "sieferle-ko-bar-mannheim",
@@ -2196,18 +1692,6 @@
     "website": "https://www.rosewoodhotels.com"
   },
   {
-    "slug": "barroom-munich",
-    "name": "Barroom",
-    "email": null,
-    "city": "Munich",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.barroom-muenchen.de"
-  },
-  {
     "slug": "call-soul-munich",
     "name": "Call Soul",
     "email": null,
@@ -2218,18 +1702,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.callsoul-breakingbar.de"
-  },
-  {
-    "slug": "die-goldene-bar-munich",
-    "name": "Die Goldene Bar",
-    "email": null,
-    "city": "Munich",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.goldenebar.de"
   },
   {
     "slug": "falk-s-bar-munich",
@@ -2278,66 +1750,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.schumanns.de"
-  },
-  {
-    "slug": "die-blume-von-hawaii-nuremberg",
-    "name": "Die Blume von Hawaii",
-    "email": null,
-    "city": "Nuremberg",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "http://blumevonhawaii.com/"
-  },
-  {
-    "slug": "hanky-panky-stuttgart",
-    "name": "Hanky Panky",
-    "email": null,
-    "city": "Stuttgart",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.hanky-panky.net"
-  },
-  {
-    "slug": "jigger-spoon-stuttgart",
-    "name": "Jigger & Spoon",
-    "email": null,
-    "city": "Stuttgart",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://jiggerandspoon.de"
-  },
-  {
-    "slug": "weisses-ross-bar-stuttgart",
-    "name": "Weisses Ross Bar",
-    "email": null,
-    "city": "Stuttgart",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://buntes-pferd.de"
-  },
-  {
-    "slug": "bartista-tubingen",
-    "name": "Bartista",
-    "email": null,
-    "city": "Tübingen",
-    "country": "Germany",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.bartista.de"
   },
   {
     "slug": "front-back",
@@ -2736,18 +2148,6 @@
     "website": "https://www.theleela.com/the-leela-palace-bengaluru/restaurants/the-library-bar"
   },
   {
-    "slug": "prost-brew-pub",
-    "name": "Prost Brew Pub",
-    "email": null,
-    "city": "Bengaluru",
-    "country": "India",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.prost.in/bangalore.html"
-  },
-  {
     "slug": "soka",
     "name": "Soka",
     "email": null,
@@ -2818,42 +2218,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.fourseasons.com/mumbai/dining/lounges/aer/"
-  },
-  {
-    "slug": "bombay-cocktail-bar",
-    "name": "Bombay Cocktail Bar",
-    "email": null,
-    "city": "Mumbai",
-    "country": "India",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://bcb-bombaycocktailbar.com"
-  },
-  {
-    "slug": "eau-bar",
-    "name": "Eau Bar",
-    "email": null,
-    "city": "Mumbai",
-    "country": "India",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.oberoihotels.com/hotels-in-mumbai/restaurants/eau-bar/"
-  },
-  {
-    "slug": "harbour-bar",
-    "name": "Harbour Bar",
-    "email": null,
-    "city": "Mumbai",
-    "country": "India",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants"
   },
   {
     "slug": "idoru",
@@ -2952,18 +2316,6 @@
     "website": null
   },
   {
-    "slug": "cirrus-9",
-    "name": "Cirrus 9",
-    "email": null,
-    "city": "New Delhi",
-    "country": "India",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.oberoihotels.com/hotels-in-delhi/restaurants/cirrus9/"
-  },
-  {
     "slug": "cocktails-dreams",
     "name": "Cocktails & Dreams",
     "email": null,
@@ -3022,18 +2374,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://mybarindia.com/my-bar-headquarters-cp/"
-  },
-  {
-    "slug": "sidecar",
-    "name": "Sidecar",
-    "email": null,
-    "city": "New Delhi",
-    "country": "India",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.sidecarindia.com"
   },
   {
     "slug": "sly-granny",
@@ -3300,18 +2640,6 @@
     "website": null
   },
   {
-    "slug": "barrier",
-    "name": "Barrier",
-    "email": null,
-    "city": "Bergamo",
-    "country": "Italy",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.barbarrier.com"
-  },
-  {
     "slug": "sentaku-izakaya",
     "name": "Sentaku Izakaya",
     "email": null,
@@ -3444,18 +2772,6 @@
     "website": "https://quantobastalecce.com"
   },
   {
-    "slug": "1930",
-    "name": "1930",
-    "email": null,
-    "city": "Milan",
-    "country": "Italy",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.farmilygroup.com/locali"
-  },
-  {
     "slug": "bar-basso",
     "name": "Bar Basso",
     "email": null,
@@ -3478,18 +2794,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://bydrinc.com"
-  },
-  {
-    "slug": "mag-cafe",
-    "name": "Mag i Navigli",
-    "email": null,
-    "city": "Milan",
-    "country": "Italy",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.farmilygroup.com/locali/mag"
   },
   {
     "slug": "monkey-cocktail-bar",
@@ -3658,18 +2962,6 @@
     "owner_id": null,
     "tier": "free",
     "website": null
-  },
-  {
-    "slug": "experimental-cocktail-club-venice",
-    "name": "Experimental Cocktail Club Venice",
-    "email": null,
-    "city": "Venice",
-    "country": "Italy",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://experimentalcocktailclub.com"
   },
   {
     "slug": "santa-cocktail-club-venezia",
@@ -3958,18 +3250,6 @@
     "owner_id": null,
     "tier": "free",
     "website": null
-  },
-  {
-    "slug": "liquid-factory",
-    "name": "Liquid Factory",
-    "email": null,
-    "city": "Tokyo",
-    "country": "Japan",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.liquidworks-jpn.com/liquid-factory"
   },
   {
     "slug": "mori-bar",
@@ -5676,18 +4956,6 @@
     "website": "https://marlowe.bar/"
   },
   {
-    "slug": "martinez",
-    "name": "Martínez",
-    "email": null,
-    "city": "Barcelona",
-    "country": "Spain",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://martinezbarcelona.com"
-  },
-  {
     "slug": "morro-fi",
     "name": "Morro Fi",
     "email": null,
@@ -5748,30 +5016,6 @@
     "website": null
   },
   {
-    "slug": "terraza-verbena-barcelona",
-    "name": "Terraza Verbena",
-    "email": null,
-    "city": "Barcelona",
-    "country": "Spain",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.monumenthotel.com/es/gastronomia-verbena-terrace/"
-  },
-  {
-    "slug": "the-alchemix",
-    "name": "The Alchemix",
-    "email": null,
-    "city": "Barcelona",
-    "country": "Spain",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://thealchemix.com"
-  },
-  {
     "slug": "two-schmucks",
     "name": "Two Schmucks",
     "email": null,
@@ -5820,18 +5064,6 @@
     "website": null
   },
   {
-    "slug": "bar-cock-madrid",
-    "name": "Bar Cock",
-    "email": null,
-    "city": "Madrid",
-    "country": "Spain",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.barcock.com"
-  },
-  {
     "slug": "del-diego",
     "name": "Del Diego",
     "email": null,
@@ -5866,18 +5098,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://lasantoria.com"
-  },
-  {
-    "slug": "momus",
-    "name": "Momus",
-    "email": null,
-    "city": "Madrid",
-    "country": "Spain",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://momusbar.com/"
   },
   {
     "slug": "planta-baja-cocktail-bar",
@@ -5938,18 +5158,6 @@
     "owner_id": null,
     "tier": "free",
     "website": null
-  },
-  {
-    "slug": "rudi-s-marbella",
-    "name": "Rudi's",
-    "email": null,
-    "city": "Marbella",
-    "country": "Spain",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.marbellaclub.com/es/gastro/rudi-s"
   },
   {
     "slug": "moonlight-experimental-bar",
@@ -6984,30 +6192,6 @@
     "website": "https://passingfanciesbar.co.uk"
   },
   {
-    "slug": "the-milk-thistle",
-    "name": "The Milk Thistle",
-    "email": null,
-    "city": "Bristol",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://milkthistlebristol.com"
-  },
-  {
-    "slug": "lab-22",
-    "name": "Lab 22",
-    "email": null,
-    "city": "Cardiff",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://lab22cardiff.com"
-  },
-  {
     "slug": "bramble",
     "name": "Bramble",
     "email": null,
@@ -7030,18 +6214,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://headsandtalesbar.com"
-  },
-  {
-    "slug": "nauticus-bar",
-    "name": "Nauticus",
-    "email": null,
-    "city": "Edinburgh",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.nauticusbar.co.uk"
   },
   {
     "slug": "the-absent-ear",
@@ -7092,78 +6264,6 @@
     "website": "https://www.cahoots.co.uk"
   },
   {
-    "slug": "connaught-bar",
-    "name": "Connaught Bar",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "top10",
-    "website": "https://the-connaught.co.uk"
-  },
-  {
-    "slug": "dukes",
-    "name": "Dukes",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.dukeshotel.com/dukesbar.html"
-  },
-  {
-    "slug": "equal-parts",
-    "name": "Equal Parts",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://equalpartslondon.com"
-  },
-  {
-    "slug": "flipdog",
-    "name": "FlipDog",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://flipdog.uk"
-  },
-  {
-    "slug": "homeboy-bar",
-    "name": "Homeboy Bar",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://homeboybar.com"
-  },
-  {
-    "slug": "kol-mezcaleria",
-    "name": "Kol Mezcalería",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://kolrestaurant.com"
-  },
-  {
     "slug": "kwant",
     "name": "Kwãnt",
     "email": null,
@@ -7174,18 +6274,6 @@
     "owner_id": null,
     "tier": "top10",
     "website": "https://kwantmayfair.com"
-  },
-  {
-    "slug": "laki-kane",
-    "name": "Laki Kane",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://lakikane.com"
   },
   {
     "slug": "little-mercies",
@@ -7200,18 +6288,6 @@
     "website": "https://littlemercies.co.uk"
   },
   {
-    "slug": "lounge-bohemia",
-    "name": "Lounge Bohemia",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://loungebohemia.com"
-  },
-  {
     "slug": "punch-room",
     "name": "Punch Room",
     "email": null,
@@ -7222,30 +6298,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.editionhotels.com/london/restaurants-and-bars/punch-room/"
-  },
-  {
-    "slug": "sager-wilde",
-    "name": "Sager & Wilde",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.sagerandwilde.com"
-  },
-  {
-    "slug": "seed-library",
-    "name": "Seed Library",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.seedlibraryshoreditch.com"
   },
   {
     "slug": "sexy-fish",
@@ -7284,66 +6336,6 @@
     "website": "https://www.thesavoylondon.com/restaurants-and-bars/american-bar"
   },
   {
-    "slug": "the-bar-with-no-name",
-    "name": "The Bar With No Name",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.69colebrookerow.com"
-  },
-  {
-    "slug": "the-cocktail-trading-company",
-    "name": "The Cocktail Trading Company",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://thecocktailtradingco.com"
-  },
-  {
-    "slug": "the-fumoir-london",
-    "name": "The Fumoir",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.claridges.co.uk"
-  },
-  {
-    "slug": "the-little-scarlet-door",
-    "name": "The Little Scarlet Door",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://thelittlescarletdoor.co.uk"
-  },
-  {
-    "slug": "the-little-violet-door",
-    "name": "The Little Violet Door",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://thelittlevioletdoor.co.uk"
-  },
-  {
     "slug": "the-london-edition-lobby-bar",
     "name": "The London Edition Lobby Bar",
     "email": null,
@@ -7354,30 +6346,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.editionhotels.com/london/restaurants-and-bars/lobby-bar/"
-  },
-  {
-    "slug": "the-sun-tavern",
-    "name": "The Sun Tavern",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.thesuntavern.co.uk"
-  },
-  {
-    "slug": "three-sheets-soho",
-    "name": "Three Sheets Soho",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "top10",
-    "website": "https://threesheets-bar.com"
   },
   {
     "slug": "velvet-by-salvatore-calabrese",
@@ -7402,42 +6370,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.dorchestercollection.com/london/the-dorchester/dining/vesper-bar"
-  },
-  {
-    "slug": "waeska",
-    "name": "Waeska",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://themandrake.com/waeska-bar"
-  },
-  {
-    "slug": "zuma-london",
-    "name": "Zuma",
-    "email": null,
-    "city": "London",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.zumarestaurant.com/en/london"
-  },
-  {
-    "slug": "atlas-bar",
-    "name": "Atlas Bar",
-    "email": null,
-    "city": "Manchester",
-    "country": "United Kingdom",
-    "state": null,
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://atlasbarmanchester.com"
   },
   {
     "slug": "schofield-s-bar",
@@ -7476,18 +6408,6 @@
     "website": "https://www.barmargotatl.com/"
   },
   {
-    "slug": "himitsu",
-    "name": "Himitsu",
-    "email": null,
-    "city": "Atlanta",
-    "country": "United States",
-    "state": "GA",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://umiatlanta.com/himitsu"
-  },
-  {
     "slug": "redacted-basement-drink-parlor",
     "name": "Redacted Basement Drink Parlor",
     "email": null,
@@ -7510,18 +6430,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://thejamesroom.com/"
-  },
-  {
-    "slug": "the-rooftop-at-hotel-clermont",
-    "name": "The Rooftop at Hotel Clermont",
-    "email": null,
-    "city": "Atlanta",
-    "country": "United States",
-    "state": "GA",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.hotelclermont.com/rooftop"
   },
   {
     "slug": "ticonderoga-club",
@@ -7584,18 +6492,6 @@
     "website": "https://www.bogiesplace.com/"
   },
   {
-    "slug": "daiquiris-and-daisies-boston",
-    "name": "Daiquiris & Daisies",
-    "email": null,
-    "city": "Boston",
-    "country": "United States",
-    "state": "MA",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "top10",
-    "website": "https://www.highstreetplace.com/food-and-beverage/daiquiris-daisies/"
-  },
-  {
     "slug": "equal-measure-boston",
     "name": "Equal Measure",
     "email": null,
@@ -7606,18 +6502,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://equalmeasurebos.com"
-  },
-  {
-    "slug": "extra-dirty-cocktail-club-boston",
-    "name": "Extra Dirty",
-    "email": null,
-    "city": "Boston",
-    "country": "United States",
-    "state": "MA",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.extradirtynorthend.com"
   },
   {
     "slug": "merai-brookline-boston",
@@ -7776,18 +6660,6 @@
     "website": null
   },
   {
-    "slug": "bgc-denver",
-    "name": "B&GC",
-    "email": null,
-    "city": "Denver",
-    "country": "United States",
-    "state": "CO",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "top10",
-    "website": "https://www.halcyonhotelcherrycreek.com/"
-  },
-  {
     "slug": "death-and-co-denver",
     "name": "Death & Co Denver",
     "email": null,
@@ -7824,18 +6696,6 @@
     "website": null
   },
   {
-    "slug": "candy-bar-detroit",
-    "name": "Candy Bar",
-    "email": null,
-    "city": "Detroit",
-    "country": "United States",
-    "state": "MI",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://ash.world/dining/candy-bar/"
-  },
-  {
     "slug": "evening-bar-detroit",
     "name": "Evening Bar",
     "email": null,
@@ -7858,18 +6718,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://motorcitywine.com/"
-  },
-  {
-    "slug": "sugar-house",
-    "name": "Sugar House",
-    "email": null,
-    "city": "Detroit",
-    "country": "United States",
-    "state": "MI",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://sugarhousedetroit.com/"
   },
   {
     "slug": "anvil",
@@ -7944,18 +6792,6 @@
     "website": "https://refugehouston.com"
   },
   {
-    "slug": "goat-and-rabbit",
-    "name": "Goat & Rabbit",
-    "email": null,
-    "city": "Kansas City",
-    "country": "United States",
-    "state": "MO",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.gandrkc.com/"
-  },
-  {
     "slug": "in-good-company",
     "name": "In Good Company",
     "email": null,
@@ -7966,18 +6802,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://igckc.com/"
-  },
-  {
-    "slug": "percheron-rooftop-bar",
-    "name": "Percheron Rooftop Bar",
-    "email": null,
-    "city": "Kansas City",
-    "country": "United States",
-    "state": "MO",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://crossroadshotelkc.com/food-and-drink/percheron-rooftop-bar/"
   },
   {
     "slug": "swordfish-tom-s",
@@ -8100,18 +6924,6 @@
     "website": "https://superfrico.com"
   },
   {
-    "slug": "the-chandelier",
-    "name": "The Chandelier",
-    "email": null,
-    "city": "Las Vegas",
-    "country": "United States",
-    "state": "NV",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "top10",
-    "website": "https://cosmopolitanlasvegas.com"
-  },
-  {
     "slug": "the-vault",
     "name": "The Vault",
     "email": null,
@@ -8136,18 +6948,6 @@
     "website": "https://www.barlisla.com/"
   },
   {
-    "slug": "bar-next-door",
-    "name": "Bar Next Door",
-    "email": null,
-    "city": "Los Angeles",
-    "country": "United States",
-    "state": "CA",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://barnextdoor.com"
-  },
-  {
     "slug": "dan-sung-sa",
     "name": "Dan Sung Sa",
     "email": null,
@@ -8170,18 +6970,6 @@
     "owner_id": null,
     "tier": "top10",
     "website": "https://www.deathandcompany.com/location/dtla/"
-  },
-  {
-    "slug": "the-rosegold-saloon-los-angeles",
-    "name": "The Rosegold Saloon",
-    "email": null,
-    "city": "Los Angeles",
-    "country": "United States",
-    "state": "CA",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://therosegoldsaloon.com"
   },
   {
     "slug": "tiki-ti",
@@ -8268,18 +7056,6 @@
     "website": "https://betterdaysmiami.com"
   },
   {
-    "slug": "blackbird-ordinary",
-    "name": "Blackbird Ordinary",
-    "email": null,
-    "city": "Miami",
-    "country": "United States",
-    "state": "FL",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://blackbirdordinarymiami.com"
-  },
-  {
     "slug": "cafe-la-trova",
     "name": "Café La Trova",
     "email": null,
@@ -8302,18 +7078,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://fourseasons.com"
-  },
-  {
-    "slug": "lagniappe",
-    "name": "Lagniappe",
-    "email": null,
-    "city": "Miami",
-    "country": "United States",
-    "state": "FL",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://lagniappehouse.com"
   },
   {
     "slug": "lola-bar",
@@ -8424,30 +7188,6 @@
     "website": "https://www.pikoklounge.com/"
   },
   {
-    "slug": "public-domain",
-    "name": "Public Domain",
-    "email": null,
-    "city": "Minneapolis",
-    "country": "United States",
-    "state": "MN",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.publicdomainmpls.com/"
-  },
-  {
-    "slug": "st-genevieve",
-    "name": "St. Genevieve",
-    "email": null,
-    "city": "Minneapolis",
-    "country": "United States",
-    "state": "MN",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.stgmpls.com/"
-  },
-  {
     "slug": "the-cabana-club",
     "name": "The Cabana Club",
     "email": null,
@@ -8472,18 +7212,6 @@
     "website": "https://caneandtablenola.com"
   },
   {
-    "slug": "carousel-bar-lounge",
-    "name": "Carousel Bar & Lounge",
-    "email": null,
-    "city": "New Orleans",
-    "country": "United States",
-    "state": "LA",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "top10",
-    "website": "https://hotelmonteleone.com"
-  },
-  {
     "slug": "chandelier-bar",
     "name": "Chandelier Bar",
     "email": null,
@@ -8506,18 +7234,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://highgracenola.com"
-  },
-  {
-    "slug": "manolito",
-    "name": "Manolito",
-    "email": null,
-    "city": "New Orleans",
-    "country": "United States",
-    "state": "LA",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.manolitonola.com/"
   },
   {
     "slug": "melange-by-cali-sober",
@@ -8566,18 +7282,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.brennansneworleans.com/roost-bar/"
-  },
-  {
-    "slug": "the-will-the-way",
-    "name": "The Will & The Way",
-    "email": null,
-    "city": "New Orleans",
-    "country": "United States",
-    "state": "LA",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://thewillandtheway.com"
   },
   {
     "slug": "amor-y-amargo",
@@ -8698,18 +7402,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://shinjisbar.com"
-  },
-  {
-    "slug": "sir-henrys",
-    "name": "Sir Henry's",
-    "email": null,
-    "city": "New York",
-    "country": "United States",
-    "state": "NY",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://sirhenrysnyc.com"
   },
   {
     "slug": "the-portrait-bar",
@@ -8868,18 +7560,6 @@
     "website": "https://www.hazlewoodbar.com/"
   },
   {
-    "slug": "needle-and-thread-seattle",
-    "name": "Needle and Thread",
-    "email": null,
-    "city": "Seattle",
-    "country": "United States",
-    "state": "WA",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "top10",
-    "website": "https://tavernlaw.com/needle-thread"
-  },
-  {
     "slug": "paper-fan-seattle",
     "name": "Paper Fan Cocktail Bar",
     "email": null,
@@ -8916,18 +7596,6 @@
     "website": "https://zigzagseattle.com"
   },
   {
-    "slug": "wild-child-shawnee",
-    "name": "Wild Child",
-    "email": null,
-    "city": "Shawnee",
-    "country": "United States",
-    "state": "KS",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.wildchildkc.com/"
-  },
-  {
     "slug": "alter-ego",
     "name": "Alter Ego",
     "email": null,
@@ -8938,42 +7606,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.alteregotampa.com/"
-  },
-  {
-    "slug": "bar-terroir-tampa",
-    "name": "Bar Terroir",
-    "email": null,
-    "city": "Tampa",
-    "country": "United States",
-    "state": "FL",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.barterroir.co/"
-  },
-  {
-    "slug": "edge-rooftop-cocktail-lounge",
-    "name": "EDGE Rooftop Cocktail Lounge",
-    "email": null,
-    "city": "Tampa",
-    "country": "United States",
-    "state": "FL",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.epicureanhotel.com/taste/edge/"
-  },
-  {
-    "slug": "hotel-bar-tampa",
-    "name": "Hotel Bar",
-    "email": null,
-    "city": "Tampa",
-    "country": "United States",
-    "state": "FL",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "free",
-    "website": "https://www.hotelbartampa.com/"
   },
   {
     "slug": "jekyll-tampa",
@@ -9022,18 +7654,6 @@
     "owner_id": null,
     "tier": "free",
     "website": "https://www.floreriaatlanticodc.com"
-  },
-  {
-    "slug": "off-the-record-dc",
-    "name": "Off the Record",
-    "email": null,
-    "city": "Washington DC",
-    "country": "United States",
-    "state": "DC",
-    "claimed_at": null,
-    "owner_id": null,
-    "tier": "top10",
-    "website": "https://hayadams.com"
   },
   {
     "slug": "round-robin-bar",
