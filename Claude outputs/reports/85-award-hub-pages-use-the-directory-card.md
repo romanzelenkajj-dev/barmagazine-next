@@ -131,3 +131,148 @@ page would simply have lost its styling.
 Untouched and still flagged from earlier tasks: `cocktails-dreams` is in Gurugram not New
 Delhi, `tesouro` cannot be placed in Mumbai, `miss-t` may be closed, and
 `beogradski-koktel-klub`'s stored Instagram handle is dead.
+
+---
+
+# Round two: Roman's four changes
+
+Same branch, PR #73, still not merged.
+
+## 1. The integrity note
+
+No gold rule. Centred, 13px (down from 14), `--text-secondary`, no card
+background, and a 1px hairline above it instead of a colour beside it. Capped at
+620px so the centring has something to centre against on a wide screen.
+
+It now reads as a footnote to the intro, which is what it is, rather than as a
+box competing with the award results below it.
+
+## 2. Every accent left border, listed
+
+Grepped `src/` for `border-left`. Four live rules had the pattern, all in
+`globals.css`, and all four are changed:
+
+| Where | Was | Now | Visible on |
+|---|---|---|---|
+| `.awards-integrity` | 3px gold `#B08D3F` | gone, hairline above instead | the four award hubs |
+| `.article-body blockquote` | 3px `var(--accent)` | gone; radius closes on all four corners; **text upright, not italic** | any article with a quote |
+| `.dir-section-header--top10` | 3px gold `#C9A84C` | gone; gradient wash and gold icon stay | **nowhere today, see below** |
+| `.bar-status-notice` | 3px red `#8a2b2b` | 1px of the same red all the way round | a temporarily closed bar's profile |
+
+Two things worth knowing before you check them:
+
+**`.dir-section-header--top10` renders nowhere.** Its only consumer is
+`SectionHeader` in `BarDirectoryMap.tsx`, which carries an
+`eslint-disable-next-line @typescript-eslint/no-unused-vars` and has no callers.
+The rule is changed for consistency, but there is no page on which you can see
+the difference. Worth deciding separately whether that dead component should go.
+
+**The status notice kept a border, just not that one.** Removing the red bar
+outright left a pale pink paragraph that no longer read as a warning, and this is
+the only callout on the site carrying a fact a visitor can act on before
+travelling to a bar. A 1px hairline of the same red all round keeps the signal
+without the left-bar pattern. Say if you would rather it went entirely.
+
+**One left border deliberately not touched:** `src/lib/emails/welcome.ts` styles
+a `.expect-section` with a 3px left border. That is an HTML email, not site CSS;
+the pattern exists there because mail clients strip most of everything else, and
+changing it alters mail we send. Left alone.
+
+**Also fixed:** a comment above `.owner-upsell-strip` described it as using "the
+same border-left card language as the full offer card". The rule sets no border
+and the language no longer exists anywhere, so the comment was pointing at
+nothing.
+
+To check on the preview: any bar profile for Tayēr + Elementary, Juniper Bar,
+Baltazar or The Wise King shows the status notice. Blockquotes come from
+WordPress and **no article currently in the directory has one**, so I verified
+that rule by injecting a blockquote into a real article body and reading the
+computed style: 0px left border, 24px radius, beige, upright.
+
+## 3. The card
+
+Two defects, not one.
+
+**Cards in a row already matched at the edges.** The grid stretches them. What
+was ragged was the inside: a one-line name pushed its location line up while the
+two-line name beside it pushed its own down.
+
+**The name box is now always two lines tall**, so every location line in a row
+sits on the same baseline. Measured on the 50 Best hub at 1440px: card heights
+309/309/309, location-line tops 894/894/894, exactly equal.
+
+**Names too long for two lines drop one size.** Which names those are is decided
+at render from the name itself, so nothing reflows in front of the reader.
+
+The threshold is measured, not guessed. I served all 1,646 active bar names to
+the browser and wrapped each one in the real card box:
+
+| Box | Names needing a third line |
+|---|---|
+| hub grid, 241px at 21px | **1** |
+| tablet band, 249px at 16px | 0 |
+| mobile, one column | 0 |
+
+The one name is **"Cause Effect Cocktail Kitchen & Cape Brandy Bar"** (Cape Town,
+47 characters). The threshold is set at 42 rather than 47, because 46 fits and 47
+does not: the true boundary depends on where the words happen to break, and
+sitting on it would make the layout depend on luck. Four names are at or above
+42. `src/lib/card-name-fit.ts`, 7 tests, including BOP and the other two-line
+names as fixtures that must NOT be shrunk.
+
+**BOP (Bartenders of Pony) was never overflowing.** It wraps to two lines and
+used to sit beside one-line names, which is the raggedness the fixed box fixes.
+It stays at full size, and there is a test that says so.
+
+**Two bugs I introduced and caught while checking this**, both the same mistake:
+sizing the box with `calc(2em * ...)`. `em` resolves against each rule's own
+font-size, so the smaller variant computed a shorter box and pushed its location
+line 9px up, which is precisely the defect the change exists to remove. Then the
+same thing in the tablet band, where the base drops to 16px but the "one size
+down" variant was pinned at 17px and so was LARGER than the size it steps down
+from. Both are now custom properties, `--card-name-size` and `--card-name-box`,
+so the two move together. No new breakpoints; the tablet band already restyled
+this element.
+
+**One case the instruction does not cover.** On a city page in the 769-1024px
+band the card body is only 163px wide, and at that width the Cape Town name does
+not fit two lines even one size down. It clamps with an ellipsis: "Cause Effect
+Cocktail Kitchen & Cape Brandy...". One bar, one band, and the row stays aligned.
+Fitting it would need roughly 9px type, which is worse than the ellipsis.
+
+## 4. Ties sort photo, then tier, then name
+
+`compareHonoredBars` now orders equal-merit bars by photo, then tier, then name.
+
+**Sorting inside a section was not enough, and the screenshot is what showed it.**
+On Bartenders' Choice every category holds exactly one bar, so the twenty bars
+that tie on merit live in twenty separate sections; ordering within each one can
+never move anything, and the grid still opened on three placeholder cards. The
+page now re-sorts the merged cells whenever it flows a run of small sections into
+one grid. Bartenders' Choice opens on all six of its photographed bars:
+
+```
+Satan's Whiskers (Top 10)  Bar DECO  Elysian Budapest
+Mirror Bar                 Svanen    Taigen
+... then the fourteen placeholders
+```
+
+Satan's Whiskers leads on tier, the other five are alphabetical, exactly the
+requested order.
+
+**One thing to be aware of in the tier step.** `featured` is the paid
+subscription. I put editorial `top10` above it so a paid listing can never lead a
+row on this page, which would sit badly next to the integrity line directly
+above it. A paid bar still sorts above an untiered one. Only one active bar holds
+`featured`, so this is close to theoretical today; say if you would rather tier
+be ignored on the hubs entirely.
+
+## Gate
+
+`npm run verify`: **450 tests passed** (7 new), build clean, 832 pages.
+
+**Blast radius, since two of these reach past `/awards/[program]`:** the card
+change affects every city guide, `/bars`, the nearby block on profiles and the
+article bar lists; the blockquote and status-notice changes affect articles and
+profiles. That is what items 2 and 4 asked for, but it is wider than the standing
+"change only the hub" rule, so it is worth a look beyond the award pages.
