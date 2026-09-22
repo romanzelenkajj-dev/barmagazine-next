@@ -106,14 +106,21 @@ export default async function AwardProgramPage({ params }: { params: { program: 
         <header className="best-bars-hero">
           <span className="best-bars-kicker">Award hub</span>
           <h1>{program.name}</h1>
+          {/* The standing integrity block is gone from the hubs (Roman,
+              2026-09-21). A disclaimer set apart in its own box answered a
+              question nobody had asked and gave itself the weight of the
+              results it qualified. Bartenders' Choice keeps the point as one
+              clause inside the intro, because that is the hub where a reader
+              meets the word "Featured" on the cards themselves.
+
+              `.awards-integrity` STAYS IN THE CSS: /awards, the index page,
+              still uses it, and it is not a hub. */}
           <p className="best-bars-intro">
             {program.tagline} {barCount} bars in the BarMagazine directory hold recognition from this
             program. Every entry below is verified from the official published results and links to the
             bar&apos;s profile.
-          </p>
-          <p className="awards-integrity">
-            Recognition on this page is verified from official results and is never for sale. Paid
-            listings on BarMagazine cannot buy an award badge, a ranking, or a place here.
+            {program.slug === 'bartenders-choice'
+              && ' The award is editorial; Featured listings play no part in it.'}
           </p>
         </header>
 
