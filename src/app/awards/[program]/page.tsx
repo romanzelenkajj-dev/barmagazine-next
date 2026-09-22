@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { programBySlug, getProgramYears, getLiveAwardPrograms } from '@/lib/award-hubs';
+import { programBySlug, getProgramYears, getLiveAwardPrograms, compareHonoredBars } from '@/lib/award-hubs';
 import { placeLine } from '@/lib/city-location';
 import { DirectoryBarCard } from '@/components/DirectoryBarCard';
 import type { HonoredBar } from '@/lib/award-hubs';
@@ -144,6 +144,14 @@ export default async function AwardProgramPage({ params }: { params: { program: 
             const cells = section.bars.map(bar => ({ bar, kicker: section.label }));
             if (last && last.kind === 'flow') last.cells.push(...cells);
             else blocks.push({ kind: 'flow', cells });
+          });
+          // Merging sections merges their orders too. On Bartenders' Choice
+          // every category holds ONE bar, so the twenty bars that tie on merit
+          // live in twenty separate sections and sorting inside each one moves
+          // nothing: without this the grid still came out alphabetical by
+          // category and still led with placeholder cards.
+          blocks.forEach(block => {
+            if (block.kind === 'flow') block.cells.sort((x, y) => compareHonoredBars(x.bar, y.bar));
           });
           return (
             <section key={group.year} className="awards-year">

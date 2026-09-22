@@ -5,6 +5,7 @@ import { statusPill } from '@/lib/bar-status';
 import { hasFiftyBest } from '@/lib/accolades';
 import { placeLine } from '@/lib/city-location';
 import { safeHref } from '@/lib/safe-slug';
+import { isLongCardName } from '@/lib/card-name-fit';
 
 /**
  * The directory bar card: the one rendered on /bars/city/<slug>, and since
@@ -63,7 +64,12 @@ export function DirectoryBarCard({ bar, locationLine }: { bar: DirectoryCardBar;
         <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} status={statusPill(bar)} />
       </div>
       <div className="bar-dir-featured-body">
-        <h3 className="bar-dir-featured-name">{bar.name}</h3>
+        {/* The name box is always two lines tall so that every location line
+            in a row lands on the same baseline. A name that would need a
+            third line renders one size down instead of being clamped. */}
+        <h3 className={`bar-dir-featured-name${isLongCardName(bar.name) ? ' bar-dir-featured-name--long' : ''}`}>
+          {bar.name}
+        </h3>
         {location && (
           <span className="bar-dir-featured-location">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
