@@ -112,10 +112,6 @@ char-bar-minneapolis                 # address belongs to a different venue (But
 side-hustle-lounge                   # address belongs to a different venue (Mootz Pizza)  [managers@mootzpizza.com]
 moonglow-oakland                     # booking inbox of a different venue (Gold Palm)  [booking@goldpalmoakland.com]
 the-sidecar-at-the-tap               # parent brewery staff address (Town Hall Brewery)  [tjhaliburton@townhallbrewery.com]
-lyaness                              # venue alias on the hotel's domain, not the bar's own listed domain  [lyaness@seacontainerslondon.com]
-gold-bar                             # venue alias on the Edition hotels domain  [goldbar@editionhotels.com]
-gucci-giardino                       # venue alias on the Gucci corporate domain  [giardino@gucci.com]
-la-commune                           # venue alias on a sibling group domain, not the bar's own  [lacommune@syndicatcocktailclub.com]
 #
 # 2026-09-21, batch 18 eyeball, SECOND PASS (task 99).
 # Found by listing the email DOMAIN of every remaining candidate rather than
@@ -164,3 +160,14 @@ cirrus-9                   # hotel or operator group inbox the crawler class lis
 1930                       # hotel or operator group inbox the crawler class list missed  [backdoor43@farmilygroup.com]
 mag-cafe                   # hotel or operator group inbox the crawler class list missed  [backdoor43@farmilygroup.com]
 terraza-verbena-barcelona  # hotel or operator group inbox the crawler class list missed  [reservasrestaurantes@monumenthotel.com]
+#
+# 2026-09-21, UNPARKED by Roman in chat (task 99). Four venue-named mailboxes
+# on a group domain. His rule, stated plainly: a venue-named mailbox on a group
+# domain is a KEEP, because somebody at the venue reads it; only a GENERAL or
+# departmental group inbox is a park. Removed from this list and sent in batch
+# 18:
+#   lyaness          lyaness@seacontainerslondon.com
+#   gold-bar         goldbar@editionhotels.com
+#   gucci-giardino   giardino@gucci.com
+#   la-commune       lacommune@syndicatcocktailclub.com
+#
