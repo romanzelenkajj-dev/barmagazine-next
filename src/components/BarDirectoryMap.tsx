@@ -699,13 +699,13 @@ function GeoLabel({ geoCity, geoCountryCode }: { geoCity: string; geoCountryCode
   if (!geoCity && !geoCountryCode) return null;
   const location = geoCity || geoCountryCode;
   return (
-    <div className="dir-geo-label">
+    <span className="directory-sort-line dir-geo-label">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
         <circle cx="12" cy="10" r="3" />
       </svg>
       Sorted by proximity to <strong>{location}</strong>
-    </div>
+    </span>
   );
 }
 
@@ -1381,6 +1381,28 @@ export function BarDirectoryMapClient({
               belongs in the filter row rather than in the NearMeBar strip. A
               visitor landing on /bars from a search result had no way into
               MODE D at all, and no way out of it but editing the URL. */}
+          {/* The status line lives in the toolbar (task 116). It used to be a
+              bare line on the page background under the filters, and it
+              repeated the bar count the band already gives. Now: the result
+              count while a filter is on, otherwise the sort the page is
+              using, and nothing at all when there is nothing to say. */}
+          {isFilterFetching ? (
+            <span className="directory-sort-line">Loading…</span>
+          ) : isFiltering ? (
+            <span className="directory-sort-line">
+              {allFiltered.length.toLocaleString('en-US')} {allFiltered.length === 1 ? 'bar' : 'bars'} found
+            </span>
+          ) : userLat !== null && userLng !== null ? (
+            <span className="directory-sort-line dir-geo-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Sorted by distance from your location
+            </span>
+          ) : hasGeo ? (
+            <GeoLabel geoCity={geoCity} geoCountryCode={geoCountryCode} />
+          ) : null}
           <button
             type="button"
             className={`directory-near-btn${nearMode ? ' active' : ''}`}
@@ -1443,28 +1465,6 @@ export function BarDirectoryMapClient({
             ))}
             <button className="directory-filter-chip directory-filter-chip--clear" onClick={clearAll}>Clear all</button>
           </div>
-        )}
-      </div>
-
-      {/* ── Results count + geo label ── */}
-      <div className="directory-results-bar">
-        <span className="directory-count">
-          {isFilterFetching
-            ? 'Loading…'
-            : isFiltering
-            ? `${allFiltered.length} ${allFiltered.length === 1 ? 'bar' : 'bars'} found`
-            : `${totalBars || allFiltered.length} bars worldwide`}
-        </span>
-        {!isFiltering && (hasGeo || (userLat !== null && userLng !== null)) && (
-          userLat !== null && userLng !== null
-            ? <div className="dir-geo-label">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                Sorted by distance from your location
-              </div>
-            : <GeoLabel geoCity={geoCity} geoCountryCode={geoCountryCode} />
         )}
       </div>
 
