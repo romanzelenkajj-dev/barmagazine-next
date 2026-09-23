@@ -996,7 +996,7 @@ export function BarDirectoryMapClient({
       // matchesAllWords, not a contiguous includes(): this must agree with
       // the server filter in searchOrFilters, or it silently throws away the
       // rows that query just found.
-      const matchSearch = matchesAllWords(search, [bar.name, bar.country, ...searchTermsOf(bar)]);
+      const matchSearch = matchesAllWords(search, [bar.name, bar.search_terms, bar.country, ...searchTermsOf(bar)]);
       const matchCountry = !countryFilter || bar.country === countryFilter;
       const matchCity = !cityFilter || metroCityOf(bar) === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);
@@ -1016,7 +1016,7 @@ export function BarDirectoryMapClient({
       // matchesAllWords, not a contiguous includes(): this must agree with
       // the server filter in searchOrFilters, or it silently throws away the
       // rows that query just found.
-      const matchSearch = matchesAllWords(search, [bar.name, bar.country, ...searchTermsOf(bar)]);
+      const matchSearch = matchesAllWords(search, [bar.name, bar.search_terms, bar.country, ...searchTermsOf(bar)]);
       const matchCountry = !countryFilter || bar.country === countryFilter;
       const matchCity = !cityFilter || metroCityOf(bar) === cityFilter;
       const matchType = !typeFilter || bar.type === typeFilter || (bar.subtypes ?? []).includes(typeFilter);

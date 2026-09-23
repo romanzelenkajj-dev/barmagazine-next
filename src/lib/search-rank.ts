@@ -20,13 +20,34 @@ import { asciiFold } from './ascii-fold';
 export interface RankableHit {
   name: string;
   city: string;
+  /** bars.search_terms: the venue's other names, "|"-separated (task 108). */
+  search_terms?: string | null;
+}
+
+/**
+ * The names a hit answers to: its name plus every hand-entered search term.
+ * Each term ranks exactly as the name would, so a bar trading as "26" is a
+ * tier-0 hit for "26" and not a tier-4 straggler at the bottom of the list.
+ */
+export function searchNamesOf(hit: RankableHit): string[] {
+  const out = [hit.name];
+  if (hit.search_terms) {
+    hit.search_terms.split('|').forEach(t => { const s = t.trim(); if (s) out.push(s); });
+  }
+  return out;
 }
 
 export function searchTier(hit: RankableHit, foldedQuery: string): number {
-  const name = asciiFold(hit.name);
-  if (name.startsWith(foldedQuery)) return 0;
-  if (name.split(/\s+/).some(w => w.startsWith(foldedQuery))) return 1;
-  if (name.includes(foldedQuery)) return 2;
+  let best = 4;
+  searchNamesOf(hit).forEach(candidate => {
+    const name = asciiFold(candidate);
+    let tier = 4;
+    if (name.startsWith(foldedQuery)) tier = 0;
+    else if (name.split(/\s+/).some(w => w.startsWith(foldedQuery))) tier = 1;
+    else if (name.includes(foldedQuery)) tier = 2;
+    if (tier < best) best = tier;
+  });
+  if (best < 4) return best;
   if (asciiFold(hit.city).includes(foldedQuery)) return 3;
   return 4;
 }

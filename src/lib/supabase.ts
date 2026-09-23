@@ -51,6 +51,13 @@ export interface Bar {
   state?: string | null;
   /** Editorial neighborhood (bars.neighborhood, 2026-09-15); null on most rows. */
   neighborhood?: string | null;
+  /**
+   * The venue's other names, "|"-separated, entered by hand (bars.search_terms,
+   * task 108): "26 | Twenty Six Budapest | twentysixbudapest" on KAA° Mixology.
+   * Searched server-side (searchOrFilter) and client-side (matchesAllWords)
+   * and ranked as a name in the typeahead. Never rendered. Null on most rows.
+   */
+  search_terms?: string | null;
   lat: number | null;
   lng: number | null;
   /**

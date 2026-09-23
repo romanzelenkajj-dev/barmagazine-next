@@ -10,6 +10,8 @@ interface Hit {
   slug: string;
   name: string;
   city: string;
+  /** bars.search_terms, so the ranking treats the venue's other names as names (task 108). */
+  search_terms?: string | null;
 }
 
 /**
@@ -97,7 +99,7 @@ export function BarSearchTypeahead({
       // arrive in any order and may land in different columns.
       let sel = supabase
         .from('bars')
-        .select('slug, name, city')
+        .select('slug, name, city, search_terms')
         .eq('is_active', true);
       searchOrFilters(q).forEach(filter => { sel = sel.or(filter); });
       const { data, error } = await sel.order('name').limit(40);
