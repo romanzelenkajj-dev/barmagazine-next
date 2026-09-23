@@ -11,6 +11,7 @@ import { displayType, barTypeUnion } from '@/lib/bar-type';
 import type { Bar, MenuSection } from '@/lib/supabase';
 import { formatBarType, toUrlSlug } from '@/lib/utils';
 import { hasSlug } from '@/lib/safe-slug';
+import { splitHighlight } from '@/lib/menu-highlight';
 import { formatSpecials } from '@/lib/owner-fields';
 import type { Metadata } from 'next';
 import { BarProfileClient } from '@/components/BarProfileClient';
@@ -497,6 +498,24 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               )}
             </div>
         </div>
+
+        {/* The editorial pick on every profile that has one (Roman, task 115):
+            the same "Order this" block the best-bars cards carry, from the
+            first menu highlight, in the slot the paid Signature Serves section
+            takes on paid profiles. The full set of serves and the menu stay
+            paid-only below. */}
+        {!isPaid && bar.menu_highlights && bar.menu_highlights.length > 0 && (() => {
+          const serve = splitHighlight(bar.menu_highlights[0]);
+          return (
+            <div className="bar-v2-order">
+              <div className="best-bars-order">
+                <span className="best-bars-order-label">Order this</span>
+                <span className="best-bars-order-name">{serve.name}</span>
+                {serve.ingredients && <span className="best-bars-order-ingredients">{serve.ingredients}</span>}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Signature Serves — featured/premium/top10 tiers only */}
         {isPaid && bar.menu_highlights && bar.menu_highlights.length > 0 && (
