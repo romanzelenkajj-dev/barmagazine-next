@@ -1,3 +1,4 @@
+import { firstSentence } from '@/lib/first-sentence';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -70,12 +71,25 @@ type YearBlock =
   | { kind: 'section'; section: AwardSection }
   | { kind: 'flow'; cells: { bar: HonoredBar; kicker: string }[] };
 
-function AwardCard({ bar, kicker }: { bar: HonoredBar; kicker: string | null }) {
+function AwardCard({ bar, kicker, rank }: { bar: HonoredBar; kicker: string | null; rank?: number | null }) {
   return (
     <div className="awards-card">
       {kicker && <p className="awards-card-kicker">{kicker}</p>}
-      <DirectoryBarCard bar={bar} locationLine={placeLine(bar)} />
+      {/* The rank rides inside the card as a pill on the photo (task 112). */}
+      <DirectoryBarCard bar={bar} locationLine={placeLine(bar)} rankPill={rank != null ? `No. ${rank}` : null} />
     </div>
+  );
+}
+
+/* Year and list name in one slim white header row, the card style of the
+   rest of the page, so no heading sits bare on the page background (task
+   112). A flow block, which has no list name, gets the year alone. */
+function SectionHead({ year, label }: { year: number; label?: string }) {
+  return (
+    <h2 className="list-section-head">
+      <strong>{year}</strong>
+      {label && <span>{label}</span>}
+    </h2>
   );
 }
 
@@ -86,7 +100,6 @@ export default async function AwardProgramPage({ params }: { params: { program: 
   const years = await getProgramYears(program);
   if (years.length === 0) notFound();
 
-  const barCount = new Set(years.flatMap(y => y.sections.flatMap(s => s.bars.map(b => b.slug)))).size;
   const otherPrograms = (await getLiveAwardPrograms()).filter(p => p.program.slug !== program.slug);
 
   const breadcrumbLd = {
@@ -115,10 +128,11 @@ export default async function AwardProgramPage({ params }: { params: { program: 
 
               `.awards-integrity` STAYS IN THE CSS: /awards, the index page,
               still uses it, and it is not a hub. */}
+          {/* The band shows one whole sentence (task 112): the tagline's first.
+              The verification line and the bar count stay in the page
+              description for search; on the page the results speak. */}
           <p className="best-bars-intro">
-            {program.tagline} {barCount} bars in the BarMagazine directory hold recognition from this
-            program. Every entry below is verified from the official published results and links to the
-            bar&apos;s profile.
+            {firstSentence(program.tagline)}
             {program.slug === 'bartenders-choice'
               && ' The award is editorial; Featured listings play no part in it.'}
           </p>
@@ -162,25 +176,28 @@ export default async function AwardProgramPage({ params }: { params: { program: 
           });
           return (
             <section key={group.year} className="awards-year">
-              <h2>{group.year}</h2>
               {blocks.map((block, i) =>
                 block.kind === 'flow' ? (
-                  <div key={`flow-${i}`} className="directory-grid">
-                    {block.cells.map(({ bar, kicker }) => (
-                      <AwardCard key={`${bar.slug}-${kicker}`} bar={bar} kicker={kicker} />
-                    ))}
+                  <div key={`flow-${i}`} className="awards-section">
+                    <SectionHead year={group.year} />
+                    <div className="directory-grid">
+                      {block.cells.map(({ bar, kicker }) => (
+                        <AwardCard key={`${bar.slug}-${kicker}`} bar={bar} kicker={kicker} />
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   <div key={block.section.label} className="awards-section">
-                    <h3>{block.section.label}</h3>
+                    <SectionHead year={group.year} label={block.section.label} />
                     <div className="directory-grid">
                       {block.section.bars.map(bar => (
                         <AwardCard
                           key={`${bar.slug}-${block.section.label}`}
                           bar={bar}
-                          // The list name is already the heading above, so the
-                          // kicker carries what it does not: the rank.
-                          kicker={bar.entry.rank != null ? `No. ${bar.entry.rank}` : null}
+                          // The list name is in the header row, so the card
+                          // carries what it does not: the rank, as a pill.
+                          kicker={null}
+                          rank={bar.entry.rank}
                         />
                       ))}
                     </div>

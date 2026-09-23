@@ -1,3 +1,4 @@
+import { firstSentence } from '@/lib/first-sentence';
 import { HighlightedText } from '@/components/HighlightedText';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
@@ -143,7 +144,8 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
           <span className="best-bars-kicker">BarMagazine&rsquo;s pick &middot; {year}</span>
           {/* No number on a fallback page, matching the title. */}
           <h1>The {level.fellBack ? '' : `${bars.length} `}Best Bars in {match.city}</h1>
-          <p className="best-bars-intro">{intro}</p>
+          {/* The band shows the first sentence whole, never a clamped run (task 112). */}
+          <p className="best-bars-intro">{firstSentence(intro)}</p>
           <div className="best-bars-hero-links">
             {editorial?.articleSlug && (
               <Link href={`/${editorial.articleSlug}`} className="best-bars-hero-link best-bars-hero-link--primary">

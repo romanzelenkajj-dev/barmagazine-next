@@ -34,7 +34,13 @@ export interface DirectoryCardBar {
   status?: string | null;
 }
 
-export function DirectoryBarCard({ bar, locationLine }: { bar: DirectoryCardBar; locationLine?: string | null }) {
+export function DirectoryBarCard({ bar, locationLine, rankPill }: {
+  bar: DirectoryCardBar;
+  locationLine?: string | null;
+  /** A rank ("No. 1") as a small black pill in the photo's top-left corner,
+      the award hubs' addition (task 112). Same family as the status pills. */
+  rankPill?: string | null;
+}) {
   const imageUrl = bar.photos?.[0] ?? null;
   const isTop10 = bar.tier === 'top10';
   // Featured is the PAID subscription and nothing else. This used to read
@@ -59,6 +65,7 @@ export function DirectoryBarCard({ bar, locationLine }: { bar: DirectoryCardBar;
             <BarPlaceholder name={bar.name} type={bar.type} />
           )
         }
+        {rankPill && <span className="bar-dir-badge-pill bar-dir-rank-pill">{rankPill}</span>}
         {/* Status sits on the photo, matching the profile hero. The body is
             left for identity: name and location. */}
         <CardStatusPills top10={isTop10} fiftyBest={hasFiftyBest(bar.accolades)} featured={isFeatured} status={statusPill(bar)} />

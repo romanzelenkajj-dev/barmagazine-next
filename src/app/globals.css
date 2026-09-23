@@ -3299,14 +3299,13 @@ textarea.form-input {
   margin-bottom: 10px;
 }
 
-/* The one grey line: the counts on /bars, the intro elsewhere. Clamped to
-   two lines so a long city intro cannot grow the band. */
+/* The one grey line: the counts on /bars, the intro's first sentence
+   elsewhere (firstSentence(), task 112). Whole sentences only, so no clamp:
+   a line is never cut mid-sentence, and a long first sentence may run to a
+   second line. */
 .directory-hero-line,
 .directory-hero p {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .directory-hero-badge {
@@ -9209,10 +9208,7 @@ textarea.form-input {
   font-size: 14px;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.65);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  /* Whole sentences only (firstSentence()), never a clamp. */
 }
 .best-bars-hero .awards-integrity {
   color: rgba(255, 255, 255, 0.55);
@@ -9238,21 +9234,15 @@ textarea.form-input {
 .best-bars-hero-link--primary { background: #fff; color: #000; border-color: #fff; }
 .best-bars-hero-link:hover { border-color: var(--gold); color: var(--gold); }
 .best-bars-hero-link--primary:hover { background: var(--gold); color: #000; border-color: var(--gold); }
-/* On a phone the links scroll sideways on one row rather than wrapping, so
-   the band keeps its 160px. */
+/* On a phone the links wrap to a second row rather than running off the
+   screen (Roman, 2026-09-23); the band grows by that row where it happens. */
 @media (max-width: 768px) {
   .best-bars-hero-links {
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    flex-wrap: wrap;
     max-width: 100%;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
   }
-  .best-bars-hero-links::-webkit-scrollbar { display: none; }
   .best-bars-hero h1 { font-size: 24px; margin-bottom: 6px; }
-  /* One grey line on a phone (two on desktop), so a band with a links row
-     stays near 160. */
-  .best-bars-intro { font-size: 13px; -webkit-line-clamp: 1; }
+  .best-bars-intro { font-size: 13px; }
   .best-bars-kicker { margin-bottom: 8px; }
   /* Flush under the flat mobile header like the directory band: the page's
      32px top padding was a beige strip between header and band. */
@@ -10850,6 +10840,53 @@ textarea.form-input {
   font-weight: 600;
   color: var(--text-secondary);
   margin: 0 0 8px;
+}
+
+/* Section header row on list pages (task 112): year bold on the left, the
+   list name grey beside it, in the same white rounded card style as the rest
+   of the page, so no heading text sits bare on the page background. Also
+   used by the "Other award programs" / "More cities" blocks. */
+.list-section-head,
+.best-bars-cities > h2 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 12px;
+  padding: 12px 18px;
+  background: var(--bg-card);
+  border: 1px solid #e8e2d6;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.list-section-head strong {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.list-section-head span {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.best-bars-cities > h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* The rank pill on award-hub cards: top-left of the photo, black, the same
+   box as the status pills that sit bottom-left. */
+.bar-dir-rank-pill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 /* KEPT, BUT NO LONGER USED BY /awards/[program]. The hub pages now draw
