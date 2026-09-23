@@ -1,4 +1,4 @@
-# Task 120: city directory pages. Branch `preview/120-city-directory`, draft PR #83, NOT merged, 2026-09-23
+# Task 120: city directory pages. PR #83 MERGED 2026-09-23
 
 Preview URL in chat: /bars/city/palma-de-mallorca desktop and 390.
 
@@ -24,3 +24,14 @@ task 116 deleted the old `.directory-results-bar` rules, so the line had lost it
 The country pages' "53 bars in Spain" line had the same problem and takes the same row. Desktop:
 row 49px tall at 408, grid starts at 473; 390: row from 10 to 380px, no horizontal overflow.
 Nothing else on the page moved except the grid, which follows the row.
+
+## Roman's change before the merge: hand-written intro first
+
+A city with a hand-written intro (`src/lib/city-intros.ts`, 20 cities) shows its first sentence or
+two in the band (`firstSentences(intro, 2)`); the "Browse the N bars..." line is the fallback for
+every other city. The meta description follows the same rule: the two sentences when they fit 160
+characters, else the first sentence, else the generic line. London live: band shows both sentences,
+description carries the first (209 characters, longer than the 160 Google shows, by design of the
+intro). Palma de Mallorca: the count line in both. Merged into main; production build green; live
+checks passed on /bars/city/london, /bars/city/palma-de-mallorca, /bars/baba-au-rum (Order this in
+Plan Your Visit) and /bars (region tabs).

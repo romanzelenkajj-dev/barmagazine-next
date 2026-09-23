@@ -1,4 +1,4 @@
-# Task 118: the city-guide directory as one card with regions. Branch `preview/118-city-guides`, draft PR #82, NOT merged, 2026-09-23
+# Task 118: the city-guide directory as one card with regions. PR #82 MERGED 2026-09-23 (region tabs)
 
 Preview (Vercel SSO), build green:
 - https://barmagazine-next-git-previ-bb2df7-romanzelenkajj-7135s-projects.vercel.app/bars (desktop and 390)

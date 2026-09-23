@@ -1,4 +1,4 @@
-# Task 115: "Order this" on every profile with a pick. Branch `preview/115-order-this`, draft PR #80, NOT merged, 2026-09-23
+# Task 115: "Order this" on every profile with a pick. PR #80 MERGED 2026-09-23 (third Plan Your Visit column)
 
 Preview (Vercel SSO): https://barmagazine-next-git-previ-13ea7a-romanzelenkajj-7135s-projects.vercel.app
 
