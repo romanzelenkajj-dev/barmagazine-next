@@ -37,3 +37,12 @@ merge on Roman's go.
 
 This is also the origin of the standing rule now in SETUP.md: no text is ever rendered directly
 on the beige page background.
+
+## Rework 2 (Roman, same day): the third Plan Your Visit column
+
+The info card is back to how it was. The pick now rides in the black Plan Your Visit section as a
+third block after Opening hours and Find us: the same gold uppercase label ("Order this"), the
+drink name white and bold, the ingredients grey (#9a9284). A profile with a pick but no hours,
+address or phone still renders the section. Measured on Baba au Rum: three columns at 56 / 385 /
+715px on desktop, stacked on 390 with no overflow; The Loft (Featured) unchanged. PR #80 rebuilt,
+same preview URL; merge on Roman's go.
