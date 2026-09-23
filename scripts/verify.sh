@@ -45,6 +45,24 @@ echo "1/3  unit tests"
 npx vitest run || fail "tests"
 
 echo ""
+echo "1a/3 route budget: next.config.mjs must stay under 1,800 routes"
+# Vercel caps a deployment at 2,048 routes and counts every redirect, rewrite
+# and header rule in next.config.mjs. On 2026-09-23 the config reached 2,053
+# and every deployment failed with too_many_routes, main included. Per-bar
+# and merged-slug redirects now live in src/middleware.ts (uncounted); this
+# gate refuses the push long before the cap is back in reach.
+node --input-type=module -e '
+  const cfg = (await import("./next.config.mjs")).default;
+  const r = cfg.redirects ? await cfg.redirects() : [];
+  const rwRaw = cfg.rewrites ? await cfg.rewrites() : [];
+  const rw = Array.isArray(rwRaw) ? rwRaw.length : Object.values(rwRaw).reduce((n, a) => n + a.length, 0);
+  const h = cfg.headers ? await cfg.headers() : [];
+  const total = r.length + rw + h.length;
+  console.log(`     routes: ${total} (redirects ${r.length}, rewrites ${rw}, headers ${h.length}), cap 2048, gate 1800`);
+  if (total > 1800) { console.error(`ROUTE BUDGET EXCEEDED: ${total} > 1800. Slug redirects belong in src/middleware.ts.`); process.exit(1); }
+' || fail "route budget"
+
+echo ""
 echo "1b/3 award claims: descriptions must agree with accolade records"
 # A description that names an award the records do not back, or a year the
 # records do not hold, is a profile arguing with itself (task 102). Live read,

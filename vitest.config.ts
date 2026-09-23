@@ -1,6 +1,11 @@
 import { defineConfig } from 'vitest/config';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
+  // The app's `@/` alias (tsconfig paths), so a test can import a module that
+  // itself imports through the alias: src/middleware.ts does, and the slug
+  // redirect test (task 110) drives the real middleware.
+  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   // Disable PostCSS auto-discovery. Vite (which vitest builds on) otherwise
   // walks up looking for postcss.config.mjs and tries to resolve its plugins.
   // Our postcss.config references tailwindcss, which sometimes can't be

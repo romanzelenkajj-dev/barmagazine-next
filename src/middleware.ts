@@ -6,6 +6,22 @@ import {
 } from '@/lib/host-check';
 import { attachmentRedirectTarget } from '@/lib/attachment-redirect';
 import { CURRENCY_COOKIE, currencyFromCountry } from '@/lib/geo-currency';
+import { rootBarSlugsFrom, slugRedirectTarget } from '@/lib/slug-redirects';
+import generatedBarRedirects from '@/lib/bar-redirects.generated.json';
+
+/**
+ * Slug redirects that used to be next.config.mjs redirects() rules.
+ *
+ * Vercel caps a deployment at 2,048 routes and counts every config redirect.
+ * With one generated /{slug} -> /bars/{slug} rule per active bar the config
+ * reached 2,053 on 2026-09-23 and every deployment failed, main included
+ * (`too_many_routes`). The per-bar rules (scripts/generate-bar-redirects.mjs,
+ * still run in prebuild) and the merged-slug rules (src/lib/merged-slugs.ts)
+ * are served here instead, from static maps the route count never sees, as
+ * 301s to the same targets. The decision is in src/lib/slug-redirects.ts so
+ * the tests can pin every entry.
+ */
+const ROOT_BAR_SLUGS = rootBarSlugsFrom(generatedBarRedirects as { redirects?: { from?: string }[] });
 
 /**
  * Host canonicalization.
@@ -101,6 +117,20 @@ export function middleware(request: NextRequest) {
     // tag the response noindex too so any crawler that logs the non-canonical
     // URL (preview / *.vercel.app / branch deploy) is told not to index it.
     response.headers.set('X-Robots-Tag', 'noindex');
+    return response;
+  }
+
+  // Merged bar slugs and the WordPress-era root /{slug} listing URLs: 301 to
+  // the profile. Before the staging early-return so a preview deployment
+  // redirects exactly as production does (tagged noindex like everything
+  // else it serves).
+  const slugTarget = slugRedirectTarget(request.nextUrl.pathname, ROOT_BAR_SLUGS);
+  if (slugTarget) {
+    // A plain URL, not nextUrl.clone(): NextURL keeps the incoming trailing
+    // slash when the pathname is reassigned, and /bars/kwant/ must not be
+    // the target when trailingSlash is off.
+    const response = NextResponse.redirect(new URL(slugTarget + request.nextUrl.search, request.url), 301);
+    if (isStaging) response.headers.set('X-Robots-Tag', 'noindex, nofollow');
     return response;
   }
 
