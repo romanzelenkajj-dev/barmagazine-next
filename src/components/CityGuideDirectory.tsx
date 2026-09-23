@@ -55,6 +55,12 @@ export function CityGuideDirectory({
 
   return (
     <section className="city-guides">
+      {/* No-JS fallback: this runs during parse, before first paint. With
+          it, the stylesheet hides the inactive panels and the region
+          titles; without JavaScript every panel shows under its own
+          region title and the inert tab row stays hidden, so the page
+          still reads. */}
+      <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       <h2 className="city-guides-heading">{heading}</h2>
       <div className="city-guides-tabs" role="tablist" aria-label="Region">
         {groups.map(g => (
@@ -73,22 +79,25 @@ export function CityGuideDirectory({
         ))}
       </div>
       {groups.map(g => (
-        <ul
+        <div
           key={g.region}
           id={idFor(g.region)}
           role="tabpanel"
           aria-labelledby={`${idFor(g.region)}-tab`}
-          className="city-region-grid"
+          className="city-region-panel"
           hidden={g.region !== active}
         >
-          {g.cities.map(c => (
-            <li key={c.slug}>
-              <Link href={`/best-bars/${c.slug}`} className="city-guide-link">
-                {c.city}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <h3 className="city-region-title">{g.region}</h3>
+          <ul className="city-region-grid">
+            {g.cities.map(c => (
+              <li key={c.slug}>
+                <Link href={`/best-bars/${c.slug}`} className="city-guide-link">
+                  {c.city}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       ))}
     </section>
   );

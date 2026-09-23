@@ -10746,11 +10746,36 @@ textarea.form-input {
   margin: 0 0 18px;
   color: var(--text-primary);
 }
+/* The tab row exists only with JavaScript (the .js class the component
+   sets during parse); without it the panels stack under their titles. */
 .city-guides-tabs {
-  display: flex;
+  display: none;
   gap: 4px;
   margin: 0 0 20px;
   border-bottom: 1px solid #ece5d8;
+}
+.js .city-guides-tabs {
+  display: flex;
+}
+/* The hidden attribute must beat the author display rules on the panel
+   (the first cut set display: grid on the panel itself, which overrode the
+   browser's [hidden] rule, and every region rendered stacked). */
+.city-region-panel[hidden] {
+  display: block; /* without JavaScript every panel shows */
+}
+.js .city-region-panel[hidden] {
+  display: none;
+}
+.city-region-title {
+  margin: 18px 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.js .city-region-title {
+  display: none;
 }
 .city-guides-tab {
   margin: 0 0 -1px;
