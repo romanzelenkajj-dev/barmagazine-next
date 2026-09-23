@@ -333,17 +333,18 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               )}
             </div>
           )}
+          {/* Photo attribution, inside the hero at the bottom-right corner,
+              the treatment the article hero caption got in task 111 (Roman,
+              2026-09-23): it used to be a line under the image, which pushed
+              the chips and the info card down. The badges hold the
+              bottom-left. Singular/plural follows the actual photo count,
+              since the credit covers the whole set on multi-photo bars. */}
+          {hasImage && bar.photo_credit && bar.photo_credit.trim() && (
+            <span className="bar-v2-photo-credit">
+              {bar.photos.length > 1 ? 'Photos' : 'Photo'}: {bar.photo_credit.trim()}
+            </span>
+          )}
         </div>
-
-        {/* Photo attribution. Under the image, never overlaid on it and clear
-            of .bar-v2-hero-badges, which are absolutely positioned INSIDE the
-            hero. Singular/plural follows the actual photo count, since the
-            credit covers the whole set on multi-photo bars. */}
-        {hasImage && bar.photo_credit && bar.photo_credit.trim() && (
-          <p className="bar-v2-photo-credit">
-            {bar.photos.length > 1 ? 'Photos' : 'Photo'}: {bar.photo_credit.trim()}
-          </p>
-        )}
 
         {/* Jump chips — only when the page is long enough to need them */}
         <BarSectionChips hasMenu={!!hasFullMenu} hasPhotos={!!hasGallery} hasVisit={hasVisit} />
