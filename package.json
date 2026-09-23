@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "vitest run && node scripts/seo-check.mjs --mode=build && node scripts/generate-bar-redirects.mjs",
+    "prebuild": "node scripts/generate-bar-redirects.mjs && vitest run && node scripts/seo-check.mjs --mode=build",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

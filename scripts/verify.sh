@@ -39,6 +39,13 @@ if lsof -nP -iTCP:3000 -sTCP:LISTEN >/dev/null 2>&1; then
   exit 1
 fi
 
+echo "0/3  generated redirects"
+# src/middleware.ts imports src/lib/bar-redirects.generated.json (gitignored,
+# written by this generator; empty without Supabase env). The tests drive the
+# middleware, so the file must exist before vitest runs, exactly as prebuild
+# now orders it. Without env this takes milliseconds and writes an empty list.
+node scripts/generate-bar-redirects.mjs || fail "generate-bar-redirects"
+
 echo "1/3  unit tests"
 # No pipe: vitest's own exit code decides, and its output is already terse on
 # success. On failure you want the full output anyway.
