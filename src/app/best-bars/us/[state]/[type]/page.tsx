@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: { state: string; ty
   const bars = await getRegionBars(r.combo);
   const year = new Date().getFullYear();
   const title = `Best ${titleCase(r.combo.type.plural)} in ${r.combo.region.displayName} (${year})`;
-  const description = composeRegionDescription(r.combo, bars.length, bars[0]?.name ?? null);
+  const description = composeRegionDescription(r.combo, bars);
   const url = `${SITE_URL}${regionHref(r.combo.region, r.combo.type.slug)}`;
   return {
     title,

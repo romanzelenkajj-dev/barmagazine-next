@@ -2,6 +2,7 @@ import { supabase } from './supabase';
 import { subdivisionName, cityLabel } from './city-location';
 import type { Bar } from './supabase';
 import { renderableAccolades } from './accolades';
+import { recordSummary } from './record-line';
 import { buildCityEntries, CityIndex, type CityEntry } from './city-keys';
 import { getBarsForCity } from './city-index';
 import { closedLast } from './bar-status';
@@ -305,13 +306,12 @@ export function composeCityIntro(c: SeoCity, listed: number): string {
  * branch. Counts still belong in on-page copy, which regenerates with the
  * data and is read at the same moment it is rendered.
  */
-export function composeCityDescription(c: SeoCity): string {
+export function composeCityDescription(c: SeoCity, bars: { accolades?: unknown }[]): string {
   const where = cityLabel(c.city, c.country, c.subdivision);
-  if (c.topBar && c.topBarAward) {
-    return `The best bars in ${where} right now, led by ${c.topBar} (${c.topBarAward}). Verified listings with addresses, hours and signature drinks.`;
-  }
-  if (c.top10Count > 0) {
-    return `The best bars in ${where}, including the BarMagazine Top 10 picks. Verified listings with addresses and opening hours.`;
+  // Names no bar (task 114): the capped record summary, or nothing.
+  const summary = recordSummary(bars);
+  if (summary) {
+    return `The best bars in ${where}, chosen on the record: ${summary}. Verified listings with addresses, hours and signature drinks.`;
   }
   return `The best bars in ${where}: verified listings with addresses, opening hours and signature drinks, curated by BarMagazine.`;
 }
@@ -342,12 +342,13 @@ export function composeTypeIntro(
   return parts.join(' ');
 }
 
-/** Meta description for a type-city page. No counts, for the same caching
-    reason as composeCityDescription above. */
-export function composeTypeDescription(c: SeoCity, t: TypePage, typeCount: number, topName: string | null): string {
+/** Meta description for a type-city page. Names no bar (task 114); no
+    counts, for the same caching reason as composeCityDescription above. */
+export function composeTypeDescription(c: SeoCity, t: TypePage, bars: { accolades?: unknown }[]): string {
   const where = cityLabel(c.city, c.country, c.subdivision);
-  if (topName) {
-    return `The best ${t.plural} in ${where}, led by ${topName}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
+  const summary = recordSummary(bars);
+  if (summary) {
+    return `The best ${t.plural} in ${where}, chosen on the record: ${summary}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
   }
   return `The best ${t.plural} in ${where}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
 }

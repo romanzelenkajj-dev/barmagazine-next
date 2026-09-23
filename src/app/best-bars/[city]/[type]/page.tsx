@@ -63,7 +63,6 @@ export async function generateMetadata({ params }: { params: { city: string; typ
   if (!combo) return {};
   const level = await level2ForCombo(combo);
   const bars = level.all;
-  const topName = bars[0]?.name ?? null;
   const year = new Date().getFullYear();
   const plural = combo.t.plural
     .split(' ')
@@ -73,7 +72,7 @@ export async function generateMetadata({ params }: { params: { city: string; typ
   const title = level.fellBack
     ? `The Best ${plural} in ${combo.city.city} (${year})`
     : `The ${bars.length} Best ${plural} in ${combo.city.city} (${year})`;
-  const description = composeTypeDescription(combo.city, combo.t, bars.length, topName);
+  const description = composeTypeDescription(combo.city, combo.t, bars);
   const url = `${SITE_URL}/best-bars/${params.city}/${params.type}`;
   return {
     title,
@@ -119,7 +118,7 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: `The Best ${t.plural} in ${city.city}`,
-    description: composeTypeDescription(city, t, bars.length, bars[0]?.name ?? null),
+    description: composeTypeDescription(city, t, bars),
     numberOfItems: bars.length,
     itemListOrder: 'https://schema.org/ItemListUnordered',
     itemListElement: bars.map((bar, i) => ({
@@ -163,7 +162,7 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
             .split(' ')
             .map(w => w.charAt(0).toUpperCase() + w.slice(1))
             .join(' ')} in {city.city}</h1>
-          <p className="best-bars-intro">{intro}</p>
+          {intro && <p className="best-bars-intro">{intro}</p>}
           <div className="best-bars-hero-links">
             <Link href={`/best-bars/${params.city}`} className="best-bars-hero-link best-bars-hero-link--primary">
               All the best bars in {city.city}

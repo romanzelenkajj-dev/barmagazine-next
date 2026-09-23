@@ -9,12 +9,11 @@ import { renderableAccolades } from './accolades';
  * built only from facts that hold whatever the order: how many bars are
  * listed, and how many of them carry a World's 50 Best record, a Spirited
  * Awards result, a James Beard result or Pinnacle Guide pins. Zeros are
- * omitted. A list with nothing on the record gets the verification line
- * instead of an empty colon.
+ * omitted, the summary stops at the two highest-ranked programs, and a list
+ * with nothing on the record gets no line at all (Roman, 2026-09-23).
  *
  *   "Six bars, chosen on the record: two on World's 50 Best, one Spirited
  *    Awards nominee."
- *   "Six speakeasies, every listing verified by BarMagazine."
  */
 
 const WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
@@ -38,7 +37,13 @@ const FIFTY_BEST: [string, string][] = [
   ['na50b', "North America's 50 Best"],
 ];
 
-export function recordLine(bars: { accolades?: unknown }[], noun = 'bars'): string {
+/**
+ * The record clauses for a list, capped at the two highest-ranked programs
+ * (Roman, 2026-09-23): the programs stand in the order above, the world
+ * list first and Pinnacle last, and a program contributes one clause. Null
+ * when nothing on the list is on the record.
+ */
+export function recordSummary(bars: { accolades?: unknown }[]): string | null {
   const fifty: Record<string, number> = {};
   let totcWinners = 0, totcNominees = 0, jbfWinners = 0, jbfNominees = 0, pinnacle = 0;
 
@@ -57,15 +62,26 @@ export function recordLine(bars: { accolades?: unknown }[], noun = 'bars'): stri
     if (keys.has('pinnacle')) pinnacle++;
   }
 
+  // One clause per program. Spirited and James Beard name their winners
+  // when they have any, otherwise their nominees.
   const parts: string[] = [];
   for (const [key, label] of FIFTY_BEST) if (fifty[key]) parts.push(`${num(fifty[key])} on ${label}`);
   if (totcWinners) parts.push(`${num(totcWinners)} Spirited Awards ${plural(totcWinners, 'winner', 'winners')}`);
-  if (totcNominees) parts.push(`${num(totcNominees)} Spirited Awards ${plural(totcNominees, 'nominee', 'nominees')}`);
+  else if (totcNominees) parts.push(`${num(totcNominees)} Spirited Awards ${plural(totcNominees, 'nominee', 'nominees')}`);
   if (jbfWinners) parts.push(`${num(jbfWinners)} James Beard ${plural(jbfWinners, 'winner', 'winners')}`);
-  if (jbfNominees) parts.push(`${num(jbfNominees)} James Beard ${plural(jbfNominees, 'nominee', 'nominees')}`);
+  else if (jbfNominees) parts.push(`${num(jbfNominees)} James Beard ${plural(jbfNominees, 'nominee', 'nominees')}`);
   if (pinnacle) parts.push(`${num(pinnacle)} with Pinnacle Guide pins`);
 
+  return parts.length ? parts.slice(0, 2).join(', ') : null;
+}
+
+/**
+ * The band line: the count and the capped summary, or null when nothing on
+ * the list is on the record, in which case the band shows the title alone.
+ */
+export function recordLine(bars: { accolades?: unknown }[], noun = 'bars'): string | null {
+  const summary = recordSummary(bars);
+  if (!summary) return null;
   const head = `${cap(num(bars.length))} ${bars.length === 1 ? noun.replace(/s$/, '') : noun}`;
-  if (parts.length === 0) return `${head}, every listing verified by BarMagazine.`;
-  return `${head}, chosen on the record: ${parts.join(', ')}.`;
+  return `${head}, chosen on the record: ${summary}.`;
 }

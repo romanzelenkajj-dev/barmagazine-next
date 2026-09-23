@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: { params: { city: string } })
   const title = level.fellBack
     ? `The Best Bars in ${match.city} (${year})`
     : `The ${level.all.length} Best Bars in ${match.city} (${year})`;
-  const description = composeCityDescription(match);
+  const description = composeCityDescription(match, level.all);
   return {
     title,
     description,
@@ -145,7 +145,7 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
           <span className="best-bars-kicker">BarMagazine&rsquo;s pick &middot; {year}</span>
           {/* No number on a fallback page, matching the title. */}
           <h1>The {level.fellBack ? '' : `${bars.length} `}Best Bars in {match.city}</h1>
-          <p className="best-bars-intro">{intro}</p>
+          {intro && <p className="best-bars-intro">{intro}</p>}
           <div className="best-bars-hero-links">
             {editorial?.articleSlug && (
               <Link href={`/${editorial.articleSlug}`} className="best-bars-hero-link best-bars-hero-link--primary">

@@ -54,7 +54,7 @@ export function RegionTypePage({
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: heading,
-    description: composeRegionDescription(combo, bars.length, topName),
+    description: composeRegionDescription(combo, bars),
     numberOfItems: bars.length,
     itemListOrder: 'https://schema.org/ItemListUnordered',
     itemListElement: bars.map((bar, i) => ({
@@ -94,7 +94,7 @@ export function RegionTypePage({
         <header className="best-bars-hero">
           <span className="best-bars-kicker">BarMagazine&rsquo;s pick &middot; {year}</span>
           <h1>{heading}</h1>
-          <p className="best-bars-intro">{intro}</p>
+          {intro && <p className="best-bars-intro">{intro}</p>}
           <div className="best-bars-hero-links">
             {countryCombo && (
               <Link href={regionHref(countryCombo.region, t.slug)} className="best-bars-hero-link best-bars-hero-link--primary">

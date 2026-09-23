@@ -227,10 +227,12 @@ export function regionCityTypeLinks(cities: SeoCity[], combo: RegionCombo): { sl
 }
 
 /** Meta description with the LIVE count (Roman: never baked). */
-export function composeRegionDescription(combo: RegionCombo, count: number, topName: string | null): string {
+export function composeRegionDescription(combo: RegionCombo, bars: { accolades?: unknown }[]): string {
   const where = combo.region.displayName;
-  const lead = topName ? `, led by ${topName}` : '';
-  return `${count} ${combo.type.plural} in ${where}${lead}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
+  // Names no bar (task 114): the capped record summary, or nothing.
+  const summary = recordSummary(bars);
+  const lead = summary ? `, chosen on the record: ${summary}` : '';
+  return `${bars.length} ${combo.type.plural} in ${where}${lead}. Verified addresses, opening hours and signature drinks from BarMagazine.`;
 }
 
 /** Generic opening paragraph for a region page without a hand-written intro. */
@@ -257,3 +259,5 @@ export function composeRegionIntro(
   parts.push(`Every listing is verified, with the address, the hours the venue publishes and the drinks worth ordering.`);
   return parts.join(' ');
 }
+
+import { recordSummary } from './record-line';
