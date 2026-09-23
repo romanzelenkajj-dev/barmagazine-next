@@ -1,5 +1,28 @@
 import { describe, it, expect } from 'vitest';
-import { TOP10_SLUG_RE, rankTop10Series, stripTitleMarkers, stripReadMore, postDescription, stripHtml } from './wordpress';
+import { TOP10_SLUG_RE, rankTop10Series, stripTitleMarkers, stripReadMore, postDescription, stripHtml, getFeaturedImageCaption } from './wordpress';
+
+describe('getFeaturedImageCaption (task 111)', () => {
+  const withCaption = (rendered: string | undefined) =>
+    ({ _embedded: { 'wp:featuredmedia': [rendered === undefined ? {} : { caption: { rendered } }] } }) as never;
+
+  it('returns the caption as one plain line without the theme\'s "More" link', () => {
+    const wp = '<p>Boilermaker, No. 57, Goa <a class="g1-link g1-link-more" href="https://x/attachment/">More</a></p>\n';
+    expect(getFeaturedImageCaption(withCaption(wp))).toBe('Boilermaker, No. 57, Goa');
+  });
+
+  it('decodes entities and collapses whitespace', () => {
+    expect(getFeaturedImageCaption(withCaption('<p>Photo courtesy of The 50 Best Bars &#8211; Boilermaker\n  Goa</p>'))).toBe(
+      'Photo courtesy of The 50 Best Bars – Boilermaker Goa',
+    );
+  });
+
+  it('is null when the media has no caption, an empty one, or there is no media', () => {
+    expect(getFeaturedImageCaption(withCaption(undefined))).toBeNull();
+    expect(getFeaturedImageCaption(withCaption(''))).toBeNull();
+    expect(getFeaturedImageCaption(withCaption('<p> </p>'))).toBeNull();
+    expect(getFeaturedImageCaption({ _embedded: {} } as never)).toBeNull();
+  });
+});
 
 const post = (slug: string, date: string, rendered: string) => ({
   slug,
