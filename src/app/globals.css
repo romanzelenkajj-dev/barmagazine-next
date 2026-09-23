@@ -3503,22 +3503,24 @@ textarea.form-input {
   color: var(--text-primary);
 }
 
-/* Results bar */
-.directory-results-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 4px;
-  gap: 12px;
-}
-
-.directory-count {
-  font-size: 14px;
-  color: var(--text-primary);
-  font-weight: 700;
+/* The status line in the toolbar (task 116): the result count under a
+   filter, or the sort in use. Takes the auto margin so it sits against the
+   Near me button and the view toggle at the right end of the white row;
+   the button then follows on the row's own gap. */
+.directory-sort-line {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
   flex-shrink: 0;
-  letter-spacing: -0.01em;
+}
+.directory-sort-line.dir-geo-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.directory-sort-line + .directory-near-btn {
+  margin-left: 0;
 }
 
 /* Section labels */
@@ -6340,6 +6342,15 @@ textarea.form-input {
   }
   .directory-near-btn + .directory-view-toggle {
     margin-left: 0;
+  }
+  /* A full line of its own inside the white row, which carries the side
+     padding, so the text never touches the screen edge. */
+  .directory-sort-line {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 4px;
+    white-space: normal;
+    font-size: 12px;
   }
   .directory-view-btn {
     flex: 1;
