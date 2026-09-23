@@ -9083,17 +9083,13 @@ textarea.form-input {
 }
 
 /* "Order this" on every profile with an editorial pick (task 115): the
-   card's block (.best-bars-order, hairline above, gold label, bold name,
-   grey ingredients), no panel, in the Signature Serves slot. Slightly
-   larger type than the card, since it stands alone on the page. */
+   card's block (.best-bars-order: hairline above, gold label, bold name,
+   grey ingredients) as the last row of the info card's text column, so it
+   lives inside the white card like everything else on the page. Slightly
+   larger type than the card, since it stands alone. */
 .bar-v2-order {
-  margin: 32px 0;
-  /* The Signature Serves panel's side padding, so the text lines up with
-     the paid section it stands in for, and with the info card above. */
-  padding: 0 28px;
-}
-@media (max-width: 640px) {
-  .bar-v2-order { padding: 0 18px; }
+  margin: 1.5rem 0 0;
+  padding-top: 14px;
 }
 .bar-v2-order .best-bars-order-name {
   font-size: 1.02rem;

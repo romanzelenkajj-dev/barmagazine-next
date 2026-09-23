@@ -497,25 +497,23 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 </p>
               )}
             </div>
+            {/* The editorial pick on every profile that has one (Roman, task
+                115): the same "Order this" block the best-bars cards carry,
+                from the first menu highlight. Inside the info card, as its
+                last row in the text column (Roman: nothing sits bare on the
+                page background). The full set of serves and the menu stay
+                paid-only, below the card. */}
+            {!isPaid && bar.menu_highlights && bar.menu_highlights.length > 0 && (() => {
+              const serve = splitHighlight(bar.menu_highlights[0]);
+              return (
+                <div className="bar-v2-order best-bars-order">
+                  <span className="best-bars-order-label">Order this</span>
+                  <span className="best-bars-order-name">{serve.name}</span>
+                  {serve.ingredients && <span className="best-bars-order-ingredients">{serve.ingredients}</span>}
+                </div>
+              );
+            })()}
         </div>
-
-        {/* The editorial pick on every profile that has one (Roman, task 115):
-            the same "Order this" block the best-bars cards carry, from the
-            first menu highlight, in the slot the paid Signature Serves section
-            takes on paid profiles. The full set of serves and the menu stay
-            paid-only below. */}
-        {!isPaid && bar.menu_highlights && bar.menu_highlights.length > 0 && (() => {
-          const serve = splitHighlight(bar.menu_highlights[0]);
-          return (
-            <div className="bar-v2-order">
-              <div className="best-bars-order">
-                <span className="best-bars-order-label">Order this</span>
-                <span className="best-bars-order-name">{serve.name}</span>
-                {serve.ingredients && <span className="best-bars-order-ingredients">{serve.ingredients}</span>}
-              </div>
-            </div>
-          );
-        })()}
 
         {/* Signature Serves — featured/premium/top10 tiers only */}
         {isPaid && bar.menu_highlights && bar.menu_highlights.length > 0 && (
