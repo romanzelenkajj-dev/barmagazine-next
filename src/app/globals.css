@@ -13,8 +13,14 @@
   --text-secondary: #6B6B6B;
   --text-tertiary: #9A9A9A;
   --text-inverse: #FFFFFF;
-  --accent: #7B1E1E;
-  --accent-rgb: 123, 30, 30;
+  /* Task 109: the maroon is retired. --accent stays defined because the
+     welcome email, the admin screens and add-your-bar still read it; it now
+     resolves to the gold ink (5.04:1 on white). New work uses --gold /
+     --gold-ink directly. */
+  --accent: #8A6A24;
+  --accent-rgb: 138, 106, 36;
+  --gold: #B08D3F;      /* the World's 50 Best badge outline */
+  --gold-ink: #8A6A24;  /* gold that reads on white, 5.04:1 */
   --border: #E0D8D0;
   --radius: 24px;
   --gap: 16px;
@@ -410,7 +416,7 @@ button {
 .section-link {
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--gold-ink);
   transition: color 0.3s;
 }
 
@@ -462,7 +468,7 @@ button {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--accent);
+  color: var(--gold-ink);
   margin-bottom: 8px;
 }
 
@@ -867,13 +873,16 @@ button {
 }
 
 .article-body a {
-  color: var(--accent);
+  color: inherit;
+  font-weight: inherit;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
 
 .article-body a:hover {
-  color: var(--text-primary);
+  color: var(--gold);
 }
 
 /* The beige box carries the quote on its own. The accent rule down the left
@@ -1132,7 +1141,7 @@ button {
   justify-content: center;
   font-size: 18px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--text-primary);
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -1857,7 +1866,7 @@ button {
 
 /* ====== CTA BANNER ====== */
 .cta-banner {
-  background: var(--accent);
+  background: var(--bg-dark);
   border-radius: var(--radius);
   padding: 80px 48px;
   text-align: center;
@@ -1910,7 +1919,7 @@ button {
 
 .cta-submit {
   padding: 14px 36px;
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
   border-radius: 100px;
   font-size: 14px;
@@ -7163,7 +7172,7 @@ textarea.form-input {
   inset: 0;
   background: radial-gradient(
     ellipse 70% 50% at 50% 100%,
-    rgba(123,30,30,0.18),
+    rgba(176,141,63,0.18),
     transparent 70%
   );
   pointer-events: none;
@@ -7941,7 +7950,7 @@ textarea.form-input {
 }
 
 .deck-dot.active {
-  background: var(--accent);
+  background: var(--bg-dark);
   transform: scale(1.25);
 }
 
@@ -7987,7 +7996,7 @@ textarea.form-input {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
   display: flex;
   align-items: center;
@@ -8081,7 +8090,7 @@ textarea.form-input {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--gold-ink);
   margin-bottom: 10px;
 }
 
@@ -8275,7 +8284,7 @@ textarea.form-input {
   border-top: 1px solid var(--border);
   padding: 10px 14px;
   font-size: 13px;
-  color: var(--accent);
+  color: var(--gold-ink);
   cursor: pointer;
 }
 
@@ -8548,7 +8557,7 @@ textarea.form-input {
 .reading-progress-fill {
   height: 100%;
   width: 100%;
-  background: var(--accent);
+  background: var(--gold);
   transform-origin: 0 50%;
   transform: scaleX(0);
 }
@@ -8575,7 +8584,7 @@ textarea.form-input {
 .share-copied {
   font-size: 12px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--gold-ink);
   margin-left: 4px;
 }
 
@@ -8621,7 +8630,7 @@ textarea.form-input {
 }
 
 .ticker-label-star {
-  color: var(--accent);
+  color: var(--gold);
   margin-right: 6px;
 }
 
@@ -9599,7 +9608,7 @@ textarea.form-input {
 }
 
 .owner-dash-signout:hover {
-  color: var(--accent);
+  color: var(--text-primary);
 }
 
 .owner-dash-section {
@@ -9784,11 +9793,11 @@ textarea.form-input {
 /* A transfer can take a listing off its current owner, so it must not read as
    a routine row at a glance. */
 .admin-claim--transfer {
-  border: 2px solid var(--accent);
+  border: 2px solid var(--bg-dark);
 }
 
 .admin-claim-transfer-flag {
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
   border-radius: 12px;
   padding: 12px 14px;
@@ -9853,8 +9862,8 @@ textarea.form-input {
 
 .admin-claim-revoke {
   background: none;
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  border: 1px solid var(--bg-dark);
+  color: var(--text-primary);
   border-radius: 100px;
   padding: 10px 22px;
   font-family: inherit;
@@ -9864,7 +9873,7 @@ textarea.form-input {
 }
 
 .admin-claim-revoke:hover:not(:disabled) {
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
 }
 
@@ -9983,11 +9992,11 @@ textarea.form-input {
 
 .admin-review-tab.is-active {
   color: var(--text-primary);
-  border-bottom-color: var(--accent);
+  border-bottom-color: var(--bg-dark);
 }
 
 .admin-review-count {
-  background: var(--accent);
+  background: var(--bg-dark);
   color: #fff;
   border-radius: 100px;
   min-width: 20px;
@@ -10003,7 +10012,7 @@ textarea.form-input {
 }
 
 .admin-review-editor-link:hover {
-  color: var(--accent);
+  color: var(--gold-ink);
 }
 
 /* ====== ACCOLADE TILES ======
@@ -10602,7 +10611,7 @@ textarea.form-input {
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: var(--accent);
+  color: var(--gold-ink);
 }
 .claim-offer-intro {
   margin: 0 0 12px;
@@ -11131,7 +11140,7 @@ a.bar-v2-badge--subtype:hover {
   color: var(--text-secondary);
 }
 .feature-proof figcaption a {
-  color: var(--accent);
+  color: var(--gold-ink);
   font-weight: 600;
   text-decoration: none;
 }
