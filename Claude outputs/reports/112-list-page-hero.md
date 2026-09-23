@@ -20,9 +20,7 @@ asset and the first-bar-photo backgrounds on city and country pages are no longe
 
 Heights measured on the branch: **220px on desktop** on all three pages (border-box; the first
 pass rendered 276 because Tailwind preflight is off and the min-height was a content-box value,
-fixed). **Phone (390 wide): /bars 163, /awards/worlds-50-best 160, /best-bars/mumbai 169** (the
-Mumbai band carries the page's link pills on one horizontally scrolling row under the intro; the
-intro clamps to one line on a phone, two on desktop).
+fixed). **Phone (390 wide): /bars 163, /awards/worlds-50-best 160, /best-bars/mumbai 169** (first pass; see the rework below for the phone numbers after the pills started wrapping).
 
 ## What stays where it was
 
@@ -52,3 +50,29 @@ block has to change, which is outside this task.
 `src/app/globals.css` (both hero rules and their mobile blocks), `src/components/BarDirectoryMap.tsx`
 (/bars band markup), `src/app/bars/city/[city]/page.tsx` and `src/app/bars/country/[country]/page.tsx`
 (photo layer removed, eyebrow added). `tsc` clean. Branch only; this report on main.
+
+## Rework (same day, same branch and preview URL): header rows, rank pills, whole sentences
+
+Band approved; three changes on top, all on `preview/112-list-hero`, PR #77 rebuilt green.
+
+- **Award hubs, no bare headings.** Year and list name sit in one slim white rounded header row
+  (`.list-section-head`: the card background, 1px `#e8e2d6` border, 16px radius, 12/18px
+  padding; year bold 18px left, list name grey 14px). Flow blocks, which have no list name, get
+  the year alone in the same row. The "Other award programs" and "by city" headings on every list
+  page take the same row so nothing sits bare on the page background.
+- **Rank inside the card.** The "No. 1" kicker above the card is gone on ranked sections; the rank
+  rides as a small black pill in the top-left corner of the photo (`DirectoryBarCard` gained a
+  `rankPill` prop; `.bar-dir-rank-pill`, black, white text, 10px inset). Unranked flow cells keep
+  their category kicker.
+- **Intro never truncates mid-sentence.** The band shows the intro's first sentence whole
+  (`src/lib/first-sentence.ts`, with a guard for "No. 69", "St.", "Dr." and similar; 5 tests). The
+  line clamps are gone on desktop and phone.
+- **Phone (390): pills wrap** to a second line instead of scrolling off the edge. Measured: Mumbai
+  band 249px (intro is the whole first sentence, pills 338px wide, first card top at 365), /bars
+  band 163px, no horizontal overflow on either. Awards hub desktop: band 220px, rows read
+  "2026 Asia's 50 Best Bars", rank pill at top 10 / left 10, zero bare headings.
+
+Files added to the branch: `src/lib/first-sentence.ts` + test, `src/components/DirectoryBarCard.tsx`,
+`src/app/awards/[program]/page.tsx`, `src/app/awards/page.tsx`, `src/app/best-bars/[city]/page.tsx`,
+`src/app/best-bars/[city]/[type]/page.tsx`, `src/components/RegionTypePage.tsx`,
+`src/app/bars/city/[city]/page.tsx`, `src/app/globals.css`. tsc and lint clean.
