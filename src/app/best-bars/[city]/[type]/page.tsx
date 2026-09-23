@@ -1,4 +1,4 @@
-import { firstSentence } from '@/lib/first-sentence';
+import { recordLine } from '@/lib/record-line';
 import { HighlightedText } from '@/components/HighlightedText';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
@@ -15,7 +15,6 @@ import {
   getSeoCities,
   resolveSeoCity,
   typePageBySlug,
-  composeTypeIntro,
   composeTypeDescription,
   MIN_TYPE_BARS,
   sortSeoBars,
@@ -64,7 +63,6 @@ export async function generateMetadata({ params }: { params: { city: string; typ
   if (!combo) return {};
   const level = await level2ForCombo(combo);
   const bars = level.all;
-  const topName = bars[0]?.name ?? null;
   const year = new Date().getFullYear();
   const plural = combo.t.plural
     .split(' ')
@@ -74,7 +72,7 @@ export async function generateMetadata({ params }: { params: { city: string; typ
   const title = level.fellBack
     ? `The Best ${plural} in ${combo.city.city} (${year})`
     : `The ${bars.length} Best ${plural} in ${combo.city.city} (${year})`;
-  const description = composeTypeDescription(combo.city, combo.t, bars.length, topName);
+  const description = composeTypeDescription(combo.city, combo.t, bars);
   const url = `${SITE_URL}/best-bars/${params.city}/${params.type}`;
   return {
     title,
@@ -106,7 +104,8 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
   if (bars.length < MIN_TYPE_BARS) notFound();
 
   const year = new Date().getFullYear();
-  const intro = composeTypeIntro(city, t, combo.count, bars[0]?.name ?? null, bars.length);
+  // The band line names no bar (task 114): counts and records only.
+  const intro = recordLine(bars, t.plural);
   const siblingTypes = city.typeSlugs.filter(x => x.slug !== t.slug);
   const regionCombos = await getRegionCombos();
   const countryCombo = regionCombos.find(c => c.region.kind === 'country' && c.region.country === city.country && c.type.slug === t.slug) ?? null;
@@ -119,7 +118,7 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: `The Best ${t.plural} in ${city.city}`,
-    description: composeTypeDescription(city, t, bars.length, bars[0]?.name ?? null),
+    description: composeTypeDescription(city, t, bars),
     numberOfItems: bars.length,
     itemListOrder: 'https://schema.org/ItemListUnordered',
     itemListElement: bars.map((bar, i) => ({
@@ -163,7 +162,7 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
             .split(' ')
             .map(w => w.charAt(0).toUpperCase() + w.slice(1))
             .join(' ')} in {city.city}</h1>
-          <p className="best-bars-intro">{firstSentence(intro)}</p>
+          {intro && <p className="best-bars-intro">{intro}</p>}
           <div className="best-bars-hero-links">
             <Link href={`/best-bars/${params.city}`} className="best-bars-hero-link best-bars-hero-link--primary">
               All the best bars in {city.city}

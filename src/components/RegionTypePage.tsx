@@ -1,4 +1,4 @@
-import { firstSentence } from '@/lib/first-sentence';
+import { recordLine } from '@/lib/record-line';
 import Link from 'next/link';
 import { DirectoryBarCard } from './DirectoryBarCard';
 import type { Bar } from '@/lib/supabase';
@@ -6,13 +6,10 @@ import type { SeoCity } from '@/lib/seo-cities';
 import {
   type RegionCombo,
   composeRegionDescription,
-  composeRegionIntro,
   regionCityTypeLinks,
   regionHref,
-  regionIntroKey,
   countryRegion,
 } from '@/lib/seo-regions';
-import { regionIntro } from '@/lib/region-intros';
 import { toUrlSlug } from '@/lib/utils';
 
 const SITE_URL = 'https://barmagazine.com';
@@ -44,8 +41,10 @@ export function RegionTypePage({
   const year = new Date().getFullYear();
   const url = `${SITE_URL}${regionHref(region, t.slug)}`;
   const cityLinks = regionCityTypeLinks(cities, combo);
-  const topName = bars[0]?.name ?? null;
-  const intro = regionIntro(regionIntroKey(region, t.slug)) ?? composeRegionIntro(combo, bars.length, topName, cityLinks);
+  // The band line names no bar (task 114): counts and records only. The
+  // hand-written region intros stay in src/lib/region-intros.ts, unused by
+  // the band.
+  const intro = recordLine(bars, t.plural);
   const heading = `Best ${titleCase(t.plural)} in ${region.displayName}`;
   const countryPage = `/bars/country/${toUrlSlug(region.country)}`;
   const countryCombo = region.kind === 'us-state' ? { region: countryRegion(region.country), type: t } : null;
@@ -54,7 +53,7 @@ export function RegionTypePage({
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: heading,
-    description: composeRegionDescription(combo, bars.length, topName),
+    description: composeRegionDescription(combo, bars),
     numberOfItems: bars.length,
     itemListOrder: 'https://schema.org/ItemListUnordered',
     itemListElement: bars.map((bar, i) => ({
@@ -94,7 +93,7 @@ export function RegionTypePage({
         <header className="best-bars-hero">
           <span className="best-bars-kicker">BarMagazine&rsquo;s pick &middot; {year}</span>
           <h1>{heading}</h1>
-          <p className="best-bars-intro">{firstSentence(intro)}</p>
+          {intro && <p className="best-bars-intro">{intro}</p>}
           <div className="best-bars-hero-links">
             {countryCombo && (
               <Link href={regionHref(countryCombo.region, t.slug)} className="best-bars-hero-link best-bars-hero-link--primary">
