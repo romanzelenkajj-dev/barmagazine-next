@@ -223,3 +223,6 @@ blooms-baltimore                     # info@ at Hotel Ulysses, the hotel's gener
 the-roof-at-the-durham               # info@ at The Durham Hotel, the hotel's general inbox, not the bar's  [info@thedurham.com]
 society-lounge-cleveland             # events@ at Hangry Brands, the operating group's events desk on a different domain  [events@hangry-brands.com]
 flower-on-freeman-cleveland          # mc@ at Luxe Cleveland, a person at the group's other venue on a different domain  [mc@luxecleveland.com]
+#
+# 2026-09-22, task 107 harvest eyeball. Same rule as Bloom's and The Roof at The Durham.
+sky-bar-hostal-cuba-palma-de-mallorca # info@ at Hotel Hostal Cuba, the hotel's general inbox published on the bar's page  [info@hotelhostalcuba.com]

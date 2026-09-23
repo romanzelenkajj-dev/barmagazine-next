@@ -4,6 +4,42 @@
  "daily": 10,
  "items": [
   {
+   "slug": "../best-bars/santiago",
+   "city": "Santiago",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 107, Roman: request 2026-09-23 first, ahead of the profile queue; URL is https://barmagazine.com/best-bars/santiago"
+  },
+  {
+   "slug": "../best-bars/palma-de-mallorca",
+   "city": "Palma de Mallorca",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 107, Roman: request 2026-09-23 first, ahead of the profile queue; URL is https://barmagazine.com/best-bars/palma-de-mallorca"
+  },
+  {
+   "slug": "../best-bars/medellin",
+   "city": "Medellín",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 107, Roman: request 2026-09-23 first, ahead of the profile queue; URL is https://barmagazine.com/best-bars/medellin"
+  },
+  {
+   "slug": "../best-bars/country/chile/cocktail-bars",
+   "city": "Chile",
+   "tier": "free",
+   "accolades": 0,
+   "status": "pending",
+   "date": null,
+   "note": "task 107, Roman: request 2026-09-23 first, ahead of the profile queue; URL is https://barmagazine.com/best-bars/country/chile/cocktail-bars"
+  },
+  {
    "slug": "handshake-speakeasy",
    "city": "Mexico City",
    "tier": "top10",

@@ -111,3 +111,22 @@ Abaco, Calante, Náufrago (Náufrago's is the Click Clack reservations desk, not
 
 `Claude outputs/107-featured-cities.md` (wave file with five HOLD blocks), `src/lib/geocode.ts`,
 this report. One push.
+
+## Addendum, 2026-09-22 evening: harvest and outreach slotting
+
+Of the 11 rows, 7 stored a venue address on insert: reservas@barlaprovidencia.cl,
+contacto@gracielo.cl, reservas@lolitajones.cl, info@brassclub.com, info@barlabacademy.com,
+barnicolas@grupoamida.com, info@hotelhostalcuba.com. The other four were re-checked on their
+sites and Instagram bios: Bar Abaco publishes a contact form and a phone, no address; Siete
+Negronis' site is under construction and its bio has none; Calante's Linktree carries no address
+(the OsteriaCalante@gmail.com that third parties quote is not on its own channels); Náufrago's
+only address is the Click Clack Hotel's reservations desk (reservas@clickclackhotel.com), which is
+the hotel's, so not stored. Eyeball: Sky Bar at Hotel Hostal Cuba's info@hotelhostalcuba.com is
+the hotel's general inbox, **parked** with reason (same rule as Bloom's); Bar Nicolás's
+barnicolas@grupoamida.com is a venue-named alias on the Grupo Amida domain, kept and flagged.
+
+Slotting: the three Santiago addresses join batch 20, renamed `outreach/batch20-americas.slugs`
+now that it spans two countries (57 bars, dry run clean, exit 0, not armed; Medellín contributes
+none). The three Palma addresses seed `outreach/batch21-europe.slugs` for the next Europe wave
+(3 bars, dry run clean, not armed). The four new pages are queued at the front of
+`claude/indexing-queue.json` for 2026-09-23.
