@@ -167,7 +167,13 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
   // Free-tier since Aug 2026: practical visit info (hours, address, phone,
   // WhatsApp, reserve) renders for every bar that has the data. Menu and
   // gallery remain the paid differentiators.
-  const hasVisit = !!(bar.opening_hours || bar.address || bar.phone || waDigits || reserveHref);
+  // The editorial pick (task 115): the first menu highlight, the drink the
+  // best-bars cards show under "Order this", on every profile that is not
+  // paid (paid profiles list all their serves in Signature Serves below).
+  // It rides in Plan Your Visit as a third column, so it counts towards
+  // whether that section renders.
+  const orderPick = !isPaid && bar.menu_highlights && bar.menu_highlights.length > 0 ? splitHighlight(bar.menu_highlights[0]) : null;
+  const hasVisit = !!(bar.opening_hours || bar.address || bar.phone || waDigits || reserveHref || orderPick);
 
   // One renderer for both halves of the menu (open head, collapsed tail), so
   // they cannot drift apart in markup.
@@ -497,22 +503,6 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 </p>
               )}
             </div>
-            {/* The editorial pick on every profile that has one (Roman, task
-                115): the same "Order this" block the best-bars cards carry,
-                from the first menu highlight. Inside the info card, as its
-                last row in the text column (Roman: nothing sits bare on the
-                page background). The full set of serves and the menu stay
-                paid-only, below the card. */}
-            {!isPaid && bar.menu_highlights && bar.menu_highlights.length > 0 && (() => {
-              const serve = splitHighlight(bar.menu_highlights[0]);
-              return (
-                <div className="bar-v2-order best-bars-order">
-                  <span className="best-bars-order-label">Order this</span>
-                  <span className="best-bars-order-name">{serve.name}</span>
-                  {serve.ingredients && <span className="best-bars-order-ingredients">{serve.ingredients}</span>}
-                </div>
-              );
-            })()}
         </div>
 
         {/* Signature Serves — featured/premium/top10 tiers only */}
@@ -582,6 +572,13 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
                 <div className="bar-v2-visit-block">
                   <span className="bar-v2-visit-label">Find us</span>
                   <span className="bar-v2-visit-value">{bar.address}</span>
+                </div>
+              )}
+              {orderPick && (
+                <div className="bar-v2-visit-block">
+                  <span className="bar-v2-visit-label">Order this</span>
+                  <span className="bar-v2-visit-value bar-v2-visit-order-name">{orderPick.name}</span>
+                  {orderPick.ingredients && <span className="bar-v2-visit-order-ingredients">{orderPick.ingredients}</span>}
                 </div>
               )}
             </div>

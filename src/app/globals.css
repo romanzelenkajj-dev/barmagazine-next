@@ -9082,22 +9082,6 @@ textarea.form-input {
   }
 }
 
-/* "Order this" on every profile with an editorial pick (task 115): the
-   card's block (.best-bars-order: hairline above, gold label, bold name,
-   grey ingredients) as the last row of the info card's text column, so it
-   lives inside the white card like everything else on the page. Slightly
-   larger type than the card, since it stands alone. */
-.bar-v2-order {
-  margin: 1.5rem 0 0;
-  padding-top: 14px;
-}
-.bar-v2-order .best-bars-order-name {
-  font-size: 1.02rem;
-}
-.bar-v2-order .best-bars-order-ingredients {
-  font-size: 0.92rem;
-}
-
 /* ═══════════════ Signature Serves (bar profile, paid tiers) ═══════════════ */
 .bar-v2-serves {
   margin: 32px 0;
@@ -9560,6 +9544,17 @@ textarea.form-input {
   font-size: 0.95rem;
   line-height: 1.5;
   color: #e8e2d6;
+}
+/* "Order this" as the third Plan Your Visit column (task 115): the gold
+   label above, the drink name white, its ingredients grey. */
+.bar-v2-visit-order-name {
+  color: #fff;
+  font-weight: 700;
+}
+.bar-v2-visit-order-ingredients {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #9a9284;
 }
 .bar-v2-visit-actions {
   display: flex;
