@@ -9545,6 +9545,17 @@ textarea.form-input {
   line-height: 1.5;
   color: #e8e2d6;
 }
+/* "Order this" as the third Plan Your Visit column (task 115): the gold
+   label above, the drink name white, its ingredients grey. */
+.bar-v2-visit-order-name {
+  color: #fff;
+  font-weight: 700;
+}
+.bar-v2-visit-order-ingredients {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #9a9284;
+}
 .bar-v2-visit-actions {
   display: flex;
   flex-wrap: wrap;
