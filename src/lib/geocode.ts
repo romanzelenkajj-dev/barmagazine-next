@@ -15,6 +15,10 @@ const CITY_OVERRIDES: Record<string, [number, number]> = {
   'Shanghai': [31.23, 121.47],
   'Taipei': [25.03, 121.57],
   'Kaohsiung': [22.62, 120.31],
+  // Mapbox resolves "Palma de Mallorca, Spain" to a street in Catalonia, 215km
+  // out, so every correct address on the island was rejected as too far away
+  // and the row fell back to that wrong centre (task 107, 2026-09-22).
+  'Palma de Mallorca': [39.57, 2.65],
 };
 
 /**
