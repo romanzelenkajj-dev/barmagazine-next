@@ -1,8 +1,12 @@
 #!/bin/bash
 # Arm ONE one-shot send window as a launchd calendar agent.
 #
-#   outreach/arm-window.sh <batch-label> <window> <MM> <DD> <HH> <MM> <slugs-file>
+#   outreach/arm-window.sh <batch-label> <window> <MM> <DD> <HH> <MM> <slugs-file> [extra send flags]
 #   outreach/arm-window.sh batch15-asia w1 09 21 21 00 outreach/batch15-w1.slugs
+#   outreach/arm-window.sh batch20-americas-us w1 09 29 09 00 outreach/batch20-americas-b.slugs --variant us
+#
+# Anything after the slugs file is passed to send-upsell.mjs as is (task 119:
+# the A/B arms need --variant old / --variant us).
 #
 # Writes outreach/<batch>-runner-<window>.sh and the matching LaunchAgent, then
 # loads it and prints the schedule back.
@@ -13,7 +17,7 @@
 # which fires again at the next login and re-sends. Order matters here.
 set -euo pipefail
 
-BATCH="$1"; WIN="$2"; MONTH="$3"; DAY="$4"; HOUR="$5"; MINUTE="$6"; SLUGS="$7"
+BATCH="$1"; WIN="$2"; MONTH="$3"; DAY="$4"; HOUR="$5"; MINUTE="$6"; SLUGS="$7"; shift 7; EXTRA="$*"
 REPO="/Users/romanzelenka/barmagazine-next"
 LABEL="com.barmagazine.${BATCH}-${WIN}"
 RUNNER="$REPO/outreach/${BATCH}-runner-${WIN}.sh"
@@ -58,7 +62,7 @@ for ATTEMPT in 0 1 2; do
     sleep "\${BACKOFF[\$ATTEMPT]}"
   fi
   echo "=== ${BATCH} ${WIN} attempt \$((ATTEMPT + 1)) start \$(date) ===" >> "\$LOG"
-  /usr/local/bin/node scripts/send-upsell.mjs --send --batch ${BATCH} \$(cat ${SLUGS}) >> "\$LOG" 2>&1
+  /usr/local/bin/node scripts/send-upsell.mjs --send --batch ${BATCH} ${EXTRA} \$(cat ${SLUGS}) >> "\$LOG" 2>&1
   STATUS=\$?
   echo "=== ${BATCH} ${WIN} attempt \$((ATTEMPT + 1)) exit \$STATUS \$(date) ===" >> "\$LOG"
   [ "\$STATUS" -eq 0 ] && break

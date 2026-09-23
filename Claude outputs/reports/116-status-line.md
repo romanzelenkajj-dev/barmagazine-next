@@ -1,4 +1,4 @@
-# Task 116: /bars status line into the toolbar. Branch `preview/116-status-line`, draft PR #81, NOT merged, 2026-09-23
+# Task 116: /bars status line into the toolbar. Branch `preview/116-status-line`, PR #81 MERGED 2026-09-23
 
 Preview (Vercel SSO): https://barmagazine-next-git-previ-6cc1a0-romanzelenkajj-7135s-projects.vercel.app/bars
 
