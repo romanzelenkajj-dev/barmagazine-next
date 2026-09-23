@@ -1,26 +1,64 @@
 import { describe, it, expect } from 'vitest';
-import { TOP10_SLUG_RE, rankTop10Series, stripTitleMarkers, stripReadMore, postDescription, stripHtml, getFeaturedImageCaption } from './wordpress';
+import { TOP10_SLUG_RE, rankTop10Series, stripTitleMarkers, stripReadMore, postDescription, stripHtml, captionText, captionFromMedia } from './wordpress';
 
-describe('getFeaturedImageCaption (task 111)', () => {
-  const withCaption = (rendered: string | undefined) =>
-    ({ _embedded: { 'wp:featuredmedia': [rendered === undefined ? {} : { caption: { rendered } }] } }) as never;
-
+describe('captionText (task 111)', () => {
   it('returns the caption as one plain line without the theme\'s "More" link', () => {
     const wp = '<p>Boilermaker, No. 57, Goa <a class="g1-link g1-link-more" href="https://x/attachment/">More</a></p>\n';
-    expect(getFeaturedImageCaption(withCaption(wp))).toBe('Boilermaker, No. 57, Goa');
+    expect(captionText(wp)).toBe('Boilermaker, No. 57, Goa');
   });
 
   it('decodes entities and collapses whitespace', () => {
-    expect(getFeaturedImageCaption(withCaption('<p>Photo courtesy of The 50 Best Bars &#8211; Boilermaker\n  Goa</p>'))).toBe(
+    expect(captionText('<p>Photo courtesy of The 50 Best Bars &#8211; Boilermaker\n  Goa</p>')).toBe(
       'Photo courtesy of The 50 Best Bars – Boilermaker Goa',
     );
   });
 
-  it('is null when the media has no caption, an empty one, or there is no media', () => {
-    expect(getFeaturedImageCaption(withCaption(undefined))).toBeNull();
-    expect(getFeaturedImageCaption(withCaption(''))).toBeNull();
-    expect(getFeaturedImageCaption(withCaption('<p> </p>'))).toBeNull();
-    expect(getFeaturedImageCaption({ _embedded: {} } as never)).toBeNull();
+  it('is null when empty', () => {
+    expect(captionText(undefined)).toBeNull();
+    expect(captionText('')).toBeNull();
+    expect(captionText('<p> </p>')).toBeNull();
+  });
+});
+
+describe('captionFromMedia (task 111 bug: the description is not a caption)', () => {
+  const more = '<a class="g1-link g1-link-more" href="https://x/a/">More</a>';
+  const attachmentPrefix = '<p class="attachment"><a href="https://x/f.jpg"><img src="data:image/svg+xml,x" alt=""></a></p>\n';
+
+  it('keeps a real caption that differs from the description', () => {
+    const media = {
+      caption: { rendered: `<p>Boilermaker, No. 57, Goa ${more}</p>\n` },
+      description: { rendered: `${attachmentPrefix}<p>The Boiler Maker bar showcases a sophisticated modern interior.</p>\n` },
+    };
+    expect(captionFromMedia(media)).toBe('Boilermaker, No. 57, Goa');
+  });
+
+  it('is null when WordPress filled the empty caption from the description', () => {
+    const text = 'Tato Giovannoni, founder of Florería Atlántico, poses with a selection of wines ahead of the acclaimed Argentine bar&#8217;s residency at Torno Subito in Miami. The five-night takeover runs September 22-26, 2026.';
+    const media = {
+      caption: { rendered: `<p>${text} ${more}</p>\n` },
+      description: { rendered: `${attachmentPrefix}<p>${text}</p>\n` },
+    };
+    expect(captionFromMedia(media)).toBeNull();
+  });
+
+  it('is null when the rendered caption is the description trimmed to 55 words', () => {
+    const words = Array.from({ length: 70 }, (_, i) => `word${i + 1}`);
+    const media = {
+      caption: { rendered: `<p>${words.slice(0, 55).join(' ')} [&hellip;] ${more}</p>` },
+      description: { rendered: `<p>${words.join(' ')}</p>` },
+    };
+    expect(captionFromMedia(media)).toBeNull();
+  });
+
+  it('is null with no caption, an empty one, or no media', () => {
+    expect(captionFromMedia({ caption: { rendered: '' }, description: { rendered: '<p>Some description</p>' } })).toBeNull();
+    expect(captionFromMedia({ caption: { rendered: '<p> </p>' } })).toBeNull();
+    expect(captionFromMedia(null)).toBeNull();
+    expect(captionFromMedia({})).toBeNull();
+  });
+
+  it('keeps a real caption when the media has no description at all', () => {
+    expect(captionFromMedia({ caption: { rendered: '<p>Photo: BarMagazine</p>' } })).toBe('Photo: BarMagazine');
   });
 });
 

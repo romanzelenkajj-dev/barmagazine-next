@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { format } from 'date-fns';
-import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, getFeaturedImageCaption, getPostCategories, getPostAuthor, getPostTags, stripHtml, estimateReadTime, rewriteContentImageUrls, extractFaqPairs, postDescription } from '@/lib/wordpress';
+import { getPostBySlug, getPosts, getFeaturedImageUrl, getFeaturedImageData, fetchFeaturedImageCaption, getPostCategories, getPostAuthor, getPostTags, stripHtml, estimateReadTime, rewriteContentImageUrls, extractFaqPairs, postDescription } from '@/lib/wordpress';
 import { Sidebar } from '@/components/Sidebar';
 import { ShareBar } from '@/components/ShareBar';
 import { ReadingProgress } from '@/components/ReadingProgress';
@@ -69,8 +69,9 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   const heroImgFull = getFeaturedImageData(post, 'full');
   const heroImgMedium = getFeaturedImageData(post, 'medium_large');
   const heroImgLarge = getFeaturedImageData(post, 'large');
-  // Rendered under the hero only when the media library carries one (task 111).
-  const heroCaption = heroImgFull ? getFeaturedImageCaption(post) : null;
+  // Rendered in the hero only when the media library carries a CAPTION
+  // (task 111); the description never stands in for it, see captionFromMedia.
+  const heroCaption = heroImgFull ? await fetchFeaturedImageCaption(post) : null;
   const readTime = estimateReadTime(post.content.rendered);
   const wordCount = stripHtml(post.content.rendered).split(/\s+/).length;
   const authorName = author?.name && author.name !== 'BarMagazine' ? author.name : null;
