@@ -10725,10 +10725,113 @@ textarea.form-input {
   padding: 0 16px;
 }
 
-.dir-city-guides h2 {
+/* ═══ The city-guide directory card (task 118) ═══
+   One white card, heading inside, regions in columns, plain text links in
+   the article link style (gold underline). Replaced the pill cloud. */
+.city-guides {
+  margin-top: 40px;
+  background: var(--bg-card);
+  border: 1px solid #e8e2d6;
+  border-radius: var(--radius);
+  padding: 28px 32px 30px;
+}
+.dir-city-guides .city-guides {
+  margin-top: 0;
+}
+.city-guides-heading {
   font-size: 18px;
   font-weight: 700;
-  margin: 0 0 14px;
+  margin: 0 0 22px;
+  color: var(--text-primary);
+}
+.city-guides-regions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 24px 28px;
+  align-items: start;
+}
+.city-region-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 10px;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: default;
+}
+.city-region-chevron {
+  display: none;
+  transition: transform 0.2s;
+}
+.city-region-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.city-region-list li {
+  line-height: 1.55;
+  padding: 3px 0;
+}
+.city-guide-link {
+  color: inherit;
+  font-size: 14px;
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+.city-guide-link:hover {
+  color: var(--gold-ink);
+}
+@media (max-width: 768px) {
+  .city-guides {
+    padding: 18px 18px 8px;
+    margin-top: 28px;
+  }
+  .city-guides-heading {
+    margin-bottom: 6px;
+  }
+  /* Each region a collapsible row; the class the button toggles is read
+     only here, so desktop columns never hide a link. */
+  .city-guides-regions {
+    display: block;
+  }
+  .city-region {
+    border-top: 1px solid #ece5d8;
+  }
+  .city-region-head {
+    margin: 0;
+    padding: 14px 0;
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+  .city-region-chevron {
+    display: block;
+    color: var(--text-tertiary);
+    transform: rotate(180deg);
+  }
+  .city-region.is-collapsed .city-region-chevron {
+    transform: none;
+  }
+  .city-region-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 16px;
+    padding: 0 0 14px;
+  }
+  .city-region.is-collapsed .city-region-list {
+    display: none;
+  }
 }
 
 /* Guide links on a bar profile, above the nearby grid. */

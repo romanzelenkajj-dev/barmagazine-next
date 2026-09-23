@@ -1,10 +1,10 @@
 import { headers } from 'next/headers';
-import Link from 'next/link';
 import { getSeoCities } from '@/lib/seo-cities';
 import { getBars, getBarFilterOptions, getBarStats } from '@/lib/supabase';
 import { BarDirectoryMapClient } from '@/components/BarDirectoryMap';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import type { Metadata } from 'next';
+import { CityGuideDirectory } from '@/components/CityGuideDirectory';
 
 export const revalidate = 300; // 5 min ISR
 
@@ -102,16 +102,9 @@ export default async function BarsPage() {
           index into the programmatic best-bars pages, so none of them is an
           orphan. Client-side the directory app above stays untouched. */}
       {seoCities.length > 0 && (
-        <section className="dir-city-guides">
-          <h2>Best bars by city</h2>
-          <div className="best-bars-cities-grid">
-            {seoCities.map(c => (
-              <Link key={c.slug} href={`/best-bars/${c.slug}`} className="best-bars-city-link">
-                {c.city}
-              </Link>
-            ))}
-          </div>
-        </section>
+        <div className="dir-city-guides">
+          <CityGuideDirectory heading="Best bars by city" cities={seoCities} />
+        </div>
       )}
     </>
   );
