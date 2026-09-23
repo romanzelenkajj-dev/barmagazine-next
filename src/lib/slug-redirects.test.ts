@@ -62,7 +62,7 @@ describe('root bar slugs (the A4 /{slug} -> /bars/{slug} redirects)', () => {
   const set = rootBarSlugsFrom(generated);
 
   it('reads the generator output into a slug set, ignoring malformed rows', () => {
-    expect([...set].sort()).toEqual(['bar-leone', 'handshake-speakeasy']);
+    expect(Array.from(set).sort()).toEqual(['bar-leone', 'handshake-speakeasy']);
   });
 
   it('redirects a known root slug to its profile and nothing else', () => {
