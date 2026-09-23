@@ -7,6 +7,8 @@ import { retiredAreaSlugTarget } from '@/lib/metro-rollup';
 import { cityBase } from '@/lib/city-base';
 import type { Bar } from '@/lib/supabase';
 import { subdivisionName, cityLabel } from '@/lib/city-location';
+import { firstSentence, firstSentences } from '@/lib/first-sentence';
+import { getCityIntro } from '@/lib/city-intros';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { hasSlug } from '@/lib/safe-slug';
 import { isIndexableCity } from '@/lib/seo-cities';
@@ -44,6 +46,14 @@ export const revalidate = 300;
 export const dynamicParams = true;
 
 const SITE_URL = 'https://barmagazine.com';
+
+/** The hand-written intro's opening for the meta description: two sentences
+    when they fit the 160 characters Google shows, else one. */
+function introForMeta(intro: string | null): string | null {
+  if (!intro) return null;
+  const two = firstSentences(intro, 2);
+  return two.length <= 160 ? two : firstSentence(intro);
+}
 
 // ---------------------------------------------------------------------------
 // Static params — pre-build ALL active city pages
@@ -92,8 +102,10 @@ export async function generateMetadata({
   // What this page actually is: the bars WE hold in a city, all of them,
   // which is a directory and not a selection. The copy says that and stops
   // competing.
-  // No "signature serves" (task 120): only some bars carry one.
-  const description =
+  // A city with a hand-written intro describes itself (Roman, task 120):
+  // its first sentence or two, one when two run past what Google shows.
+  // The generic line is the fallback, and never promises signature serves.
+  const description = introForMeta(getCityIntro(params.city)) ??
     `The bars BarMagazine lists in ${cityLabel(cityName, countryName, subdivisionName(match.state, countryName))}, ` +
     `with addresses, opening hours and map. Browse the full city directory.`;
 
@@ -211,6 +223,9 @@ export default async function CityPage({
     return a.name.localeCompare(b.name);
   });
 
+  // The hand-written intro for the top cities, when there is one.
+  const cityIntro = getCityIntro(params.city);
+
   // Bar types for hero subtitle
   const types = Array.from(new Set(bars.map(b => b.type))).sort();
 
@@ -293,12 +308,14 @@ export default async function CityPage({
                 Google holds those for weeks, so a cached number is stale more
                 often than it is right. That rule predates task 83 (see the
                 comment in generateMetadata) and this keeps to it. */}
-            {/* One sentence in the band (task 120): the count and what every
-                listing carries. "Signature serves" is gone, only some bars
-                have one; the hand-written city intros no longer feed the
-                band either, so no city names a bar here. */}
+            {/* The band (task 120): a city with a hand-written intro shows its
+                first sentence or two; every other city gets the count line,
+                which never promises signature serves (only some bars have
+                one). */}
             <p>
-              Browse the {bars.length} {bars.length === 1 ? 'bar' : 'bars'} BarMagazine lists in {locationLabel}, with addresses, opening hours and map.
+              {cityIntro
+                ? firstSentences(cityIntro, 2)
+                : `Browse the ${bars.length} ${bars.length === 1 ? 'bar' : 'bars'} BarMagazine lists in ${locationLabel}, with addresses, opening hours and map.`}
             </p>
             {types.length > 1 && (
               <div className="directory-hero-types">
