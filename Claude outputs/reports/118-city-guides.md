@@ -37,3 +37,21 @@ if they should take the card too.
 Files: `src/components/CityGuideDirectory.tsx`, `src/lib/city-regions.ts` + test,
 `src/app/bars/page.tsx`, `src/app/best-bars/[city]/page.tsx`, `src/app/globals.css`
 (`.city-guides*`, `.city-region*`, `.city-guide-link`; the old `.dir-city-guides h2` rule is gone).
+
+## Rework (Roman, same day): region tabs
+
+The six columns became six tabs inside the same card: Europe, North America, Latin America, Asia,
+Middle East and Africa, Oceania. One region shows at a time, its cities alphabetical in a
+four-column grid of the same gold-underlined links; the other five panels are `hidden`, not
+absent, so all 109 links stay in the HTML (checked: 109 anchors in the card, 5 hidden panels).
+
+Default tab: the visitor's region from the IP geo the site already reads. /bars reads
+x-vercel-ip-continent and x-vercel-ip-country from the request and passes the region in
+(`regionOfGeo`: US and Canada are North America, the rest of that continent Latin America, the
+Gulf and the Levant the Middle East tab, unknown Europe; 13 test cases). The /best-bars city pages
+are ISR and cannot see headers, so they start on Europe and ask /api/geo once after mount,
+switching only if the visitor has not already picked a tab. Localhost has no geo, which is why the
+local check opened on Europe.
+
+Phones: the tab row scrolls sideways (643px of tabs in a 336px row on 390, no page overflow), the
+grid drops to two columns. PR #82 rebuilt, same preview URL.

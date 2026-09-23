@@ -89,8 +89,11 @@ export interface WPMedia {
   id: number;
   source_url: string;
   alt_text: string;
-  /** The media library caption, rendered as HTML by WordPress (task 111). */
+  /** The media library caption, rendered as HTML by WordPress (task 111).
+      Read it through captionFromMedia(): WordPress fills an empty caption
+      from the description at render time. */
   caption?: { rendered: string };
+  description?: { rendered: string };
   media_details: {
     width: number;
     height: number;
@@ -386,13 +389,58 @@ export function getPostTags(post: WPPost): WPTag[] {
  * appends a "More" link to the attachment page inside it; that link is
  * dropped before the tags are stripped so the text never ends in "More".
  */
-export function getFeaturedImageCaption(post: WPPost): string | null {
-  const raw = post._embedded?.['wp:featuredmedia']?.[0]?.caption?.rendered;
-  if (!raw) return null;
-  const text = stripHtml(raw.replace(/<a\b[^>]*class="[^"]*g1-link[^"]*"[^>]*>[\s\S]*?<\/a>/gi, ''))
+/** The rendered caption as one plain line, the theme's "More" link removed. */
+export function captionText(rendered: string | null | undefined): string | null {
+  if (!rendered) return null;
+  const text = stripHtml(rendered.replace(/<a\b[^>]*class="[^"]*g1-link[^"]*"[^>]*>[\s\S]*?<\/a>/gi, ''))
     .replace(/\s+/g, ' ')
     .trim();
   return text || null;
+}
+
+/**
+ * The media library CAPTION of an attachment, and nothing else (task 111 bug,
+ * Roman, 2026-09-23).
+ *
+ * WordPress renders an attachment's `caption` through the excerpt filters,
+ * and wp_trim_excerpt fills an EMPTY excerpt from the post content, which
+ * for an attachment is its Description. So a media record with a
+ * description and no caption comes back from the API with the description
+ * sitting in `caption.rendered`, and the hero overlay printed a two-line
+ * paragraph nobody had typed as a caption. The raw field needs an
+ * authenticated request; the description does not. So: the caption counts
+ * only when the description does not begin with it. An empty caption means
+ * no overlay.
+ */
+export function captionFromMedia(media: { caption?: { rendered?: string } | null; description?: { rendered?: string } | null } | null | undefined): string | null {
+  const cap = captionText(media?.caption?.rendered);
+  if (!cap) return null;
+  const norm = (t: string) => t.toLowerCase().replace(/\s+/g, ' ').replace(/[\s.\u2026\[\]]+$/g, '').trim();
+  const desc = norm(stripHtml(media?.description?.rendered || ''));
+  const capNorm = norm(cap);
+  if (desc && capNorm && desc.startsWith(capNorm)) return null;
+  return cap;
+}
+
+/**
+ * Fetch the featured image's media record from the site's own REST endpoint
+ * (the WordPress.com proxy refuses unauthenticated media reads; the site
+ * itself does not) and return its caption, or null. A failed read is null
+ * too: no overlay beats the wrong text.
+ */
+export async function fetchFeaturedImageCaption(post: WPPost): Promise<string | null> {
+  const id = post.featured_media || post._embedded?.['wp:featuredmedia']?.[0]?.id;
+  if (!id) return null;
+  try {
+    const res = await fetch(`https://${STAGING_DOMAIN}/wp-json/wp/v2/media/${id}?_fields=id,caption,description`, {
+      next: { revalidate: 300 },
+      headers: { 'User-Agent': 'barmagazine-next' },
+    });
+    if (!res.ok) return null;
+    return captionFromMedia(await res.json());
+  } catch {
+    return null;
+  }
 }
 
 export function stripHtml(html: string): string {
@@ -414,6 +462,7 @@ export function stripHtml(html: string): string {
     .replace(/&#039;/g, "'")
     .replace(/&nbsp;/g, ' ')
     .replace(/&#8230;/g, '…')
+    .replace(/&hellip;/g, '…')
     .replace(/&#\d+;/g, '');
   return text;
 }

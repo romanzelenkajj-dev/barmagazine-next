@@ -1,4 +1,4 @@
-# Task 119: US variant of the upsell email, A/B on batch 20. Test sent, WAITING for Roman's OK, 2026-09-23
+# Task 119: US variant of the upsell email, A/B on batch 20. Test approved, ARMED, 2026-09-23
 
 ## The variant
 
@@ -52,3 +52,19 @@ The full-list one-shot armed earlier today (`com.barmagazine.batch20-americas-w1
 57 bars) is STILL LOADED and must be unloaded before the two arms are armed, or the whole batch
 goes out under the old template at 09:00 and the arms find everything already sent. Waiting for
 Roman's OK on the test send and the split before touching it.
+
+## Armed (Roman's go in chat, 2026-09-23 afternoon)
+
+Resend reported the test as delivered; Roman found it in Gmail's Promotions tab and approved.
+
+The full-list one-shot (`com.barmagazine.batch20-americas-w1`, 57 bars, old template) was booted
+out and its plist deleted first. Then:
+
+- `com.barmagazine.batch20-americas-w1`: Tuesday 2026-09-29 09:00 PT, 30 recipients,
+  `--variant old --batch batch20-americas`, outreach/batch20-americas-a.slugs.
+- `com.barmagazine.batch20-americas-w2`: Tuesday 2026-09-29 09:05 PT, 27 recipients,
+  `--variant us --batch batch20-americas`, outreach/batch20-americas-b.slugs.
+
+Both runners carry the retry loop (three attempts, 10 then 30 minutes apart) and delete their plist
+before unloading. `launchctl list` shows both loaded. After the send, `node scripts/ab-report.mjs
+batch20-americas` gives claims and photos per arm.
