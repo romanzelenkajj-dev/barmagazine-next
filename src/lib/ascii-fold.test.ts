@@ -69,7 +69,12 @@ describe('ascii-fold', () => {
 
     it('skips the raw clauses for a plain ASCII query, keeping the filter short', () => {
       const f = searchOrFilter('lyaness');
-      expect(f).toBe('name_ascii.ilike.%lyaness%,city_ascii.ilike.%lyaness%');
+      expect(f).toBe('name_ascii.ilike.%lyaness%,city_ascii.ilike.%lyaness%,search_terms.ilike.%lyaness%');
+    });
+
+    it('matches the hand-entered search terms, folded and raw', () => {
+      expect(searchOrFilter('26')).toContain('search_terms.ilike.%26%');
+      expect(searchOrFilter('Ćilim')).toContain('search_terms.ilike.%Ćilim%');
     });
 
     it('appends extra columns when asked', () => {

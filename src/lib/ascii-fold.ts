@@ -64,9 +64,14 @@ export function foldQueryForIlike(query: unknown, maxLength = 80): string {
 export function searchOrFilter(query: unknown, extraColumns: string[] = []): string {
   const folded = foldQueryForIlike(query);
   const raw = escapeIlike(typeof query === 'string' ? query : '');
-  const clauses = [`name_ascii.ilike.%${folded}%`, `city_ascii.ilike.%${folded}%`];
+  // search_terms (task 108): the venue's other names, entered by hand, so a
+  // bar trading as "26" or "Twenty Six Budapest" is found under the name on
+  // its own door. It is plain text with no generated twin, so the folded
+  // query is matched against it as well as the raw one; an alias entered with
+  // accents is still reachable by typing them.
+  const clauses = [`name_ascii.ilike.%${folded}%`, `city_ascii.ilike.%${folded}%`, `search_terms.ilike.%${folded}%`];
   if (raw && raw.toLowerCase() !== folded) {
-    clauses.push(`name.ilike.%${raw}%`, `city.ilike.%${raw}%`);
+    clauses.push(`name.ilike.%${raw}%`, `city.ilike.%${raw}%`, `search_terms.ilike.%${raw}%`);
   }
   for (const col of extraColumns) clauses.push(`${col}.ilike.%${raw || folded}%`);
   return clauses.join(',');

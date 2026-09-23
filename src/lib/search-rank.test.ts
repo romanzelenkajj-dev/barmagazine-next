@@ -39,6 +39,21 @@ describe('rankSearchHits', () => {
     expect(rankSearchHits('origin', hits).map(h => h.name)).toEqual(['Origin Alpha', 'Origin Beta']);
   });
 
+  it('ranks a hand-entered search term exactly as it would the name (task 108)', () => {
+    // KAA° Mixology trades as "26" / "Twenty Six Budapest". Typing the name on
+    // the door must put it first, not leave it a city-tier straggler.
+    const hits = [
+      bar('26 Below', 'Sydney'),
+      { name: 'KAA° Mixology', city: 'Budapest', search_terms: '26 | Twenty Six Budapest | twentysixbudapest' },
+      bar('Bar 26', 'Lisbon'),
+    ];
+    expect(rankSearchHits('26', hits).map(h => h.name)).toEqual(['26 Below', 'KAA° Mixology', 'Bar 26']);
+    expect(rankSearchHits('twenty six', hits)[0].name).toBe('KAA° Mixology');
+    expect(rankSearchHits('twentysix', hits)[0].name).toBe('KAA° Mixology');
+    // A null or empty search_terms changes nothing.
+    expect(rankSearchHits('26', [{ name: 'Bar 26', city: 'Lisbon', search_terms: null }])[0].name).toBe('Bar 26');
+  });
+
   it('city matches still find Victoria bars', () => {
     const hits = [bar('Quiet Corner', 'Victoria'), bar('Vic Ale House', 'London')];
     const ranked = rankSearchHits('Vic', hits);
