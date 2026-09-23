@@ -9580,6 +9580,17 @@ textarea.form-input {
   line-height: 1.5;
   color: #e8e2d6;
 }
+/* "Order this" as the third Plan Your Visit column (task 115): the gold
+   label above, the drink name white, its ingredients grey. */
+.bar-v2-visit-order-name {
+  color: #fff;
+  font-weight: 700;
+}
+.bar-v2-visit-order-ingredients {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #9a9284;
+}
 .bar-v2-visit-actions {
   display: flex;
   flex-wrap: wrap;
@@ -10760,10 +10771,129 @@ textarea.form-input {
   padding: 0 16px;
 }
 
-.dir-city-guides h2 {
+/* ═══ The city-guide directory card (task 118) ═══
+   One white card, heading inside, region tabs, one region's cities at a
+   time in a four-column grid of plain links in the article link style
+   (gold underline). The inactive panels are hidden, not absent, so every
+   link stays in the HTML. Replaced the pill cloud. */
+.city-guides {
+  margin-top: 40px;
+  background: var(--bg-card);
+  border: 1px solid #e8e2d6;
+  border-radius: var(--radius);
+  padding: 28px 32px 30px;
+}
+.dir-city-guides .city-guides {
+  margin-top: 0;
+}
+.city-guides-heading {
   font-size: 18px;
   font-weight: 700;
-  margin: 0 0 14px;
+  margin: 0 0 18px;
+  color: var(--text-primary);
+}
+/* The tab row exists only with JavaScript (the .js class the component
+   sets during parse); without it the panels stack under their titles. */
+.city-guides-tabs {
+  display: none;
+  gap: 4px;
+  margin: 0 0 20px;
+  border-bottom: 1px solid #ece5d8;
+}
+.js .city-guides-tabs {
+  display: flex;
+}
+/* The hidden attribute must beat the author display rules on the panel
+   (the first cut set display: grid on the panel itself, which overrode the
+   browser's [hidden] rule, and every region rendered stacked). */
+.city-region-panel[hidden] {
+  display: block; /* without JavaScript every panel shows */
+}
+.js .city-region-panel[hidden] {
+  display: none;
+}
+.city-region-title {
+  margin: 18px 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.js .city-region-title {
+  display: none;
+}
+.city-guides-tab {
+  margin: 0 0 -1px;
+  padding: 10px 14px;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.city-guides-tab:hover {
+  color: var(--text-primary);
+}
+.city-guides-tab.is-active {
+  color: var(--text-primary);
+  border-bottom-color: var(--gold);
+}
+.city-region-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px 24px;
+}
+.city-region-grid li {
+  line-height: 1.55;
+  padding: 3px 0;
+  min-width: 0;
+}
+.city-guide-link {
+  color: inherit;
+  font-size: 14px;
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+.city-guide-link:hover {
+  color: var(--gold-ink);
+}
+@media (max-width: 768px) {
+  .city-guides {
+    padding: 18px 18px 20px;
+    margin-top: 28px;
+  }
+  .city-guides-heading {
+    margin-bottom: 12px;
+  }
+  /* The tabs scroll sideways on a phone; the grid drops to two columns. */
+  .city-guides-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -18px 16px;
+    padding: 0 18px;
+  }
+  .city-guides-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .city-guides-tab {
+    flex: 0 0 auto;
+    padding: 10px 12px;
+  }
+  .city-region-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 16px;
+  }
 }
 
 /* Guide links on a bar profile, above the nearby grid. */

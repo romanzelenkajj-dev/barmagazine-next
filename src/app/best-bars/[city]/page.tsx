@@ -1,3 +1,4 @@
+import { CityGuideDirectory } from '@/components/CityGuideDirectory';
 import { recordLine } from '@/lib/record-line';
 import { HighlightedText } from '@/components/HighlightedText';
 import { formatHoursForCountry } from '@/lib/format-hours';
@@ -220,18 +221,8 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
           </Link>
         </div>
 
-        {otherCities.length > 0 && (
-          <div className="best-bars-cities">
-            <h2>Best bars in other cities</h2>
-            <div className="best-bars-cities-grid">
-              {otherCities.map(c => (
-                <Link key={c.slug} href={`/best-bars/${c.slug}`} className="best-bars-city-link">
-                  {c.city}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* The city-guide directory card (task 118), the same block as on /bars. */}
+        {otherCities.length > 0 && <CityGuideDirectory heading="Best bars in other cities" cities={otherCities} />}
       </div>
     </>
   );

@@ -55,3 +55,19 @@ local check opened on Europe.
 
 Phones: the tab row scrolls sideways (643px of tabs in a 336px row on 390, no page overflow), the
 grid drops to two columns. PR #82 rebuilt, same preview URL.
+
+## Bug on the preview (Roman, same day): tabs highlighted, panels stacked. Fixed, `6492ec7`
+
+The panel carried `display: grid`, an author rule, which beats the browser's `[hidden] { display:
+none }`, so every region rendered under the tabs while only the highlight moved. My local check had
+read the `hidden` property, not the computed style, which is how it passed.
+
+Now: the grid sits on the inner list, `.js .city-region-panel[hidden]` is `display: none`, and a
+parse-time script in the component sets a `js` class on the document root. Without JavaScript the
+tab row is hidden and all six panels show under their own region titles, so the page still reads.
+
+Checked: (1) local dev, computed styles: clicking each of the six tabs leaves exactly one panel
+visible with the right link count (35, 44, 9, 17, 2, 2). (2) A script-free copy of the server HTML
+served locally, in the in-app browser: `js` class absent, tab row `display: none`, all six panels
+`display: block` with their titles. (3) The rebuilt Vercel preview in Roman's real Chrome, JS on:
+result recorded in chat.

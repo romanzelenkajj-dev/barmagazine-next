@@ -38,3 +38,19 @@ height and following element.
 
 Branch only (`70c4088`, rebased on main after PRs #74 and #75 merged). This report on main.
 Nothing merged.
+
+## Bug (Roman, 2026-09-23): the description was showing as the caption. Fixed on main, `1fa0508`
+
+On /tato-giovannoni-floreria-atlantico-torno-subito-miami the overlay printed a two-line paragraph.
+Cause: WordPress renders an attachment's caption through the excerpt filters, and wp_trim_excerpt
+fills an EMPTY excerpt from the post content, which for an attachment is its Description. So the
+API's `caption.rendered` for that image carried the description, and the code read exactly the
+field it was told to. The raw caption needs an authenticated request (the WordPress.com proxy
+refuses unauthenticated media reads, 401), but the site's own `/wp-json/wp/v2/media/<id>` answers
+without auth and exposes the description too.
+
+Fix: `fetchFeaturedImageCaption()` reads the media record from the site's own endpoint
+(revalidate 300) and `captionFromMedia()` keeps the caption only when the description does not
+begin with it; an empty caption, a description-filled caption, or a failed read all mean no
+overlay. Alt text is never used. 6 new tests, the old three rewritten. Confirmed live: the Tato
+article has no caption element; the 50 Best list shows "Boilermaker, No. 57, Goa".
