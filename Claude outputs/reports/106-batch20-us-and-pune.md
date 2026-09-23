@@ -95,3 +95,12 @@ party district.
 
 `outreach/batch20-us.slugs` (54), `outreach/parked.txt` (four lines), this report. One push.
 Nothing sent, nothing armed.
+
+## Armed (2026-09-23, on Roman's go in chat)
+
+`outreach/arm-window.sh batch20-americas w1 09 29 09 00 outreach/batch20-americas.slugs`: 57
+recipients, LaunchAgent `com.barmagazine.batch20-americas-w1` loaded for Tuesday 2026-09-29 09:00
+PT. Dry run re-run just before arming: 57 to send, no changes since the list was posted. The
+generated runner retries on any non-zero exit (three attempts, 10 then 30 minutes apart), safe
+because send-upsell.mjs skips anything already in `outreach/sent-log.txt`. The one-shot deletes its
+plist before unloading, so it cannot fire twice.
