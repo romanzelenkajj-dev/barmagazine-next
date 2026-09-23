@@ -18,6 +18,7 @@ import { formatBarType } from '@/lib/utils';
 import { placeLine } from '@/lib/city-location';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from './BarDirectorySidebar';
 import { BarSearchTypeahead } from './BarSearchTypeahead';
+import { fetchAllMatching } from '@/lib/filter-fetch';
 
 interface Props {
   initialBars: Bar[];
@@ -902,21 +903,33 @@ export function BarDirectoryMapClient({
       setHasMoreFromServer((totalBars || 0) > initialBars.length);
       return;
     }
-    // Fetch all bars matching the current filters from the server
+    // Fetch all bars matching the current filters from the server, paging
+    // past the 1,000-row cap (task 117): one perPage=1000 request gave the
+    // Cocktail Bar filter exactly 1,000 of its 1,651 matches, and the count,
+    // the grid and the map all showed the truncated set.
+    let live = true;
     setIsFilterFetching(true);
-    const params = new URLSearchParams({ perPage: '1000' });
+    const params = new URLSearchParams();
     if (debouncedSearch) params.set('search', debouncedSearch);
     if (countryFilter) params.set('country', countryFilter);
     if (cityFilter) params.set('city', cityFilter);
     if (typeFilter) params.set('type', typeFilter);
-    fetch(`/api/bars?${params}`)
-      .then(r => r.json())
-      .then(data => {
-        setAllBars(data.bars || []);
+    fetchAllMatching<Bar>(async (page, perPage) => {
+      const q = new URLSearchParams(params);
+      q.set('page', String(page));
+      q.set('perPage', String(perPage));
+      const res = await fetch(`/api/bars?${q}`);
+      if (!res.ok) throw new Error(`/api/bars ${res.status}`);
+      return res.json();
+    })
+      .then(({ bars }) => {
+        if (!live) return; // the filters changed while this set was loading
+        setAllBars(bars);
         setHasMoreFromServer(false); // All filtered results are loaded
       })
       .catch(e => console.error('Filter fetch failed:', e))
-      .finally(() => setIsFilterFetching(false));
+      .finally(() => { if (live) setIsFilterFetching(false); });
+    return () => { live = false; };
   }, [debouncedSearch, countryFilter, cityFilter, typeFilter]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchMoreBarsFromServer = useCallback(async () => {
