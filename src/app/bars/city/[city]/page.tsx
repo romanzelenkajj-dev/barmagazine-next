@@ -1,4 +1,3 @@
-import { firstSentence } from '@/lib/first-sentence';
 import { DirectoryBarCard } from '@/components/DirectoryBarCard';
 import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
@@ -10,7 +9,6 @@ import type { Bar } from '@/lib/supabase';
 import { subdivisionName, cityLabel } from '@/lib/city-location';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { hasSlug } from '@/lib/safe-slug';
-import { getCityIntro } from '@/lib/city-intros';
 import { isIndexableCity } from '@/lib/seo-cities';
 import { meritBand } from '@/lib/city-levels';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarDirectorySidebar';
@@ -94,10 +92,10 @@ export async function generateMetadata({
   // What this page actually is: the bars WE hold in a city, all of them,
   // which is a directory and not a selection. The copy says that and stops
   // competing.
+  // No "signature serves" (task 120): only some bars carry one.
   const description =
-    `The bars BarMagazine lists in ${cityLabel(cityName, countryName, subdivisionName(match.state, countryName))}: ` +
-    `addresses, opening hours, signature serves and the awards each one holds. ` +
-    `Browse the full city directory.`;
+    `The bars BarMagazine lists in ${cityLabel(cityName, countryName, subdivisionName(match.state, countryName))}, ` +
+    `with addresses, opening hours and map. Browse the full city directory.`;
 
   const title = `${titleName} Bar Directory`;
   const canonical = `${SITE_URL}/bars/city/${params.city}`;
@@ -216,9 +214,6 @@ export default async function CityPage({
   // Bar types for hero subtitle
   const types = Array.from(new Set(bars.map(b => b.type))).sort();
 
-  // Approved editorial intro for the top cities; template copy otherwise.
-  const cityIntro = getCityIntro(params.city);
-
 
   // JSON-LD — BreadcrumbList
   const breadcrumbLd = {
@@ -298,12 +293,12 @@ export default async function CityPage({
                 Google holds those for weeks, so a cached number is stale more
                 often than it is right. That rule predates task 83 (see the
                 comment in generateMetadata) and this keeps to it. */}
-            {/* One whole sentence in the band (task 112): the intro's first,
-                or the count line, which is one sentence by design. */}
+            {/* One sentence in the band (task 120): the count and what every
+                listing carries. "Signature serves" is gone, only some bars
+                have one; the hand-written city intros no longer feed the
+                band either, so no city names a bar here. */}
             <p>
-              {cityIntro
-                ? firstSentence(cityIntro)
-                : `Browse the ${bars.length} bars BarMagazine lists in ${locationLabel}, with addresses, opening hours and signature serves.`}
+              Browse the {bars.length} {bars.length === 1 ? 'bar' : 'bars'} BarMagazine lists in {locationLabel}, with addresses, opening hours and map.
             </p>
             {types.length > 1 && (
               <div className="directory-hero-types">
@@ -321,13 +316,15 @@ export default async function CityPage({
         {/* Row 2 left: results bar + card grid + nearby cities + CTA */}
         <div className="directory-page-body">
 
-          {/* Results count */}
-          <div className="directory-results-bar">
-            <span className="directory-count">
+          {/* The count and the country link in a white toolbar row (task
+              120), the row task 116 gave /bars, so nothing sits bare on the
+              page background. */}
+          <div className="directory-toolbar">
+            <span className="directory-toolbar-count">
               {bars.length} {bars.length === 1 ? 'bar' : 'bars'} in {cityName}
             </span>
-            <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="directory-count" style={{ marginLeft: '1rem', opacity: 0.6 }}>
-              All bars in {countryName} →
+            <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="directory-toolbar-link">
+              All bars in {countryName} &rarr;
             </Link>
           </div>
 
