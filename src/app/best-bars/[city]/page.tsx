@@ -1,4 +1,4 @@
-import { firstSentence } from '@/lib/first-sentence';
+import { recordLine } from '@/lib/record-line';
 import { HighlightedText } from '@/components/HighlightedText';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
@@ -14,7 +14,6 @@ import { splitHighlight } from '@/lib/menu-highlight';
 import {
   getSeoCities,
   resolveSeoCity,
-  composeCityIntro,
   composeCityDescription,
   sortSeoBars,
 } from '@/lib/seo-cities';
@@ -100,7 +99,9 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
   const year = new Date().getFullYear();
   const editorial = TOP10_CITIES.find(c => c.dirSlug === params.city && c.articleSlug);
   const otherCities = (await getSeoCities()).filter(c => c.slug !== match.slug);
-  const intro = composeCityIntro(match, bars.length);
+  // The band line names no bar (task 114): counts and records only, which
+  // hold whatever order the list below takes.
+  const intro = recordLine(bars);
 
   const itemListLd = {
     '@context': 'https://schema.org',
@@ -144,8 +145,7 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
           <span className="best-bars-kicker">BarMagazine&rsquo;s pick &middot; {year}</span>
           {/* No number on a fallback page, matching the title. */}
           <h1>The {level.fellBack ? '' : `${bars.length} `}Best Bars in {match.city}</h1>
-          {/* The band shows the first sentence whole, never a clamped run (task 112). */}
-          <p className="best-bars-intro">{firstSentence(intro)}</p>
+          <p className="best-bars-intro">{intro}</p>
           <div className="best-bars-hero-links">
             {editorial?.articleSlug && (
               <Link href={`/${editorial.articleSlug}`} className="best-bars-hero-link best-bars-hero-link--primary">

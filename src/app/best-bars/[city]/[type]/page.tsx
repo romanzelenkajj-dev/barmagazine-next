@@ -1,4 +1,4 @@
-import { firstSentence } from '@/lib/first-sentence';
+import { recordLine } from '@/lib/record-line';
 import { HighlightedText } from '@/components/HighlightedText';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
@@ -15,7 +15,6 @@ import {
   getSeoCities,
   resolveSeoCity,
   typePageBySlug,
-  composeTypeIntro,
   composeTypeDescription,
   MIN_TYPE_BARS,
   sortSeoBars,
@@ -106,7 +105,8 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
   if (bars.length < MIN_TYPE_BARS) notFound();
 
   const year = new Date().getFullYear();
-  const intro = composeTypeIntro(city, t, combo.count, bars[0]?.name ?? null, bars.length);
+  // The band line names no bar (task 114): counts and records only.
+  const intro = recordLine(bars, t.plural);
   const siblingTypes = city.typeSlugs.filter(x => x.slug !== t.slug);
   const regionCombos = await getRegionCombos();
   const countryCombo = regionCombos.find(c => c.region.kind === 'country' && c.region.country === city.country && c.type.slug === t.slug) ?? null;
@@ -163,7 +163,7 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
             .split(' ')
             .map(w => w.charAt(0).toUpperCase() + w.slice(1))
             .join(' ')} in {city.city}</h1>
-          <p className="best-bars-intro">{firstSentence(intro)}</p>
+          <p className="best-bars-intro">{intro}</p>
           <div className="best-bars-hero-links">
             <Link href={`/best-bars/${params.city}`} className="best-bars-hero-link best-bars-hero-link--primary">
               All the best bars in {city.city}
