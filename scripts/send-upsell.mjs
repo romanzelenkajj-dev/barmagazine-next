@@ -7,6 +7,8 @@
  *   node scripts/send-upsell.mjs <slug> [...]                   # DRY RUN: prints, sends nothing
  *   node scripts/send-upsell.mjs --send <slug> [...]            # LIVE: emails the bars' real addresses
  *   node scripts/send-upsell.mjs --send --resend <slug> [...]   # LIVE, ignoring the duplicate guard
+ *   --variant auto|old|us   which template (default auto: US bars whose city
+ *                           has a /best-bars page get the US variant, task 119)
  *
  * CORPORATE EXCLUSION: bars whose on-file email routes through a chain-hotel
  * or luxury-group domain are partner-track — approached by hand at group
@@ -52,16 +54,19 @@ const { waitForNetwork } = await import('./net-preflight.mjs');
 await waitForNetwork(SUPA_URL);
 
 const args = process.argv.slice(2);
-let overrideTo = null, live = false, resend = false, batchLabel = null;
+let overrideTo = null, live = false, resend = false, batchLabel = null, variantFlag = 'auto', dumpHtml = null;
 const requested = [];
 for (let i = 0; i < args.length; i++) {
   if (args[i] === '--to') { overrideTo = args[++i]; }
   else if (args[i] === '--send') { live = true; }
   else if (args[i] === '--resend') { resend = true; }
   else if (args[i] === '--batch') { batchLabel = args[++i]; }
+  else if (args[i] === '--variant') { variantFlag = args[++i]; }
+  else if (args[i] === '--dump-html') { dumpHtml = args[++i]; } // dry run: write the rendered email here for a look
   else requested.push(args[i]);
 }
 if (!requested.length) { console.error('No bar slugs given.'); process.exit(1); }
+if (!['auto', 'old', 'us'].includes(variantFlag)) { console.error(`--variant must be auto, old or us (got ${variantFlag})`); process.exit(1); }
 
 // ---------------------------------------------------------------- sent log
 const SENT_LOG = resolve(ROOT, 'outreach/sent-log.txt');
@@ -100,8 +105,15 @@ const TODAY = new Date().toISOString().slice(0, 10);
 // Append one complete line per successful send, immediately. appendFileSync
 // opens with O_APPEND and never truncates, so existing records cannot be lost
 // and a kill mid-run leaves every prior record intact.
-function recordSent(slug) {
-  appendFileSync(SENT_LOG, `${slug}\t${TODAY}\t${BATCH}\n`, 'utf8');
+// The batch label in the log carries the template actually sent (task 119):
+// a bar that got the US variant is logged under "<batch>-us", whatever arm
+// it was in, so ab-report.mjs compares templates, not intentions. A US bar
+// in the variant arm whose city has no best-bars page falls back to the
+// directory template and is logged under the plain label.
+function recordSent(slug, variant) {
+  const base = BATCH.replace(/-us$/, '');
+  const label = variant === 'us' ? `${base}-us` : base;
+  appendFileSync(SENT_LOG, `${slug}\t${TODAY}\t${label}\n`, 'utf8');
 }
 
 // ------------------------------------------------------- duplicate guard
@@ -205,7 +217,7 @@ const PARKED = loadParked();
 
 const FROM = 'Roman Zelenka <zelenka@barmagazine.com>';
 const SUBJ = (name) => `${name} is listed on BarMagazine`;
-const TMPL = "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#f4f2ee;padding:24px 0;\"><tr><td align=\"center\">\n<table role=\"presentation\" width=\"560\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:560px;max-width:100%;background:#ffffff;border:1px solid #e6e2da;font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;\">\n<tr><td style=\"background:#0a0a0a;padding:0;\" align=\"left\">\n  <img src=\"https://barmagazine.com/email/logo-black-bg.png\" alt=\"BarMagazine\" width=\"560\" height=\"78\" style=\"display:block;width:560px;height:78px;border:0;\">\n</td></tr>\n<tr><td style=\"padding:34px 32px 8px;\">\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">Hi {{BAR_NAME}} team,</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">I'm Roman Zelenka, the publisher of <b>BarMagazine</b>. {{BAR_NAME}} has a live profile in our Bar Directory, a curated guide to 1,600+ of the world's best cocktail bars, read by industry professionals and by cocktail lovers deciding where to drink next.</p>\n  <div style=\"margin:6px 0 22px;\"><!--[if mso]><v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"{{PROFILE_URL}}\" style=\"height:42px;v-text-anchor:middle;width:230px;\" arcsize=\"50%\" strokecolor=\"#0a0a0a\" fillcolor=\"#0a0a0a\"><w:anchorlock/><center style=\"color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;\">SEE YOUR PROFILE</center></v:roundrect><![endif]--><!--[if !mso]><!--><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td bgcolor=\"#0a0a0a\" style=\"background-color:#0a0a0a;border-radius:999px;padding:12px 26px;\"><a href=\"{{PROFILE_URL}}\" style=\"display:inline-block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;text-decoration:none;\">SEE YOUR PROFILE</a></td></tr></table><!--<![endif]--></div>\n  <p style=\"margin:6px 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6b6459;\">or open <a href=\"{{PROFILE_URL}}\" style=\"color:#8a6a24;\">barmagazine.com/bars/{{BAR_SLUG}}</a></p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Your listing is free, and stays free.</b> It already shows your address, opening hours, map location and links to your website and Instagram. Claiming it takes two minutes. Once verified, you can correct or update your details whenever you like.</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">One thing most listings are still missing is a photo. A listing with a photo is ranked above one without it on our city pages, and adding yours takes a minute once the bar is claimed. Reply to this email with your favorite shot of the bar and we'll add it to your profile, free.</p>\n  <div style=\"margin:6px 0 26px;\"><!--[if mso]><v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"{{CLAIM_URL}}\" style=\"height:42px;v-text-anchor:middle;width:290px;\" arcsize=\"50%\" strokecolor=\"#B08D3F\" fillcolor=\"#B08D3F\"><w:anchorlock/><center style=\"color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;\">CLAIM YOUR FREE LISTING</center></v:roundrect><![endif]--><!--[if !mso]><!--><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td bgcolor=\"#B08D3F\" style=\"background-color:#B08D3F;border-radius:999px;padding:12px 26px;\"><a href=\"{{CLAIM_URL}}\" style=\"display:inline-block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;text-decoration:none;\">CLAIM YOUR FREE LISTING</a></td></tr></table><!--<![endif]--></div>\n  <p style=\"margin:6px 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6b6459;\">or claim it at <a href=\"{{CLAIM_URL}}\" style=\"color:#8a6a24;\">barmagazine.com/claim-your-bar</a></p>\n  <p style=\"margin:0 0 6px;font-size:13px;font-family:Arial,Helvetica,sans-serif;letter-spacing:.1em;color:#B08D3F;\"><b>WANT YOUR PAGE TO DO MORE?</b></p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Featured</b> bars get their profile turned into a full landing page: your complete drinks menu, a photo gallery, and a featured article about your bar on BarMagazine.com. Many bars use it as their main website.</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Featured&nbsp;+&nbsp;Social</b> adds promotion to our Instagram audience of <a href=\"https://www.instagram.com/barmagazine\" style=\"color:#8a6a24;\">88,000+ organic followers</a> from the bar industry and cocktail scene: 2 posts or Reels a year, each amplified with 3 Stories.</p>\n  <p style=\"margin:0 0 24px;font-size:15px;line-height:1.7;\">See a Featured page live: <a href=\"https://barmagazine.com/bars/dangerous-water-palma-de-mallorca\" style=\"color:#8a6a24;\">Dangerous Water, Palma de Mallorca, Spain</a><br>\n  Plans &amp; pricing: <a href=\"https://barmagazine.com/feature-your-bar?bar={{BAR_SLUG}}#pricing\" style=\"color:#8a6a24;\">barmagazine.com/feature-your-bar</a></p>\n  <p style=\"margin:0 0 4px;font-size:16px;line-height:1.6;\">Cheers,<br><b>Roman Zelenka</b><br>Publisher, BarMagazine</p>\n</td></tr>\n<tr><td style=\"padding:16px 32px;border-top:1px solid #eee6d8;\">\n  <p style=\"margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#9a9284;\">BarMagazine &middot; The cocktail bar directory &middot; <a href=\"https://barmagazine.com/bars\" style=\"color:#9a9284;\">barmagazine.com/bars</a><br>You're receiving this one-time note because {{BAR_NAME}} is listed in our public directory. Reply and I'll update or remove the listing.<br>Don't want emails about your listing? <a href=\"{{UNSUB_URL}}\" style=\"color:#9a9284;\">Unsubscribe here</a>, or reply 'unsubscribe' and we won't email this address again.<br>PRO PUBLISHING s.r.o., Landererova 6, 811 09 Bratislava, Slovakia. Publisher of barmagazine.com.</p>\n</td></tr>\n</table></td></tr></table>";
+const TMPL = "<table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#f4f2ee;padding:24px 0;\"><tr><td align=\"center\">\n<table role=\"presentation\" width=\"560\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:560px;max-width:100%;background:#ffffff;border:1px solid #e6e2da;font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;\">\n<tr><td style=\"background:#0a0a0a;padding:0;\" align=\"left\">\n  <img src=\"https://barmagazine.com/email/logo-black-bg.png\" alt=\"BarMagazine\" width=\"560\" height=\"78\" style=\"display:block;width:560px;height:78px;border:0;\">\n</td></tr>\n<tr><td style=\"padding:34px 32px 8px;\">\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">Hi {{BAR_NAME}} team,</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">I'm Roman Zelenka, the publisher of <b>BarMagazine</b>. {{BAR_NAME}} has a live profile in our Bar Directory, a curated guide to 1,700+ of the world's best cocktail bars, read by industry professionals and by cocktail lovers deciding where to drink next.</p>\n  <div style=\"margin:6px 0 22px;\"><!--[if mso]><v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"{{PROFILE_URL}}\" style=\"height:42px;v-text-anchor:middle;width:230px;\" arcsize=\"50%\" strokecolor=\"#0a0a0a\" fillcolor=\"#0a0a0a\"><w:anchorlock/><center style=\"color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;\">SEE YOUR PROFILE</center></v:roundrect><![endif]--><!--[if !mso]><!--><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td bgcolor=\"#0a0a0a\" style=\"background-color:#0a0a0a;border-radius:999px;padding:12px 26px;\"><a href=\"{{PROFILE_URL}}\" style=\"display:inline-block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;text-decoration:none;\">SEE YOUR PROFILE</a></td></tr></table><!--<![endif]--></div>\n  <p style=\"margin:6px 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6b6459;\">or open <a href=\"{{PROFILE_URL}}\" style=\"color:#8a6a24;\">barmagazine.com/bars/{{BAR_SLUG}}</a></p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Your listing is free, and stays free.</b> It already shows your address, opening hours, map location and links to your website and Instagram. Claiming it takes two minutes. Once verified, you can correct or update your details whenever you like.</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\">One thing most listings are still missing is a photo. A listing with a photo is ranked above one without it on our city pages, and adding yours takes a minute once the bar is claimed. Reply to this email with your favorite shot of the bar and we'll add it to your profile, free.</p>\n  <div style=\"margin:6px 0 26px;\"><!--[if mso]><v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"{{CLAIM_URL}}\" style=\"height:42px;v-text-anchor:middle;width:290px;\" arcsize=\"50%\" strokecolor=\"#B08D3F\" fillcolor=\"#B08D3F\"><w:anchorlock/><center style=\"color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;\">CLAIM YOUR FREE LISTING</center></v:roundrect><![endif]--><!--[if !mso]><!--><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td bgcolor=\"#B08D3F\" style=\"background-color:#B08D3F;border-radius:999px;padding:12px 26px;\"><a href=\"{{CLAIM_URL}}\" style=\"display:inline-block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;text-decoration:none;\">CLAIM YOUR FREE LISTING</a></td></tr></table><!--<![endif]--></div>\n  <p style=\"margin:6px 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6b6459;\">or claim it at <a href=\"{{CLAIM_URL}}\" style=\"color:#8a6a24;\">barmagazine.com/claim-your-bar</a></p>\n  <p style=\"margin:0 0 6px;font-size:13px;font-family:Arial,Helvetica,sans-serif;letter-spacing:.1em;color:#B08D3F;\"><b>WANT YOUR PAGE TO DO MORE?</b></p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Featured</b> bars get their profile turned into a full landing page: your complete drinks menu, a photo gallery, and a featured article about your bar on BarMagazine.com. Many bars use it as their main website.</p>\n  <p style=\"margin:0 0 16px;font-size:16px;line-height:1.6;\"><b>Featured&nbsp;+&nbsp;Social</b> adds promotion to our Instagram audience of <a href=\"https://www.instagram.com/barmagazine\" style=\"color:#8a6a24;\">88,000+ organic followers</a> from the bar industry and cocktail scene: 2 posts or Reels a year, each amplified with 3 Stories.</p>\n  <p style=\"margin:0 0 24px;font-size:15px;line-height:1.7;\">See a Featured page live: <a href=\"https://barmagazine.com/bars/dangerous-water-palma-de-mallorca\" style=\"color:#8a6a24;\">Dangerous Water, Palma de Mallorca, Spain</a><br>\n  Plans &amp; pricing: <a href=\"https://barmagazine.com/feature-your-bar?bar={{BAR_SLUG}}#pricing\" style=\"color:#8a6a24;\">barmagazine.com/feature-your-bar</a></p>\n  <p style=\"margin:0 0 4px;font-size:16px;line-height:1.6;\">Cheers,<br><b>Roman Zelenka</b><br>Publisher, BarMagazine</p>\n</td></tr>\n<tr><td style=\"padding:16px 32px;border-top:1px solid #eee6d8;\">\n  <p style=\"margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#9a9284;\">BarMagazine &middot; The cocktail bar directory &middot; <a href=\"https://barmagazine.com/bars\" style=\"color:#9a9284;\">barmagazine.com/bars</a><br>You're receiving this one-time note because {{BAR_NAME}} is listed in our public directory. Reply and I'll update or remove the listing.<br>Don't want emails about your listing? <a href=\"{{UNSUB_URL}}\" style=\"color:#9a9284;\">Unsubscribe here</a>, or reply 'unsubscribe' and we won't email this address again.<br>{{POSTAL}}</p>\n</td></tr>\n</table></td></tr></table>";
 
 const escapeHtml = (s) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
@@ -220,12 +232,13 @@ function htmlFor(bar) {
     .replaceAll('{{PROFILE_URL}}', 'https://barmagazine.com/bars/' + bar.slug)
     .replaceAll('{{CLAIM_URL}}', 'https://barmagazine.com/claim-your-bar?bar=' + encodeURIComponent(bar.slug))
     .replaceAll('{{BAR_SLUG}}', encodeURIComponent(bar.slug))
-    .replaceAll('{{UNSUB_URL}}', unsubUrl(bar));
+    .replaceAll('{{UNSUB_URL}}', unsubUrl(bar))
+    .replaceAll('{{POSTAL}}', postalFor(bar));
 }
 function textFor(bar) {
   return [
     `Hi ${bar.name} team,`, '',
-    `I'm Roman Zelenka, the publisher of BarMagazine. ${bar.name} has a live profile in our Bar Directory, a curated guide to 1,600+ of the world's best cocktail bars.`, '',
+    `I'm Roman Zelenka, the publisher of BarMagazine. ${bar.name} has a live profile in our Bar Directory, a curated guide to 1,700+ of the world's best cocktail bars.`, '',
     `See your profile: https://barmagazine.com/bars/${bar.slug}`, '',
     'Your listing is free, and stays free. It already shows your address, opening hours, map location, website and Instagram. Claiming it takes two minutes, and once verified you can update your details any time:',
     `https://barmagazine.com/claim-your-bar?bar=${bar.slug}`, '',
@@ -235,11 +248,130 @@ function textFor(bar) {
     `Pricing: https://barmagazine.com/feature-your-bar?bar=${bar.slug}`, '',
     'Cheers,', 'Roman Zelenka', 'Publisher, BarMagazine', '',
     "Don't want emails about your listing? Unsubscribe: {{UNSUB_URL}} , or reply 'unsubscribe' and we won't email this address again.",
-    // The sender's physical postal address. PRO PUBLISHING s.r.o. is the
-    // registered publisher of barmagazine.com, per the Slovak Commercial
-    // Register (ICO 52 233 570) and the site's own terms and privacy pages.
-    'PRO PUBLISHING s.r.o., Landererova 6, 811 09 Bratislava, Slovakia. Publisher of barmagazine.com.'
-  ].join('\n').replaceAll('{{UNSUB_URL}}', unsubUrl(bar));
+    // The sender's physical postal address, by the bar's country (postalFor).
+    '{{POSTAL}}'
+  ].join('\n').replaceAll('{{UNSUB_URL}}', unsubUrl(bar)).replaceAll('{{POSTAL}}', postalFor(bar));
+}
+
+/**
+ * The sender's physical postal address in the footer (Roman, 2026-09-23):
+ * US bars get BarMagazine LLC in Carlsbad, every other country keeps PRO
+ * PUBLISHING s.r.o., the registered publisher of barmagazine.com per the
+ * Slovak Commercial Register (ICO 52 233 570) and the site's own terms and
+ * privacy pages.
+ */
+const POSTAL_US = 'BarMagazine LLC, 6605 Agave Circle, Carlsbad, CA 92011. Publisher of barmagazine.com.';
+const POSTAL_EU = 'PRO PUBLISHING s.r.o., Landererova 6, 811 09 Bratislava, Slovakia. Publisher of barmagazine.com.';
+const isUS = (bar) => String(bar.country || '').trim() === 'United States';
+function postalFor(bar) {
+  return isUS(bar) ? POSTAL_US : POSTAL_EU;
+}
+
+// ---------------------------------------------------------- US variant (119)
+/**
+ * The US variant (Roman, task 119): the pitch is the bar's place on its
+ * city's /best-bars page, not the directory. Selected for a United States
+ * bar whose city has a live best-bars page; a US bar in a city without one
+ * falls back to the directory template above. --variant old|us overrides
+ * the selection for an A/B arm.
+ *
+ * The city page and its bar count come from the live site, not from a
+ * guess at the slug: the bar's own profile links to the city guide it
+ * belongs to (metro rollups included), and the guide's ItemList JSON-LD
+ * carries numberOfItems, the same number its H1 shows. Any failure on the
+ * way reads as "no city page", never as a wrong number in an email.
+ */
+const CITY_PAGE_CACHE = new Map();
+async function cityPageFor(bar) {
+  try {
+    const prof = await fetch(`https://barmagazine.com/bars/${encodeURIComponent(bar.slug)}`, { headers: { 'User-Agent': 'barmagazine-outreach' } });
+    if (!prof.ok) return null;
+    const html = await prof.text();
+    const m = /class="bar-v2-guide-link" href="\/best-bars\/([a-z0-9-]+)"/.exec(html) || /href="\/best-bars\/([a-z0-9-]+)" class="bar-v2-guide-link"/.exec(html);
+    if (!m) return null;
+    const slug = m[1];
+    if (CITY_PAGE_CACHE.has(slug)) return CITY_PAGE_CACHE.get(slug);
+    const page = await fetch(`https://barmagazine.com/best-bars/${slug}`, { headers: { 'User-Agent': 'barmagazine-outreach' } });
+    if (!page.ok) { CITY_PAGE_CACHE.set(slug, null); return null; }
+    const body = await page.text();
+    // Both from the ItemList JSON-LD: React puts comment nodes between the
+    // text pieces of the rendered H1, so the JSON is the clean copy.
+    const n = /"numberOfItems":(\d+)/.exec(body);
+    const nm = /"name":"The (?:\d+ )?Best Bars in ([^"]+)"/.exec(body);
+    const info = n && nm ? { slug, n: Number(n[1]), city: nm[1].trim() } : null;
+    CITY_PAGE_CACHE.set(slug, info);
+    return info;
+  } catch {
+    return null;
+  }
+}
+
+/** Which template a bar gets, and the city page the US one is built on. */
+async function pickVariant(bar) {
+  if (variantFlag === 'old') return { variant: 'old', page: null };
+  if (variantFlag === 'auto' && !isUS(bar)) return { variant: 'old', page: null };
+  const page = await cityPageFor(bar);
+  return page ? { variant: 'us', page } : { variant: 'old', page: null };
+}
+
+const SUBJ_US = (bar, page) => `${bar.name} is on our Best Bars in ${page.city} page`;
+
+const P = (inner) => `<p style="margin:0 0 16px;font-size:16px;line-height:1.6;">${inner}</p>`;
+const SMALL = (inner) => `<p style="margin:6px 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;color:#6b6459;">${inner}</p>`;
+/** The bulletproof button the directory template uses: VML for Outlook, a table cell for the rest. */
+function button(href, label, color, width) {
+  return `<div style="margin:6px 0 22px;"><!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${href}" style="height:42px;v-text-anchor:middle;width:${width}px;" arcsize="50%" strokecolor="${color}" fillcolor="${color}"><w:anchorlock/><center style="color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;">${label}</center></v:roundrect><![endif]--><!--[if !mso]><!--><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="${color}" style="background-color:${color};border-radius:999px;padding:12px 26px;"><a href="${href}" style="display:inline-block;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.04em;text-decoration:none;">${label}</a></td></tr></table><!--<![endif]--></div>`;
+}
+
+function htmlForUS(bar, page) {
+  const name = escapeHtml(bar.name);
+  const city = escapeHtml(page.city);
+  const cityUrl = `https://barmagazine.com/best-bars/${page.slug}`;
+  const claimUrl = 'https://barmagazine.com/claim-your-bar?bar=' + encodeURIComponent(bar.slug);
+  const hasPhoto = Array.isArray(bar.photos) && bar.photos.length > 0;
+  const body = [
+    P(`Hi ${name} team,`),
+    P(`Roman here, publisher of <b>BarMagazine</b>. ${name} is one of the ${page.n} bars on our <b>Best Bars in ${city}</b> page, the page people find when they search for where to drink in ${city}:`),
+    button(cityUrl, `SEE THE ${city.toUpperCase()} PAGE`, '#0a0a0a', 260),
+    SMALL(`or open <a href="${cityUrl}" style="color:#8a6a24;">barmagazine.com/best-bars/${page.slug}</a>`),
+    P(`Your profile there is free, no catch: address, hours, map, links to your site and Instagram. Claim it in two minutes and you can fix anything yourself.`),
+    hasPhoto ? '' : P(`One thing worth doing today: bars with a photo sit above bars without one on the city page, and ${name} has none yet. Reply with your favorite shot and it's live the same day.`),
+    button(claimUrl, 'CLAIM YOUR PROFILE', '#B08D3F', 250),
+    SMALL(`or claim it at <a href="${claimUrl}" style="color:#8a6a24;">barmagazine.com/claim-your-bar</a>`),
+    P(`If you ever want more, a feature article and your menu and gallery on the profile, that's <b>Featured</b>, $19.50 a month. The free listing is the point of this email.`),
+    `<p style="margin:0 0 4px;font-size:16px;line-height:1.6;"><b>Roman Zelenka</b><br>Publisher, BarMagazine<br>Carlsbad, California</p>`,
+  ].join('\n  ');
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f2ee;padding:24px 0;"><tr><td align="center">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="width:560px;max-width:100%;background:#ffffff;border:1px solid #e6e2da;font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;">
+<tr><td style="background:#0a0a0a;padding:0;" align="left">
+  <img src="https://barmagazine.com/email/logo-black-bg.png" alt="BarMagazine" width="560" height="78" style="display:block;width:560px;height:78px;border:0;">
+</td></tr>
+<tr><td style="padding:34px 32px 8px;">
+  ${body}
+</td></tr>
+<tr><td style="padding:16px 32px;border-top:1px solid #eee6d8;">
+  <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#9a9284;">You're receiving this one-time note because ${name} is listed in our public directory. Reply and I'll update or remove the listing.<br>Don't want emails about your listing? <a href="${unsubUrl(bar)}" style="color:#9a9284;">Unsubscribe here</a>, or reply 'unsubscribe' and we won't email this address again.<br>${postalFor(bar)}</p>
+</td></tr>
+</table></td></tr></table>`;
+}
+
+function textForUS(bar, page) {
+  const cityUrl = `https://barmagazine.com/best-bars/${page.slug}`;
+  const hasPhoto = Array.isArray(bar.photos) && bar.photos.length > 0;
+  return [
+    `Hi ${bar.name} team,`, '',
+    `Roman here, publisher of BarMagazine. ${bar.name} is one of the ${page.n} bars on our Best Bars in ${page.city} page, the page people find when they search for where to drink in ${page.city}:`,
+    cityUrl, '',
+    'Your profile there is free, no catch: address, hours, map, links to your site and Instagram. Claim it in two minutes and you can fix anything yourself.',
+    ...(hasPhoto ? [] : ['', `One thing worth doing today: bars with a photo sit above bars without one on the city page, and ${bar.name} has none yet. Reply with your favorite shot and it's live the same day.`]),
+    '',
+    `Claim your profile: https://barmagazine.com/claim-your-bar?bar=${bar.slug}`, '',
+    "If you ever want more, a feature article and your menu and gallery on the profile, that's Featured, $19.50 a month. The free listing is the point of this email.", '',
+    'Roman Zelenka', 'Publisher, BarMagazine', 'Carlsbad, California', '',
+    `You're receiving this one-time note because ${bar.name} is listed in our public directory. Reply and I'll update or remove the listing.`,
+    `Don't want emails about your listing? Unsubscribe: ${unsubUrl(bar)} , or reply 'unsubscribe' and we won't email this address again.`,
+    postalFor(bar),
+  ].join('\n');
 }
 
 /**
@@ -371,7 +503,19 @@ for (const slug of slugs) {
   // stdout as well as stderr: the pre-flight above should already have
   // caught this, so reaching here at all is worth seeing in the normal log.
   if (!to) { console.log(`SKIP ${slug}: no email on file`); continue; }
-  if (!overrideTo && !live) { console.log(`DRY RUN would send: ${bar.name} -> ${to}`); continue; }
+  const { variant, page } = await pickVariant(bar);
+  const tag = variant === 'us' ? `[us: ${page.n} bars on /best-bars/${page.slug}${(bar.photos || []).length ? ', has photo' : ', no photo'}]` : '[old]';
+  if (!overrideTo && !live) {
+    console.log(`DRY RUN would send ${tag}: ${bar.name} -> ${to}`);
+    if (dumpHtml) {
+      const { writeFileSync } = await import('node:fs');
+      const subject = variant === 'us' ? SUBJ_US(bar, page) : SUBJ(bar.name);
+      writeFileSync(dumpHtml, `<!-- Subject: ${subject} -->\n` + (variant === 'us' ? htmlForUS(bar, page) : htmlFor(bar)));
+      writeFileSync(dumpHtml.replace(/\.html?$/, '') + '.txt', `Subject: ${subject}\n\n` + (variant === 'us' ? textForUS(bar, page) : textFor(bar)));
+      console.log(`  wrote ${dumpHtml} and the .txt beside it`);
+    }
+    continue;
+  }
 
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -380,9 +524,9 @@ for (const slug of slugs) {
       from: FROM,
       to: [to],
       reply_to: 'zelenka@barmagazine.com',
-      subject: SUBJ(bar.name),
-      html: htmlFor(bar),
-      text: textFor(bar),
+      subject: variant === 'us' ? SUBJ_US(bar, page) : SUBJ(bar.name),
+      html: variant === 'us' ? htmlForUS(bar, page) : htmlFor(bar),
+      text: variant === 'us' ? textForUS(bar, page) : textFor(bar),
       // RFC 8058 one-click. Mail providers check for these, and an easy
       // unsubscribe is what keeps a recipient off the spam button, which is
       // the thing that actually damages a sending domain.
@@ -394,11 +538,11 @@ for (const slug of slugs) {
   });
   const out = await r.json();
   if (r.ok) {
-    console.log(`SENT ${bar.name} -> ${to} (id ${out.id})`);
+    console.log(`SENT ${tag} ${bar.name} -> ${to} (id ${out.id})`);
     // Only a real send to the bar's own address counts as contact: a --to
     // test send goes to us, so it must not mark the bar as done. Recorded
     // per-send, before the next request, so an interruption loses nothing.
-    if (!overrideTo) recordSent(slug);
+    if (!overrideTo) recordSent(slug, variant);
   } else {
     // Deliberately NOT recorded — a failed send stays eligible for a retry.
     console.log(`FAIL ${bar.name} -> ${to}: ${JSON.stringify(out)}`);
