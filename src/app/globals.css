@@ -796,17 +796,25 @@ button {
   background: rgba(255, 255, 255, 0.4);
 }
 
-/* The hero image's WordPress caption, one muted line under the hero (task
-   111). Same size, grey and alignment as the body captions
-   (.article-body figcaption / .wp-caption-text) so the two read as one
-   convention. Rendered only when the media carries a caption. */
+/* The hero image's WordPress caption, inside the hero (task 111): bottom-right
+   corner, 12px inset, so it sits within the rounded corners and nothing
+   outside the hero moves. White at 70%. Legibility comes from the hero's own
+   bottom gradient (.article-hero-overlay, 85% black at the foot) and a soft
+   text shadow that only shows against a light patch of photo; no extra box.
+   Rendered only when the media carries a caption. */
 .article-hero-caption {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 3;
+  max-width: 60%;
   margin: 0;
-  padding: 6px 4px 0;
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--text-tertiary);
-  text-align: center;
+  font-size: 11.5px;
+  line-height: 1.4;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
 }
 
 /* ====== ARTICLE OUTER GRID: 2/3 main + 1/3 sidebar ====== */

@@ -265,8 +265,8 @@ export default async function ArticlePage({ params }: { params: { slug: string }
             <span>{readTime} min read</span>
           </div>
         </div>
+        {heroCaption && <span className="article-hero-caption">{heroCaption}</span>}
       </div>
-      {heroCaption && <p className="article-hero-caption">{heroCaption}</p>}
 
       {/* ARTICLE BODY */}
       <div className="article-layout">
