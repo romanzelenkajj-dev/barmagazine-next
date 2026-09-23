@@ -3252,84 +3252,60 @@ textarea.form-input {
 }
 
 /* Hero */
+/* Task 112: the list-page hero is a compact black band, the same #000 as
+   .nav so header and band read as one. No photo, no scrim. Eyebrow in gold
+   caps, white title, one grey line (the intro sentence, or the counts on
+   /bars). About 220px on desktop, 160px on a phone, so the first row of
+   cards is above the fold. 24px sides: the headline starts on the same x
+   as the text in the search box beneath (Roman, 2026-09-15). */
 .directory-hero {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
-  /* 24px at the sides, the search pill's own padding, so the headline,
-     the subtitle and the stat tiles start on the same x as the text in
-     the search box beneath (48px from the column edge); 72px before
-     (Roman, 2026-09-15). The vertical 48px is unchanged. */
-  /* Tightened 2026-09-17 (task 64): on a directory page the bars are the
-     product, and the hero was pushing the first card row off the fold.
-     Content is unchanged; this is padding and type scale only. */
-  padding: 34px 24px;
-  min-height: 228px;
+  align-items: center;
+  background: #000;
+  padding: 28px 24px;
+  /* border-box: preflight is off, so without this the 220 would be the
+     content box and the band would render at 276. */
+  box-sizing: border-box;
+  min-height: 220px;
 }
 
-/* Photo background */
-.directory-hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.directory-hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  display: block;
-  /* Mirrored so the lit bottle shelves sit right and the calmer, darker
-     side falls under the headline. Done here rather than by shipping a
-     second file: the original asset stays as it is and reverting is this
-     one line. Safe to mirror, there is no legible text in the frame. */
-  transform: scaleX(-1);
-}
-
-/* Dark gradient overlay so text is readable */
-.directory-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  /* Two layers. The horizontal one is the scrim that actually guarantees
-     legibility: the crop moves with viewport width, so at some widths the
-     calm area slides out of frame and the headline lands back on the
-     bottles. Strongest at the text edge, gone by the middle of the frame,
-     so the mirrored bottle shelves on the right stay visible. The vertical
-     layer is the original, eased off so the two do not compound to black. */
-  background:
-    linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.78) 0%,
-      rgba(0, 0, 0, 0.62) 28%,
-      rgba(0, 0, 0, 0.22) 58%,
-      rgba(0, 0, 0, 0) 82%
-    ),
-    linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.82) 0%,
-      rgba(0, 0, 0, 0.55) 40%,
-      rgba(0, 0, 0, 0.35) 100%
-    );
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Remove the old ::after bottom fade */
+/* The photo layer is gone from the markup; the rule stays as a guard so a
+   stray <img> could never paint behind the band. */
+.directory-hero-bg,
+.directory-hero::before,
 .directory-hero::after {
   display: none;
 }
 
-/* Content — left-aligned at bottom */
+/* Content, left-aligned, vertically centred in the band */
 .directory-hero-inner {
   position: relative;
   z-index: 2;
   text-align: left;
   max-width: 640px;
   margin: 0;
+}
+
+.directory-hero-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+/* The one grey line: the counts on /bars, the intro's first sentence
+   elsewhere (firstSentence(), task 112). Whole sentences only, so no clamp:
+   a line is never cut mid-sentence, and a long first sentence may run to a
+   second line. */
+.directory-hero-line,
+.directory-hero p {
+  overflow-wrap: anywhere;
 }
 
 .directory-hero-badge {
@@ -3351,19 +3327,19 @@ textarea.form-input {
 }
 
 .directory-hero h1 {
-  font-size: clamp(27px, 3.1vw, 35px);
+  font-size: clamp(26px, 2.8vw, 32px);
   font-weight: 500;
   letter-spacing: -0.02em;
   color: #fff;
-  margin-bottom: 9px;
+  margin-bottom: 8px;
   line-height: 1.12;
 }
 
 .directory-hero p {
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.65);
-  max-width: 460px;
+  max-width: 560px;
   margin-bottom: 0;
 }
 
@@ -4437,39 +4413,31 @@ textarea.form-input {
     /* Full-bleed here (see the mobile hero block), so the side padding is
        the page gutter (10px) plus the filters' padding (16px): the
        headline starts on the search box's left edge, 26px. */
-    padding: 36px 26px;
-    /* The phone hero is min-height driven, not content driven: 285 + 72px of
-       padding is the 357px it has today. Task 64 lowered the desktop floor to
-       228 and said explicitly not to change mobile height, so the old floor is
-       pinned here. */
-    min-height: 285px;
+    padding: 22px 26px;
+    /* Task 112: the phone band is 160px, so the first row of cards is above
+       the fold on a 390px phone (the photo hero was 285). */
+    min-height: 160px;
   }
 
   .directory-hero h1 {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .directory-hero h1 br {
     display: none;
   }
 
-  /* Task 64 tightened the hero for DESKTOP only: "Do not change the height
-     on mobile. Roman has looked at the phone view and it is right as it
-     stands." These restore the pre-task values for every property that
-     would otherwise inherit the desktop tightening down here, so the phone
-     hero stays pixel-identical. Inside the existing 768 breakpoint, so no
-     new breakpoint is introduced. */
-  .directory-hero-badge {
-    margin-bottom: 16px;
+  .directory-hero-eyebrow {
+    margin-bottom: 8px;
   }
 
   .directory-hero h1 {
-    margin-bottom: 12px;
+    margin-bottom: 6px;
   }
 
   .directory-hero p {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.5;
   }
 
   .directory-hero-stat strong {
@@ -9186,65 +9154,100 @@ textarea.form-input {
 /* The hero is a CARD, matching the bar cards below. Shared by the city
    guides, type pages, award hubs and partner collections - card it once
    here and all five surfaces agree. */
+/* Task 112: the same compact black band as .directory-hero (the header's
+   #000), left-aligned: gold caps kicker, white title, one grey intro line,
+   then the page's own links as small pills on one row. About 220px on
+   desktop, 160px on a phone. Nothing below the band moves. */
 .best-bars-hero {
-  text-align: center;
-  background: var(--bg-card);
-  border: 1px solid #e8e2d6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  background: #000;
+  border: 0;
   border-radius: var(--radius);
-  padding: 36px 32px;
+  padding: 28px 32px;
+  box-sizing: border-box;
+  min-height: 220px;
   margin-bottom: 28px;
 }
-/* Mobile: cards carry their own internal padding, so the 10px container
-   gutter is right for them - but the hero's bare text (kicker, H1, intro)
-   needs its own inset: 14px + the container's 10px = a 24px margin, shared
-   by city guides and collections alike. Must sit AFTER the base rule above:
-   its padding shorthand would otherwise win on source order. */
+/* Mobile: full-bleed like the directory band, flush under the flat header,
+   with the 26px inset the directory band uses. Must sit AFTER the base rule
+   above: its padding shorthand would otherwise win on source order. */
 @media (max-width: 768px) {
   .best-bars-hero {
-    padding: 28px 16px;
+    border-radius: 0;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: -8px;
+    padding: 22px 26px;
+    min-height: 160px;
   }
 }
 .best-bars-kicker {
   display: inline-block;
-  font-size: 0.78rem;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #a8894f;
-  margin-bottom: 12px;
+  color: var(--gold);
+  margin-bottom: 10px;
 }
 .best-bars-hero h1 {
-  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  font-size: clamp(26px, 2.8vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
   line-height: 1.12;
-  margin: 0 0 16px;
+  color: #fff;
+  margin: 0 0 8px;
 }
 .best-bars-intro {
   max-width: 640px;
-  margin: 0 auto;
-  font-size: 1.02rem;
-  line-height: 1.65;
-  color: #555;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
+  /* Whole sentences only (firstSentence()), never a clamp. */
+}
+.best-bars-hero .awards-integrity {
+  color: rgba(255, 255, 255, 0.55);
 }
 .best-bars-hero-links {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 8px;
+  margin-top: 14px;
 }
 .best-bars-hero-link {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 6px 14px;
   border-radius: 100px;
-  border: 1.5px solid #1a1a1a;
-  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 0.82rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #fff;
   text-decoration: none;
+  white-space: nowrap;
 }
-.best-bars-hero-link--primary { background: #1a1a1a; color: #fff; }
-.best-bars-hero-link:hover { border-color: #a8894f; color: #a8894f; }
-.best-bars-hero-link--primary:hover { background: #333; color: #fff; border-color: #333; }
+.best-bars-hero-link--primary { background: #fff; color: #000; border-color: #fff; }
+.best-bars-hero-link:hover { border-color: var(--gold); color: var(--gold); }
+.best-bars-hero-link--primary:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+/* On a phone the links wrap to a second row rather than running off the
+   screen (Roman, 2026-09-23); the band grows by that row where it happens. */
+@media (max-width: 768px) {
+  .best-bars-hero-links {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  .best-bars-hero h1 { font-size: 24px; margin-bottom: 6px; }
+  .best-bars-intro { font-size: 13px; }
+  .best-bars-kicker { margin-bottom: 8px; }
+  /* Flush under the flat mobile header like the directory band: the page's
+     32px top padding was a beige strip between header and band. */
+  .best-bars-page { padding-top: 0; }
+}
 
 .best-bars-list {
   list-style: none;
@@ -10837,6 +10840,53 @@ textarea.form-input {
   font-weight: 600;
   color: var(--text-secondary);
   margin: 0 0 8px;
+}
+
+/* Section header row on list pages (task 112): year bold on the left, the
+   list name grey beside it, in the same white rounded card style as the rest
+   of the page, so no heading text sits bare on the page background. Also
+   used by the "Other award programs" / "More cities" blocks. */
+.list-section-head,
+.best-bars-cities > h2 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 12px;
+  padding: 12px 18px;
+  background: var(--bg-card);
+  border: 1px solid #e8e2d6;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.list-section-head strong {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.list-section-head span {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.best-bars-cities > h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* The rank pill on award-hub cards: top-left of the photo, black, the same
+   box as the status pills that sit bottom-left. */
+.bar-dir-rank-pill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 /* KEPT, BUT NO LONGER USED BY /awards/[program]. The hub pages now draw

@@ -1,3 +1,4 @@
+import { firstSentence } from '@/lib/first-sentence';
 import Link from 'next/link';
 import { DirectoryBarCard } from './DirectoryBarCard';
 import type { Bar } from '@/lib/supabase';
@@ -93,7 +94,7 @@ export function RegionTypePage({
         <header className="best-bars-hero">
           <span className="best-bars-kicker">BarMagazine&rsquo;s pick &middot; {year}</span>
           <h1>{heading}</h1>
-          <p className="best-bars-intro">{intro}</p>
+          <p className="best-bars-intro">{firstSentence(intro)}</p>
           <div className="best-bars-hero-links">
             {countryCombo && (
               <Link href={regionHref(countryCombo.region, t.slug)} className="best-bars-hero-link best-bars-hero-link--primary">

@@ -1,3 +1,4 @@
+import { firstSentence } from '@/lib/first-sentence';
 import { DirectoryBarCard } from '@/components/DirectoryBarCard';
 import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
@@ -287,36 +288,23 @@ export default async function CityPage({
       <div className="directory-outer-with-sidebar">
 
         {/* Row 1 left: Hero */}
+        {/* Task 112: black band (the header's black), no photo. */}
         <div className="directory-hero">
-          <div className="directory-hero-bg">
-            {/* Use first bar photo as city hero background, fallback to generic */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={sorted.find(b => b.photos?.[0])?.photos?.[0] || '/images/directory-hero.jpg'} alt="" />
-          </div>
           <div className="directory-hero-inner">
+            <span className="directory-hero-eyebrow">Bar directory</span>
             <h1>{headingName} Bar Directory</h1>
             {/* The live count sits here, in on-page copy that regenerates on
                 the 300s revalidate, and NOT in the title or meta description:
                 Google holds those for weeks, so a cached number is stale more
                 often than it is right. That rule predates task 83 (see the
                 comment in generateMetadata) and this keeps to it. */}
-            {cityIntro ? (
-              <p>{cityIntro}</p>
-            ) : (
-              <p>
-                Browse the {bars.length} bars BarMagazine lists in {locationLabel},
-                with addresses, opening hours and signature serves.
-                {types.length > 0 && (
-                  <>
-                    {' '}Our curated list covers {types.slice(0, 3).map(t => formatBarType(t).toLowerCase() + 's').join(', ')}
-                    {types.length > 3 ? ` and ${types.length - 3} more bar type${types.length - 3 > 1 ? 's' : ''}` : ''},{' '}
-                    ranging from intimate neighborhood spots to world-renowned cocktail destinations.
-                  </>
-                )}
-                {' '}Whether you are a local looking for your next favorite haunt or a visitor planning a bar crawl,
-                this guide covers the essential {cityName} bars you should not miss.
-              </p>
-            )}
+            {/* One whole sentence in the band (task 112): the intro's first,
+                or the count line, which is one sentence by design. */}
+            <p>
+              {cityIntro
+                ? firstSentence(cityIntro)
+                : `Browse the ${bars.length} bars BarMagazine lists in ${locationLabel}, with addresses, opening hours and signature serves.`}
+            </p>
             {types.length > 1 && (
               <div className="directory-hero-types">
                 {types.map(t => (

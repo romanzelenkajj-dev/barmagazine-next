@@ -1,3 +1,4 @@
+import { firstSentence } from '@/lib/first-sentence';
 import { HighlightedText } from '@/components/HighlightedText';
 import { formatHoursForCountry } from '@/lib/format-hours';
 import { BarPlaceholder } from '@/components/BarPlaceholder';
@@ -162,7 +163,7 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
             .split(' ')
             .map(w => w.charAt(0).toUpperCase() + w.slice(1))
             .join(' ')} in {city.city}</h1>
-          <p className="best-bars-intro">{intro}</p>
+          <p className="best-bars-intro">{firstSentence(intro)}</p>
           <div className="best-bars-hero-links">
             <Link href={`/best-bars/${params.city}`} className="best-bars-hero-link best-bars-hero-link--primary">
               All the best bars in {city.city}

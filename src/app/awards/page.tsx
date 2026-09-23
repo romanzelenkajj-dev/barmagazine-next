@@ -25,7 +25,7 @@ export default async function AwardsIndexPage() {
         <h1>Bar Awards in the Directory</h1>
         <p className="best-bars-intro">
           These hubs track which bars in the BarMagazine directory hold recognition from the major
-          international award programs, grouped by year and category, verified from official results.
+          international award programs.
         </p>
         <p className="awards-integrity">
           Recognition here is verified from official results and is never for sale.
