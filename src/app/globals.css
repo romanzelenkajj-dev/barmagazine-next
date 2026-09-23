@@ -3266,6 +3266,9 @@ textarea.form-input {
   align-items: center;
   background: #000;
   padding: 28px 24px;
+  /* border-box: preflight is off, so without this the 220 would be the
+     content box and the band would render at 276. */
+  box-sizing: border-box;
   min-height: 220px;
 }
 
@@ -9166,6 +9169,7 @@ textarea.form-input {
   border: 0;
   border-radius: var(--radius);
   padding: 28px 32px;
+  box-sizing: border-box;
   min-height: 220px;
   margin-bottom: 28px;
 }
@@ -9246,8 +9250,13 @@ textarea.form-input {
   }
   .best-bars-hero-links::-webkit-scrollbar { display: none; }
   .best-bars-hero h1 { font-size: 24px; margin-bottom: 6px; }
-  .best-bars-intro { font-size: 13px; }
+  /* One grey line on a phone (two on desktop), so a band with a links row
+     stays near 160. */
+  .best-bars-intro { font-size: 13px; -webkit-line-clamp: 1; }
   .best-bars-kicker { margin-bottom: 8px; }
+  /* Flush under the flat mobile header like the directory band: the page's
+     32px top padding was a beige strip between header and band. */
+  .best-bars-page { padding-top: 0; }
 }
 
 .best-bars-list {
