@@ -89,6 +89,8 @@ export interface WPMedia {
   id: number;
   source_url: string;
   alt_text: string;
+  /** The media library caption, rendered as HTML by WordPress (task 111). */
+  caption?: { rendered: string };
   media_details: {
     width: number;
     height: number;
@@ -376,6 +378,21 @@ export function getPostAuthor(post: WPPost): WPAuthor | null {
 export function getPostTags(post: WPPost): WPTag[] {
   // Tags are the second array in wp:term (first is categories)
   return (post._embedded?.['wp:term']?.[1] as unknown as WPTag[]) || [];
+}
+
+/**
+ * The hero image's caption as one line of plain text, or null when the media
+ * has none (task 111). WordPress renders the caption as HTML and the theme
+ * appends a "More" link to the attachment page inside it; that link is
+ * dropped before the tags are stripped so the text never ends in "More".
+ */
+export function getFeaturedImageCaption(post: WPPost): string | null {
+  const raw = post._embedded?.['wp:featuredmedia']?.[0]?.caption?.rendered;
+  if (!raw) return null;
+  const text = stripHtml(raw.replace(/<a\b[^>]*class="[^"]*g1-link[^"]*"[^>]*>[\s\S]*?<\/a>/gi, ''))
+    .replace(/\s+/g, ' ')
+    .trim();
+  return text || null;
 }
 
 export function stripHtml(html: string): string {
