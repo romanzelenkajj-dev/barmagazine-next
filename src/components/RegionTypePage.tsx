@@ -41,7 +41,6 @@ export function RegionTypePage({
   const year = new Date().getFullYear();
   const url = `${SITE_URL}${regionHref(region, t.slug)}`;
   const cityLinks = regionCityTypeLinks(cities, combo);
-  const topName = bars[0]?.name ?? null;
   // The band line names no bar (task 114): counts and records only. The
   // hand-written region intros stay in src/lib/region-intros.ts, unused by
   // the band.
