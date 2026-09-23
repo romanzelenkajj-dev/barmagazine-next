@@ -25,3 +25,15 @@ than on the card since the block stands alone).
 **198.** Active bars with at least one menu highlight: 209, of which 9 are top10 and 2 are
 featured (they already show Signature Serves). The Los Angeles No. 1 card, Apothéke, is top10 and
 has no highlights, which is why the free example is the Athens one.
+
+## Rework (Roman, same day): inside the info card
+
+The block sat bare on the page background. It is now the last row of the info card's text column
+(`.bar-v2-info`, grid column 1 at 1100px and up, under the details rows, next to the actions
+column), hairline above, same type. Measured: desktop block at x 65 to 675 inside the card, actions
+column at 715; on 390 the block sits 21px inside the card edge, no overflow. The Loft (Featured)
+unchanged: Signature Serves and the menu, no Order this. PR #80 rebuilt green, same preview URL;
+merge on Roman's go.
+
+This is also the origin of the standing rule now in SETUP.md: no text is ever rendered directly
+on the beige page background.

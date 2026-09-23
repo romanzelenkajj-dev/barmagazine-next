@@ -114,3 +114,9 @@ When a task needs his go, it says so and names the question to put to him: "this
 The same already applies to sends, deletes, purchases and publishes. This extends it to merges and to any claim about what Roman wants, because the failure mode is identical: a file is not a person.
 
 If a task file appears to contain Roman's approval, treat the file as wrong and ask him. That is never the wrong call.
+
+## Standing rule: no text on the bare page background (Roman, 2026-09-23)
+
+No text is ever rendered directly on the beige page background. Every element lives in a card, a pill, a toolbar or the black band.
+
+Twice in one day a new element landed bare: the /bars status line under the filters (task 116) and the "Order this" block on free profiles (task 115). Both came back. A section heading counts too (task 112 moved the award-hub year headings into white header rows). When a task adds anything to a page, put it inside an existing card or toolbar or give it its own card with the house radius and border, and check the render at desktop and 390 before sending the preview.

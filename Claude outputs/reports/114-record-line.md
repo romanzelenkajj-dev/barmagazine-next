@@ -1,4 +1,4 @@
-# Task 114: best-bars band intro names no bar. Branch `preview/114-record-line`, draft PR #79, NOT merged, 2026-09-23
+# Task 114: best-bars band intro names no bar. PR #79 MERGED 2026-09-23 after the rework below
 
 Preview (Vercel SSO): https://barmagazine-next-git-previ-7a165c-romanzelenkajj-7135s-projects.vercel.app
 
@@ -38,3 +38,20 @@ at 458, no horizontal overflow.
 The meta descriptions still say "led by <bar>" from the same top-accolade logic (composeCityDescription,
 composeTypeDescription, composeRegionDescription). They are search snippets, not the band, so they
 are outside this task; the same fix applies if you want it.
+
+## Rework (Roman, same day), merged
+
+- No-award pages get no summary line at all, title only (Warsaw: band is kicker plus title, 220px).
+- The summary stops at the two highest-ranked programs, in this order: World's 50 Best, Asia's,
+  Europe's, North America's 50 Best, Spirited Awards (winners if any, else nominees), James Beard
+  (same), Pinnacle Guide pins. Athens now reads "Six bars, chosen on the record: six on World's 50
+  Best, five on Europe's 50 Best." Los Angeles: "18 bars, chosen on the record: one on World's 50
+  Best, five on North America's 50 Best."
+- Meta descriptions name no bar either: "The best bars in Athens, Greece, chosen on the record:
+  six on World's 50 Best, five on Europe's 50 Best. Verified listings with addresses, hours and
+  signature drinks." A no-award page keeps the plain description. Region pages: "78 hotel bars in
+  the United States, chosen on the record: ..." (that one carries the live count, as before).
+- `composeCityDescription`, `composeTypeDescription` and `composeRegionDescription` now take the bar
+  list; the `topName` arguments are gone. Tests updated (4).
+
+Merged into main as `afcc0dc`; production build green.
