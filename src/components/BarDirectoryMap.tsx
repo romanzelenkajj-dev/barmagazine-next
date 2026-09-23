@@ -1304,33 +1304,20 @@ export function BarDirectoryMapClient({
   return (
     <div className="directory-outer-with-sidebar">
       {/* Row 1: hero (left) + promo (right) — same height */}
+      {/* Task 112: a compact black band, the header's black, in place of the
+          photo hero. Eyebrow, title, and the counts as one grey line. */}
       <div className="directory-hero">
-        <div className="directory-hero-bg">
-          <img src="/images/directory-hero.jpg" alt="" />
-        </div>
         <div className="directory-hero-inner">
-          {/* No kicker pill: the headline and stat counters carry the hero
-              (city/country guide heroes dropped theirs too). */}
+          <span className="directory-hero-eyebrow">Bar directory</span>
           <h1>Discover the World&apos;s Best Bars</h1>
-          <p>Handpicked cocktail bars, speakeasies, and world-renowned destinations.</p>
-          <div className="directory-hero-stats">
-            <div className="directory-hero-stat">
-              {/* Pinned to en-US like every other count on the site. Without
-                  the argument the separator follows the browser, so a German
-                  visitor saw 1.506+ where everyone else saw 1,506+. This is
-                  the one call site that was left to the browser. */}
-              <strong>{totalBars ? `${totalBars.toLocaleString('en-US')}+` : '1,000+'}</strong>
-              <span>bars</span>
-            </div>
-            <div className="directory-hero-stat">
-              <strong>{totalCountries || 58}</strong>
-              <span>countries</span>
-            </div>
-            <div className="directory-hero-stat">
-              <strong>{totalCities || 140}</strong>
-              <span>cities</span>
-            </div>
-          </div>
+          {/* Pinned to en-US like every other count on the site. Without
+              the argument the separator follows the browser, so a German
+              visitor saw 1.506+ where everyone else saw 1,506+. */}
+          <p className="directory-hero-line">
+            {totalBars ? `${totalBars.toLocaleString('en-US')}+` : '1,000+'} bars
+            {' · '}{totalCities || 140} cities
+            {' · '}{totalCountries || 58} countries
+          </p>
         </div>
       </div>
 

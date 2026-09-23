@@ -135,9 +135,6 @@ export default async function CountryPage({
     return a.name.localeCompare(b.name);
   });
 
-  // Hero background: use first bar with a photo
-  const heroPhoto = sorted.find(b => b.photos?.[0])?.photos?.[0] || '/images/directory-hero.jpg';
-
   // Bar types for hero subtitle
   const types = Array.from(new Set(bars.map(b => b.type))).sort();
 
@@ -203,13 +200,10 @@ export default async function CountryPage({
       {/* Two-column layout: 3fr main + 1fr sidebar — matches /bars and city pages */}
       <div className="directory-outer-with-sidebar">
 
-        {/* Row 1 left: Hero with photo background */}
+        {/* Row 1 left: black band (task 112), no photo */}
         <div className="directory-hero">
-          <div className="directory-hero-bg">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={heroPhoto} alt="" />
-          </div>
           <div className="directory-hero-inner">
+            <span className="directory-hero-eyebrow">Bar directory</span>
             <h1>Best Bars in {countryName}</h1>
             <p>
               {bars.length} curated bars across {cityCount}{' '}

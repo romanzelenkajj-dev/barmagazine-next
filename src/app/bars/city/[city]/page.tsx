@@ -287,13 +287,10 @@ export default async function CityPage({
       <div className="directory-outer-with-sidebar">
 
         {/* Row 1 left: Hero */}
+        {/* Task 112: black band (the header's black), no photo. */}
         <div className="directory-hero">
-          <div className="directory-hero-bg">
-            {/* Use first bar photo as city hero background, fallback to generic */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={sorted.find(b => b.photos?.[0])?.photos?.[0] || '/images/directory-hero.jpg'} alt="" />
-          </div>
           <div className="directory-hero-inner">
+            <span className="directory-hero-eyebrow">Bar directory</span>
             <h1>{headingName} Bar Directory</h1>
             {/* The live count sits here, in on-page copy that regenerates on
                 the 300s revalidate, and NOT in the title or meta description:
