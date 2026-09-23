@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { regionOfCountry, groupCitiesByRegion, CITY_REGIONS } from './city-regions';
+import { regionOfCountry, regionOfGeo, groupCitiesByRegion, CITY_REGIONS } from './city-regions';
 
 describe('regionOfCountry', () => {
   it('places the countries with city pages', () => {
@@ -16,6 +16,24 @@ describe('regionOfCountry', () => {
     expect(regionOfCountry('Macau')).toBe('Asia');
     expect(regionOfCountry('Hong Kong')).toBe('Asia');
     expect(regionOfCountry('Australia')).toBe('Oceania');
+  });
+});
+
+describe('regionOfGeo', () => {
+  it('reads the IP geo headers into a tab, Europe when unknown', () => {
+    expect(regionOfGeo('NA', 'US')).toBe('North America');
+    expect(regionOfGeo('NA', 'CA')).toBe('North America');
+    expect(regionOfGeo('NA', 'MX')).toBe('Latin America');
+    expect(regionOfGeo('SA', 'BR')).toBe('Latin America');
+    expect(regionOfGeo('AS', 'AE')).toBe('Middle East and Africa');
+    expect(regionOfGeo('AF', 'ZA')).toBe('Middle East and Africa');
+    expect(regionOfGeo('AS', 'JP')).toBe('Asia');
+    expect(regionOfGeo('OC', 'AU')).toBe('Oceania');
+    expect(regionOfGeo('EU', 'SK')).toBe('Europe');
+    expect(regionOfGeo('EU', '')).toBe('Europe');
+    expect(regionOfGeo('NA', '')).toBe('North America');
+    expect(regionOfGeo('', '')).toBe('Europe');
+    expect(regionOfGeo('AS', 'XX')).toBe('Asia');
   });
 });
 

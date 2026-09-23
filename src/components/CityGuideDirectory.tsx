@@ -1,74 +1,95 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { groupCitiesByRegion, OPEN_BY_DEFAULT } from '@/lib/city-regions';
+import { groupCitiesByRegion, regionOfGeo, DEFAULT_REGION } from '@/lib/city-regions';
 
 /**
  * The city-guide directory (Roman, task 118): one white card, heading
- * inside, the cities grouped by region in columns, plain text links in the
- * article link style. It replaced a cloud of 110 pills.
+ * inside, region tabs (Europe, North America, Latin America, Asia, Middle
+ * East and Africa, Oceania), one region visible at a time, its cities in a
+ * four-column alphabetical grid of plain links in the article link style.
+ * It replaced a cloud of 110 pills.
  *
- * Every city link is in the HTML on every viewport. On phones each region
- * is a collapsible header, Europe and North America open by default; the
- * collapse is a class the phone stylesheet reads, so the desktop columns
- * never hide anything and the server and client render the same markup.
+ * Every city link is in the HTML on every viewport: the inactive panels are
+ * `hidden`, not absent. The default tab is the visitor's region from the IP
+ * geo the site already reads. /bars passes it from the request headers;
+ * the ISR city pages cannot see headers, so they start on Europe and ask
+ * /api/geo once after mount, switching only if the visitor has not picked a
+ * tab. The server and the client render the same initial markup either way.
  */
 export function CityGuideDirectory({
   heading,
   cities,
+  defaultRegion,
 }: {
   heading: string;
   cities: { slug: string; city: string; country: string }[];
+  /** The visitor's region from the request's IP geo, when the page can read it. */
+  defaultRegion?: string;
 }) {
   const groups = groupCitiesByRegion(cities);
-  const [collapsed, setCollapsed] = useState<Set<string>>(
-    () => new Set(groups.map(g => g.region).filter(r => !OPEN_BY_DEFAULT.has(r)))
-  );
+  const has = (r: string | undefined) => !!r && groups.some(g => g.region === r);
+  const initial = has(defaultRegion) ? (defaultRegion as string) : has(DEFAULT_REGION) ? DEFAULT_REGION : groups[0]?.region;
+  const [active, setActive] = useState<string | undefined>(initial);
+  const [picked, setPicked] = useState(false);
+
+  useEffect(() => {
+    if (defaultRegion || picked) return;
+    let live = true;
+    fetch('/api/geo')
+      .then(r => (r.ok ? r.json() : null))
+      .then(geo => {
+        if (!live || picked || !geo?.country) return;
+        const r = regionOfGeo('', String(geo.country));
+        if (groups.some(g => g.region === r)) setActive(r);
+      })
+      .catch(() => {});
+    return () => { live = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (groups.length === 0) return null;
 
-  const toggle = (region: string) =>
-    setCollapsed(prev => {
-      const next = new Set(prev);
-      if (next.has(region)) next.delete(region);
-      else next.add(region);
-      return next;
-    });
+  const idFor = (region: string) => `city-region-${region.toLowerCase().replace(/[^a-z]+/g, '-')}`;
 
   return (
     <section className="city-guides">
       <h2 className="city-guides-heading">{heading}</h2>
-      <div className="city-guides-regions">
-        {groups.map(g => {
-          const isCollapsed = collapsed.has(g.region);
-          const listId = `city-region-${g.region.toLowerCase().replace(/[^a-z]+/g, '-')}`;
-          return (
-            <div key={g.region} className={`city-region${isCollapsed ? ' is-collapsed' : ''}`}>
-              <button
-                type="button"
-                className="city-region-head"
-                onClick={() => toggle(g.region)}
-                aria-expanded={!isCollapsed}
-                aria-controls={listId}
-              >
-                <span>{g.region}</span>
-                <svg className="city-region-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-              <ul id={listId} className="city-region-list">
-                {g.cities.map(c => (
-                  <li key={c.slug}>
-                    <Link href={`/best-bars/${c.slug}`} className="city-guide-link">
-                      {c.city}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          );
-        })}
+      <div className="city-guides-tabs" role="tablist" aria-label="Region">
+        {groups.map(g => (
+          <button
+            key={g.region}
+            type="button"
+            role="tab"
+            id={`${idFor(g.region)}-tab`}
+            aria-selected={g.region === active}
+            aria-controls={idFor(g.region)}
+            className={`city-guides-tab${g.region === active ? ' is-active' : ''}`}
+            onClick={() => { setPicked(true); setActive(g.region); }}
+          >
+            {g.region}
+          </button>
+        ))}
       </div>
+      {groups.map(g => (
+        <ul
+          key={g.region}
+          id={idFor(g.region)}
+          role="tabpanel"
+          aria-labelledby={`${idFor(g.region)}-tab`}
+          className="city-region-grid"
+          hidden={g.region !== active}
+        >
+          {g.cities.map(c => (
+            <li key={c.slug}>
+              <Link href={`/best-bars/${c.slug}`} className="city-guide-link">
+                {c.city}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ))}
     </section>
   );
 }

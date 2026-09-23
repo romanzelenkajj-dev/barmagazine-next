@@ -10726,8 +10726,10 @@ textarea.form-input {
 }
 
 /* ═══ The city-guide directory card (task 118) ═══
-   One white card, heading inside, regions in columns, plain text links in
-   the article link style (gold underline). Replaced the pill cloud. */
+   One white card, heading inside, region tabs, one region's cities at a
+   time in a four-column grid of plain links in the article link style
+   (gold underline). The inactive panels are hidden, not absent, so every
+   link stays in the HTML. Replaced the pill cloud. */
 .city-guides {
   margin-top: 40px;
   background: var(--bg-card);
@@ -10741,45 +10743,47 @@ textarea.form-input {
 .city-guides-heading {
   font-size: 18px;
   font-weight: 700;
-  margin: 0 0 22px;
+  margin: 0 0 18px;
   color: var(--text-primary);
 }
-.city-guides-regions {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 24px 28px;
-  align-items: start;
-}
-.city-region-head {
+.city-guides-tabs {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0 0 10px;
-  padding: 0;
+  gap: 4px;
+  margin: 0 0 20px;
+  border-bottom: 1px solid #ece5d8;
+}
+.city-guides-tab {
+  margin: 0 0 -1px;
+  padding: 10px 14px;
   background: none;
   border: 0;
+  border-bottom: 2px solid transparent;
   font-family: inherit;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--text-secondary);
-  text-align: left;
-  cursor: default;
+  white-space: nowrap;
+  cursor: pointer;
 }
-.city-region-chevron {
-  display: none;
-  transition: transform 0.2s;
+.city-guides-tab:hover {
+  color: var(--text-primary);
 }
-.city-region-list {
+.city-guides-tab.is-active {
+  color: var(--text-primary);
+  border-bottom-color: var(--gold);
+}
+.city-region-grid {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px 24px;
 }
-.city-region-list li {
+.city-region-grid li {
   line-height: 1.55;
   padding: 3px 0;
+  min-width: 0;
 }
 .city-guide-link {
   color: inherit;
@@ -10794,43 +10798,30 @@ textarea.form-input {
 }
 @media (max-width: 768px) {
   .city-guides {
-    padding: 18px 18px 8px;
+    padding: 18px 18px 20px;
     margin-top: 28px;
   }
   .city-guides-heading {
-    margin-bottom: 6px;
+    margin-bottom: 12px;
   }
-  /* Each region a collapsible row; the class the button toggles is read
-     only here, so desktop columns never hide a link. */
-  .city-guides-regions {
-    display: block;
+  /* The tabs scroll sideways on a phone; the grid drops to two columns. */
+  .city-guides-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 -18px 16px;
+    padding: 0 18px;
   }
-  .city-region {
-    border-top: 1px solid #ece5d8;
-  }
-  .city-region-head {
-    margin: 0;
-    padding: 14px 0;
-    font-size: 13px;
-    color: var(--text-primary);
-    cursor: pointer;
-  }
-  .city-region-chevron {
-    display: block;
-    color: var(--text-tertiary);
-    transform: rotate(180deg);
-  }
-  .city-region.is-collapsed .city-region-chevron {
-    transform: none;
-  }
-  .city-region-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px 16px;
-    padding: 0 0 14px;
-  }
-  .city-region.is-collapsed .city-region-list {
+  .city-guides-tabs::-webkit-scrollbar {
     display: none;
+  }
+  .city-guides-tab {
+    flex: 0 0 auto;
+    padding: 10px 12px;
+  }
+  .city-region-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 16px;
   }
 }
 

@@ -5,6 +5,7 @@ import { BarDirectoryMapClient } from '@/components/BarDirectoryMap';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import type { Metadata } from 'next';
 import { CityGuideDirectory } from '@/components/CityGuideDirectory';
+import { regionOfGeo } from '@/lib/city-regions';
 
 export const revalidate = 300; // 5 min ISR
 
@@ -103,7 +104,7 @@ export default async function BarsPage() {
           orphan. Client-side the directory app above stays untouched. */}
       {seoCities.length > 0 && (
         <div className="dir-city-guides">
-          <CityGuideDirectory heading="Best bars by city" cities={seoCities} />
+          <CityGuideDirectory heading="Best bars by city" cities={seoCities} defaultRegion={regionOfGeo(geoContinent, geoCountryCode)} />
         </div>
       )}
     </>
