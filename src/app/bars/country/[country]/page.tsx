@@ -238,9 +238,9 @@ export default async function CountryPage({
         {/* Row 2 left: results bar + card grid + CTA */}
         <div className="directory-page-body">
 
-          {/* Results count */}
-          <div className="directory-results-bar">
-            <span className="directory-count">{bars.length} bars in {countryName}</span>
+          {/* The count in the white toolbar row (task 120), as on the city pages. */}
+          <div className="directory-toolbar">
+            <span className="directory-toolbar-count">{bars.length} bars in {countryName}</span>
           </div>
 
           {/* Client component handles Show More pagination */}

@@ -26,3 +26,21 @@ export function firstSentence(text: string | null | undefined): string {
   }
   return t;
 }
+
+/**
+ * The first `n` sentences, joined as they were written, for a band that may
+ * show a hand-written intro's opening (task 120: "first sentence or two").
+ */
+export function firstSentences(text: string | null | undefined, n: number): string {
+  if (!text) return '';
+  let rest = text.trim();
+  const out: string[] = [];
+  for (let i = 0; i < n && rest; i++) {
+    const s = firstSentence(rest);
+    if (!s) break;
+    out.push(s);
+    rest = rest.slice(s.length).trim();
+    if (rest === s) break;
+  }
+  return out.join(' ');
+}

@@ -1,4 +1,3 @@
-import { firstSentence } from '@/lib/first-sentence';
 import { DirectoryBarCard } from '@/components/DirectoryBarCard';
 import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
@@ -8,9 +7,10 @@ import { retiredAreaSlugTarget } from '@/lib/metro-rollup';
 import { cityBase } from '@/lib/city-base';
 import type { Bar } from '@/lib/supabase';
 import { subdivisionName, cityLabel } from '@/lib/city-location';
+import { firstSentence, firstSentences } from '@/lib/first-sentence';
+import { getCityIntro } from '@/lib/city-intros';
 import { toUrlSlug, formatBarType } from '@/lib/utils';
 import { hasSlug } from '@/lib/safe-slug';
-import { getCityIntro } from '@/lib/city-intros';
 import { isIndexableCity } from '@/lib/seo-cities';
 import { meritBand } from '@/lib/city-levels';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from '@/components/BarDirectorySidebar';
@@ -46,6 +46,14 @@ export const revalidate = 300;
 export const dynamicParams = true;
 
 const SITE_URL = 'https://barmagazine.com';
+
+/** The hand-written intro's opening for the meta description: two sentences
+    when they fit the 160 characters Google shows, else one. */
+function introForMeta(intro: string | null): string | null {
+  if (!intro) return null;
+  const two = firstSentences(intro, 2);
+  return two.length <= 160 ? two : firstSentence(intro);
+}
 
 // ---------------------------------------------------------------------------
 // Static params — pre-build ALL active city pages
@@ -94,10 +102,12 @@ export async function generateMetadata({
   // What this page actually is: the bars WE hold in a city, all of them,
   // which is a directory and not a selection. The copy says that and stops
   // competing.
-  const description =
-    `The bars BarMagazine lists in ${cityLabel(cityName, countryName, subdivisionName(match.state, countryName))}: ` +
-    `addresses, opening hours, signature serves and the awards each one holds. ` +
-    `Browse the full city directory.`;
+  // A city with a hand-written intro describes itself (Roman, task 120):
+  // its first sentence or two, one when two run past what Google shows.
+  // The generic line is the fallback, and never promises signature serves.
+  const description = introForMeta(getCityIntro(params.city)) ??
+    `The bars BarMagazine lists in ${cityLabel(cityName, countryName, subdivisionName(match.state, countryName))}, ` +
+    `with addresses, opening hours and map. Browse the full city directory.`;
 
   const title = `${titleName} Bar Directory`;
   const canonical = `${SITE_URL}/bars/city/${params.city}`;
@@ -213,11 +223,11 @@ export default async function CityPage({
     return a.name.localeCompare(b.name);
   });
 
+  // The hand-written intro for the top cities, when there is one.
+  const cityIntro = getCityIntro(params.city);
+
   // Bar types for hero subtitle
   const types = Array.from(new Set(bars.map(b => b.type))).sort();
-
-  // Approved editorial intro for the top cities; template copy otherwise.
-  const cityIntro = getCityIntro(params.city);
 
 
   // JSON-LD — BreadcrumbList
@@ -298,12 +308,14 @@ export default async function CityPage({
                 Google holds those for weeks, so a cached number is stale more
                 often than it is right. That rule predates task 83 (see the
                 comment in generateMetadata) and this keeps to it. */}
-            {/* One whole sentence in the band (task 112): the intro's first,
-                or the count line, which is one sentence by design. */}
+            {/* The band (task 120): a city with a hand-written intro shows its
+                first sentence or two; every other city gets the count line,
+                which never promises signature serves (only some bars have
+                one). */}
             <p>
               {cityIntro
-                ? firstSentence(cityIntro)
-                : `Browse the ${bars.length} bars BarMagazine lists in ${locationLabel}, with addresses, opening hours and signature serves.`}
+                ? firstSentences(cityIntro, 2)
+                : `Browse the ${bars.length} ${bars.length === 1 ? 'bar' : 'bars'} BarMagazine lists in ${locationLabel}, with addresses, opening hours and map.`}
             </p>
             {types.length > 1 && (
               <div className="directory-hero-types">
@@ -321,13 +333,15 @@ export default async function CityPage({
         {/* Row 2 left: results bar + card grid + nearby cities + CTA */}
         <div className="directory-page-body">
 
-          {/* Results count */}
-          <div className="directory-results-bar">
-            <span className="directory-count">
+          {/* The count and the country link in a white toolbar row (task
+              120), the row task 116 gave /bars, so nothing sits bare on the
+              page background. */}
+          <div className="directory-toolbar">
+            <span className="directory-toolbar-count">
               {bars.length} {bars.length === 1 ? 'bar' : 'bars'} in {cityName}
             </span>
-            <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="directory-count" style={{ marginLeft: '1rem', opacity: 0.6 }}>
-              All bars in {countryName} →
+            <Link href={`/bars/country/${toUrlSlug(countryName)}`} className="directory-toolbar-link">
+              All bars in {countryName} &rarr;
             </Link>
           </div>
 

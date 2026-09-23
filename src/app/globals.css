@@ -3503,6 +3503,41 @@ textarea.form-input {
   color: var(--text-primary);
 }
 
+/* The toolbar row on the city and country directory pages (task 120):
+   the white rounded row /bars uses for its filters, holding the count and
+   the up-link, so the line no longer sits bare on the page background. */
+.directory-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 16px 0 4px;
+  padding: 14px 24px;
+  background: #fff;
+  border-radius: 24px;
+}
+.directory-toolbar-count {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.directory-toolbar-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.directory-toolbar-link:hover {
+  color: var(--text-primary);
+}
+@media (max-width: 768px) {
+  .directory-toolbar {
+    padding: 12px 18px;
+  }
+}
+
 /* The status line in the toolbar (task 116): the result count under a
    filter, or the sort in use. Takes the auto margin so it sits against the
    Near me button and the view toggle at the right end of the white row;

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { firstSentence } from './first-sentence';
+import { firstSentence, firstSentences } from './first-sentence';
 
 describe('firstSentence (list-page band, task 112)', () => {
   it('returns the first sentence whole', () => {
@@ -26,5 +26,14 @@ describe('firstSentence (list-page band, task 112)', () => {
     expect(firstSentence('One sentence only')).toBe('One sentence only');
     expect(firstSentence('')).toBe('');
     expect(firstSentence(null)).toBe('');
+  });
+});
+
+describe('firstSentences', () => {
+  it('returns the first two sentences whole and the whole text when shorter', () => {
+    const intro = "London's scene runs from hotel rooms to counters, and the panels agree: two bars sit in the top ten. Beyond the famous names, our list reaches Shoreditch. A third sentence follows.";
+    expect(firstSentences(intro, 2)).toBe("London's scene runs from hotel rooms to counters, and the panels agree: two bars sit in the top ten. Beyond the famous names, our list reaches Shoreditch.");
+    expect(firstSentences('One sentence only.', 2)).toBe('One sentence only.');
+    expect(firstSentences('', 2)).toBe('');
   });
 });
