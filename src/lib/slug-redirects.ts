@@ -14,12 +14,26 @@ import { MERGED_SLUGS } from './merged-slugs';
  * A trailing slash is tolerated on the way in and never emitted on the way
  * out, matching what the config rules did (trailingSlash is off).
  */
+/**
+ * City slugs that changed because the slug builder changed, old -> new.
+ * Served for /bars/city/<old>, /best-bars/<old> and /best-bars/<old>/<type>.
+ * "wroc-aw" is what "Wrocław" slugged to before toUrlSlug learned to
+ * transliterate ł (task 130, 2026-09-24).
+ */
+export const RETIRED_CITY_SLUGS: Readonly<Record<string, string>> = {
+  'wroc-aw': 'wroclaw',
+};
+
 export function slugRedirectTarget(
   pathname: string,
   rootBarSlugs: ReadonlySet<string>,
   merged: Readonly<Record<string, string>> = MERGED_SLUGS,
 ): string | null {
   const path = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+  const city = /^\/(bars\/city|best-bars)\/([A-Za-z0-9-]+)(\/[A-Za-z0-9-]+)?$/.exec(path);
+  if (city && RETIRED_CITY_SLUGS[city[2]]) {
+    return `/${city[1]}/${RETIRED_CITY_SLUGS[city[2]]}${city[3] ?? ''}`;
+  }
 
   const bars = /^\/bars\/([A-Za-z0-9-]+)$/.exec(path);
   if (bars) {

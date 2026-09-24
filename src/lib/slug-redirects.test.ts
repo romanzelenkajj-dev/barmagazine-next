@@ -92,3 +92,21 @@ describe('Vercel route cap', () => {
     expect(redirects.length + rw + headers.length).toBeLessThan(1800);
   });
 });
+
+describe('retired city slugs (task 130)', () => {
+  it('sends the old Wroclaw slug to the new one on every city route, through the middleware', () => {
+    for (const [from, to] of [
+      ['/bars/city/wroc-aw', '/bars/city/wroclaw'],
+      ['/best-bars/wroc-aw', '/best-bars/wroclaw'],
+      ['/best-bars/wroc-aw/cocktail-bars', '/best-bars/wroclaw/cocktail-bars'],
+    ]) {
+      const res = middleware(req(`${ORIGIN}${from}`));
+      expect(res.status, from).toBe(301);
+      expect(res.headers.get('location'), from).toBe(`${ORIGIN}${to}`);
+    }
+  });
+
+  it('leaves a live city slug alone', () => {
+    expect(slugRedirectTarget('/best-bars/gdansk', new Set())).toBeNull();
+  });
+});

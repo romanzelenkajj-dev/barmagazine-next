@@ -1,8 +1,22 @@
+/**
+ * Latin letters that NFD does not decompose into a base letter plus a mark,
+ * so the combining-mark strip below cannot reach them. Without this map
+ * "Wrocław" slugged to "wroc-aw" (task 130, 2026-09-24): the ł fell to the
+ * [^a-z0-9] filter and became a hyphen. The old slugs 301 to the new ones
+ * via RETIRED_CITY_SLUGS in slug-redirects.ts.
+ */
+const NON_DECOMPOSING: Record<string, string> = {
+  'ł': 'l', 'Ł': 'L', 'đ': 'd', 'Đ': 'D', 'ð': 'd', 'Ð': 'D',
+  'ø': 'o', 'Ø': 'O', 'æ': 'ae', 'Æ': 'AE', 'œ': 'oe', 'Œ': 'OE',
+  'ß': 'ss', 'þ': 'th', 'Þ': 'Th', 'ı': 'i', 'ħ': 'h', 'Ħ': 'H',
+};
+
 export function toUrlSlug(text: string): string {
   // NFD-decompose then strip combining marks so accented characters
   // transliterate to ASCII (ã → a, é → e, ç → c) instead of being dropped
   // by the [^a-z0-9] filter ("São Paulo" → "sao-paulo", not "s-o-paulo").
   return text
+    .replace(/[łŁđĐðÐøØæÆœŒßþÞıħĦ]/g, ch => NON_DECOMPOSING[ch] ?? ch)
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
