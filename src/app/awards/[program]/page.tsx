@@ -4,7 +4,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { programBySlug, getProgramYears, getLiveAwardPrograms } from '@/lib/award-hubs';
 import type { HonoredBar } from '@/lib/award-hubs';
-import { hubEditions, buildHubPanels, defaultSelection, yearsFor, COLLAPSED_CARDS } from '@/lib/award-hub-model';
+import { hubEditions, buildHubPanels, defaultSelection, yearsFor, qualifyingPanels, COLLAPSED_CARDS } from '@/lib/award-hub-model';
 import { placeLine } from '@/lib/city-location';
 import { DirectoryBarCard } from '@/components/DirectoryBarCard';
 import { AwardHubSwitcher, type SwitcherPanel } from '@/components/AwardHubSwitcher';
@@ -79,7 +79,8 @@ export default async function AwardProgramPage({ params }: { params: { program: 
   const otherPrograms = (await getLiveAwardPrograms()).filter(p => p.program.slug !== program.slug);
 
   const editions = hubEditions(program);
-  const panels = buildHubPanels(years, editions);
+  // Only the years the directory holds nearly whole are shown (HUB_YEAR_THRESHOLD).
+  const panels = qualifyingPanels(buildHubPanels(years, editions));
   const initial = defaultSelection(panels, editions);
   if (!initial) notFound();
 

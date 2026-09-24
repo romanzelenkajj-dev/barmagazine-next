@@ -141,7 +141,9 @@ export function AwardHubSwitcher({
           </div>
         )}
         <div className="awards-switcher-row">
-          {years.length > 1 ? (
+          {/* The year dropdown appears only once a second year qualifies for
+              the edition; with one year the count line already names it. */}
+          {years.length > 1 && (
             <label className="awards-year-label">
               <span>Year</span>
               <select className="awards-year-select" value={year} onChange={ev => pickYear(Number(ev.target.value))} aria-label="Year">
@@ -150,8 +152,6 @@ export function AwardHubSwitcher({
                 ))}
               </select>
             </label>
-          ) : (
-            <span className="awards-year-static">{year}</span>
           )}
           {current && (
             <span className="awards-count">
