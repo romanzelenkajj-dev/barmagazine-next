@@ -1,4 +1,4 @@
-import { tileEntries, type Accolade } from './accolades';
+import { tileEntries, type Accolade, displayOrg } from './accolades';
 
 /**
  * The credentials line under the tiles (Roman, 2026-09-15, superseding the
@@ -61,10 +61,10 @@ export function accoladeClause(a: Accolade): string {
 
   if (FIFTY_BEST.has(key) || key === '30bbi') {
     if (a.kind === 'winner' && categoryOf(a.title)) {
-      return `winner of ${withArticle(categoryOf(a.title)!)} at the ${year} ${a.org}`;
+      return `winner of ${withArticle(categoryOf(a.title)!)} at the ${year} ${displayOrg(a)}`;
     }
-    if (a.rank != null) return `No. ${a.rank} on ${a.org} ${year}`;
-    return `listed on ${a.org} in ${year}`;
+    if (a.rank != null) return `No. ${a.rank} on ${displayOrg(a)} ${year}`;
+    return `listed on ${displayOrg(a)} in ${year}`;
   }
 
   if (key === 'totc') {
@@ -96,9 +96,9 @@ export function accoladeClause(a: Accolade): string {
   }
 
   // An org with a tile but no phrasing here: say only what is stored.
-  if (a.rank != null) return `No. ${a.rank} on ${a.org} ${year}`;
-  if (a.kind === 'winner') return categoryOf(a.title) ? `winner of ${categoryOf(a.title)} at the ${year} ${a.org}` : `winner at the ${year} ${a.org}`;
-  return `listed on ${a.org} in ${year}`;
+  if (a.rank != null) return `No. ${a.rank} on ${displayOrg(a)} ${year}`;
+  if (a.kind === 'winner') return categoryOf(a.title) ? `winner of ${categoryOf(a.title)} at the ${year} ${displayOrg(a)}` : `winner at the ${year} ${displayOrg(a)}`;
+  return `listed on ${displayOrg(a)} in ${year}`;
 }
 
 /** "a", "a and b", "a, b, and c". */

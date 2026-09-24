@@ -124,8 +124,21 @@ interface TileDef {
  * clearly lighter than the near-black regional tiles. Navy sits one step
  * below the near-black continental tiles, for national rankings.
  */
+/**
+ * The name an entry's organisation is shown under (task 121). Since
+ * 9 September 2026 the organisation is "The 50" and the world list is "The
+ * 50 Best Bars"; records from 2025 and earlier keep the name they were
+ * stored with, so a 2025 placing still reads "World's 50 Best Bars 2025".
+ * Every place that prints an org name reads it through here.
+ */
+export function displayOrg(entry: { org?: string | null; org_key?: string | null; year?: number | null }): string {
+  if (entry.org_key === 'w50b' && (entry.year ?? 0) >= 2026) return 'The 50 Best Bars';
+  return entry.org ?? '';
+}
+
 const TILES: Record<string, TileDef> = {
-  w50b: { region: "WORLD'S", main: '50 BEST', tier: 'gold' },
+  // The world list's small line follows the 2026 rename (displayOrg).
+  w50b: { region: "WORLD'S", regionFor: e => ((e.year ?? 0) >= 2026 ? 'THE' : "WORLD'S"), main: '50 BEST', tier: 'gold' },
   a50b: { region: "ASIA'S", main: '50 BEST', tier: 'dark' },
   e50b: { region: "EUROPE'S", main: '50 BEST', tier: 'dark' },
   na50b: { region: "N. AMERICA'S", main: '50 BEST', tier: 'dark' },
@@ -330,7 +343,7 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
         region: def.regionFor ? def.regionFor(entry) : def.region,
         main: def.main,
         year: String(entry.year),
-        org: entry.org,
+        org: displayOrg(entry),
         title: entry.title ?? null,
         rank: entry.rank ?? null,
         source: entry.source,
@@ -349,10 +362,10 @@ export function tilesFor(accolades: unknown, limit: number = MAX_TILES): TileVie
 export function awardStrings(accolades: unknown): string[] {
   return renderableAccolades(accolades).map(entry =>
     entry.rank != null
-      ? `${entry.org} ${entry.year}, No. ${entry.rank}`
+      ? `${displayOrg(entry)} ${entry.year}, No. ${entry.rank}`
       : entry.title
-        ? `${entry.org} ${entry.year}, ${entry.title}`
-        : `${entry.org} ${entry.year}`
+        ? `${displayOrg(entry)} ${entry.year}, ${entry.title}`
+        : `${displayOrg(entry)} ${entry.year}`
   );
 }
 

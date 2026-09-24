@@ -2,20 +2,22 @@ import { firstSentence } from '@/lib/first-sentence';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { programBySlug, getProgramYears, getLiveAwardPrograms, compareHonoredBars } from '@/lib/award-hubs';
+import { programBySlug, getProgramYears, getLiveAwardPrograms } from '@/lib/award-hubs';
+import type { HonoredBar } from '@/lib/award-hubs';
+import { hubEditions, buildHubPanels, defaultSelection, yearsFor, COLLAPSED_CARDS } from '@/lib/award-hub-model';
 import { placeLine } from '@/lib/city-location';
 import { DirectoryBarCard } from '@/components/DirectoryBarCard';
-import type { HonoredBar } from '@/lib/award-hubs';
+import { AwardHubSwitcher, type SwitcherPanel } from '@/components/AwardHubSwitcher';
 
 /**
  * /awards/[program] — award hub pages built from the accolades data.
  *
- * One page per award program (World's 50 Best family, Spirited Awards,
- * Bartenders' Choice), listing every honored bar in the directory grouped
- * by year and category, each linking to its profile. These are reference
- * pages for journalists; the integrity line is part of the content.
- * A program with no honored bars is not generated, so a hub can never
- * ship empty.
+ * One page per award program (The 50 Best Bars family, Spirited Awards,
+ * Bartenders' Choice, James Beard), every honored bar in the directory,
+ * each linking to its profile. One list at a time (task 121): the page
+ * carries every edition and year as a panel, the switcher shows one, the
+ * default being the world list in its most recent year. A program with no
+ * honored bars is not generated, so a hub can never ship empty.
  */
 
 export const revalidate = 3600;
@@ -37,7 +39,11 @@ export async function generateMetadata({ params }: { params: { program: string }
   const yearSpan =
     years.length > 1 ? `${years[years.length - 1].year} to ${years[0].year}` : String(years[0].year);
   const title = `${program.name}: Honored Bars in Our Directory`;
-  const description = `${barCount} bars in the BarMagazine directory hold ${program.name} recognition, ${yearSpan}. Verified from official results, grouped by year, with a profile for every bar.`;
+  // The old name once, for search (task 121); the editions named so a
+  // regional query finds the hub too.
+  const description = program.slug === 'worlds-50-best'
+    ? `${barCount} bars in the BarMagazine directory hold a place on The 50 Best Bars, formerly The World's 50 Best Bars, or its Asia, Europe and North America editions, ${yearSpan}. Verified from official results, one list at a time, with a profile for every bar.`
+    : `${barCount} bars in the BarMagazine directory hold ${program.name} recognition, ${yearSpan}. Verified from official results, one list at a time, with a profile for every bar.`;
   const url = `${SITE_URL}/awards/${program.slug}`;
   return {
     title,
@@ -49,47 +55,17 @@ export async function generateMetadata({ params }: { params: { program: string }
 }
 
 /**
- * How many bars a section needs before its heading is worth the vertical space.
- *
- * Four is the smallest number that fills a row at the narrowest desktop grid
- * width, so a heading never again introduces a row with a hole in it.
+ * An honoured bar as the rest of the site draws it. The rank rides inside
+ * the card as a pill on the photo (task 112); a category, where the block
+ * has no single label, rides inside the cell as a kicker.
  */
-const MIN_SECTION_FOR_HEADING = 4;
-
-/**
- * An honoured bar as the rest of the site draws it, with the reason it is on
- * this page carried INSIDE its own cell.
- *
- * The kicker used to be an <h3> above the card, which is what orphaned the
- * rows. Keeping it in the cell means it travels with the bar however the grid
- * reflows, and it is the one thing an award hub must say that a city guide
- * does not.
- */
-/** A year is a sequence of these: headed sections, and runs of flowed cells. */
-type AwardSection = { label: string; bars: HonoredBar[] };
-type YearBlock =
-  | { kind: 'section'; section: AwardSection }
-  | { kind: 'flow'; cells: { bar: HonoredBar; kicker: string }[] };
-
-function AwardCard({ bar, kicker, rank }: { bar: HonoredBar; kicker: string | null; rank?: number | null }) {
+function AwardCard({ bar, kicker }: { bar: HonoredBar; kicker: string | null }) {
+  const rank = bar.entry.kind === 'ranked' ? bar.entry.rank : null;
   return (
     <div className="awards-card">
       {kicker && <p className="awards-card-kicker">{kicker}</p>}
-      {/* The rank rides inside the card as a pill on the photo (task 112). */}
       <DirectoryBarCard bar={bar} locationLine={placeLine(bar)} rankPill={rank != null ? `No. ${rank}` : null} />
     </div>
-  );
-}
-
-/* Year and list name in one slim white header row, the card style of the
-   rest of the page, so no heading sits bare on the page background (task
-   112). A flow block, which has no list name, gets the year alone. */
-function SectionHead({ year, label }: { year: number; label?: string }) {
-  return (
-    <h2 className="list-section-head">
-      <strong>{year}</strong>
-      {label && <span>{label}</span>}
-    </h2>
   );
 }
 
@@ -101,6 +77,32 @@ export default async function AwardProgramPage({ params }: { params: { program: 
   if (years.length === 0) notFound();
 
   const otherPrograms = (await getLiveAwardPrograms()).filter(p => p.program.slug !== program.slug);
+
+  const editions = hubEditions(program);
+  const panels = buildHubPanels(years, editions);
+  const initial = defaultSelection(panels, editions);
+  if (!initial) notFound();
+
+  // The switcher gets the editions that have records, with their years, and
+  // every panel with its cards already rendered; it only shows and hides.
+  const switcherEditions = editions
+    .map(e => ({ slug: e.slug, label: e.label, name: e.name, years: yearsFor(panels, e.slug) }))
+    .filter(e => e.years.length > 0);
+  const switcherPanels: SwitcherPanel[] = panels.map(p => ({
+    edition: p.edition,
+    year: p.year,
+    total: new Set(p.blocks.flatMap(b => b.cells.map(c => c.bar.slug))).size,
+    blocks: p.blocks.map(b => {
+      const cards = b.cells.map(c => <AwardCard key={`${c.bar.slug}-${b.id}`} bar={c.bar} kicker={c.kicker} />);
+      return {
+        id: b.id,
+        label: b.label,
+        total: b.cells.length,
+        head: cards.slice(0, COLLAPSED_CARDS),
+        rest: cards.slice(COLLAPSED_CARDS),
+      };
+    }),
+  }));
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -120,17 +122,10 @@ export default async function AwardProgramPage({ params }: { params: { program: 
           <span className="best-bars-kicker">Award hub</span>
           <h1>{program.name}</h1>
           {/* The standing integrity block is gone from the hubs (Roman,
-              2026-09-21). A disclaimer set apart in its own box answered a
-              question nobody had asked and gave itself the weight of the
-              results it qualified. Bartenders' Choice keeps the point as one
-              clause inside the intro, because that is the hub where a reader
-              meets the word "Featured" on the cards themselves.
-
-              `.awards-integrity` STAYS IN THE CSS: /awards, the index page,
-              still uses it, and it is not a hub. */}
-          {/* The band shows one whole sentence (task 112): the tagline's first.
-              The verification line and the bar count stay in the page
-              description for search; on the page the results speak. */}
+              2026-09-21). Bartenders' Choice keeps the point as one clause
+              inside the intro, because that is the hub where a reader meets
+              the word "Featured" on the cards themselves. `.awards-integrity`
+              stays in the CSS for /awards, the index. */}
           <p className="best-bars-intro">
             {firstSentence(program.tagline)}
             {program.slug === 'bartenders-choice'
@@ -138,75 +133,12 @@ export default async function AwardProgramPage({ params }: { params: { program: 
           </p>
         </header>
 
-        {years.map(group => {
-          // A HEADING EARNS ITS PLACE OR IT GOES.
-          //
-          // The brief is "no heading over a lone card", not "no headings". On
-          // Bartenders' Choice every category holds exactly one bar, so twenty
-          // headings each introduced a single 288px card and the page read as a
-          // query result. On the 50 Best hub a section is a real list of up to
-          // a hundred ranked bars, and "Asia's 50 Best Bars" is the only thing
-          // distinguishing it from the World list in the same year. So small
-          // sections lose their heading and flow together, large ones keep it.
-          //
-          // Sections arrive from getProgramYears() already in merit order,
-          // winners first. Walk them IN THAT ORDER and collapse only RUNS of
-          // small ones, rather than sweeping every small section to the top of
-          // the year: a program whose winner category held four bars would
-          // otherwise print its nominees above its winners. No hub does that
-          // today, which is exactly why it is worth closing now.
-          const blocks: YearBlock[] = [];
-          group.sections.forEach(section => {
-            if (section.bars.length >= MIN_SECTION_FOR_HEADING) {
-              blocks.push({ kind: 'section', section });
-              return;
-            }
-            const last = blocks[blocks.length - 1];
-            const cells = section.bars.map(bar => ({ bar, kicker: section.label }));
-            if (last && last.kind === 'flow') last.cells.push(...cells);
-            else blocks.push({ kind: 'flow', cells });
-          });
-          // Merging sections merges their orders too. On Bartenders' Choice
-          // every category holds ONE bar, so the twenty bars that tie on merit
-          // live in twenty separate sections and sorting inside each one moves
-          // nothing: without this the grid still came out alphabetical by
-          // category and still led with placeholder cards.
-          blocks.forEach(block => {
-            if (block.kind === 'flow') block.cells.sort((x, y) => compareHonoredBars(x.bar, y.bar));
-          });
-          return (
-            <section key={group.year} className="awards-year">
-              {blocks.map((block, i) =>
-                block.kind === 'flow' ? (
-                  <div key={`flow-${i}`} className="awards-section">
-                    <SectionHead year={group.year} />
-                    <div className="directory-grid">
-                      {block.cells.map(({ bar, kicker }) => (
-                        <AwardCard key={`${bar.slug}-${kicker}`} bar={bar} kicker={kicker} />
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <div key={block.section.label} className="awards-section">
-                    <SectionHead year={group.year} label={block.section.label} />
-                    <div className="directory-grid">
-                      {block.section.bars.map(bar => (
-                        <AwardCard
-                          key={`${bar.slug}-${block.section.label}`}
-                          bar={bar}
-                          // The list name is in the header row, so the card
-                          // carries what it does not: the rank, as a pill.
-                          kicker={null}
-                          rank={bar.entry.rank}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )
-              )}
-            </section>
-          );
-        })}
+        <AwardHubSwitcher
+          editions={switcherEditions}
+          panels={switcherPanels}
+          defaultEdition={initial.edition}
+          defaultYear={initial.year}
+        />
 
         {otherPrograms.length > 0 && (
           <div className="best-bars-cities">

@@ -11122,6 +11122,143 @@ textarea.form-input {
 
 .awards-program-list { margin-top: 24px; }
 
+/* ═══ Award hub switcher and collapsed lists (task 121) ═══
+   One list at a time. The switcher is a white card under the band: the
+   edition pills (four on the 50 Best hub), the year dropdown and the count
+   line. Inactive panels and the collapsed remainder of a block are hidden
+   by attribute; the explicit rules below keep [hidden] ahead of the
+   .directory-grid display rule (the task 118 lesson). Without JavaScript
+   the default list shows in full and the switcher stays out of the way. */
+.awards-switcher {
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid #e8e2d6;
+  border-radius: var(--radius);
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+.js .awards-switcher {
+  display: flex;
+}
+.awards-editions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.awards-edition-pill {
+  padding: 8px 16px;
+  border-radius: 100px;
+  border: 1px solid #e0d9cb;
+  background: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.awards-edition-pill:hover {
+  border-color: var(--text-primary);
+}
+.awards-edition-pill.is-active {
+  background: #000;
+  border-color: #000;
+  color: #fff;
+}
+.awards-switcher-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.awards-year-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.awards-year-select {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 32px 8px 14px;
+  border-radius: 100px;
+  border: 1px solid #e5e5e5;
+  background: #fff url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%236B6B6B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center;
+  color: var(--text-primary);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.awards-year-static {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.awards-count {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.awards-panel {
+  margin-top: 8px;
+}
+.awards-panel[hidden] {
+  display: none;
+}
+.awards-block {
+  margin-top: 16px;
+}
+.awards-block-rest {
+  margin-top: var(--gap, 16px);
+}
+.awards-block-rest[hidden] {
+  display: grid; /* without JavaScript the whole list shows */
+}
+.js .awards-block-rest[hidden] {
+  display: none;
+}
+.awards-more {
+  display: none;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border: 1px solid #e8e2d6;
+  border-radius: var(--radius);
+}
+.js .awards-more {
+  display: flex;
+}
+.awards-more-btn {
+  padding: 10px 22px;
+  border-radius: 100px;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+.awards-more-btn:hover {
+  background: #fff;
+  color: #000;
+}
+@media (max-width: 768px) {
+  .awards-switcher {
+    margin: 14px 8px 0;
+    padding: 14px 16px;
+  }
+  .awards-more {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
 /* Secondary style tags on the profile hero: visually subordinate to the
    main type badge (smaller, translucent), linking to the type-city guide
    when one exists. Cards never show these. */
