@@ -91,6 +91,7 @@ export default async function AwardProgramPage({ params }: { params: { program: 
   const switcherPanels: SwitcherPanel[] = panels.map(p => ({
     edition: p.edition,
     year: p.year,
+    title: p.title,
     // The count line counts placings only (Roman, 2026-09-23): on a ranked
     // list a special-award record must not make 100 read as 101. A category
     // program, which has no placings, counts its distinct bars.
@@ -105,6 +106,7 @@ export default async function AwardProgramPage({ params }: { params: { program: 
       return {
         id: b.id,
         label: b.label,
+        ranked: b.id === '1-50' || b.id === '51-100',
         total: b.cells.length,
         head: cards.slice(0, COLLAPSED_CARDS),
         rest: cards.slice(COLLAPSED_CARDS),

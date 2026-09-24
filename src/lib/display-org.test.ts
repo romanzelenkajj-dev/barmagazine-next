@@ -9,7 +9,10 @@ describe('displayOrg (task 121: The 50 Best Bars from 2026)', () => {
   it('renames the world list from 2026 and leaves earlier years and other lists alone', () => {
     expect(displayOrg(w(2026, 52))).toBe('The 50 Best Bars');
     expect(displayOrg(w(2025, 27))).toBe("World's 50 Best Bars");
-    expect(displayOrg({ org: "Asia's 50 Best Bars", org_key: 'a50b', year: 2026 })).toBe("Asia's 50 Best Bars");
+    expect(displayOrg({ org: "Asia's 50 Best Bars", org_key: 'a50b', year: 2026 })).toBe('The 50 Best Bars: Best in Asia');
+    expect(displayOrg({ org: "Europe's 50 Best Bars", org_key: 'e50b', year: 2026 })).toBe('The 50 Best Bars: Best in Europe');
+    expect(displayOrg({ org: "North America's 50 Best Bars", org_key: 'na50b', year: 2026 })).toBe('The 50 Best Bars: Best in North America');
+    expect(displayOrg({ org: "Asia's 50 Best Bars", org_key: 'a50b', year: 2025 })).toBe("Asia's 50 Best Bars");
   });
 
   it('flows into the award strings, the prose, the tile and the title', () => {
@@ -20,5 +23,6 @@ describe('displayOrg (task 121: The 50 Best Bars from 2026)', () => {
     expect(tilesFor([w(2025, 27)])[0]).toMatchObject({ region: "WORLD'S", org: "World's 50 Best Bars" });
     expect(titleAccolade([w(2026, 52)])).toBe('No. 52 on The 50 Best Bars 2026');
     expect(titleAccolade([w(2025, 27)])).toBe("No. 27 on World's 50 Best 2025");
+    expect(titleAccolade([{ ...w(2026, 7), org: "Europe's 50 Best Bars", org_key: 'e50b' }])).toBe('No. 7 on The 50 Best Bars: Best in Europe 2026');
   });
 });

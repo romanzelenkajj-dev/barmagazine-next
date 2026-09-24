@@ -131,8 +131,17 @@ interface TileDef {
  * stored with, so a 2025 placing still reads "World's 50 Best Bars 2025".
  * Every place that prints an org name reads it through here.
  */
+const POST_REBRAND: Record<string, string> = {
+  w50b: 'The 50 Best Bars',
+  a50b: 'The 50 Best Bars: Best in Asia',
+  e50b: 'The 50 Best Bars: Best in Europe',
+  na50b: 'The 50 Best Bars: Best in North America',
+};
 export function displayOrg(entry: { org?: string | null; org_key?: string | null; year?: number | null }): string {
-  if (entry.org_key === 'w50b' && (entry.year ?? 0) >= 2026) return 'The 50 Best Bars';
+  // The regional lists take the official post-rebrand names for 2026 too
+  // (Roman, 2026-09-23); 2025 and earlier keep "Asia's 50 Best Bars" etc.
+  const post = entry.org_key ? POST_REBRAND[entry.org_key] : undefined;
+  if (post && (entry.year ?? 0) >= 2026) return post;
   return entry.org ?? '';
 }
 

@@ -1,4 +1,5 @@
 import { compareHonoredBars, type AwardProgram, type HonoredBar, type YearGroup } from './honored-bars';
+import { displayOrg } from './accolades';
 
 /**
  * The award hub's navigation model (task 121): one list at a time.
@@ -21,16 +22,19 @@ export interface HubEdition {
   slug: string;
   /** The pill text. */
   label: string;
-  /** The full list name, for the aria-label and the header row. */
+  /** The list's current official name, for the aria-label. */
   name: string;
+  /** The name the list carried before the 2026 rebrand, for earlier years. */
+  legacyName?: string;
   orgKeys: string[];
 }
 
 export const FIFTY_BEST_EDITIONS: HubEdition[] = [
-  { slug: 'world', label: 'The 50 Best Bars', name: 'The 50 Best Bars', orgKeys: ['w50b'] },
-  { slug: 'asia', label: 'Asia', name: "Asia's 50 Best Bars", orgKeys: ['a50b'] },
-  { slug: 'europe', label: 'Europe', name: "Europe's 50 Best Bars", orgKeys: ['e50b'] },
-  { slug: 'north-america', label: 'North America', name: "North America's 50 Best Bars", orgKeys: ['na50b'] },
+  // Pills name the region only; the brand is in the page title (Roman).
+  { slug: 'world', label: 'World', name: 'The 50 Best Bars', legacyName: "World's 50 Best Bars", orgKeys: ['w50b'] },
+  { slug: 'asia', label: 'Asia', name: 'The 50 Best Bars: Best in Asia', legacyName: "Asia's 50 Best Bars", orgKeys: ['a50b'] },
+  { slug: 'europe', label: 'Europe', name: 'The 50 Best Bars: Best in Europe', legacyName: "Europe's 50 Best Bars", orgKeys: ['e50b'] },
+  { slug: 'north-america', label: 'North America', name: 'The 50 Best Bars: Best in North America', legacyName: "North America's 50 Best Bars", orgKeys: ['na50b'] },
 ];
 
 export function hubEditions(program: AwardProgram): HubEdition[] {
@@ -61,7 +65,15 @@ const MIN_SECTION_FOR_HEADING = 4;
 export interface HubPanel<T> {
   edition: string;
   year: number;
+  /** The list's official name for that year plus the year: "The 50 Best Bars 2026",
+      "The 50 Best Bars: Best in Asia 2026", "Asia's 50 Best Bars 2025". */
+  title: string;
   blocks: HubBlock<T>[];
+}
+
+/** The official name of an edition's list in a given year (the 2026 rebrand applies). */
+export function listTitle(edition: HubEdition, year: number): string {
+  return `${displayOrg({ org: edition.legacyName ?? edition.name, org_key: edition.orgKeys[0], year })} ${year}`;
 }
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -117,7 +129,7 @@ export function buildHubPanels(years: YearGroup[], editions: HubEdition[]): HubP
           b.label = kinds.size === 1 && kinds.has('winner') ? 'Winners' : kinds.size === 1 && kinds.has('nominee') ? 'Nominees' : 'Honored bars';
         }
       }
-      panels.push({ edition: edition.slug, year: group.year, blocks });
+      panels.push({ edition: edition.slug, year: group.year, title: listTitle(edition, group.year), blocks });
     }
   }
   return panels;
