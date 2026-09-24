@@ -71,4 +71,9 @@ export const MERGED_SLUGS: Readonly<Record<string, string>> = {
   // is what the insert appends on a slug collision, so this is a corrected
   // slug on a real bar, not a merge.
   'coa-shanghai-1773995982': 'coa-shanghai',
+  // Not a merge either: the approval route dropped the Chinese half of
+  // "庙前三酉 SanYou" and kept the hyphen that stood in for it (task 127,
+  // 2026-09-24). Renamed to the Latin part plus city; the builder now
+  // handles this case (src/lib/bar-slug.ts).
+  '-sanyou': 'sanyou-guangzhou',
 };

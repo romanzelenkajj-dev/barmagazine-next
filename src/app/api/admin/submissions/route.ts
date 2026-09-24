@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { noStoreFetch } from '@/lib/supabase-auth';
 import { NextRequest, NextResponse } from 'next/server';
+import { barSlug } from '@/lib/bar-slug';
 import { geocodeBarDetailed } from '@/lib/geocode';
 import { normalizeBarFields } from '@/lib/normalize';
 import { flagBarName } from '@/lib/bar-name';
@@ -147,16 +148,11 @@ export async function POST(request: NextRequest) {
       if (countryMatch?.[0]?.country) submission.country = countryMatch[0].country;
     }
 
-    // Create slug from name
-    const slug = submission.name
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/[\s-]+/g, '-')
-      .trim();
-    const slugWithCity = `${slug}-${submission.city
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '')}`;
+    // Slug from the name, with the city as the second candidate. One shared
+    // builder (src/lib/bar-slug.ts): the Latin part of a mixed-script name,
+    // never a leading hyphen, the city when nothing Latin is left (task 127,
+    // after "庙前三酉 SanYou" was inserted as "-sanyou").
+    const { slug, withCity: slugWithCity } = barSlug(submission.name, submission.city);
 
     // Tier from the plan the bar actually asked (and pays) for.
     const tier = PLAN_TIER_MAP[submission.preferred_plan || ''] || 'free';
