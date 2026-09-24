@@ -73,6 +73,25 @@ export function claimEmailHtml({ barName, actionLink }: Omit<ClaimLinkEmail, 'de
         Once confirmed you can keep your opening hours, contact details, menu and
         photos up to date. It&rsquo;s free, and there&rsquo;s nothing to pay or sign up for.
       </p>
+      <!-- The photo rule, worded exactly as the upload screens word it
+           (src/components/PhotoRuleNote.tsx). Task 129: owners were sending
+           cocktail photographs, so the rule now travels with the claim. -->
+      <div style="margin:22px 0;padding:16px 18px;background:#F6F4F0;border:1px solid #ECE7DE;border-radius:8px;">
+        <p style="margin:0 0 12px;font-size:14px;line-height:1.55;">
+          One photo of your bar&rsquo;s interior: the room or the bar counter with
+          seating, as a guest sees it. No drinks, bottles, logos or people.
+        </p>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+          <td style="padding-right:18px;text-align:center;">
+            <img src="https://barmagazine.com/photo-guide/interior.png" alt="" width="96" height="72" style="display:block;border:0;border-radius:4px;" />
+            <span style="display:block;margin-top:5px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#2F6D4A;">Yes: the room</span>
+          </td>
+          <td style="text-align:center;">
+            <img src="https://barmagazine.com/photo-guide/no-drinks.png" alt="" width="96" height="72" style="display:block;border:0;border-radius:4px;" />
+            <span style="display:block;margin-top:5px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#B23A30;">No: drinks</span>
+          </td>
+        </tr></table>
+      </div>
       <p>
         To edit your listing later, sign in at
         <a href="https://barmagazine.com/owner-dashboard" style="color:#8a6a24;">https://barmagazine.com/owner-dashboard</a>

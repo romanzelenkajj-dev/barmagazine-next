@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, useState, FormEvent, useRef, useEffect } from 'react';
+import { PhotoRuleNote } from '@/components/PhotoRuleNote';
 import { downscaleImage, blobToDataUrl, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAGE, UnsupportedImageError, UNSUPPORTED_FORMAT_MESSAGE } from '@/lib/image-downscale';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -568,7 +569,8 @@ function AddYourBarForm() {
               {!upgradeBar && (
               <div className="add-bar-form-section">
                 <h2>Interior Photo</h2>
-                <p className="add-bar-photo-hint">Your profile photo should show the room: an interior shot is what makes readers want to visit. Drink and detail photos belong in the photo gallery, part of Featured. Logos and graphics can&apos;t be used. JPG, PNG, or WebP, max 5MB.</p>
+                <PhotoRuleNote />
+                <p className="add-bar-photo-hint">JPG, PNG or WebP, max 5MB.</p>
                 <div className="add-bar-photo-upload">
                   {photoPreview ? (
                     <div className="add-bar-photo-preview">
