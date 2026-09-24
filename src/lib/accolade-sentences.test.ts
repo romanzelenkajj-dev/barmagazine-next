@@ -28,14 +28,14 @@ describe('credentialsLine: no subject, clauses in tile order, capitalised, one p
       na({ year: 2026, rank: 44, score: 728 }),
       totc({ year: 2026, score: 590, title: 'Best New U.S. Cocktail Bar (Top 10 Nominee)' }),
       pin({ year: 2025, kind: 'nominee', title: '1 Pin', score: 528 }),
-    ])).toBe("No. 44 on The 50 Best Bars: Best in North America 2026, Top 10 nominee for Best New U.S. Cocktail Bar at the 2026 Spirited Awards, and awarded 1 Pin by The Pinnacle Guide in 2025.");
+    ])).toBe("No. 44 on North America's 50 Best Bars 2026, Top 10 nominee for Best New U.S. Cocktail Bar at the 2026 Spirited Awards, and awarded 1 Pin by The Pinnacle Guide in 2025.");
   });
 
   it('two clauses (Daisy as stored)', () => {
     expect(credentialsLine([
       na({ year: 2026, rank: 44, score: 728 }),
       totc({ year: 2026, score: 590, title: 'Best New U.S. Cocktail Bar (Top 10 Nominee)' }),
-    ])).toBe("No. 44 on The 50 Best Bars: Best in North America 2026 and Top 10 nominee for Best New U.S. Cocktail Bar at the 2026 Spirited Awards.");
+    ])).toBe("No. 44 on North America's 50 Best Bars 2026 and Top 10 nominee for Best New U.S. Cocktail Bar at the 2026 Spirited Awards.");
   });
 
   it("reads the tiles' set: score order, one per org and year, at most three (Tlecān)", () => {
@@ -45,7 +45,7 @@ describe('credentialsLine: no subject, clauses in tile order, capitalised, one p
       totc({ kind: 'winner', year: 2026, score: 810, title: "World's Best Spirits Selection" }),
       mk({ org: 'Shaker Awards', org_key: 'shaker', year: 2025, rank: 2, score: 582, title: 'Top 30 Bares de México' }),
     ]);
-    expect(s).toBe("No. 23 on World's 50 Best Bars 2025, No. 5 on The 50 Best Bars: Best in North America 2026, and winner of World's Best Spirits Selection at the 2026 Spirited Awards.");
+    expect(s).toBe("No. 23 on The World's 50 Best Bars 2025, No. 5 on North America's 50 Best Bars 2026, and winner of World's Best Spirits Selection at the 2026 Spirited Awards.");
     expect(s).not.toContain('Shaker');
   });
 
@@ -64,7 +64,7 @@ describe('credentialsLine: no subject, clauses in tile order, capitalised, one p
 
 describe('accoladeClause per org (lowercase, no subject)', () => {
   it('50 Best: No. N on the list and year, listed without a rank', () => {
-    expect(accoladeClause(na({ year: 2026, rank: 44 }))).toBe("No. 44 on The 50 Best Bars: Best in North America 2026");
+    expect(accoladeClause(na({ year: 2026, rank: 44 }))).toBe("No. 44 on North America's 50 Best Bars 2026");
     expect(accoladeClause(mk({ org: "Asia's 50 Best Bars", org_key: 'a50b', year: 2024, rank: 12 }))).toBe("No. 12 on Asia's 50 Best Bars 2024");
     expect(accoladeClause(na({ year: 2022, rank: null }))).toBe("listed on North America's 50 Best Bars in 2022");
   });

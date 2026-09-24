@@ -10303,11 +10303,20 @@ textarea.form-input {
   left: 10px;
   bottom: 10px;
   z-index: 2;
+  /* Rows, not one line: the status pill (Temporarily closed, Closed) takes
+     the top row alone, the award pills the row below (Roman, 2026-09-23). */
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 6px;
   /* Leave room so a long pill can't run under the card's right edge. */
   max-width: calc(100% - 20px);
+}
+
+.bar-dir-visual-pills__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 /* A scrim, not a flat tint: pills must stay legible over a bright photo

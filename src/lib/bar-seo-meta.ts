@@ -206,9 +206,9 @@ const SHORT_ORG: Record<string, string> = {
 export function titleAccolade(accolades: unknown): string {
   for (const a of tileEntries(accolades)) {
     if (a.year == null) continue;
-    // From 2026 the 50 Best lists carry their official post-rebrand names
-    // (task 121, displayOrg); earlier years keep the short forms.
-    const short = SHORT_ORG[a.org_key] && (a.year ?? 0) >= 2026 && ['w50b', 'a50b', 'e50b', 'na50b'].includes(a.org_key)
+    // From 2026 the world list is "The 50 Best Bars" (task 121, displayOrg);
+    // earlier years and the regional lists keep the short forms.
+    const short = SHORT_ORG[a.org_key] && (a.year ?? 0) >= 2026 && a.org_key === 'w50b'
       ? displayOrg(a)
       : SHORT_ORG[a.org_key];
     if (short && a.rank != null) return `No. ${a.rank} on ${short} ${a.year}`;

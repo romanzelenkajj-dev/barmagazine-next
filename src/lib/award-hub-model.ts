@@ -31,10 +31,12 @@ export interface HubEdition {
 
 export const FIFTY_BEST_EDITIONS: HubEdition[] = [
   // Pills name the region only; the brand is in the page title (Roman).
+  // Only the world list was renamed; the regional lists keep their
+  // possessive names in every year (Roman, 2026-09-23).
   { slug: 'world', label: 'World', name: 'The 50 Best Bars', legacyName: "World's 50 Best Bars", orgKeys: ['w50b'] },
-  { slug: 'asia', label: 'Asia', name: 'The 50 Best Bars: Best in Asia', legacyName: "Asia's 50 Best Bars", orgKeys: ['a50b'] },
-  { slug: 'europe', label: 'Europe', name: 'The 50 Best Bars: Best in Europe', legacyName: "Europe's 50 Best Bars", orgKeys: ['e50b'] },
-  { slug: 'north-america', label: 'North America', name: 'The 50 Best Bars: Best in North America', legacyName: "North America's 50 Best Bars", orgKeys: ['na50b'] },
+  { slug: 'asia', label: 'Asia', name: "Asia's 50 Best Bars", orgKeys: ['a50b'] },
+  { slug: 'europe', label: 'Europe', name: "Europe's 50 Best Bars", orgKeys: ['e50b'] },
+  { slug: 'north-america', label: 'North America', name: "North America's 50 Best Bars", orgKeys: ['na50b'] },
 ];
 
 export function hubEditions(program: AwardProgram): HubEdition[] {
@@ -65,8 +67,8 @@ const MIN_SECTION_FOR_HEADING = 4;
 export interface HubPanel<T> {
   edition: string;
   year: number;
-  /** The list's official name for that year plus the year: "The 50 Best Bars 2026",
-      "The 50 Best Bars: Best in Asia 2026", "Asia's 50 Best Bars 2025". */
+  /** The list's name for that year plus the year: "The 50 Best Bars 2026",
+      "The World's 50 Best Bars 2025", "Asia's 50 Best Bars 2026". */
   title: string;
   blocks: HubBlock<T>[];
 }

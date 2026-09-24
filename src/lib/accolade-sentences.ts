@@ -54,6 +54,13 @@ function withArticle(category: string): string {
   return /\baward\b/i.test(category) && !/^the\b/i.test(category) ? `the ${category}` : category;
 }
 
+/** "the 2025 Asia's 50 Best Bars", or "The World's 50 Best Bars 2025" when the
+    name already carries its article (no "at the 2025 The ..."). */
+function atList(a: Accolade, year: string): string {
+  const org = displayOrg(a);
+  return org.startsWith('The ') ? `${org} ${year}` : `the ${year} ${org}`;
+}
+
 /** The clause for one entry: a credential without a subject, lowercase start. */
 export function accoladeClause(a: Accolade): string {
   const year = String(a.year);
@@ -61,7 +68,7 @@ export function accoladeClause(a: Accolade): string {
 
   if (FIFTY_BEST.has(key) || key === '30bbi') {
     if (a.kind === 'winner' && categoryOf(a.title)) {
-      return `winner of ${withArticle(categoryOf(a.title)!)} at the ${year} ${displayOrg(a)}`;
+      return `winner of ${withArticle(categoryOf(a.title)!)} at ${atList(a, year)}`;
     }
     if (a.rank != null) return `No. ${a.rank} on ${displayOrg(a)} ${year}`;
     return `listed on ${displayOrg(a)} in ${year}`;
@@ -97,7 +104,7 @@ export function accoladeClause(a: Accolade): string {
 
   // An org with a tile but no phrasing here: say only what is stored.
   if (a.rank != null) return `No. ${a.rank} on ${displayOrg(a)} ${year}`;
-  if (a.kind === 'winner') return categoryOf(a.title) ? `winner of ${categoryOf(a.title)} at the ${year} ${displayOrg(a)}` : `winner at the ${year} ${displayOrg(a)}`;
+  if (a.kind === 'winner') return categoryOf(a.title) ? `winner of ${categoryOf(a.title)} at ${atList(a, year)}` : `winner at ${atList(a, year)}`;
   return `listed on ${displayOrg(a)} in ${year}`;
 }
 

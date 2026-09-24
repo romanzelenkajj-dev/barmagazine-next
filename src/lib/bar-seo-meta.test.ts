@@ -95,9 +95,10 @@ describe('shortHours', () => {
 describe('titleAccolade', () => {
   it('uses a ranked fifty best placing, with its year', () => {
     expect(titleAccolade([acc({})])).toBe("No. 1 on World's 50 Best 2025");
-    // From 2026 the regional lists carry their official post-rebrand names (task 121).
+    // Only the world list changes name from 2026 (task 121); the regional
+    // lists keep their short forms in every year.
     expect(titleAccolade([acc({ org_key: 'a50b', org: "Asia's 50 Best Bars", rank: 12, year: 2026 })]))
-      .toBe('No. 12 on The 50 Best Bars: Best in Asia 2026');
+      .toBe("No. 12 on Asia's 50 Best 2026");
     expect(titleAccolade([acc({ org_key: 'a50b', org: "Asia's 50 Best Bars", rank: 12, year: 2025 })]))
       .toBe("No. 12 on Asia's 50 Best 2025");
   });
@@ -169,7 +170,7 @@ describe('barDescription', () => {
     const d = barDescription(full);
     expect(d.startsWith('343 Cambridge Heath Road, London.')).toBe(true);
     expect(d).toContain('Open Tue to Sat, 6pm to 12am.');
-    expect(d).toContain('No. 18 on The 50 Best Bars: Best in Europe 2026');
+    expect(d).toContain("No. 18 on Europe's 50 Best Bars 2026");
     expect(d.length).toBeLessThanOrEqual(DESCRIPTION_MAX);
   });
 

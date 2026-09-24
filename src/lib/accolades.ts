@@ -125,24 +125,23 @@ interface TileDef {
  * below the near-black continental tiles, for national rankings.
  */
 /**
- * The name an entry's organisation is shown under (task 121). Since
- * 9 September 2026 the organisation is "The 50" and the world list is "The
- * 50 Best Bars"; records from 2025 and earlier keep the name they were
- * stored with, so a 2025 placing still reads "World's 50 Best Bars 2025".
+ * The name a 50 Best record is shown under. Only the world list was
+ * renamed: from 2026 it is "The 50 Best Bars"; 2025 and earlier read
+ * "The World's 50 Best Bars" (the stored org lacks the article, and a line
+ * such as "No. 85 on World's 50 Best Bars 2025" reads wrong without it).
+ * The regional lists keep their possessive names in every year: "Asia's 50
+ * Best Bars 2026", "Europe's 50 Best Bars 2026", "North America's 50 Best
+ * Bars 2026" (Roman, 2026-09-23, reversing the earlier post-rebrand names).
  * Every place that prints an org name reads it through here.
  */
-const POST_REBRAND: Record<string, string> = {
-  w50b: 'The 50 Best Bars',
-  a50b: 'The 50 Best Bars: Best in Asia',
-  e50b: 'The 50 Best Bars: Best in Europe',
-  na50b: 'The 50 Best Bars: Best in North America',
-};
+export const WORLD_LIST_NAME = 'The 50 Best Bars';
 export function displayOrg(entry: { org?: string | null; org_key?: string | null; year?: number | null }): string {
-  // The regional lists take the official post-rebrand names for 2026 too
-  // (Roman, 2026-09-23); 2025 and earlier keep "Asia's 50 Best Bars" etc.
-  const post = entry.org_key ? POST_REBRAND[entry.org_key] : undefined;
-  if (post && (entry.year ?? 0) >= 2026) return post;
-  return entry.org ?? '';
+  const org = entry.org ?? '';
+  if (entry.org_key === 'w50b') {
+    if ((entry.year ?? 0) >= 2026) return WORLD_LIST_NAME;
+    if (/^World's 50 Best/.test(org)) return `The ${org}`;
+  }
+  return org;
 }
 
 const TILES: Record<string, TileDef> = {
