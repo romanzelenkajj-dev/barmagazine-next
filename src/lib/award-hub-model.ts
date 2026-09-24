@@ -75,21 +75,30 @@ export function buildHubPanels(years: YearGroup[], editions: HubEdition[]): HubP
         .map(s => ({ ...s, bars: s.bars.filter(b => keys.has(b.entry.org_key)) }))
         .filter(s => s.bars.length > 0);
       if (sections.length === 0) continue;
-      const bars = sections.flatMap(s => s.bars);
-      const ranked = bars.every(b => b.entry.kind === 'ranked' && b.entry.rank != null);
+      // Ranked placings first, split at No. 50; then whatever else the
+      // edition holds that year (a special award recorded as a winner, a
+      // nomination), as category blocks. An edition can carry both: the
+      // 2025 world list has a winner-kind record next to its hundred
+      // placings, and treating the panel as one kind put the whole list
+      // under a category heading.
       const blocks: HubBlock<HonoredBar>[] = [];
-      if (ranked) {
-        const sorted = bars.slice().sort((a, b) => (a.entry.rank ?? 0) - (b.entry.rank ?? 0) || a.name.localeCompare(b.name));
+      const ranked = sections.flatMap(s => s.bars.filter(b => b.entry.kind === 'ranked' && b.entry.rank != null));
+      if (ranked.length) {
+        const sorted = ranked.slice().sort((a, b) => (a.entry.rank ?? 0) - (b.entry.rank ?? 0) || a.name.localeCompare(b.name));
         const top = sorted.filter(b => (b.entry.rank ?? 0) <= 50).map(bar => ({ bar, kicker: null }));
         const extended = sorted.filter(b => (b.entry.rank ?? 0) > 50).map(bar => ({ bar, kicker: null }));
         if (top.length) blocks.push({ id: '1-50', label: 'No. 1 to 50', cells: top });
         if (extended.length) blocks.push({ id: '51-100', label: 'No. 51 to 100', cells: extended });
-      } else {
+      }
+      const categorySections = sections
+        .map(s => ({ ...s, bars: s.bars.filter(b => !(b.entry.kind === 'ranked' && b.entry.rank != null)) }))
+        .filter(s => s.bars.length > 0);
+      if (categorySections.length) {
         // A category with a real list gets its header row; runs of small
         // categories flow into one block with the category on each card,
         // in merit order, so Bartenders' Choice is not twenty headings over
         // twenty lone cards.
-        for (const s of sections) {
+        for (const s of categorySections) {
           if (s.bars.length >= MIN_SECTION_FOR_HEADING) {
             blocks.push({ id: slugify(s.label), label: s.label, cells: s.bars.map(bar => ({ bar, kicker: null })) });
             continue;

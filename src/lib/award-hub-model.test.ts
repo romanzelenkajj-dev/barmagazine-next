@@ -62,6 +62,18 @@ describe('buildHubPanels', () => {
     expect(spirited[0].slug).toBe('spirited-awards');
   });
 
+  it('keeps a special award beside a ranked list as its own block after the placings', () => {
+    const y: YearGroup[] = [{
+      year: 2025,
+      sections: [
+        { label: "Winner: Best New Opening", orgKey: 'w50b', bars: [bar('newbie', 'w50b', 2025, null, 'winner', 'Best New Opening')] },
+        { label: "World's 50 Best Bars", orgKey: 'w50b', bars: [bar('w1', 'w50b', 2025, 1), bar('w77', 'w50b', 2025, 77)] },
+      ],
+    }];
+    const panels = buildHubPanels(y, FIFTY_BEST_EDITIONS);
+    expect(panels[0].blocks.map(b => `${b.id}:${b.label}:${b.cells.length}`)).toEqual(['1-50:No. 1 to 50:1', '51-100:No. 51 to 100:1', 'honored-3:Winners:1']);
+  });
+
   it('gives a category with four or more bars its own block', () => {
     const spirited = hubEditions(SPIRITED);
     const y: YearGroup[] = [{
