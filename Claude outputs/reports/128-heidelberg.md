@@ -21,9 +21,9 @@ Already in the directory: pino-s-bar-heidelberg (Pino's Bar) and bar-martinelli-
 - Rejected: Cavaly (permanently closed per its listings), Villa Lounge (a café with evening cocktails, not a cocktail bar), Mel's Bar (a dance bar in a hotel cellar, no own site found), Trinidad (no own channel found).
 - Photos rejected: Schilling's hero (a cocktail close-up), Bent's second image (a wood backdrop), Regie's food shots, Lino's Facebook portrait. Nothing was taken from Google or from third-party listings.
 
-## Page cache note
+## Why the page lists six, not eight
 
-At 08:50 PT the live page still listed six of the eight (the first render after the inserts read a five-minute data cache captured mid-way, and the page's own window is an hour). /bars/city/heidelberg already shows all eight. The best-bars page qualifies and is indexable either way; the last two cards appear when its hour is up, by about 09:40 PT.
+Not a cache. /best-bars/<city> is Level 2 (src/lib/city-levels.ts, Roman 2026-09-17): a bar qualifies with an accolade, a Top 10 pick, a BarMagazine article, a paid tier, or a selective editorial source. Falstaff counts as selective, so Schilling Roofbar, Bent Bar, Frollein Bent and Lino's qualify beside Pino's Bar and Bar Martinelli: six. 15 High and Cocktail-Café Regie carry only their own site and a listing as sources, which the rule treats as broad, so they sit on Level 3 (/bars/city/heidelberg, which shows all eight). The page needs five to exist and four to be indexable; it has six and is indexable. If Roman wants 15 High and Regie on the best-of page, they need a selective source or a Top 10 pick.
 
 ## Not done
 
