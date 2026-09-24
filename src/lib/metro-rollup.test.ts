@@ -121,4 +121,21 @@ describe('the rollup inside buildCityEntries', () => {
   it('leaves an unrolled city exactly as it was', () => {
     expect(entries.find(x => x.slug === 'oakland')?.count).toBe(1);
   });
+
+  describe('task 130 lines (2026-09-24)', () => {
+    it('folds Long Beach into Los Angeles and Durham into Raleigh', () => {
+      expect(rollupTarget({ city: 'Long Beach', country: 'United States', state: 'CA' })?.metro).toBe('Los Angeles');
+      expect(rollupTarget({ city: 'Durham', country: 'United States', state: 'NC' })?.metro).toBe('Raleigh');
+    });
+
+    it('leaves Raleigh itself, Durham in England and Palm Beach alone', () => {
+      expect(rollupTarget({ city: 'Raleigh', country: 'United States', state: 'NC' })).toBeNull();
+      expect(rollupTarget({ city: 'Durham', country: 'United Kingdom', state: null })).toBeNull();
+      expect(rollupTarget({ city: 'Palm Beach', country: 'United States', state: 'FL' })).toBeNull();
+    });
+
+    it('keeps Durham findable on a Raleigh card', () => {
+      expect(areasOf({ city: 'Durham', neighborhood: null }, 'Raleigh')).toEqual(['Durham']);
+    });
+  });
 });
