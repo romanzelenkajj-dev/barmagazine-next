@@ -45,7 +45,7 @@ describe('credentialsLine: no subject, clauses in tile order, capitalised, one p
       totc({ kind: 'winner', year: 2026, score: 810, title: "World's Best Spirits Selection" }),
       mk({ org: 'Shaker Awards', org_key: 'shaker', year: 2025, rank: 2, score: 582, title: 'Top 30 Bares de México' }),
     ]);
-    expect(s).toBe("No. 23 on World's 50 Best Bars 2025, No. 5 on North America's 50 Best Bars 2026, and winner of World's Best Spirits Selection at the 2026 Spirited Awards.");
+    expect(s).toBe("No. 23 on The World's 50 Best Bars 2025, No. 5 on North America's 50 Best Bars 2026, and winner of World's Best Spirits Selection at the 2026 Spirited Awards.");
     expect(s).not.toContain('Shaker');
   });
 

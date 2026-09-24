@@ -1,4 +1,5 @@
 import { compareHonoredBars, type AwardProgram, type HonoredBar, type YearGroup } from './honored-bars';
+import { displayOrg } from './accolades';
 
 /**
  * The award hub's navigation model (task 121): one list at a time.
@@ -21,13 +22,18 @@ export interface HubEdition {
   slug: string;
   /** The pill text. */
   label: string;
-  /** The full list name, for the aria-label and the header row. */
+  /** The list's current official name, for the aria-label. */
   name: string;
+  /** The name the list carried before the 2026 rebrand, for earlier years. */
+  legacyName?: string;
   orgKeys: string[];
 }
 
 export const FIFTY_BEST_EDITIONS: HubEdition[] = [
-  { slug: 'world', label: 'The 50 Best Bars', name: 'The 50 Best Bars', orgKeys: ['w50b'] },
+  // Pills name the region only; the brand is in the page title (Roman).
+  // Only the world list was renamed; the regional lists keep their
+  // possessive names in every year (Roman, 2026-09-23).
+  { slug: 'world', label: 'World', name: 'The 50 Best Bars', legacyName: "World's 50 Best Bars", orgKeys: ['w50b'] },
   { slug: 'asia', label: 'Asia', name: "Asia's 50 Best Bars", orgKeys: ['a50b'] },
   { slug: 'europe', label: 'Europe', name: "Europe's 50 Best Bars", orgKeys: ['e50b'] },
   { slug: 'north-america', label: 'North America', name: "North America's 50 Best Bars", orgKeys: ['na50b'] },
@@ -61,7 +67,15 @@ const MIN_SECTION_FOR_HEADING = 4;
 export interface HubPanel<T> {
   edition: string;
   year: number;
+  /** The list's name for that year plus the year: "The 50 Best Bars 2026",
+      "The World's 50 Best Bars 2025", "Asia's 50 Best Bars 2026". */
+  title: string;
   blocks: HubBlock<T>[];
+}
+
+/** The official name of an edition's list in a given year (the 2026 rebrand applies). */
+export function listTitle(edition: HubEdition, year: number): string {
+  return `${displayOrg({ org: edition.legacyName ?? edition.name, org_key: edition.orgKeys[0], year })} ${year}`;
 }
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -117,7 +131,7 @@ export function buildHubPanels(years: YearGroup[], editions: HubEdition[]): HubP
           b.label = kinds.size === 1 && kinds.has('winner') ? 'Winners' : kinds.size === 1 && kinds.has('nominee') ? 'Nominees' : 'Honored bars';
         }
       }
-      panels.push({ edition: edition.slug, year: group.year, blocks });
+      panels.push({ edition: edition.slug, year: group.year, title: listTitle(edition, group.year), blocks });
     }
   }
   return panels;
@@ -140,5 +154,40 @@ export function defaultSelection<T>(panels: HubPanel<T>[], editions: HubEdition[
   return null;
 }
 
-/** How many cards a block shows before its "Show all" button. */
-export const COLLAPSED_CARDS = 10;
+/** How many cards a block shows before its "Show all" button: 12, so the
+    collapsed list ends on a full row at three columns and at two (Roman,
+    2026-09-23). Applies to every block, the 51-100 half included. */
+export const COLLAPSED_CARDS = 12;
+
+/**
+ * The share of a ranked list the directory must hold before that year shows
+ * on the hub (Roman, 2026-09-23): 45 of 50, and 90 of 100 where a 51-100 list
+ * exists. A year below it is hidden from the hub, not deleted; the profiles
+ * keep their accolades, and the year comes back by itself once enough of its
+ * bars are in. Each published half counts on its own, so a year whose top
+ * 50 is not out yet (the world list before 7 October 2026) qualifies on its
+ * 51-100 half alone. Category programs (Spirited, James Beard, Bartenders'
+ * Choice) have no ranked list and are not subject to it.
+ */
+export const HUB_YEAR_THRESHOLD = 0.9;
+
+/** How many placings a ranked panel holds against how many its year expects. */
+export function panelCoverage<T>(panel: HubPanel<T>): { held: number; expected: number } | null {
+  const top = panel.blocks.find(b => b.id === '1-50');
+  const extended = panel.blocks.find(b => b.id === '51-100');
+  if (!top && !extended) return null; // a category panel
+  const expected = (top ? 50 : 0) + (extended ? 50 : 0);
+  const held = (top?.cells.length ?? 0) + (extended?.cells.length ?? 0);
+  return { held, expected };
+}
+
+export function panelQualifies<T>(panel: HubPanel<T>): boolean {
+  const c = panelCoverage(panel);
+  if (!c) return true;
+  return c.held >= Math.ceil(c.expected * HUB_YEAR_THRESHOLD);
+}
+
+/** The panels the hub shows: ranked years at or over the threshold, every category year. */
+export function qualifyingPanels<T>(panels: HubPanel<T>[]): HubPanel<T>[] {
+  return panels.filter(panelQualifies);
+}

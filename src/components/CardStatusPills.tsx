@@ -15,9 +15,9 @@ export function CardStatusPills({ top10, fiftyBest, featured, premium, status }:
 }) {
   const pills: { key: string; label: string }[] = [];
   // A closed bar keeps its award pills: it did not stop being a 50 Best bar.
-  // The status sits FIRST, because it is the thing that changes the reader's
-  // evening.
-  if (status) pills.push({ key: 'closed', label: status });
+  // The status sits on its own row ABOVE them (Roman, 2026-09-23: inline it
+  // pushed TOP 10 to the right and broke the row on Tayer + Elementary),
+  // because it is the thing that changes the reader's evening.
   const award =
     top10 ? { key: 'top10', label: '★ TOP 10' } :
     fiftyBest ? { key: '50best', label: '50 Best' } : null;
@@ -28,15 +28,24 @@ export function CardStatusPills({ top10, fiftyBest, featured, premium, status }:
     if (top10) pills.push({ key: 'top10', label: '★ TOP 10' });
     if (fiftyBest) pills.push({ key: '50best', label: '50 Best' });
   }
-  if (pills.length === 0) return null;
+  if (pills.length === 0 && !status) return null;
 
   return (
     <div className="bar-dir-visual-pills">
-      {pills.map(p => (
-        <span key={p.key} className={`bar-dir-badge-pill bar-dir-badge-pill--${p.key}`}>
-          {p.label}
+      {status && (
+        <span className="bar-dir-visual-pills__row">
+          <span className="bar-dir-badge-pill bar-dir-badge-pill--closed">{status}</span>
         </span>
-      ))}
+      )}
+      {pills.length > 0 && (
+        <span className="bar-dir-visual-pills__row">
+          {pills.map(p => (
+            <span key={p.key} className={`bar-dir-badge-pill bar-dir-badge-pill--${p.key}`}>
+              {p.label}
+            </span>
+          ))}
+        </span>
+      )}
     </div>
   );
 }

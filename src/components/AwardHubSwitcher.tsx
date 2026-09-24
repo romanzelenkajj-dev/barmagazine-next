@@ -26,6 +26,8 @@ export interface SwitcherEdition {
 export interface SwitcherBlock {
   id: string;
   label: string;
+  /** A block of placings ("No. 1 to 50"); a category block otherwise. */
+  ranked: boolean;
   total: number;
   head: ReactNode[];
   rest: ReactNode[];
@@ -34,6 +36,8 @@ export interface SwitcherBlock {
 export interface SwitcherPanel {
   edition: string;
   year: number;
+  /** The list's official name that year, with the year. */
+  title: string;
   /** Distinct bars in the panel, for the count line. */
   total: number;
   blocks: SwitcherBlock[];
@@ -110,7 +114,6 @@ export function AwardHubSwitcher({
 
   const current = panels.find(p => p.edition === edition && p.year === year) ?? null;
   const years = yearsOf(edition);
-  const editionName = editions.find(x => x.slug === edition)?.name ?? '';
 
   return (
     <>
@@ -138,7 +141,9 @@ export function AwardHubSwitcher({
           </div>
         )}
         <div className="awards-switcher-row">
-          {years.length > 1 ? (
+          {/* The year dropdown appears only once a second year qualifies for
+              the edition; with one year the count line already names it. */}
+          {years.length > 1 && (
             <label className="awards-year-label">
               <span>Year</span>
               <select className="awards-year-select" value={year} onChange={ev => pickYear(Number(ev.target.value))} aria-label="Year">
@@ -147,12 +152,10 @@ export function AwardHubSwitcher({
                 ))}
               </select>
             </label>
-          ) : (
-            <span className="awards-year-static">{year}</span>
           )}
           {current && (
             <span className="awards-count">
-              {editionName} {year}: {current.total} {current.total === 1 ? 'bar' : 'bars'} in our directory
+              {current.title} &middot; {current.total} {current.total === 1 ? 'bar' : 'bars'} in our directory
             </span>
           )}
         </div>
@@ -171,9 +174,11 @@ export function AwardHubSwitcher({
               const isOpen = open.has(b.id);
               return (
                 <div key={b.id} className="awards-block" id={active ? b.id : undefined}>
+                  {/* A placings block is headed by the list's official name
+                      for that year; the range and the count sit beside it. */}
                   <h2 className="list-section-head">
-                    <strong>{b.label}</strong>
-                    <span>{b.total} {b.total === 1 ? 'bar' : 'bars'}</span>
+                    <strong>{b.ranked ? p.title : b.label}</strong>
+                    <span>{b.ranked ? `${b.label} · ` : ''}{b.total} {b.total === 1 ? 'bar' : 'bars'}</span>
                   </h2>
                   <div className="directory-grid">{b.head}</div>
                   {b.rest.length > 0 && (

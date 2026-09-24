@@ -95,8 +95,12 @@ describe('shortHours', () => {
 describe('titleAccolade', () => {
   it('uses a ranked fifty best placing, with its year', () => {
     expect(titleAccolade([acc({})])).toBe("No. 1 on World's 50 Best 2025");
+    // Only the world list changes name from 2026 (task 121); the regional
+    // lists keep their short forms in every year.
     expect(titleAccolade([acc({ org_key: 'a50b', org: "Asia's 50 Best Bars", rank: 12, year: 2026 })]))
       .toBe("No. 12 on Asia's 50 Best 2026");
+    expect(titleAccolade([acc({ org_key: 'a50b', org: "Asia's 50 Best Bars", rank: 12, year: 2025 })]))
+      .toBe("No. 12 on Asia's 50 Best 2025");
   });
   it('uses a James Beard or Spirited win', () => {
     expect(titleAccolade([acc({ org_key: 'jbf', org: 'James Beard Awards', kind: 'winner', rank: null, year: 2024 })]))

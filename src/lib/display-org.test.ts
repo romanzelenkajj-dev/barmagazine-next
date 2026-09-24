@@ -8,17 +8,23 @@ const w = (year: number, rank: number) => ({ org: "World's 50 Best Bars", org_ke
 describe('displayOrg (task 121: The 50 Best Bars from 2026)', () => {
   it('renames the world list from 2026 and leaves earlier years and other lists alone', () => {
     expect(displayOrg(w(2026, 52))).toBe('The 50 Best Bars');
-    expect(displayOrg(w(2025, 27))).toBe("World's 50 Best Bars");
+    expect(displayOrg(w(2025, 27))).toBe("The World's 50 Best Bars");
     expect(displayOrg({ org: "Asia's 50 Best Bars", org_key: 'a50b', year: 2026 })).toBe("Asia's 50 Best Bars");
+    expect(displayOrg({ org: "Europe's 50 Best Bars", org_key: 'e50b', year: 2026 })).toBe("Europe's 50 Best Bars");
+    expect(displayOrg({ org: "North America's 50 Best Bars", org_key: 'na50b', year: 2026 })).toBe("North America's 50 Best Bars");
+    expect(displayOrg({ org: "Asia's 50 Best Bars", org_key: 'a50b', year: 2025 })).toBe("Asia's 50 Best Bars");
   });
 
   it('flows into the award strings, the prose, the tile and the title', () => {
     expect(awardStrings([w(2026, 52)])).toEqual(['The 50 Best Bars 2026, No. 52']);
-    expect(awardStrings([w(2025, 27)])).toEqual(["World's 50 Best Bars 2025, No. 27"]);
+    expect(awardStrings([w(2025, 27)])).toEqual(["The World's 50 Best Bars 2025, No. 27"]);
     expect(accoladeClause(w(2026, 52) as never)).toBe('No. 52 on The 50 Best Bars 2026');
+    expect(accoladeClause(w(2025, 85) as never)).toBe("No. 85 on The World's 50 Best Bars 2025");
+    expect(accoladeClause({ ...w(2025, 1), rank: null, kind: 'winner', title: 'Best New Opening' } as never)).toMatch(/at The World's 50 Best Bars 2025$/);
     expect(tilesFor([w(2026, 52)])[0]).toMatchObject({ region: 'THE', main: '50 BEST', org: 'The 50 Best Bars' });
-    expect(tilesFor([w(2025, 27)])[0]).toMatchObject({ region: "WORLD'S", org: "World's 50 Best Bars" });
+    expect(tilesFor([w(2025, 27)])[0]).toMatchObject({ region: "WORLD'S", org: "The World's 50 Best Bars" });
     expect(titleAccolade([w(2026, 52)])).toBe('No. 52 on The 50 Best Bars 2026');
     expect(titleAccolade([w(2025, 27)])).toBe("No. 27 on World's 50 Best 2025");
+    expect(titleAccolade([{ ...w(2026, 7), org: "Europe's 50 Best Bars", org_key: 'e50b' }])).toBe("No. 7 on Europe's 50 Best 2026");
   });
 });

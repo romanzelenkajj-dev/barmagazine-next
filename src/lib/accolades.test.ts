@@ -288,7 +288,7 @@ describe('accolades', () => {
   describe('awardStrings', () => {
     it('includes rank for machines even though the tile hides it', () => {
       expect(awardStrings([make({ rank: 8 })])).toEqual([
-        "World's 50 Best Bars 2025, No. 8",
+        "The World's 50 Best Bars 2025, No. 8",
       ]);
     });
 

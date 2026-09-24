@@ -19,7 +19,7 @@
  * left out and the sentence is shorter. The page body, the H1 and the stored
  * description are untouched.
  */
-import { tileEntries, type Accolade } from './accolades';
+import { tileEntries, type Accolade, displayOrg } from './accolades';
 import { accoladeClause } from './accolade-sentences';
 import { formatHoursForCountry } from './format-hours';
 import { cityLabel, subdivisionName } from './city-location';
@@ -206,8 +206,11 @@ const SHORT_ORG: Record<string, string> = {
 export function titleAccolade(accolades: unknown): string {
   for (const a of tileEntries(accolades)) {
     if (a.year == null) continue;
-    // The world list is "The 50 Best Bars" from 2026 (task 121, displayOrg).
-    const short = a.org_key === 'w50b' && (a.year ?? 0) >= 2026 ? 'The 50 Best Bars' : SHORT_ORG[a.org_key];
+    // From 2026 the world list is "The 50 Best Bars" (task 121, displayOrg);
+    // earlier years and the regional lists keep the short forms.
+    const short = SHORT_ORG[a.org_key] && (a.year ?? 0) >= 2026 && a.org_key === 'w50b'
+      ? displayOrg(a)
+      : SHORT_ORG[a.org_key];
     if (short && a.rank != null) return `No. ${a.rank} on ${short} ${a.year}`;
     if (a.org_key === 'jbf' && a.kind === 'winner') return `James Beard Award Winner ${a.year}`;
     if (a.org_key === 'totc' && a.kind === 'winner') return `Spirited Award Winner ${a.year}`;
@@ -326,11 +329,13 @@ export function barTitle(bar: BarMetaInput): string {
 /**
  * Comparison key for "have we already said this": letters and digits only,
  * with the placing words that differ between our phrasing and a venue's own
- * ("no.", "#", "ranked") removed, so "No. 38 on World's 50 Best Bars 2025"
- * and "#38 on World's 50 Best Bars 2025" come out identical.
+ * ("no.", "#", "ranked") and the article removed, so "No. 38 on The World's
+ * 50 Best Bars 2025" and "#38 on World's 50 Best Bars 2025" come out
+ * identical (displayOrg adds "The" to pre-2026 world placings; a venue's own
+ * excerpt usually leaves it out).
  */
 const sayKey = (s: string) =>
-  s.toLowerCase().replace(/\b(?:no|number|ranked|rank)\b/g, ' ')
+  s.toLowerCase().replace(/\b(?:no|number|ranked|rank|the)\b/g, ' ')
     .replace(/[^a-z0-9]+/g, ' ').trim();
 
 /**
