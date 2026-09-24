@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, useState, FormEvent, useRef, useEffect } from 'react';
+import { PhotoRuleNote } from '@/components/PhotoRuleNote';
 import { downscaleImage, blobToDataUrl, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAGE, UnsupportedImageError, UNSUPPORTED_FORMAT_MESSAGE } from '@/lib/image-downscale';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -317,7 +318,7 @@ function AddYourBarForm() {
           <h1>{upgradeBar ? `Upgrade ${upgradeBar.name}` : 'Add Your Bar'}</h1>
           <p>
             {upgradeBar
-              ? `${upgradeBar.name} is already listed in our directory \u2014 pick a plan and we\u2019ll take it from there.`
+              ? `${upgradeBar.name} is already listed in our directory. Pick a plan and we\u2019ll take it from there.`
               : isPaidPlan
                 ? 'Fill out your bar details below. After submitting, you\u2019ll be redirected to complete payment.'
                 : 'Submit your bar to the BarMagazine directory. We\u2019ll review your submission and get back to you.'}
@@ -558,7 +559,7 @@ function AddYourBarForm() {
                   <span className="form-hint">
                     {isPaidPlan
                       ? 'You\u2019ll be redirected to Stripe to complete payment after submitting.'
-                      : 'Not sure? Start with Free \u2014 you can upgrade anytime.'}
+                      : 'Not sure? Start with Free. You can upgrade anytime.'}
                     {' '}<a href="/feature-your-bar" style={{textDecoration: 'underline'}}>Compare plans</a>
                   </span>
                 </div>
@@ -568,7 +569,7 @@ function AddYourBarForm() {
               {!upgradeBar && (
               <div className="add-bar-form-section">
                 <h2>Interior Photo</h2>
-                <p className="add-bar-photo-hint">Your profile photo should show the room: an interior shot is what makes readers want to visit. Drink and detail photos belong in the photo gallery, part of Featured. Logos and graphics can&apos;t be used. JPG, PNG, or WebP, max 5MB.</p>
+                <PhotoRuleNote />
                 <div className="add-bar-photo-upload">
                   {photoPreview ? (
                     <div className="add-bar-photo-preview">

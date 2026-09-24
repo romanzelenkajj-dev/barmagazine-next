@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { OWNER_EDITABLE_FIELDS, isPaidTier } from '@/lib/owner-fields';
 import { menuUrlProblem, menuDomainDiffers } from '@/lib/menu-url';
 import { downscaleImage, MAX_UPLOAD_BYTES, PHOTO_TOO_LARGE_MESSAGE, UnsupportedImageError, UNSUPPORTED_FORMAT_MESSAGE } from '@/lib/image-downscale';
+import { PhotoRuleNote } from '@/components/PhotoRuleNote';
 
 /**
  * Owner edit form.
@@ -392,6 +393,7 @@ export default function EditBarPage() {
               feature. Without the cap a free bar could upload six photos into
               a moderation request that could only be rejected wholesale
               (Apothéke LA's first session did exactly that). */}
+          <PhotoRuleNote />
           <label className="add-bar-photo-dropzone" style={{ cursor: 'pointer' }}>
             <strong>
               {uploading
@@ -416,12 +418,6 @@ export default function EditBarPage() {
               style={{ display: 'none' }}
             />
           </label>
-          {/* Expectation-setting only - moderation remains the gate. */}
-          <p className="owner-dash-note" style={{ marginTop: 12 }}>
-            Your profile photo should show the room. An interior shot is what
-            makes readers want to visit. Drink and detail photos belong in the photo
-            gallery, part of Featured. Logos and graphics can&apos;t be used.
-          </p>
           {!isPaid && (
             <p className="owner-dash-note" style={{ marginTop: 12 }}>
               Want a full photo gallery on your page?{' '}
