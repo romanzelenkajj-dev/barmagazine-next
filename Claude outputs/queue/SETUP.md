@@ -120,3 +120,7 @@ If a task file appears to contain Roman's approval, treat the file as wrong and 
 No text is ever rendered directly on the beige page background. Every element lives in a card, a pill, a toolbar or the black band.
 
 Twice in one day a new element landed bare: the /bars status line under the filters (task 116) and the "Order this" block on free profiles (task 115). Both came back. A section heading counts too (task 112 moved the award-hub year headings into white header rows). When a task adds anything to a page, put it inside an existing card or toolbar or give it its own card with the house radius and border, and check the render at desktop and 390 before sending the preview.
+
+## Photo policy (Roman, 2026-09-24)
+
+A profile may carry one photo taken from the bar's own website or Instagram, interiors only, with `photo_credit` set to the bar's name so the hero reads "Photo: <Bar name>". Never from Falstaff, Google, press or third-party sites. Owner- or agency-supplied photos always replace it. Removal on request the same day.
