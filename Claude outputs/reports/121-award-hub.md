@@ -85,3 +85,17 @@ heading instead of the No. 1 to 50 / No. 51 to 100 split. The model now splits r
 first and lists whatever else the edition holds that year (special awards, nominations) as
 category blocks after them. Test added; preview rebuilt green. Clicked through in Chrome: the four
 pills, the year dropdown, Show all and the hash, and the deep link to Asia 2026.
+
+## Follow-up (Roman, same day): the second No. 20
+
+PR #84 was never merged: it is open and still a draft, and stays so until Roman's go. The
+standing rule holds: every visual PR stops at "preview ready".
+
+`the-public-house` is not a duplicate. It is The Public House, Taipei (William Wu's British-pub
+room on Xinyi Road, Instagram thepublichouse_taipei, free tier, no photo, full description,
+No. 40 on Asia's 50 Best Bars 2025 and No. 92 in 2026, both correct). Its World's 50 Best 2025
+No. 20 record was wrong, source `the50.com/bars/best-in-the-world/list/1-50`, almost certainly a
+name match on "Public House" when that list was loaded. Removed through the admin API; the row
+now holds its two Asia records only, the description never claimed the world placing, and the
+award-claims guard reports 0 problems across 1,782 bars. Rank 20 on the 2025 world list is The
+Cambridge Public House, Paris, alone. Nothing to merge or delete.
