@@ -76,3 +76,12 @@ order, so the model and its tests import no Supabase), `src/lib/display-org.test
 
 For 7 October: the 1-50 world list insert should write `org: "The 50 Best Bars"` on its 2026
 records; the scratch script `w50b-2026.mjs` still writes the old name and needs that one change.
+
+## Found on the preview in Chrome, fixed before handing over
+
+The 2025 world list carries a special-award record of kind "winner" next to its hundred placings,
+and the first cut judged a panel by all its records at once, so 2025 rendered under a category
+heading instead of the No. 1 to 50 / No. 51 to 100 split. The model now splits ranked placings
+first and lists whatever else the edition holds that year (special awards, nominations) as
+category blocks after them. Test added; preview rebuilt green. Clicked through in Chrome: the four
+pills, the year dropdown, Show all and the hash, and the deep link to Asia 2026.
