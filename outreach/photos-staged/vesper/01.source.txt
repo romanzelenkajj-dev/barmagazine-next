@@ -1,5 +1,0 @@
-bar: Vesper
-source image: https://static.wixstatic.com/media/22ede8_4f3b2b79cc424e0dadb430849ee4b290~mv2.jpg
-found on: https://www.vesperbar.co/reservation
-shows: panelled wall with brass mirrors reflecting the bar, banquette below (borderline: a wall view rather than the whole room)
-credit if approved: Photo: Vesper

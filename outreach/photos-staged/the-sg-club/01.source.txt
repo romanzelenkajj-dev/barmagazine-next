@@ -1,5 +1,0 @@
-bar: The SG Club
-source image: https://sg-management.jp/image/sipguzzle/store/store-main01-sgclub.jpg
-found on: https://sg-management.jp/en/establishments/sgclub/
-shows: copper bar counter with leather stools under the coffered ceiling
-credit if approved: Photo: The SG Club

@@ -1,5 +1,0 @@
-bar: The SG Club
-source image: https://sg-management.jp/image/sipguzzle/store/store-main02-sgclub.jpg
-found on: https://sg-management.jp/en/establishments/sgclub/
-shows: the lower Sip room with banquettes and bar stools
-credit if approved: Photo: The SG Club

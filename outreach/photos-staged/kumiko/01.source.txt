@@ -1,5 +1,0 @@
-bar: Kumiko
-source image: https://cdn.prod.website-files.com/69f44919336ba9206e4cd7ba/6aa476cf1becfce8cfc21d81_06_Whisky_Bar1.webp
-found on: https://www.barkumiko.com/
-shows: whisky bar counter with stools, glasses and menus set, backlit shelves behind, one bartender silhouette
-credit if approved: Photo: Kumiko
