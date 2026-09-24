@@ -17,25 +17,14 @@ Code may take one photo from a bar's own website or Instagram, interiors only (t
 
 30 photo files. Four are owner uploads through the dashboard: KAA° Mixology, Cantina OK!, Bar Martinelli, and Otro Bar's row is owner-claimed. The other 23 are the task 113 photos of 23 September from The 50 Best Bars media pack, credited "courtesy of The 50 Best Bars".
 
-**Nothing is removed.** The pack is licensed, so those 23 stay exactly as they are. An earlier version of this report proposed removing them; that was wrong and has been withdrawn. No photo was deleted from any of the 23 profiles.
+**Nothing is removed and nothing is swapped.** The pack is licensed, so all 23 stay exactly as they are (Roman, 2026-09-24). An earlier version of this report proposed removing them, and a later one proposed swapping Boadas for an own-site shot; both are withdrawn. No photo was deleted from any of the 23 profiles, and the own-site candidates gathered for the comparison have been deleted from staging.
 
-I did compare each pack photo against the best interior on that bar's own website, to see whether any own-site shot is clearly better:
+## 3. Heidelberg, approved
 
-| Own-site candidate found | Verdict against the pack photo |
-|---|---|
-| boadas | **own site better.** The pack photo is a close-up of stool legs; the bar's own archival shot shows the whole curved counter. On the sheet for Roman to pick. |
-| front-back, gucci-giardino, kumiko, mo-bar-shenzhen, tjoget, vesper | pack photo better (wider, brighter, or in colour where the own-site shot is not). Keep the pack photo. |
-| mius, opium | effectively the same photograph. Keep the pack photo. |
-| the-sg-club | different rooms, both good. Keep the pack photo. |
+Roman approved 15-high-heidelberg, cocktail-cafe-regie-heidelberg and schilling-roofbar-heidelberg on 24 September; all three were already live and stay, credited "Photo: <Bar name>". Their staged copies are deleted.
 
-Fourteen of the 23 had no own-site interior at all (no website, dead domains, or sites holding only drinks, portraits and crowds): bar-trench, boilermaker, g-o-d, naked-athens, vender, bar-gabriel-istanbul, form-matter, freni-e-frizioni, la-borracha-accra, otro-bar, r-da-huset, the-bellwood, three-horses-melbourne, and the Röda Huset interior which carries a 50 Best logo overlay. All keep their pack photo.
-
-The nine superseded candidates were deleted from `outreach/photos-staged/`; Boadas and the three Heidelberg crops remain.
-
-## 3. Contact sheet
-
-`outreach/photos-staged/contact-sheet-2026-09-24.html`, images embedded, opens in any browser. It carries the three Heidelberg photos and the Boadas pair (A = pack photo live now, B = own-site archival).
+Bent Bar was rejected: the photo is a tall portrait and the hero crops it to its middle band, which is mostly chair legs and floor. Two wider interiors exist in the bar's own media library at bentbar.de, neither linked from its home page, and both are staged in `outreach/photos-staged/bent-bar-heidelberg/` with the sheet at `outreach/photos-staged/bent-bar-2026-09-24.html`. The portrait photo stays live until Roman picks, since the instruction was to stage and not publish.
 
 ## 4. Waiting on Roman
 
-The slugs to approve from the Heidelberg sheet, and "boadas A" or "boadas B".
+"bent 01", "bent 02" or "bent none".

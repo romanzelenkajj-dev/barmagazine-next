@@ -1,8 +1,6 @@
 # Task 129: owner photo upload, one interior photo
 
-Date: 2026-09-24. Status: preview ready, not merged. Draft PR #88 on `preview/129-owner-photo-rule`, build green.
-PR: https://github.com/romanzelenkajj-dev/barmagazine-next/pull/88
-Preview: https://barmagazine-next-git-previ-cd30c9-romanzelenkajj-7135s-projects.vercel.app/add-your-bar
+Date: 2026-09-24. Status: **merged and live** (PR #88, squashed as 27082ad). Verified on https://barmagazine.com/add-your-bar.
 
 ## The question asked first: is there a separate cocktail or signature-serve photo field?
 
@@ -43,9 +41,14 @@ The wording lives once in `src/components/PhotoRuleNote.tsx` for the two screens
 - Local, 375 px: the line wraps above the thumbnails, which stay side by side, no overflow.
 - The claim email was rendered from the real template and read in the browser: block, wording and captions correct.
 
-## One thing to know
+## Changes after Roman's review, before the merge
 
-The email thumbnails are absolute URLs at barmagazine.com/photo-guide/, because an email cannot use a relative path. They 404 until this merges. Nothing else in the email depends on them, and no claim email is sent from a preview deployment.
+- The format line above the upload box on add-your-bar was a duplicate of the dropzone's own; it is gone and the dropzone keeps its "JPG, PNG, or WebP, Max 5MB".
+- "Not sure? Start with Free — you can upgrade anytime" now ends in a period, as does "is already listed in our directory — pick a plan" on the same page. Both carried the em dash as a `\u2014` escape, which is why the em-dash test never saw them; the test reads source lines and matches the literal character.
+
+## Verified live
+
+The rule reads word for word on the public form, above the upload box, both thumbnails loading from barmagazine.com/photo-guide/. The drink invitation is gone, the duplicate format line is gone, and no em dash remains in that copy. The email thumbnails are absolute URLs, so they now resolve.
 
 ## Not done
 

@@ -1,5 +1,0 @@
-bar: 15 High
-source image: https://www.15high-heidelberg.de/wp-content/uploads/sites/8/2023/12/restaurant-15high-heidelberg-02.jpg
-found on: https://www.15high-heidelberg.de/en/
-credit: Photo: 15 High
-status: live since 2026-09-24 (task 128), counts as staged pending approval

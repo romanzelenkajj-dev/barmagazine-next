@@ -1,5 +1,6 @@
 bar: Bent Bar
-source image: https://bentbar.de/wp-content/uploads/2021/06/bent-bar-back-2.jpg
-found on: https://www.bentbar.de/
-credit: Photo: Bent Bar
-status: live since 2026-09-24 (task 128), counts as staged pending approval
+source image: https://bentbar.de/wp-content/uploads/2021/06/bent-bar-front.jpg
+found on: bentbar.de media library (wp-json/wp/v2/media), the bar's own site
+shows: The room down the length of the counter: bar stools, the seating and windows on the left, back-bar shelves on the right. 1280x960 original.
+cropped to: 1280x853 (3:2 hero)
+credit if approved: Photo: Bent Bar
