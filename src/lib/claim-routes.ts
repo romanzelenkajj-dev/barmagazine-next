@@ -189,8 +189,9 @@ export const CLAIM_RESEND_COOLDOWN_MINUTES = 5;
  *                    already manage this listing", create nothing, mail no one.
  *   owner_by_email   the claimant typed the owner's own address without being
  *                    signed in: create no transfer request and no admin email,
- *                    say so on screen and mail that address a dashboard
- *                    sign-in link.
+ *                    mail that address a dashboard sign-in link instead. The
+ *                    screen keeps the generic wording, so the form cannot be
+ *                    used to test which address owns a bar.
  *   transfer         a different person: the reviewed transfer path, unchanged.
  *   open             the bar has no owner.
  *

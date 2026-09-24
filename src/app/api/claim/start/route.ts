@@ -107,13 +107,12 @@ export async function POST(request: NextRequest) {
     // Unknown bar: same answer as a successful claim.
     if (!bar) return generic();
 
-    // The owner claiming their own bar (task 122): signed in as the owner, or
-    // typing the owner's own address. Both are told "You already manage this
-    // listing" on screen; the address case also gets a dashboard sign-in
-    // link in the mail. Neither creates a transfer request or mails the
-    // admin. (Roman chose the on-screen answer for the address case too; it
-    // means the form confirms which address owns a bar, which the rest of
-    // this route avoids saying.) Anyone else follows the usual routes below.
+    // The owner claiming their own bar (task 122). A signed-in owner is told
+    // "You already manage this listing" on screen. The owner's address typed
+    // without a session gets a dashboard sign-in link by mail and the
+    // generic screen: the form never confirms which address owns a bar
+    // (Roman, 2026-09-23). Neither case creates a transfer request or mails
+    // the admin. Anyone else follows the usual routes below.
     if (bar.owner_id) {
       const token = request.headers.get('Authorization')?.replace('Bearer ', '') || '';
       const sessionOwner = token ? await verifyOwnerToken(token) : null;
@@ -129,7 +128,7 @@ export async function POST(request: NextRequest) {
       }
       if (outcome === 'owner_by_email') {
         await sendLoginLinkEmail(supabase, { destination: email, redirectTo: `${SITE_URL}/owner-dashboard/auth/callback` });
-        return NextResponse.json({ success: true, alreadyOwner: true, dashboard: '/owner-dashboard', linkSent: true });
+        return generic();
       }
     }
 

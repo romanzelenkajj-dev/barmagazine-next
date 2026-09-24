@@ -61,7 +61,6 @@ function ClaimYourBar() {
   const [proofSent, setProofSent] = useState(false);
   // The signed-in owner claimed their own bar (task 122): nothing to do but point at the dashboard.
   const [alreadyOwner, setAlreadyOwner] = useState(false);
-  const [ownerLinkSent, setOwnerLinkSent] = useState(false);
   const [uploading, setUploading] = useState(false);
 
   /**
@@ -189,7 +188,6 @@ function ClaimYourBar() {
       }
       if (data.alreadyOwner) {
         gaEvent(CLAIM_EVENTS.submitResult, { outcome: 'already_owner' });
-        setOwnerLinkSent(!!data.linkSent);
         setAlreadyOwner(true);
         return;
       }
@@ -237,10 +235,9 @@ function ClaimYourBar() {
             <span className="claim-eyebrow">Already yours</span>
             <h1>You already manage this listing</h1>
             <p className="claim-intro">
-              {selected?.name} is already registered to{' '}
-              {ownerLinkSent ? <strong>{email}</strong> : 'the account you are signed in with'}, so
-              there is nothing to claim. Edit the listing from your dashboard.
-              {ownerLinkSent && ' A sign-in link is on its way to that address.'}
+              {selected?.name} is already registered to the account you are
+              signed in with, so there is nothing to claim. Edit the listing
+              from your dashboard.
             </p>
             <p style={{ textAlign: 'center', marginTop: 18 }}>
               <Link href="/owner-dashboard" className="claim-btn">Sign in to manage</Link>
