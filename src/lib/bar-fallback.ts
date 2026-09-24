@@ -1,4 +1,5 @@
 import { formatBarType } from './utils';
+import { displayOrg } from './accolades';
 
 /**
  * Composed fallback description for bars with no hand-written description,
@@ -52,9 +53,10 @@ export function accoladeClause(accolades: unknown): string | null {
       : `a ${year}James Beard Award nominee${cat}`;
   }
   if (['w50b', 'na50b', 'a50b', 'e50b'].includes(best.org_key!) && best.org) {
-    if (best.rank && best.rank <= 50) return `No. ${best.rank} on ${best.org} ${best.year ?? ''}`.trim();
-    if (best.rank) return `on the ${best.org} ${best.year ?? ''} extended list`.replace('  ', ' ');
-    return `recognized on ${best.org}`;
+    const org = displayOrg(best);
+    if (best.rank && best.rank <= 50) return `No. ${best.rank} on ${org} ${best.year ?? ''}`.trim();
+    if (best.rank) return `on the ${org} ${best.year ?? ''} extended list`.replace('  ', ' ');
+    return `recognized on ${org}`;
   }
   return null;
 }
