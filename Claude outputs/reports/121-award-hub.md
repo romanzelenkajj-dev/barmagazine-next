@@ -1,4 +1,4 @@
-# Task 121: award hub navigation, collapsed lists, The 50 Best Bars. Branch `preview/121-award-hub`, draft PR #84, NOT merged, 2026-09-23
+# Task 121: award hub navigation, collapsed lists, The 50 Best Bars. PR #84 MERGED 2026-09-23 on Roman's go
 
 Preview (Vercel SSO), build state in chat:
 - https://barmagazine-next-git-previ-2fff2c-romanzelenkajj-7135s-projects.vercel.app/awards/worlds-50-best
@@ -99,3 +99,9 @@ name match on "Public House" when that list was loaded. Removed through the admi
 now holds its two Asia records only, the description never claimed the world placing, and the
 award-claims guard reports 0 problems across 1,782 bars. Rank 20 on the 2025 world list is The
 Cambridge Public House, Paris, alone. Nothing to merge or delete.
+
+## Merged
+
+Merged on Roman's go; production build green. Live checks: the hub's H1 and title read "The 50
+Best Bars", four edition pills, 33 panels with 32 hidden in the served HTML; Front/Back's title
+reads "No. 80 on The 50 Best Bars 2026"; The Public House shows its two Asia records only.
