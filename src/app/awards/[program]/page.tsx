@@ -91,7 +91,15 @@ export default async function AwardProgramPage({ params }: { params: { program: 
   const switcherPanels: SwitcherPanel[] = panels.map(p => ({
     edition: p.edition,
     year: p.year,
-    total: new Set(p.blocks.flatMap(b => b.cells.map(c => c.bar.slug))).size,
+    // The count line counts placings only (Roman, 2026-09-23): on a ranked
+    // list a special-award record must not make 100 read as 101. A category
+    // program, which has no placings, counts its distinct bars.
+    total: (() => {
+      const ranked = p.blocks.filter(b => b.id === '1-50' || b.id === '51-100');
+      return ranked.length
+        ? ranked.reduce((n, b) => n + b.cells.length, 0)
+        : new Set(p.blocks.flatMap(b => b.cells.map(c => c.bar.slug))).size;
+    })(),
     blocks: p.blocks.map(b => {
       const cards = b.cells.map(c => <AwardCard key={`${c.bar.slug}-${b.id}`} bar={c.bar} kicker={c.kicker} />);
       return {
