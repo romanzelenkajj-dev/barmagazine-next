@@ -78,7 +78,7 @@ export const METRO_ROLLUP: MetroRollup[] = [
   // statistical area, but it is a town in Palm Beach County some 70 miles
   // north, a drive of over an hour. A reader on the Miami page would not
   // treat it as part of a night out in Miami, which is the test every other
-  // line here passes. One line to add if Roman wants it anyway.
+  // line here passes. Roman confirmed on 2026-09-24: Palm Beach stays separate.
   { metro: 'Miami', country: 'United States', state: 'FL', areas: ['Miami Beach'] },
 
   // Jefferson County, inside the Louisville metro.
@@ -107,6 +107,11 @@ export const METRO_ROLLUP: MetroRollup[] = [
   // is a real bars.city value, so a combined "Raleigh-Durham" label would
   // need code; Raleigh is the metro name the data supports.
   { metro: 'Raleigh', country: 'United States', state: 'NC', areas: ['Durham'] },
+
+  // Maricopa County, inside the Phoenix metro (Roman, 2026-09-24, task 131:
+  // "Scottsdale goes into the Phoenix metro"). Old Town Scottsdale is a
+  // 20 minute drive from downtown Phoenix and part of the same night out.
+  { metro: 'Phoenix', country: 'United States', state: 'AZ', areas: ['Scottsdale'] },
 ];
 
 interface RollupTarget {
