@@ -1,6 +1,0 @@
-bar: Tabac (Glasgow)
-source image: https://tabacbar.com/assets/image/CEAA5DF9F81A49F5BEAB39D4A54627053.jpg
-found on: https://tabacbar.com/
-shows: Bar counter with stools on the left, candlelit tables and banquette on the right
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Tabac

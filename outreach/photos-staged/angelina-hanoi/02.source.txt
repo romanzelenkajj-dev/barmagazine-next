@@ -1,6 +1,0 @@
-bar: Angelina (Hanoi)
-source image: https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/95/2026/04/09100902/angelina-cocktail-bar-2-scaled.jpg
-found on: https://www.sofitel-legend-metropole-hanoi.com/dining/
-shows: Raised view of the bar room with its counter, stools, patterned tile floor and upstairs gallery, no people (2560 px)
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Angelina

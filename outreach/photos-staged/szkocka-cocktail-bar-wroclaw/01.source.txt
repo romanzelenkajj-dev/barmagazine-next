@@ -1,6 +1,0 @@
-bar: Szkocka Cocktail Bar (Wrocław)
-source image: https://static.wixstatic.com/media/784c74_f6ed9091cf5c4df781bb662a86dcfba5~mv2.jpg
-found on: https://www.pubszkocka.pl/
-shows: Long bar counter with leather stools, herringbone floor, arched windows, barrel and bottle cabinets; empty room, daylight
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Szkocka Cocktail Bar

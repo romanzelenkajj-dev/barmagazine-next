@@ -63,8 +63,60 @@ outreach/photos-staged/130-contact-sheet.html, images embedded. 64 candidates fo
 
 I viewed all 80 candidates the research returned and rejected 16 under the rule: back-bar or equipment close-ups (18 Degrees, L'Archiduc twice, DSK, Henry C, BAR Stuttgart), a logo front and centre (Centro), table details rather than the room (10 Tib Lane twice, Szkocka), crowds or staff as the subject (Bar Split, Schody Donikąd, Hope & Sesame Shenzhen), too dark to read (Paul & George), a banquet setup (Papa Bar), and the open-air terraces (Botika, Split Rooftop Bar), which are not interiors. 49 of the 94 new bars have no passing own-site photo and stay without one until an owner supplies it.
 
-## Things to decide
+## Things to decide (resolved 2026-09-24: photos approved, #89 go, selective-source preview requested)
 
 1. **PR #89** (metro rollup). Merging it completes Durham.
 2. **The photo sheet.**
 3. **Optional, a preview if you want it:** the selective-source check reads only English list titles and does not know Gault&Millau. A Bologna "I 10 migliori" or Brussels's Gault&Millau cocktail guide therefore does not qualify a bar, which is why Brussels, Naples, Bologna and Gdańsk show unnumbered pages despite good sources. Teaching it the local words for "best" and adding Gault&Millau would lift those pages; it changes which bars appear on live best-bars pages, so it would go to preview first.
+
+## Photos published (Roman approved all, 2026-09-24)
+
+One photo per bar, credited "Photo: <Bar name>". Where two candidates were staged, the wider shot of the room or counter went live and the other was deleted; the staging folder is cleared. The source of every published photo, for the record:
+
+| Slug | Source image (bar's own site) |
+|---|---|
+| 17-bar-porto | https://decimosetimo.pt/wp-content/uploads/2018/09/bar7.jpg |
+| alcove-shenzhen | http://www.ensue-sz.com/media/2020/12/ensue_2019_1478.jpg |
+| angelina-hanoi | https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/95/2026/04/09100902/angelina-cocktail-bar-2-scaled.jpg |
+| arcane-manchester | https://cocktailbarmanchester.com/wp-content/uploads/2017/02/About-header.jpg |
+| azotea-turin | https://azoteatorino.com/wp-content/uploads/2025/02/COCKTAIL-ROOM12.jpg |
+| bar-casa-bordeaux | https://hapi.mmcreation.com/media/1394/_import_/848/Bar_casa_-_Bordeaux/GrandHotelFrancais-39.jpg |
+| bidder-bar-naples | https://en.grandhotelparkers.it/image/cache/catalog/bidder-bar/Grand-Hotel-Parkers-Bidder-Bar-1920x1280.jpg |
+| big-bad-bank-bar-porto | https://porto.thevolumes.pt/wp-content/uploads/2024/10/thezerohotels_img_eatanddrink_0004.jpg |
+| chemistry-and-botanics-brussels | https://d397xw3titc834.cloudfront.net/images/original/6/9f/69f12c3ef7b50b8dbf471d2f35a2e27f.jpg |
+| cloud-23-manchester | https://images.getbento.com/accounts/d315883b1c1a685b0cf02209627b0095/media/images/55098CHP_8242.jpg |
+| confessions-brussels | https://images.squarespace-cdn.com/content/v1/64f35d2496169375411156ac/8914858e-98a2-4f3a-8b5f-b2893372bfae/image00009.jpeg |
+| d-one-turin | https://donetorino.it/wp-content/uploads/2025/03/04_location_09.jpg |
+| dom-whisky-cocktail-bar-gdansk | https://domwhisky.pl/wp-content/uploads/2026/08/405A5348-HDR-scaled.jpg |
+| dom-whisky-cocktail-bar-wroclaw | https://domwhisky.pl/wp-content/uploads/2026/06/Wroclaw1-scaled.webp |
+| dragons-tooth-abu-dhabi | https://images.rosewoodhotels.com/is/image/rwhg/rwabu_dining_dragonstooth |
+| dsk-cocktail-club-guangzhou | https://hopeandsesame.cn/wp-content/uploads/2024/08/Lounge.jpg |
+| el-coro-lounge-bar-cartagena | https://s3.amazonaws.com/static-webstudio-accorhotels-usa-1.wp-ha.fastbooking.com/wp-content/uploads/sites/15/2019/11/22113228/Sofitel_Legend_Santaclara_elcoro_restaurant_slide-min.jpg |
+| eliksir-gdansk | https://www.eliksir.pl/wp-content/uploads/2022/05/DSC0822-3.jpg |
+| esplanade-1925-lounge-cocktail-bar-zagreb | https://esplanade.hr/wp-content/uploads/2020/06/esplanade-gallery-11.jpg |
+| galgo-guadalajara | https://static.wixstatic.com/media/703701_63416464552f44a2a9077cef4d83fba3~mv2.jpg |
+| hidden-bar-abu-dhabi | https://picasso.rosewoodhotelgroup.com/transform/3e991d13-f3d7-4e72-942f-bef77c36a836/RWABU_3-0_Brand-com_Assets_Facilities_HiddenBar_WhatTheFox-0096 |
+| high-5-terrace-bar-gdansk | https://hiltongdansk.pl/wp-content/uploads/2020/11/High-5-3.jpg |
+| la-pharmacie-anglaise-brussels | https://www.lapharmacieanglaise.com/images/background.jpg |
+| le-comptoir-de-la-bourse-lyon | https://cdn.prod.website-files.com/64429ca79e511c5cd76cf3b7/64429ca79e511c13266cf3dd_DSC_8527RETbd.webp |
+| liang-guangzhou | https://media.ffycdn.net/eu/mandarin-oriental-hotel-group/BZqvLM1fnYrVwCfrzmP5.jpg |
+| long-bar-shenzhen | https://www.raffles.com/content/dam/remote/brands/raf/hotels/asia-and-middle-east/cn/shenzhen/a7z7/AJA_P_5434-41.jpg |
+| mo-bar-beijing | https://media.ffycdn.net/eu/mandarin-oriental-hotel-group/yccyPwdMbTkYeegWvCVC.jpg |
+| mo-bar-geneva | https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJvYXV0aCI6eyJjbGllbnRfaWQiOiJzaXRlY29yZSJ9LCJwYXRoIjoibWFuZGFyaW4tb3JpZW50YWwtaG90ZWwtZ3JvdXBcL2ZpbGVcL2duOTl4YzFhS2s5M0dWVDJOSmlBLmpwZyJ9:mandarin-oriental-hotel-group:awlc4Y5wrK0cHRhiHyWNzTHgPMSxaujMXgFcRDaBiIs |
+| onterrace-porto | https://www.hfhotels.com/assets/images/onterrace.jpg |
+| papa-bar-wroclaw | https://papabar.pl/wp-content/uploads/business-offer-1-optimized.jpg |
+| perlage-abu-dhabi | https://images.squarespace-cdn.com/content/v1/64fff794933a7b161c6c6f1b/1715687271174-32MNWH6IZIHJOKEB15UN/Perlage_Home_Wave_Images2.jpg |
+| point-rouge-bordeaux | https://ugc.zenchef.com/3/4/9/9/3/3/1/5/0/4/4/5/4/1714070232_125/ae8a0deb8264b501fbfd1495622f88af.clandscape_hd.jpg |
+| rivage-cafe-geneva | https://www.beau-rivage.com/_novaimg/galleria/1596313.jpg |
+| sauvage-lyon | http://www.sauvage-bar.fr/wp-content/uploads/2025/10/1000004136-scaled.jpg |
+| smile-tree-turin | https://smiletreetorino.com/wp-content/uploads/2024/06/P1110829-scaled-1.jpg |
+| szkocka-cocktail-bar-wroclaw | https://static.wixstatic.com/media/784c74_f6ed9091cf5c4df781bb662a86dcfba5~mv2.jpg |
+| tabac-glasgow | https://tabacbar.com/assets/image/A7053ACFAC30432D9A7598F8FD9346D41.jpg |
+| the-daisy-manchester | https://static.wixstatic.com/media/887eb5_e6cbc2abf611413ea8d264134030a9fc~mv2.jpg |
+| the-locale-glasgow | https://images.squarespace-cdn.com/content/v1/66d9a424711a6e636a252b7a/681aeed0-285c-4ed2-aac8-4eb3d9bafd82/IMG_3713.jpg |
+| the-loft-guangzhou | https://media.ffycdn.net/eu/mandarin-oriental-hotel-group/oxdHy9a6BiePupbhNAFQ.jpg |
+| the-modern-alchemist-brussels | https://www.themodernalchemist.bar/hero-bar-3.webp |
+| the-st-regis-bar-abu-dhabi | https://cache.marriott.com/content/dam/marriott-renditions/AUHRX/auhrx-stregis-bar-1589-hor-wide.jpg |
+| too-high-guangzhou | https://picasso.rosewoodhotelgroup.com/transform/564c198b-781b-44a0-b548-d40315479cfb/RWGZU_3-0_Brand-com_Assets_Facilities_FB_Bar_TooHigh_BarCounter?width=2000 |
+| under-the-stairs-brussels | https://www.corinthia.com/globalassets/a_new-folders-organisation-project/properties/brussels/images/owned-photography/restaurants--bars/under-the-stairs/chb_restaurant_underthestairs_whatthefox-0018.jpg |
+| writers-bar-istanbul | https://www.raffles.com/content/dam/remote/brands/raf/hotels/europe/tr/istanbul/a5e2/aja_p_7090-32.jpg |

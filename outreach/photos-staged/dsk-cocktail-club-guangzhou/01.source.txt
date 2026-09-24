@@ -1,6 +1,0 @@
-bar: DSK Cocktail Club (Guangzhou)
-source image: https://hopeandsesame.cn/wp-content/uploads/2024/08/Lounge.jpg
-found on: https://hopeandsesame.cn/dsk-cocktail-club-guangzhou/
-shows: Lounge with velvet armchairs, banquette and wood panelling, portrait 1710x2560
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: DSK Cocktail Club

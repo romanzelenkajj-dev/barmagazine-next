@@ -1,6 +1,0 @@
-bar: Under the Stairs (Brussels)
-source image: https://www.corinthia.com/globalassets/a_new-folders-organisation-project/properties/brussels/images/owned-photography/restaurants--bars/under-the-stairs/chb_restaurant_underthestairs_whatthefox-0018.jpg
-found on: https://www.corinthia.com/en-gb/brussels/under-the-stairs/
-shows: Brass arched bar with upholstered stools, velvet armchairs and a marble table
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Under the Stairs

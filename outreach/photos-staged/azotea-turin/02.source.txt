@@ -1,6 +1,0 @@
-bar: Azotea (Turin)
-source image: https://azoteatorino.com/wp-content/uploads/2025/02/COCKTAIL-ROOM12.jpg
-found on: https://azoteatorino.com/
-shows: Angled view along the bar counter and its stools under a brick vaulted ceiling with ivy on green walls
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Azotea

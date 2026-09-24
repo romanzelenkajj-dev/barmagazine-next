@@ -1,6 +1,0 @@
-bar: Long Bar (Shenzhen)
-source image: https://www.raffles.com/content/dam/remote/brands/raf/hotels/asia-and-middle-east/cn/shenzhen/a7z7/AJA_P_5434-41.jpg
-found on: https://www.raffles.com/shenzhen/dining/long-bar/
-shows: Sculpted gold bar counter with lounge chairs and tables, night city view, 3700x2467
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Long Bar

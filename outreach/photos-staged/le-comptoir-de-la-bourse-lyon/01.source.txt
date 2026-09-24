@@ -1,6 +1,0 @@
-bar: Le Comptoir de la Bourse (Lyon)
-source image: https://cdn.prod.website-files.com/64429ca79e511c5cd76cf3b7/64429ca79e511c13266cf3dd_DSC_8527RETbd.webp
-found on: https://www.comptoirdelabourse.fr/
-shows: Long backlit stained glass bar counter, red velvet armchairs and round tables, wine wall and chandelier (1152x768; converted from webp to jpg locally).
-cropped to: 1152x768 (3:2 hero)
-credit if approved: Photo: Le Comptoir de la Bourse

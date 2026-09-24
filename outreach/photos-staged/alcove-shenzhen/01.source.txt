@@ -1,6 +1,0 @@
-bar: Alcove (Shenzhen)
-source image: http://www.ensue-sz.com/media/2020/12/ensue_2019_1440.jpg
-found on: http://www.ensue-sz.com/?page_id=16
-shows: Lounge with banquette, low tables and pendant lights, 1600x1000
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Alcove

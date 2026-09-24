@@ -1,6 +1,0 @@
-bar: Bidder Bar (Naples)
-source image: https://en.grandhotelparkers.it/image/cache/catalog/bidder-bar/Grand-Hotel-Parkers-Bidder-Bar-1920x1280.jpg
-found on: https://en.grandhotelparkers.it/bidder-bar
-shows: Sixth floor lounge with velvet armchairs and low tables beside floor to ceiling windows onto the terrace and the sea; two cocktails on a side table in the foreground
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Bidder Bar

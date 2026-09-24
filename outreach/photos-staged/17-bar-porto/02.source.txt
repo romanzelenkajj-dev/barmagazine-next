@@ -1,6 +1,0 @@
-bar: 17º Bar (Porto)
-source image: https://decimosetimo.pt/wp-content/uploads/2018/09/bar3.jpg
-found on: https://decimosetimo.pt/en/gallery/
-shows: Lounge seating: blue armchairs, sofas and a low wooden table in front of shelving (900x601).
-cropped to: 900x600 (3:2 hero)
-credit if approved: Photo: 17º Bar

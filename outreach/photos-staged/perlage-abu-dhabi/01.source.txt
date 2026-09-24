@@ -1,6 +1,0 @@
-bar: Perlage (Abu Dhabi)
-source image: https://images.squarespace-cdn.com/content/v1/64fff794933a7b161c6c6f1b/1715687271174-32MNWH6IZIHJOKEB15UN/Perlage_Home_Wave_Images2.jpg
-found on: https://www.barperlage.com
-shows: Hammered metal bar counter with red velvet stools, velvet armchairs and an art mirror above the bar
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Perlage

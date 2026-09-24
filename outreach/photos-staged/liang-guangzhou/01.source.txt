@@ -1,6 +1,0 @@
-bar: LIÁNG (Guangzhou)
-source image: https://media.ffycdn.net/eu/mandarin-oriental-hotel-group/BZqvLM1fnYrVwCfrzmP5.jpg
-found on: https://www.mandarinoriental.com/en/guangzhou/tianhe/dine/liang
-shows: Bar counter with stools and lounge chairs, one small seated guest, 3000x1773
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: LIÁNG

@@ -1,6 +1,0 @@
-bar: The Modern Alchemist (Brussels)
-source image: https://www.themodernalchemist.bar/hero-bar-3.webp
-found on: https://www.themodernalchemist.bar/
-shows: Wooden bar counter with leather stools, brick walls and bulb pendants
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: The Modern Alchemist

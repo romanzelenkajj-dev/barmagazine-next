@@ -1,6 +1,0 @@
-bar: Chemistry & Botanic's (Brussels)
-source image: https://d397xw3titc834.cloudfront.net/images/original/a/1d/a1d70762e34c2f86a1ce2d1d09e0c0ff.jpg
-found on: https://www.chemistryandbotanics.com/en
-shows: Banquette seating with tables under a ceiling of hanging flowers
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Chemistry & Botanic's

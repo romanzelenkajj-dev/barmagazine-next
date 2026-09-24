@@ -1,6 +1,0 @@
-bar: The Loft (Guangzhou)
-source image: https://media.ffycdn.net/eu/mandarin-oriental-hotel-group/oxdHy9a6BiePupbhNAFQ.jpg
-found on: https://www.mandarinoriental.com/en/guangzhou/tianhe/dine/the-loft
-shows: Dark wood room with leather armchair, bar counter and stools, 4096x2731
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: The Loft

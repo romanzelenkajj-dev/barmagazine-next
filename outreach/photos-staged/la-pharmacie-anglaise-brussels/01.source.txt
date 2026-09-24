@@ -1,6 +1,0 @@
-bar: La Pharmacie Anglaise (Brussels)
-source image: https://www.lapharmacieanglaise.com/images/background.jpg
-found on: https://www.lapharmacieanglaise.com/
-shows: Wood panelled room with leather armchairs, curiosity shelves, a chandelier and a taxidermy giraffe
-cropped to: 1200x800 (3:2 hero)
-credit if approved: Photo: La Pharmacie Anglaise

@@ -1,6 +1,0 @@
-bar: Dom Whisky Cocktail Bar (Gdańsk)
-source image: https://domwhisky.pl/wp-content/uploads/2026/08/405A5156-HDR-scaled.jpg
-found on: https://domwhisky.pl/bary/cocktail-bar-gdansk/
-shows: Lounge area with armchairs and tables under hanging plants, large poster mural
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Dom Whisky Cocktail Bar

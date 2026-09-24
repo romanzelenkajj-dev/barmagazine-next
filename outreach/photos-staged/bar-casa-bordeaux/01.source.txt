@@ -1,6 +1,0 @@
-bar: Bar Casa (Bordeaux)
-source image: https://hapi.mmcreation.com/media/1394/_import_/848/Bar_casa_-_Bordeaux/GrandHotelFrancais-55.jpg
-found on: https://grand-hotel-francais.com/en/page/bar-house-hotel-bordeaux.42359.html
-shows: Marble topped bar with stools under a draped chandelier ceiling, arched back bar, navy armchairs and a wooden table in front (1024x1536, portrait).
-cropped to: 1024x682 (3:2 hero)
-credit if approved: Photo: Bar Casa

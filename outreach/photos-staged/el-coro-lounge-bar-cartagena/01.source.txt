@@ -1,6 +1,0 @@
-bar: El Coro Lounge Bar (Cartagena)
-source image: https://s3.amazonaws.com/static-webstudio-accorhotels-usa-1.wp-ha.fastbooking.com/wp-content/uploads/sites/15/2019/11/22113228/Sofitel_Legend_Santaclara_elcoro_restaurant_slide-min.jpg
-found on: https://www.sofitellegendsantaclara.com/restaurants-bars/el-coro-lounge-bar/
-shows: Full lounge room: white sofas, armchairs, candlelit tables, palms, colonial beams, long bar counter with stools
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: El Coro Lounge Bar

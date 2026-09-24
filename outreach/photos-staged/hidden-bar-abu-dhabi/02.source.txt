@@ -1,6 +1,0 @@
-bar: Hidden Bar (Abu Dhabi)
-source image: https://images.rosewoodhotels.com/is/image/rwhg/HiddenBar_Image_Body
-found on: https://www.rosewoodhotels.com/en/abu-dhabi/dining/hidden-bar
-shows: Curved green bar counter with white stools, mustard and red armchairs, pendant lights
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Hidden Bar

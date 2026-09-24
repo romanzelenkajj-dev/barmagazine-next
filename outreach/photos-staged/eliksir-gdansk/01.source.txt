@@ -1,6 +1,0 @@
-bar: Eliksir (Gdańsk)
-source image: https://www.eliksir.pl/wp-content/uploads/2022/05/DSC0822-3.jpg
-found on: https://www.eliksir.pl/galeria/
-shows: Long backlit bar counter with tufted stools and back shelves, empty and warmly lit (954 px square)
-cropped to: 954x636 (3:2 hero)
-credit if approved: Photo: Eliksir

@@ -1,6 +1,0 @@
-bar: Galgo (Guadalajara)
-source image: https://static.wixstatic.com/media/703701_63416464552f44a2a9077cef4d83fba3~mv2.jpg
-found on: https://www.galgospk.com
-shows: Long lit marble bar counter with tufted leather stools and a red tufted banquette
-cropped to: 1400x933 (3:2 hero)
-credit if approved: Photo: Galgo

@@ -1,6 +1,0 @@
-bar: Point Rouge (Bordeaux)
-source image: https://ugc.zenchef.com/3/4/9/9/3/3/1/5/0/4/4/5/4/1714070232_125/ae8a0deb8264b501fbfd1495622f88af.clandscape_hd.jpg
-found on: https://www.pointrouge-bdx.com/
-shows: Main room under a vaulted brick ceiling with two large red lined dome lamps, leather sofas and armchairs, bar and back bar in the background (1400x840).
-cropped to: 1260x840 (3:2 hero)
-credit if approved: Photo: Point Rouge
