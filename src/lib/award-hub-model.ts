@@ -154,8 +154,10 @@ export function defaultSelection<T>(panels: HubPanel<T>[], editions: HubEdition[
   return null;
 }
 
-/** How many cards a block shows before its "Show all" button. */
-export const COLLAPSED_CARDS = 10;
+/** How many cards a block shows before its "Show all" button: 12, so the
+    collapsed list ends on a full row at three columns and at two (Roman,
+    2026-09-23). Applies to every block, the 51-100 half included. */
+export const COLLAPSED_CARDS = 12;
 
 /**
  * The share of a ranked list the directory must hold before that year shows
