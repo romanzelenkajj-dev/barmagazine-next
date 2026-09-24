@@ -105,3 +105,24 @@ Cambridge Public House, Paris, alone. Nothing to merge or delete.
 Merged on Roman's go; production build green. Live checks: the hub's H1 and title read "The 50
 Best Bars", four edition pills, 33 panels with 32 hidden in the served HTML; Front/Back's title
 reads "No. 80 on The 50 Best Bars 2026"; The Public House shows its two Asia records only.
+
+## Roman's decisions, 2026-09-23 evening, on `preview/121b-list-names` (PR #85, no merge)
+
+**Names.** Pills read World, Asia, Europe, North America. The count line and the block header rows
+use the list's official name for its year: "The 50 Best Bars 2026", "The 50 Best Bars: Best in
+Asia 2026" (and Europe, North America); 2025 and earlier keep "World's 50 Best Bars 2025", "Asia's
+50 Best Bars 2025" and so on. `displayOrg()` applies the same mapping to profile prose, award
+strings and the SEO title: The Cambridge Public House reads "No. 20 on World's 50 Best Bars 2025,
+No. 7 on The 50 Best Bars: Best in Europe 2026". Tiles keep the short possessives for space.
+
+**Year threshold.** `HUB_YEAR_THRESHOLD = 0.9` in `src/lib/award-hub-model.ts`, with the comment:
+a year shows when the directory holds 45 of its 50 ranked bars, 90 of 100 where a 51-100 list
+exists, each published half on its own. Years below it are hidden from the hub, not deleted;
+profiles keep every accolade. The year dropdown renders only once a second year qualifies for
+the edition and comes back by itself when one does. Category programs are not filtered.
+
+Today that gives: World 2026 and 2025 (2025 is whole, 100 of 100, so the world edition keeps its
+dropdown with two years), Asia 2026, Europe 2026, North America 2026, each without a dropdown.
+The distance of every other year is tabulated in 121-hub-audit.md. Checked locally: five panels
+in the HTML instead of 33, a deep link to Asia 2024 falls back to Asia 2026, Spirited keeps its
+eleven years. 7 tests.

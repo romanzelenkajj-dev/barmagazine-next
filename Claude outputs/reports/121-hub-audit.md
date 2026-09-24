@@ -44,6 +44,54 @@ given records.
 | North America | 2023 | 9 | 9 | 1 to 50 | 41 in 1-50: 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 50 | none | none | none |
 | North America | 2022 | 3 | 3 | 1 to 50 | 47 in 1-50: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 44, 45, 46, 47, 48, 49, 50 | none | none | Bitter & Twisted Cocktail Parlour (ranked) |
 
+## Distance to the hub threshold (Roman's decision: 90% of the list held)
+
+A year shows on the hub only when the directory holds 45 of its 50 ranked bars, or 90 of 100
+where a 51-100 list exists; each published half counts on its own, so World 2026 qualifies on its
+51-100 half while the top 50 is unpublished. Held, expected and the gap per edition-year:
+
+| Edition | Year | Held | Expected | Needed (90%) | Short by | Shows on the hub |
+|---|---|---|---|---|---|---|
+| World | 2026 | 50 | 50 | 45 | 0 | yes |
+| World | 2025 | 100 | 100 | 90 | 0 | yes |
+| World | 2024 | 8 | 100 | 90 | 82 | no |
+| World | 2023 | 9 | 100 | 90 | 81 | no |
+| World | 2022 | 16 | 100 | 90 | 74 | no |
+| World | 2021 | 12 | 50 | 45 | 33 | no |
+| World | 2020 | 6 | 50 | 45 | 39 | no |
+| World | 2019 | 10 | 50 | 45 | 35 | no |
+| World | 2018 | 10 | 50 | 45 | 35 | no |
+| World | 2017 | 7 | 50 | 45 | 38 | no |
+| World | 2016 | 10 | 50 | 45 | 35 | no |
+| World | 2015 | 1 | 50 | 45 | 44 | no |
+| World | 2014 | 1 | 50 | 45 | 44 | no |
+| World | 2013 | 9 | 50 | 45 | 36 | no |
+| World | 2012 | 7 | 50 | 45 | 38 | no |
+| World | 2011 | 5 | 50 | 45 | 40 | no |
+| Asia | 2026 | 100 | 100 | 90 | 0 | yes |
+| Asia | 2025 | 21 | 100 | 90 | 69 | no |
+| Asia | 2024 | 13 | 100 | 90 | 77 | no |
+| Asia | 2023 | 15 | 100 | 90 | 75 | no |
+| Asia | 2022 | 9 | 50 | 45 | 36 | no |
+| Asia | 2021 | 19 | 100 | 90 | 71 | no |
+| Asia | 2020 | 7 | 50 | 45 | 38 | no |
+| Asia | 2019 | 12 | 50 | 45 | 33 | no |
+| Asia | 2018 | 4 | 50 | 45 | 41 | no |
+| Asia | 2017 | 4 | 50 | 45 | 41 | no |
+| Asia | 2016 | 3 | 50 | 45 | 42 | no |
+| Europe | 2026 | 50 | 50 | 45 | 0 | yes |
+| North America | 2026 | 100 | 100 | 90 | 0 | yes |
+| North America | 2025 | 18 | 100 | 90 | 72 | no |
+| North America | 2024 | 7 | 50 | 45 | 38 | no |
+| North America | 2023 | 9 | 50 | 45 | 36 | no |
+| North America | 2022 | 3 | 50 | 45 | 42 | no |
+
+So today: World 2026 and World 2025 (the one older year already whole), Asia 2026, Europe 2026,
+North America 2026. The nearest of the rest is World 2021, 33 bars short; the regional lists' older
+years are 33 to 42 short. Loading the 312 in-directory bars' missing records (previous section)
+would move several years a long way: the 2024 world list, for instance, has 8 records held but
+about 80 of its 100 bars already in the directory.
+
 ## What it says
 
 - **Complete lists, no gaps, no duplicates: World 2025 (100), World 2026 51-100 (50; 1 to 50 lands
