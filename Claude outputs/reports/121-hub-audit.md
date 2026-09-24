@@ -63,50 +63,1783 @@ given records.
 
 ## Ranks without a directory bar: who holds them
 
-Roman's follow-up: name each missing rank from the official list of that year and mark the bar
-"open, missing from directory" or "closed"; closed bars are never added as profiles. Scale:
-1,545 rank-years across the three editions (World 739, Asia 593, North America 213), many held by
-the same bars year after year. The names come first, from the official lists; the open/closed
-call per distinct bar follows in waves, newest years first, and this file grows as they land.
+Every official list was pulled from the50.com's previous-list pages (server-rendered, so a
+script read them: World 2009 to 2024, Asia 2016 to 2025, North America 2022 to 2025; the four
+complete 2025/2026 lists are already whole in the directory). Each missing rank was matched to
+the directory by folded name and city.
 
-### World 2024: 95 ranks without a directory bar
+**The picture changes.** Of 1,366 missing rank-years, the great majority belong to bars that
+ARE in the directory but never got that year's record: **312 distinct bars**, from Handshake
+Speakeasy (missing World 2021 to 2024 and North America 2022 to 2025) and the Connaught Bar
+(missing every world placing from 2011 to 2024) down. Those are not missing bars; they are
+records that were never loaded because only the years being worked on were recorded. Only
+**124 distinct bars** on those lists are missing from the directory: 6 are on a 2025 or 2026
+list (so open), and **118 need the open/closed check**, which follows below and in the next
+section as it lands.
 
-No. 1 Handshake Speakeasy; No. 2 Bar Leone; No. 3 Sips; No. 4 Tayēr + Elementary; No. 5 Jigger & Pony; No. 6 Line; No. 7 Tres Monos; No. 8 Alquímico; No. 9 Zest; No. 10 Paradiso; No. 11 Himkok; No. 12 BKK Social Club; No. 13 Connaught Bar; No. 14 Double Chicken Please; No. 15 Overstory; No. 16 Lady Bee; No. 17 Baba au Rum; No. 18 Coa; No. 19 The Cambridge Public House; No. 20 Tlecān; No. 21 Caretaker's Cottage; No. 22 CoChinChina; No. 23 Salmon Guru; No. 24 Martiny's; No. 25 Bar Benfiddich; No. 26 Maybe Sammy; No. 27 Superbueno; No. 28 Nutmeg & Clove; No. 29 Satan's Whiskers; No. 30 Panda & Sons; No. 31 Tan Tan; No. 32 Licorería Limantour; No. 33 Drink Kong; No. 34 Jewel of the South; No. 35 Byrdi; No. 36 Locale Firenze; No. 37 Scarfes Bar; No. 38 Moebius Milano; No. 39 Bar Nouveau; No. 40 Mimi Kakushi; No. 41 Bar Us; No. 42 Virtù; No. 44 La Sala de Laura; No. 45 Röda Huset; No. 46 Florería Atlántico; No. 47 Analogue Initiative; No. 48 El Gallo Altanero; No. 49 Danico; No. 50 1930; No. 43 Atlas; No. 51 The Bar in Front of the Bar; No. 100 Above Board; No. 51 The Bar in Front of the Bar; No. 52 Kwãnt Mayfair; No. 53 Freni e Frizioni; No. 55 Arca; No. 56 Cat Bite Club; No. 57 Mahaniyom Cocktail Bar; No. 58 Argo; No. 59 Little Red Door; No. 60 The Clumsies; No. 61 A Bar with Shapes For a Name; No. 62 Mirror Bar; No. 63 Hope & Sesame; No. 64 Thunderbolt; No. 65 Angelita; No. 66 Café La Trova; No. 67 Native; No. 68 Barro Negro; No. 69 Carnaval; No. 70 Bar Pompette; No. 71 Bar Cham; No. 72 Svanen; No. 73 Wax On; No. 75 Hero Bar; No. 76 LPM Dubai; No. 77 Bird; No. 78 L'Antiquario; No. 79 Dante; No. 81 Sin + Tax; No. 82 The Savory Project; No. 83 Baltra Bar; No. 84 Attaboy; No. 85 Vesper; No. 86 Smoke & Bitters; No. 88 Pacific Cocktail Haven; No. 89 The Bellwood; No. 90 Amaro; No. 91 Zapote Bar; No. 92 Camparino in Galleria; No. 94 Red Frog; No. 95 Nouvelle Vague; No. 97 Employees Only; No. 98 Penrose; No. 99 Viajante87
-### World 2023: 94 ranks without a directory bar
+### In the directory, this year's record missing (312 bars)
 
-No. 1 Sips; No. 3 Handshake Speakeasy; No. 4 Paradiso; No. 5 Connaught Bar; No. 6 Little Red Door; No. 7 Licorería Limantour; No. 8 Tayēr + Elementary; No. 9 Alquímico; No. 10 Himkok; No. 11 Tres Monos; No. 12 Line; No. 13 BKK Social Club; No. 14 Jigger & Pony; No. 15 Maybe Sammy; No. 16 Salmon Guru; No. 17 Overstory; No. 18 Zest; No. 20 Coa; No. 21 Drink Kong; No. 23 Caretaker's Cottage; No. 24 Café La Trova; No. 25 Baba au Rum; No. 26 CoChinChina; No. 28 Satan's Whiskers; No. 29 Wax On; No. 31 Röda Huset; No. 33 Freni e Frizioni; No. 34 Argo; No. 35 A Bar with Shapes for a Name; No. 37 Bar Benfiddich; No. 38 The Cambridge Public House; No. 39 Panda & Sons; No. 40 Mimi Kakushi; No. 41 Scarfes Bar; No. 42 1930; No. 43 Carnaval; No. 44 L'Antiquario; No. 45 Baltra Bar; No. 46 Locale Firenze; No. 47 The Clumsies; No. 49 Jewel of the South; No. 50 Galaxy Bar; No. 49 Jewel of the South; No. 51 Danico; No. 100 Artesian; No. 51 Danico; No. 52 Lady Bee; No. 53 The Bellwood; No. 54 Lyaness; No. 55 Vesper; No. 56 Tan Tan; No. 57 Attaboy; No. 58 SubAstor; No. 59 28 HongKong Street; No. 60 Arca; No. 61 Byrdi; No. 62 Hero Bar; No. 63 Manhattan; No. 64 Nutmeg & Clove; No. 65 El Gallo Altanero; No. 66 Tropic City; No. 67 Sidecar; No. 68 Martiny's; No. 69 Ergo; No. 70 Barro Negro; No. 71 Penicillin; No. 72 Rayo; No. 73 Civil Liberties; No. 74 Hope & Sesame; No. 75 Bar Cham; No. 76 Swift; No. 77 Velvet; No. 78 Analogue Initiative; No. 79 High Five; No. 80 La Sala de Laura; No. 81 Kaito del Valle; No. 82 Kumiko; No. 83 Native; No. 84 Svanen; No. 85 Camparino in Galleria; No. 87 Ruby; No. 88 Red Frog; No. 89 Thunderbolt; No. 90 Mirror Bar; No. 91 Maison Premiere; No. 92 Donovan Bar; No. 93 Tjoget; No. 94 Sin + Tax; No. 95 Schofield's; No. 96 Lost & Found; No. 97 Darkside; No. 98 The Bar in Front of the Bar; No. 99 Employees Only; No. 100 Artesian
-### World 2022: 87 ranks without a directory bar
+- handshake-speakeasy: World 2024 No. 1; World 2023 No. 3; World 2022 No. 11; World 2021 No. 25; North America 2025 No. 1; North America 2024 No. 1; North America 2023 No. 2; North America 2022 No. 2
+- bar-leone: World 2024 No. 2; Asia 2025 No. 1; Asia 2024 No. 1
+- sips: World 2024 No. 3; World 2023 No. 1; World 2022 No. 3; World 2021 No. 37
+- tayer-elementary: World 2024 No. 4; World 2023 No. 8; World 2022 No. 2; World 2021 No. 2; World 2020 No. 5
+- jigger-pony: World 2024 No. 5; World 2023 No. 14; World 2022 No. 12; World 2021 No. 9; World 2020 No. 9; World 2019 No. 29; Asia 2025 No. 3; Asia 2024 No. 3; Asia 2023 No. 2; Asia 2022 No. 2; Asia 2021 No. 2; Asia 2020 No. 1; Asia 2019 No. 9; Asia 2018 No. 42; Asia 2017 No. 21; Asia 2016 No. 8
+- line: World 2024 No. 6; World 2023 No. 12; World 2022 No. 31
+- tres-monos: World 2024 No. 7; World 2023 No. 11; World 2022 No. 27; World 2021 No. 33
+- alquimico: World 2024 No. 8; World 2023 No. 9; World 2022 No. 10; World 2020 No. 47
+- zest: World 2024 No. 9; World 2023 No. 18; Asia 2025 No. 2; Asia 2024 No. 2; Asia 2023 No. 5; Asia 2022 No. 48
+- paradiso: World 2024 No. 10; World 2023 No. 4; World 2022 No. 1; World 2021 No. 3; World 2020 No. 19; World 2019 No. 20; World 2018 No. 37
+- himkok: World 2024 No. 11; World 2023 No. 10; World 2022 No. 43; World 2020 No. 30; World 2019 No. 17; World 2018 No. 19; World 2017 No. 20; World 2016 No. 42
+- bkk-social-club: World 2024 No. 12; World 2023 No. 13; World 2022 No. 14; Asia 2025 No. 19; Asia 2024 No. 7; Asia 2023 No. 3; Asia 2022 No. 10
+- connaught-bar: World 2024 No. 13; World 2023 No. 5; World 2022 No. 8; World 2021 No. 1; World 2020 No. 1; World 2019 No. 2; World 2018 No. 5; World 2017 No. 4; World 2016 No. 4; World 2015 No. 9; World 2014 No. 11; World 2013 No. 4; World 2012 No. 4; World 2011 No. 2
+- double-chicken-please: World 2024 No. 14; World 2022 No. 6; North America 2025 No. 19; North America 2024 No. 7; North America 2022 No. 17
+- overstory: World 2024 No. 15; World 2023 No. 17; World 2022 No. 34; North America 2025 No. 6; North America 2024 No. 3; North America 2023 No. 7; North America 2022 No. 27
+- lady-bee: World 2024 No. 16; World 2023 No. 52
+- baba-au-rum: World 2024 No. 17; World 2023 No. 25; World 2022 No. 20; World 2021 No. 14; World 2020 No. 31; World 2019 No. 31; World 2018 No. 22; World 2017 No. 30; World 2016 No. 40; World 2013 No. 48
+- coa: World 2024 No. 18; World 2023 No. 20; World 2022 No. 17; World 2021 No. 7; World 2020 No. 8; World 2019 No. 49; Asia 2025 No. 17; Asia 2024 No. 4; Asia 2023 No. 1; Asia 2022 No. 1; Asia 2021 No. 1; Asia 2020 No. 3; Asia 2019 No. 12
+- the-cambridge-public-house: World 2024 No. 19; World 2023 No. 38
+- tlecan: World 2024 No. 20; North America 2025 No. 3; North America 2024 No. 10
+- caretaker-s-cottage: World 2024 No. 21; World 2023 No. 23
+- cochinchina: World 2024 No. 22; World 2023 No. 26; World 2022 No. 42
+- salmon-guru: World 2024 No. 23; World 2023 No. 16; World 2022 No. 15; World 2021 No. 24; World 2020 No. 22; World 2019 No. 19; World 2018 No. 47
+- martinys: World 2024 No. 24; World 2023 No. 68; North America 2025 No. 15; North America 2024 No. 4; North America 2023 No. 29
+- bar-benfiddich: World 2024 No. 25; World 2023 No. 37; World 2022 No. 48; World 2021 No. 32; World 2020 No. 40; World 2018 No. 49; World 2017 No. 36; Asia 2025 No. 9; Asia 2024 No. 5; Asia 2023 No. 4; Asia 2022 No. 5; Asia 2021 No. 9; Asia 2020 No. 15; Asia 2019 No. 17; Asia 2018 No. 20; Asia 2017 No. 22; Asia 2016 No. 21
+- maybe-sammy: World 2024 No. 26; World 2023 No. 15; World 2022 No. 29; World 2021 No. 22; World 2020 No. 11; World 2019 No. 43
+- superbueno: World 2024 No. 27; North America 2025 No. 2; North America 2024 No. 2
+- nutmeg-clove: World 2024 No. 28; World 2023 No. 64; Asia 2025 No. 24; Asia 2024 No. 6; Asia 2023 No. 7; Asia 2022 No. 36; Asia 2020 No. 32; Asia 2018 No. 33; Asia 2017 No. 30
+- satans-whiskers: World 2024 No. 29; World 2023 No. 28; World 2022 No. 23
+- panda-sons: World 2024 No. 30; World 2023 No. 39; World 2020 No. 32
+- tan-tan: World 2024 No. 31; World 2023 No. 56
+- licoreria-limantour: World 2024 No. 32; World 2023 No. 7; World 2022 No. 4; World 2021 No. 6; World 2020 No. 17; World 2019 No. 10; World 2018 No. 11; World 2017 No. 14; World 2016 No. 13; World 2015 No. 20; World 2014 No. 47; North America 2025 No. 9; North America 2024 No. 9; North America 2023 No. 4; North America 2022 No. 3
+- drink-kong: World 2024 No. 33; World 2023 No. 21; World 2022 No. 16; World 2021 No. 19; World 2020 No. 45
+- jewel-of-the-south: World 2024 No. 34; World 2023 No. 49; North America 2025 No. 4; North America 2024 No. 6; North America 2023 No. 5; North America 2022 No. 24
+- byrdi: World 2024 No. 35; World 2023 No. 61
+- locale-firenze: World 2024 No. 36; World 2023 No. 46; World 2022 No. 39
+- scarfes-bar: World 2024 No. 37; World 2023 No. 41
+- moebius-milano: World 2024 No. 38
+- bar-nouveau: World 2024 No. 39
+- mimi-kakushi: World 2024 No. 40; World 2023 No. 40
+- bar-us: World 2024 No. 41; Asia 2025 No. 4; Asia 2024 No. 21
+- virtu: World 2024 No. 42; Asia 2025 No. 18; Asia 2024 No. 11; Asia 2023 No. 20
+- la-sala-de-laura: World 2024 No. 44; World 2023 No. 80
+- r-da-huset: World 2024 No. 45; World 2023 No. 31
+- floreria-atlantico: World 2024 No. 46; World 2022 No. 18; World 2021 No. 5; World 2020 No. 7; World 2019 No. 3; World 2018 No. 14; World 2017 No. 23; World 2016 No. 49; World 2014 No. 39; World 2013 No. 35
+- analogue-initiative: World 2024 No. 47; World 2023 No. 78; Asia 2024 No. 35; Asia 2023 No. 15; Asia 2022 No. 37
+- el-gallo-altanero: World 2024 No. 48; World 2023 No. 65; North America 2025 No. 8; North America 2024 No. 14; North America 2023 No. 21; North America 2022 No. 21
+- danico: World 2024 No. 49; World 2023 No. 51
+- 1930: World 2024 No. 50; World 2023 No. 42; World 2022 No. 35; World 2021 No. 20; World 2020 No. 25; World 2019 No. 44
+- the-bar-in-front-of-the-bar: World 2024 No. 51; World 2023 No. 98
+- kwant: World 2024 No. 52; World 2021 No. 31; World 2020 No. 6; World 2019 No. 47
+- freni-e-frizioni: World 2024 No. 53; World 2023 No. 33
+- arca: World 2024 No. 55; World 2023 No. 60; North America 2025 No. 27; North America 2024 No. 37; North America 2023 No. 23; North America 2022 No. 37
+- cat-bite-club: World 2024 No. 56; Asia 2025 No. 44; Asia 2024 No. 77
+- mahaniyom-cocktail-bar: World 2024 No. 57; Asia 2025 No. 71; Asia 2024 No. 18
+- argo: World 2024 No. 58; World 2023 No. 34; World 2022 No. 28; Asia 2025 No. 11; Asia 2024 No. 9; Asia 2023 No. 8; Asia 2022 No. 3
+- little-red-door: World 2024 No. 59; World 2023 No. 6; World 2022 No. 5; World 2021 No. 29; World 2020 No. 24; World 2019 No. 36; World 2018 No. 33; World 2017 No. 11; World 2016 No. 24; World 2015 No. 49; World 2013 No. 39
+- the-clumsies: World 2024 No. 60; World 2023 No. 47; World 2022 No. 19; World 2021 No. 4; World 2019 No. 6; World 2018 No. 7; World 2017 No. 6; World 2016 No. 9; World 2015 No. 22
+- a-bar-with-shapes-for-a-name: World 2024 No. 61; World 2023 No. 35; World 2022 No. 37
+- mirror-bar: World 2024 No. 62; World 2023 No. 90
+- hope-sesame: World 2024 No. 63; World 2023 No. 74; Asia 2025 No. 7; Asia 2024 No. 14; Asia 2023 No. 39; Asia 2022 No. 18; Asia 2021 No. 15; Asia 2020 No. 36; Asia 2019 No. 35
+- thunderbolt: World 2024 No. 64; World 2023 No. 89; North America 2025 No. 24; North America 2024 No. 8; North America 2023 No. 10; North America 2022 No. 9
+- angelita: World 2024 No. 65
+- cafe-la-trova: World 2024 No. 66; World 2023 No. 24; World 2022 No. 21; World 2021 No. 28; North America 2025 No. 13; North America 2024 No. 13; North America 2023 No. 9; North America 2022 No. 6
+- native: World 2024 No. 67; World 2023 No. 83; World 2020 No. 18; World 2019 No. 12; World 2018 No. 13; World 2017 No. 47; Asia 2025 No. 45; Asia 2024 No. 31; Asia 2023 No. 42; Asia 2021 No. 14; Asia 2020 No. 6; Asia 2019 No. 4; Asia 2018 No. 8; Asia 2017 No. 20
+- barro-negro: World 2024 No. 68; World 2023 No. 70
+- carnaval: World 2024 No. 69; World 2023 No. 43; World 2022 No. 44; World 2020 No. 21; World 2019 No. 13
+- bar-pompette: World 2024 No. 70; North America 2025 No. 7; North America 2024 No. 29; North America 2023 No. 15
+- bar-cham: World 2024 No. 71; World 2023 No. 75; Asia 2025 No. 6; Asia 2024 No. 20; Asia 2023 No. 13; Asia 2022 No. 28; Asia 2021 No. 34; Asia 2020 No. 50
+- svanen: World 2024 No. 72; World 2023 No. 84
+- wax-on: World 2024 No. 73; World 2023 No. 29
+- hero-bar: World 2024 No. 75; World 2023 No. 62
+- lpm-dubai: World 2024 No. 76
+- bird: World 2024 No. 77
+- l-antiquario: World 2024 No. 78; World 2023 No. 44; World 2022 No. 46
+- dante: World 2024 No. 79; World 2022 No. 36; World 2021 No. 30; World 2020 No. 2; World 2018 No. 9; World 2017 No. 16; World 2016 No. 34; North America 2024 No. 20; North America 2023 No. 6; North America 2022 No. 8
+- sin-tax: World 2024 No. 81; World 2023 No. 94
+- the-savory-project: World 2024 No. 82; Asia 2025 No. 32; Asia 2024 No. 19
+- baltra-bar: World 2024 No. 83; World 2023 No. 45; World 2022 No. 32; World 2021 No. 38; North America 2025 No. 20; North America 2024 No. 26; North America 2023 No. 16; North America 2022 No. 7
+- attaboy: World 2024 No. 84; World 2023 No. 57; World 2022 No. 22; World 2021 No. 34; World 2020 No. 12; World 2019 No. 7; World 2018 No. 15; World 2017 No. 8; World 2016 No. 5; World 2015 No. 11; World 2014 No. 4; World 2013 No. 42; North America 2024 No. 31; North America 2023 No. 13; North America 2022 No. 1
+- vesper: World 2024 No. 85; World 2023 No. 55; Asia 2025 No. 29; Asia 2024 No. 13; Asia 2022 No. 19; Asia 2021 No. 46; Asia 2019 No. 26; Asia 2018 No. 27; Asia 2017 No. 40
+- smoke-bitters: World 2024 No. 86; Asia 2025 No. 14; Asia 2024 No. 29; Asia 2023 No. 40; Asia 2022 No. 42
+- pacific-cocktail-haven: World 2024 No. 88; North America 2025 No. 16; North America 2024 No. 38; North America 2023 No. 28
+- the-bellwood: World 2024 No. 89; World 2023 No. 53; Asia 2025 No. 79; Asia 2024 No. 34; Asia 2023 No. 49
+- amaro: World 2024 No. 90
+- zapote-bar-playa-del-carmen: World 2024 No. 91; North America 2024 No. 11; North America 2023 No. 11; North America 2022 No. 11
+- camparino-in-galleria: World 2024 No. 92; World 2023 No. 85; World 2021 No. 27
+- red-frog: World 2024 No. 94; World 2023 No. 88
+- nouvelle-vague: World 2024 No. 95
+- employees-only: World 2024 No. 97; World 2023 No. 99; World 2022 No. 47; World 2020 No. 38; World 2019 No. 26; World 2018 No. 26; World 2017 No. 37; World 2016 No. 7; World 2015 No. 4; World 2014 No. 5; World 2013 No. 12; World 2012 No. 11; World 2011 No. 15; North America 2025 No. 18; North America 2024 No. 15; North America 2023 No. 14; North America 2022 No. 30
+- penrose: World 2024 No. 98; Asia 2024 No. 8
+- viajante-87: World 2024 No. 99
+- galaxy-bar: World 2023 No. 50; World 2022 No. 45; World 2021 No. 45
+- lyaness: World 2023 No. 54; World 2020 No. 29
+- subastor: World 2023 No. 58
+- manhattan: World 2023 No. 63; World 2022 No. 33; World 2021 No. 15; World 2020 No. 14; World 2019 No. 11; World 2018 No. 3; World 2017 No. 7; World 2016 No. 11; World 2015 No. 35; Asia 2024 No. 69; Asia 2023 No. 21; Asia 2022 No. 9; Asia 2021 No. 6; Asia 2020 No. 8; Asia 2019 No. 2; Asia 2018 No. 1; Asia 2017 No. 1; Asia 2016 No. 5
+- tropic-city: World 2023 No. 66; World 2022 No. 24; Asia 2024 No. 62; Asia 2023 No. 6; Asia 2022 No. 17; Asia 2021 No. 22; Asia 2020 No. 24; Asia 2019 No. 31
+- sidecar: World 2023 No. 67; World 2021 No. 47; Asia 2024 No. 84; Asia 2023 No. 18; Asia 2022 No. 14; Asia 2021 No. 16; Asia 2020 No. 40
+- penicillin: World 2023 No. 71; Asia 2024 No. 24; Asia 2023 No. 26; Asia 2022 No. 22; Asia 2021 No. 30
+- rayo: World 2023 No. 72; North America 2023 No. 17
+- civil-liberties: World 2023 No. 73; North America 2023 No. 12; North America 2022 No. 10
+- swift: World 2023 No. 76; World 2020 No. 33; World 2019 No. 41
+- velvet: World 2023 No. 77
+- bar-high-five: World 2023 No. 79; World 2020 No. 48; World 2019 No. 18; World 2018 No. 12; World 2017 No. 13; World 2016 No. 23; World 2015 No. 13; World 2014 No. 9; World 2013 No. 3; World 2012 No. 22; World 2011 No. 34; Asia 2024 No. 87; Asia 2023 No. 45; Asia 2021 No. 27; Asia 2020 No. 20; Asia 2019 No. 6; Asia 2018 No. 6; Asia 2017 No. 3; Asia 2016 No. 3
+- kaito-del-valle: World 2023 No. 81; North America 2025 No. 40; North America 2024 No. 28; North America 2023 No. 26; North America 2022 No. 13
+- kumiko: World 2023 No. 82; World 2022 No. 25; North America 2025 No. 10; North America 2024 No. 19; North America 2023 No. 8; North America 2022 No. 5
+- ruby: World 2023 No. 87; World 2016 No. 44; World 2015 No. 34; World 2013 No. 22; World 2012 No. 47; World 2011 No. 46
+- maison-premiere: World 2023 No. 91; World 2016 No. 20; World 2015 No. 23; World 2014 No. 45; North America 2025 No. 33; North America 2024 No. 41; North America 2023 No. 39
+- donovan: World 2023 No. 92
+- tjoget: World 2023 No. 93; World 2021 No. 40; World 2020 No. 36; World 2019 No. 37; World 2018 No. 32; World 2017 No. 44; World 2016 No. 25
+- schofield-s-bar: World 2023 No. 95
+- darkside: World 2023 No. 97; World 2021 No. 49; Asia 2024 No. 17; Asia 2023 No. 9; Asia 2022 No. 13; Asia 2021 No. 40
+- artesian: World 2023 No. 100; World 2020 No. 41; World 2019 No. 48; World 2015 No. 1; World 2014 No. 1; World 2013 No. 1; World 2012 No. 1; World 2011 No. 3
+- two-schmucks: World 2022 No. 7; World 2020 No. 26
+- katana-kitten: World 2022 No. 9; World 2021 No. 10; World 2020 No. 16; World 2019 No. 14; North America 2025 No. 42; North America 2022 No. 4
+- cantina-ok: World 2022 No. 41; World 2021 No. 23; World 2020 No. 28
+- lucy-s-flower-shop: World 2021 No. 35
+- sober-company: World 2021 No. 39; World 2019 No. 45; Asia 2025 No. 81; Asia 2024 No. 92; Asia 2022 No. 11; Asia 2020 No. 12; Asia 2019 No. 16; Asia 2018 No. 14; Asia 2017 No. 19
+- epic: World 2021 No. 41; Asia 2025 No. 74; Asia 2024 No. 54
+- tippling-club: World 2021 No. 43; World 2017 No. 31; World 2013 No. 45; World 2012 No. 29; World 2011 No. 23; Asia 2022 No. 27; Asia 2021 No. 36; Asia 2020 No. 17; Asia 2019 No. 11; Asia 2018 No. 7; Asia 2017 No. 11; Asia 2016 No. 12
+- re: World 2021 No. 46
+- nomad-bar: World 2020 No. 13; World 2019 No. 4; World 2018 No. 4; World 2017 No. 3; World 2016 No. 8; World 2015 No. 36
+- the-american-bar: World 2020 No. 20; World 2019 No. 5; World 2018 No. 2; World 2017 No. 1; World 2016 No. 2; World 2015 No. 5; World 2014 No. 8; World 2013 No. 20; World 2012 No. 5; World 2011 No. 6
+- three-sheets-dalston: World 2020 No. 34; World 2018 No. 29
+- bamboo-bar: World 2020 No. 35; Asia 2024 No. 91; Asia 2022 No. 46; Asia 2021 No. 11; Asia 2020 No. 7; Asia 2019 No. 8; Asia 2018 No. 9; Asia 2017 No. 13; Asia 2016 No. 34
+- buck-breck: World 2020 No. 37; World 2018 No. 48; World 2016 No. 50; World 2015 No. 16; World 2014 No. 21; World 2013 No. 17
+- indulge-bistro: World 2020 No. 43; World 2018 No. 38; World 2017 No. 28; Asia 2022 No. 6; Asia 2021 No. 4; Asia 2020 No. 4; Asia 2018 No. 2; Asia 2017 No. 5
+- bar-trigona: World 2020 No. 44; Asia 2024 No. 36; Asia 2023 No. 36; Asia 2022 No. 29; Asia 2021 No. 12; Asia 2020 No. 14; Asia 2019 No. 40
+- charles-h: World 2020 No. 49; Asia 2025 No. 96; Asia 2024 No. 95; Asia 2022 No. 7; Asia 2020 No. 29; Asia 2018 No. 21; Asia 2017 No. 27; Asia 2016 No. 24
+- presidente-bar: World 2020 No. 50; World 2019 No. 33
+- dead-rabbit: World 2019 No. 22; World 2018 No. 16; World 2017 No. 5; World 2016 No. 1; World 2015 No. 2; World 2014 No. 2; World 2013 No. 5; North America 2024 No. 33; North America 2023 No. 44; North America 2022 No. 31
+- dr-stravinsky: World 2019 No. 25
+- scout: World 2019 No. 28; World 2018 No. 28
+- la-factora: World 2019 No. 32; World 2018 No. 36; World 2017 No. 39; World 2016 No. 31; World 2015 No. 45; North America 2025 No. 32; North America 2024 No. 18; North America 2023 No. 24; North America 2022 No. 12
+- schumann-s-bar-am-hofgarten-munich: World 2019 No. 34; World 2018 No. 43; World 2017 No. 38; World 2015 No. 43; World 2014 No. 38; World 2013 No. 23; World 2012 No. 28
+- speak-low: World 2019 No. 35; World 2018 No. 20; World 2017 No. 10; World 2016 No. 15; Asia 2022 No. 50; Asia 2021 No. 32; Asia 2020 No. 19; Asia 2019 No. 7; Asia 2018 No. 3; Asia 2016 No. 2
+- trick-dog: World 2019 No. 42; World 2018 No. 44; World 2017 No. 26; World 2016 No. 35; World 2015 No. 40; World 2014 No. 33
+- oriole: World 2018 No. 17; World 2017 No. 17; World 2016 No. 32
+- le-syndicat: World 2018 No. 24; World 2017 No. 34
+- tommy-s: World 2018 No. 40; World 2017 No. 48; World 2015 No. 47; World 2013 No. 47; World 2011 No. 30
+- blacktail: World 2018 No. 41; World 2017 No. 32
+- candelaria: World 2018 No. 42; World 2017 No. 19; World 2016 No. 17; World 2015 No. 12; World 2014 No. 17; World 2013 No. 9; World 2012 No. 45
+- happiness-forgets: World 2017 No. 12; World 2015 No. 8; World 2014 No. 12; World 2012 No. 12
+- atlas: World 2017 No. 15
+- the-broken-shaker: World 2017 No. 18; World 2016 No. 16; World 2015 No. 14; World 2014 No. 22; North America 2022 No. 32
+- quinary: World 2017 No. 40; World 2015 No. 39; World 2014 No. 42
+- the-aviary: World 2017 No. 41; World 2016 No. 39; World 2015 No. 29; World 2014 No. 13
+- nightjar: World 2017 No. 43; World 2016 No. 19; World 2015 No. 3; World 2014 No. 3; World 2012 No. 3; World 2011 No. 18
+- abv: World 2017 No. 46; World 2016 No. 36; North America 2022 No. 39
+- lobster-bar: World 2017 No. 49; World 2016 No. 27; World 2015 No. 18; Asia 2020 No. 44; Asia 2019 No. 33; Asia 2018 No. 10; Asia 2017 No. 10; Asia 2016 No. 4
+- smugglers-cove: World 2016 No. 29; World 2015 No. 31; World 2014 No. 16; World 2013 No. 30; World 2012 No. 24; World 2011 No. 19
+- pdt: World 2016 No. 45; World 2015 No. 37; World 2014 No. 18; World 2013 No. 13; World 2012 No. 2
+- bramble: World 2016 No. 47; World 2014 No. 32; World 2012 No. 10; World 2011 No. 14
+- black-pearl: World 2015 No. 10; World 2014 No. 37; World 2013 No. 7; World 2011 No. 10
+- canon-seattle: World 2015 No. 15; World 2014 No. 6
+- le-lion-bar-de-paris: World 2015 No. 19; World 2014 No. 25; World 2013 No. 16; World 2012 No. 23; World 2011 No. 35
+- the-everleigh: World 2015 No. 25; World 2014 No. 30; World 2013 No. 24
+- beaufort-bar: World 2015 No. 27; World 2012 No. 37
+- tales-spirits: World 2015 No. 30; World 2014 No. 44
+- door-74: World 2015 No. 33; World 2014 No. 26; World 2013 No. 15; World 2011 No. 29
+- mace: World 2015 No. 38; North America 2023 No. 18; North America 2022 No. 35
+- dry-martini-by-javier-de-las-muelas: World 2015 No. 42; World 2014 No. 34; World 2012 No. 19
+- zuma: World 2015 No. 44; World 2011 No. 49
+- nottingham-forest: World 2015 No. 46; World 2014 No. 15
+- hemingway-bar: World 2014 No. 24; World 2012 No. 38
+- three-dots-and-a-dash: World 2014 No. 27
+- clover-club: World 2014 No. 35; World 2012 No. 18
+- star-bar: World 2014 No. 40; World 2011 No. 50; Asia 2018 No. 43; Asia 2017 No. 31; Asia 2016 No. 33
+- cure: World 2014 No. 43; North America 2025 No. 50; North America 2024 No. 47; North America 2023 No. 36
+- callooh-callay: World 2014 No. 49
+- williams-and-graham-denver: World 2014 No. 50
+- death-co-east-village: World 2013 No. 21; World 2012 No. 6; World 2011 No. 4
+- angel-s-share: World 2012 No. 34; North America 2025 No. 43; North America 2024 No. 43
+- harrys-new-york-bar: World 2011 No. 9
+- boadas: World 2011 No. 37
+- lounge-bohemia: World 2011 No. 43
+- bar-hemingway: World 2011 No. 48
+- dry-wave-cocktail-studio: Asia 2025 No. 5; Asia 2024 No. 98
+- modernhaus: Asia 2025 No. 12
+- cmyk: Asia 2025 No. 16; Asia 2024 No. 43
+- vender: Asia 2025 No. 20; Asia 2024 No. 30; Asia 2023 No. 41
+- offtrack: Asia 2025 No. 23
+- yakoboku: Asia 2025 No. 25; Asia 2024 No. 64
+- soka: Asia 2025 No. 28
+- boilermaker: Asia 2025 No. 30
+- zlb23: Asia 2025 No. 31; Asia 2024 No. 40
+- gokan: Asia 2025 No. 33
+- carrots-bar: Asia 2025 No. 34
+- barc: Asia 2025 No. 35; Asia 2024 No. 39
+- punch-room-tokyo: Asia 2025 No. 36
+- bar-spirit-forward: Asia 2025 No. 37
+- cosmo-pony: Asia 2025 No. 38
+- to-infinity-beyond: Asia 2025 No. 41; Asia 2024 No. 61
+- moonrock: Asia 2025 No. 42; Asia 2024 No. 100
+- opium: Asia 2025 No. 43; Asia 2024 No. 73
+- lamp-bar: Asia 2025 No. 46; Asia 2024 No. 55; Asia 2023 No. 23; Asia 2022 No. 20; Asia 2018 No. 45; Asia 2017 No. 36
+- bar-sathorn: Asia 2025 No. 48
+- bar-libre: Asia 2025 No. 49
+- le-chamber: Asia 2025 No. 50; Asia 2024 No. 48; Asia 2022 No. 39; Asia 2021 No. 44; Asia 2020 No. 49; Asia 2019 No. 19; Asia 2018 No. 17; Asia 2017 No. 32; Asia 2016 No. 25
+- obsidian-bar: Asia 2025 No. 51
+- pine-co: Asia 2025 No. 52
+- side-door: Asia 2025 No. 53
+- soko: Asia 2025 No. 54
+- bar-outrigger: Asia 2025 No. 55
+- lab: Asia 2025 No. 57
+- craftroom: Asia 2025 No. 58; Asia 2024 No. 28
+- the-han-jia: Asia 2025 No. 59; Asia 2024 No. 79
+- origin-bar: Asia 2025 No. 60; Asia 2024 No. 32
+- stir: Asia 2025 No. 61; Asia 2024 No. 58
+- backdoor-bodega: Asia 2025 No. 64; Asia 2024 No. 52
+- sora: Asia 2025 No. 65
+- wu: Asia 2025 No. 66; Asia 2024 No. 94
+- pantja: Asia 2025 No. 68; Asia 2023 No. 29
+- maltail: Asia 2025 No. 75
+- bees-knees: Asia 2025 No. 76; Asia 2024 No. 75; Asia 2023 No. 44; Asia 2022 No. 47; Asia 2021 No. 18; Asia 2020 No. 21
+- the-curator: Asia 2025 No. 78; Asia 2024 No. 33; Asia 2023 No. 34; Asia 2021 No. 38; Asia 2020 No. 42; Asia 2019 No. 37; Asia 2018 No. 25; Asia 2017 No. 23; Asia 2016 No. 16
+- the-opposites: Asia 2025 No. 80
+- workshop14: Asia 2025 No. 83
+- raa: Asia 2025 No. 84
+- coa-shanghai: Asia 2025 No. 85
+- the-hudson-rooms: Asia 2025 No. 86; Asia 2024 No. 81
+- the-haflington: Asia 2025 No. 87; Asia 2024 No. 47
+- mostly-harmless: Asia 2025 No. 88; Asia 2024 No. 45; Asia 2023 No. 33
+- employees-only-singapore: Asia 2025 No. 89; Asia 2024 No. 38; Asia 2023 No. 30; Asia 2019 No. 41; Asia 2018 No. 23; Asia 2017 No. 17
+- messengerservice: Asia 2025 No. 90
+- coley: Asia 2025 No. 92; Asia 2024 No. 70; Asia 2020 No. 48; Asia 2018 No. 46
+- the-enigma-mansion: Asia 2025 No. 93
+- fura: Asia 2025 No. 95; Asia 2024 No. 42
+- pony-up: Asia 2025 No. 97
+- the-golden-tooth: Asia 2025 No. 98
+- bar-nayuta: Asia 2025 No. 100
+- the-aubrey: Asia 2024 No. 10; Asia 2022 No. 38
+- the-st-regis-bar: Asia 2024 No. 22
+- reka-bar: Asia 2024 No. 41
+- the-public-house: Asia 2024 No. 44; Asia 2023 No. 43
+- alice-cheongdam: Asia 2024 No. 46; Asia 2023 No. 28; Asia 2022 No. 40; Asia 2021 No. 41; Asia 2020 No. 47; Asia 2019 No. 29; Asia 2018 No. 26; Asia 2017 No. 15; Asia 2016 No. 11
+- three-x-co: Asia 2024 No. 56; Asia 2021 No. 47
+- republic-bar: Asia 2024 No. 57; Asia 2023 No. 16
+- the-bombay-canteen: Asia 2024 No. 59; Asia 2023 No. 35
+- no-sleep-club: Asia 2024 No. 60; Asia 2022 No. 15
+- stay-gold-flamingo: Asia 2024 No. 63
+- the-elephant-room: Asia 2024 No. 65
+- mizunara-the-library: Asia 2024 No. 66
+- honky-tonks-tavern: Asia 2024 No. 67
+- lair: Asia 2024 No. 68
+- under-lab: Asia 2024 No. 72
+- jungle-bird: Asia 2024 No. 80; Asia 2022 No. 35; Asia 2020 No. 37; Asia 2019 No. 44; Asia 2018 No. 38
+- firefly: Asia 2024 No. 83
+- the-st-regis-bar-jakarta: Asia 2024 No. 88
+- gong-gan: Asia 2024 No. 89
+- asia-today: Asia 2024 No. 90; Asia 2022 No. 43
+- last-word: Asia 2024 No. 93
+- tell-camellia: Asia 2024 No. 97
+- drinking-and-healing: Asia 2024 No. 99
+- southside-parlor: Asia 2023 No. 37
+- copitas: Asia 2023 No. 38; Asia 2022 No. 44
+- mo-bar: Asia 2022 No. 8; Asia 2020 No. 46
+- bar-trench: Asia 2022 No. 25; Asia 2021 No. 43; Asia 2020 No. 39; Asia 2019 No. 23; Asia 2018 No. 16; Asia 2017 No. 28; Asia 2016 No. 30
+- the-cocktail-club: Asia 2022 No. 32
+- union-trading-company: Asia 2022 No. 45; Asia 2019 No. 30; Asia 2018 No. 28; Asia 2017 No. 9; Asia 2016 No. 9
+- caprice-bar: Asia 2021 No. 10; Asia 2020 No. 34
+- the-pontiac: Asia 2021 No. 26; Asia 2020 No. 35; Asia 2019 No. 32; Asia 2018 No. 31; Asia 2017 No. 16; Asia 2016 No. 19
+- d-bespoke-singapore: Asia 2021 No. 39; Asia 2020 No. 23; Asia 2019 No. 25; Asia 2018 No. 32; Asia 2017 No. 29; Asia 2016 No. 13
+- gibson: Asia 2020 No. 25; Asia 2018 No. 22; Asia 2017 No. 14; Asia 2016 No. 22
+- draft-land: Asia 2020 No. 26; Asia 2019 No. 45
+- rabbit-hole: Asia 2020 No. 31; Asia 2019 No. 34
+- the-odd-couple: Asia 2020 No. 38
+- bar-orchard-ginza: Asia 2020 No. 41; Asia 2018 No. 37; Asia 2017 No. 25; Asia 2016 No. 37
+- the-back-room: Asia 2020 No. 45; Asia 2019 No. 50
+- smalls: Asia 2019 No. 42; Asia 2018 No. 29
+- zuma-hong-kong: Asia 2018 No. 18; Asia 2017 No. 24; Asia 2016 No. 39
+- gen-yamamoto: Asia 2018 No. 34
+- keepers: Asia 2018 No. 47; Asia 2017 No. 47
+- ku-bar: Asia 2018 No. 49
+- d-still: Asia 2017 No. 44; Asia 2016 No. 49
+- night-rooster: Asia 2017 No. 50
+- alchemy-speakeasy-bar-taipei: Asia 2016 No. 15
+- ounce-taipei: Asia 2016 No. 40
+- sip-guzzle: North America 2025 No. 5
+- clemente-bar: North America 2025 No. 11
+- mirate: North America 2025 No. 12; North America 2024 No. 46
+- bar-mauro: North America 2025 No. 14
+- true-laurel: North America 2025 No. 17; North America 2024 No. 30
+- aruba-day-drink: North America 2025 No. 22; North America 2024 No. 16; North America 2023 No. 40
+- best-intentions: North America 2025 No. 25; North America 2024 No. 48
+- botanist: North America 2025 No. 26; North America 2023 No. 19
+- the-keefer-bar: North America 2025 No. 28; North America 2024 No. 49; North America 2022 No. 25
+- library-by-the-sea: North America 2025 No. 30; North America 2024 No. 35
+- the-cloakroom: North America 2025 No. 31; North America 2024 No. 39; North America 2023 No. 35; North America 2022 No. 45
+- bar-mordecai: North America 2025 No. 37; North America 2024 No. 40; North America 2023 No. 43; North America 2022 No. 47
+- meadowlark: North America 2025 No. 38; North America 2024 No. 32
+- bisous: North America 2025 No. 39
+- yacht-club-denver: North America 2025 No. 41; North America 2023 No. 42
+- mother: North America 2025 No. 44; North America 2023 No. 37; North America 2022 No. 38
+- allegory-dc: North America 2025 No. 45; North America 2023 No. 45
+- cafe-de-nadie: North America 2025 No. 47; North America 2024 No. 17; North America 2023 No. 25; North America 2022 No. 15
+- silver-lyan-dc: North America 2025 No. 48
+- bekeb: North America 2025 No. 49; North America 2024 No. 27
+- service-bar-dc: North America 2024 No. 22; North America 2023 No. 33; North America 2022 No. 18
+- herbs-rye: North America 2024 No. 25; North America 2023 No. 27; North America 2022 No. 28
+- selva-oaxaca-cocktail-bar: North America 2024 No. 34; North America 2023 No. 31; North America 2022 No. 22
+- death-co-los-angeles: North America 2023 No. 30; North America 2022 No. 34
+- sweet-liberty: North America 2023 No. 34; North America 2022 No. 14
+- bar-leather-apron: North America 2023 No. 41; North America 2022 No. 42
+- raised-by-wolves: North America 2022 No. 19
+- amor-y-amargo: North America 2022 No. 23
+- dear-irving: North America 2022 No. 26
+- death-and-co-denver: North America 2022 No. 36
+- bar-raval: North America 2022 No. 41
+- bitter-and-twisted: North America 2022 No. 44
+- julep: North America 2022 No. 46
+- teardrop-lounge: North America 2022 No. 48
 
-No. 1 Paradiso; No. 2 Tayēr + Elementary; No. 3 Sips; No. 4 Licorería Limantour; No. 5 Little Red Door; No. 6 Double Chicken Please; No. 7 Two Schmucks; No. 8 Connaught Bar; No. 9 Katana Kitten; No. 10 Alquímico; No. 11 Handshake Speakeasy; No. 12 Jigger & Pony; No. 14 BKK Social Club; No. 15 Salmon Guru; No. 16 Drink Kong; No. 17 Coa; No. 18 Florería Atlántico; No. 19 The Clumsies; No. 20 Baba au Rum; No. 21 Café La Trova; No. 22 Attaboy; No. 23 Satan's Whiskers; No. 24 Tropic City; No. 25 Kumiko; No. 27 Tres Monos; No. 28 Argo; No. 29 Maybe Sammy; No. 31 Line; No. 32 Baltra Bar; No. 33 Manhattan; No. 34 Overstory; No. 35 1930; No. 36 Dante; No. 37 A Bar with Shapes for a Name; No. 39 Locale Firenze; No. 41 Cantina OK!; No. 42 CoChinChina; No. 43 Himkok; No. 44 Carnaval; No. 45 Galaxy Bar; No. 46 L'Antiquario; No. 47 Employees Only; No. 48 Bar Benfiddich; No. 50 Bulgari Bar; No. 40 Red Frog; No. 51 Sago House; No. 100 Sin + Tax; No. 52 Barro Negro; No. 53 Cause Effect Cocktail Kitchen; No. 54 La Factoría; No. 55 28 HongKong Street; No. 57 MO Bar; No. 58 Mimi Kakushi; No. 59 Schofield's; No. 60 Caretaker's Cottage; No. 61 Presidente; No. 62 Tan Tan; No. 65 Analogue; No. 66 El Barón; No. 68 Hero Bar; No. 69 No Sleep Club; No. 70 La Sala de Laura; No. 71 Tjoget; No. 72 Three Sheets; No. 73 Camparino in Galleria; No. 74 Nutmeg & Clove; No. 75 Side Hustle; No. 76 Candelaria; No. 78 Röda Huset; No. 79 Vesper; No. 80 Dead End Paradise; No. 81 Lost & Found; No. 82 Indulge Experimental Bistro; No. 83 Bar Goto; No. 84 Le Syndicat; No. 85 Danico; No. 86 Freni e Frizioni; No. 87 Re; No. 89 Donovan Bar; No. 91 Antique American Bar; No. 92 The House of Machines; No. 95 The Bamboo Bar; No. 96 The Dead Rabbit; No. 97 Tag; No. 98 Zapote Bar; No. 99 Tesouro; No. 100 Sin + Tax
-### World 2021: 38 ranks without a directory bar
+### Per edition and year
 
-No. 1 Connaught Bar; No. 2 Tayēr + Elementary; No. 3 Paradiso; No. 4 The Clumsies; No. 5 Florería Atlántico; No. 6 Licorería Limantour; No. 7 Coa; No. 8 El Copitas; No. 9 Jigger & Pony; No. 10 Katana Kitten; No. 13 Insider Bar; No. 14 Baba au Rum; No. 15 Manhattan; No. 19 Drink Kong; No. 20 1930; No. 22 Maybe Sammy; No. 23 Cantina OK!; No. 24 Salmon Guru; No. 25 Handshake Speakeasy; No. 27 Camparino in Galleria; No. 28 Café La Trova; No. 29 Little Red Door; No. 30 Dante; No. 31 Kwānt; No. 32 Bar Benfiddich; No. 33 Tres Monos; No. 34 Attaboy; No. 35 Lucy's Flower Shop; No. 37 Sips; No. 38 Baltra Bar; No. 39 Sober Company; No. 40 Tjoget; No. 41 Epic; No. 43 Tippling Club; No. 45 Galaxy Bar; No. 46 Re; No. 47 Sidecar; No. 49 Darkside
-### World 2020: 44 ranks without a directory bar
+### World 2024: 92 of 100 ranks without a directory bar
 
-No. 1 Connaught Bar; No. 2 Dante; No. 5 Tayēr + Elementary; No. 6 Kwānt; No. 7 Florería Atlántico; No. 8 Coa; No. 9 Jigger & Pony; No. 11 Maybe Sammy; No. 12 Attaboy; No. 13 Nomad Bar; No. 14 Manhattan; No. 16 Katana Kitten; No. 17 Licorería Limantour; No. 18 Native; No. 19 Paradiso; No. 20 American Bar; No. 21 Carnaval; No. 22 Salmon Guru; No. 24 Little Red Door; No. 25 1930; No. 26 Two Schmucks; No. 27 El Copitas; No. 28 Cantina OK!; No. 29 Lyaness; No. 30 Himkok; No. 31 Baba au Rum; No. 32 Panda & Sons; No. 33 Swift; No. 34 Three Sheets; No. 35 The Bamboo Bar; No. 36 Tjoget; No. 37 Buck & Breck; No. 38 Employees Only; No. 39 Bulletin Place; No. 40 Bar Benfiddich; No. 41 Artesian; No. 43 Indulge Experimental Bistro; No. 44 Bar Trigona; No. 45 Drink Kong; No. 46 Room by Le Kief; No. 47 Alquímico; No. 48 High Five; No. 49 Charles H; No. 50 Presidente
-### World 2019: 40 ranks without a directory bar
+No. 1 Handshake Speakeasy, Mexico City: in directory as handshake-speakeasy, this year's record missing  
+No. 2 Bar Leone, Hong Kong: in directory as bar-leone, this year's record missing  
+No. 3 Sips, Barcelona: in directory as sips, this year's record missing  
+No. 4 Tayēr + Elementary, London: in directory as tayer-elementary, status temporarily_closed, this year's record missing  
+No. 5 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 6 Line, Athens: in directory as line, this year's record missing  
+No. 7 Tres Monos, Buenos Aires: in directory as tres-monos, this year's record missing  
+No. 8 Alquímico, Cartagena: in directory as alquimico, this year's record missing  
+No. 9 Zest, Seoul: in directory as zest, this year's record missing  
+No. 10 Paradiso, Barcelona: in directory as paradiso, this year's record missing  
+No. 11 Himkok, Oslo: in directory as himkok, this year's record missing  
+No. 12 BKK Social Club, Bangkok: in directory as bkk-social-club, this year's record missing  
+No. 13 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 14 Double Chicken Please, New York: in directory as double-chicken-please, this year's record missing  
+No. 15 Overstory, New York: in directory as overstory, this year's record missing  
+No. 16 Lady Bee, Lima: in directory as lady-bee, this year's record missing  
+No. 17 Baba au Rum, Athens: in directory as baba-au-rum, this year's record missing  
+No. 18 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 19 The Cambridge Public House, Paris: in directory as the-cambridge-public-house, this year's record missing  
+No. 20 Tlecān, Mexico City: in directory as tlecan, this year's record missing  
+No. 21 Caretaker's Cottage, Melbourne: in directory as caretaker-s-cottage, this year's record missing  
+No. 22 CoChinChina, Buenos Aires: in directory as cochinchina, this year's record missing  
+No. 23 Salmon Guru, Madrid: in directory as salmon-guru, this year's record missing  
+No. 24 Martiny's, New York: in directory as martinys, this year's record missing  
+No. 25 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 26 Maybe Sammy, Sydney: in directory as maybe-sammy, this year's record missing  
+No. 27 Superbueno, New York: in directory as superbueno, this year's record missing  
+No. 28 Nutmeg & Clove, Singapore: in directory as nutmeg-clove, this year's record missing  
+No. 29 Satan's Whiskers, London: in directory as satans-whiskers, this year's record missing  
+No. 30 Panda & Sons, Edinburgh: in directory as panda-sons, this year's record missing  
+No. 31 Tan Tan, São Paulo: in directory as tan-tan, this year's record missing  
+No. 32 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 33 Drink Kong, Rome: in directory as drink-kong, this year's record missing  
+No. 34 Jewel of the South, New Orleans: in directory as jewel-of-the-south, this year's record missing  
+No. 35 Byrdi, Melbourne: in directory as byrdi, this year's record missing  
+No. 36 Locale Firenze, Florence: in directory as locale-firenze, this year's record missing  
+No. 37 Scarfes Bar, London: in directory as scarfes-bar, this year's record missing  
+No. 38 Moebius Milano, Milan: in directory as moebius-milano, this year's record missing  
+No. 39 Bar Nouveau, Paris: in directory as bar-nouveau, this year's record missing  
+No. 40 Mimi Kakushi, Dubai: in directory as mimi-kakushi, this year's record missing  
+No. 41 Bar Us, Bangkok: in directory as bar-us, this year's record missing  
+No. 42 Virtù, Tokyo: in directory as virtu, this year's record missing  
+No. 44 La Sala de Laura, Bogotá: in directory as la-sala-de-laura, this year's record missing  
+No. 45 Röda Huset, Stockholm: in directory as r-da-huset, this year's record missing  
+No. 46 Florería Atlántico, Buenos Aires: in directory as floreria-atlantico, this year's record missing  
+No. 47 Analogue Initiative, Singapore: in directory as analogue-initiative (inactive), status permanently_closed, this year's record missing  
+No. 48 El Gallo Altanero, Guadalajara: in directory as el-gallo-altanero, this year's record missing  
+No. 49 Danico, Paris: in directory as danico, this year's record missing  
+No. 50 1930, Milan: in directory as 1930, this year's record missing  
+No. 51 The Bar in Front of the Bar, Athens: in directory as the-bar-in-front-of-the-bar, this year's record missing  
+No. 52 Kwãnt Mayfair, London: in directory as kwant, this year's record missing  
+No. 53 Freni e Frizioni, Rome: in directory as freni-e-frizioni, this year's record missing  
+No. 55 Arca, Tulum: in directory as arca, this year's record missing  
+No. 56 Cat Bite Club, Singapore: in directory as cat-bite-club, this year's record missing  
+No. 57 Mahaniyom Cocktail Bar, Bangkok: in directory as mahaniyom-cocktail-bar, this year's record missing  
+No. 58 Argo, Hong Kong: in directory as argo, this year's record missing  
+No. 59 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 60 The Clumsies, Athens: in directory as the-clumsies, this year's record missing  
+No. 61 A Bar with Shapes For a Name, London: in directory as a-bar-with-shapes-for-a-name, this year's record missing  
+No. 62 Mirror Bar, Bratislava: in directory as mirror-bar, this year's record missing  
+No. 63 Hope & Sesame, Guangzhou: in directory as hope-sesame, this year's record missing  
+No. 64 Thunderbolt, Los Angeles: in directory as thunderbolt, this year's record missing  
+No. 65 Angelita, Madrid: in directory as angelita, this year's record missing  
+No. 66 Café La Trova, Miami: in directory as cafe-la-trova, this year's record missing  
+No. 67 Native, Singapore: in directory as native, this year's record missing  
+No. 68 Barro Negro, Athens: in directory as barro-negro, this year's record missing  
+No. 69 Carnaval, Lima: in directory as carnaval, this year's record missing  
+No. 70 Bar Pompette, Toronto: in directory as bar-pompette, this year's record missing  
+No. 71 Bar Cham, Seoul: in directory as bar-cham, this year's record missing  
+No. 72 Svanen, Oslo: in directory as svanen, this year's record missing  
+No. 73 Wax On, Berlin: in directory as wax-on, this year's record missing  
+No. 75 Hero Bar, Nairobi: in directory as hero-bar, this year's record missing  
+No. 76 LPM Dubai, Dubai: in directory as lpm-dubai, this year's record missing  
+No. 77 Bird, Copenhagen: in directory as bird, this year's record missing  
+No. 78 L'Antiquario, Naples: in directory as l-antiquario, this year's record missing  
+No. 79 Dante, New York: in directory as dante, this year's record missing  
+No. 81 Sin + Tax, Johannesburg: in directory as sin-tax, this year's record missing  
+No. 82 The Savory Project, Hong Kong: in directory as the-savory-project, this year's record missing  
+No. 83 Baltra Bar, Mexico City: in directory as baltra-bar, this year's record missing  
+No. 84 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 85 Vesper, Bangkok: in directory as vesper, this year's record missing  
+No. 86 Smoke & Bitters, Hiriketiya: in directory as smoke-bitters, this year's record missing  
+No. 88 Pacific Cocktail Haven, San Francisco: in directory as pacific-cocktail-haven, this year's record missing  
+No. 89 The Bellwood, Tokyo: in directory as the-bellwood, this year's record missing  
+No. 90 Amaro, London: in directory as amaro, this year's record missing  
+No. 91 Zapote Bar, Playa del Carmen: in directory as zapote-bar-playa-del-carmen, this year's record missing  
+No. 92 Camparino in Galleria, Milan: in directory as camparino-in-galleria, this year's record missing  
+No. 94 Red Frog, Lisbon: in directory as red-frog, this year's record missing  
+No. 95 Nouvelle Vague, Tirana: in directory as nouvelle-vague, this year's record missing  
+No. 97 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 98 Penrose, Kuala Lumpur: in directory as penrose, this year's record missing  
+No. 99 Viajante87, London: in directory as viajante-87, this year's record missing
 
-No. 2 Connaught Bar; No. 3 Florería Atlántico; No. 4 The NoMad; No. 5 American Bar; No. 6 The Clumsies; No. 7 Attaboy; No. 10 Licoreria Limantour; No. 11 Manhattan; No. 12 Native; No. 13 Carnaval; No. 14 Katana Kitten; No. 15 Guilhotina; No. 17 Himkok; No. 18 High Five; No. 19 Salmon Guru; No. 20 Paradiso; No. 22 The Dead Rabbit; No. 25 Dr. Stravinsky; No. 26 Employees Only; No. 27 El Copitas; No. 28 Scout; No. 29 Jigger & Pony; No. 30 Operation Dagger; No. 31 Baba Au Rum; No. 32 La Factoria; No. 33 Presidente; No. 34 Schumann's; No. 35 Speak Low; No. 36 Little Red Door; No. 37 Tjoget; No. 38 The Old Man; No. 41 Swift; No. 42 Trick Dog; No. 43 Maybe Sammy; No. 44 1930; No. 45 Sober Company; No. 46 Electric Bing Sutt; No. 47 Kwant; No. 48 Artesian; No. 49 Coa
-### World 2018: 40 ranks without a directory bar
+### World 2023: 91 of 100 ranks without a directory bar
 
-No. 1 Dandelyan; No. 2 American Bar; No. 3 Manhattan; No. 4 The NoMad; No. 5 Connaught Bar; No. 7 The Clumsies; No. 9 Dante; No. 11 Licorería Limantour; No. 12 High Five; No. 13 Native; No. 14 Florería Atlántico; No. 15 Attaboy; No. 16 The Dead Rabbit; No. 17 Oriole; No. 19 Himkok; No. 20 Speak Low; No. 22 Baba Au Rum; No. 23 Operation Dagger; No. 24 Le Syndicat; No. 25 Lost & Found; No. 26 Employees Only; No. 27 Central Station; No. 28 Scout; No. 29 Three Sheets; No. 32 Tjoget; No. 33 Little Red Door; No. 34 28 HongKong Street; No. 36 La Factoria; No. 37 Paradiso; No. 38 Indulge Experimental Bistro; No. 39 El Copitas; No. 40 Tommy's; No. 41 Blacktail; No. 42 Candelaria; No. 43 Schumann's; No. 44 Trick Dog; No. 47 Salmon Guru; No. 48 Buck & Breck; No. 49 Bar Benfiddich; No. 50 Lost Lake
-### World 2017: 43 ranks open, official list not in the cache yet (2014, 2015, 2017 need a fetch)
-### World 2016: 40 ranks without a directory bar
+No. 1 Sips, Barcelona: in directory as sips, this year's record missing  
+No. 3 Handshake Speakeasy, Mexico City: in directory as handshake-speakeasy, this year's record missing  
+No. 4 Paradiso, Barcelona: in directory as paradiso, this year's record missing  
+No. 5 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 6 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 7 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 8 Tayēr + Elementary, London: in directory as tayer-elementary, status temporarily_closed, this year's record missing  
+No. 9 Alquímico, Cartagena: in directory as alquimico, this year's record missing  
+No. 10 Himkok, Oslo: in directory as himkok, this year's record missing  
+No. 11 Tres Monos, Buenos Aires: in directory as tres-monos, this year's record missing  
+No. 12 Line, Athens: in directory as line, this year's record missing  
+No. 13 BKK Social Club`, Bangkok: in directory as bkk-social-club, this year's record missing  
+No. 14 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 15 Maybe Sammy, Sydney: in directory as maybe-sammy, this year's record missing  
+No. 16 Salmon Guru, Madrid: in directory as salmon-guru, this year's record missing  
+No. 17 Overstory, New York: in directory as overstory, this year's record missing  
+No. 18 Zest, Seoul: in directory as zest, this year's record missing  
+No. 20 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 21 Drink Kong, Rome: in directory as drink-kong, this year's record missing  
+No. 23 Caretaker's Cottage, Melbourne: in directory as caretaker-s-cottage, this year's record missing  
+No. 24 Café La Trova, Miami: in directory as cafe-la-trova, this year's record missing  
+No. 25 Baba au Rum, Athens: in directory as baba-au-rum, this year's record missing  
+No. 26 CoChinChina, Buenos Aires: in directory as cochinchina, this year's record missing  
+No. 28 Satan's Whiskers, London: in directory as satans-whiskers, this year's record missing  
+No. 29 Wax On, Berlin: in directory as wax-on, this year's record missing  
+No. 31 Röda Huset, Stockholm: in directory as r-da-huset, this year's record missing  
+No. 33 Freni e Frizioni, Rome: in directory as freni-e-frizioni, this year's record missing  
+No. 34 Argo, Hong Kong: in directory as argo, this year's record missing  
+No. 35 🔶🟥🔵 A Bar with Shapes for a Name, London: in directory as a-bar-with-shapes-for-a-name, this year's record missing  
+No. 37 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 38 The Cambridge Public House, Paris: in directory as the-cambridge-public-house, this year's record missing  
+No. 39 Panda & Sons, Edinburgh: in directory as panda-sons, this year's record missing  
+No. 40 Mimi Kakushi, Dubai: in directory as mimi-kakushi, this year's record missing  
+No. 41 Scarfes Bar, London: in directory as scarfes-bar, this year's record missing  
+No. 42 1930, Milan: in directory as 1930, this year's record missing  
+No. 43 Carnaval, Lima: in directory as carnaval, this year's record missing  
+No. 44 L'Antiquario, Naples: in directory as l-antiquario, this year's record missing  
+No. 45 Baltra Bar, Mexico City: in directory as baltra-bar, this year's record missing  
+No. 46 Locale Firenze, Florence: in directory as locale-firenze, this year's record missing  
+No. 47 The Clumsies, Athens: in directory as the-clumsies, this year's record missing  
+No. 49 Jewel of the South, New Orleans: in directory as jewel-of-the-south, this year's record missing  
+No. 50 Galaxy Bar, Dubai: in directory as galaxy-bar, this year's record missing  
+No. 51 Danico, Paris: in directory as danico, this year's record missing  
+No. 52 Lady Bee, Lima: in directory as lady-bee, this year's record missing  
+No. 53 The Bellwood, Tokyo: in directory as the-bellwood, this year's record missing  
+No. 54 Lyaness, London: in directory as lyaness, this year's record missing  
+No. 55 Vesper, Bangkok: in directory as vesper, this year's record missing  
+No. 56 Tan Tan, São Paulo: in directory as tan-tan, this year's record missing  
+No. 57 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 58 SubAstor, São Paulo: in directory as subastor, this year's record missing  
+No. 59 28 HongKong Street, Singapore: to check  
+No. 60 Arca, Tulum: in directory as arca, this year's record missing  
+No. 61 Byrdi, Melbourne: in directory as byrdi, this year's record missing  
+No. 62 Hero Bar, Nairobi: in directory as hero-bar, this year's record missing  
+No. 63 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 64 Nutmeg & Clove, Singapore: in directory as nutmeg-clove, this year's record missing  
+No. 65 El Gallo Altanero, Guadalajara: in directory as el-gallo-altanero, this year's record missing  
+No. 66 Tropic City, Bangkok: in directory as tropic-city (inactive), status permanently_closed, this year's record missing  
+No. 67 Sidecar, New Delhi: in directory as sidecar, this year's record missing  
+No. 68 Martiny’s, New York: in directory as martinys, this year's record missing  
+No. 69 Ergo, Dubai: to check  
+No. 70 Barro Negro, Athens: in directory as barro-negro, this year's record missing  
+No. 71 Penicillin, Hong Kong: in directory as penicillin, this year's record missing  
+No. 72 Rayo, Mexico City: in directory as rayo, this year's record missing  
+No. 73 Civil Liberties, Toronto: in directory as civil-liberties, this year's record missing  
+No. 74 Hope & Sesame, Guangzhou: in directory as hope-sesame, this year's record missing  
+No. 75 Bar Cham, Seoul: in directory as bar-cham, this year's record missing  
+No. 76 Swift, London: in directory as swift, this year's record missing  
+No. 77 Velvet, Berlin: in directory as velvet, this year's record missing  
+No. 78 Analogue Initiative, Singapore: in directory as analogue-initiative (inactive), status permanently_closed, this year's record missing  
+No. 79 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 80 La Sala de Laura, Bogotá: in directory as la-sala-de-laura, this year's record missing  
+No. 81 Kaito del Valle, Mexico City: in directory as kaito-del-valle, this year's record missing  
+No. 82 Kumiko, Chicago: in directory as kumiko, this year's record missing  
+No. 83 Native, Singapore: in directory as native, this year's record missing  
+No. 84 Svanen, Oslo: in directory as svanen, this year's record missing  
+No. 85 Camparino in Galleria, Milan: in directory as camparino-in-galleria, this year's record missing  
+No. 87 Ruby, Copenhagen: in directory as ruby, this year's record missing  
+No. 88 Red Frog, Lisbon: in directory as red-frog, this year's record missing  
+No. 89 Thunderbolt, Los Angeles: in directory as thunderbolt, this year's record missing  
+No. 90 Mirror Bar, Bratislava: in directory as mirror-bar, this year's record missing  
+No. 91 Maison Premiere, New York: in directory as maison-premiere, this year's record missing  
+No. 92 Donovan Bar, London: in directory as donovan, this year's record missing  
+No. 93 Tjoget, Stockholm: in directory as tjoget, this year's record missing  
+No. 94 Sin + Tax, Johannesburg: in directory as sin-tax, this year's record missing  
+No. 95 Schofield's, Manchester: in directory as schofield-s-bar, this year's record missing  
+No. 96 Lost & Found, Nicosia: to check  
+No. 97 Darkside, Hong Kong: in directory as darkside, this year's record missing  
+No. 98 The Bar in Front of the Bar, Athens: in directory as the-bar-in-front-of-the-bar, this year's record missing  
+No. 99 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 100 Artesian, London: in directory as artesian, this year's record missing
 
-No. 1 The Dead Rabbit; No. 2 American Bar; No. 3 Dandelyan; No. 4 Connaught Bar; No. 5 Attaboy; No. 6 The Gibson; No. 7 Employees Only; No. 8 The NoMad; No. 9 The Clumsies; No. 11 Manhattan; No. 13 Licorería Limantour; No. 14 28 HongKong Street; No. 15 Speak Low; No. 16 Broken Shaker; No. 17 Candelaria; No. 19 Nightjar; No. 20 Maison Premiere; No. 21 Operation Dagger; No. 23 High Five; No. 24 Little Red Door; No. 25 Tjoget; No. 26 Central Station; No. 27 Lobster Bar; No. 29 Smuggler's Cove; No. 31 La Factoria; No. 32 Oriole; No. 34 Dante; No. 35 Trick Dog; No. 36 ABV; No. 37 The Walkers Inn; No. 39 Aviary; No. 40 Baba Au Rum; No. 42 Himkok; No. 43 Lost & Found; No. 44 Ruby; No. 45 PDT; No. 46 Bulletin Place; No. 47 Bramble; No. 49 Florería Atlántico; No. 50 Buck & Breck
-### World 2015: 49 ranks open, official list not in the cache yet (2014, 2015, 2017 need a fetch)
-### World 2014: 49 ranks open, official list not in the cache yet (2014, 2015, 2017 need a fetch)
-### World 2013: 41 ranks without a directory bar
+### World 2022: 44 of 50 ranks without a directory bar
 
-No. 1 Artesian; No. 3 High Five; No. 4 Connaught Bar; No. 5 The Dead Rabbit; No. 7 Black Pearl; No. 9 Candelaria; No. 10 28 HongKong Street; No. 12 Employees Only; No. 13 PDT; No. 15 Door 74; No. 16 Le Lion Bar de Paris; No. 17 Buck & Breck; No. 18 The Parlour; No. 20 American Bar; No. 21 Death & Co; No. 22 Ruby; No. 23 Schumann's; No. 24 The Everleigh; No. 25 Eau de Vie; No. 26 Bulletin Place; No. 27 69 Colebrooke Row; No. 28 Chainaya, Tea & Cocktails; No. 29 Mutis; No. 30 Smuggler's Cove; No. 32 Bramble; No. 33 Le Forum; No. 34 Zetter Townhouse; No. 35 Florería Atlántico; No. 36 Lebensstern; No. 37 La Capilla; No. 39 Little Red Door; No. 40 Le Coq; No. 41 Shady Pines; No. 42 Attaboy; No. 43 Sherry Butt; No. 44 Pouring Ribbons; No. 45 Tippling Club; No. 46 Drink; No. 47 Tommy's; No. 48 Baba au Rum; No. 50 Delicatessen
-### World 2012: 43 ranks without a directory bar
+No. 1 Paradiso, Barcelona: in directory as paradiso, this year's record missing  
+No. 2 Tayēr + Elementary, London: in directory as tayer-elementary, status temporarily_closed, this year's record missing  
+No. 3 Sips, Barcelona: in directory as sips, this year's record missing  
+No. 4 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 5 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 6 Double Chicken Please, New York: in directory as double-chicken-please, this year's record missing  
+No. 7 Two Schmucks, Barcelona: in directory as two-schmucks, this year's record missing  
+No. 8 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 9 Katana Kitten, New York: in directory as katana-kitten, this year's record missing  
+No. 10 Alquímico, Cartagena: in directory as alquimico, this year's record missing  
+No. 11 Handshake Speakeasy, Mexico City: in directory as handshake-speakeasy, this year's record missing  
+No. 12 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 14 BKK Social Club, Bangkok: in directory as bkk-social-club, this year's record missing  
+No. 15 Salmon Guru, Madrid: in directory as salmon-guru, this year's record missing  
+No. 16 Drink Kong, Rome: in directory as drink-kong, this year's record missing  
+No. 17 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 18 Florería Atlántico, Buenos Aires: in directory as floreria-atlantico, this year's record missing  
+No. 19 The Clumsies, Athens: in directory as the-clumsies, this year's record missing  
+No. 20 Baba au Rum, Athens: in directory as baba-au-rum, this year's record missing  
+No. 21 Café La Trova, Miami: in directory as cafe-la-trova, this year's record missing  
+No. 22 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 23 Satan's Whiskers, London: in directory as satans-whiskers, this year's record missing  
+No. 24 Tropic City, Bangkok: in directory as tropic-city (inactive), status permanently_closed, this year's record missing  
+No. 25 Kumiko, Chicago: in directory as kumiko, this year's record missing  
+No. 27 Tres Monos, Buenos Aires: in directory as tres-monos, this year's record missing  
+No. 28 Argo, Hong Kong: in directory as argo, this year's record missing  
+No. 29 Maybe Sammy, Sydney: in directory as maybe-sammy, this year's record missing  
+No. 31 Line, Athens: in directory as line, this year's record missing  
+No. 32 Baltra Bar, Mexico City: in directory as baltra-bar, this year's record missing  
+No. 33 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 34 Overstory, New York: in directory as overstory, this year's record missing  
+No. 35 1930, Milan: in directory as 1930, this year's record missing  
+No. 36 Dante, New York: in directory as dante, this year's record missing  
+No. 37 A Bar with Shapes for a Name, London: in directory as a-bar-with-shapes-for-a-name, this year's record missing  
+No. 39 Locale Firenze, Florence: in directory as locale-firenze, this year's record missing  
+No. 41 Cantina OK!, Sydney: in directory as cantina-ok, this year's record missing  
+No. 42 CoChinChina, Buenos Aires: in directory as cochinchina, this year's record missing  
+No. 43 Himkok, Oslo: in directory as himkok, this year's record missing  
+No. 44 Carnaval, Lima: in directory as carnaval, this year's record missing  
+No. 45 Galaxy Bar, Dubai: in directory as galaxy-bar, this year's record missing  
+No. 46 L'Antiquario, Naples: in directory as l-antiquario, this year's record missing  
+No. 47 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 48 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 50 Bulgari Bar, Dubai: to check
 
-No. 1 Artesian; No. 2 PDT; No. 3 Nightjar; No. 4 Connaught Bar; No. 5 American Bar; No. 6 Death & Co; No. 8 69 Colebrooke Row; No. 10 Bramble; No. 11 28 HongKong Street; No. 12 Employees Only; No. 14 Drink; No. 15 The Varnish; No. 16 Zetter Townhouse; No. 18 Mutis; No. 19 Black Pearl; No. 22 La Capilla Tequilla; No. 23 Palmer & Co.; No. 24 High Five; No. 25 Le Lion Bar de Paris; No. 26 Smuggler's Cove; No. 27 Eau de Vie; No. 28 Experimental Cocktail Club; No. 29 Portobello Star; No. 30 Schumann's; No. 31 Tippling Club; No. 32 Lebensstern; No. 33 Goldene Bar; No. 34 Pegu Club; No. 35 Worship Street Whistling Stop; No. 36 Angel's Share; No. 37 Dutch Kills; No. 38 Frank's; No. 39 Beaufort Bar; No. 40 Hemingway Bar; No. 41 Meat; No. 42 Milk & Honey; No. 44 Chainaya, Tea & Cocktails; No. 45 Candelaria; No. 46 Salvatore at Playboy; No. 47 Ruby; No. 48 Stagger Lee; No. 49 La Bar du Plaza Athénée; No. 50 Asoka
-### World 2011: 45 ranks without a directory bar
+### World 2021: 38 of 50 ranks without a directory bar
 
-No. 2 Connaught Bar; No. 3 Artesian; No. 4 Death & Co; No. 5 Milk & Honey; No. 6 American Bar; No. 7 69 Colebrooke Row; No. 8 Drink; No. 9 Harry's Bar; No. 10 Black Pearl; No. 11 Pegu Club; No. 13 Eau de Vie; No. 14 Bramble; No. 15 Employees only; No. 16 La Capilla; No. 17 Merchant Hotel; No. 18 Nightjar; No. 19 Smuggler's Cove; No. 20 Buddha Bar; No. 21 Skyview Bar; No. 22 The Varnish; No. 23 Tippling Club; No. 24 Milk & Honey NY; No. 26 Der Raum; No. 29 Door 74; No. 30 Tommy's; No. 31 Floridita; No. 32 City Space; No. 33 Matterhorn; No. 34 High Five; No. 35 Le Lion Bar de Paris; No. 36 Lab; No. 37 Boadas; No. 38 Dutch Kills; No. 39 Worship St Whistling Shop; No. 40 BarAgricole; No. 41 Papa Doble; No. 42 Quo Vadis; No. 43 Lounge Bohemia; No. 44 Mayahuel; No. 45 Mutis; No. 46 Ruby; No. 47 Rules; No. 48 Hemingway Bar; No. 49 Zuma; No. 50 Star Bar
+No. 1 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 2 Tayēr + Elementary, London: in directory as tayer-elementary, status temporarily_closed, this year's record missing  
+No. 3 Paradiso, Barcelona: in directory as paradiso, this year's record missing  
+No. 4 The Clumsies, Athens: in directory as the-clumsies, this year's record missing  
+No. 5 Florería Atlántico, Buenos Aires: in directory as floreria-atlantico, this year's record missing  
+No. 6 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 7 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 8 El Copitas, St Petersburg: to check  
+No. 9 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 10 Katana Kitten, New York: in directory as katana-kitten, this year's record missing  
+No. 13 Insider Bar, Moscow: to check  
+No. 14 Baba au Rum, Athens: in directory as baba-au-rum, this year's record missing  
+No. 15 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 19 Drink Kong, Rome: in directory as drink-kong, this year's record missing  
+No. 20 1930, Milan: in directory as 1930, this year's record missing  
+No. 22 Maybe Sammy, Sydney: in directory as maybe-sammy, this year's record missing  
+No. 23 Cantina OK!, Sydney: in directory as cantina-ok, this year's record missing  
+No. 24 Salmon Guru, Madrid: in directory as salmon-guru, this year's record missing  
+No. 25 Handshake Speakeasy, Mexico City: in directory as handshake-speakeasy, this year's record missing  
+No. 27 Camparino in Galleria, Milan: in directory as camparino-in-galleria, this year's record missing  
+No. 28 Café La Trova, Miami: in directory as cafe-la-trova, this year's record missing  
+No. 29 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 30 Dante, New York: in directory as dante, this year's record missing  
+No. 31 Kwānt, London: in directory as kwant, this year's record missing  
+No. 32 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 33 Tres Monos, Buenos Aires: in directory as tres-monos, this year's record missing  
+No. 34 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 35 Lucy's Flower Shop, Stockholm: in directory as lucy-s-flower-shop, this year's record missing  
+No. 37 Sips, Barcelona: in directory as sips, this year's record missing  
+No. 38 Baltra Bar, Mexico City: in directory as baltra-bar, this year's record missing  
+No. 39 Sober Company, Shanghai: in directory as sober-company, this year's record missing  
+No. 40 Tjoget, Stockholm: in directory as tjoget, this year's record missing  
+No. 41 Epic, Shanghai: in directory as epic, this year's record missing  
+No. 43 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 45 Galaxy Bar, Dubai: in directory as galaxy-bar, this year's record missing  
+No. 46 Re, Sydney: in directory as re (inactive), this year's record missing  
+No. 47 Sidecar, New Delhi: in directory as sidecar, this year's record missing  
+No. 49 Darkside, Hong Kong: in directory as darkside, this year's record missing
 
-### Asia 2016 to 2025 and North America 2022 to 2025
+### World 2020: 44 of 50 ranks without a directory bar
 
-The regional lists are not cached yet; they are being read from the50.com and will be appended
-here with the same layout.
+No. 1 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 2 Dante, New York: in directory as dante, this year's record missing  
+No. 5 Tayēr + Elementary, London: in directory as tayer-elementary, status temporarily_closed, this year's record missing  
+No. 6 Kwānt, London: in directory as kwant, this year's record missing  
+No. 7 Florería Atlántico, Buenos Aires: in directory as floreria-atlantico, this year's record missing  
+No. 8 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 9 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 11 Maybe Sammy, Sydney: in directory as maybe-sammy, this year's record missing  
+No. 12 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 13 Nomad Bar, New York: in directory as nomad-bar (inactive), status permanently_closed, this year's record missing  
+No. 14 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 16 Katana Kitten, New York: in directory as katana-kitten, this year's record missing  
+No. 17 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 18 Native, Singapore: in directory as native, this year's record missing  
+No. 19 Paradiso, Barcelona: in directory as paradiso, this year's record missing  
+No. 20 American Bar, London: in directory as the-american-bar, this year's record missing  
+No. 21 Carnaval, Lima: in directory as carnaval, this year's record missing  
+No. 22 Salmon Guru, Madrid: in directory as salmon-guru, this year's record missing  
+No. 24 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 25 1930, Milan: in directory as 1930, this year's record missing  
+No. 26 Two Schmucks, Barcelona: in directory as two-schmucks, this year's record missing  
+No. 27 El Copitas, St Petersburg: to check  
+No. 28 Cantina OK!, Sydney: in directory as cantina-ok, this year's record missing  
+No. 29 Lyaness, London: in directory as lyaness, this year's record missing  
+No. 30 Himkok, Oslo: in directory as himkok, this year's record missing  
+No. 31 Baba au Rum, Athens: in directory as baba-au-rum, this year's record missing  
+No. 32 Panda & Sons, Edinburgh: in directory as panda-sons, this year's record missing  
+No. 33 Swift, London: in directory as swift, this year's record missing  
+No. 34 Three Sheets, London: in directory as three-sheets-dalston, this year's record missing  
+No. 35 The Bamboo Bar, Bangkok: in directory as bamboo-bar, this year's record missing  
+No. 36 Tjoget, Stockholm: in directory as tjoget, this year's record missing  
+No. 37 Buck & Breck, Berlin: in directory as buck-breck, this year's record missing  
+No. 38 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 39 Bulletin Place, Sydney: to check  
+No. 40 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 41 Artesian, London: in directory as artesian, this year's record missing  
+No. 43 Indulge Experimental Bistro, Taipei: in directory as indulge-bistro, this year's record missing  
+No. 44 Bar Trigona, Kuala Lumpur: in directory as bar-trigona, this year's record missing  
+No. 45 Drink Kong, Rome: in directory as drink-kong, this year's record missing  
+No. 46 Room by Le Kief, Taipei: to check  
+No. 47 Alquímico, Cartagena: in directory as alquimico, this year's record missing  
+No. 48 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 49 Charles H, Seoul: in directory as charles-h, this year's record missing  
+No. 50 Presidente, Buenos Aires: in directory as presidente-bar, this year's record missing
+
+### World 2019: 40 of 50 ranks without a directory bar
+
+No. 2 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 3 Florería Atlántico, Buenos Aires: in directory as floreria-atlantico, this year's record missing  
+No. 4 The NoMad, New York: in directory as nomad-bar (inactive), status permanently_closed, this year's record missing  
+No. 5 American Bar, London: in directory as the-american-bar, this year's record missing  
+No. 6 The Clumsies, Athens: in directory as the-clumsies, this year's record missing  
+No. 7 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 10 Licoreria Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 11 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 12 Native, Singapore: in directory as native, this year's record missing  
+No. 13 Carnaval, Lima: in directory as carnaval, this year's record missing  
+No. 14 Katana Kitten, New York: in directory as katana-kitten, this year's record missing  
+No. 15 Guilhotina, Sao Paulo: to check  
+No. 17 Himkok, Oslo: in directory as himkok, this year's record missing  
+No. 18 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 19 Salmon Guru, Madrid: in directory as salmon-guru, this year's record missing  
+No. 20 Paradiso, Barcelona: in directory as paradiso, this year's record missing  
+No. 22 The Dead Rabbit, New York: in directory as dead-rabbit, this year's record missing  
+No. 25 Dr. Stravinsky, Barcelona: in directory as dr-stravinsky, this year's record missing  
+No. 26 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 27 El Copitas, St Petersburg: to check  
+No. 28 Scout, London: in directory as scout (inactive), status permanently_closed, this year's record missing  
+No. 29 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 30 Operation Dagger, Singapore: to check  
+No. 31 Baba Au Rum, Athens: in directory as baba-au-rum, this year's record missing  
+No. 32 La Factoria, San Juan: in directory as la-factora, this year's record missing  
+No. 33 Presidente, Buenos Aires: in directory as presidente-bar, this year's record missing  
+No. 34 Schumann's, Munich: in directory as schumann-s-bar-am-hofgarten-munich, this year's record missing  
+No. 35 Speak Low, Shanghai: in directory as speak-low, this year's record missing  
+No. 36 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 37 Tjoget, Stockholm, Sweden: in directory as tjoget, this year's record missing  
+No. 38 The Old Man, Singapore: to check  
+No. 41 Swift, London: in directory as swift, this year's record missing  
+No. 42 Trick Dog, San Francisco: in directory as trick-dog, this year's record missing  
+No. 43 Maybe Sammy, Sydney: in directory as maybe-sammy, this year's record missing  
+No. 44 1930, Milan: in directory as 1930, this year's record missing  
+No. 45 Sober Company, Shanghai: in directory as sober-company, this year's record missing  
+No. 46 Electric Bing Sutt, Beirut: to check  
+No. 47 Kwant, London: in directory as kwant, this year's record missing  
+No. 48 Artesian, London: in directory as artesian, this year's record missing  
+No. 49 Coa, Hong Kong: in directory as coa, this year's record missing
+
+### World 2018: 40 of 50 ranks without a directory bar
+
+No. 1 Dandelyan, London: to check  
+No. 2 American Bar, London: in directory as the-american-bar, this year's record missing  
+No. 3 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 4 The NoMad, New York: in directory as nomad-bar (inactive), status permanently_closed, this year's record missing  
+No. 5 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 7 The Clumsies, Athens: in directory as the-clumsies, this year's record missing  
+No. 9 Dante, New York: in directory as dante, this year's record missing  
+No. 11 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 12 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 13 Native, Singapore: in directory as native, this year's record missing  
+No. 14 Florería Atlántico, Buenos Aires: in directory as floreria-atlantico, this year's record missing  
+No. 15 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 16 The Dead Rabbit, New York: in directory as dead-rabbit, this year's record missing  
+No. 17 Oriole, London: in directory as oriole, this year's record missing  
+No. 19 Himkok, Oslo: in directory as himkok, this year's record missing  
+No. 20 Speak Low, Shanghai: in directory as speak-low, this year's record missing  
+No. 22 Baba Au Rum, Athens: in directory as baba-au-rum, this year's record missing  
+No. 23 Operation Dagger, Singapore: to check  
+No. 24 Le Syndicat, Paris: in directory as le-syndicat, this year's record missing  
+No. 25 Lost & Found, Nicosia: to check  
+No. 26 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 27 Central Station, Beirut: to check  
+No. 28 Scout, London: in directory as scout (inactive), status permanently_closed, this year's record missing  
+No. 29 Three Sheets, London: in directory as three-sheets-dalston, this year's record missing  
+No. 32 Tjoget, Stockholm: in directory as tjoget, this year's record missing  
+No. 33 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 34 28 HongKong Street, Singapore: to check  
+No. 36 La Factoria, San Juan: in directory as la-factora, this year's record missing  
+No. 37 Paradiso, Barcelona, Spain: in directory as paradiso, this year's record missing  
+No. 38 Indulge Experimental Bistro, Taipei: in directory as indulge-bistro, this year's record missing  
+No. 39 El Copitas, St Petersburg: to check  
+No. 40 Tommy's, San Francisco: in directory as tommy-s, this year's record missing  
+No. 41 Blacktail, New York: in directory as blacktail (inactive), status permanently_closed, this year's record missing  
+No. 42 Candelaria, Paris: in directory as candelaria, this year's record missing  
+No. 43 Schumann's, Munich: in directory as schumann-s-bar-am-hofgarten-munich, this year's record missing  
+No. 44 Trick Dog, San Francisco: in directory as trick-dog, this year's record missing  
+No. 47 Salmon Guru, Madrid: in directory as salmon-guru, this year's record missing  
+No. 48 Buck & Breck, Berlin: in directory as buck-breck, this year's record missing  
+No. 49 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 50 Lost Lake, Chicago: to check
+
+### World 2017: 43 of 50 ranks without a directory bar
+
+No. 1 American Bar, London: in directory as the-american-bar, this year's record missing  
+No. 2 Dandelyan, London: to check  
+No. 3 The NoMad, New York: in directory as nomad-bar (inactive), status permanently_closed, this year's record missing  
+No. 4 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 5 The Dead Rabbit, New York: in directory as dead-rabbit, this year's record missing  
+No. 6 The Clumsies, Athens: in directory as the-clumsies, this year's record missing  
+No. 7 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 8 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 10 Speak Low, Shanghai: in directory as speak-low, this year's record missing  
+No. 11 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 12 Happiness Forgets, London: in directory as happiness-forgets, this year's record missing  
+No. 13 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 14 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 15 Atlas, Singapore: in directory as atlas, this year's record missing  
+No. 16 Dante, New York: in directory as dante, this year's record missing  
+No. 17 Oriole, London: in directory as oriole, this year's record missing  
+No. 18 Broken Shaker, Miami Beach: in directory as the-broken-shaker, this year's record missing  
+No. 19 Candelaria, Paris: in directory as candelaria, this year's record missing  
+No. 20 Himkok, Oslo: in directory as himkok, this year's record missing  
+No. 21 The Gibson, London: to check  
+No. 23 Florería Atlántico, Buenos Aires: in directory as floreria-atlantico, this year's record missing  
+No. 24 Operation Dagger, Singapore: to check  
+No. 25 28 HongKong Street, Singapore: to check  
+No. 26 Trick Dog, San Francisco: in directory as trick-dog, this year's record missing  
+No. 28 Indulge Experimental Bistro, Taipei: in directory as indulge-bistro, this year's record missing  
+No. 29 Lost & Found, Nicosia: to check  
+No. 30 Baba Au Rum, Athens: in directory as baba-au-rum, this year's record missing  
+No. 31 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 32 Blacktail, New York: in directory as blacktail (inactive), status permanently_closed, this year's record missing  
+No. 34 Le Syndicat, Paris: in directory as le-syndicat, this year's record missing  
+No. 36 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 37 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 38 Schumann's, Munich: in directory as schumann-s-bar-am-hofgarten-munich, this year's record missing  
+No. 39 La Factoria, San Juan: in directory as la-factora, this year's record missing  
+No. 40 Quinary, Hong Kong: in directory as quinary, this year's record missing  
+No. 41 Aviary, Chicago: in directory as the-aviary, this year's record missing  
+No. 43 Nightjar, London: in directory as nightjar, this year's record missing  
+No. 44 Tjoget, Stockholm: in directory as tjoget, this year's record missing  
+No. 46 ABV, San Francisco: in directory as abv, this year's record missing  
+No. 47 Native, Singapore: in directory as native, this year's record missing  
+No. 48 Tommy's, San Francisco: in directory as tommy-s, this year's record missing  
+No. 49 Lobster Bar, Hong Kong: in directory as lobster-bar, this year's record missing  
+No. 50 Imperial Craft, Tel Aviv: to check
+
+### World 2016: 40 of 50 ranks without a directory bar
+
+No. 1 The Dead Rabbit, New York: in directory as dead-rabbit, this year's record missing  
+No. 2 American Bar, London: in directory as the-american-bar, this year's record missing  
+No. 3 Dandelyan, London: to check  
+No. 4 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 5 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 6 The Gibson, London: to check  
+No. 7 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 8 The NoMad, New York: in directory as nomad-bar (inactive), status permanently_closed, this year's record missing  
+No. 9 The Clumsies, Athens: in directory as the-clumsies, this year's record missing  
+No. 11 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 13 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 14 28 HongKong Street, Singapore: to check  
+No. 15 Speak Low, Shanghai: in directory as speak-low, this year's record missing  
+No. 16 Broken Shaker, Miami Beach: in directory as the-broken-shaker, this year's record missing  
+No. 17 Candelaria, Paris: in directory as candelaria, this year's record missing  
+No. 19 Nightjar, London: in directory as nightjar, this year's record missing  
+No. 20 Maison Premiere, New York: in directory as maison-premiere, this year's record missing  
+No. 21 Operation Dagger, Singapore: to check  
+No. 23 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 24 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 25 Tjoget, Stockholm: in directory as tjoget, this year's record missing  
+No. 26 Central Station, Beirut: to check  
+No. 27 Lobster Bar, Hong Kong: in directory as lobster-bar, this year's record missing  
+No. 29 Smuggler's Cove, San Francisco: in directory as smugglers-cove, this year's record missing  
+No. 31 La Factoria, San Juan: in directory as la-factora, this year's record missing  
+No. 32 Oriole, London: in directory as oriole, this year's record missing  
+No. 34 Dante, New York: in directory as dante, this year's record missing  
+No. 35 Trick Dog, San Francisco: in directory as trick-dog, this year's record missing  
+No. 36 ABV, San Francisco: in directory as abv, this year's record missing  
+No. 37 The Walkers Inn, Los Angeles: to check  
+No. 39 Aviary, Chicago: in directory as the-aviary, this year's record missing  
+No. 40 Baba Au Rum, Athens: in directory as baba-au-rum, this year's record missing  
+No. 42 Himkok, Oslo: in directory as himkok, this year's record missing  
+No. 43 Lost & Found, Nicosia: to check  
+No. 44 Ruby, Copenhagen: in directory as ruby, this year's record missing  
+No. 45 PDT, New York: in directory as pdt, this year's record missing  
+No. 46 Bulletin Place, Sydney: to check  
+No. 47 Bramble, Edinburgh: in directory as bramble, this year's record missing  
+No. 49 Florería Atlántico, Buenos Aires: in directory as floreria-atlantico, this year's record missing  
+No. 50 Buck & Breck, Berlin: in directory as buck-breck, this year's record missing
+
+### World 2015: 49 of 50 ranks without a directory bar
+
+No. 1 Artesian, London: in directory as artesian, this year's record missing  
+No. 2 The Dead Rabbit, New York: in directory as dead-rabbit, this year's record missing  
+No. 3 Nightjar, London: in directory as nightjar, this year's record missing  
+No. 4 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 5 American Bar, London: in directory as the-american-bar, this year's record missing  
+No. 7 28 HongKong Street, Singapore: to check  
+No. 8 Happiness Forgets, London: in directory as happiness-forgets, this year's record missing  
+No. 9 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 10 Black Pearl, Melbourne: in directory as black-pearl, this year's record missing  
+No. 11 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 12 Candelaria, Paris: in directory as candelaria, this year's record missing  
+No. 13 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 14 Broken Shaker, Miami Beach: in directory as the-broken-shaker, this year's record missing  
+No. 15 Canon, Seattle: in directory as canon-seattle, this year's record missing  
+No. 16 Buck & Breck, Berlin: in directory as buck-breck, this year's record missing  
+No. 17 Imperial Craft, Tel Aviv: to check  
+No. 18 Lobster Bar, Hong Kong: in directory as lobster-bar, this year's record missing  
+No. 19 Le Lion Bar de Paris, Hamburg: in directory as le-lion-bar-de-paris, this year's record missing  
+No. 20 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 21 Jerry Thomas Speakeasy, Rome: to check  
+No. 22 The Clumsies, Athens: in directory as the-clumsies, this year's record missing  
+No. 23 Maison Premiere, New York: in directory as maison-premiere, this year's record missing  
+No. 24 Elephant Bar, New York: to check  
+No. 25 The Everleigh, Melbourne: in directory as the-everleigh (inactive), status permanently_closed, this year's record missing  
+No. 26 White Lyan, London: to check  
+No. 27 Beaufort Bar, London: in directory as beaufort-bar, this year's record missing  
+No. 28 Bulletin Place, Sydney: to check  
+No. 29 Aviary, Chicago: in directory as the-aviary, this year's record missing  
+No. 30 Tales & Spirits, Amsterdam: in directory as tales-spirits, this year's record missing  
+No. 31 Smuggler's Cove, San Francisco: in directory as smugglers-cove, this year's record missing  
+No. 32 Delicatessen, Moscow: to check  
+No. 33 Door 74, Amsterdam: in directory as door-74, this year's record missing  
+No. 34 Ruby, Copenhagen: in directory as ruby, this year's record missing  
+No. 35 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 36 The NoMad, New York: in directory as nomad-bar (inactive), status permanently_closed, this year's record missing  
+No. 37 PDT, New York: in directory as pdt, this year's record missing  
+No. 38 Mace, New York: in directory as mace, this year's record missing  
+No. 39 Quinary, Hong Kong: in directory as quinary, this year's record missing  
+No. 40 Trick Dog, San Francisco: in directory as trick-dog, this year's record missing  
+No. 41 69 Colebrooke Row, London: to check  
+No. 42 Dry Martini, Barcelona: in directory as dry-martini-by-javier-de-las-muelas, this year's record missing  
+No. 43 Schumann's, Munich: in directory as schumann-s-bar-am-hofgarten-munich, this year's record missing  
+No. 44 Zuma, Dubai: in directory as zuma, this year's record missing  
+No. 45 La Factoria, San Juan: in directory as la-factora, this year's record missing  
+No. 46 Nottingham Forest, Milan: in directory as nottingham-forest, this year's record missing  
+No. 47 Tommy's, San Francisco: in directory as tommy-s, this year's record missing  
+No. 48 Lost & Found, Nicosia: to check  
+No. 49 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 50 Dandelyan, London: to check
+
+### World 2014: 49 of 50 ranks without a directory bar
+
+No. 1 Artesian, London: in directory as artesian, this year's record missing  
+No. 2 The Dead Rabbit, New York: in directory as dead-rabbit, this year's record missing  
+No. 3 Nightjar, London: in directory as nightjar, this year's record missing  
+No. 4 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 5 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 6 Canon, Seattle: in directory as canon-seattle, this year's record missing  
+No. 8 American Bar, London: in directory as the-american-bar, this year's record missing  
+No. 9 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 10 28 HongKong Street, Singapore: to check  
+No. 11 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 12 Happiness Forgets, London: in directory as happiness-forgets, this year's record missing  
+No. 13 Aviary, Chicago: in directory as the-aviary, this year's record missing  
+No. 14 Elephant Bar, New York: to check  
+No. 15 Nottingham Forest, Milan: in directory as nottingham-forest, this year's record missing  
+No. 16 Smuggler's Cove, San Francisco: in directory as smugglers-cove, this year's record missing  
+No. 17 Candelaria, Paris: in directory as candelaria, this year's record missing  
+No. 18 PDT, New York: in directory as pdt, this year's record missing  
+No. 19 Bulletin Place, Sydney: to check  
+No. 20 White Lyan, London: to check  
+No. 21 Buck & Breck, Berlin: in directory as buck-breck, this year's record missing  
+No. 22 Broken Shaker, Miami Beach: in directory as the-broken-shaker, this year's record missing  
+No. 23 69 Colebrooke Row, London: to check  
+No. 24 Hemingway Bar, Prague: in directory as hemingway-bar, this year's record missing  
+No. 25 Le Lion Bar de Paris, Hamburg: in directory as le-lion-bar-de-paris, this year's record missing  
+No. 26 Door 74, Amsterdam: in directory as door-74, this year's record missing  
+No. 27 Three Dots & a Dash, Chicago: in directory as three-dots-and-a-dash, this year's record missing  
+No. 28 Jerry Thomas Speakeasy, Rome: to check  
+No. 29 Chainaya, Tea & Cocktails, Athens: to check  
+No. 30 The Everleigh, Melbourne: in directory as the-everleigh (inactive), status permanently_closed, this year's record missing  
+No. 31 Eau de Vie, Sydney: to check  
+No. 32 Bramble, Edinburgh: in directory as bramble, this year's record missing  
+No. 33 Trick Dog, San Francisco: in directory as trick-dog, this year's record missing  
+No. 34 Dry Martini, Barcelona: in directory as dry-martini-by-javier-de-las-muelas, this year's record missing  
+No. 35 Clover Club, New York: in directory as clover-club, this year's record missing  
+No. 36 Drink, Boston: to check  
+No. 37 Black Pearl, Melbourne: in directory as black-pearl, this year's record missing  
+No. 38 Schumann's, Munich: in directory as schumann-s-bar-am-hofgarten-munich, this year's record missing  
+No. 39 Florería Atlántico, Buenos Aires: in directory as floreria-atlantico, this year's record missing  
+No. 40 Star Bar, Tokyo: in directory as star-bar, this year's record missing  
+No. 41 Delicatessen, Moscow: to check  
+No. 42 Quinary, Hong Kong: in directory as quinary, this year's record missing  
+No. 43 Cure, New Orleans: in directory as cure, this year's record missing  
+No. 44 Tales & Spirits, Amsterdam: in directory as tales-spirits, this year's record missing  
+No. 45 Maison Premiere, New York: in directory as maison-premiere, this year's record missing  
+No. 46 La Capilla Tequilla, Mexico: to check  
+No. 47 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 48 Shady Pines, Sydney: to check  
+No. 49 Callooh Callay, London: in directory as callooh-callay, this year's record missing  
+No. 50 Williams & Graham, Denver: in directory as williams-and-graham-denver, this year's record missing
+
+### World 2013: 41 of 50 ranks without a directory bar
+
+No. 1 Artesian, London: in directory as artesian, this year's record missing  
+No. 3 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 4 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 5 The Dead Rabbit, New York: in directory as dead-rabbit, this year's record missing  
+No. 7 Black Pearl, Melbourne: in directory as black-pearl, this year's record missing  
+No. 9 Candelaria, Paris: in directory as candelaria, this year's record missing  
+No. 10 28 HongKong Street, Singapore: to check  
+No. 12 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 13 PDT, New York: in directory as pdt, this year's record missing  
+No. 15 Door 74, Amsterdam: in directory as door-74, this year's record missing  
+No. 16 Le Lion Bar de Paris, Hamburg: in directory as le-lion-bar-de-paris, this year's record missing  
+No. 17 Buck & Breck, Berlin: in directory as buck-breck, this year's record missing  
+No. 18 The Parlour, Frankfurt: to check  
+No. 20 American Bar, London: in directory as the-american-bar, this year's record missing  
+No. 21 Death & Co, New York: in directory as death-co-east-village, this year's record missing  
+No. 22 Ruby, Copenhagen: in directory as ruby, this year's record missing  
+No. 23 Schumann's, Munich: in directory as schumann-s-bar-am-hofgarten-munich, this year's record missing  
+No. 24 The Everleigh, Melbourne: in directory as the-everleigh (inactive), status permanently_closed, this year's record missing  
+No. 25 Eau de Vie, Sydney: to check  
+No. 26 Bulletin Place, Sydney: to check  
+No. 27 69 Colebrooke Row, London: to check  
+No. 28 Chainaya, Tea & Cocktails, Athens: to check  
+No. 29 Mutis, Barcelona: to check  
+No. 30 Smuggler's Cove, San Francisco: in directory as smugglers-cove, this year's record missing  
+No. 32 Bramble, Edingburgh: to check  
+No. 33 Le Forum, Paris: to check  
+No. 34 Zetter Townhouse, London: to check  
+No. 35 Florería Atlántico, Buenos Aires: in directory as floreria-atlantico, this year's record missing  
+No. 36 Lebensstern, Berlin: to check  
+No. 37 La Capilla, Tequila: to check  
+No. 39 Little Red Door, Paris: in directory as little-red-door, this year's record missing  
+No. 40 Le Coq, Paris: to check  
+No. 41 Shady Pines, Sydney: to check  
+No. 42 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 43 Sherry Butt, Paris: to check  
+No. 44 Pouring Ribbons, New York: to check  
+No. 45 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 46 Drink, Boston: to check  
+No. 47 Tommy's, San Francisco: in directory as tommy-s, this year's record missing  
+No. 48 Baba au Rum, Athens: in directory as baba-au-rum, this year's record missing  
+No. 50 Delicatessen, Moscow: to check
+
+### World 2012: 41 of 48 ranks without a directory bar
+
+No. 1 Artesian, London: in directory as artesian, this year's record missing  
+No. 2 PDT, New York: in directory as pdt, this year's record missing  
+No. 3 Nightjar, London: in directory as nightjar, this year's record missing  
+No. 4 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 5 American Bar, London: in directory as the-american-bar, this year's record missing  
+No. 6 Death & Co, New York: in directory as death-co-east-village, this year's record missing  
+No. 8 69 Colebrooke Row, London: to check  
+No. 10 Bramble, Edinburgh: in directory as bramble, this year's record missing  
+No. 11 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 12 Happiness Forgets, London: in directory as happiness-forgets, this year's record missing  
+No. 14 The Varnish, Los Angeles: to check  
+No. 15 Zetter Townhouse, London: to check  
+No. 16 Mutis, Barcelona: to check  
+No. 18 Clover Club, New York: in directory as clover-club, this year's record missing  
+No. 19 Dry Martini, Barcelona: in directory as dry-martini-by-javier-de-las-muelas, this year's record missing  
+No. 22 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 23 Le Lion Bar de Paris, Hamburg: in directory as le-lion-bar-de-paris, this year's record missing  
+No. 24 Smuggler's Cove, San Francisco: in directory as smugglers-cove, this year's record missing  
+No. 25 Eau de Vie, Sydney: to check  
+No. 26 Experimental Cocktail Club, New York: to check  
+No. 27 Portobello Star, London: to check  
+No. 28 Schumann's, Munich: in directory as schumann-s-bar-am-hofgarten-munich, this year's record missing  
+No. 29 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 30 Lebensstern, Berlin: to check  
+No. 31 Goldene Bar, Munich: to check  
+No. 32 Pegu Club, New York: to check  
+No. 33 Worship Street Whistling Stop, London: to check  
+No. 34 Angel's Share, New York: in directory as angel-s-share, this year's record missing  
+No. 35 Dutch Kills, New York: to check  
+No. 36 Frank's, Buenos Aires: to check  
+No. 37 Beaufort Bar, London: in directory as beaufort-bar, this year's record missing  
+No. 38 Hemingway Bar, Prague: in directory as hemingway-bar, this year's record missing  
+No. 39 Meat, Louisville: to check  
+No. 40 Milk & Honey, London: to check  
+No. 44 Chainaya, Tea & Cocktails, Moscow: to check  
+No. 45 Candelaria, Paris: in directory as candelaria, this year's record missing  
+No. 46 Salvatore at Playboy, London: to check  
+No. 47 Ruby, Copenhagen: in directory as ruby, this year's record missing  
+No. 48 Stagger Lee, Berlin: to check  
+No. 49 La Bar du Plaza Athénée, Paris: to check  
+No. 50 Asoka, Cape town: to check
+
+### World 2011: 45 of 50 ranks without a directory bar
+
+No. 2 Connaught Bar, London: in directory as connaught-bar, this year's record missing  
+No. 3 Artesian, London: in directory as artesian, this year's record missing  
+No. 4 Death & Co, New York: in directory as death-co-east-village, this year's record missing  
+No. 5 Milk & Honey, London: to check  
+No. 6 American Bar, London: in directory as the-american-bar, this year's record missing  
+No. 7 69 Colebrooke Row, London: to check  
+No. 8 Drink, Boston: to check  
+No. 9 Harry's Bar, Paris: in directory as harrys-new-york-bar, this year's record missing  
+No. 10 Black Pearl, Melbourne: in directory as black-pearl, this year's record missing  
+No. 11 Pegu Club, New York: to check  
+No. 13 Eau de Vie, Sydney: to check  
+No. 14 Bramble, Edinburgh: in directory as bramble, this year's record missing  
+No. 15 Employees only, New York: in directory as employees-only, this year's record missing  
+No. 16 La Capilla, Tequila: to check  
+No. 17 Merchant Hotel, Belfast: to check  
+No. 18 Nightjar, London: in directory as nightjar, this year's record missing  
+No. 19 Smuggler's Cove, San Francisco: in directory as smugglers-cove, this year's record missing  
+No. 20 Buddha Bar, Paris: to check  
+No. 21 Skyview Bar, Dubai: to check  
+No. 22 The Varnish, Los Angeles: to check  
+No. 23 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 24 Milk & Honey, New York: to check  
+No. 26 Der Raum, Melbourne: to check  
+No. 29 Door 74, Amsterdam: in directory as door-74, this year's record missing  
+No. 30 Tommy's, San Francisco: in directory as tommy-s, this year's record missing  
+No. 31 Floridita, Havana: to check  
+No. 32 City Space, Moscow: to check  
+No. 33 Matterhorn, Wellington: to check  
+No. 34 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 35 Le Lion Bar de Paris, Hamburg: in directory as le-lion-bar-de-paris, this year's record missing  
+No. 36 Lab, London: open (on a 2025 or 2026 list), missing from directory  
+No. 37 Boadas, Barcelona: in directory as boadas, this year's record missing  
+No. 38 Dutch Kills, New York: to check  
+No. 39 Worship St Whistling Shop, London: to check  
+No. 40 BarAgricole, San Francisco: to check  
+No. 41 Papa Doble, Montpellier: to check  
+No. 42 Quo Vadis, London: to check  
+No. 43 Lounge Bohemia, London: in directory as lounge-bohemia, this year's record missing  
+No. 44 Mayahuel, New York: to check  
+No. 45 Mutis, Barcelona: to check  
+No. 46 Ruby, Copenhagen: in directory as ruby, this year's record missing  
+No. 47 Rules, London: to check  
+No. 48 Hemingway Bar, Paris: in directory as bar-hemingway, this year's record missing  
+No. 49 Zuma, Dubai: in directory as zuma, this year's record missing  
+No. 50 Star Bar, Tokyo: in directory as star-bar, this year's record missing
+
+### Asia 2025: 79 of 100 ranks without a directory bar
+
+No. 1 Bar Leone, Hong Kong: in directory as bar-leone, this year's record missing  
+No. 2 Zest, Seoul: in directory as zest, this year's record missing  
+No. 3 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 4 Bar Us, Bangkok: in directory as bar-us, this year's record missing  
+No. 5 Dry Wave Cocktail Studio, Bangkok: in directory as dry-wave-cocktail-studio, this year's record missing  
+No. 6 Bar Cham, Seoul: in directory as bar-cham, this year's record missing  
+No. 7 Hope & Sesame, Guangzhou: in directory as hope-sesame, this year's record missing  
+No. 9 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 11 Argo, Hong Kong: in directory as argo, this year's record missing  
+No. 12 Modernhaus, Jakarta: in directory as modernhaus, this year's record missing  
+No. 14 Smoke & Bitters, Hiriketiya: in directory as smoke-bitters, this year's record missing  
+No. 16 CMYK, Changsha: in directory as cmyk, this year's record missing  
+No. 17 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 18 Virtù, Tokyo: in directory as virtu, this year's record missing  
+No. 19 BKK Social Club, Bangkok: in directory as bkk-social-club, this year's record missing  
+No. 20 Vender, Taichung: in directory as vender, this year's record missing  
+No. 21 MO Bar Shenzhen, Shenzhen: open (on a 2025 or 2026 list), missing from directory  
+No. 23 Offtrack, Singapore: in directory as offtrack, this year's record missing  
+No. 24 Nutmeg & Clove, Singapore: in directory as nutmeg-clove, this year's record missing  
+No. 25 Yakoboku, Kumamoto: in directory as yakoboku, this year's record missing  
+No. 28 Soka, Bengaluru: in directory as soka, this year's record missing  
+No. 29 Vesper, Bangkok: in directory as vesper, this year's record missing  
+No. 30 Boilermaker, Goa: in directory as boilermaker, this year's record missing  
+No. 31 ZLB23, Bengaluru: in directory as zlb23, this year's record missing  
+No. 32 The Savory Project, Hong Kong: in directory as the-savory-project, this year's record missing  
+No. 33 Gokan, Hong Kong: in directory as gokan, this year's record missing  
+No. 34 Carrots Bar, Jakarta: in directory as carrots-bar, this year's record missing  
+No. 35 Barc, Kathmandu: in directory as barc, this year's record missing  
+No. 36 Punch Room Tokyo, Tokyo: in directory as punch-room-tokyo, this year's record missing  
+No. 37 Bar Spirit Forward, Bengaluru: in directory as bar-spirit-forward, this year's record missing  
+No. 38 Cosmo Pony, Jakarta: in directory as cosmo-pony, this year's record missing  
+No. 41 To Infinity & Beyond, Taipei: in directory as to-infinity-beyond, this year's record missing  
+No. 42 Moonrock, Tainan: in directory as moonrock, this year's record missing  
+No. 43 Opium, Bangkok: in directory as opium, this year's record missing  
+No. 44 Cat Bite Club, Singapore: in directory as cat-bite-club, this year's record missing  
+No. 45 Native, Singapore: in directory as native, this year's record missing  
+No. 46 Lamp Bar, Nara: in directory as lamp-bar, this year's record missing  
+No. 48 Bar Sathorn, Bangkok: in directory as bar-sathorn, this year's record missing  
+No. 49 Bar Libre, Tokyo: in directory as bar-libre, this year's record missing  
+No. 50 Le Chamber, Seoul: in directory as le-chamber, this year's record missing  
+No. 51 Obsidian Bar, Shenzhen: in directory as obsidian-bar, this year's record missing  
+No. 52 Pine & Co, Seoul: in directory as pine-co, this year's record missing  
+No. 53 Side Door, Singapore: in directory as side-door, this year's record missing  
+No. 54 Soko, Seoul: in directory as soko, this year's record missing  
+No. 55 Bar Outrigger, Goa: in directory as bar-outrigger, this year's record missing  
+No. 57 Lab, Taipei: in directory as lab, this year's record missing  
+No. 58 Craftroom, Osaka: in directory as craftroom, this year's record missing  
+No. 59 The Han-Jia, Tainan: in directory as the-han-jia, this year's record missing  
+No. 60 Origin BaR, Singapore: in directory as origin-bar, this year's record missing  
+No. 61 Stir, Ho Chi Minh City: in directory as stir, this year's record missing  
+No. 64 Backdoor Bodega, Penang: in directory as backdoor-bodega, this year's record missing  
+No. 65 Sora, Phnom Penh: in directory as sora, this year's record missing  
+No. 66 Wu (Nothingness), Taipei: in directory as wu, this year's record missing  
+No. 67 Gold Bar, Tokyo: open (on a 2025 or 2026 list), missing from directory  
+No. 68 Pantja, Jakarta: in directory as pantja, this year's record missing  
+No. 71 Mahaniyom Cocktail Bar, Bangkok: in directory as mahaniyom-cocktail-bar, this year's record missing  
+No. 74 Epic, Shanghai: in directory as epic, this year's record missing  
+No. 75 Maltail, Kaohsiung: in directory as maltail, this year's record missing  
+No. 76 Bee's Knees, Kyoto: in directory as bees-knees, this year's record missing  
+No. 78 The Curator, Manila: in directory as the-curator, this year's record missing  
+No. 79 The Bellwood, Tokyo: in directory as the-bellwood, this year's record missing  
+No. 80 The Opposites, Hong Kong: in directory as the-opposites, this year's record missing  
+No. 81 Sober Company, Shanghai: in directory as sober-company, this year's record missing  
+No. 83 Workshop14, Hanoi: in directory as workshop14, this year's record missing  
+No. 84 Raa, Hiriketiya: in directory as raa, this year's record missing  
+No. 85 Coa (Shanghai), Shanghai: in directory as coa-shanghai, this year's record missing  
+No. 86 The Hudson Rooms, Hanoi: in directory as the-hudson-rooms, this year's record missing  
+No. 87 The Haflington, Hanoi: in directory as the-haflington, this year's record missing  
+No. 88 Mostly Harmless, Hong Kong: in directory as mostly-harmless (inactive), this year's record missing  
+No. 89 Employees Only, Singapore: in directory as employees-only-singapore, this year's record missing  
+No. 90 Messenger Service, Bangkok: in directory as messengerservice, this year's record missing  
+No. 92 Coley, Kuala Lumpur: in directory as coley, this year's record missing  
+No. 93 The Enigma Mansion, Ho Chi Minh City: in directory as the-enigma-mansion, this year's record missing  
+No. 94 Hideaway, Goa: open (on a 2025 or 2026 list), missing from directory  
+No. 95 Fura, Singapore: in directory as fura, this year's record missing  
+No. 96 Charles H, Seoul: in directory as charles-h, this year's record missing  
+No. 97 Pony Up, Shanghai: in directory as pony-up, this year's record missing  
+No. 98 The Golden Tooth, Jakarta: in directory as the-golden-tooth, this year's record missing  
+No. 100 Bar Nayuta, Osaka: in directory as bar-nayuta, this year's record missing
+
+### Asia 2024: 87 of 100 ranks without a directory bar
+
+No. 1 Bar Leone, Hong Kong: in directory as bar-leone, this year's record missing  
+No. 2 Zest, Seoul: in directory as zest, this year's record missing  
+No. 3 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 4 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 5 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 6 Nutmeg & Clove, Singapore: in directory as nutmeg-clove, this year's record missing  
+No. 7 BKK Social Club, Bangkok: in directory as bkk-social-club, this year's record missing  
+No. 8 Penrose, Kuala Lumpur: in directory as penrose, this year's record missing  
+No. 9 Argo, Hong Kong: in directory as argo, this year's record missing  
+No. 10 The Aubrey, Hong Kong: in directory as the-aubrey, this year's record missing  
+No. 11 Virtù, Tokyo: in directory as virtu, this year's record missing  
+No. 13 Vesper, Bangkok: in directory as vesper, this year's record missing  
+No. 14 Hope & Sesame, Guangzhou: in directory as hope-sesame, this year's record missing  
+No. 17 Darkside, Hong Kong: in directory as darkside, this year's record missing  
+No. 18 Mahaniyom Cocktail Bar, Bangkok: in directory as mahaniyom-cocktail-bar, this year's record missing  
+No. 19 The Savory Project, Hong Kong: in directory as the-savory-project, this year's record missing  
+No. 20 Bar Cham, Seoul: in directory as bar-cham, this year's record missing  
+No. 21 Bar Us, Bangkok: in directory as bar-us, this year's record missing  
+No. 22 The St. Regis Bar (Macau), Macau: in directory as the-st-regis-bar, this year's record missing  
+No. 24 Penicillin, Hong Kong: in directory as penicillin, this year's record missing  
+No. 28 Craftroom, Osaka: in directory as craftroom, this year's record missing  
+No. 29 Smoke & Bitters, Hiriketiya: in directory as smoke-bitters, this year's record missing  
+No. 30 Vender, Taichung: in directory as vender, this year's record missing  
+No. 31 Native, Singapore: in directory as native, this year's record missing  
+No. 32 Origin Bar, Singapore: in directory as origin-bar, this year's record missing  
+No. 33 The Curator, Manila: in directory as the-curator, this year's record missing  
+No. 34 The Bellwood, Tokyo: in directory as the-bellwood, this year's record missing  
+No. 35 Analogue Initiative, Singapore: in directory as analogue-initiative (inactive), status permanently_closed, this year's record missing  
+No. 36 Bar Trigona, Kuala Lumpur: in directory as bar-trigona, this year's record missing  
+No. 38 Employees Only, Singapore: in directory as employees-only-singapore, this year's record missing  
+No. 39 Barc, Kathmandu: in directory as barc, this year's record missing  
+No. 40 ZLB23, Bengaluru: in directory as zlb23, this year's record missing  
+No. 41 Reka, Kuala Lumpur: in directory as reka-bar, this year's record missing  
+No. 42 Fura, Singapore: in directory as fura, this year's record missing  
+No. 43 CMYK, Changsha: in directory as cmyk, this year's record missing  
+No. 44 The Public House, Taipei: in directory as the-public-house, this year's record missing  
+No. 45 Mostly Harmless, Hong Kong: in directory as mostly-harmless (inactive), this year's record missing  
+No. 46 Alice, Seoul: in directory as alice-cheongdam, this year's record missing  
+No. 47 The Haflington, Hanoi: in directory as the-haflington, this year's record missing  
+No. 48 Le Chamber, Seoul: in directory as le-chamber, this year's record missing  
+No. 51 Soko, Soko: open (on a 2025 or 2026 list), missing from directory  
+No. 52 Backdoor Bodega, Penang: in directory as backdoor-bodega, this year's record missing  
+No. 54 Epic, Shanghai: in directory as epic, this year's record missing  
+No. 55 Lamp Bar, Nara: in directory as lamp-bar, this year's record missing  
+No. 56 Three X Co, Kuala Lumpur: in directory as three-x-co, this year's record missing  
+No. 57 Republic, Singapore: in directory as republic-bar, this year's record missing  
+No. 58 Stir, Ho Chi Minh City: in directory as stir, this year's record missing  
+No. 59 The Bombay Canteen, Mumbai: in directory as the-bombay-canteen, this year's record missing  
+No. 60 No Sleep Club, Singapore: in directory as no-sleep-club, this year's record missing  
+No. 61 To Infinity & Beyond, Taipei: in directory as to-infinity-beyond, this year's record missing  
+No. 62 Tropic City, Bangkok: in directory as tropic-city (inactive), status permanently_closed, this year's record missing  
+No. 63 Stay Gold Flamingo, Singapore: in directory as stay-gold-flamingo, this year's record missing  
+No. 64 Yakoboku, Kumamoto: in directory as yakoboku, this year's record missing  
+No. 65 The Elephant Room, Singapore: in directory as the-elephant-room, this year's record missing  
+No. 66 Mizunara: The Library, Hong Kong: in directory as mizunara-the-library, this year's record missing  
+No. 67 Honky Tonks Tavern, Hong Kong: in directory as honky-tonks-tavern, this year's record missing  
+No. 68 Lair, New Delhi: in directory as lair, this year's record missing  
+No. 69 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 70 Coley, Kuala Lumpur: in directory as coley, this year's record missing  
+No. 72 Under Lab, Taipei: in directory as under-lab, this year's record missing  
+No. 73 Opium, Bangkok: in directory as opium, this year's record missing  
+No. 74 Folklore, Tokyo: to check  
+No. 75 Bee's Knees, Kyoto: in directory as bees-knees, this year's record missing  
+No. 76 Gold Bar, Tokyo: open (on a 2025 or 2026 list), missing from directory  
+No. 77 Cat Bite Club, Singapore: in directory as cat-bite-club, this year's record missing  
+No. 78 28 HongKong Street, Singapore: to check  
+No. 79 The Han-Jia, Tainan: in directory as the-han-jia, this year's record missing  
+No. 80 Junglebird, Kuala Lumpur: in directory as jungle-bird, this year's record missing  
+No. 81 The Hudson Rooms, Hanoi: in directory as the-hudson-rooms, this year's record missing  
+No. 82 Southbank Cafe + Lounge, Muntinlupa City: to check  
+No. 83 Firefly, Bangkok: in directory as firefly, this year's record missing  
+No. 84 Sidecar, New Delhi: in directory as sidecar, this year's record missing  
+No. 85 The Sailing Bar, Nara: to check  
+No. 86 Bulgari Ginza Bar, Tokyo: to check  
+No. 87 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 88 The St. Regis Bar (Jakarta), Jakarta: in directory as the-st-regis-bar-jakarta, this year's record missing  
+No. 89 Gong Gan, Seoul: in directory as gong-gan, this year's record missing  
+No. 90 Asia Today, Bangkok: in directory as asia-today, this year's record missing  
+No. 91 The Bamboo Bar, Bangkok: in directory as bamboo-bar, this year's record missing  
+No. 92 Sober Company, Shanghai: in directory as sober-company, this year's record missing  
+No. 93 Last Word, Singapore: in directory as last-word, this year's record missing  
+No. 94 Wu (Nothingness), Taipei: in directory as wu, this year's record missing  
+No. 95 Charles H, Seoul: in directory as charles-h, this year's record missing  
+No. 97 Tell Camellia, Hong Kong: in directory as tell-camellia, this year's record missing  
+No. 98 Dry Wave Cocktail Studio, Bangkok: in directory as dry-wave-cocktail-studio, this year's record missing  
+No. 99 Drinking & Healing, Ho Chi Minh City: in directory as drinking-and-healing, this year's record missing  
+No. 100 Moonrock, Tainan: in directory as moonrock, this year's record missing
+
+### Asia 2023: 36 of 49 ranks without a directory bar
+
+No. 1 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 2 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 3 BKK Social Club, Bangkok: in directory as bkk-social-club, this year's record missing  
+No. 4 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 5 Zest, Seoul: in directory as zest, this year's record missing  
+No. 6 Tropic City, Bangkok: in directory as tropic-city (inactive), status permanently_closed, this year's record missing  
+No. 7 Nutmeg & Clove, Singapore: in directory as nutmeg-clove, this year's record missing  
+No. 8 Argo, Hong Kong: in directory as argo, this year's record missing  
+No. 9 Darkside, Hong Kong: in directory as darkside, this year's record missing  
+No. 13 Bar Cham, Seoul: in directory as bar-cham, this year's record missing  
+No. 15 Analogue Initiative, Singapore: in directory as analogue-initiative (inactive), status permanently_closed, this year's record missing  
+No. 16 Republic, Singapore: in directory as republic-bar, this year's record missing  
+No. 18 Sidecar, New Delhi: in directory as sidecar, this year's record missing  
+No. 20 Virtù, Tokyo: in directory as virtu, this year's record missing  
+No. 21 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 23 Lamp Bar, Nara: in directory as lamp-bar, this year's record missing  
+No. 24 28 HongKong Street, Singapore: to check  
+No. 26 Penicillin, Hong Kong: in directory as penicillin, this year's record missing  
+No. 28 Alice, Seoul: in directory as alice-cheongdam, this year's record missing  
+No. 29 Pantja, Jakarta: in directory as pantja, this year's record missing  
+No. 30 Employees Only, Singapore: in directory as employees-only-singapore, this year's record missing  
+No. 33 Mostly Harmless, Hong Kong: in directory as mostly-harmless (inactive), this year's record missing  
+No. 34 The Curator, Manila: in directory as the-curator, this year's record missing  
+No. 35 The Bombay Canteen, Mumbai: in directory as the-bombay-canteen, this year's record missing  
+No. 36 Bar Trigona, Kuala Lumpur: in directory as bar-trigona, this year's record missing  
+No. 37 Southside Parlor, Seoul: in directory as southside-parlor, this year's record missing  
+No. 38 Copitas, Bengaluru: in directory as copitas, this year's record missing  
+No. 39 Hope & Sesame, Guangzhou: in directory as hope-sesame, this year's record missing  
+No. 40 Smoke & Bitters, Hiriketiya: in directory as smoke-bitters, this year's record missing  
+No. 41 Vender, Taichung: in directory as vender, this year's record missing  
+No. 42 Native, Singapore: in directory as native, this year's record missing  
+No. 43 The Public House, Taipei: in directory as the-public-house, this year's record missing  
+No. 44 Bee's Knees, Kyoto: in directory as bees-knees, this year's record missing  
+No. 45 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 48 The Living Room, Mumbai: to check  
+No. 49 The Bellwood, Tokyo: in directory as the-bellwood, this year's record missing
+
+### Asia 2022: 41 of 50 ranks without a directory bar
+
+No. 1 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 2 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 3 Argo, Hong Kong: in directory as argo, this year's record missing  
+No. 4 Tesouro, Colvá: to check  
+No. 5 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 6 Indulge Experimental Bistro, Taipei: in directory as indulge-bistro, this year's record missing  
+No. 7 Charles H, Seoul: in directory as charles-h, this year's record missing  
+No. 8 MO Bar, Singapore: in directory as mo-bar, this year's record missing  
+No. 9 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 10 BKK Social Club, Bangkok: in directory as bkk-social-club, this year's record missing  
+No. 11 Sober Company, Shanghai: in directory as sober-company, this year's record missing  
+No. 13 Darkside, Hong Kong: in directory as darkside, this year's record missing  
+No. 14 Sidecar, New Delhi: in directory as sidecar, this year's record missing  
+No. 15 No Sleep Club, Singapore: in directory as no-sleep-club, this year's record missing  
+No. 17 Tropic City, Bangkok: in directory as tropic-city (inactive), status permanently_closed, this year's record missing  
+No. 18 Hope & Sesame, Guangzhou: in directory as hope-sesame, this year's record missing  
+No. 19 Vesper, Bangkok: in directory as vesper, this year's record missing  
+No. 20 Lamp Bar, Nara: in directory as lamp-bar, this year's record missing  
+No. 22 Penicillin, Hong Kong: in directory as penicillin, this year's record missing  
+No. 24 Aha Saloon, Taipei: to check  
+No. 25 Bar Trench, Tokyo: in directory as bar-trench, this year's record missing  
+No. 27 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 28 Bar Cham, Seoul: in directory as bar-cham, this year's record missing  
+No. 29 Bar Trigona, Kuala Lumpur: in directory as bar-trigona, this year's record missing  
+No. 32 The Cocktail Club, Jakarta: in directory as the-cocktail-club, this year's record missing  
+No. 35 Junglebird, Kuala Lumpur: in directory as jungle-bird, this year's record missing  
+No. 36 Nutmeg & Clove, Singapore: in directory as nutmeg-clove, this year's record missing  
+No. 37 Analogue, Singapore: in directory as analogue-initiative (inactive), status permanently_closed, this year's record missing  
+No. 38 The Aubrey, Hong Kong: in directory as the-aubrey, this year's record missing  
+No. 39 Le Chamber, Seoul: in directory as le-chamber, this year's record missing  
+No. 40 Alice, Seoul: in directory as alice-cheongdam, this year's record missing  
+No. 41 Memento Mori, Tokyo: to check  
+No. 42 Smoke & Bitters, Hiriketiya: in directory as smoke-bitters, this year's record missing  
+No. 43 Asia Today, Bangkok: in directory as asia-today, this year's record missing  
+No. 44 Copitas, Bengaluru: in directory as copitas, this year's record missing  
+No. 45 Union Trading Company, Shanghai: in directory as union-trading-company, this year's record missing  
+No. 46 The Bamboo Bar, Bangkok: in directory as bamboo-bar, this year's record missing  
+No. 47 Bee's Knees, Kyoto: in directory as bees-knees, this year's record missing  
+No. 48 Zest, Seoul: in directory as zest, this year's record missing  
+No. 49 28 HongKong Street, Singapore: to check  
+No. 50 Speak Low, Shanghai: in directory as speak-low, this year's record missing
+
+### Asia 2021: 33 of 50 ranks without a directory bar
+
+No. 1 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 2 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 4 Indulge Experimental Bistro, Taipei: in directory as indulge-bistro, this year's record missing  
+No. 6 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 9 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 10 Caprice Bar, Hong Kong: in directory as caprice-bar, this year's record missing  
+No. 11 The Bamboo Bar, Bangkok: in directory as bamboo-bar, this year's record missing  
+No. 12 Bar Trigona, Kuala Lumpur: in directory as bar-trigona, this year's record missing  
+No. 14 Native, Singapore: in directory as native, this year's record missing  
+No. 15 Hope & Sesame, Guangzhou: in directory as hope-sesame, this year's record missing  
+No. 16 Sidecar, New Delhi: in directory as sidecar, this year's record missing  
+No. 18 Bee's Knees, Kyoto: in directory as bees-knees, this year's record missing  
+No. 19 Room by Le Kief, Taipei: to check  
+No. 21 28 HongKong Street, Singapore: to check  
+No. 22 Tropic City, Bangkok: in directory as tropic-city (inactive), status permanently_closed, this year's record missing  
+No. 24 Aha Saloon, Taipei: to check  
+No. 26 The Pontiac, Hong Kong: in directory as the-pontiac, this year's record missing  
+No. 27 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 29 Barbary Coast, Singapore: to check  
+No. 30 Penicillin, Hong Kong: in directory as penicillin, this year's record missing  
+No. 32 Speak Low, Shanghai: in directory as speak-low, this year's record missing  
+No. 33 Union Brasserie, Bakery and Bar, Jakarta: to check  
+No. 34 Bar Cham, Seoul: in directory as bar-cham, this year's record missing  
+No. 36 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 38 The Curator, Manila: in directory as the-curator, this year's record missing  
+No. 39 D.Bespoke, Singapore: in directory as d-bespoke-singapore, this year's record missing  
+No. 40 Darkside, Hong Kong: in directory as darkside, this year's record missing  
+No. 41 Alice, Seoul: in directory as alice-cheongdam, this year's record missing  
+No. 42 The Old Man, Singapore: to check  
+No. 43 Bar Trench, Tokyo: in directory as bar-trench, this year's record missing  
+No. 44 Le Chamber, Seoul: in directory as le-chamber, this year's record missing  
+No. 46 Vesper, Bangkok: in directory as vesper, this year's record missing  
+No. 47 Three X Co, Kuala Lumpur: in directory as three-x-co, this year's record missing
+
+### Asia 2020: 43 of 50 ranks without a directory bar
+
+No. 1 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 3 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 4 Indulge Experimental Bistro, Taipei: in directory as indulge-bistro, this year's record missing  
+No. 6 Native, Singapore: in directory as native, this year's record missing  
+No. 7 The Bamboo Bar at Mandarin Oriental, Bangkok: in directory as bamboo-bar, this year's record missing  
+No. 8 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 10 Aha Saloon, Taipei: to check  
+No. 12 Sober Company, Shanghai: in directory as sober-company, this year's record missing  
+No. 14 Bar Trigona, Kuala Lumpur: in directory as bar-trigona, this year's record missing  
+No. 15 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 17 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 19 Speak Low, Shanghai: in directory as speak-low, this year's record missing  
+No. 20 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 21 Bee's Knees, Kyoto: in directory as bees-knees, this year's record missing  
+No. 22 The Old Man, Singapore: to check  
+No. 23 D.Bespoke, Singapore: in directory as d-bespoke-singapore, this year's record missing  
+No. 24 Tropic City, Bangkok: in directory as tropic-city (inactive), status permanently_closed, this year's record missing  
+No. 25 Gibson, Singapore: in directory as gibson, this year's record missing  
+No. 26 Draft Land, Taipei: in directory as draft-land, this year's record missing  
+No. 27 Room by Le Kief, Taipei: to check  
+No. 28 8 1/2 Otto e Mezzo Bombana, Hong Kong: to check  
+No. 29 Charles H, Seoul: in directory as charles-h, this year's record missing  
+No. 30 28 HongKong Street, Singapore: to check  
+No. 31 Rabbit Hole, Bangkok: in directory as rabbit-hole, this year's record missing  
+No. 32 Nutmeg & Clove, Singapore: in directory as nutmeg-clove, this year's record missing  
+No. 33 Backstage Cocktail Bar, Bangkok: to check  
+No. 34 Caprice Bar, Hong Kong: in directory as caprice-bar, this year's record missing  
+No. 35 The Pontiac, Hong Kong: in directory as the-pontiac, this year's record missing  
+No. 36 Hope & Sesame, Guangzhou: in directory as hope-sesame, this year's record missing  
+No. 37 Junglebird, Kuala Lumpur: in directory as jungle-bird, this year's record missing  
+No. 38 The Odd Couple, Shanghai: in directory as the-odd-couple (inactive), this year's record missing  
+No. 39 Bar Trench, Tokyo: in directory as bar-trench, this year's record missing  
+No. 40 Sidecar, New Delhi: in directory as sidecar, this year's record missing  
+No. 41 Bar Orchard Ginza, Tokyo: in directory as bar-orchard-ginza, this year's record missing  
+No. 42 The Curator, Manila: in directory as the-curator, this year's record missing  
+No. 43 Union Brasserie, Bakery & Bar, Jakarta: to check  
+No. 44 Lobster Bar & Grill, Hong Kong: in directory as lobster-bar, this year's record missing  
+No. 45 The Back Room, Manila: in directory as the-back-room, this year's record missing  
+No. 46 MO Bar, Singapore: in directory as mo-bar, this year's record missing  
+No. 47 Alice, Seoul: in directory as alice-cheongdam, this year's record missing  
+No. 48 Coley, Kuala Lumpur: in directory as coley, this year's record missing  
+No. 49 Le Chamber, Seoul: in directory as le-chamber, this year's record missing  
+No. 50 Bar Cham, Seoul: in directory as bar-cham, this year's record missing
+
+### Asia 2019: 38 of 50 ranks without a directory bar
+
+No. 2 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 4 Native, Singapore: in directory as native, this year's record missing  
+No. 6 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 7 Speak Low, Shanghai: in directory as speak-low, this year's record missing  
+No. 8 The Bamboo Bar at M.O, Bangkok: in directory as bamboo-bar, this year's record missing  
+No. 9 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 11 The Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 12 Coa, Hong Kong: in directory as coa, this year's record missing  
+No. 16 Sober Company, Shanghai: in directory as sober-company, this year's record missing  
+No. 17 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 19 Le Chamber, Seoul: in directory as le-chamber, this year's record missing  
+No. 20 Backstage Cocktail Bar, Bangkok: to check  
+No. 21 28 HongKong Street, Singapore: to check  
+No. 22 Operation Dagger, Singapore: to check  
+No. 23 Bar Trench, Tokyo: in directory as bar-trench, this year's record missing  
+No. 24 Aha Saloon, Taipei: to check  
+No. 25 D.Bespoke, Singapore: in directory as d-bespoke-singapore, this year's record missing  
+No. 26 Vesper, Bangkok: in directory as vesper, this year's record missing  
+No. 29 Alice Cheongdam, Seoul: in directory as alice-cheongdam, this year's record missing  
+No. 30 Union Trading Company, Shanghai: in directory as union-trading-company, this year's record missing  
+No. 31 Tropic City, Bangkok: in directory as tropic-city (inactive), status permanently_closed, this year's record missing  
+No. 32 The Pontiac, Hong Kong: in directory as the-pontiac, this year's record missing  
+No. 33 Lobster Bar & Grill, Hong Kong: in directory as lobster-bar, this year's record missing  
+No. 34 Rabbit Hole, Bangkok: in directory as rabbit-hole, this year's record missing  
+No. 35 Hope & Sesame, Guangzhou: in directory as hope-sesame, this year's record missing  
+No. 36 Stockton, Hong Kong: to check  
+No. 37 The Curator, Manila: in directory as the-curator, this year's record missing  
+No. 38 8 1/2 Otto e Mezzo Bombana, Hong Kong: to check  
+No. 39 Union Brasserie, Bakery & Bar, Jakarta: to check  
+No. 40 Bar Trigona, Kuala Lumpur: in directory as bar-trigona, this year's record missing  
+No. 41 Employees Only, Singapore: in directory as employees-only-singapore, this year's record missing  
+No. 42 Smalls, Bangkok: in directory as smalls, this year's record missing  
+No. 44 Junglebird, Kuala Lumpur: in directory as jungle-bird, this year's record missing  
+No. 45 Draft Land, Taipei: in directory as draft-land, this year's record missing  
+No. 46 The Other Room, Singapore: to check  
+No. 47 Oto, Manila: to check  
+No. 49 Mixology Salon, Tokyo: to check  
+No. 50 The Back Room, Manila: in directory as the-back-room, this year's record missing
+
+### Asia 2018: 46 of 50 ranks without a directory bar
+
+No. 1 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 2 Indulge Experimental Bistro, Taipei: in directory as indulge-bistro, this year's record missing  
+No. 3 Speak Low, Shanghai: in directory as speak-low, this year's record missing  
+No. 6 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 7 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 8 Native, Singapore: in directory as native, this year's record missing  
+No. 9 The Bamboo Bar at M.O, Bangkok: in directory as bamboo-bar, this year's record missing  
+No. 10 Lobster Bar & Grill, Hong Kong: in directory as lobster-bar, this year's record missing  
+No. 11 Stockton, Hong Kong: to check  
+No. 12 28 HongKong Street, Singapore: to check  
+No. 13 Backstage Cocktail Bar, Bangkok: to check  
+No. 14 Sober Company, Shanghai: in directory as sober-company, this year's record missing  
+No. 16 Bar Trench, Tokyo: in directory as bar-trench, this year's record missing  
+No. 17 Le Chamber, Seoul: in directory as le-chamber, this year's record missing  
+No. 18 Zuma, Hong Kong: in directory as zuma-hong-kong, this year's record missing  
+No. 19 Operation Dagger, Singapore: to check  
+No. 20 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 21 Charles H, Seoul: in directory as charles-h, this year's record missing  
+No. 22 Gibson, Singapore: in directory as gibson, this year's record missing  
+No. 23 Employees Only, Singapore: in directory as employees-only-singapore, this year's record missing  
+No. 24 8 1/2 Otto e Mezzo Bombana, Hong Kong: to check  
+No. 25 The Curator, Manila: in directory as the-curator, this year's record missing  
+No. 26 Alice Cheongdam, Seoul: in directory as alice-cheongdam, this year's record missing  
+No. 27 Vesper, Bangkok: in directory as vesper, this year's record missing  
+No. 28 Union Trading Company, Shanghai: in directory as union-trading-company, this year's record missing  
+No. 29 Smalls, Bangkok: in directory as smalls, this year's record missing  
+No. 30 Janes & Hooch, Beijing: to check  
+No. 31 The Pontiac, Hong Kong: in directory as the-pontiac, this year's record missing  
+No. 32 D.Bespoke, Singapore: in directory as d-bespoke-singapore, this year's record missing  
+No. 33 Nutmeg & Clove, Singapore: in directory as nutmeg-clove, this year's record missing  
+No. 34 Gen Yamamoto, Tokyo: in directory as gen-yamamoto, this year's record missing  
+No. 35 TCRC, Tainan: to check  
+No. 36 Potato Head Beack Club, Bali: to check  
+No. 37 Bar Orchard Ginza, Tokyo: in directory as bar-orchard-ginza, this year's record missing  
+No. 38 Junglebird, Kuala Lumpur: in directory as jungle-bird, this year's record missing  
+No. 39 Loewy, Jakarta: to check  
+No. 40 Mixology Salon, Tokyo: to check  
+No. 41 Union Brasserie, Bakery & Bar, Jakarta: to check  
+No. 42 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 43 Star Bar, Tokyo: in directory as star-bar, this year's record missing  
+No. 45 Lamp Bar, Nara: in directory as lamp-bar, this year's record missing  
+No. 46 Coley, Kuala Lumpur: in directory as coley, this year's record missing  
+No. 47 Keepers, Seoul: in directory as keepers, this year's record missing  
+No. 48 The Ritz-Carlton Bar & Lounge, Macau: to check  
+No. 49 Ku Bar, Bangkok: in directory as ku-bar, this year's record missing  
+No. 50 The Other Room, Singapore: to check
+
+### Asia 2017: 46 of 50 ranks without a directory bar
+
+No. 1 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 3 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 4 28 HongKong Street, Singapore: to check  
+No. 5 Indulge Experimental Bistro, Taipei: in directory as indulge-bistro, this year's record missing  
+No. 6 Operation Dagger, Singapore: to check  
+No. 8 Stockton, Hong Kong: to check  
+No. 9 Union Trading Company, Shanghai: in directory as union-trading-company, this year's record missing  
+No. 10 Lobster Bar & Grill, Hong Kong: in directory as lobster-bar, this year's record missing  
+No. 11 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 13 The Bamboo Bar at M.O, Bangkok: in directory as bamboo-bar, this year's record missing  
+No. 14 Gibson, Singapore: in directory as gibson, this year's record missing  
+No. 15 Alice Cheongdam, Seoul: in directory as alice-cheongdam, this year's record missing  
+No. 16 The Pontiac, Hong Kong: in directory as the-pontiac, this year's record missing  
+No. 17 Employees Only, Singapore: in directory as employees-only-singapore, this year's record missing  
+No. 18 Backstage Cocktail Bar, Bangkok: to check  
+No. 19 Sober Company, Shanghai: in directory as sober-company, this year's record missing  
+No. 20 Native, Singapore: in directory as native, this year's record missing  
+No. 21 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 22 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 23 The Curator, Manila: in directory as the-curator, this year's record missing  
+No. 24 Zuma, Hong Kong: in directory as zuma-hong-kong, this year's record missing  
+No. 25 Bar Orchard Ginza, Tokyo: in directory as bar-orchard-ginza, this year's record missing  
+No. 26 8 1/2 Otto e Mezzo Bombana, Hong Kong: to check  
+No. 27 Charles H, Seoul: in directory as charles-h, this year's record missing  
+No. 28 Bar Trench, Tokyo: in directory as bar-trench, this year's record missing  
+No. 29 D.Bespoke, Singapore: in directory as d-bespoke-singapore, this year's record missing  
+No. 30 Nutmeg & Clove, Singapore: in directory as nutmeg-clove, this year's record missing  
+No. 31 Star Bar, Tokyo: in directory as star-bar, this year's record missing  
+No. 32 Le Chamber, Seoul: in directory as le-chamber, this year's record missing  
+No. 33 Janes & Hooch, Beijing: to check  
+No. 34 Q&A Bar, Bangkok: to check  
+No. 35 The Other Room, Singapore: to check  
+No. 36 Lamp Bar, Nara: in directory as lamp-bar, this year's record missing  
+No. 37 AER Bar & Lounge, Mumbai: to check  
+No. 38 Sugarhall, Singapore: to check  
+No. 39 East End, Taipei: to check  
+No. 40 Vesper, Bangkok: in directory as vesper, this year's record missing  
+No. 41 Omakase + Appreciate, Kuala Lumpur: to check  
+No. 42 The Chinnery at Mandarin Oriental, Hong Kong: to check  
+No. 43 Potato Head Beack Club, Bali: to check  
+No. 44 Bar D.Still, Seoul: in directory as d-still, this year's record missing  
+No. 45 ABV, Makati City: to check  
+No. 47 Keepers, Seoul: in directory as keepers, this year's record missing  
+No. 48 Dr. Fern's Gin Parlour, Hong Kong: to check  
+No. 49 Club Boys Saloon, Taipei: to check  
+No. 50 The Night Rooster, Bali: in directory as night-rooster, this year's record missing
+
+### Asia 2016: 47 of 50 ranks without a directory bar
+
+No. 1 28 HongKong Street, Singapore: to check  
+No. 2 Speak Low, Shanghai: in directory as speak-low, this year's record missing  
+No. 3 High Five, Tokyo: in directory as bar-high-five, this year's record missing  
+No. 4 Lobster Bar & Grill, Hong Kong: in directory as lobster-bar, this year's record missing  
+No. 5 Manhattan, Singapore: in directory as manhattan, this year's record missing  
+No. 7 Operation Dagger, Singapore: to check  
+No. 8 Jigger & Pony, Singapore: in directory as jigger-pony, this year's record missing  
+No. 9 Union Trading Company, Shanghai: in directory as union-trading-company, this year's record missing  
+No. 10 Omakase + Appreciate, Kuala Lumpur: to check  
+No. 11 Alice Cheongdam, Seoul: in directory as alice-cheongdam, this year's record missing  
+No. 12 Tippling Club, Singapore: in directory as tippling-club (inactive), status permanently_closed, this year's record missing  
+No. 13 D.Bespoke, Singapore: in directory as d-bespoke-singapore, this year's record missing  
+No. 14 ABV, Makati City: to check  
+No. 15 Alchemy, Taipei: in directory as alchemy-speakeasy-bar-taipei, this year's record missing  
+No. 16 The Curator, Manila: in directory as the-curator, this year's record missing  
+No. 18 Janes & Hooch, Beijing: to check  
+No. 19 The Pontiac, Hong Kong: in directory as the-pontiac, this year's record missing  
+No. 20 Woo Taipei, Taipei: to check  
+No. 21 Bar Benfiddich, Tokyo: in directory as bar-benfiddich, this year's record missing  
+No. 22 Gibson, Singapore: in directory as gibson, this year's record missing  
+No. 23 TCRC, Tainan: to check  
+No. 24 Charles H, Seoul: in directory as charles-h, this year's record missing  
+No. 25 Le Chamber, Seoul: in directory as le-chamber, this year's record missing  
+No. 26 Q&A, Bangkok: to check  
+No. 28 Royal Bar, Tokyo: to check  
+No. 29 Honi Honi, Hong Kong: to check  
+No. 30 Bar Trench, Tokyo: in directory as bar-trench, this year's record missing  
+No. 31 Stockton, Hong Kong: to check  
+No. 32 Loewy, Jakarta: to check  
+No. 33 Star Bar, Tokyo: in directory as star-bar, this year's record missing  
+No. 34 The Bamboo Bar at M.O, Bangkok: in directory as bamboo-bar, this year's record missing  
+No. 35 Union Brasserie, Bakery & Bar, Jakarta: to check  
+No. 36 Codename Mixology Akasaka, Tokyo: to check  
+No. 37 Bar Orchard Ginza, Tokyo: in directory as bar-orchard-ginza, this year's record missing  
+No. 38 Mixology Laboratory, Tokyo: to check  
+No. 39 Zuma, Hong Kong: in directory as zuma-hong-kong, this year's record missing  
+No. 40 Ounce, Taipei: in directory as ounce-taipei, this year's record missing  
+No. 41 Maggie Choo's, Bangkok: to check  
+No. 42 Constellation, Shanghai: to check  
+No. 43 Anti:Dote, Singapore: to check  
+No. 44 Ori:gin, Hong Kong: to check  
+No. 45 The Envoy, Hong Kong: to check  
+No. 46 R&D Cocktail Lab, Taipei: to check  
+No. 47 Mahalo Tiki Lounge, Hong Kong: to check  
+No. 48 Sugarhall, Singapore: to check  
+No. 49 Bar D.Still, Seoul: in directory as d-still, this year's record missing  
+No. 50 Hyde & Seek Gastro Bar, Bali: to check
+
+### North America 2025: 43 of 50 ranks without a directory bar
+
+No. 1 Handshake Speakeasy, Mexico City: in directory as handshake-speakeasy, this year's record missing  
+No. 2 Superbueno, New York: in directory as superbueno, this year's record missing  
+No. 3 Tlecān, Mexico City: in directory as tlecan, this year's record missing  
+No. 4 Jewel of the South, New Orleans: in directory as jewel-of-the-south, this year's record missing  
+No. 5 Sip & Guzzle, New York: in directory as sip-guzzle, this year's record missing  
+No. 6 Overstory, New York: in directory as overstory, this year's record missing  
+No. 7 Bar Pompette, Toronto: in directory as bar-pompette, this year's record missing  
+No. 8 El Gallo Altanero, Guadalajara: in directory as el-gallo-altanero, this year's record missing  
+No. 9 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 10 Kumiko, Chicago: in directory as kumiko, this year's record missing  
+No. 11 Clemente Bar, New York: in directory as clemente-bar, this year's record missing  
+No. 12 Mírate, Los Angeles: in directory as mirate, this year's record missing  
+No. 13 Café La Trova, Miami: in directory as cafe-la-trova, this year's record missing  
+No. 14 Bar Mauro, Mexico City: in directory as bar-mauro, this year's record missing  
+No. 15 Martiny’s, New York: in directory as martinys, this year's record missing  
+No. 16 Pacific Cocktail Haven, San Francisco: in directory as pacific-cocktail-haven, this year's record missing  
+No. 17 True Laurel, San Francisco: in directory as true-laurel, this year's record missing  
+No. 18 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 19 Double Chicken Please, New York: in directory as double-chicken-please, this year's record missing  
+No. 20 Baltra Bar, Mexico City: in directory as baltra-bar, this year's record missing  
+No. 22 Aruba Day Drink, Tijuana: in directory as aruba-day-drink, this year's record missing  
+No. 24 Thunderbolt, Los Angeles: in directory as thunderbolt, this year's record missing  
+No. 25 Best Intentions, Chicago: in directory as best-intentions, this year's record missing  
+No. 26 Botanist Bar, Vancouver: in directory as botanist, this year's record missing  
+No. 27 Arca, Tulum: in directory as arca, this year's record missing  
+No. 28 The Keefer Bar, Vancouver: in directory as the-keefer-bar, this year's record missing  
+No. 30 Library by the Sea, Grand Cayman: in directory as library-by-the-sea, this year's record missing  
+No. 31 Cloakroom, Montreal: in directory as the-cloakroom, this year's record missing  
+No. 32 La Factoría, San Juan: in directory as la-factora, this year's record missing  
+No. 33 Maison Premiere, New York: in directory as maison-premiere, this year's record missing  
+No. 37 Bar Mordecai, Toronto: in directory as bar-mordecai, this year's record missing  
+No. 38 Meadowlark, Chicago: in directory as meadowlark, this year's record missing  
+No. 39 Bisous, Chicago: in directory as bisous, this year's record missing  
+No. 40 Kaito del Valle, Mexico City: in directory as kaito-del-valle, this year's record missing  
+No. 41 Yacht Club, Denver: in directory as yacht-club-denver, this year's record missing  
+No. 42 Katana Kitten, New York: in directory as katana-kitten, this year's record missing  
+No. 43 Angel's Share, New York: in directory as angel-s-share, this year's record missing  
+No. 44 Mother, Toronto: in directory as mother, this year's record missing  
+No. 45 Allegory, Washington DC: in directory as allegory-dc, this year's record missing  
+No. 47 Café de Nadie, Mexico City: in directory as cafe-de-nadie, this year's record missing  
+No. 48 Silver Lyan, Washington DC: in directory as silver-lyan-dc, this year's record missing  
+No. 49 Bekeb, San Miguel de Allende: in directory as bekeb, this year's record missing  
+No. 50 Cure, New Orleans: in directory as cure, this year's record missing
+
+### North America 2024: 42 of 49 ranks without a directory bar
+
+No. 1 Handshake Speakeasy, Mexico City: in directory as handshake-speakeasy, this year's record missing  
+No. 2 Superbueno, New York: in directory as superbueno, this year's record missing  
+No. 3 Overstory, New York: in directory as overstory, this year's record missing  
+No. 4 Martiny's, New York: in directory as martinys, this year's record missing  
+No. 6 Jewel of the South, New Orleans: in directory as jewel-of-the-south, this year's record missing  
+No. 7 Double Chicken Please, New York: in directory as double-chicken-please, this year's record missing  
+No. 8 Thunderbolt, Los Angeles: in directory as thunderbolt, this year's record missing  
+No. 9 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 10 Tlecān, Mexico City: in directory as tlecan, this year's record missing  
+No. 11 Zapote Bar, Playa del Carmen: in directory as zapote-bar-playa-del-carmen, this year's record missing  
+No. 13 Café La Trova, Miami: in directory as cafe-la-trova, this year's record missing  
+No. 14 El Gallo Altanero, Guadalajara: in directory as el-gallo-altanero, this year's record missing  
+No. 15 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 16 Aruba Day Drink, Tijuana: in directory as aruba-day-drink, this year's record missing  
+No. 17 Café de Nadie, Mexico City: in directory as cafe-de-nadie, this year's record missing  
+No. 18 La Factoría, San Juan: in directory as la-factora, this year's record missing  
+No. 19 Kumiko, Chicago: in directory as kumiko, this year's record missing  
+No. 20 Dante, New York: in directory as dante, this year's record missing  
+No. 22 Service Bar, Washington DC: in directory as service-bar-dc, this year's record missing  
+No. 24 Allegory, Vancouver: open (on a 2025 or 2026 list), missing from directory  
+No. 25 Herbs & Rye, Las Vegas: in directory as herbs-rye, this year's record missing  
+No. 26 Baltra Bar, Mexico City: in directory as baltra-bar, this year's record missing  
+No. 27 Bekeb, San Miguel de Allende: in directory as bekeb, this year's record missing  
+No. 28 Kaito del Valle, Mexico City: in directory as kaito-del-valle, this year's record missing  
+No. 29 Bar Pompette, Toronto: in directory as bar-pompette, this year's record missing  
+No. 30 True Laurel, San Francisco: in directory as true-laurel, this year's record missing  
+No. 31 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 32 Meadowlark, Chicago: in directory as meadowlark, this year's record missing  
+No. 33 The Dead Rabbit, New York: in directory as dead-rabbit, this year's record missing  
+No. 34 Selva, Oaxaca: in directory as selva-oaxaca-cocktail-bar, this year's record missing  
+No. 35 Library by the Sea, Grand Cayman: in directory as library-by-the-sea, this year's record missing  
+No. 37 Arca, Tulum: in directory as arca, this year's record missing  
+No. 38 Pacific Cocktail Haven, San Francisco: in directory as pacific-cocktail-haven, this year's record missing  
+No. 39 Cloakroom, Montreal: in directory as the-cloakroom, this year's record missing  
+No. 40 Bar Mordecai, Toronto: in directory as bar-mordecai, this year's record missing  
+No. 41 Maison Premiere, New York: in directory as maison-premiere, this year's record missing  
+No. 43 Angel's Share, New York: in directory as angel-s-share, this year's record missing  
+No. 44 Milady's, New York: to check  
+No. 46 Mírate, Los Angeles: in directory as mirate, this year's record missing  
+No. 47 Cure, New Orleans: in directory as cure, this year's record missing  
+No. 48 Best Intentions, Chicago: in directory as best-intentions, this year's record missing  
+No. 49 The Keefer Bar, Vancouver: in directory as the-keefer-bar, this year's record missing
+
+### North America 2023: 41 of 50 ranks without a directory bar
+
+No. 2 Handshake Speakeasy, Mexico City: in directory as handshake-speakeasy, this year's record missing  
+No. 4 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 5 Jewel of the South, New Orleans: in directory as jewel-of-the-south, this year's record missing  
+No. 6 Dante, New York City: in directory as dante, this year's record missing  
+No. 7 Overstory, New York City: in directory as overstory, this year's record missing  
+No. 8 Kumiko, Chicago: in directory as kumiko, this year's record missing  
+No. 9 Café La Trova, Miami: in directory as cafe-la-trova, this year's record missing  
+No. 10 Thunderbolt, Los Angeles: in directory as thunderbolt, this year's record missing  
+No. 11 Zapote Bar, Playa del Carmen: in directory as zapote-bar-playa-del-carmen, this year's record missing  
+No. 12 Civil Liberties, Toronto: in directory as civil-liberties, this year's record missing  
+No. 13 Attaboy, New York City: in directory as attaboy, this year's record missing  
+No. 14 Employees Only, New York City: in directory as employees-only, this year's record missing  
+No. 15 Bar Pompette, Toronto: in directory as bar-pompette, this year's record missing  
+No. 16 Baltra Bar, Mexico City: in directory as baltra-bar, this year's record missing  
+No. 17 Rayo, Mexico City: in directory as rayo, this year's record missing  
+No. 18 Mace, New York City: in directory as mace, this year's record missing  
+No. 19 Botanist Bar, Vancouver: in directory as botanist, this year's record missing  
+No. 21 El Gallo Altanero, Guadalajara: in directory as el-gallo-altanero, this year's record missing  
+No. 23 Arca, Tulum: in directory as arca, this year's record missing  
+No. 24 La Factoría, San Juan: in directory as la-factora, this year's record missing  
+No. 25 Café de Nadie, Mexico City: in directory as cafe-de-nadie, this year's record missing  
+No. 26 Kaito del Valle, Mexico City: in directory as kaito-del-valle, this year's record missing  
+No. 27 Herbs & Rye, Las Vegas: in directory as herbs-rye, this year's record missing  
+No. 28 Pacific Cocktail Haven, San Francisco: in directory as pacific-cocktail-haven, this year's record missing  
+No. 29 Martiny's, New York City: in directory as martinys, this year's record missing  
+No. 30 Death & Co (Los Angeles), Los Angeles: in directory as death-co-los-angeles, this year's record missing  
+No. 31 Selva, Oaxaca: in directory as selva-oaxaca-cocktail-bar, this year's record missing  
+No. 33 Service Bar, Washington DC: in directory as service-bar-dc, this year's record missing  
+No. 34 Sweet Liberty, Miami: in directory as sweet-liberty, this year's record missing  
+No. 35 Cloakroom, Montreal: in directory as the-cloakroom, this year's record missing  
+No. 36 Cure, New Orleans: in directory as cure, this year's record missing  
+No. 37 Mother, Toronto: in directory as mother, this year's record missing  
+No. 38 Milk Room, Chicago: to check  
+No. 39 Maison Premiere, New York City: in directory as maison-premiere, this year's record missing  
+No. 40 Aruba Day Drink, Tijuana: in directory as aruba-day-drink, this year's record missing  
+No. 41 Bar Leather Apron, Honolulu: in directory as bar-leather-apron, this year's record missing  
+No. 42 Yacht Club, Denver: in directory as yacht-club-denver, this year's record missing  
+No. 43 Bar Mordecai, Toronto: in directory as bar-mordecai, this year's record missing  
+No. 44 The Dead Rabbit, New York City: in directory as dead-rabbit, this year's record missing  
+No. 45 Allegory, Washington DC: in directory as allegory-dc, this year's record missing  
+No. 50 Milady's, New York City: to check
+
+### North America 2022: 47 of 50 ranks without a directory bar
+
+No. 1 Attaboy, New York: in directory as attaboy, this year's record missing  
+No. 2 Handshake Speakeasy, Mexico City: in directory as handshake-speakeasy, this year's record missing  
+No. 3 Licorería Limantour, Mexico City: in directory as licoreria-limantour, this year's record missing  
+No. 4 Katana Kitten, New York: in directory as katana-kitten, this year's record missing  
+No. 5 Kumiko, Chicago: in directory as kumiko, this year's record missing  
+No. 6 Café La Trova, Miami: in directory as cafe-la-trova, this year's record missing  
+No. 7 Baltra Bar, Mexico City: in directory as baltra-bar, this year's record missing  
+No. 8 Dante, New York: in directory as dante, this year's record missing  
+No. 9 Thunderbolt, Los Angeles: in directory as thunderbolt, this year's record missing  
+No. 10 Civil Liberties, Toronto: in directory as civil-liberties, this year's record missing  
+No. 11 Zapote Bar, Playa del Carmen: in directory as zapote-bar-playa-del-carmen, this year's record missing  
+No. 12 La Factoría, San Juan: in directory as la-factora, this year's record missing  
+No. 13 Kaito del Valle, Mexico City: in directory as kaito-del-valle, this year's record missing  
+No. 14 Sweet Liberty, Miami: in directory as sweet-liberty, this year's record missing  
+No. 15 Café de Nadie, Mexico City: in directory as cafe-de-nadie, this year's record missing  
+No. 17 Double Chicken Please, New York: in directory as double-chicken-please, this year's record missing  
+No. 18 Service Bar, Washington DC: in directory as service-bar-dc, this year's record missing  
+No. 19 Raised by Wolves, San Diego: in directory as raised-by-wolves, this year's record missing  
+No. 21 El Gallo Altanero, Guadalajara: in directory as el-gallo-altanero, this year's record missing  
+No. 22 Selva, Oaxaca: in directory as selva-oaxaca-cocktail-bar, this year's record missing  
+No. 23 Amor y Amargo, New York: in directory as amor-y-amargo, this year's record missing  
+No. 24 Jewel of the South, New Orleans: in directory as jewel-of-the-south, this year's record missing  
+No. 25 The Keefer Bar, Vancouver: in directory as the-keefer-bar, this year's record missing  
+No. 26 Dear Irving, New York: in directory as dear-irving, this year's record missing  
+No. 27 Overstory, New York: in directory as overstory, this year's record missing  
+No. 28 Herbs & Rye, Las Vegas: in directory as herbs-rye, this year's record missing  
+No. 29 El Pequeño Bar, Montreal: to check  
+No. 30 Employees Only, New York: in directory as employees-only, this year's record missing  
+No. 31 The Dead Rabbit, New York: in directory as dead-rabbit, this year's record missing  
+No. 32 Broken Shaker, Miami: in directory as the-broken-shaker, this year's record missing  
+No. 33 Friends and Family, Oakland: to check  
+No. 34 Death & Co (Los Angeles), Los Angeles: in directory as death-co-los-angeles, this year's record missing  
+No. 35 Mace, New York: in directory as mace, this year's record missing  
+No. 36 Death & Co (Denver), Denver: in directory as death-and-co-denver, this year's record missing  
+No. 37 Arca, Tulum: in directory as arca, this year's record missing  
+No. 38 Mother, Toronto: in directory as mother, this year's record missing  
+No. 39 ABV, San Francisco: in directory as abv, this year's record missing  
+No. 40 El Floridita, Havana: to check  
+No. 41 Bar Raval, Toronto: in directory as bar-raval, this year's record missing  
+No. 42 Bar Leather Apron, Honolulu: in directory as bar-leather-apron, this year's record missing  
+No. 44 Bitter & Twisted, Phoenix: in directory as bitter-and-twisted, this year's record missing  
+No. 45 Cloakroom Bar, Montreal: in directory as the-cloakroom, this year's record missing  
+No. 46 Julep, Houston: in directory as julep, this year's record missing  
+No. 47 Bar Mordecai, Toronto: in directory as bar-mordecai, this year's record missing  
+No. 48 Teardrop Lounge, Portland: in directory as teardrop-lounge, this year's record missing  
+No. 49 Bar Kismet, Halifax: to check  
+No. 50 Genever, Los Angeles: to check
