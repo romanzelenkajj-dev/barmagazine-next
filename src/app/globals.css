@@ -6684,12 +6684,6 @@ textarea.form-input {
   gap: 10px;
   margin: 1.5rem 0 0;
 }
-.bar-v2-actions .bar-v2-owner-note {
-  flex-basis: 100%;
-  align-self: auto;
-  margin-top: 2px;
-  line-height: 1.5;
-}
 .bar-v2-actions .bar-v2-btn--claim {
   font-size: 14px;
   padding: 12px 20px;
@@ -9812,6 +9806,18 @@ textarea.form-input {
   margin-top: 12px;
 }
 
+/* Owner sign-in: the email box comes first (task 122), so the page title
+   sits under the form as a quiet label rather than above it. */
+.claim-card h1.owner-login-title {
+  font-family: var(--font-heading, Georgia, serif);
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  font-weight: 500;
+  text-align: center;
+  margin: 26px 0 4px;
+  color: var(--text-secondary);
+}
+
 .owner-dash-sent {
   display: flex;
   flex-direction: column;
@@ -10736,18 +10742,6 @@ textarea.form-input {
 /* Claimed-bar note in the profile action row — the claim pill's replacement
    once a bar has an owner. Deliberately quiet: it exists for the successor
    who needs to know how to reach us, not to advertise ownership. */
-.bar-v2-owner-note {
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin: 0;
-  align-self: center;
-}
-
-.bar-v2-owner-note a {
-  color: inherit;
-  text-decoration: underline;
-}
-
 /* ── Admin review: media thumbnails ─────────────────────────────────────── */
 
 /* A reviewer approving photos needs to see them, not read storage URLs.

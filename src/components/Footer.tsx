@@ -45,6 +45,9 @@ export function Footer() {
             <li><Link href="/category/brands">Brands</Link></li>
             <li><Link href="/events">Events</Link></li>
             <li><Link href="/bars">Bar Directory</Link></li>
+            {/* The two owner entry points side by side (Roman, task 122). */}
+            <li><Link href="/claim-your-bar">Claim your bar</Link></li>
+            <li><Link href="/owner-dashboard">Owner sign-in</Link></li>
           </ul>
         </div>
         <div className="footer-col footer-contact">

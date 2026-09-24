@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createAdminClient } from '@/lib/supabase-auth';
+import { createAdminClient, verifyOwnerToken } from '@/lib/supabase-auth';
 import {
   decideRoute,
   CLAIM_RATE_LIMIT_PER_EMAIL,
   CLAIM_RATE_LIMIT_PER_IP,
   CLAIM_VERIFICATION_WINDOW_HOURS,
   CLAIM_RESEND_COOLDOWN_MINUTES,
+  ownerClaimOutcome,
 } from '@/lib/claim-routes';
 import { notifyClaim } from '@/lib/notify';
-import { sendClaimLinkEmail } from '@/lib/claim-email';
+import { sendClaimLinkEmail, sendLoginLinkEmail } from '@/lib/claim-email';
 
 export const dynamic = 'force-dynamic';
 
@@ -105,6 +106,31 @@ export async function POST(request: NextRequest) {
 
     // Unknown bar: same answer as a successful claim.
     if (!bar) return generic();
+
+    // The owner claiming their own bar (task 122). A signed-in owner is told
+    // "You already manage this listing" on screen. The owner's address typed
+    // without a session gets a dashboard sign-in link by mail and the
+    // generic screen: the form never confirms which address owns a bar
+    // (Roman, 2026-09-23). Neither case creates a transfer request or mails
+    // the admin. Anyone else follows the usual routes below.
+    if (bar.owner_id) {
+      const token = request.headers.get('Authorization')?.replace('Bearer ', '') || '';
+      const sessionOwner = token ? await verifyOwnerToken(token) : null;
+      const { data: ownerUser } = await supabase.auth.admin.getUserById(bar.owner_id);
+      const outcome = ownerClaimOutcome({
+        ownerId: bar.owner_id,
+        sessionUserId: sessionOwner?.id ?? null,
+        claimantEmail: email,
+        ownerEmail: ownerUser?.user?.email ?? null,
+      });
+      if (outcome === 'signed_in_owner') {
+        return NextResponse.json({ success: true, alreadyOwner: true, dashboard: '/owner-dashboard' });
+      }
+      if (outcome === 'owner_by_email') {
+        await sendLoginLinkEmail(supabase, { destination: email, redirectTo: `${SITE_URL}/owner-dashboard/auth/callback` });
+        return generic();
+      }
+    }
 
     const decision = decideRoute(bar, email);
 

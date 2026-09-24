@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 /**
  * Owner sign-in. No password and no self-registration: an account exists only
@@ -10,6 +11,20 @@ import Link from 'next/link';
  * which addresses have access.
  */
 export default function OwnerLoginPage() {
+  // useSearchParams needs a Suspense boundary or the page bails out of
+  // static rendering at build time.
+  return (
+    <Suspense fallback={null}>
+      <OwnerLogin />
+    </Suspense>
+  );
+}
+
+function OwnerLogin() {
+  // The claimed profile's "Owner sign in" button passes its slug (task 122),
+  // so the transfer line below can point straight at that bar's claim form.
+  const bar = useSearchParams().get('bar') || '';
+  const transferHref = bar ? `/claim-your-bar?bar=${encodeURIComponent(bar)}` : '/claim-your-bar';
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [sent, setSent] = useState(false);
@@ -43,10 +58,8 @@ export default function OwnerLoginPage() {
   return (
     <div className="claim-page">
       <div className="claim-card">
-        <span className="claim-eyebrow">Owners</span>
-        <h1>Owner sign in</h1>
-        <p className="claim-intro">Manage the bar you’ve claimed.</p>
-
+        {/* Email box first (Roman, task 122): nothing stands between the
+            owner and the field, then one line on how sign-in works. */}
         {sent ? (
           <div className="owner-dash-sent">
             <p className="add-bar-success">
@@ -71,7 +84,7 @@ export default function OwnerLoginPage() {
           <form onSubmit={handleSubmit} className="claim-form">
             {error && <p className="claim-error">{error}</p>}
 
-            <label className="form-label" htmlFor="owner-email">Email</label>
+            <label className="form-label" htmlFor="owner-email">Email address</label>
             <input
               type="email"
               value={email}
@@ -80,7 +93,16 @@ export default function OwnerLoginPage() {
               autoComplete="email"
               className="form-input"
               id="owner-email"
+              placeholder="you@yourbar.com"
+              autoFocus
             />
+            <p className="owner-dash-note">
+              We email you a sign-in link. There is no password.
+            </p>
+            <p className="owner-dash-note">
+              Don&apos;t have access to this listing?{' '}
+              <Link href={transferHref} className="feature-link">Request an ownership transfer</Link>
+            </p>
 
             <p style={{ textAlign: 'center', marginTop: 18 }}>
               <button
@@ -94,10 +116,11 @@ export default function OwnerLoginPage() {
           </form>
         )}
 
+        <h1 className="owner-login-title">Owner sign in</h1>
         <p className="claim-signin">
-          Don&apos;t have access yet?{' '}
-          <Link href="/feature-your-bar" className="feature-link">
-            Get your bar listed
+          Not claimed your bar yet?{' '}
+          <Link href="/claim-your-bar" className="feature-link">
+            Claim it, it&apos;s free
           </Link>
         </p>
       </div>
