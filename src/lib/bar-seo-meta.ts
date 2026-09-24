@@ -329,11 +329,13 @@ export function barTitle(bar: BarMetaInput): string {
 /**
  * Comparison key for "have we already said this": letters and digits only,
  * with the placing words that differ between our phrasing and a venue's own
- * ("no.", "#", "ranked") removed, so "No. 38 on World's 50 Best Bars 2025"
- * and "#38 on World's 50 Best Bars 2025" come out identical.
+ * ("no.", "#", "ranked") and the article removed, so "No. 38 on The World's
+ * 50 Best Bars 2025" and "#38 on World's 50 Best Bars 2025" come out
+ * identical (displayOrg adds "The" to pre-2026 world placings; a venue's own
+ * excerpt usually leaves it out).
  */
 const sayKey = (s: string) =>
-  s.toLowerCase().replace(/\b(?:no|number|ranked|rank)\b/g, ' ')
+  s.toLowerCase().replace(/\b(?:no|number|ranked|rank|the)\b/g, ' ')
     .replace(/[^a-z0-9]+/g, ' ').trim();
 
 /**
