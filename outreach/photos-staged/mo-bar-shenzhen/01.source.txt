@@ -1,0 +1,5 @@
+bar: MO Bar
+source image: https://media.ffycdn.net/eu/mandarin-oriental-hotel-group/eUJA8CSuYDsZQ3A7ZqKN.JPG
+found on: https://www.mandarinoriental.com/en/shenzhen/futian/dine/mo-bar
+shows: entrance hall with lit cabinets to the MO BAR sign (borderline: no seating in view; the only bar image on the hotel page)
+credit if approved: Photo: MO Bar

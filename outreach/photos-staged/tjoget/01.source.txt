@@ -1,0 +1,5 @@
+bar: Tjoget
+source image: https://images.prismic.io/tjoget/9f78015b-8d36-443e-8de6-bc562e86cdac_000318060009-min.jpg
+found on: https://tjoget.com/
+shows: black-and-white film shot of the curved steel bar counter with bentwood stools
+credit if approved: Photo: Tjoget

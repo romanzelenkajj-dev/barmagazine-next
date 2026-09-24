@@ -1,0 +1,5 @@
+bar: Bent Bar
+source image: https://bentbar.de/wp-content/uploads/2021/06/bent-bar-back-2.jpg
+found on: https://www.bentbar.de/
+credit: Photo: Bent Bar
+status: live since 2026-09-24 (task 128), counts as staged pending approval

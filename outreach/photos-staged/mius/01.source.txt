@@ -1,0 +1,5 @@
+bar: Mius
+source image: https://static.wixstatic.com/media/2bd52c_9d41bd94d49e4971a686a5eec763c306~mv2.jpg
+found on: https://www.mius.hk/
+shows: long steel-topped bar counter with cream leather stools, panelled room, windows, no people
+credit if approved: Photo: Mius

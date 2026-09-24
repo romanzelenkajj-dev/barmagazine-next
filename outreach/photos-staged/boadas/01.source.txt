@@ -1,0 +1,5 @@
+bar: Boadas
+source image: https://boadascocktails.com/resources/img/raices-photo-3.jpg
+found on: https://boadascocktails.com/historia.html
+shows: archival black-and-white view of the curved counter with stools and back bar (the live domain is boadascocktails.com; boadas.com no longer resolves)
+credit if approved: Photo: Boadas

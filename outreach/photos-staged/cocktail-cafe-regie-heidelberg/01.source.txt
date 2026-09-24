@@ -1,0 +1,5 @@
+bar: Cocktail-Café Regie
+source image: https://dtwaeonhht2im.cloudfront.net/5904a05834d9939e2c512d8b2910cf5d.jpg
+found on: https://www.regie-heidelberg.de/
+credit: Photo: Cocktail-Café Regie
+status: live since 2026-09-24 (task 128), counts as staged pending approval

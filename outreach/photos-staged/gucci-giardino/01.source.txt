@@ -1,0 +1,5 @@
+bar: Gucci Giardino 25
+source image: https://backend.gucciosteria.com/wp-content/uploads/2026/01/Gucci_Giardino-Experiences.jpg
+found on: https://www.gucciosteria.com/en/florence/giardino/
+shows: daylit room: marble bistro tables, Napoleon chairs, green stools by the window (portrait original, centre crop)
+credit if approved: Photo: Gucci Giardino 25

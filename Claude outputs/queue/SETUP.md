@@ -123,4 +123,6 @@ Twice in one day a new element landed bare: the /bars status line under the filt
 
 ## Photo policy (Roman, 2026-09-24)
 
-A profile may carry one photo taken from the bar's own website or Instagram, interiors only, with `photo_credit` set to the bar's name so the hero reads "Photo: <Bar name>". Never from Falstaff, Google, press or third-party sites. Owner- or agency-supplied photos always replace it. Removal on request the same day.
+A profile may carry one photo taken from the bar's own website. Interiors only: the room, or the bar counter with its seating, as a guest would see it. Not acceptable: bottle shelves or back-bar close-ups, drinks, food, logos, exteriors, portraits, crowds. Source only the bar's own site or Instagram, never Falstaff, Google, press or third parties. The hero shows "Photo: <Bar name>" (store the bar name in `photo_credit`; the hero adds the "Photo:" prefix itself). An owner- or agency-supplied photo always replaces it; removal on request the same day. When no photo on the bar's site passes the rule, leave the profile without one.
+
+Approval step (Roman, 2026-09-24): Code never publishes a scraped photo directly. It stages candidates (one or two per bar, cropped to the hero ratio) into `outreach/photos-staged/<slug>/` and lists them in the task report as a contact sheet, one image per row with slug and source URL. Roman replies with the slugs to approve; only those go live, with the credit.
