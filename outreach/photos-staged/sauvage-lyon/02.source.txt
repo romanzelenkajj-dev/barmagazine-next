@@ -1,0 +1,6 @@
+bar: Sauvage (Lyon)
+source image: http://www.sauvage-bar.fr/wp-content/uploads/2020/03/Sauvage_2020_GuilhemCANAL01.jpg
+found on: http://www.sauvage-bar.fr/galerie-photos/
+shows: Bar counter with orange leather stools, stone wall, rattan pendants and mezzanine, warm light (2362x1329).
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Sauvage

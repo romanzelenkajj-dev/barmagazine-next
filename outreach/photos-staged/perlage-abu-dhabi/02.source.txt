@@ -1,0 +1,6 @@
+bar: Perlage (Abu Dhabi)
+source image: https://images.squarespace-cdn.com/content/v1/64fff794933a7b161c6c6f1b/620f734e-e50b-4de4-86e4-56aa0641cdf9/Perlage+82.jpg
+found on: https://www.barperlage.com/gallery
+shows: Curved red velvet banquette with small round tables, lamps and velvet armchairs
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Perlage

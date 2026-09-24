@@ -1,0 +1,6 @@
+bar: Big Bad Bank Bar (Porto)
+source image: https://porto.thevolumes.pt/wp-content/uploads/2024/10/thezerohotels_img_eatanddrink_0004.jpg
+found on: https://porto.thezerohotels.com/en/eat-drink-restaurant-carniceiro-big-bad-bank-bar/
+shows: Bar room: the hand painted tile bar counter on the left, long wooden bar table with stools, BIG BAD BANK neon, O Carniceiro in the background (1080x720).
+cropped to: 1080x720 (3:2 hero)
+credit if approved: Photo: Big Bad Bank Bar

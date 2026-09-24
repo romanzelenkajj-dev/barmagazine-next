@@ -1,0 +1,6 @@
+bar: The St. Regis Bar (Abu Dhabi)
+source image: https://cache.marriott.com/content/dam/marriott-renditions/AUHRX/auhrx-stregis-bar-1589-hor-wide.jpg
+found on: https://www.marriott.com/en-us/hotels/auhrx-the-st-regis-abu-dhabi/dining/
+shows: Wood-panelled bar counter with stools under a large camel-race painting, leather armchairs, arched doorway
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: The St. Regis Bar

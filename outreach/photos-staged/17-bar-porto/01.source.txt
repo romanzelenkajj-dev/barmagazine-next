@@ -1,0 +1,6 @@
+bar: 17º Bar (Porto)
+source image: https://decimosetimo.pt/wp-content/uploads/2018/09/bar7.jpg
+found on: https://decimosetimo.pt/en/gallery/
+shows: Bar counter with a row of blue upholstered stools, back bar and windows with a dusk city view (900x600).
+cropped to: 900x600 (3:2 hero)
+credit if approved: Photo: 17º Bar

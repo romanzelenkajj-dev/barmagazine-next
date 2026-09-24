@@ -1,0 +1,6 @@
+bar: The Locale (Glasgow)
+source image: https://images.squarespace-cdn.com/content/v1/66d9a424711a6e636a252b7a/681aeed0-285c-4ed2-aac8-4eb3d9bafd82/IMG_3713.jpg
+found on: https://www.thelocaleglasgow.com/dive-bar
+shows: The Dive room: red bar counter with four stools, neon signs, mirrored ceiling and banquette seating
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: The Locale

@@ -1,0 +1,6 @@
+bar: Cloud 23 (Manchester)
+source image: https://images.getbento.com/accounts/d315883b1c1a685b0cf02209627b0095/media/images/55098CHP_8242.jpg
+found on: https://www.cloud23bar.com/gallery/
+shows: Wide view of the bar room at night with velvet sofas, curved banquette and lit bar counter
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Cloud 23

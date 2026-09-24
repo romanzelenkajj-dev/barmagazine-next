@@ -1,0 +1,6 @@
+bar: Tabac (Glasgow)
+source image: https://tabacbar.com/assets/image/A7053ACFAC30432D9A7598F8FD9346D41.jpg
+found on: https://tabacbar.com/
+shows: Empty room with wooden tables, banquette seating, frosted windows, globe pendants and palms
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Tabac

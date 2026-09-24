@@ -1,0 +1,6 @@
+bar: Dom Whisky Cocktail Bar (Wrocław)
+source image: https://domwhisky.pl/wp-content/uploads/2026/06/Wroclaw1-scaled.webp
+found on: https://domwhisky.pl/bary/cocktail-bar-wroclaw/
+shows: Bar counter with a row of stools, lounge armchairs in front, lit bottle tower behind
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Dom Whisky Cocktail Bar

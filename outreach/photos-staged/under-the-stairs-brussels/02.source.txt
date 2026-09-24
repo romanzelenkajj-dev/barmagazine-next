@@ -1,0 +1,6 @@
+bar: Under the Stairs (Brussels)
+source image: https://www.corinthia.com/globalassets/a_new-folders-organisation-project/properties/brussels/images/owned-photography/restaurants--bars/under-the-stairs/chb_restaurant_underthestairs_whatthefox-0074.jpg
+found on: https://www.corinthia.com/en-gb/brussels/under-the-stairs/
+shows: Blue velvet banquette lounge with rust armchairs, round tables and framed art
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Under the Stairs

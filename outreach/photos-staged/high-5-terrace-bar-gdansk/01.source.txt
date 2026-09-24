@@ -1,0 +1,6 @@
+bar: High 5 Terrace Bar (Gdańsk)
+source image: https://hiltongdansk.pl/wp-content/uploads/2020/11/High-5-3.jpg
+found on: https://hiltongdansk.pl/restauracje-i-bary/
+shows: Lounge seating beside the slanted glass wall, marble side tables, terrace and river beyond
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: High 5 Terrace Bar

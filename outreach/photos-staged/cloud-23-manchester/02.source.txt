@@ -1,0 +1,6 @@
+bar: Cloud 23 (Manchester)
+source image: https://images.getbento.com/accounts/d315883b1c1a685b0cf02209627b0095/media/images/43889Hilton_Manchester-itsmelouis.com-It-s_Me_Louis_Photography-1-63small.jpg
+found on: https://www.cloud23bar.com/gallery/
+shows: Lounge seating along floor to ceiling windows at sunset, city skyline outside
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Cloud 23

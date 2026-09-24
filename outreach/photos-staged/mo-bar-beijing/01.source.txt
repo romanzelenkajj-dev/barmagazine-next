@@ -1,0 +1,6 @@
+bar: MO Bar (Beijing)
+source image: https://media.ffycdn.net/eu/mandarin-oriental-hotel-group/yccyPwdMbTkYeegWvCVC.jpg
+found on: https://www.mandarinoriental.com/en/beijing/wangfujing/dine/mo-bar
+shows: Bar counter with red leather stools under globe pendants, 1793x1280
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: MO Bar

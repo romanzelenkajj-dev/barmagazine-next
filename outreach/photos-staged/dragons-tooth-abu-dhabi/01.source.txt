@@ -1,0 +1,6 @@
+bar: Dragon's Tooth (Abu Dhabi)
+source image: https://images.rosewoodhotels.com/is/image/rwhg/rwabu_dining_dragonstooth
+found on: https://www.rosewoodhotels.com/en/abu-dhabi/dining/dragons-tooth
+shows: Dark wood-panelled room with a long green leather banquette, round tables and a curved bar with leather stools
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Dragon's Tooth

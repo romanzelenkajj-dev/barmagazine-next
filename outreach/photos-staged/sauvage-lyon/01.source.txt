@@ -1,0 +1,6 @@
+bar: Sauvage (Lyon)
+source image: http://www.sauvage-bar.fr/wp-content/uploads/2025/10/1000004136-scaled.jpg
+found on: http://www.sauvage-bar.fr/
+shows: Full room from behind the bar end: stone walls, wooden bar counter, woven pendant lamps, tables and the mezzanine stair (2560x1922).
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Sauvage

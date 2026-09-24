@@ -1,0 +1,6 @@
+bar: Rivage Café (Geneva)
+source image: https://www.beau-rivage.com/_novaimg/galleria/1596313.jpg
+found on: https://www.beau-rivage.com/en/rivage-cafe.html
+shows: Bar counter with stools under a chandelier, red velvet lounge chairs, one bartender far back
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Rivage Café

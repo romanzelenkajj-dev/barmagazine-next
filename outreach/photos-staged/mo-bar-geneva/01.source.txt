@@ -1,0 +1,6 @@
+bar: MO Bar (Geneva)
+source image: https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJvYXV0aCI6eyJjbGllbnRfaWQiOiJzaXRlY29yZSJ9LCJwYXRoIjoibWFuZGFyaW4tb3JpZW50YWwtaG90ZWwtZ3JvdXBcL2ZpbGVcL2duOTl4YzFhS2s5M0dWVDJOSmlBLmpwZyJ9:mandarin-oriental-hotel-group:awlc4Y5wrK0cHRhiHyWNzTHgPMSxaujMXgFcRDaBiIs
+found on: https://www.mandarinoriental.com/en/geneva/rhone-river/dine/mo-bar
+shows: Rosewood lounge with cream armchairs, tables and bar stools behind, no people
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: MO Bar

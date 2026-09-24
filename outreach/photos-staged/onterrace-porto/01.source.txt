@@ -1,0 +1,6 @@
+bar: Onterrace (Porto)
+source image: https://www.hfhotels.com/assets/images/onterrace.jpg
+found on: https://www.hfhotels.com/en/bar-onterrace-en/
+shows: Wide view of the lounge: armchairs, sofas and glass tables on a patterned carpet, bar counter with stools on the right (2048x724, panoramic).
+cropped to: 1086x724 (3:2 hero)
+credit if approved: Photo: Onterrace

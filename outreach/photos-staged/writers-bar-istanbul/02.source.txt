@@ -1,0 +1,6 @@
+bar: Writers Bar (Istanbul)
+source image: https://www.raffles.com/content/dam/remote/brands/raf/hotels/europe/tr/istanbul/a5e2/aja_p_7090-33.jpg
+found on: https://www.raffles.com/istanbul/dining/Writers-Bar/
+shows: Lounge with blue armchairs and sofa around a coffee table, lit display shelving, chandelier
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Writers Bar

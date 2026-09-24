@@ -1,0 +1,6 @@
+bar: The Daisy (Manchester)
+source image: https://static.wixstatic.com/media/887eb5_e6cbc2abf611413ea8d264134030a9fc~mv2.jpg
+found on: https://www.thedaisynq.com/
+shows: Lounge with velvet sofas and armchairs, chequerboard floor and framed prints
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: The Daisy

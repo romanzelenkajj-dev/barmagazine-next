@@ -1,0 +1,6 @@
+bar: Esplanade 1925 Lounge & Cocktail Bar (Zagreb)
+source image: https://esplanade.hr/wp-content/uploads/2020/06/esplanade-gallery-11.jpg
+found on: https://esplanade.hr/lounge-bar-1925
+shows: Lounge room with armchairs, tables and chandeliers, no people
+cropped to: 1300x866 (3:2 hero)
+credit if approved: Photo: Esplanade 1925 Lounge & Cocktail Bar

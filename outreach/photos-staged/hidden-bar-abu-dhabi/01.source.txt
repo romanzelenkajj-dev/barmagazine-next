@@ -1,0 +1,6 @@
+bar: Hidden Bar (Abu Dhabi)
+source image: https://picasso.rosewoodhotelgroup.com/transform/3e991d13-f3d7-4e72-942f-bef77c36a836/RWABU_3-0_Brand-com_Assets_Facilities_HiddenBar_WhatTheFox-0096
+found on: https://www.rosewoodhotels.com/en/abu-dhabi/dining/hidden-bar
+shows: Bar counter and stools with lounge armchairs in warm sunset light
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Hidden Bar

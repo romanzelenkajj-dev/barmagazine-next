@@ -1,0 +1,6 @@
+bar: Papa Bar (Wrocław)
+source image: https://papabar.pl/wp-content/uploads/business-offer-1-optimized.jpg
+found on: https://papabar.pl/en/oferta-dla-biznesu/
+shows: Main room with sofas, tables and orange walls, candles lit; buffet chafing dishes set along the back counter
+cropped to: 1400x933 (3:2 hero)
+credit if approved: Photo: Papa Bar
