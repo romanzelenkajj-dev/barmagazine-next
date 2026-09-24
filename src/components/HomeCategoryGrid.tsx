@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { stripReadMore } from '@/lib/read-more';
+import { htmlToText } from '@/lib/html-text';
 import Link from 'next/link';
 import { formatCardTitle, cleanTitle } from '@/lib/utils';
 
@@ -24,13 +25,10 @@ interface WPPost {
 }
 
 /* ── Helpers ── */
-function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, m => {
-    const el = typeof document !== 'undefined' ? document.createElement('span') : null;
-    if (el) { el.innerHTML = m; return el.textContent || m; }
-    return m.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>').replace('&#8217;', "'").replace('&#8216;', "'").replace('&#8220;', '"').replace('&#8221;', '"');
-  }).trim();
-}
+// Excerpt text comes from the pure decoder in lib/html-text so the server
+// render and the client hydration agree (task 124). The old version used a
+// DOM span in the browser and a short replace list on the server, and the
+// two disagreed on every curly apostrophe.
 
 function truncateAtWord(text: string, maxLen: number): string {
   if (text.length <= maxLen) return text;
@@ -118,7 +116,7 @@ export function HomeCategoryGrid({ initialPosts, categoryData, heroId }: Props) 
             const cat = getCategory(post);
             const imgUrl = getImgUrl(post, 'large');
             const formattedTitle = formatCardTitle(post.title.rendered, post.meta?.bold_title);
-            const excerpt = truncateAtWord(stripReadMore(stripHtml(post.excerpt.rendered)), 120);
+            const excerpt = truncateAtWord(stripReadMore(htmlToText(post.excerpt.rendered)), 120);
 
             if (isBleed) {
               return (
