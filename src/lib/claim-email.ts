@@ -73,6 +73,11 @@ export function claimEmailHtml({ barName, actionLink }: Omit<ClaimLinkEmail, 'de
         Once confirmed you can keep your opening hours, contact details, menu and
         photos up to date. It&rsquo;s free, and there&rsquo;s nothing to pay or sign up for.
       </p>
+      <p>
+        To edit your listing later, sign in at
+        <a href="https://barmagazine.com/owner-dashboard" style="color:#8a6a24;">https://barmagazine.com/owner-dashboard</a>
+        with this email address.
+      </p>
       <p style="color:#6B6B6B;">
         If you weren&rsquo;t expecting this email, just ignore it. Nothing changes and
         nobody gets access to your listing.

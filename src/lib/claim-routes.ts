@@ -181,3 +181,32 @@ export const CLAIM_RATE_LIMIT_PER_IP = 10;
 /** Starting the same claim again re-sends the link, but no more often than
     this, so the endpoint cannot be used to hose someone's mailbox. */
 export const CLAIM_RESEND_COOLDOWN_MINUTES = 5;
+
+/**
+ * What a claim of a bar that already has an owner should do (task 122).
+ *
+ *   signed_in_owner  the visitor is signed in as the bar's owner: show "You
+ *                    already manage this listing", create nothing, mail no one.
+ *   owner_by_email   the claimant typed the owner's own address without being
+ *                    signed in: create no transfer request and no admin email,
+ *                    say so on screen and mail that address a dashboard
+ *                    sign-in link.
+ *   transfer         a different person: the reviewed transfer path, unchanged.
+ *   open             the bar has no owner.
+ *
+ * Exact address equality only (isRedundantSelfTransfer): a colleague on the
+ * same domain is a real transfer between two people.
+ */
+export type OwnerClaimOutcome = 'open' | 'transfer' | 'signed_in_owner' | 'owner_by_email';
+
+export function ownerClaimOutcome(args: {
+  ownerId: string | null | undefined;
+  sessionUserId?: string | null;
+  claimantEmail: string;
+  ownerEmail?: string | null;
+}): OwnerClaimOutcome {
+  if (!args.ownerId) return 'open';
+  if (args.sessionUserId && args.sessionUserId === args.ownerId) return 'signed_in_owner';
+  if (isRedundantSelfTransfer(args.claimantEmail, args.ownerEmail)) return 'owner_by_email';
+  return 'transfer';
+}

@@ -485,22 +485,21 @@ export default async function BarProfilePage({ params }: { params: { slug: strin
               )}
               {/* Every unclaimed bar is claimable, tier does not matter;
                   `owner_id` is the one real "already spoken for" signal. The
-                  claim call to action stays a BUTTON (Roman, 2026-09-15,
-                  after a one-day detour as a text line), the last in the
-                  column. The ownership note reads on three lines, and keeps
-                  the mailbox for the successor problem: when a manager
-                  leaves, the next one must still see a way in. */}
+                  call to action stays a BUTTON (Roman, 2026-09-15, after a
+                  one-day detour as a text line), the last in the column. A
+                  claimed bar shows an owner sign-in button in the same place
+                  and style instead (Roman, task 122); the ownership-change
+                  contact lives on the dashboard, not here. */}
               {!bar.owner_id ? (
                 <Link href={`/claim-your-bar?bar=${encodeURIComponent(bar.slug)}`} className="bar-v2-btn bar-v2-btn--claim">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
                   Is this your bar? Claim it
                 </Link>
               ) : (
-                <p className="bar-v2-owner-note">
-                  This listing is managed by its owner.<br />
-                  For ownership changes contact:<br />
-                  <a href="mailto:office@barmagazine.com">office@barmagazine.com</a>
-                </p>
+                <Link href="/owner-dashboard" className="bar-v2-btn bar-v2-btn--claim">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" /></svg>
+                  Owner sign in
+                </Link>
               )}
             </div>
         </div>

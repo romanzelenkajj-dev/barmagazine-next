@@ -7,6 +7,7 @@ import {
   decideRoute,
   isClaimExpired,
   isRedundantSelfTransfer,
+  ownerClaimOutcome,
 } from './claim-routes';
 
 describe('claim-routes', () => {
@@ -175,5 +176,24 @@ describe('claim-routes', () => {
     it('treats an unparseable date as expired', () => {
       expect(isClaimExpired('not a date', now)).toBe(true);
     });
+  });
+});
+
+describe('ownerClaimOutcome (task 122: the owner claiming their own bar)', () => {
+  const owner = { ownerId: 'user-1', ownerEmail: 'gm@bar.example' };
+  it('is open when the bar has no owner, whoever asks', () => {
+    expect(ownerClaimOutcome({ ownerId: null, claimantEmail: 'gm@bar.example', sessionUserId: 'user-1' })).toBe('open');
+  });
+  it('recognises the signed-in owner before looking at the address', () => {
+    expect(ownerClaimOutcome({ ...owner, sessionUserId: 'user-1', claimantEmail: 'other@bar.example' })).toBe('signed_in_owner');
+  });
+  it('recognises the owner by exact address when not signed in', () => {
+    expect(ownerClaimOutcome({ ...owner, claimantEmail: '  GM@Bar.Example ' })).toBe('owner_by_email');
+    expect(ownerClaimOutcome({ ...owner, sessionUserId: 'user-2', claimantEmail: 'gm@bar.example' })).toBe('owner_by_email');
+  });
+  it('keeps the transfer path for a different email, same domain included', () => {
+    expect(ownerClaimOutcome({ ...owner, claimantEmail: 'newgm@bar.example' })).toBe('transfer');
+    expect(ownerClaimOutcome({ ...owner, sessionUserId: 'user-2', claimantEmail: 'newgm@bar.example' })).toBe('transfer');
+    expect(ownerClaimOutcome({ ownerId: 'user-1', ownerEmail: null, claimantEmail: 'gm@bar.example' })).toBe('transfer');
   });
 });

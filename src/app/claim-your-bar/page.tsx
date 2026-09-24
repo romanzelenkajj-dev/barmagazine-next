@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { createBrowserClient } from '@/lib/supabase-auth';
 import { useSearchParams } from 'next/navigation';
 import { gaEvent, CLAIM_EVENTS } from '@/lib/ga-event';
 import { Suspense, useEffect, useState, useRef } from 'react';
@@ -58,6 +59,9 @@ function ClaimYourBar() {
   const [proofFiles, setProofFiles] = useState<FileList | null>(null);
   const [proofNote, setProofNote] = useState('');
   const [proofSent, setProofSent] = useState(false);
+  // The signed-in owner claimed their own bar (task 122): nothing to do but point at the dashboard.
+  const [alreadyOwner, setAlreadyOwner] = useState(false);
+  const [ownerLinkSent, setOwnerLinkSent] = useState(false);
   const [uploading, setUploading] = useState(false);
 
   /**
@@ -165,15 +169,28 @@ function ClaimYourBar() {
     setSubmitting(true);
     setError('');
     try {
+      // A signed-in owner sends their session along, so the server can tell
+      // them they already manage the bar instead of opening a transfer.
+      let token = '';
+      try {
+        const { data: sess } = await createBrowserClient().auth.getSession();
+        token = sess.session?.access_token || '';
+      } catch { /* no session: an ordinary claim */ }
       const res = await fetch('/api/claim/start', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
         body: JSON.stringify({ slug: selected.slug, email, name, role, newsletter_opt_in: newsletterOptIn }),
       });
       const data = await res.json();
       if (!res.ok) {
         setError(data.error || 'Something went wrong');
         gaEvent(CLAIM_EVENTS.submitResult, { outcome: 'error', status: res.status });
+        return;
+      }
+      if (data.alreadyOwner) {
+        gaEvent(CLAIM_EVENTS.submitResult, { outcome: 'already_owner' });
+        setOwnerLinkSent(!!data.linkSent);
+        setAlreadyOwner(true);
         return;
       }
       gaEvent(CLAIM_EVENTS.submitResult, { outcome: 'ok' });
@@ -214,8 +231,22 @@ function ClaimYourBar() {
   return (
     <div className="claim-page">
       <div className="claim-card">
-        {/* ---------- check inbox / proof states ---------- */}
-        {done ? (
+        {/* ---------- already the owner (task 122) ---------- */}
+        {alreadyOwner ? (
+          <>
+            <span className="claim-eyebrow">Already yours</span>
+            <h1>You already manage this listing</h1>
+            <p className="claim-intro">
+              {selected?.name} is already registered to{' '}
+              {ownerLinkSent ? <strong>{email}</strong> : 'the account you are signed in with'}, so
+              there is nothing to claim. Edit the listing from your dashboard.
+              {ownerLinkSent && ' A sign-in link is on its way to that address.'}
+            </p>
+            <p style={{ textAlign: 'center', marginTop: 18 }}>
+              <Link href="/owner-dashboard" className="claim-btn">Sign in to manage</Link>
+            </p>
+          </>
+        ) : done ? (
           proofClaimId && !proofSent ? (
             <>
               <span className="claim-eyebrow">One more step</span>
@@ -296,6 +327,10 @@ function ClaimYourBar() {
               {selected.city}, {selected.country}
             </p>
 
+            {/* The way back in for an owner who lands here again (Roman, task 122). */}
+            <p className="claim-note">
+              Already claimed your bar? <Link href="/owner-dashboard">Sign in</Link>
+            </p>
             {selected.claimed && (
               <p className="claim-note">
                 This bar already has an owner. Your request will be reviewed by a

@@ -241,6 +241,12 @@ export default function OwnerDashboardPage() {
               You now manage this profile. Hours, photos, links, and details are yours
               to edit anytime, free, forever.
             </p>
+            {/* The return address, stated once here and once in the claim email (Roman, task 122). */}
+            <p className="claim-success-copy">
+              To edit your listing later, sign in at{' '}
+              <a href="https://barmagazine.com/owner-dashboard">https://barmagazine.com/owner-dashboard</a>{' '}
+              with this email address.
+            </p>
             <button className="feature-btn feature-btn-outline" onClick={dismissClaimed}>
               Go to your dashboard
             </button>
@@ -390,6 +396,21 @@ export default function OwnerDashboardPage() {
             })}
           </div>
         )}
+      </section>
+
+      {/* The ownership-change contact used to sit on every claimed profile;
+          it moved here with task 122, so the profile carries the sign-in
+          button instead. */}
+      <section className="owner-dash-section">
+        <h2 className="owner-dash-section-title">Ownership changes</h2>
+        <div className="add-bar-form-card">
+          <p>
+            New manager, new owner, or a colleague who left with the sign-in
+            address? Write to{' '}
+            <a href="mailto:office@barmagazine.com" className="feature-link">office@barmagazine.com</a>{' '}
+            and we move the listing to the right account.
+          </p>
+        </div>
       </section>
     </div>
   );
