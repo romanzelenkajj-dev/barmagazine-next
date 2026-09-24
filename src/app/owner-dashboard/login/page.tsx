@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 /**
  * Owner sign-in. No password and no self-registration: an account exists only
@@ -10,6 +11,20 @@ import Link from 'next/link';
  * which addresses have access.
  */
 export default function OwnerLoginPage() {
+  // useSearchParams needs a Suspense boundary or the page bails out of
+  // static rendering at build time.
+  return (
+    <Suspense fallback={null}>
+      <OwnerLogin />
+    </Suspense>
+  );
+}
+
+function OwnerLogin() {
+  // The claimed profile's "Owner sign in" button passes its slug (task 122),
+  // so the transfer line below can point straight at that bar's claim form.
+  const bar = useSearchParams().get('bar') || '';
+  const transferHref = bar ? `/claim-your-bar?bar=${encodeURIComponent(bar)}` : '/claim-your-bar';
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [sent, setSent] = useState(false);
@@ -83,6 +98,10 @@ export default function OwnerLoginPage() {
             />
             <p className="owner-dash-note">
               We email you a sign-in link. There is no password.
+            </p>
+            <p className="owner-dash-note">
+              Don&apos;t have access to this listing?{' '}
+              <Link href={transferHref} className="feature-link">Request an ownership transfer</Link>
             </p>
 
             <p style={{ textAlign: 'center', marginTop: 18 }}>
