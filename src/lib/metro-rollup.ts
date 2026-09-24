@@ -48,21 +48,22 @@ export interface MetroRollup {
 }
 
 /**
- * PROPOSED, AND NOT YET APPROVED. Roman approves this list line by line
- * (task 79). Until he does, this file is the proposal in a form he can click
- * through on a preview rather than a plan in a document.
+ * Approved line by line by Roman (task 79, then task 130 on 2026-09-24).
+ * Every line is live: the area's /bars/city/<area> URL redirects to the
+ * metro, and its bars sit on the metro's pages with the area kept on the
+ * card and in search.
  */
 export const METRO_ROLLUP: MetroRollup[] = [
   // Los Angeles County. Beverly Hills and Santa Monica are enclosed by or
   // directly adjacent to the city.
   //
-  // LONG BEACH IS DELIBERATELY NOT HERE (Roman, 2026-09-19). It sits in the
-  // Los Angeles-Long Beach-Anaheim metro and carries one bar, which is the
-  // case for folding it; it is also a city of 460,000 with its own port,
-  // downtown and identity, which is the case against. Same judgement as
-  // Oakland: size and self-identity beat metro membership. Baby Gee keeps
-  // its own Long Beach entry.
-  { metro: 'Los Angeles', country: 'United States', state: 'CA', areas: ['Beverly Hills', 'Santa Monica'] },
+  // LONG BEACH FOLDS IN (Roman, 2026-09-24, task 130), reversing his own
+  // 2026-09-19 call to keep it separate. The case against was size and
+  // identity (a city of 460,000 with its own port and downtown); the case
+  // for, which won, is that it sits in the Los Angeles-Long Beach-Anaheim
+  // metro and holds one bar, Baby Gee, which a reader finds more easily on
+  // the Los Angeles page. Oakland is NOT the same decision and stays alone.
+  { metro: 'Los Angeles', country: 'United States', state: 'CA', areas: ['Beverly Hills', 'Santa Monica', 'Long Beach'] },
 
   // DeKalb County, inside the Atlanta metro. Avondale Estates borders Decatur.
   { metro: 'Atlanta', country: 'United States', state: 'GA', areas: ['Decatur', 'Avondale Estates'] },
@@ -71,6 +72,13 @@ export const METRO_ROLLUP: MetroRollup[] = [
   { metro: 'Boston', country: 'United States', state: 'MA', areas: ['Somerville'] },
 
   // Miami-Dade. Miami Beach is a separate municipality across the bay.
+  //
+  // PALM BEACH IS NOT HERE (task 130, judged against Roman's "if it fits",
+  // 2026-09-24). It is in the Miami-Fort Lauderdale-West Palm Beach
+  // statistical area, but it is a town in Palm Beach County some 70 miles
+  // north, a drive of over an hour. A reader on the Miami page would not
+  // treat it as part of a night out in Miami, which is the test every other
+  // line here passes. One line to add if Roman wants it anyway.
   { metro: 'Miami', country: 'United States', state: 'FL', areas: ['Miami Beach'] },
 
   // Jefferson County, inside the Louisville metro.
@@ -91,6 +99,14 @@ export const METRO_ROLLUP: MetroRollup[] = [
 
   // Makati is a city of Metro Manila, not a neighbour of it.
   { metro: 'Manila', country: 'Philippines', state: null, areas: ['Makati'] },
+
+  // The Research Triangle, filed under Raleigh (Roman, 2026-09-24, task 130:
+  // "Durham, with Raleigh as the Triangle metro"). Raleigh is the larger city
+  // and already had its own best-bars page; Durham's bars fold in and keep
+  // "Durham" on the card and in search. A metro can only carry a name that
+  // is a real bars.city value, so a combined "Raleigh-Durham" label would
+  // need code; Raleigh is the metro name the data supports.
+  { metro: 'Raleigh', country: 'United States', state: 'NC', areas: ['Durham'] },
 ];
 
 interface RollupTarget {
