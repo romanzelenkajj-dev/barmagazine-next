@@ -23,8 +23,10 @@ Code may take one photo from a bar's own website or Instagram, interiors only (t
 
 Roman approved 15-high-heidelberg, cocktail-cafe-regie-heidelberg and schilling-roofbar-heidelberg on 24 September; all three were already live and stay, credited "Photo: <Bar name>". Their staged copies are deleted.
 
-Bent Bar was rejected: the photo is a tall portrait and the hero crops it to its middle band, which is mostly chair legs and floor. Two wider interiors exist in the bar's own media library at bentbar.de, neither linked from its home page, and both are staged in `outreach/photos-staged/bent-bar-heidelberg/` with the sheet at `outreach/photos-staged/bent-bar-2026-09-24.html`. The portrait photo stays live until Roman picks, since the instruction was to stage and not publish.
+Bent Bar's first photo was rejected: a tall portrait that the hero cropped to its middle band, mostly chair legs and floor. Two wider interiors were found in the bar's own media library at bentbar.de, neither linked from its home page, which is why the first pass missed them. Roman picked the first, the room down the length of the counter with its stools, seating and windows. It is live as of 24 September, credited "Photo: Bent Bar"; the portrait was deleted from storage and the second candidate dropped from staging. Source: https://bentbar.de/wp-content/uploads/2021/06/bent-bar-front.jpg
 
-## 4. Waiting on Roman
+All six Heidelberg profiles are now settled: four with an approved interior from the bar's own site, and Frollein Bent and Lino's Bar without a photo because nothing on their channels passes.
 
-"bent 01", "bent 02" or "bent none".
+## 4. Nothing outstanding
+
+Every photo question from tasks 128 and 128b is closed.
