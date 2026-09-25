@@ -4,6 +4,7 @@ import {
   renderableAccolades,
   tilesFor,
   awardStrings,
+  cardAwardLabel,
   MAX_TILES,
   type Accolade,
 } from './accolades';
@@ -433,6 +434,34 @@ describe('accolades', () => {
       const ok = { ...base, year: 2024, rank: 7 };
       const held = { ...base, unverified: true };
       expect(tilesFor([held, ok])).toHaveLength(1);
+    });
+  });
+
+  describe('cardAwardLabel — task 135 card pill', () => {
+    it('is null with no award', () => {
+      expect(cardAwardLabel(null)).toBeNull();
+      expect(cardAwardLabel([])).toBeNull();
+    });
+    it('names the world list plainly and keeps the regional possessive', () => {
+      expect(cardAwardLabel([make()])).toBe('50 BEST');
+      expect(cardAwardLabel([make({ org: "Asia's 50 Best Bars", org_key: 'a50b' })])).toBe("ASIA'S 50 BEST");
+    });
+    it('picks the highest score, not the first entry', () => {
+      const spirited = make({ org: 'Tales of the Cocktail Spirited Awards', org_key: 'totc', rank: null, kind: 'winner', title: "World's Best Cocktail Bar", score: 900 });
+      expect(cardAwardLabel([make({ score: 600 }), spirited])).toBe('SPIRITED');
+    });
+    it('skips nominations', () => {
+      const nom = make({ org: 'Tales of the Cocktail Spirited Awards', org_key: 'totc', rank: null, kind: 'nominee', title: 'Best U.S. Cocktail Bar', score: 950 });
+      expect(cardAwardLabel([nom])).toBeNull();
+      expect(cardAwardLabel([nom, make({ score: 500 })])).toBe('50 BEST');
+    });
+    it('counts a 1 Pin Pinnacle grade, which is stored as nominee', () => {
+      const pin = make({ org: 'The Pinnacle Guide', org_key: 'pinnacle', rank: null, kind: 'nominee', title: '1 Pin', score: 528 });
+      expect(cardAwardLabel([pin])).toBe('PINNACLE');
+    });
+    it('never shows an unrenderable entry', () => {
+      expect(cardAwardLabel([make({ source: null })])).toBeNull();
+      expect(cardAwardLabel([make({ unverified: true })])).toBeNull();
     });
   });
 });
