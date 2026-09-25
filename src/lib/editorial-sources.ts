@@ -107,7 +107,7 @@ const ESTABLISHED_LOCAL = [
   'gazeta wyborcza', 'trójmiasto', 'trojmiasto', 'weranda', 'newsweek polska', 'wprost',
   'gazeta wrocławska', 'gazeta wroclawska', 'dziennik bałtycki', 'dziennik baltycki',
   // Croatia
-  'jutarnji', 'večernji', 'vecernji', 'slobodna dalmacija', 'index.hr',
+  'jutarnji', 'večernji', 'vecernji', 'slobodna dalmacija', 'index.hr', 'telegram.hr',
   // Turkey
   'hürriyet', 'hurriyet', 'milliyet', 'sabah',
   // international brands with local editions
