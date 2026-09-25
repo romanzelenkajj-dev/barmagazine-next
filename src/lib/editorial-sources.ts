@@ -166,12 +166,28 @@ function publisherOf(text: string): string {
   return (text.split(',')[0] || '').trim();
 }
 
+/**
+ * Individual articles Roman has ruled on, by URL, where the title alone would
+ * decide the other way. Each carries the date and the reason, so the list
+ * stays an editorial record rather than a back door.
+ *
+ * - Gambero Rosso, Naples miniguide (29 Jan 2024): titled "9 cocktail bar da
+ *   provare" (to try), but the article's own section heading is "I migliori
+ *   cocktail bar di Napoli" and Gambero Rosso is Italy's leading food guide.
+ *   Roman, 2026-09-24: count it.
+ */
+const RULED_SELECTIVE_URLS = [
+  'gamberorosso.it/rubriche/miniguide/cocktail-bar-napoli',
+];
+
 /** True when this one source made a selection rather than a listing. */
 export function isSelectiveSource(entry: EditorialSource | null | undefined): boolean {
   const text = String(entry?.source || '').toLowerCase().trim();
   if (!text) return false;
   if (NOT_EDITORIAL.some(b => text.includes(b))) return false;
   if (BROAD_NAMES.some(b => text.includes(b))) return false;
+  const url = String(entry?.url || '').toLowerCase();
+  if (url && RULED_SELECTIVE_URLS.some(u => url.includes(u))) return true;
   if (SELECTIVE_NAMES.some(s => text.includes(s))) return true;
   if (countedSelection(text)) return true;
   // A local-language best-of counts only from an established publication.

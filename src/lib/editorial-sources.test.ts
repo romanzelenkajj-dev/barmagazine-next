@@ -71,8 +71,10 @@ describe('task 130b: local-language lists, Gault&Millau and sources that never c
     expect(sel('Jutarnji list, 10 najboljih koktel barova u Zagrebu (2025)')).toBe(true);
     expect(sel('Telegram.hr (Super1), 8 najboljih zagrebačkih barova u koje se nakon posla možete uputiti na prefine koktele (2024)')).toBe(true);
     expect(sel('TorinoToday, Una mappa dei 12 migliori cocktail bar di Torino (2024)')).toBe(true);
-    // Gambero Rosso is established, but this title is "to try", not a best-of.
+    // "da provare" (to try) is not a best-of on its own title...
     expect(sel('Gambero Rosso, La nouvelle vague napoletana dei drink: ecco 9 cocktail bar da provare in città (2024)')).toBe(false);
+    // ...but Roman ruled this article counts (section heading "I migliori cocktail bar di Napoli"), by URL.
+    expect(isSelectiveSource({ source: 'Gambero Rosso, La nouvelle vague napoletana dei drink: ecco 9 cocktail bar da provare in città (2024)', url: 'https://www.gamberorosso.it/rubriche/miniguide/cocktail-bar-napoli/' })).toBe(true);
   });
 
   it('refuses the same list from a publication that is not established', () => {
