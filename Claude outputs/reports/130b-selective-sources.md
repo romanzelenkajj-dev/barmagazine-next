@@ -1,6 +1,6 @@
 # 130b: local-language lists and Gault&Millau as selective sources
 
-Status: **preview ready, holding for your go.** Draft PR: https://github.com/romanzelenkajj-dev/barmagazine-next/pull/92
+Status: **merged and live 2026-09-24 (#92).** Draft PR: https://github.com/romanzelenkajj-dev/barmagazine-next/pull/92
 
 ## The rule as built
 
@@ -58,3 +58,8 @@ Nothing else was found for Wrocław, Split, Istanbul or Cartagena. Lists that we
 ## Tests
 
 `src/lib/editorial-sources.test.ts`: every accept and refuse case above is covered, including Gault&Millau, TorinoToday, Telegram.hr, Le Soir, Hürriyet and El Tiempo (accept), and Evendo, InTravel, Accor, City Unscripted, Into the Bloom, Plumette, Guadalajara Secreta and the Gambero Rosso "da provare" title (refuse). Full suite and tsc pass.
+
+## Resolved 2026-09-24 (Roman)
+
+- Gambero Rosso Naples miniguide counts: Roman's ruling, since the section heading says "I migliori" and Gambero Rosso is Italy's leading food guide. It is stored as a dated, URL-level ruling (`RULED_SELECTIVE_URLS` in `editorial-sources.ts`), so the stored title stays verbatim. This adds Anthill.
+- **Live titles after the merge:** The 5 Best Bars in Naples, The 7 Best Bars in Brussels, The 6 Best Bars in Zagreb, The 6 Best Bars in Turin. Bologna and Gdańsk stay "The Best Bars in". Asheville, San Antonio, Honolulu and Phoenix are unchanged.

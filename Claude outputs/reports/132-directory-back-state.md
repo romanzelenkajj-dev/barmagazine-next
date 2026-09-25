@@ -1,6 +1,6 @@
 # 132: /bars keeps its filters on back
 
-Status: **preview ready, not merged.** Draft PR: https://github.com/romanzelenkajj-dev/barmagazine-next/pull/91
+Status: **merged and live 2026-09-24 (#91), after Roman's own iPhone test.** Draft PR: https://github.com/romanzelenkajj-dev/barmagazine-next/pull/91
 Preview: https://barmagazine-next-git-previ-cc067c-romanzelenkajj-7135s-projects.vercel.app/bars (Vercel login required)
 
 ## What changed
@@ -37,4 +37,4 @@ This Mac has only the Xcode command-line tools, not Xcode, so the iOS Simulator 
 
 Two Safari-specific points are already handled. Safari limits how often a page can call `replaceState`, so the position is saved about 150 ms after scrolling stops and on click, not on every scroll event. A save that is skipped because of the limit is caught and ignored. The restore uses a timer rather than animation frames, so it also works when Safari brings the page back in the background.
 
-Holding for your go. No merge.
+Merged on Roman's go. Live check: `/bars?country=italy&type=cocktail-bar` server-renders with Italy and Cocktail Bar selected, and the canonical stays `https://barmagazine.com/bars`.

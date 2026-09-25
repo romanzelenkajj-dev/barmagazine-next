@@ -80,3 +80,50 @@ Rejected under the photo rule:
 - **Nightjar:** a nude painting dominates the frame.
 
 40 of the 74 bars have no usable own-site interior. Their sites show drinks, people, exteriors, logos or back-bar close-ups, or block downloads (Strange Bird, Suite 104).
+
+## Resolved 2026-09-24 (Roman)
+
+- **#90 merged and live:** `/bars/city/scottsdale` redirects (308) to `/bars/city/phoenix`.
+- **Albuquerque is now 7.** Still Spirits went in: a distillery's cocktail bar counts as cocktail-led, and only taprooms are excluded. Founders went in once its address was confirmed on its own Google Business profile: 622 Central Ave SW, NM 87102, inside El Rey Liquors, linking to foundersabq.com, phone (505) 582-2693. Record: `Claude outputs/131-city-expansion-wave2-batch2-verified.md`. Waxlight stays out as a restaurant.
+- **Daydream Rum Bar accolade:** North America's 50 Best Bars 2026, SevenRooms Best Bar Design Award (kind winner). Source: https://www.the50.com/bars/best-in-north-america/awards/best-bar-design.html. Score is 600 until the monthly rescoring. Award-claims audit: 1,962 active bars, 0 problems.
+
+## Photos published (Roman approved 34, 2026-09-24)
+
+One per bar, credited "Photo: <Bar name>" (checked live on Fanboy). The unchosen candidates and the 131 staging folder and contact sheet are deleted.
+
+| Slug | Source image (bar's own site) |
+|---|---|
+| apothecary-lounge-albuquerque | https://assets.milestoneinternet.com/cdn-cgi/image/f=auto/sf-brown-real-estate/hotel-parq-central-394667-1/siteimages/apothecary-lounge/hotel-parq-central-photos-by-viewlio-v1-86.jpg |
+| bar-1919-san-antonio | https://cdn.prod.website-files.com/5fc94aa2ec37827798b8c7c5/641cb068299e3b5ea77daef9_bar1919-establishment-image.webp |
+| bar-dkdc-memphis | https://images.squarespace-cdn.com/content/v1/66acf389855f99125c7c7e63/d6fba8d7-a38a-4fce-a088-94b7fd8c8a12/309263967_534355968694849_6108986750144161469_n.jpg?format=2500w |
+| batch-tucson | https://images.squarespace-cdn.com/content/v1/5fd430c467ebfc29b09184c3/79f395ec-1d87-47ad-9d64-3005fb99765f/batch_batch1_18.jpg?format=2500w |
+| character-study-asheville | https://characterstudybar.com/images/room/room-03.jpg |
+| daydream-rum-bar-albuquerque | https://static.wixstatic.com/media/affdfe_e599a211a13347b8947c00b7336d12a7~mv2.jpg |
+| eleven-honolulu | https://images.squarespace-cdn.com/content/v1/5e56f4485191ee5107089691/1625864587104-QK10518MPXIE8P0CACGM/L1000409-03a-Lo.jpg?format=2500w |
+| ep-bar-honolulu | https://images.squarespace-cdn.com/content/v1/6185d117c727250f482cf637/1640763879271-OHJ2OQVG9FBX44VYK0R3/L1050431.jpg?format=2500w |
+| fanboy-richmond | https://images.squarespace-cdn.com/content/v1/652dc6ed918ed33c256fd329/d923ee2a-6479-4df4-88a5-5eb692ab1705/Fanboy+vibe+pics-3.jpg?format=2500w |
+| good-for-a-few-oklahoma-city | https://img1.wsimg.com/isteam/ip/c66167e0-aea5-4d0c-b91f-1467b40a7bd7/gfaf-last-call-4.jpg |
+| hap-hap-lounge-boise | https://treefortmusichall.com/wp-content/uploads/2024/07/Cdigi-_16.jpeg |
+| high-violet-buffalo | https://img1.wsimg.com/isteam/ip/a0f802fc-67de-40d3-b5a8-78dfc2be6390/8Y6A0053.JPG |
+| hu-roof-memphis | https://huhotelmemphis.com/wp-content/uploads/2021/10/Garrett-Sweet-Hu.-Interiors-01-scaled.jpg |
+| japps-cincinnati | https://static.wixstatic.com/media/0d50a1_8d3a5a951b704e338e9fd1b990233003~mv2.jpg |
+| little-jumbo-asheville | https://littlejumbobar.com/assets/photographs/915A0355-41444323ccabbe295710538504b602f15c1bc942053a9377d220159ab3c6cb95.jpg |
+| longfellow-cincinnati | https://images.squarespace-cdn.com/content/v1/58ee593f6a49639a8a10c24f/1492640021538-QQ60L1BCGXXJIFKZ6JSQ/168_Longfellow_3.23.1724167.jpg |
+| lucky-day-whiskey-bar-buffalo | https://images.squarespace-cdn.com/content/v1/59395f62579fb3fd7674cedd/1498512616523-E0TENY5PPKYM2QU9GTMB/aaron-ingrao-lucky-day-whiskey-bar-cocktail-buffalo-new-york-170-Edit.jpg?format=2500w |
+| mathers-social-gathering-orlando | https://images.squarespace-cdn.com/content/v1/61d34fa20a990136390beded/182a5e5b-8096-4220-bafd-4f8303bf885e/E43A0325.jpg?format=2500w |
+| nowhere-special-indianapolis | https://static.wixstatic.com/media/cf902b_c085fb13558843929ddefed5b57417bd~mv2.jpg |
+| o-bar-oklahoma-city | https://www.obarokc.com/resourcefiles/gallery-snippet-images/seating-at-o-bar-ambassador-hotel-okc.jpg |
+| owls-club-tucson | https://images.squarespace-cdn.com/content/v1/580689b01b631b37ff3f8e21/1613412883262-PG3B9M1F0YM3FDRN44NQ/6A5A7113-2.jpg?format=2500w |
+| podmore-honolulu | https://cdn.prod.website-files.com/6556a2e697728d5179db6263/6556a2e697728d5179db629a_BarPodmore-0288-LR.jpg |
+| saint-neri-buffalo | https://saintneri.com/cdn/shop/files/5.jpg |
+| solaire-rooftop-richmond | https://solairerooftop.com/wp-content/uploads/2025/07/DSC00363-scaled.jpg |
+| somerset-cincinnati | https://images.squarespace-cdn.com/content/v1/63caf1fe3dedff507ae17e26/8e527dbe-1f8d-499e-9c30-5ea8601f7de3/CGPHOTO%2B-%2BSomersetOTR-17.jpg |
+| sternewirth-san-antonio | https://thehotelemma.com/wp-content/uploads/2022/12/sternewirth-tavern-og.jpg |
+| tenfold-rooftop-san-antonio | https://symphony.cdn.tambourine.com/_white-lodging-fb-4/media/tenfoldrooftop-gallery-01-670ff0bfada10.jpg |
+| the-dame-memphis | https://hotelpontotoc.com/wp-content/uploads/2026/03/Looking-for-Happy-Hour-Drinks-in-Memphis-Choose-The-Dame-The-Dame-Hotel-Pontotoc.jpg |
+| the-jasper-richmond | https://images.squarespace-cdn.com/content/v1/640031d9a2b3c86fef77146d/1522ae0a-5520-4f44-b9a6-23fa6de16ad6/Jasper+RVA+07-28-2023-053.jpg?format=2500w |
+| the-moons-daughters-san-antonio | https://images.getbento.com/accounts/06ef9866da2c9850883a1d69031b7bc9/media/4wJW9YTFSI6kQaC29eBy_SATTH-moons-daughters3.jpg |
+| the-vault-at-the-national-oklahoma-city | https://www.thevaultokc.com/resourcefiles/home-gallery-single-image/central-counches-at-the-vault-downtown-okc.jpg |
+| the-vault-indy-indianapolis | https://static.spotapps.co/website_images/ab_websites/128249_website/about_page_left.jpg |
+| thick-as-thieves-boise | https://images.squarespace-cdn.com/content/v1/62756829ef8e162acfb11e92/78d90ef1-c005-4656-a81e-8c9389aaf338/bar+pic.jpeg?format=2500w |
+| vue-rooftop-lounge-buffalo | https://vuebuffalo.com/wp-content/uploads/2022/02/Lounge-w-shuffle-board.jpg |
