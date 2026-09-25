@@ -138,4 +138,15 @@ describe('the rollup inside buildCityEntries', () => {
       expect(areasOf({ city: 'Durham', neighborhood: null }, 'Raleigh')).toEqual(['Durham']);
     });
   });
+
+  describe('task 131 line (2026-09-24)', () => {
+    it('folds Scottsdale into Phoenix and leaves Phoenix itself alone', () => {
+      expect(rollupTarget({ city: 'Scottsdale', country: 'United States', state: 'AZ' })?.metro).toBe('Phoenix');
+      expect(rollupTarget({ city: 'Phoenix', country: 'United States', state: 'AZ' })).toBeNull();
+    });
+
+    it('keeps Scottsdale findable on a Phoenix card', () => {
+      expect(areasOf({ city: 'Scottsdale', neighborhood: null }, 'Phoenix')).toEqual(['Scottsdale']);
+    });
+  });
 });
