@@ -3,7 +3,9 @@
 import { BarPlaceholder } from '@/components/BarPlaceholder';
 import { hasFiftyBest } from '@/lib/accolades';
 import { CardStatusPills } from '@/components/CardStatusPills';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { readSavedList, scrollToSaved } from '@/lib/list-restore';
+import { useListPositionSaver } from '@/lib/use-list-restore';
 import Link from 'next/link';
 import type { Bar } from '@/lib/supabase';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
@@ -64,6 +66,18 @@ function CountryBarCard({ bar }: { bar: Bar }) {
 // ---------------------------------------------------------------------------
 export default function CountryBarGridClient({ bars }: { bars: Bar[] }) {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  // Back from a profile brings back every "Show more" page and the scroll
+  // position (task 132), from the history entry being returned to. The list
+  // is server-rendered, so it is ready as soon as the count is restored.
+  const [restored, setRestored] = useState(false);
+  useEffect(() => {
+    const saved = readSavedList();
+    if (!saved) { setRestored(true); return; }
+    setVisibleCount(Math.max(PAGE_SIZE, saved.shown));
+    return scrollToSaved(saved.y, () => setRestored(true));
+  }, []);
+  useListPositionSaver(visibleCount, undefined, restored);
 
   if (bars.length === 0) return null;
 

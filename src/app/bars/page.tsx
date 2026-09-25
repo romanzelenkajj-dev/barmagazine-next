@@ -6,6 +6,7 @@ import { hasSlug, safeHref } from '@/lib/safe-slug';
 import type { Metadata } from 'next';
 import { CityGuideDirectory } from '@/components/CityGuideDirectory';
 import { regionOfGeo } from '@/lib/city-regions';
+import { readDirectoryQuery } from '@/lib/directory-query';
 
 export const revalidate = 300; // 5 min ISR
 
@@ -36,7 +37,11 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function BarsPage() {
+export default async function BarsPage({
+  searchParams = {},
+}: {
+  searchParams?: Record<string, string | string[] | undefined>;
+}) {
   // Read Vercel geo headers for IP-based personalization
   const headersList = headers();
   const geoCity = headersList.get('x-vercel-ip-city') || '';
@@ -82,6 +87,12 @@ export default async function BarsPage() {
 
   const seoCities = await getSeoCities();
 
+  // Filters in the URL (task 132): /bars?country=italy&city=milan&type=cocktail-bar.
+  // The canonical above stays /bars for every one of them.
+  const initialQuery = readDirectoryQuery(searchParams, {
+    countries: filters.countries, cities: filters.cities, types: filters.types,
+  });
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
@@ -97,6 +108,7 @@ export default async function BarsPage() {
         geoCity={decodeURIComponent(geoCity)}
         geoCountryCode={geoCountryCode}
         geoContinent={geoContinent}
+        initialQuery={initialQuery}
       />
 
       {/* Server-rendered city-guide links: the crawl path from the directory

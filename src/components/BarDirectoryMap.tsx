@@ -19,6 +19,9 @@ import { placeLine } from '@/lib/city-location';
 import { BarDirectorySidebar, BarDirectorySidebarPromo } from './BarDirectorySidebar';
 import { BarSearchTypeahead } from './BarSearchTypeahead';
 import { fetchAllMatching } from '@/lib/filter-fetch';
+import { EMPTY_QUERY, readDirectoryQuery, writeDirectoryQuery, type DirectoryQuery } from '@/lib/directory-query';
+import { customHistoryState, readSavedList, scrollToSaved, type SavedList } from '@/lib/list-restore';
+import { useListPositionSaver } from '@/lib/use-list-restore';
 
 interface Props {
   initialBars: Bar[];
@@ -34,6 +37,9 @@ interface Props {
   geoCity?: string;
   geoCountryCode?: string;
   geoContinent?: string;
+  /** The filters from the request's query string, so a filtered URL renders
+      filtered on the server too (task 132). */
+  initialQuery?: DirectoryQuery;
 }
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
@@ -722,13 +728,29 @@ export function BarDirectoryMapClient({
   geoCity = '',
   geoCountryCode = '',
   geoContinent = '',
+  initialQuery,
 }: Props) {
-  const [search, setSearch] = useState('');
+  /**
+   * Where the filters start (task 132): the URL.
+   *
+   * On the server that is the request's query string, passed in as
+   * initialQuery. In the browser it is read from location directly, because
+   * pressing back remounts this component from the router's cached payload,
+   * which was rendered for the URL the visitor first arrived on, not for the
+   * filters they set afterwards. Both go through readDirectoryQuery with the
+   * same option lists, so on a fresh load they agree and hydration matches.
+   */
+  const [startQuery] = useState<DirectoryQuery>(() => (
+    typeof window === 'undefined'
+      ? (initialQuery ?? EMPTY_QUERY)
+      : readDirectoryQuery(window.location.search, { countries, cities, types })
+  ));
+  const [search, setSearch] = useState(startQuery.search);
   const [showAllCities, setShowAllCities] = useState(false);
-  const [debouncedSearch, setDebouncedSearch] = useState('');
-  const [countryFilter, setCountryFilter] = useState('');
-  const [cityFilter, setCityFilter] = useState('');
-  const [typeFilter, setTypeFilter] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState(startQuery.search);
+  const [countryFilter, setCountryFilter] = useState(startQuery.country);
+  const [cityFilter, setCityFilter] = useState(startQuery.city);
+  const [typeFilter, setTypeFilter] = useState(startQuery.type);
 
   // Debounce search input — only trigger server fetch after user stops typing for 400ms
   useEffect(() => {
@@ -763,7 +785,7 @@ export function BarDirectoryMapClient({
     const url = new URL(window.location.href);
     if (url.searchParams.has('near')) {
       url.searchParams.delete('near');
-      window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+      window.history.replaceState(customHistoryState(), '', `${url.pathname}${url.search}${url.hash}`);
     }
   }, [nearMode, cityFilter, countryFilter, debouncedSearch]);
 
@@ -836,7 +858,7 @@ export function BarDirectoryMapClient({
   const [userLat, setUserLat] = useState<number | null>(null);
   const [userLng, setUserLng] = useState<number | null>(null);
   const [gridVisible, setGridVisible] = useState(FEATURED_PER_PAGE);
-  const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
+  const [viewMode, setViewMode] = useState<'grid' | 'map'>(startQuery.view);
   const searchInputRef = useRef<HTMLInputElement>(null);
   // Legacy pagination state — unused but kept to avoid refactor churn
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -864,9 +886,13 @@ export function BarDirectoryMapClient({
   const [mapBarsLoaded, setMapBarsLoaded] = useState(false);
 
 
-  const openMapView = useCallback(async () => {
-    setViewMode('map');
-    if (mapBarsLoaded) return; // already fetched
+  // Loads when the map is first shown, whether by the Map button or by a
+  // view=map URL on arrival (task 132). A ref guards the fetch so the two
+  // cannot both start one.
+  const mapFetchStarted = useRef(false);
+  const loadMapBars = useCallback(async () => {
+    if (mapBarsLoaded || mapFetchStarted.current) return;
+    mapFetchStarted.current = true;
     try {
       const res = await fetch('/api/bars/map');
       if (res.ok) {
@@ -880,9 +906,16 @@ export function BarDirectoryMapClient({
         setMapBarsLoaded(true);
       }
     } catch (e) {
+      mapFetchStarted.current = false;
       console.error('Failed to load map bars', e);
     }
   }, [mapBarsLoaded, geoCity, geoCountryCode, geoContinent, userLat, userLng, toBar]);
+
+  useEffect(() => {
+    if (viewMode === 'map') loadMapBars();
+  }, [viewMode, loadMapBars]);
+
+  const openMapView = useCallback(() => setViewMode('map'), []);
 
   // Server-side pagination state
   const [allBars, setAllBars] = useState<Bar[]>(initialBars);
@@ -890,6 +923,10 @@ export function BarDirectoryMapClient({
   const [serverPage, setServerPage] = useState(2);
   const [hasMoreFromServer, setHasMoreFromServer] = useState((totalBars || 0) > initialBars.length);
   const [isFilterFetching, setIsFilterFetching] = useState(false);
+  // Which filter set the grid currently holds, so a restore knows when the
+  // list it is scrolling into has actually arrived.
+  const filterKey = `${debouncedSearch}|${countryFilter}|${cityFilter}|${typeFilter}`;
+  const [loadedFilterKey, setLoadedFilterKey] = useState<string | null>(null);
 
   // When a search term or filter is applied, fetch ALL matching bars from the server.
   // This is critical because the initial load only fetches top10/featured/photo bars —
@@ -901,6 +938,7 @@ export function BarDirectoryMapClient({
       setAllBars(initialBars);
       setServerPage(2);
       setHasMoreFromServer((totalBars || 0) > initialBars.length);
+      setLoadedFilterKey(filterKey);
       return;
     }
     // Fetch all bars matching the current filters from the server, paging
@@ -928,7 +966,11 @@ export function BarDirectoryMapClient({
         setHasMoreFromServer(false); // All filtered results are loaded
       })
       .catch(e => console.error('Filter fetch failed:', e))
-      .finally(() => { if (live) setIsFilterFetching(false); });
+      .finally(() => {
+        if (!live) return;
+        setIsFilterFetching(false);
+        setLoadedFilterKey(filterKey);
+      });
     return () => { live = false; };
   }, [debouncedSearch, countryFilter, cityFilter, typeFilter]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -954,6 +996,80 @@ export function BarDirectoryMapClient({
       setIsFetchingMore(false);
     }
   }, [isFetchingMore, hasMoreFromServer, serverPage, allBars.length, totalBars]);
+
+  /**
+   * Back from a profile lands where the visitor left (task 132).
+   *
+   * The URL brings the filters back; this brings back the rest, from the
+   * history entry the visitor is returning to: how many cards were showing,
+   * any server pages "Show more" had pulled in on the unfiltered list, and the
+   * scroll position. Nothing is saved on a fresh visit to /bars, so a new
+   * visit still starts at the top.
+   */
+  const pendingRestore = useRef<SavedList | null>(null);
+  const [restored, setRestored] = useState(false);
+  const [pagesReady, setPagesReady] = useState(true);
+  useEffect(() => {
+    const saved = readSavedList();
+    if (!saved) { setRestored(true); return; }
+    pendingRestore.current = saved;
+    setGridVisible(Math.max(FEATURED_PER_PAGE, saved.shown));
+    const unfiltered = !(startQuery.search || startQuery.country || startQuery.city || startQuery.type);
+    const upTo = saved.serverPage ?? 2;
+    if (!unfiltered || upTo <= 2) return;
+    setPagesReady(false);
+    (async () => {
+      const extra: Bar[] = [];
+      let reached = 2;
+      try {
+        for (let page = 2; page < upTo; page += 1) {
+          const res = await fetch(`/api/bars?${new URLSearchParams({ page: String(page), perPage: '100' })}`);
+          if (!res.ok) break;
+          const data = await res.json();
+          extra.push(...(data.bars as Bar[]));
+          reached = page + 1;
+        }
+      } catch (e) {
+        console.error('Failed to restore loaded pages:', e);
+      }
+      setAllBars(prev => {
+        const ids = new Set(prev.map(b => b.id));
+        return [...prev, ...extra.filter(b => !ids.has(b.id))];
+      });
+      setServerPage(reached);
+      if (initialBars.length + extra.length >= (totalBars || 0)) setHasMoreFromServer(false);
+      setPagesReady(true);
+    })();
+    // Once, on mount: this is the arrival, not a response to later changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const saved = pendingRestore.current;
+    if (!saved || restored) return;
+    if (loadedFilterKey !== filterKey || !pagesReady) return;
+    return scrollToSaved(saved.y, () => {
+      pendingRestore.current = null;
+      setRestored(true);
+    });
+  }, [loadedFilterKey, filterKey, pagesReady, restored]);
+
+  const isFilteredList = !!(debouncedSearch || countryFilter || cityFilter || typeFilter);
+  useListPositionSaver(gridVisible, isFilteredList ? undefined : serverPage, restored);
+
+  /**
+   * Every filter, the search text and the view mode live in the URL
+   * (task 132), replaced in place as they change so the back button is not
+   * filled with one entry per keystroke. The search follows the debounced
+   * value for the same reason. Other keys (near, utm_*) are kept.
+   */
+  useEffect(() => {
+    const qs = writeDirectoryQuery(window.location.search, {
+      search: debouncedSearch, country: countryFilter, city: cityFilter, type: typeFilter, view: viewMode,
+    });
+    if (qs === window.location.search || (qs === '' && window.location.search === '')) return;
+    window.history.replaceState(customHistoryState(), '', `${window.location.pathname}${qs}${window.location.hash}`);
+  }, [debouncedSearch, countryFilter, cityFilter, typeFilter, viewMode]);
 
   /**
    * The city dropdown.
@@ -1278,7 +1394,7 @@ export function BarDirectoryMapClient({
    */
   const toggleNearMe = useCallback(() => {
     const url = new URL(window.location.href);
-    const commit = () => window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+    const commit = () => window.history.replaceState(customHistoryState(), '', `${url.pathname}${url.search}${url.hash}`);
     if (nearMode) {
       setNearMode(false);
       if (url.searchParams.has('near')) { url.searchParams.delete('near'); commit(); }
