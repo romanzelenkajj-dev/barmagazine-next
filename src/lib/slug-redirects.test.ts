@@ -99,6 +99,9 @@ describe('retired city slugs (task 130)', () => {
       ['/bars/city/wroc-aw', '/bars/city/wroclaw'],
       ['/best-bars/wroc-aw', '/best-bars/wroclaw'],
       ['/best-bars/wroc-aw/cocktail-bars', '/best-bars/wroclaw/cocktail-bars'],
+      ['/bars/city/goteborg', '/bars/city/gothenburg'],
+      ['/best-bars/goteborg', '/best-bars/gothenburg'],
+      ['/best-bars/goteborg/cocktail-bars', '/best-bars/gothenburg/cocktail-bars'],
     ]) {
       const res = middleware(req(`${ORIGIN}${from}`));
       expect(res.status, from).toBe(301);
