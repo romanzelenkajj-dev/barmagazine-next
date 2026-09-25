@@ -47,6 +47,38 @@ const SELECTIVE_NAMES = [
   // Gault&Millau selects by its own standard in every country edition
   // (Roman, 2026-09-24). All the spellings a source string might carry.
   'gault&millau', 'gault & millau', 'gault et millau', 'gault millau', 'gault-millau',
+  // 50 Best Discovery (Roman, 2026-09-25, task 133): a curated inclusion by
+  // the 50 Best organisation rather than a ranking, but a selection made to
+  // its own standard, so it counts.
+  '50 best discovery', 'the 50 discovery',
+];
+
+/**
+ * Established English-language publishers (Roman, 2026-09-25, task 133):
+ * an English counted list ("The 12 best bars in Porto") is judged by who
+ * published it, not by its title, exactly as the local-language lists are.
+ * Built from every English publisher that qualified a bar in the data on
+ * 2026-09-25 and passed the test (national or city newspaper, city or
+ * alt-weekly magazine, food and drink magazine, recognised guide), plus the
+ * obvious national titles that have not appeared yet. Matched as a
+ * substring of the publisher, the part of the source before the first comma.
+ * Publishers that failed (Neighborhood.lv, the Secret Media city guides,
+ * Portugal.com, The Rooftop Guide, Good Food Pittsburgh, That's So Tampa,
+ * Cleveland Traveler, Visit Italy) and the borderline ones (Asia Bars &
+ * Restaurants, Near+Far, Culture Trip) are listed in the task 134 report.
+ */
+const ESTABLISHED_ENGLISH = [
+  'time out', 'the infatuation', 'eater', 'condé nast', 'conde nast', 'tatler', 'monocle',
+  'bon appetit', 'bon appétit', 'food & wine', 'food and wine', 'travel + leisure', 'travel and leisure',
+  'vogue', 'gq', 'club oenologique', 'distiller magazine', 'paste magazine',
+  // newspapers and news sites
+  'the guardian', 'the telegraph', 'the times', 'the independent', 'evening standard',
+  'new york times', 'washington post', 'los angeles times', 'chicago tribune', 'the scotsman',
+  'atlanta journal-constitution', 'post and courier', 'sfgate', 'axios', 'glasgowworld',
+  // city magazines and alt-weeklies
+  'indianapolis monthly', 'indy week', 'leo weekly', 'creative loafing', "what's on", 'weranda',
+  // Slovakia: SME (national daily) and Refresher (national lifestyle portal).
+  'sme closer', 'refresher.sk',
 ];
 
 /**
@@ -108,6 +140,8 @@ const ESTABLISHED_LOCAL = [
   'gazeta wrocławska', 'gazeta wroclawska', 'dziennik bałtycki', 'dziennik baltycki',
   // Croatia
   'jutarnji', 'večernji', 'vecernji', 'slobodna dalmacija', 'index.hr', 'telegram.hr',
+  // Slovenia: Ljubljana Times, a daily city news portal (Roman, 2026-09-25, task 133).
+  'ljubljana times',
   // Turkey
   'hürriyet', 'hurriyet', 'milliyet', 'sabah',
   // international brands with local editions
@@ -189,9 +223,10 @@ export function isSelectiveSource(entry: EditorialSource | null | undefined): bo
   const url = String(entry?.url || '').toLowerCase();
   if (url && RULED_SELECTIVE_URLS.some(u => url.includes(u))) return true;
   if (SELECTIVE_NAMES.some(s => text.includes(s))) return true;
-  if (countedSelection(text)) return true;
-  // A local-language best-of counts only from an established publication.
   const pub = publisherOf(text);
+  // An English counted list counts only from an established publication.
+  if (countedSelection(text) && ESTABLISHED_ENGLISH.some(e => pub.includes(e))) return true;
+  // A local-language best-of counts only from an established publication.
   return localCountedSelection(text) && ESTABLISHED_LOCAL.some(e => pub.includes(e.trim()) || (e.endsWith(' ') && pub.startsWith(e.trim())));
 }
 

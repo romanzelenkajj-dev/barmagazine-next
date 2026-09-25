@@ -104,5 +104,21 @@ describe('task 130b: local-language lists, Gault&Millau and sources that never c
     expect(sel('The Infatuation, The 11 Best Cocktail Bars In Manchester (2026)')).toBe(true);
     expect(sel('Falstaff, The Best Bars in Stuttgart (2026)')).toBe(true);
   });
-});
 
+  describe('task 133 rulings (Roman, 2026-09-25)', () => {
+    const sel = (source: string) => isSelectiveSource({ source });
+    it('counts 50 Best Discovery and Ljubljana Times', () => {
+      expect(sel('The 50 Best Discovery, Whisper Sister (Tallinn)')).toBe(true);
+      expect(sel('Ljubljana Times, 5 najboljših koktajl barov v Ljubljani, ki jih morate obiskati (2025)')).toBe(true);
+    });
+    it('judges English counted lists by the publication, not the title', () => {
+      expect(sel('Neighborhood.lv, Where to drink cocktails in Riga? Top 14 Bars (2023)')).toBe(false);
+      expect(sel('Lyon Secret, Top 6 cocktail bars in Lyon! (2024)')).toBe(false);
+      expect(sel('Portugal.com, The 8 Best Cocktail Bars in Porto (2024)')).toBe(false);
+      expect(sel('The Rooftop Guide, Split Rooftop Bars: The 7 Best Picks for 2026 (2026)')).toBe(false);
+      expect(sel('Time Out Hong Kong, The 6 Best Bars to Visit in Shenzhen [2026] (2026)')).toBe(true);
+      expect(sel('Eater SF, The East Bay\'s 16 Best Cocktail Bars')).toBe(true);
+      expect(sel('Axios Richmond, The 10 best rooftop bars in Richmond (2026)')).toBe(true);
+    });
+  });
+});
