@@ -53,3 +53,56 @@ describe('editorial source selectivity', () => {
     expect(strongestSource(mixed)?.source).toContain('Falstaff');
   });
 });
+
+describe('task 130b: local-language lists, Gault&Millau and sources that never count (Roman, 2026-09-24)', () => {
+  const sel = (source: string) => isSelectiveSource({ source });
+
+  it('accepts Gault&Millau in any spelling', () => {
+    expect(sel('Gault&Millau Belgium, Cocktail bars')).toBe(true);
+    expect(sel('Gault et Millau Suisse, Bars')).toBe(true);
+  });
+
+  it('accepts a counted local-language best-of from an established publication', () => {
+    expect(sel('Gambero Rosso, I 10 migliori cocktail bar di Napoli (2025)')).toBe(true);
+    expect(sel('Trójmiasto.pl, 10 najlepszych barów koktajlowych w Gdańsku (2025)')).toBe(true);
+    expect(sel("Le Soir, Les 12 meilleurs bars à cocktails de Bruxelles (2024)")).toBe(true);
+    expect(sel("Hürriyet, İstanbul'un en iyi 15 kokteyl barı (2025)")).toBe(true);
+    expect(sel('El Tiempo, Los 10 mejores bares de Cartagena (2024)')).toBe(true);
+    expect(sel('Jutarnji list, 10 najboljih koktel barova u Zagrebu (2025)')).toBe(true);
+    expect(sel('Telegram.hr (Super1), 8 najboljih zagrebačkih barova u koje se nakon posla možete uputiti na prefine koktele (2024)')).toBe(true);
+    expect(sel('TorinoToday, Una mappa dei 12 migliori cocktail bar di Torino (2024)')).toBe(true);
+    // "da provare" (to try) is not a best-of on its own title...
+    expect(sel('Gambero Rosso, La nouvelle vague napoletana dei drink: ecco 9 cocktail bar da provare in città (2024)')).toBe(false);
+    // ...but Roman ruled this article counts (section heading "I migliori cocktail bar di Napoli"), by URL.
+    expect(isSelectiveSource({ source: 'Gambero Rosso, La nouvelle vague napoletana dei drink: ecco 9 cocktail bar da provare in città (2024)', url: 'https://www.gamberorosso.it/rubriche/miniguide/cocktail-bar-napoli/' })).toBe(true);
+  });
+
+  it('refuses the same list from a publication that is not established', () => {
+    expect(sel('Guadalajara Secreta, Estos son los 12 mejores bares de Guadalajara, ¡salud! (2024)')).toBe(false);
+    expect(sel('Some Food Blog, I 10 migliori cocktail bar di Bologna (2025)')).toBe(false);
+  });
+
+  it('refuses a local list longer than 25, as the English rule does', () => {
+    expect(sel('La Tercera Finde, Los 30 mejores bares para visitar en Santiago (2023)')).toBe(false);
+  });
+
+  it('refuses a local-language guide with no count', () => {
+    expect(sel('El Universal, Guía de bares en Guadalajara: los mejores cócteles de autor de la región (2025)')).toBe(false);
+  });
+
+  it('never counts a listicle farm, a booking site, a tour blog or a rival bar, whatever the title', () => {
+    expect(sel('Evendo, The 10 Best bars in Bologna (2026 ranked) (2026)')).toBe(false);
+    expect(sel('InTravel, Top 20 Best Cocktail Bars in Gdańsk, september 2026 (2026)')).toBe(false);
+    expect(sel('Accor Limitless, Discover the 9 Best Bars in Brussels (2026)')).toBe(false);
+    expect(sel('City Unscripted, Three Best Cocktail Bars in Brussels (2024)')).toBe(false);
+    expect(sel('Into the Bloom, 12 Best Places For a Drink in Gdańsk, Poland (According to a Local) (2026)')).toBe(false);
+    expect(sel('Plumette, Top 7 Best Cocktail Bars in Brussels (2026 Insider Guide) (2026)')).toBe(false);
+  });
+
+  it('leaves established English lists exactly as they were', () => {
+    expect(sel('Time Out, The 20 best bars in Glasgow right now (2023)')).toBe(true);
+    expect(sel('The Infatuation, The 11 Best Cocktail Bars In Manchester (2026)')).toBe(true);
+    expect(sel('Falstaff, The Best Bars in Stuttgart (2026)')).toBe(true);
+  });
+});
+

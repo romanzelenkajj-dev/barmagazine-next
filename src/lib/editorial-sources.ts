@@ -44,6 +44,74 @@ const SELECTIVE_NAMES = [
   'imbibe', 'punch', 'esquire', 'speed rack',
   'bartenders choice', "bartenders' choice",
   'best of warsaw', 'best of the best',
+  // Gault&Millau selects by its own standard in every country edition
+  // (Roman, 2026-09-24). All the spellings a source string might carry.
+  'gault&millau', 'gault & millau', 'gault et millau', 'gault millau', 'gault-millau',
+];
+
+/**
+ * Sources that never qualify a bar, however their title reads (Roman,
+ * 2026-09-24): listicle farms and aggregators, booking and hotel-group
+ * sites, tour-company and personal travel blogs, and a bar's own post about
+ * its rivals. Checked before everything else, so a farm's "The 10 Best Bars
+ * in Bologna (2026 ranked)" cannot pass on its count.
+ *
+ * Named, not inferred: each line is a publisher that appeared in our own
+ * data and failed the "established publication" test. Borderline ones
+ * (city portals, niche directories) are listed in the task 130b report for
+ * Roman to rule on, and are NOT here.
+ */
+const NOT_EDITORIAL = [
+  // listicle farms and aggregators
+  'evendo', 'intravel', 'wanderlog', 'restaurant guru', 'restaurantguru',
+  'tripadvisor', 'yelp', 'mindtrip', 'cocktayl', 'barsforkings',
+  'ted valentin', 'hotelbars.guide', 'top50cocktailbars',
+  // booking and hotel-group sites
+  'accor', 'booking.com', 'expedia', 'hotels.com',
+  // tour companies and personal travel blogs
+  'city unscripted', 'into the bloom', 'the grand wine tour',
+  // a bar's own post ranking its rivals
+  'plumette',
+];
+
+/**
+ * The word for "best" in the languages our cities publish in. A counted
+ * best-of in one of these qualifies only from an ESTABLISHED publication
+ * (ESTABLISHED_LOCAL): Roman accepted local-language lists on that condition,
+ * because the local listicle market is where most of the noise is.
+ */
+const LOCAL_BEST = /\b(migliori|meilleur(?:e|s|es)?|mejores|besten|beste|najlepsz\w*|najbolj\w*|melhores|bästa|bedste|nejlepší|en iyi)\b/i;
+
+/**
+ * Established publications whose local-language best-of lists count:
+ * national and city newspapers, city magazines, food and drink magazines,
+ * recognised guides. Matched as a lowercase substring of the publisher, the
+ * part of the source string before its first comma.
+ */
+const ESTABLISHED_LOCAL = [
+  // Italy
+  'gambero rosso', 'dissapore', 'scatti di gusto', 'identità golose', 'identita golose',
+  'corriere', 'repubblica', 'il gusto', 'il mattino', 'la stampa', 'il resto del carlino',
+  'napolitoday', 'bolognatoday', 'torinotoday', 'vanity fair italia', 'gq italia',
+  // France, Belgium, Switzerland
+  'le fooding', 'le figaro', 'le monde', 'le parisien', 'télérama', 'telerama', "l'express",
+  'le point', 'lyon capitale', 'le progrès', 'le progres', 'tribune de lyon', 'sud ouest',
+  'le soir', 'la libre', 'bruzz', 'le vif', 'knack', 'de standaard', 'het nieuwsblad',
+  'tribune de genève', 'tribune de geneve', 'le temps', '24 heures',
+  // Spain and Latin America
+  'el país', 'el pais', 'el mundo', 'la vanguardia', 'el tiempo', 'el espectador',
+  'semana', 'el universal', 'milenio', 'excélsior', 'excelsior', 'chilango', 'la tercera',
+  // Portugal
+  'público', 'publico', 'expresso', 'observador', 'nit', 'evasões', 'evasoes', 'visão', 'visao',
+  // Poland
+  'gazeta wyborcza', 'trójmiasto', 'trojmiasto', 'weranda', 'newsweek polska', 'wprost',
+  'gazeta wrocławska', 'gazeta wroclawska', 'dziennik bałtycki', 'dziennik baltycki',
+  // Croatia
+  'jutarnji', 'večernji', 'vecernji', 'slobodna dalmacija', 'index.hr', 'telegram.hr',
+  // Turkey
+  'hürriyet', 'hurriyet', 'milliyet', 'sabah',
+  // international brands with local editions
+  'time out', 'condé nast', 'conde nast', 'gq ', 'vogue', 'esquire', 'tatler', 'monocle',
 ];
 
 /**
@@ -84,13 +152,47 @@ function countedSelection(text: string): boolean {
   return false;
 }
 
+/** A counted local-language best-of: "I 10 migliori", "10 najlepszych", "en iyi 15". */
+function localCountedSelection(text: string): boolean {
+  const m = text.match(new RegExp(`\\b(\\d{1,3})\\b[^.]{0,20}${LOCAL_BEST.source}`, 'i'))
+    || text.match(new RegExp(`${LOCAL_BEST.source}[^.]{0,20}?\\b(\\d{1,3})\\b`, 'i'));
+  if (!m) return false;
+  const n = parseInt(m.slice(1).find(g => g && /^\d+$/.test(g)) || '0', 10);
+  return n > 0 && n <= MAX_SELECTIVE_N;
+}
+
+/** The publisher named at the front of a source string, lowercased. */
+function publisherOf(text: string): string {
+  return (text.split(',')[0] || '').trim();
+}
+
+/**
+ * Individual articles Roman has ruled on, by URL, where the title alone would
+ * decide the other way. Each carries the date and the reason, so the list
+ * stays an editorial record rather than a back door.
+ *
+ * - Gambero Rosso, Naples miniguide (29 Jan 2024): titled "9 cocktail bar da
+ *   provare" (to try), but the article's own section heading is "I migliori
+ *   cocktail bar di Napoli" and Gambero Rosso is Italy's leading food guide.
+ *   Roman, 2026-09-24: count it.
+ */
+const RULED_SELECTIVE_URLS = [
+  'gamberorosso.it/rubriche/miniguide/cocktail-bar-napoli',
+];
+
 /** True when this one source made a selection rather than a listing. */
 export function isSelectiveSource(entry: EditorialSource | null | undefined): boolean {
   const text = String(entry?.source || '').toLowerCase().trim();
   if (!text) return false;
+  if (NOT_EDITORIAL.some(b => text.includes(b))) return false;
   if (BROAD_NAMES.some(b => text.includes(b))) return false;
+  const url = String(entry?.url || '').toLowerCase();
+  if (url && RULED_SELECTIVE_URLS.some(u => url.includes(u))) return true;
   if (SELECTIVE_NAMES.some(s => text.includes(s))) return true;
-  return countedSelection(text);
+  if (countedSelection(text)) return true;
+  // A local-language best-of counts only from an established publication.
+  const pub = publisherOf(text);
+  return localCountedSelection(text) && ESTABLISHED_LOCAL.some(e => pub.includes(e.trim()) || (e.endsWith(' ') && pub.startsWith(e.trim())));
 }
 
 /** True when ANY of a bar's sources is selective. */
