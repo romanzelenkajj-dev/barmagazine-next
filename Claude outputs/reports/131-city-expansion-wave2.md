@@ -29,7 +29,7 @@ Before = active rows already in the city: Bar Leather Apron (Honolulu) and Happy
 ## Fixes in the same run
 
 - **Missing state on 11 rows.** Admin create takes the state from the address, and 11 addresses carry no ZIP. Those rows were saved with an empty state, which would have split them off their city page. I set the state on each via the admin API: DayTrip, Crucible, The Crow and Quill (NC); Hap Hap Lounge (ID); Equal Parts, VUE (NY); Japp's (OH); Art Bar (TN); Mathers, Hanson's (FL); Goldwing (VA). All 74 rows now carry a state.
-- **Em dash in a source title** ("Say Hello to Later Bye—Midtown's Latest Bar"): the converter now removes dashes from source titles as well as from descriptions.
+- **Em dash in a source title** (a 405 Magazine headline on Later Bye): the converter now removes dashes from source titles as well as from descriptions.
 
 ## Audits
 
