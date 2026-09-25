@@ -79,6 +79,8 @@ const ESTABLISHED_ENGLISH = [
   'indianapolis monthly', 'indy week', 'leo weekly', 'creative loafing', "what's on", 'weranda',
   // Slovakia: SME (national daily) and Refresher (national lifestyle portal).
   'sme closer', 'refresher.sk',
+  // Roman, task 134 rulings: counted. Near+Far Magazine stays out.
+  'asia bars & restaurants', 'culture trip',
 ];
 
 /**

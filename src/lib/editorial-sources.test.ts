@@ -120,5 +120,10 @@ describe('task 130b: local-language lists, Gault&Millau and sources that never c
       expect(sel('Eater SF, The East Bay\'s 16 Best Cocktail Bars')).toBe(true);
       expect(sel('Axios Richmond, The 10 best rooftop bars in Richmond (2026)')).toBe(true);
     });
+    it('counts Asia Bars & Restaurants and Culture Trip, not Near+Far (task 134 rulings)', () => {
+      expect(sel('Asia Bars & Restaurants, Top 12 Hanoi Cocktail Bars to visit in 2026 (2026)')).toBe(true);
+      expect(sel("Culture Trip, Kraków's 10 best cocktail bars (2017)")).toBe(true);
+      expect(sel('Near+Far Magazine, The 14 best bars in Abu Dhabi from day drinks to nightcaps (2024)')).toBe(false);
+    });
   });
 });
