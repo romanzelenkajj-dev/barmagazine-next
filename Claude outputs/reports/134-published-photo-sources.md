@@ -118,3 +118,30 @@ Every photo published today from a bar's own website, credited "Photo: <Bar name
 | 134 batch 5 | gorilla | Gorilla (Thessaloniki) | https://gorillabar.gr/wp-content/uploads/2024/10/DSC_2140-scaled.webp | https://gorillabar.gr/ |
 | 134 batch 5 (held-off, approved) | blind-tiger-new-york | Blind Tiger | https://images.squarespace-cdn.com/content/v1/55d21a3be4b0d60073fd5fe0/1780351497094-43I5VL3W9H2GG3GT52CP/image-asset.jpeg | https://blindtigeralehouse.com/ (the bar's own Instagram post https://www.instagram.com/p/DZDk8pWJzTM/, via the feed block on its site) |
 | 134 batch 5 (held-off, approved) | jungle-ballroom | Jungle Ballroom | https://mondrianhotels.com/wp-content/uploads/sites/34/2025/03/Mondrian-Singapore_Jungle-Ballroom-bar_1920x1280.jpg | https://mondrianhotels.com/singapore-duxton/dining/jungle-ballroom/ |
+| 134 batch 6 | rabbit-hole | Rabbit Hole (Bangkok) | https://images.squarespace-cdn.com/content/v1/5a5320c8e45a7c0deb541657/4f15cc46-7d0f-4c85-8e8d-f84cafb76243/rh_web_photo_crop-07.webp | https://rabbitholebkk.com/rabbitholegallery |
+| 134 batch 6 | the-speakeasy-rooftop-bar-bangkok | The Speakeasy Rooftop Bar Bangkok (Bangkok) | https://mds-assets.marriott.com/cms-platform-for-marriott/bkkhm-the-speakeasy-rooftop-bar-bangkok/site-images/migrated-images/spk-24th-4.jpg | https://www.thespeakeasyrooftopbarbangkok.com/photos |
+| 134 batch 6 | victoria-bar | Victoria Bar (Berlin) | https://victoriabar.de/fileadmin/daten/bar/victoriabar11.jpg | https://victoriabar.de/service/image-downloads |
+| 134 batch 6 | estereo | Estereo (Chicago) | https://images.squarespace-cdn.com/content/v1/647f99fd23a0c40d13a9522c/06df9f54-1e77-40f8-bf9a-a8c849866f4b/IMG_1558+%281%29.jpg | https://www.estereochicago.com/ |
+| 134 batch 6 | zuma-hong-kong | Zuma (Hong Kong) | https://cms.azumirestaurants.com/storage/zuma/space/lounge-hongkong-our-spaces-123990.jpg | https://www.zumarestaurant.com/en/hong-kong |
+| 134 batch 6 | alle-lounge-on-66 | Allē Lounge on 66 (Las Vegas) | https://www.rwlasvegas.com/wp-content/uploads/2021/12/starlight-on-66-wide-shot.jpg | https://www.rwlasvegas.com/press/gallery/ |
+| 134 batch 6 | carico | Carico (Milan) | https://carico.io/build/assets/og-image-aN2agozn.webp | https://carico.io |
+| 134 batch 6 | kilburn-cocktail-bar-milano | Kilburn Cocktail Bar (Milan) | https://irp.cdn-website.com/3fb585a6/dms3rep/multi/panoramica.jpg | https://www.kilburncocktailbarmilano.it/ |
+| 134 batch 6 | nik-s-co | Nik's & Co. (Milan) | https://www.niksandco.it/wp-content/uploads/2026/06/NICKS-25-4-2048x1366-1.jpg | https://www.niksandco.it/cocktail-bar-a-milano/ |
+| 134 batch 6 | salmon-guru-milan | Salmon Guru (Milan) | https://salmonguru.it/wp-content/uploads/2026/02/FEB26-1-1.jpg | https://salmonguru.it |
+| 134 batch 6 | zizania-via-celestino-cocktail-bar-milano | Zizania (Milan) | https://drive.usercontent.google.com/download?id=1V-ScKLNXTBlKRkz8LWnB3pSy4O12AL-4&export=download | https://zizaniamilano.it/contatti/ |
+| 134 batch 6 | ek-bar | Ek Bar (New Delhi) | https://www.olivebarandkitchen.com/img/g315.jpg | https://www.olivebarandkitchen.com/ekbar.php |
+| 134 batch 6 | erin-rose | Erin Rose (New Orleans) | https://images.squarespace-cdn.com/content/v1/53220d98e4b07e0669e6eac5/1400622556999-B7SCLKIXMKDT2V83BG1I/erin-rose-back-bar-02.jpg | https://www.erinrosebar.com/photos |
+| 134 batch 6 | arbane-cocktail-bar | Arbane Cocktail Bar (Paris) | https://lh7-us.googleusercontent.com/sitesv-images-rt/AMxu72vrTejoPZhcSyollE8B-gXqrUchsBgy1MAXH1z8ZfulTvhlHtmvUdo48-QA-Sy5mpXisMiQj2SJzaBig7jVQQzTfR359i4xAP9nVRp_Gmbp8SvuFe2LV1Atx261pFVD3ObCJQko58wehwYvOrrHHKYKGZG2ocTMTkyg49sJaqOx94wGaIm1HfF3EzWUKps=s2400 | https://www.larbane.com/arbane-cocktail-bar/best-of-arbane |
+| 134 batch 6 | bar-josephine | Bar Joséphine (Paris) | https://media.ffycdn.net/eu/mandarin-oriental-hotel-group/s6ihZdXeAHUgigbsZdxS.jpg | https://www.mandarinoriental.com/en/paris/lutetia/dine/bar-josephine |
+| 134 batch 6 | alenka-cocktail-bar-prague | Alenka Cocktail Bar (Prague) | https://static.wixstatic.com/media/ab9116_fc25afddc27f494abc5d5fbfbda9a5af~mv2.jpg | https://www.alenkacocktailbar.cz/ |
+| 134 batch 6 | bonvivant-s-ctc | Bonvivant´s CTC (Prague) | https://cdn.website.dish.co/media/7e/90/5162118/Bonvivants-CTC-bonvivatinterier-jpg.jpg | https://bonvivants.cz/?lang=en |
+| 134 batch 6 | bugsy-s-bar | Bugsy's Bar (Prague) | https://www.bugsysbar.cz/wp-content/uploads/IND0377_78_79_80_81_82_83_tonemapped.webp | https://www.bugsysbar.cz/ |
+| 134 batch 6 | cafe-bar-pilotu | Café Bar Pilotů (Prague) | https://www.cafebarpilotu.cz/build/images/gallery/cafebar-1.jpg | https://www.cafebarpilotu.cz/en/ |
+| 134 batch 6 | lost-and-found-bar-prague | Lost and Found Bar Prague (Prague) | https://lostfoundcz.com/img/hero-bg.jpg | https://lostfoundcz.com/ |
+| 134 batch 6 | the-alchemist-bar | The Alchemist Bar (Prague) | https://www.thealchemistbar.cz/images/docs/_X7A0088.jpg | https://www.thealchemistbar.cz/en |
+| 134 batch 6 | tynska-bar-and-books | Týnská Bar and Books (Prague) | https://www.barandbooks.cz/resizer/4000x4000x0/2302/tynska-39.jpeg | https://www.barandbooks.cz/tynska/ |
+| 134 batch 6 | ante | Ante (Sydney) | https://images.squarespace-cdn.com/content/v1/6101012b60dfcd1ca69f349a/313121fa-45ce-4279-a8b0-e18736909ff3/7S0A5781.jpeg | https://www.ante.bar/ |
+| 134 batch 6 | burrow-bar | Burrow Bar (Sydney) | https://www.burrowbar.com.au/cdn/shop/files/DSC_3698.jpg?v=1675485599 | https://www.burrowbar.com.au/ |
+| 134 batch 6 | posino-taipei | Posino Taipei (Taipei) | https://2dfc8feb6d.clvaw-cdnwnd.com/90ff32895c88b6632d8d1a1c727197e8/200000020-5d7845d786/_DSC4565.JPG | https://posino.webnode.tw/ |
+| 134 batch 6 | bar-suzume | Bar Suzume (Tokyo) | https://suzume.varioussense.com/counter2.jpeg | https://suzume.varioussense.com/ |
+| 134 batch 6 (after website fix) | monkey-bar | Monkey Bar (New Delhi) | https://olivebarandkitchen.com/images/monkey-bar-new-delhi/banner.jpg | https://olivebarandkitchen.com/monkey-bar-new-delhi.php |

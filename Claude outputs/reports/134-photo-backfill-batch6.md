@@ -1,6 +1,6 @@
 # Task 134, photo backfill, batch 6
 
-Status: research and staging done. Contact sheet: outreach/photos-staged/134-batch6-contact-sheet.html (40 numbered candidates for 27 bars); files in outreach/photos-staged/134-batch6/<slug>/ with a source.txt each. Nothing published.
+Status: done (Roman, typed go, 2026-09-26). 26 bars published, credited "Photo: <Bar name>", with his picks (rabbit-hole 02, victoria-bar 01, estereo 02, alle-lounge 01, nik-s-co 01, salmon-guru 02, ek-bar 01, arbane 01, bugsy-s 01, cafe-bar-pilotu 01, ante 01, posino 01; single photos for the rest); Monkey Bar held until its website was fixed, then published (01). The six held-off bars stay off. Merges and website fixes in 136c-listing-check.md. Staging cleared; sources appended to 134-published-photo-sources.md. Original staging note: Contact sheet: outreach/photos-staged/134-batch6-contact-sheet.html (40 numbered candidates for 27 bars); files in outreach/photos-staged/134-batch6/<slug>/ with a source.txt each. Nothing published.
 
 ## Scope
 
