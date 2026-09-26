@@ -1,6 +1,6 @@
 # Task 134, photo backfill, batch 5
 
-Status: research and staging done. Contact sheet: outreach/photos-staged/134-batch5-contact-sheet.html (32 numbered candidates for 19 bars; 25 to 32 were added after the last research group finished); files in outreach/photos-staged/134-batch5/<slug>/ with a source.txt each. Nothing published.
+Status: done (Roman, typed go, 2026-09-26). 19 bars published, credited "Photo: <Bar name>" (ozone 01 only; law-bird 01, kinsman 01, zuma 02, dutch-freds 01, fresh-kills 01, identidad 02, 15-stamford 01, the-store 01, pony-up 01, speak-low 01, bar-sistema 01, gorilla 01; single photos for the rest). Held-off bars: Blind Tiger (its own Instagram post, same audit, clean) and Jungle Ballroom (clean) published; Soy Como Soy not published, because "SOS" could not be confirmed as the bar itself (only its images carry it; its site, Instagram handle soycomosoyindia and a web search never use "SOS"); Bourke's stays off. Listing fixes in 136b-listing-check.md. Staging cleared; sources appended to 134-published-photo-sources.md. Original staging note: Contact sheet: outreach/photos-staged/134-batch5-contact-sheet.html (32 numbered candidates for 19 bars; 25 to 32 were added after the last research group finished); files in outreach/photos-staged/134-batch5/<slug>/ with a source.txt each. Nothing published.
 
 ## Scope
 

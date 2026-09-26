@@ -97,3 +97,24 @@ Every photo published today from a bar's own website, credited "Photo: <Bar name
 | 134 batch 4 | torggata-botaniske-oslo | Torggata Botaniske (Oslo) | https://umsousercontent.com/lib_atEIngPDtoeyBQne/6xfpo02rm1gsnoku.jpg | https://www.torggatabotaniske.no |
 | 134 batch 4 | forbina-bar | Forbína Bar (Prague) | https://data.eu.cntmbr.com/bar-forbina/bar-forbina/e913215b-40c7-483c-9d24-45ed5bbd8790.jpeg | https://www.barforbina.cz/en |
 | 134 batch 4 | hemingway-bar | Hemingway Bar (Prague) | https://www.hemingwaybar.cz/media/bar/hemingway-2.jpg | https://www.hemingwaybar.cz/bar-praha/ |
+| 134 batch 5 | law-bird-columbus | Law Bird (Columbus) | https://images.squarespace-cdn.com/content/v1/5c649c1301232c049358e8a3/5b3de095-c7ef-4553-81d9-cfd85193d32e/GH5A9547+%281%29.jpg | https://www.lawbirdbar.com/visit |
+| 134 batch 5 | kinsman | Kinsman (Hong Kong) | https://static.wixstatic.com/media/23490b_7d3db53bf38e459ea2c5c7ecc7c35382~mv2.jpeg | https://www.kinsman.hk |
+| 134 batch 5 | lockdown | Lockdown (Hong Kong) | https://lockdownbarhk.com/img/bg-lockdown.jpg | https://lockdownbarhk.com |
+| 134 batch 5 | ozone | Ozone (Hong Kong) | https://mds-assets.marriott.com/cms-platform-for-marriott/hkgkw-ozone/site-images/migrated-images/ritzhkgkw601162.jpg | https://www.ozonebarhongkong.com/photos |
+| 134 batch 5 | zuma-london | Zuma (London) | https://cms.azumirestaurants.com/storage/zuma/space/our-spaces---bar-1-London-664559.jpg | https://www.zumarestaurant.com/en/london |
+| 134 batch 5 | the-st-regis-bar | The St. Regis Bar (Macau) | https://cache.marriott.com/content/dam/marriott-renditions/MFMXR/mfmxr-regis-bar-5440-hor-clsc.jpg | https://www.marriott.com/en-us/hotels/mfmxr-the-st-regis-macao-cotai-central/photos/ |
+| 134 batch 5 | above-board | Above Board (Melbourne) | https://images.squarespace-cdn.com/content/v1/570db5ddf85082287b0bfe07/1524130354383-HXCOZ6RG75V9W8N94L4P/IMG_4441.JPG | https://www.aboveboardbar.com/ |
+| 134 batch 5 | dutch-freds | Dutch Fred's (New York) | https://media-cdn.getbento.com/accounts/b8ada1da5684ce827f7595551360226e/media/images/38981compressedImage_15.jpeg | https://www.dutchfreds.com/our-story/ |
+| 134 batch 5 | fresh-kills-bar | Fresh Kills Bar (New York) | https://freshkillsbar.com/images/hero/gallery-int-01.jpg | https://freshkillsbar.com/ |
+| 134 batch 5 | identidad | Identidad (San Juan) | https://identidadbarpr.com/uploads/bg-faq.jpg | https://identidadbarpr.com/faq |
+| 134 batch 5 | la-factora | La Factoría (San Juan) | https://lafactoriavsj.com/cdn/shop/files/Front_Bar_Factoria_2-HDR_9631fee1-3acf-4830-a59d-fe4b0102984f.jpg | https://lafactoriavsj.com/pages/news-media |
+| 134 batch 5 | tess-bar-kitchen-singapore | Tess Bar & Kitchen (Singapore) | https://tessbar.com/assets/hero-bar-hDVjSmkV.webp | https://tessbar.com/ |
+| 134 batch 5 | the-bar-at-15-stamford | The Bar at 15 Stamford (Singapore) | https://www.15stamford.com/media/1143/the-bar_capitolkempinskisg.jpg | https://www.15stamford.com/the-bar-at-15-stamford/ |
+| 134 batch 5 | the-store | The Store (Singapore) | https://static.wixstatic.com/media/c9d61a_65f5bb2306bc4a5192a7d7ef192e51d5~mv2.jpg | https://www.thestoresg.com/ |
+| 134 batch 5 | rusty-rat | Rusty Rat (Wrocław) | https://rustyrat.pl/wp-content/uploads/2025/11/Lokal3.jpg | https://rustyrat.pl/ |
+| 134 batch 5 | pony-up | Pony Up (Shanghai) | https://images.squarespace-cdn.com/content/v1/683efc8276f0f73e16859a5a/b32310db-c847-47ee-9dd2-834a268ef7bc/20240515+Pony+Up%E6%8B%8D%E6%91%840625+%E6%8B%B7%E8%B4%9D+2.jpg | https://www.ponyupshanghai.com |
+| 134 batch 5 | speak-low | Speak Low (Shanghai) | https://sg-management.jp/image/sipguzzle/store/store-main03-speaklow.jpg | https://sg-management.jp/en/establishments/speaklow |
+| 134 batch 5 | bar-sistema | Bar Sistema (Split) | https://barsistema.com/wp-content/uploads/2025/03/Bar-Sistema-5.jpeg | https://barsistema.com/ |
+| 134 batch 5 | gorilla | Gorilla (Thessaloniki) | https://gorillabar.gr/wp-content/uploads/2024/10/DSC_2140-scaled.webp | https://gorillabar.gr/ |
+| 134 batch 5 (held-off, approved) | blind-tiger-new-york | Blind Tiger | https://images.squarespace-cdn.com/content/v1/55d21a3be4b0d60073fd5fe0/1780351497094-43I5VL3W9H2GG3GT52CP/image-asset.jpeg | https://blindtigeralehouse.com/ (the bar's own Instagram post https://www.instagram.com/p/DZDk8pWJzTM/, via the feed block on its site) |
+| 134 batch 5 (held-off, approved) | jungle-ballroom | Jungle Ballroom | https://mondrianhotels.com/wp-content/uploads/sites/34/2025/03/Mondrian-Singapore_Jungle-Ballroom-bar_1920x1280.jpg | https://mondrianhotels.com/singapore-duxton/dining/jungle-ballroom/ |
