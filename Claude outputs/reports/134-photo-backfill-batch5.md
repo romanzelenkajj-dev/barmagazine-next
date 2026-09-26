@@ -1,14 +1,14 @@
 # Task 134, photo backfill, batch 5
 
-Status: research and staging done. Contact sheet: outreach/photos-staged/134-batch5-contact-sheet.html (24 numbered candidates for 15 bars); files in outreach/photos-staged/134-batch5/<slug>/ with a source.txt each. Nothing published.
+Status: research and staging done. Contact sheet: outreach/photos-staged/134-batch5-contact-sheet.html (32 numbered candidates for 19 bars; 25 to 32 were added after the last research group finished); files in outreach/photos-staged/134-batch5/<slug>/ with a source.txt each. Nothing published.
 
 ## Scope
 
-137 profiles (of 155 planned; the rest had no reachable site): the last 83 qualifying photo-less bars in the best-bars cities, topped up with non-qualifying photo-less bars that have a website in the largest cities (London first). Same audit on the original files.
+155 profiles: the last 83 qualifying photo-less bars in the best-bars cities, topped up with non-qualifying photo-less bars that have a website in the largest cities (London first). Same audit on the original files.
 
 ## Yield
 
-15 of 137 bars staged. After this batch about 590 non-qualifying photo-less bars with a website remain in the best-bars cities.
+19 of 155 bars staged. After this batch about 590 non-qualifying photo-less bars with a website remain in the best-bars cities.
 
 ## Your call (held off the sheet)
 
@@ -18,6 +18,7 @@ Status: research and staging done. Contact sheet: outreach/photos-staged/134-bat
 - Bourke's (Hong Kong): a clean dining-room shot exists; the bar shots have a bartender at the centre.
 - The Rose: rejected for a "VICO" creator handle in metadata.
 - Terracotta Lamma: rejected on a "_GDK-nn" file-name prefix.
+- The Bombay Canteen (Mumbai): file names carry codes like "TYA_PS" and "IDD_DA", read as photographer initials; its one usable image is 1000x500.
 - Dropped on viewing: Life Is Beautiful (bartender posing to camera), Henry C (portrait crop is mostly a wall poster).
 
 ## Listing issues seen (not changed)
@@ -26,13 +27,15 @@ Status: research and staging done. Contact sheet: outreach/photos-staged/134-bat
 - Lounge Bohemia (London): loungebohemia.com now redirects to tvaroh.art/experience; possibly closed or changed format.
 - Soka (New York): sokabar.com unreachable (Cloudflare error).
 - The Cocktail Office (Singapore): the .sg domain does not resolve; the live site is thecocktailoffice.com.
-- Not reachable to scripts: Library Bar at The Lanesborough, Vesper at The Dorchester, One-Ninety and Charles H (Four Seasons), The Pineapple Room (Capella), East 47 (Hilton), Lobster Bar and Grill (Shangri-La gallery).
+- Purovoku (Thessaloniki): the site returns a database error on every page.
+- Not reachable to scripts: The Hudson Rooms (Capella), The Court (Manfredi Hotels), Library Bar at The Lanesborough, Vesper at The Dorchester, One-Ninety and Charles H (Four Seasons), The Pineapple Room (Capella), East 47 (Hilton), Lobster Bar and Grill (Shangri-La gallery).
 
 ## Every bar in the batch
 
 | Bar | City | Result | Detail |
 |---|---|---|---|
 | Happy Accidents | Albuquerque | no photo | Photographers credited in metadata. |
+| The Golden Pineapple | Asheville | no photo | Home, events and Miracle pop-up pages checked; no room view. |
 | Soka | Bengaluru | no photo | sokabar.com could not be reached. HTTPS fails the TLS handshake (alert 40) for curl, Python and WebFetch, and HTTP returns Cloudflare 'error code: 1001' (409), so the domain is misconfigured or offline. No photo. |
 | ADIÕS | Birmingham | no photo | Site-wide reject: the about image names photographer Ivan Lara-Alcantara in its metadata. The press page only links to articles. |
 | Bygones Cocktail Bar | Birmingham | no photo | The site is one page with a logo header and a PDF menu. There are no photos at all. |
@@ -41,6 +44,9 @@ Status: research and staging done. Contact sheet: outreach/photos-staged/134-bat
 | I Conoscenti | Bologna | no photo | WordPress media library (358 items) credits photographer Giacomo Maestri in metadata and file names across the site; every image rejected. Press Room link only lists press logos/articles. |
 | Life Is Beautiful | Brussels | dropped on viewing | a bartender posing to camera is a subject of the frame |
 | Plumette | Brussels | no photo | The rest of the site is drinks, menus, logo, a door sign and people. No credits found on the home, presse-distinctions, privatisation or FAQ pages. |
+| 878 Bar | Buenos Aires | no photo | Checked home, /historia, /prensa (press list, text only, no media kit), /eventos, /contacto and the full WP media library via wp-json. No interior room or bar-counter-with-seating shot exists on the site. |
+| Presidente Bar | Buenos Aires | no photo | Shopify site; all pages in sitemap checked (home, historia-de-cocteles, clases). No press page, no room view. |
+| Townhouse Rooftop | Cartagena | no photo | Open-air rooftop; the site serves only small illustrated renditions. |
 | Porco Lounge & Tiki Room | Cleveland | no photo | No photo: porcolounge.com images credit John C Jones; the rest are small (400 to 800px) or drinks. |
 | Cobra | Columbus | no photo | All 15 home and press images were checked: drinks, food, staff portraits, an exterior and one award graphic. There is no clean room shot. Metadata was clean throughout. |
 | Law Bird | Columbus | staged | 2 candidate(s) |
@@ -51,6 +57,8 @@ Status: research and staging done. Contact sheet: outreach/photos-staged/134-bat
 | Flisak '76 | Gdańsk | no photo | Everything else on the site is drinks, chocolates, a clown mural detail or a logo. I found no room view. No credits on the site. |
 | Tlen Cocktail Bar | Gdańsk | no photo | The site is a single page with a logo and opening hours only. It has no gallery and no press page. |
 | Mecenas | Guadalajara | no photo | Site-wide reject: two gallery images name photographer Donny Verdian in their metadata. |
+| Bamboo Bar | Hanoi | no photo | Sofitel Legend Metropole site credits a photographer/studio (mfpictures.com.vn, trung nguyen) in image metadata on its gallery page, so every image from the site is rejected per batch-1 rule. |
+| The Hudson Rooms | Hanoi | no photo | capellahotels.com returns a Cloudflare 'Just a moment' challenge (HTTP 403) to curl and WebFetch; the page and its images could not be read or audited. Needs a manual browser check. |
 | Frollein Bent | Heidelberg | no photo | Rule 4 (Germany): bentbar.de has only Home, Impressum and Datenschutz. There is no press or media-kit page. The Impressum names no photographer. |
 | Pino's Bar | Heidelberg | no photo | Rule 4 (Germany): 959heidelberg.com/presse/ only lists press clippings, with no downloadable images. The Impressum also says 'Fotos: Sandro Stumpf, Kim Harder', which would reject every image on the site anyway. |
 | Artifact | Hong Kong | no photo | Only images on artifactbar.com are the hero (interior) and menu shots; the hero original carries photographer Lit Ma in EXIF/IPTC/XMP, so every image from the site is rejected. |
@@ -72,6 +80,8 @@ Status: research and staging done. Contact sheet: outreach/photos-staged/134-bat
 | Bar K6 | Kyoto | no photo | The Movable Type site only has small banners and 320 px blog photos. It has no press page. |
 | Nokishita 711 | Kyoto | no photo | Photographer named in EXIF across the site. |
 | Imperii Bar | Leipzig | no photo | Germany (rule 4): no press or media-kit page (imperii.de/presse 404; home.imperii.de page list has none), and the Impressum names photographer Sabine Falk and Unsplash. No photo. |
+| Captain's Cabin | Ljubljana | no photo | Other site images are the sailing boat, boat parties and apartment rentals. Only bar interiors are under 900 px. |
+| Kolibri Cocktail Bar | Ljubljana | no photo | One-page Wix site; no room view or press page. |
 | Amaro | London | no photo | All three interior shots on amarobar.co.uk carry Bruno Pucci in EXIF/IPTC/XMP; the rest are drinks close-ups. Site rejected. |
 | Beaufort Bar | London | no photo | The listed URL 404s; the Savoy now lists /restaurants-and-bars/beaufort-wine-bar (possible rebrand to Beaufort Wine Bar, worth checking). Savoy site file names credit Jack Hardy, so every Savoy image is rejected. press.thesavoylon |
 | Blind Spot | London | no photo | Morgans Originals site names photographers (Lucy Ranson, Niall Clutton) in metadata of Blind Spot images; whole site rejected. |
@@ -106,6 +116,9 @@ Status: research and staging done. Contact sheet: outreach/photos-staged/134-bat
 | Henry C | Manchester | dropped on viewing | portrait original; cropped to 3:2 it is mostly a wall poster and the back bar |
 | Above Board | Melbourne | staged | 1 candidate(s) |
 | Black Pearl | Melbourne | no photo | The site has one page with no gallery or press page. |
+| Bar Mara | Minneapolis | no photo | Four Seasons Minneapolis restaurant site; images are credited to Photogen Inc in their file names, so all images from the site are rejected. |
+| Meteor | Minneapolis | no photo | Single-page Squarespace site; no room view. |
+| The Bombay Canteen | Mumbai | no photo | Press page is a list of articles, not a media kit. Metadata of all 23 site images is clean, but the initials-style file codes (PS, DA) plus sub-1200 px sizes led to reject. Roman may want to decide on H1-9.jpg if the 'PS'/'DA' cod |
 | Anthill | Naples | no photo | The website is chef Giuseppe Iannotti's site. Its media library credits photographer Marco Varoll, so every image on it is rejected, including Anthill-0012-HR.jpg. |
 | Astronomia | Naples | no photo | The media library holds only logos, videos, menus and 4 drink close-ups. There is no interior photo. |
 | Amor y Amargo | New York | no photo | Site is a Shopify bitters shop; its images carry the photographer's name (Medsker) in file names, so every image from the site is rejected. |
@@ -131,6 +144,8 @@ Status: research and staging done. Contact sheet: outreach/photos-staged/134-bat
 | Loma | Providence | no photo | Photographer credited in metadata. The /press page has only publication logos. |
 | Soy Como Soy | Pune | no photo | Iceberg Hospitality (group's own site) has good interiors (slide1-3, 1920x1280) but all carry Artist/Copyright 'SOS'. If SOS is confirmed to be the venue's own abbreviation, slide1.jpg / slide2.jpg would qualify; not assumed. |
 | Q Rooftop Bar | Richmond | no photo | Site-wide reject: the rooftop page image names photographer Kate Thompson (bettyclicker). The hotel's /media and /press pages have no downloadable press kit. The remaining images are sliders under 900 px tall or outdoor rooftop sh |
+| Stravinskij Bar | Rome | no photo | Rocco Forte site names a photographer (Mattia Aquila) in a file name and uses initials+date photographer codes throughout. |
+| The Court | Rome | no photo | manfredihotels.com returns Akamai 'Access Denied' (HTTP 403) to curl and WebFetch; page could not be read. Needs a manual browser check. |
 | Burdock | Salzburg | no photo | Rule 4 (Austria): burdock.at is a one-page site with no press or media-kit page and no photos. The Impressum (PS Gastro GmbH) names no photographer. |
 | Steinterrasse | Salzburg | no photo | Rule 4 (Austria): steinterrasse.com has no press or media-kit page, and its Impressum (ZeMa Betriebs GmbH) names no photographer. The host hotel's site does have a press page (hotelstein.at/de/presse/), but it only shows awards an |
 | The Esquire Tavern | San Antonio | no photo | Press page lists only articles. Media library metadata names photographer Steven Santillan; the few remaining images are a banner and thumbnails. No photo. |
@@ -139,6 +154,8 @@ Status: research and staging done. Contact sheet: outreach/photos-staged/134-bat
 | La Factoría | San Juan | staged | 1 candidate(s) |
 | Charles H | Seoul | no photo | fourseasons.com returns 403 to curl and WebFetch (bot-blocked). The Four Seasons press room links to the group image library (www.1.fourseasons.com image_library, property SKO). Only 384 px previews are public, and originals need  |
 | La Terraza del EME | Seville | no photo | Photographer credited on the site. The venue is an open-air rooftop terrace of the EME Catedral Mercer hotel, so interior-only shots barely exist. I did not pursue the hotel site because the terrace is an exterior. |
+| Pony Up | Shanghai | staged | 2 candidate(s) |
+| Speak Low | Shanghai | staged | 2 candidate(s) |
 | Bar SanYou Shenzhen | Shenzhen | no photo | Site-wide reject: the group's media library credits photographer Yena Lou and holds stock-library images. |
 | Hope & Sesame Shenzhen | Shenzhen | no photo | Same group site as Bar SanYou, so the same site-wide reject applies (Yena Lou credit and stock images). |
 | Bar Somma | Singapore | no photo | No photo: somma.world names photographer Letizia Cigliutti in a home-page image file name, so every image from the site is rejected. |
@@ -157,11 +174,14 @@ Status: research and staging done. Contact sheet: outreach/photos-staged/134-bat
 | The Cocktail Office | Singapore | no photo | No photo: thecocktailoffice.sg does not resolve. The bar's live site is thecocktailoffice.com, which redirects to thecocktailoffice.wixsite.com/tcosg, and its originals credit 'housepournco'. |
 | The Pineapple Room | Singapore | no photo | No photo: capellahotels.com (dining page and press paths) returns 403 to curl and WebFetch, so nothing could be fetched or audited. |
 | The Store | Singapore | staged | 2 candidate(s) |
+| Bar Sistema | Split | staged | 2 candidate(s) |
 | Good Company | St. Louis | no photo | All own photos (originals from media-cdn.getbento.com) are food, drinks or staff. No clean interior. |
 | The Gin Room | St. Louis | no photo | Gallery images are Instagram downloads under 900 px (512-720 px). No press page. No photo. |
 | Sigmund Freud Bar | Tallinn | no photo | The other images are portraits, drinks, food and menu boards. I found no empty room view and no credits on the site. |
 | Whisper Sister | Tallinn | no photo | Photographer named in file names. |
 | M.Bird | Tampa | no photo | No photo: mbirdtampa.com originals credit several photographers (Crown, Noble Photo Co, Roberto Retana, Seamus Payne); site-wide reject. |
+| Gorilla | Thessaloniki | staged | 2 candidate(s) |
+| Purovoku | Thessaloniki | no photo | purovoku.gr returns a WordPress 'Database Error' (HTTP 500) on every page and wp-json; site is down, nothing to audit. |
 | Café Madrid | Valencia | no photo | The MYR Hotels gallery originals are all 720 to 838 px wide, and several carry GARAYGREEN as Artist/By-line/Creator, so the whole site is rejected. |
 | Harry's Bar | Venice | no photo | cipriani.com/harrys-bar (Wix): 30 images checked; one original names 'omer uzun photography', so all images from the site are rejected. |
 | Palladio Bar | Venice | no photo | Airelles names photographers in image file names across the site -> every image rejected. |
