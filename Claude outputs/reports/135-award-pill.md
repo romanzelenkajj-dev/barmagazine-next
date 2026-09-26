@@ -1,6 +1,6 @@
 # Task 135, award pill on best-bars cards
 
-Status: draft PR #94, preview built, not merged. Typo fix live.
+Status: merged (PR #94, Roman, 2026-09-25) and live; confirmed on /best-bars/london. Typo fix live.
 
 ## Award pill
 

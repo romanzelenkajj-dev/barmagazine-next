@@ -1,10 +1,10 @@
 # Hero photo credit aligned with the pills
 
-Status: draft PR #95, not merged.
+Status: draft PR #95, revised per Roman (2026-09-25), not merged.
 
-- Profiles: the credit's right inset is now 16px, equal to the badges' left inset, and its text is centred on the badge line (22px box, one badge high). Measured on /bars/connaught-bar: pill centre and credit text centre within 0.05px at desktop and at 375px.
-- Articles: the only pill in an article hero is the category pill, top-left. The caption now sits top-right, right inset equal to the pill's left inset (20px, 16px under 768px), centred on the pill's line. Measured on /50-best-bars-2026-extended-51-100-list: exact at 1024px and 375px. Note: this moves article captions from the bottom-right to the top-right; the top of the photo has a lighter gradient than the foot, so the caption relies more on its text shadow there.
-- Best-bars: the hero is the black text band with no photo, so there is no credit to move.
+- Profiles: the credit stays plain text (no pill), 28px from the right edge and 20px from the bottom, its text centred on the badges' line. The badges sit 16px up and are 22px tall, so their centre is 27px up; the credit's 14px line box rests at 20px and centres there too. Measured on the preview (/bars/connaught-bar, 1453px wide): right 28, bottom 20, pill centre 27, text centre 27. Locally the same at 1280px and 375px.
+- Articles: the caption is back in the bottom-right corner with the same insets, 28px right and 20px bottom (the earlier top-right move is reverted).
+- Best-bars: no photo hero, nothing to change.
 - Nothing else on the heroes changed.
 
 Preview: https://barmagazine-next-git-previ-87c956-romanzelenkajj-7135s-projects.vercel.app/bars/connaught-bar (Vercel login).

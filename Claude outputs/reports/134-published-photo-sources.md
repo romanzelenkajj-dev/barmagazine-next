@@ -47,3 +47,22 @@ Every photo published today from a bar's own website, credited "Photo: <Bar name
 | 134 batch 1 | l-oursin | L'Oursin (Seattle) | https://www.loursinseattle.com/wp-content/uploads/2025/07/IMG_0157.jpg | https://www.loursinseattle.com/ |
 | 134 batch 1 | roquette-seattle | Roquette (Seattle) | https://images.getbento.com/accounts/a7646ef172439e7b764c772c92ad1550/media/images/60314B77A0363.jpg | https://www.roquettesea.com/ |
 | 134 batch 1 | rumba-seattle | Rumba (Seattle) | https://static.wixstatic.com/media/d55955_9c518fb0a9cb41189c70674c909df935~mv2.jpg | https://www.rumbaonpike.com/gallery |
+| 134 batch 2 | boccalupo-atlanta | BoccaLupo (Atlanta) | https://www.boccalupoatl.com/images/gallery/bocca-lupo_gallery_03.jpg | https://www.boccalupoatl.com/ |
+| 134 batch 2 | midnight-cowboy | Midnight Cowboy (Austin) | https://static.spacecrafted.com/b3988478056f48f1b00ba7c8b0cf396b/i/d30e8afa87374b4183926b88b0dc9fb6/1/5feFb8zhrk/1Z7A0554.jpg | https://midnightcowboymodeling.com/photos |
+| 134 batch 2 | anansi-cocktail-lounge | Anansi Cocktail Lounge (Avondale Estates) | https://static.spotapps.co/website_images/ab_websites/249503_website_v1/about/slide_03.jpg | https://anansiatl.com/avondale-estates-avondale-estates-anansi-cocktail-lounge-about |
+| 134 batch 2 | ruby | Ruby (Copenhagen) | https://rby.dk/wp-content/uploads/2025/04/RUBY_VENUE-22.jpg | https://rby.dk/the-bar/ |
+| 134 batch 2 | baltra-bar | Baltra Bar (Mexico City) | https://baltra.bar/wp-content/uploads/2022/11/1Baltra.jpg | https://baltra.bar/contacto/ |
+| 134 batch 2 | kaito-del-valle | Kaito del Valle (Mexico City) | https://kaitodelvalle.com/kaito/images/kaito.jpg | https://kaitodelvalle.com/index.html |
+| 134 batch 2 | teardrop-lounge | Teardrop Lounge (Portland) | https://images.squarespace-cdn.com/content/v1/5731229d22482ed318a4a03a/1476817781340-9O8ANACXY374Q5SX7QVX/Teardrop-12.png | https://www.teardroplounge.com/ |
+| 134 batch 2 | abv | ABV (San Francisco) | https://images.squarespace-cdn.com/content/v1/5893882c1b631b3cbfd54515/1486078661763-6QAMRGI03F6DS3Y5SP4C/IMG_4766.jpg | https://www.abvsf.com/ |
+| 134 batch 2 | starlite-sf | Starlite (San Francisco) | https://cdn.sanity.io/images/z93ulvt2/production/4ba5c8ccf991f2453980cab86f0e97800104b9c8-1280x960.jpg | https://www.beacongrand.com/starlite |
+| 134 batch 2 | 28-hong-kong-street | 28 Hong Kong Street (Singapore) | https://28hks.com/cdn/shop/files/28-HKS_01-_1.jpg | https://28hks.com/pages/events |
+| 134 batch 2 | gibson | Gibson (Singapore) | https://images.squarespace-cdn.com/content/v1/662920780b26bf0ef8b67b8c/da7dee3d-dc17-4f99-b722-32509e0bd75c/WIDE+HORIZONTAL+edit+rev+DARKER.jpg | https://www.gibsonbar.sg/ |
+| 134 batch 2 | mo-bar | Mo Bar (Singapore) | https://media.ffycdn.net/eu/mandarin-oriental-hotel-group/TXfvKu9fSjf83uMUFHNP.jpg | https://www.mandarinoriental.com/en/singapore/marina-bay/dine/mo-bar |
+| 134 batch 2 | night-hawk | Night Hawk (Singapore) | https://images.squarespace-cdn.com/content/v1/626668261eec814870f1ee12/d4b0bbe1-c40b-459d-9597-dafb8fc24d35/Gif3.1.gif | https://www.nighthawk.sg/ |
+| 134 batch 2 | the-elephant-room | The Elephant Room (Singapore) | https://www.theelephantroom.sg/cdn/shop/files/New_location_WIP_03_2.png | https://www.theelephantroom.sg/ |
+| 134 batch 2 | tigra-disco-pantera | Tigra + Disco Pantera (Sydney) | https://static.wixstatic.com/media/b607bd_536f5ff810534260a6fd7376977faf4a~mv2.jpg | https://www.barpantera.com.au/about-5 |
+| 134 batch 2 | punch-room-tokyo | Punch Room Tokyo (Tokyo) | https://www.editionhotels.com/wp-content/uploads/2024/02/Punch-Room_Ginza2_22_RGB_V4.jpg | https://www.editionhotels.com/tokyo-ginza/ |
+| 134 batch 2 | star-bar | Star Bar (Tokyo) | https://static.wixstatic.com/media/6f08b5_74c8e4545b304267bd003c3d9cff32eb~mv2.jpg | https://www.starbar.jp/store-introduction-ginza |
+| 134 batch 2 | bar-betsie | Bar Betsie (Washington DC) | https://images.squarespace-cdn.com/content/v1/677d30114b3e8c30ecd1d27a/c6bce6d0-6812-4c43-a8cf-e4d8932c63a0/BarBetsie_WebsiteBackground.jpg | https://www.barbetsiedc.com/ |
+| 134 batch 2 | tales-bar | Tales Bar (Zurich) | https://www.tales-bar.ch/wp-content/uploads/2020/01/2016-10-23-tales-47.jpg | https://www.tales-bar.ch/entwurf-startseite/2016-10-23-tales-47/ |

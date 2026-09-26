@@ -1,6 +1,6 @@
 # Task 134, photo backfill, batch 2
 
-Status: research and staging done, read-only. Contact sheet: outreach/photos-staged/134-batch2-contact-sheet.html (28 numbered candidates for 20 bars); files in outreach/photos-staged/134-batch2/<slug>/ with a source.txt each. Nothing published.
+Status: done (Roman, typed go, 2026-09-25). 19 bars published, credited "Photo: <Bar name>", 01 each except starlite-sf 02 and mo-bar 02; lidkoeb not published. Staging cleared; sources appended to 134-published-photo-sources.md. Original staging note follows: Contact sheet: outreach/photos-staged/134-batch2-contact-sheet.html (28 numbered candidates for 20 bars); files in outreach/photos-staged/134-batch2/<slug>/ with a source.txt each. Nothing published.
 
 ## Scope
 
