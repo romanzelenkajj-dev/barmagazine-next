@@ -79,3 +79,21 @@ Every photo published today from a bar's own website, credited "Photo: <Bar name
 | 134 batch 3 | civil-liberties | Civil Liberties (Toronto) | https://static.wixstatic.com/media/8e1951_c004ae24209142a1bc25a8fb02e12785~mv2.jpg | https://www.civillibertiesbar.com/ |
 | 134 batch 3 | donkey-shoe | Donkey Shoe (Warsaw) | https://donkeyshoe.com/wp-content/uploads/2024/11/Donkey-Shoe_Hero_Dekstop_LP.jpg | https://donkeyshoe.com/donkey-shoe_hero_dekstop_lp/ |
 | 134 batch 3 | lane-s-gin-bar | Lane's Gin Bar (Warsaw) | https://mds-assets.marriott.com/cms-platform-for-marriott/wawlc-lanes-gin-bar/site-images/migrated-images/bar-lanes-1.jpg | https://www.lanesbar.com/en |
+| 134 batch 4 | dutch-courage-baltimore | Dutch Courage (Baltimore) | https://dutchcouragebar.com/wp-content/uploads/2020/05/Dutch-Courage-Gin-Bar.jpg | https://dutchcouragebar.com/ |
+| 134 batch 4 | aqua-bar | Aqua Bar (Bangkok) | https://dm2tk03ivb2ch.cloudfront.net/2026/05/Frame-2-1.jpg | https://www.aquabangkok.com/gallery |
+| 134 batch 4 | bamboo-bar | The Bamboo Bar (Bangkok) | https://media.ffycdn.net/eu/mandarin-oriental-hotel-group/w1FeD7qcRoayNgPttDx3.jpg | https://www.mandarinoriental.com/en/bangkok/chao-phraya-river/dine/the-bamboo-bar |
+| 134 batch 4 | firefly | Firefly (Bangkok) | https://www.kempinski.com/var/site/storage/images/8/7/1/3/173178-1-eng-GB/96b1bdfc86b1-73779252_4K.jpg | https://www.kempinski.com/en/sindhorn-hotel/restaurants-bars/firefly-bar |
+| 134 batch 4 | blue-door-charlotte | Blue Door (Charlotte) | https://images.squarespace-cdn.com/content/v1/65ad4024f997a130bf4d843e/401028a8-f117-43b4-8514-19d083e263cd/6I6A9886-Enhanced-NR+%282%29.jpg | https://www.bluedoorclt.com/calendar |
+| 134 batch 4 | cosmo-pony | Cosmo Pony (Jakarta) | https://cosmo-cms.cosmopony.com/storage/media/image/2025/12/1767082150_9QUfe3kNIi.webp | https://www.cosmopony.com/en/about |
+| 134 batch 4 | modernhaus | Modernhaus (Jakarta) | https://uniongroupjakarta.com/storage/1222/MH-Photo-06.jpg | https://uniongroupjakarta.com/brands/modernhaus |
+| 134 batch 4 | the-cocktail-club | The Cocktail Club (Jakarta) | https://uniongroupjakarta.com/storage/143/tcc_slide_1.jpeg | https://uniongroupjakarta.com/brands/the-cocktail-club/the-cocktail-club-senopati |
+| 134 batch 4 | bar-trigona | Bar Trigona (Kuala Lumpur) | https://press.fourseasons.com/content/dam/fourseasons/images/web/KUA/KUA_128_original.jpg | https://press.fourseasons.com/kualalumpur/hotel-news/2026/50-best-bars |
+| 134 batch 4 | angelita | Angelita (Madrid) | https://madrid-angelita.es/wp-content/uploads/2024/03/press_kit_angelita.zip | https://madrid-angelita.es/es/prensa/ |
+| 134 batch 4 | camparino-in-galleria | Camparino in Galleria (Milan) | https://www.camparino.com/app/uploads/2023/09/hero-bar-passo.jpg | https://www.camparino.com/location/bar-di-passo/ |
+| 134 batch 4 | at-random-milwaukee | At Random (Milwaukee) | https://static.wixstatic.com/media/94bb86_f080678fbd3f43b0b05825e391f866b8~mv2.jpg | https://www.atrandommke.com/photos |
+| 134 batch 4 | sidecar | Sidecar (New Delhi) | https://www.sidecarindia.com/wp-content/uploads/2024/04/Copy-of-DSC08547-1.jpg | https://www.sidecarindia.com/about/ |
+| 134 batch 4 | bible-club-osaka | Bible Club Osaka (Osaka) | https://bibleclubosaka.jp/wp-content/themes/bible-club-japan/img/rental/rental_slider_07.jpg | https://bibleclubosaka.jp/rental/ |
+| 134 batch 4 | bettola-oslo | Bettola (Oslo) | https://images.squarespace-cdn.com/content/v1/6304e108683c934eb0f0cfd3/13f28769-4cf1-4557-85a7-09bc0b096c4c/DSC04099-Edit-Edit.jpg?format=2500w | https://www.bettola.no/ |
+| 134 batch 4 | torggata-botaniske-oslo | Torggata Botaniske (Oslo) | https://umsousercontent.com/lib_atEIngPDtoeyBQne/6xfpo02rm1gsnoku.jpg | https://www.torggatabotaniske.no |
+| 134 batch 4 | forbina-bar | Forbína Bar (Prague) | https://data.eu.cntmbr.com/bar-forbina/bar-forbina/e913215b-40c7-483c-9d24-45ed5bbd8790.jpeg | https://www.barforbina.cz/en |
+| 134 batch 4 | hemingway-bar | Hemingway Bar (Prague) | https://www.hemingwaybar.cz/media/bar/hemingway-2.jpg | https://www.hemingwaybar.cz/bar-praha/ |

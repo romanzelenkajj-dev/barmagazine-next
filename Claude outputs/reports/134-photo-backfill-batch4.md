@@ -1,6 +1,6 @@
 # Task 134, photo backfill, batch 4
 
-Status: research and staging done. Contact sheet: outreach/photos-staged/134-batch4-contact-sheet.html (33 numbered candidates for 19 bars); files in outreach/photos-staged/134-batch4/<slug>/ with a source.txt each. Nothing published.
+Status: done (Roman, typed go, 2026-09-26). 18 bars published, credited "Photo: <Bar name>": firefly 01, blue-door 01, cosmo-pony 02, modernhaus 01, the-cocktail-club 01, bar-trigona 02, angelita 01, camparino 01, at-random 01, bible-club 01, bettola 01, torggata 01, hemingway 02, and dutch-courage, aqua-bar, bamboo-bar, sidecar, forbina-bar. Not published: lair. Staging cleared; sources appended to 134-published-photo-sources.md. Original staging note: Contact sheet: outreach/photos-staged/134-batch4-contact-sheet.html (33 numbered candidates for 19 bars); files in outreach/photos-staged/134-batch4/<slug>/ with a source.txt each. Nothing published.
 
 ## Scope
 
