@@ -797,15 +797,16 @@ button {
 }
 
 /* The hero image's WordPress caption, inside the hero (task 111): bottom-right
-   corner, 12px inset, so it sits within the rounded corners and nothing
-   outside the hero moves. White at 70%. Legibility comes from the hero's own
-   bottom gradient (.article-hero-overlay, 85% black at the foot) and a soft
-   text shadow that only shows against a light patch of photo; no extra box.
-   Rendered only when the media carries a caption. */
+   corner, so it sits within the rounded corners and nothing outside the hero
+   moves. Same insets as the profile photo credit (Roman, 2026-09-25): 28px
+   from the right, 20px from the bottom. White at 70%. Legibility comes from
+   the hero's own bottom gradient (.article-hero-overlay, 85% black at the
+   foot) and a soft text shadow that only shows against a light patch of
+   photo; no extra box. Rendered only when the media carries a caption. */
 .article-hero-caption {
   position: absolute;
-  right: 12px;
-  bottom: 12px;
+  right: 28px;
+  bottom: 20px;
   z-index: 3;
   max-width: 60%;
   margin: 0;
@@ -10466,23 +10467,29 @@ textarea.form-input {
 
 /* ====== BAR PROFILE JUMP CHIPS ====== */
 
-/* Photo attribution inside the hero, bottom-right corner, 12px inset: the
-   same treatment as .article-hero-caption (task 111). Provenance, not
+/* Photo attribution inside the hero, bottom-right corner: the same
+   treatment as .article-hero-caption (task 111). Provenance, not
    content, so white at 70% over the hero's own bottom gradient
    (.bar-v2-photo-overlay), with a soft shadow for light patches of photo.
    The badges own the bottom-left; the credit is capped at 60% of the width
    like the article caption and right-aligned, so on a 390px phone the
    standard credit stays on one line clear of a single badge. Nothing
    outside the hero moves. */
+/* Placement (Roman, 2026-09-25): plain text, no pill, 28px from the right
+   and 20px from the bottom, with its text centred on the badges' line. The
+   badges sit 16px up and are 22px tall (10px line + 5px padding x2 + 1px
+   border x2), so their centre is 27px up; a 14px line box resting at 20px
+   puts the text's centre there too. A credit long enough to wrap grows
+   upward from the same baseline. */
 .bar-v2-photo-credit {
   position: absolute;
-  right: 12px;
-  bottom: 12px;
+  right: 28px;
+  bottom: 20px;
   z-index: 3;
   max-width: 60%;
   margin: 0;
   font-size: 11.5px;
-  line-height: 1.4;
+  line-height: 14px;
   text-align: right;
   color: rgba(255, 255, 255, 0.7);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
