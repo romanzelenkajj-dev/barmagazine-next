@@ -76,4 +76,12 @@ export const MERGED_SLUGS: Readonly<Record<string, string>> = {
   // 2026-09-24). Renamed to the Latin part plus city; the builder now
   // handles this case (src/lib/bar-slug.ts).
   '-sanyou': 'sanyou-guangzhou',
+  // Task 134 batch 6 (Roman, 2026-09-26): one bar listed twice. The bar's
+  // own site gives one Hemingway Bar Prague, at Opatovická 1737/3; the old
+  // row carried the former Karolíny Světlé address. Photo, phone and the
+  // Falstaff source moved to the kept row.
+  'hemingway-bar': 'hemingway-bar-prague',
+  // Same Andaz Delhi bar twice; the kept row holds the menu, phone and the
+  // right Aerocity point, and now the temporarily closed status.
+  'juniper-bar': 'juniper-bar-andaz-delhi',
 };

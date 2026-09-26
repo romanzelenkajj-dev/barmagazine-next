@@ -2,6 +2,19 @@
 
 Running log of shipped work items and their merge commits. Newest first.
 
+## 2026-09-26, task 134 duplicates merged (Roman, typed go)
+
+- **Hemingway Bar (Prague):** `hemingway-bar` (Karolíny Světlé 26) merged into
+  `hemingway-bar-prague` (Opatovická 1737/3, the only address on the bar's own
+  site). The batch 4 photo, its credit, the phone and the Falstaff source moved
+  to the kept row. 301 in `src/lib/merged-slugs.ts`, FK-checked (no claims, no
+  owner submissions), old row hard-deleted.
+- **Juniper Bar (Andaz Delhi):** `juniper-bar` merged into
+  `juniper-bar-andaz-delhi`, the richer row (menu, highlights, phone, the right
+  Aerocity point; the old row's pin was about 5 km off). The kept row now
+  carries the temporarily closed status and note. 301, FK-checked, old row
+  hard-deleted.
+
 ## 2026-09-19 - Hudson Bar merged into Hotsy Totsy (Budapest)
 
 - **Approved:** Roman, in chat, 2026-09-19, under the merge standard.
