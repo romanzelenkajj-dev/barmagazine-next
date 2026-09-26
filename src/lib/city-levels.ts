@@ -101,6 +101,11 @@ export function level2Bars(bars: Bar[], fallback: (b: Bar[]) => Bar[]): Level2Re
   return { curated: all.filter(isCuratedTen), rest, all: filled, fellBack: true };
 }
 
+/** The highest stored score among the bar's renderable accolades, 0 when none. */
+export function bestAccoladeScore(bar: Pick<Bar, 'accolades'>): number {
+  return renderableAccolades(bar.accolades).reduce((m, e) => Math.max(m, e.score ?? 0), 0);
+}
+
 /** Sum of the stored scores of every renderable accolade (task 137). */
 export function totalAccoladeScore(bar: Pick<Bar, 'accolades'>): number {
   return renderableAccolades(bar.accolades).reduce((n, e) => n + (e.score ?? 0), 0);
@@ -115,9 +120,11 @@ export function latestAccoladeYear(bar: Pick<Bar, 'accolades'>): number {
  * The order of the cards on /best-bars (task 137, Roman 2026-09-26).
  *
  *   1. The city's Top 10 picks, then every other bar on the list.
- *   2. Inside each group, bars holding an accolade first, by total accolade
- *      score, highest first. Equal scores: a bar with a photo first, then the
- *      most recent accolade year, then the name.
+ *   2. Inside each group, bars holding an accolade first, by their single
+ *      best accolade score, highest first (Roman, 2026-09-26: best, not the
+ *      sum, so a run of old placings cannot outrank a strong recent one).
+ *      Ties: the total of all accolade scores, then the most recent
+ *      accolade year, then a bar with a photo first, then the name.
  *   3. Bars with no accolade last in their group: a photo first, then by name.
  *
  * Paid status plays no part here; Featured buys position on /bars/city only.
@@ -133,9 +140,10 @@ export function bestBarsOrder(bars: Bar[]): Bar[] {
     group(a) - group(b)
     || closedLast(a) - closedLast(b)
     || awarded(a) - awarded(b)
+    || bestAccoladeScore(b) - bestAccoladeScore(a)
     || totalAccoladeScore(b) - totalAccoladeScore(a)
-    || hasPhoto(a) - hasPhoto(b)
     || latestAccoladeYear(b) - latestAccoladeYear(a)
+    || hasPhoto(a) - hasPhoto(b)
     || a.name.localeCompare(b.name));
 }
 

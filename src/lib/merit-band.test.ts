@@ -41,14 +41,17 @@ describe('bestBarsOrder (task 137)', () => {
   it('puts the Top 10 picks first, whatever the others score', () => {
     expect(names([bar({ name: 'Other', accolades: a(900) }), bar({ name: 'Pick', tier: 'top10' })])).toEqual(['Pick', 'Other']);
   });
-  it('sorts by total accolade score, highest first', () => {
-    const two = [...a(300, 2024), ...a(300, 2025)];
+  it('ranks by the single best accolade score, not the sum', () => {
+    const many = [...a(300, 2016), ...a(300, 2018), ...a(300, 2019)];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(names([bar({ name: 'Many', accolades: many as any }), bar({ name: 'Best', accolades: a(500) })])).toEqual(['Best', 'Many']);
+  });
+  it('breaks a best-score tie by total, then the latest year, then photo, then name', () => {
+    const two = [...a(500, 2024), ...a(100, 2023)];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect(names([bar({ name: 'One', accolades: a(500) }), bar({ name: 'Two', accolades: two as any })])).toEqual(['Two', 'One']);
-  });
-  it('breaks a score tie by photo, then the latest year, then the name', () => {
+    expect(names([bar({ name: 'A', accolades: a(500, 2024), photos: ['/p.jpg'] }), bar({ name: 'B', accolades: a(500, 2026) })])).toEqual(['B', 'A']);
     expect(names([bar({ name: 'A', accolades: a(500) }), bar({ name: 'B', accolades: a(500), photos: ['/p.jpg'] })])).toEqual(['B', 'A']);
-    expect(names([bar({ name: 'A', accolades: a(500, 2024) }), bar({ name: 'B', accolades: a(500, 2026) })])).toEqual(['B', 'A']);
     expect(names([bar({ name: 'B', accolades: a(500) }), bar({ name: 'A', accolades: a(500) })])).toEqual(['A', 'B']);
   });
   it('puts bars with no accolade last, photo first, then by name', () => {
