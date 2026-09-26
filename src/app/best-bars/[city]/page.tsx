@@ -9,6 +9,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getBarsForCity } from '@/lib/city-index';
 import { displayType } from '@/lib/bar-type';
+import { cardAwardLabel } from '@/lib/accolades';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import { TOP10_CITIES } from '@/lib/top10-cities';
 import { splitHighlight } from '@/lib/menu-highlight';
@@ -179,6 +180,7 @@ export default async function BestBarsCityPage({ params }: { params: { city: str
                 <div className="best-bars-body">
                   <div className="best-bars-badges">
                     {bar.tier === 'top10' && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">&#9733; TOP 10</span>}
+                    {cardAwardLabel(bar.accolades) && <span className="bar-dir-badge-pill bar-dir-badge-pill--award">{cardAwardLabel(bar.accolades)}</span>}
                     {displayType(bar) && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{displayType(bar)}</span>}
                   </div>
                   <h2 className="best-bars-name">{bar.name}</h2>
