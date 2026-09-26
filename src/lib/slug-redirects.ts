@@ -22,6 +22,9 @@ import { MERGED_SLUGS } from './merged-slugs';
  */
 export const RETIRED_CITY_SLUGS: Readonly<Record<string, string>> = {
   'wroc-aw': 'wroclaw',
+  // Renamed to the English city name, like the rest of the site (Roman,
+  // 2026-09-25, task 133). The rows' city value changes with this deploy.
+  'goteborg': 'gothenburg',
 };
 
 export function slugRedirectTarget(

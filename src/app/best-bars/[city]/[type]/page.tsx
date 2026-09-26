@@ -8,6 +8,7 @@ import { level2BarsForType } from '@/lib/city-levels';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { displayType } from '@/lib/bar-type';
+import { cardAwardLabel } from '@/lib/accolades';
 import { hasSlug, safeHref } from '@/lib/safe-slug';
 import { splitHighlight } from '@/lib/menu-highlight';
 import { getRegionCombos, regionHref } from '@/lib/seo-regions';
@@ -200,6 +201,7 @@ export default async function BestTypeCityPage({ params }: { params: { city: str
                 <div className="best-bars-body">
                   <div className="best-bars-badges">
                     {bar.tier === 'top10' && <span className="bar-dir-badge-pill bar-dir-badge-pill--top10">&#9733; TOP 10</span>}
+                    {cardAwardLabel(bar.accolades) && <span className="bar-dir-badge-pill bar-dir-badge-pill--award">{cardAwardLabel(bar.accolades)}</span>}
                     {displayType(bar) && <span className="bar-dir-badge-pill bar-dir-badge-pill--type">{displayType(bar)}</span>}
                   </div>
                   <h2 className="best-bars-name">{bar.name}</h2>

@@ -10430,7 +10430,9 @@ textarea.form-input {
    A single pill saying the bar is on a 50 Best list — no year, no rank, no
    which list. Those live on the profile tiles, where there is room to read
    them. Driven by the accolades data, not the old frozen 2025 name list. */
-.bar-dir-badge-pill--50best {
+/* The best-bars cards' award pill (task 135) wears the same gold. */
+.bar-dir-badge-pill--50best,
+.bar-dir-badge-pill--award {
   background: #B08D3F;
   color: #fff;
   border: 1px solid #B08D3F;

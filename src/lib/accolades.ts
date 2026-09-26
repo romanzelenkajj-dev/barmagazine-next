@@ -377,6 +377,41 @@ export function awardStrings(accolades: unknown): string[] {
   );
 }
 
+/**
+ * The card pill's wording per org (task 135): the award's own name, short
+ * enough for one pill. The world list reads plain "50 BEST", the regional
+ * lists keep their possessive, the others use the bold line of their tile
+ * or, where that line alone is not the name, the name in full.
+ */
+const PILL_LABEL: Record<string, string> = {
+  w50b: '50 BEST',
+  a50b: "ASIA'S 50 BEST",
+  e50b: "EUROPE'S 50 BEST",
+  na50b: "NORTH AMERICA'S 50 BEST",
+  totc: 'SPIRITED',
+  bca: "BARTENDERS' CHOICE",
+  jbf: 'JAMES BEARD',
+  '30bbi': '30 BEST BARS INDIA',
+  shaker: 'SHAKER AWARDS',
+  pinnacle: 'PINNACLE',
+};
+
+/**
+ * The one award a best-bars card shows as a pill (task 135): the bar's
+ * strongest renderable honor by stored score, stage breaking ties as on the
+ * tiles. A nomination is not an award, so nominee entries are skipped and a
+ * bar whose honors are all nominations gets no pill. The Pinnacle Guide is
+ * the exception: its "nominee" kind only draws the 1 Pin tile outlined, and
+ * 1 Pin is a grade the bar holds, not a nomination. Null when there is
+ * nothing to show.
+ */
+export function cardAwardLabel(accolades: unknown): string | null {
+  const best = renderableAccolades(accolades)
+    .filter(e => e.kind !== 'nominee' || e.org_key === 'pinnacle')
+    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0) || stageOf(b) - stageOf(a))[0];
+  return best ? PILL_LABEL[best.org_key] ?? null : null;
+}
+
 /** The 50 Best family — world plus the regional lists. */
 const FIFTY_BEST_KEYS = new Set(['w50b', 'a50b', 'e50b', 'na50b']);
 
