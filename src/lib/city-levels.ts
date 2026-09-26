@@ -65,9 +65,9 @@ export const isPinned = (b: Bar) => (pick(b) ?? 0) > 0;
 export const isDropped = (b: Bar) => pick(b) === -1;
 
 export interface Level2Result {
-  /** The curated ten, in tier order, always at the top. */
+  /** The curated ten, always at the top, in bestBarsOrder. */
   curated: Bar[];
-  /** Everything else that qualifies, in rank order. */
+  /** Everything else that qualifies, in bestBarsOrder. */
   rest: Bar[];
   /** curated + rest, which is what the page renders and counts. */
   all: Bar[];
@@ -89,22 +89,54 @@ export function level2Bars(bars: Bar[], fallback: (b: Bar[]) => Bar[]): Level2Re
   const curated = live.filter(isCuratedTen);
   const qualified = live.filter(b => !isCuratedTen(b) && level2Reason(b) !== null);
 
+  // Order is bestBarsOrder's alone (task 137). The editorial pick still
+  // decides membership (-1 drops a bar); no positive pin exists today.
+  const all = bestBarsOrder([...curated, ...qualified]);
+  const rest = all.filter(b => !isCuratedTen(b));
+  if (all.length >= LEVEL2_MIN) return { curated: all.filter(isCuratedTen), rest, all, fellBack: false };
+
+  // The fallback still chooses WHICH bars fill a thin page; the order they
+  // are shown in is the same as everywhere else on /best-bars.
+  const filled = bestBarsOrder(fallback(live).slice(0, LEVEL2_MIN));
+  return { curated: all.filter(isCuratedTen), rest, all: filled, fellBack: true };
+}
+
+/** Sum of the stored scores of every renderable accolade (task 137). */
+export function totalAccoladeScore(bar: Pick<Bar, 'accolades'>): number {
+  return renderableAccolades(bar.accolades).reduce((n, e) => n + (e.score ?? 0), 0);
+}
+
+/** The year of the bar's most recent renderable accolade, 0 when none. */
+export function latestAccoladeYear(bar: Pick<Bar, 'accolades'>): number {
+  return renderableAccolades(bar.accolades).reduce((y, e) => Math.max(y, e.year ?? 0), 0);
+}
+
+/**
+ * The order of the cards on /best-bars (task 137, Roman 2026-09-26).
+ *
+ *   1. The city's Top 10 picks, then every other bar on the list.
+ *   2. Inside each group, bars holding an accolade first, by total accolade
+ *      score, highest first. Equal scores: a bar with a photo first, then the
+ *      most recent accolade year, then the name.
+ *   3. Bars with no accolade last in their group: a photo first, then by name.
+ *
+ * Paid status plays no part here; Featured buys position on /bars/city only.
+ * A closed bar keeps the rule it already had: last inside its group, so
+ * the list leads with places a reader can go tonight. No rank is drawn on
+ * the cards; the order is only the order.
+ */
+export function bestBarsOrder(bars: Bar[]): Bar[] {
   const hasPhoto = (b: Bar) => (b.photos && b.photos.length > 0 ? 0 : 1);
-  const rank = (b: Bar) => level2Reason(b)?.rank ?? 99;
-  const rest = qualified.slice().sort((a, b) =>
-    // A pinned bar leads, then the rule, then a closed bar last, then photo.
-    (isPinned(b) ? 1 : 0) - (isPinned(a) ? 1 : 0)
-    || (pick(b) ?? 0) - (pick(a) ?? 0)
-    || rank(a) - rank(b)
+  const group = (b: Bar) => (isCuratedTen(b) ? 0 : 1);
+  const awarded = (b: Bar) => (renderableAccolades(b.accolades).length > 0 ? 0 : 1);
+  return bars.slice().sort((a, b) =>
+    group(a) - group(b)
     || closedLast(a) - closedLast(b)
+    || awarded(a) - awarded(b)
+    || totalAccoladeScore(b) - totalAccoladeScore(a)
     || hasPhoto(a) - hasPhoto(b)
+    || latestAccoladeYear(b) - latestAccoladeYear(a)
     || a.name.localeCompare(b.name));
-
-  const all = [...curated, ...rest];
-  if (all.length >= LEVEL2_MIN) return { curated, rest, all, fellBack: false };
-
-  const filled = fallback(live).slice(0, LEVEL2_MIN);
-  return { curated, rest, all: filled, fellBack: true };
 }
 
 /**
@@ -132,7 +164,7 @@ export function level2BarsForType(
   // qualify, and a live page must not vanish because the rule tightened.
   let fellBack = city.fellBack;
   if (all.length < LEVEL2_MIN) {
-    all = fallback(ofType).slice(0, LEVEL2_MIN);
+    all = bestBarsOrder(fallback(ofType).slice(0, LEVEL2_MIN));
     fellBack = true;
   }
   const sameAsCity = all.length === city.all.length
