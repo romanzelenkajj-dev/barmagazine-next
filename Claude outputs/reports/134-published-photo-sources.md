@@ -66,3 +66,16 @@ Every photo published today from a bar's own website, credited "Photo: <Bar name
 | 134 batch 2 | star-bar | Star Bar (Tokyo) | https://static.wixstatic.com/media/6f08b5_74c8e4545b304267bd003c3d9cff32eb~mv2.jpg | https://www.starbar.jp/store-introduction-ginza |
 | 134 batch 2 | bar-betsie | Bar Betsie (Washington DC) | https://images.squarespace-cdn.com/content/v1/677d30114b3e8c30ecd1d27a/c6bce6d0-6812-4c43-a8cf-e4d8932c63a0/BarBetsie_WebsiteBackground.jpg | https://www.barbetsiedc.com/ |
 | 134 batch 2 | tales-bar | Tales Bar (Zurich) | https://www.tales-bar.ch/wp-content/uploads/2020/01/2016-10-23-tales-47.jpg | https://www.tales-bar.ch/entwurf-startseite/2016-10-23-tales-47/ |
+| 134 batch 3 | kyara | Kyara (Barcelona) | https://kyarabarcelona.com/wp-content/uploads/sites/8/2025/05/kyara_bar-min.jpg | https://kyarabarcelona.com/ |
+| 134 batch 3 | baltazar-basel | Baltazar (Basel) | https://www.baltazarbar.ch/custom/data/GallerySingle2images/8/Large/IMG6493.jpg | https://www.baltazarbar.ch/en/interior |
+| 134 batch 3 | ufo-watch-taste-groove | UFO watch.taste.groove. (Bratislava) | https://www.u-f-o.sk/data/gallery/gallery_17500283311.jpeg | https://www.u-f-o.sk/fotogaleria |
+| 134 batch 3 | doar-bros-charleston | Doar Bros. (Charleston) | https://static.wixstatic.com/media/7eb3ee_339cfdf651364dc19d04f85348fe5316~mv2.jpg | https://www.doarbros.com |
+| 134 batch 3 | tell-camellia | Tell Camellia (Hong Kong) | https://www.tellcamellia.hk/api/media/file/hero-1.jpg | https://www.tellcamellia.hk/ |
+| 134 batch 3 | the-diplomat | The Diplomat (Hong Kong) | https://thediplomat.hk/images/20200227d4220d8f9a0e0bca.jpeg | https://thediplomat.hk/ |
+| 134 batch 3 | angel-share-houston | Angel Share (Houston) | https://static.wixstatic.com/media/f63d38_48722302848a48ff93e2aa900856a071~mv2.jpg | https://www.angelsharehtx.com/services-2 |
+| 134 batch 3 | the-brass-monkey-lounge | The Brass Monkey Lounge (Kansas City) | https://cdn.prod.website-files.com/6813b655709a1a7c03797942/6a99c396319fc9e745301a01_f72bdf1c25835de64987a36d1ca805a2_brass-monkey-home-hero-dsc06936-wide-v2.avif | https://www.brassmonkeylounge.com/ |
+| 134 batch 3 | bar-1802 | Bar 1802 (Paris) | https://api.pulse-cdn.com/api/v1/resize/uploads/153367-hotel-montecristo/a3070275-5dc9-4098-b885-bf3b709560b4.jpg-resize-0-0-100-jpg | https://www.hotelmontecristoparis.com/galerie-photos |
+| 134 batch 3 | the-roost-sacramento | The Roost (Sacramento) | https://images.squarespace-cdn.com/content/v1/66142ae16ab1720c90a98e9c/213db1e1-5b47-459c-96d0-12ec272f63f2/20230909-_DSC5656-FINAL.jpg?format=2500w | https://www.theroost916.com/private-party |
+| 134 batch 3 | civil-liberties | Civil Liberties (Toronto) | https://static.wixstatic.com/media/8e1951_c004ae24209142a1bc25a8fb02e12785~mv2.jpg | https://www.civillibertiesbar.com/ |
+| 134 batch 3 | donkey-shoe | Donkey Shoe (Warsaw) | https://donkeyshoe.com/wp-content/uploads/2024/11/Donkey-Shoe_Hero_Dekstop_LP.jpg | https://donkeyshoe.com/donkey-shoe_hero_dekstop_lp/ |
+| 134 batch 3 | lane-s-gin-bar | Lane's Gin Bar (Warsaw) | https://mds-assets.marriott.com/cms-platform-for-marriott/wawlc-lanes-gin-bar/site-images/migrated-images/bar-lanes-1.jpg | https://www.lanesbar.com/en |

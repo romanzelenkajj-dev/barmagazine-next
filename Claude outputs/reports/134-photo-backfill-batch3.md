@@ -1,6 +1,6 @@
 # Task 134, photo backfill, batch 3
 
-Status: research and staging done. Contact sheet: outreach/photos-staged/134-batch3-contact-sheet.html (26 numbered candidates for 16 bars); files in outreach/photos-staged/134-batch3/<slug>/ with a source.txt each. Nothing published.
+Status: done (Roman, typed go, 2026-09-25). 13 bars published, credited "Photo: <Bar name>": kyara 01, baltazar 02, ufo 01, doar-bros, tell-camellia 01, the-diplomat, angel-share 01, the-brass-monkey-lounge, bar-1802 02, the-roost 01, civil-liberties, donkey-shoe 01, lane-s-gin-bar 02. Not published: barfly-basel, happy-medium, june-on-cambie; held-off bars stay off. Staging cleared; sources appended to 134-published-photo-sources.md. Original staging note: Contact sheet: outreach/photos-staged/134-batch3-contact-sheet.html (26 numbered candidates for 16 bars); files in outreach/photos-staged/134-batch3/<slug>/ with a source.txt each. Nothing published.
 
 ## Scope
 
